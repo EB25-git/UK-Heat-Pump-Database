@@ -69,23 +69,69 @@ h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400}
 .hero-stats{display:flex;gap:2rem;flex-shrink:0}
 .stat-n{font-family:'DM Mono',monospace;font-size:32px;font-weight:500;color:#5DCAA5;line-height:1}
 .stat-l{font-size:11px;color:#888780;margin-top:4px}
-/* BROWSE LAYOUT */
-.browse-layout{display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 56px)}
-.browse-sidebar{background:var(--surface);border-right:1px solid var(--border);padding:1.25rem 1rem;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
-.browse-main{padding:1.25rem 1.5rem;overflow-y:auto}
-.filter-section{margin-bottom:1.25rem}
-.filter-label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:6px;display:block}
-.search-wrap{position:relative;margin-bottom:1rem}
+/* TOOLBAR */
+.toolbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.75rem 2rem;position:sticky;top:56px;z-index:40}
+.toolbar-inner{max-width:1280px;margin:0 auto}
+.toolbar-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toolbar-row+.toolbar-row{margin-top:8px}
+.search-wrap{position:relative;flex:1;min-width:200px}
 .search-wrap input{width:100%;padding:8px 11px 8px 32px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
 .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none;font-family:'DM Mono',monospace}
-select.filt{width:100%;padding:7px 9px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);margin-bottom:10px}
-.filter-bar-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:1rem}
+select.filt{padding:7px 9px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-width:0}
 .res-count{font-size:12px;color:var(--text3);white-space:nowrap}
 .view-toggle{display:flex;border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
 .view-btn{background:none;border:none;padding:6px 11px;cursor:pointer;color:var(--text3);font-size:13px;transition:all .15s;font-family:'DM Mono',monospace}
 .view-btn.active{background:var(--text);color:#fff}
-.clear-btn{background:none;border:none;color:var(--danger);font-size:11px;cursor:pointer;padding:4px 0;font-family:'DM Sans',sans-serif;text-decoration:underline;white-space:nowrap}
-.clear-btn:hover{color:#791F1F}
+.clear-btn{background:none;border:1px solid var(--danger);color:var(--danger);font-size:11px;cursor:pointer;padding:5px 10px;border-radius:var(--radius);font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all .15s}
+.clear-btn:hover{background:var(--danger);color:#fff}
+/* FOOTER */
+.site-footer{background:var(--text);padding:1.5rem 2rem;text-align:center;color:#888780;font-size:12px;line-height:1.6;font-family:'DM Sans',sans-serif}
+.site-footer a{color:#5DCAA5;text-decoration:none}
+.site-footer a:hover{text-decoration:underline}
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav{padding:0 1rem;gap:0}
+  .nav-brand{font-size:16px}
+  .nav-brand .nav-pill{display:none}
+  .nav-tab{padding:0 10px;font-size:13px}
+  .nav-admin{padding:5px 10px;font-size:12px;margin-left:8px}
+  .hero{padding:1.75rem 1rem 1.5rem}
+  .hero h1{font-size:24px}
+  .hero-stats{gap:1.25rem}
+  .stat-n{font-size:24px}
+  .toolbar{padding:.625rem 1rem}
+  .toolbar-row{gap:6px}
+  select.filt{font-size:11px;padding:6px 7px;flex:1;min-width:0}
+  .search-wrap{min-width:100%;flex-basis:100%}
+  .container{padding:1rem}
+  .hp-grid{grid-template-columns:1fr;gap:10px}
+  .table-wrap{font-size:12px}
+  thead th,td{padding:7px 8px}
+  .modal{margin:0.5rem}
+  .modal-body{padding:1rem}
+  .modal-hd{padding:1rem 1.25rem}
+  .modal-hd h2{font-size:18px}
+  .spec-row{grid-template-columns:140px 1fr;gap:4px}
+  .admin-layout{grid-template-columns:1fr}
+  .admin-sb{display:flex;overflow-x:auto;padding:.5rem 0;border-right:none;border-bottom:1px solid var(--border)}
+  .sb-item{white-space:nowrap;padding:6px 12px;font-size:13px}
+  .sb-label{display:none}
+  .admin-content{padding:1rem;max-height:none}
+  .fg2,.fg3{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:repeat(3,1fr)}
+  .cmp-grid{grid-template-columns:1fr}
+  .guide-card{padding:1.25rem}
+  .site-footer{padding:1.25rem 1rem}
+}
+@media(max-width:480px){
+  .nav-tab{padding:0 7px;font-size:12px}
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .hero-stats{width:100%}
+  .stat-n{font-size:22px}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .card-actions{gap:4px}
+  .card-act{padding:4px 8px;font-size:10px}
+}
 /* BADGES */
 .badge{display:inline-block;padding:2px 7px;border-radius:20px;font-size:11px;font-family:'DM Mono',monospace;white-space:nowrap}
 .badge-res{background:#E1F5EE;color:#0F6E56}
@@ -274,47 +320,32 @@ td.acc{color:var(--accent);font-weight:500}
       </div>
     </div>
   </div>
-  <div class="browse-layout">
-    <div class="browse-sidebar">
-      <div class="search-wrap">
-        <span class="search-icon">⌕</span>
-        <input type="text" placeholder="Search…" id="search-input" oninput="applyFilters()">
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-        <span style="font-size:13px;font-weight:500;color:var(--text)">Filters</span>
-        <button class="clear-btn" id="clear-filters-btn" onclick="clearAllFilters()" style="display:none">✕ Clear all</button>
-      </div>
-      <div class="filter-section">
-        <span class="filter-label">HP type</span>
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div class="toolbar-row">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input type="text" placeholder="Search model, manufacturer, refrigerant…" id="search-input" oninput="applyFilters()">
+        </div>
         <select class="filt" id="filt-hptype" onchange="applyFilters()">
-          <option value="">All (ASHP, WSHP, GSHP)</option>
-          <option value="ASHP">ASHP only</option>
-          <option value="WSHP">WSHP only</option>
-          <option value="GSHP">GSHP only</option>
+          <option value="">All HP types</option>
+          <option value="ASHP">ASHP</option>
+          <option value="WSHP">WSHP</option>
+          <option value="GSHP">GSHP</option>
         </select>
-      </div>
-      <div class="filter-section">
-        <span class="filter-label">Market segment</span>
         <select class="filt" id="filt-type" onchange="applyFilters()">
           <option value="">All segments</option>
           <option value="Residential">Residential</option>
           <option value="Commercial">Commercial</option>
         </select>
-      </div>
-      <div class="filter-section">
-        <span class="filter-label">Manufacturer</span>
         <select class="filt" id="filt-mfr" onchange="applyFilters()">
           <option value="">All manufacturers</option>
         </select>
-      </div>
-      <div class="filter-section">
-        <span class="filter-label">Refrigerant</span>
         <select class="filt" id="filt-ref" onchange="applyFilters()">
           <option value="">All refrigerants</option>
         </select>
       </div>
-      <div class="filter-section">
-        <span class="filter-label">Max thermal capacity</span>
+      <div class="toolbar-row">
         <select class="filt" id="filt-cap" onchange="applyFilters()">
           <option value="">Any capacity</option>
           <option value="0-15">≤15 kW</option>
@@ -322,20 +353,14 @@ td.acc{color:var(--accent);font-weight:500}
           <option value="50-250">50–250 kW</option>
           <option value="250-99999">250 kW+</option>
         </select>
-      </div>
-      <div class="filter-section">
-        <span class="filter-label">Max flow temperature</span>
         <select class="filt" id="filt-flow" onchange="applyFilters()">
           <option value="">Any flow temp</option>
           <option value="60">≥60°C</option>
           <option value="70">≥70°C</option>
           <option value="80">≥80°C</option>
         </select>
-      </div>
-      <div class="filter-section">
-        <span class="filter-label">COP test conditions</span>
         <select class="filt" id="filt-copcond" onchange="applyFilters()">
-          <option value="">All conditions</option>
+          <option value="">All COP conditions</option>
           <option value="A7/W35">A7/W35 (ASHP std)</option>
           <option value="A7/W45">A7/W45</option>
           <option value="A7/W55">A7/W55</option>
@@ -346,18 +371,18 @@ td.acc{color:var(--accent);font-weight:500}
           <option value="W10/W65">W10/W65 (district)</option>
           <option value="B0/W35">B0/W35 (GSHP std)</option>
         </select>
-      </div>
-    </div>
-    <div class="browse-main">
-      <div class="filter-bar-top">
-        <span class="res-count" id="res-count"></span>
+        <button class="clear-btn" id="clear-filters-btn" onclick="clearAllFilters()" style="display:none">✕ Clear all</button>
+        <span class="res-count" id="res-count" style="margin-left:auto"></span>
         <div class="view-toggle">
           <button class="view-btn active" id="vbtn-grid" onclick="setView('grid')" title="Grid">▦</button>
           <button class="view-btn" id="vbtn-table" onclick="setView('table')" title="Table">☰</button>
         </div>
       </div>
-      <div id="hp-grid" class="hp-grid" style="padding-top:0"></div>
-      <div id="hp-table" class="table-wrap" style="display:none">
+    </div>
+  </div>
+  <div class="container">
+    <div id="hp-grid" class="hp-grid"></div>
+    <div id="hp-table" class="table-wrap" style="display:none">
       <table>
         <thead><tr>
           <th onclick="sortBy('manufacturer')">Manufacturer <span class="sort-arr" id="sa-manufacturer">↕</span></th>
@@ -378,9 +403,11 @@ td.acc{color:var(--accent);font-weight:500}
     <div id="empty-browse" class="empty-state" style="display:none">
       <h3>No results</h3><p>Try adjusting your search or filters.</p>
     </div>
-    </div>
   </div>
 </div>
+
+<!-- FOOTER -->
+<footer class="site-footer" id="site-footer"></footer>
 
 <!-- TOAST CONTAINER -->
 <div class="toast-container" id="toast-container"></div>
@@ -673,6 +700,15 @@ td.acc{color:var(--accent);font-weight:500}
             <button class="btn btn-primary btn-sm" onclick="heroSubtitle=document.getElementById('s-hero-sub').value;saveCMS();updateHero();document.getElementById('hero-sub-alert').innerHTML='<div class=\'alert a-success\'>Subtitle updated.</div>';document.getElementById('hero-sub-alert').style.display='block';setTimeout(()=>document.getElementById('hero-sub-alert').style.display='none',3000)">Save subtitle</button>
           </div>
           <div class="card-a">
+            <h3>Copyright notice</h3>
+            <p style="font-size:12px;color:var(--text3);margin-bottom:.75rem">Displayed at the bottom of every page. Basic HTML is supported.</p>
+            <div class="form-group">
+              <textarea class="form-textarea" id="s-copyright" style="min-height:80px"></textarea>
+            </div>
+            <div id="copyright-alert" style="display:none"></div>
+            <button class="btn btn-primary btn-sm" onclick="copyrightText=document.getElementById('s-copyright').value;saveCMS();renderFooter();document.getElementById('copyright-alert').innerHTML='<div class=\'alert a-success\'>Copyright notice updated.</div>';document.getElementById('copyright-alert').style.display='block';setTimeout(()=>document.getElementById('copyright-alert').style.display='none',3000)">Save copyright</button>
+          </div>
+          <div class="card-a">
             <h3>Change admin password</h3>
             <div class="fg2">
               <div class="form-group"><label class="form-label">Current password</label><input type="password" class="form-input" id="s-old-pw" placeholder="Current password"></div>
@@ -954,6 +990,7 @@ const DEFAULT_CONTACT = {
 let guideContent = JSON.parse(localStorage.getItem('hp_guide') || 'null') || JSON.parse(JSON.stringify(DEFAULT_GUIDE));
 let contactContent = JSON.parse(localStorage.getItem('hp_contact') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CONTACT));
 let heroSubtitle = localStorage.getItem('hp_hero_sub') || 'Air source and water source heat pumps — residential and commercial specifications, performance data, and COP test conditions from UK manufacturers.';
+let copyrightText = localStorage.getItem('hp_copyright') || '© 2025 UK Heat Pumps Database. All rights reserved. Product specifications are sourced from manufacturer datasheets and may change without notice. This site is an independent resource and is not affiliated with any manufacturer.';
 let isAdmin = false;
 let view = 'grid';
 let sortKey = null, sortDir = 1;
@@ -1035,7 +1072,7 @@ function adminNav(p){
   if(p==='clicks')renderClickAnalytics();
   if(p==='editguide')renderAdminGuide();
   if(p==='editcontact')renderAdminContact();
-  if(p==='settings'){const el=document.getElementById('s-hero-sub');if(el)el.value=heroSubtitle;}
+  if(p==='settings'){const el=document.getElementById('s-hero-sub');if(el)el.value=heroSubtitle;const el2=document.getElementById('s-copyright');if(el2)el2.value=copyrightText;}
 }
 
 // ═══════════════ BROWSE ═══════════════
@@ -1483,7 +1520,7 @@ function exportClicks(){
 }
 
 // ═══════════════ CMS: GUIDE & CONTACT ═══════════════
-function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_hero_sub',heroSubtitle);}
+function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);}
 
 function renderGuidePage(){
   const g=guideContent;
@@ -1701,11 +1738,13 @@ function showCmsAlert(page,msg,cls){
 }
 
 // ═══════════════ INIT ═══════════════
+function renderFooter(){document.getElementById('site-footer').innerHTML=copyrightText;}
 populateFilters();
 applyFilters();
 updateHero();
 renderGuidePage();
 renderContactPage();
+renderFooter();
 </script>
 </body>
 </html>
