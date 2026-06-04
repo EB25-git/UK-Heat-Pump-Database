@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Heat Pumps Database — ASHP, WSHP & GSHP Specifications</title>
+<meta name="description" content="The UK's most complete heat pump database. Compare air source, water source, and ground source heat pumps — specifications, COP data, and manufacturer details from 100+ products across 30+ brands.">
+<meta name="keywords" content="heat pump, ASHP, WSHP, GSHP, air source heat pump, water source heat pump, ground source heat pump, UK, COP, specifications, database">
+<meta name="author" content="UK Heat Pumps Database">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.yourdomain.co.uk/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="UK Heat Pumps Database">
+<meta property="og:description" content="Compare 100+ air source, water source and ground source heat pumps. Full specifications, COP test conditions, and manufacturer data.">
+<meta property="og:url" content="https://www.yourdomain.co.uk/">
+<meta property="og:site_name" content="UK Heat Pumps Database">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UK Heat Pumps Database">
+<meta name="twitter:description" content="Compare 100+ ASHP, WSHP & GSHP heat pumps with full UK specifications and COP data.">
+
+<!-- Favicon (inline SVG) -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3C11 3 6 7 6 12.5c0 6 6.5 11 10 14 3.5-3 10-8 10-14C26 7 21 3 16 3z' fill='%230F6E56'/><circle cx='16' cy='12' r='3.5' fill='white'/></svg>" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F2F0EA;--surface:#FFFFFF;--surface2:#F7F6F2;
+  --border:#E2DFD7;--border2:#CBC7BC;
+  --text:#1C1B18;--text2:#5A574F;--text3:#8C897F;
+  --accent:#0F6E56;--accent-light:#E1F5EE;--accent-dark:#085041;
+  --warn:#BA7517;--warn-light:#FAEEDA;
+  --danger:#A32D2D;--danger-light:#FCEBEB;
+  --info:#185FA5;--info-light:#E6F1FB;
+  --purple:#6B42C8;--purple-light:#F0EAFB;
+  --teal:#0E7490;--teal-light:#E0F5F9;
+  --radius:8px;--radius-lg:14px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400}
+.mono{font-family:'DM Mono',monospace}
+/* NAV */
+.nav{background:var(--text);padding:0 2rem;display:flex;align-items:center;height:56px;position:sticky;top:0;z-index:50}
+.nav-brand{font-family:'Fraunces',serif;font-size:19px;color:#fff;font-weight:500;margin-right:auto;display:flex;align-items:center;gap:10px}
+.nav-brand span{color:#5DCAA5}
+.nav-pill{font-size:10px;background:#1D9E75;color:#fff;padding:2px 7px;border-radius:20px;font-family:'DM Mono',monospace;letter-spacing:.5px}
+.nav-tabs{display:flex;height:100%}
+.nav-tab{background:none;border:none;color:#B4B2A9;font-size:14px;font-family:'DM Sans',sans-serif;padding:0 16px;cursor:pointer;border-bottom:2px solid transparent;height:100%;transition:color .15s}
+.nav-tab:hover{color:#fff}
+.nav-tab.active{color:#5DCAA5;border-bottom-color:#5DCAA5}
+.nav-admin{background:none;border:1px solid #444;color:#B4B2A9;font-size:13px;font-family:'DM Sans',sans-serif;padding:6px 14px;border-radius:6px;cursor:pointer;margin-left:16px;transition:all .15s}
+.nav-admin:hover{border-color:#5DCAA5;color:#5DCAA5}
+.nav-admin.active{background:#1D9E75;border-color:#1D9E75;color:#fff}
+/* LAYOUT */
+.page{display:none;min-height:calc(100vh - 56px)}
+.page.show{display:block}
+.container{max-width:1280px;margin:0 auto;padding:2rem}
+/* HERO */
+.hero{background:var(--text);padding:2.5rem 2rem 2rem}
+.hero-inner{max-width:1280px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.hero h1{font-size:clamp(24px,3.5vw,42px);line-height:1.1;color:#fff;margin-bottom:.5rem}
+.hero h1 em{color:#5DCAA5;font-style:normal}
+.hero p{color:#888780;font-size:14px;max-width:560px;line-height:1.6}
+.hero-stats{display:flex;gap:2rem;flex-shrink:0}
+.stat-n{font-family:'DM Mono',monospace;font-size:32px;font-weight:500;color:#5DCAA5;line-height:1}
+.stat-l{font-size:11px;color:#888780;margin-top:4px}
+/* BROWSE LAYOUT */
+.browse-layout{display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 56px)}
+.browse-sidebar{background:var(--surface);border-right:1px solid var(--border);padding:1.25rem 1rem;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
+.browse-main{padding:1.25rem 1.5rem;overflow-y:auto}
+.filter-section{margin-bottom:1.25rem}
+.filter-label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:6px;display:block}
+.search-wrap{position:relative;margin-bottom:1rem}
+.search-wrap input{width:100%;padding:8px 11px 8px 32px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px;pointer-events:none;font-family:'DM Mono',monospace}
+select.filt{width:100%;padding:7px 9px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);margin-bottom:10px}
+.filter-bar-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:1rem}
+.res-count{font-size:12px;color:var(--text3);white-space:nowrap}
+.view-toggle{display:flex;border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden}
+.view-btn{background:none;border:none;padding:6px 11px;cursor:pointer;color:var(--text3);font-size:13px;transition:all .15s;font-family:'DM Mono',monospace}
+.view-btn.active{background:var(--text);color:#fff}
+.clear-btn{background:none;border:none;color:var(--danger);font-size:11px;cursor:pointer;padding:4px 0;font-family:'DM Sans',sans-serif;text-decoration:underline;white-space:nowrap}
+.clear-btn:hover{color:#791F1F}
+/* BADGES */
+.badge{display:inline-block;padding:2px 7px;border-radius:20px;font-size:11px;font-family:'DM Mono',monospace;white-space:nowrap}
+.badge-res{background:#E1F5EE;color:#0F6E56}
+.badge-ind{background:#E6F1FB;color:#185FA5}
+.badge-comm{background:#FAEEDA;color:#854F0B}
+.badge-ref{background:#F1EFE8;color:#5F5E5A}
+.badge-ashp{background:#E0F5F9;color:#0E7490}
+.badge-wshp{background:#F0EAFB;color:#6B42C8}
+.badge-gshp{background:#FDF2E9;color:#935116}
+/* COP TEST CONDITION LABELS */
+.cop-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;padding:1px 6px;border-radius:4px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+.cop-std{background:#E1F5EE;color:#0F6E56;border:1px solid #9FE1CB}
+.cop-nonstd{background:#FAEEDA;color:#854F0B;border:1px solid #FAC775}
+.cop-water{background:#F0EAFB;color:#6B42C8;border:1px solid #C7ADEE}
+/* GRID */
+.hp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:14px;padding:1.25rem 0}
+.hp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .2s,box-shadow .2s;cursor:pointer}
+.hp-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.hp-card-head{padding:13px 15px 10px;border-bottom:1px solid var(--border)}
+.hp-card-brand{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:3px}
+.hp-card-name{font-family:'Fraunces',serif;font-size:16px;line-height:1.2}
+.hp-card-badges{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap}
+.hp-card-body{padding:11px 15px}
+.hp-spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.hp-spec{background:var(--surface2);border-radius:6px;padding:7px 9px}
+.hp-spec-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;font-family:'DM Mono',monospace;margin-bottom:2px}
+.hp-spec-val{font-size:13px;font-weight:500;line-height:1.2}
+.hp-spec-val.acc{color:var(--accent)}
+.hp-spec-cop{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.hp-card-footer{padding:9px 15px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;align-items:center}
+.source-tag{display:inline-flex;align-items:center;padding:2px 7px;border-radius:20px;font-size:10px;font-family:'DM Mono',monospace}
+.src-manufacturer{background:#E1F5EE;color:#0F6E56}
+.src-manual{background:#FAEEDA;color:#854F0B}
+.src-import{background:#E6F1FB;color:#185FA5}
+.src-third-party{background:#F1EFE8;color:#5F5E5A}
+/* CARD ACTION BUTTONS */
+.card-actions{display:flex;gap:6px;align-items:center}
+.card-act{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:6px;font-size:11px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;transition:all .15s;text-decoration:none;border:1px solid;line-height:1}
+.card-act-cmp{background:var(--accent-light);color:var(--accent-dark);border-color:#9FE1CB}
+.card-act-cmp:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.card-act-cmp.added{background:var(--danger-light);color:var(--danger);border-color:#F7C1C1;pointer-events:none}
+.card-act-web{background:var(--info-light);color:#0C447C;border-color:#B5D4F4}
+.card-act-web:hover{background:var(--info);color:#fff;border-color:var(--info)}
+/* TOAST */
+.toast-container{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--text);color:#fff;padding:12px 18px;border-radius:var(--radius);font-size:13px;font-family:'DM Sans',sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.25);transform:translateY(20px);opacity:0;animation:toastIn .3s ease forwards;pointer-events:auto;display:flex;align-items:center;gap:8px;max-width:340px}
+.toast .toast-icon{font-size:16px;flex-shrink:0}
+.toast .toast-text{line-height:1.4}
+.toast .toast-text strong{color:#5DCAA5}
+@keyframes toastIn{to{transform:translateY(0);opacity:1}}
+@keyframes toastOut{to{transform:translateY(20px);opacity:0}}
+/* TABLE */
+.table-wrap{overflow-x:auto;margin-top:1.25rem;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--surface2);padding:9px 12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);font-family:'DM Mono',monospace;border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
+thead th:hover{color:var(--text)}
+tbody tr{border-bottom:.5px solid var(--border);transition:background .1s;cursor:pointer}
+tbody tr:hover{background:var(--surface2)}
+tbody tr:last-child{border-bottom:none}
+td{padding:9px 12px;vertical-align:middle}
+td.mv{font-family:'DM Mono',monospace;font-size:12px}
+td.acc{color:var(--accent);font-weight:500}
+.sort-arr{margin-left:3px;opacity:.4;font-size:9px}
+.sort-arr.on{opacity:1;color:var(--accent)}
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;padding:1.5rem;overflow-y:auto;align-items:flex-start;justify-content:center}
+.modal-bg.show{display:flex}
+.modal{background:var(--surface);border-radius:var(--radius-lg);width:100%;max-width:700px;overflow:hidden;margin:auto}
+.modal-hd{background:var(--text);padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-hd h2{font-size:21px;color:#fff;margin-bottom:3px}
+.modal-hd p{font-size:13px;color:#888780}
+.modal-close{background:none;border:none;color:#888780;font-size:20px;cursor:pointer;line-height:1;flex-shrink:0;margin-left:12px}
+.modal-close:hover{color:#fff}
+.modal-body{padding:1.25rem 1.5rem;max-height:80vh;overflow-y:auto}
+.spec-section{margin-bottom:1.25rem}
+.spec-section h4{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.spec-row{display:grid;grid-template-columns:210px 1fr;gap:8px;padding:5px 0;border-bottom:.5px solid var(--border);align-items:center}
+.spec-row:last-child{border-bottom:none}
+.spec-row-l{font-size:13px;color:var(--text3)}
+.spec-row-v{font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.spec-row-v.hi{color:var(--accent)}
+.cop-explain{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:10px 13px;font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:1rem}
+.cop-explain strong{color:var(--text)}
+/* ADMIN */
+.admin-layout{display:grid;grid-template-columns:215px 1fr;min-height:calc(100vh - 56px)}
+.admin-sb{background:var(--surface);border-right:1px solid var(--border);padding:1.25rem 0}
+.sb-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:'DM Mono',monospace;padding:0 1rem 6px;margin-top:.5rem;display:block}
+.sb-item{display:flex;align-items:center;gap:8px;padding:7px 1rem;font-size:14px;color:var(--text2);cursor:pointer;transition:all .15s;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif}
+.sb-item:hover{background:var(--surface2);color:var(--text)}
+.sb-item.active{background:var(--accent-light);color:var(--accent-dark);font-weight:500}
+.admin-content{padding:1.75rem;overflow-y:auto;max-height:calc(100vh - 56px)}
+.admin-panel{display:none}
+.admin-panel.show{display:block}
+.page-ttl{font-size:24px;margin-bottom:.25rem}
+.page-sub{font-size:13px;color:var(--text3);margin-bottom:1.25rem}
+/* FORMS */
+.form-group{margin-bottom:1rem}
+.form-label{display:block;font-size:13px;font-weight:500;margin-bottom:4px;color:var(--text2)}
+.form-label .req{color:var(--danger)}
+.form-input,.form-select,.form-textarea{width:100%;padding:8px 11px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text)}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,110,86,.1)}
+.form-textarea{resize:vertical;min-height:70px}
+.form-hint{font-size:11px;color:var(--text3);margin-top:3px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.fg4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius);border:1px solid var(--border2);background:none;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .15s;color:var(--text)}
+.btn:hover{background:var(--surface2)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+.btn-danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn-danger:hover{background:#791F1F;border-color:#791F1F}
+.btn-sm{padding:5px 11px;font-size:12px}
+.card-a{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1.125rem}
+.card-a h3{font-size:15px;margin-bottom:.875rem}
+.alert{padding:10px 14px;border-radius:var(--radius);font-size:13px;margin-bottom:.875rem;display:flex;align-items:flex-start;gap:7px}
+.a-success{background:var(--accent-light);color:var(--accent-dark);border:1px solid #9FE1CB}
+.a-warn{background:var(--warn-light);color:#633806;border:1px solid #FAC775}
+.a-info{background:var(--info-light);color:#0C447C;border:1px solid #B5D4F4}
+.a-danger{background:var(--danger-light);color:var(--danger);border:1px solid #F7C1C1}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:1.25rem}
+.metric-card{background:var(--surface2);border-radius:var(--radius);padding:.875rem 1rem}
+.metric-n{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:var(--accent);line-height:1}
+.metric-l{font-size:11px;color:var(--text3);margin-top:4px}
+.mfr-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:.5px solid var(--border)}
+.mfr-row:last-child{border-bottom:none}
+.mfr-name{flex:1;font-size:13px}
+.mfr-count{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);min-width:28px;text-align:right}
+.pb-wrap{background:var(--border);border-radius:20px;height:5px;width:70px;overflow:hidden;flex-shrink:0}
+.pb{background:var(--accent);height:100%;border-radius:20px}
+.admin-table{width:100%;border-collapse:collapse;font-size:13px}
+.admin-table th{background:var(--surface2);padding:8px 12px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);font-family:'DM Mono',monospace;border-bottom:1px solid var(--border)}
+.admin-table td{padding:8px 12px;border-bottom:.5px solid var(--border)}
+.admin-table tr:last-child td{border-bottom:none}
+.admin-table tr:hover td{background:var(--surface2)}
+.act-btns{display:flex;gap:5px}
+.login-wrap{min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;padding:2rem;background:var(--bg)}
+.login-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.25rem;width:100%;max-width:360px}
+.login-card h2{font-size:22px;margin-bottom:5px}
+.login-card p{font-size:13px;color:var(--text3);margin-bottom:1.25rem}
+.csv-drop{border:2px dashed var(--border2);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;color:var(--text3);font-size:14px;cursor:pointer;transition:all .2s}
+.csv-drop:hover,.csv-drop.over{border-color:var(--accent);background:var(--accent-light);color:var(--accent-dark)}
+.empty-state{text-align:center;padding:3.5rem 2rem;color:var(--text3)}
+.empty-state h3{font-family:'Fraunces',serif;font-weight:400;color:var(--text2);margin-bottom:.5rem;font-size:19px}
+.cmp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:1.25rem}
+.guide-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.375rem;margin-bottom:.875rem}
+.guide-card h3{font-size:17px;margin-bottom:.625rem;display:flex;align-items:center;gap:8px}
+.guide-card p{font-size:14px;color:var(--text2);line-height:1.75}
+.guide-card p strong{color:var(--text);font-weight:500}
+.guide-card table{width:100%;border-collapse:collapse;margin-top:.75rem;font-size:13px}
+.guide-card table th{background:var(--surface2);padding:7px 10px;text-align:left;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;border-bottom:1px solid var(--border)}
+.guide-card table td{padding:7px 10px;border-bottom:.5px solid var(--border);color:var(--text2)}
+.guide-card table tr:last-child td{border-bottom:none}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C7.5 2 4 5 4 9c0 4.5 4 8 7 10 3-2 7-5.5 7-10 0-4-3.5-7-7-7z" stroke="#5DCAA5" stroke-width="1.5" fill="none"/><circle cx="11" cy="9" r="2.5" fill="#5DCAA5"/><path d="M8 14l3 4 3-4" stroke="#5DCAA5" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+    UK Heat Pumps <span>Database</span>
+    <span class="nav-pill">BETA</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('browse')">Browse</button>
+    <button class="nav-tab" onclick="showPage('compare')">Compare</button>
+    <button class="nav-tab" onclick="showPage('guide')">Guide</button>
+    <button class="nav-tab" onclick="showPage('contact')">Contact</button>
+  </div>
+  <button class="nav-admin" id="admin-nav-btn" onclick="toggleAdmin()">⚙ Admin</button>
+</nav>
+
+<!-- ═══ BROWSE ═══ -->
+<div class="page show" id="page-browse">
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>The UK's most complete<br><em>heat pump database</em></h1>
+        <p id="hero-subtitle">—</p>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-n" id="hero-count">—</div><div class="stat-l">heat pumps</div></div>
+        <div><div class="stat-n" id="hero-mfr">—</div><div class="stat-l">manufacturers</div></div>
+        <div><div class="stat-n" id="hero-ashp">—</div><div class="stat-l">ASHP</div></div>
+        <div><div class="stat-n" id="hero-wshp">—</div><div class="stat-l">WSHP / GSHP</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="browse-layout">
+    <div class="browse-sidebar">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search…" id="search-input" oninput="applyFilters()">
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <span style="font-size:13px;font-weight:500;color:var(--text)">Filters</span>
+        <button class="clear-btn" id="clear-filters-btn" onclick="clearAllFilters()" style="display:none">✕ Clear all</button>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">HP type</span>
+        <select class="filt" id="filt-hptype" onchange="applyFilters()">
+          <option value="">All (ASHP, WSHP, GSHP)</option>
+          <option value="ASHP">ASHP only</option>
+          <option value="WSHP">WSHP only</option>
+          <option value="GSHP">GSHP only</option>
+        </select>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">Market segment</span>
+        <select class="filt" id="filt-type" onchange="applyFilters()">
+          <option value="">All segments</option>
+          <option value="Residential">Residential</option>
+          <option value="Commercial">Commercial</option>
+        </select>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">Manufacturer</span>
+        <select class="filt" id="filt-mfr" onchange="applyFilters()">
+          <option value="">All manufacturers</option>
+        </select>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">Refrigerant</span>
+        <select class="filt" id="filt-ref" onchange="applyFilters()">
+          <option value="">All refrigerants</option>
+        </select>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">Max thermal capacity</span>
+        <select class="filt" id="filt-cap" onchange="applyFilters()">
+          <option value="">Any capacity</option>
+          <option value="0-15">≤15 kW</option>
+          <option value="15-50">15–50 kW</option>
+          <option value="50-250">50–250 kW</option>
+          <option value="250-99999">250 kW+</option>
+        </select>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">Max flow temperature</span>
+        <select class="filt" id="filt-flow" onchange="applyFilters()">
+          <option value="">Any flow temp</option>
+          <option value="60">≥60°C</option>
+          <option value="70">≥70°C</option>
+          <option value="80">≥80°C</option>
+        </select>
+      </div>
+      <div class="filter-section">
+        <span class="filter-label">COP test conditions</span>
+        <select class="filt" id="filt-copcond" onchange="applyFilters()">
+          <option value="">All conditions</option>
+          <option value="A7/W35">A7/W35 (ASHP std)</option>
+          <option value="A7/W45">A7/W45</option>
+          <option value="A7/W55">A7/W55</option>
+          <option value="A-7/W35">A-7/W35 (cold)</option>
+          <option value="A7/W65">A7/W65 (high temp)</option>
+          <option value="W10/W35">W10/W35 (WSHP std)</option>
+          <option value="W10/W45">W10/W45</option>
+          <option value="W10/W65">W10/W65 (district)</option>
+          <option value="B0/W35">B0/W35 (GSHP std)</option>
+        </select>
+      </div>
+    </div>
+    <div class="browse-main">
+      <div class="filter-bar-top">
+        <span class="res-count" id="res-count"></span>
+        <div class="view-toggle">
+          <button class="view-btn active" id="vbtn-grid" onclick="setView('grid')" title="Grid">▦</button>
+          <button class="view-btn" id="vbtn-table" onclick="setView('table')" title="Table">☰</button>
+        </div>
+      </div>
+      <div id="hp-grid" class="hp-grid" style="padding-top:0"></div>
+      <div id="hp-table" class="table-wrap" style="display:none">
+      <table>
+        <thead><tr>
+          <th onclick="sortBy('manufacturer')">Manufacturer <span class="sort-arr" id="sa-manufacturer">↕</span></th>
+          <th onclick="sortBy('model')">Model <span class="sort-arr" id="sa-model">↕</span></th>
+          <th onclick="sortBy('hp_type')">HP Type <span class="sort-arr" id="sa-hp_type">↕</span></th>
+          <th onclick="sortBy('type')">Segment <span class="sort-arr" id="sa-type">↕</span></th>
+          <th onclick="sortBy('cap_max')">Capacity <span class="sort-arr" id="sa-cap_max">↕</span></th>
+          <th onclick="sortBy('cop')">COP <span class="sort-arr" id="sa-cop">↕</span></th>
+          <th>COP conditions</th>
+          <th onclick="sortBy('op_temp_min')">Min op temp <span class="sort-arr" id="sa-op_temp_min">↕</span></th>
+          <th onclick="sortBy('flow_temp_max')">Max flow <span class="sort-arr" id="sa-flow_temp_max">↕</span></th>
+          <th onclick="sortBy('refrigerant')">Refrigerant <span class="sort-arr" id="sa-refrigerant">↕</span></th>
+          <th>Source</th>
+        </tr></thead>
+        <tbody id="hp-tbody"></tbody>
+      </table>
+    </div>
+    <div id="empty-browse" class="empty-state" style="display:none">
+      <h3>No results</h3><p>Try adjusting your search or filters.</p>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ═══ COMPARE ═══ -->
+<div class="page" id="page-compare">
+  <div class="container">
+    <h1 style="font-size:26px;margin-top:1rem;margin-bottom:.35rem">Compare heat pumps</h1>
+    <p style="color:var(--text3);margin-bottom:1.25rem;font-size:13px">Select up to 4 units from Browse, then review side-by-side here.</p>
+    <div id="cmp-slots"></div>
+    <div id="cmp-table"></div>
+  </div>
+</div>
+
+<!-- ═══ GUIDE ═══ -->
+<div class="page" id="page-guide">
+  <div class="container" style="max-width:820px">
+    <div id="guide-content"></div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div class="page" id="page-contact">
+  <div class="container" style="max-width:820px">
+    <div id="contact-content"></div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN ═══ -->
+<div class="page" id="page-admin">
+  <div id="admin-login" class="login-wrap">
+    <div class="login-card">
+      <h2>Admin access</h2>
+      <p>Sign in to manage the heat pump database.</p>
+      <div class="form-group">
+        <label class="form-label">Password <span class="req">*</span></label>
+        <input type="password" class="form-input" id="admin-pw" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div id="login-err" class="alert a-danger" style="display:none">Incorrect password. Default: <code>admin123</code></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">Sign in →</button>
+    </div>
+  </div>
+  <div id="admin-dash" style="display:none">
+    <div class="admin-layout">
+      <div class="admin-sb">
+        <span class="sb-label">Database</span>
+        <button class="sb-item active" id="sb-overview" onclick="adminNav('overview')"><span>◈</span> Overview</button>
+        <button class="sb-item" id="sb-manage" onclick="adminNav('manage')"><span>☰</span> Manage entries</button>
+        <button class="sb-item" id="sb-add" onclick="adminNav('add')"><span>＋</span> Add entry</button>
+        <span class="sb-label">Data sources</span>
+        <button class="sb-item" id="sb-import" onclick="adminNav('import')"><span>⬆</span> Import CSV</button>
+        <button class="sb-item" id="sb-sources" onclick="adminNav('sources')"><span>◉</span> Sources</button>
+        <span class="sb-label">Analytics</span>
+        <button class="sb-item" id="sb-clicks" onclick="adminNav('clicks')"><span>◎</span> Link tracking</button>
+        <span class="sb-label">Content</span>
+        <button class="sb-item" id="sb-editguide" onclick="adminNav('editguide')"><span>📄</span> Edit Guide page</button>
+        <button class="sb-item" id="sb-editcontact" onclick="adminNav('editcontact')"><span>📧</span> Edit Contact page</button>
+        <span class="sb-label">System</span>
+        <button class="sb-item" id="sb-settings" onclick="adminNav('settings')"><span>⚙</span> Settings</button>
+        <button class="sb-item" onclick="doLogout()"><span>↩</span> Sign out</button>
+      </div>
+      <div class="admin-content">
+
+        <div class="admin-panel show" id="panel-overview">
+          <h2 class="page-ttl">Overview</h2><p class="page-sub">Database health and summary</p>
+          <div class="metrics-grid" id="admin-metrics"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="card-a"><h3>By manufacturer</h3><div id="ov-mfrs"></div></div>
+            <div class="card-a"><h3>By HP type</h3><div id="ov-hptypes"></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+            <div class="card-a"><h3>By segment</h3><div id="ov-types"></div></div>
+            <div class="card-a"><h3>By data source</h3><div id="ov-sources"></div></div>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-manage">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
+            <div><h2 class="page-ttl">Manage entries</h2><p class="page-sub" style="margin:0">Edit or delete records</p></div>
+            <button class="btn btn-primary btn-sm" onclick="adminNav('add')">+ Add new</button>
+          </div>
+          <input type="text" class="form-input" style="max-width:260px;margin-bottom:.875rem" placeholder="Filter entries…" oninput="filterAdminRows(this.value)">
+          <div class="table-wrap"><table class="admin-table">
+            <thead><tr><th>Manufacturer</th><th>Model</th><th>HP Type</th><th>Segment</th><th>Capacity</th><th>COP</th><th>COP Conditions</th><th>Source</th><th>Actions</th></tr></thead>
+            <tbody id="admin-tbody"></tbody>
+          </table></div>
+        </div>
+
+        <div class="admin-panel" id="panel-add">
+          <h2 class="page-ttl" id="form-ttl">Add new entry</h2>
+          <p class="page-sub" id="form-sub">Manually enter heat pump specifications</p>
+          <div id="form-alert" style="display:none"></div>
+          <div class="card-a">
+            <h3>Classification</h3>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Manufacturer <span class="req">*</span></label><input type="text" class="form-input" id="f-manufacturer" placeholder="e.g. Vaillant"></div>
+              <div class="form-group"><label class="form-label">Model name <span class="req">*</span></label><input type="text" class="form-input" id="f-model" placeholder="e.g. aroTHERM plus 7"></div>
+            </div>
+            <div class="fg3">
+              <div class="form-group"><label class="form-label">HP Type <span class="req">*</span></label>
+                <select class="form-select" id="f-hp_type"><option value="ASHP">ASHP – Air Source</option><option value="WSHP">WSHP – Water Source</option><option value="GSHP">GSHP – Ground Source</option></select></div>
+              <div class="form-group"><label class="form-label">Market segment <span class="req">*</span></label>
+                <select class="form-select" id="f-type"><option value="Residential">Residential</option><option value="Commercial">Commercial</option></select></div>
+              <div class="form-group"><label class="form-label">Refrigerant <span class="req">*</span></label><input type="text" class="form-input" id="f-refrigerant" placeholder="e.g. R32, R290"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Data source</label>
+              <select class="form-select" id="f-source"><option value="manufacturer">Manufacturer datasheet</option><option value="manual">Manual entry</option><option value="import">Imported data</option><option value="third-party">Third-party verified</option></select></div>
+            <div class="form-group"><label class="form-label">Product URL (optional)</label>
+              <input type="text" class="form-input" id="f-product_url" placeholder="https://www.manufacturer.com/specific-product-page">
+              <div class="form-hint">Override the default manufacturer link with a direct product page URL. Leave empty to use the manufacturer's main page.</div></div>
+          </div>
+          <div class="card-a">
+            <h3>Operating temperatures (°C)</h3>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Min ambient / source inlet temp (°C)</label><input type="number" class="form-input" id="f-op_temp_min" placeholder="e.g. −25 (ASHP) or 5 (WSHP)"><div class="form-hint">ASHP: lowest outdoor air temp. WSHP: min entering water temp.</div></div>
+              <div class="form-group"><label class="form-label">Max ambient / source inlet temp (°C)</label><input type="number" class="form-input" id="f-op_temp_max" placeholder="e.g. 43"></div>
+            </div>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Min flow temperature (°C)</label><input type="number" class="form-input" id="f-flow_temp_min" placeholder="e.g. 25"></div>
+              <div class="form-group"><label class="form-label">Max flow temperature (°C)</label><input type="number" class="form-input" id="f-flow_temp_max" placeholder="e.g. 75"></div>
+            </div>
+          </div>
+          <div class="card-a">
+            <h3>Thermal capacity (kW)</h3>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Min thermal capacity (kW)</label><input type="number" class="form-input" id="f-cap_min" placeholder="e.g. 3.5" step="0.1"></div>
+              <div class="form-group"><label class="form-label">Max thermal capacity (kW) <span class="req">*</span></label><input type="number" class="form-input" id="f-cap_max" placeholder="e.g. 7.0" step="0.1"></div>
+            </div>
+          </div>
+          <div class="card-a">
+            <h3>Electrical &amp; performance</h3>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Peak electrical input (kW)</label><input type="number" class="form-input" id="f-peak_elec" placeholder="e.g. 2.1" step="0.1"></div>
+              <div class="form-group"><label class="form-label">COP value</label><input type="number" class="form-input" id="f-cop" placeholder="e.g. 4.2" step="0.01"></div>
+            </div>
+            <div class="fg3">
+              <div class="form-group"><label class="form-label">COP test conditions <span class="req">*</span></label>
+                <select class="form-select" id="f-cop_cond">
+                  <option value="A7/W35">A7/W35 (ASHP standard)</option>
+                  <option value="A7/W45">A7/W45</option>
+                  <option value="A7/W55">A7/W55</option>
+                  <option value="A2/W35">A2/W35</option>
+                  <option value="A-7/W35">A-7/W35</option>
+                  <option value="A-15/W35">A-15/W35</option>
+                  <option value="W10/W35">W10/W35 (WSHP standard)</option>
+                  <option value="W10/W45">W10/W45</option>
+                  <option value="W15/W45">W15/W45</option>
+                  <option value="W20/W45">W20/W45</option>
+                  <option value="B0/W35">B0/W35 (GSHP standard)</option>
+                  <option value="B0/W45">B0/W45</option>
+                  <option value="other">Other / see notes</option>
+                </select></div>
+              <div class="form-group"><label class="form-label">SCOP</label><input type="number" class="form-input" id="f-scop" placeholder="e.g. 3.8" step="0.01"><div class="form-hint">Seasonal COP</div></div>
+              <div class="form-group"><label class="form-label">EER (cooling, if applicable)</label><input type="number" class="form-input" id="f-eer" placeholder="e.g. 3.5" step="0.01"></div>
+            </div>
+          </div>
+          <div class="card-a">
+            <h3>Dimensions &amp; physical</h3>
+            <div class="fg3">
+              <div class="form-group"><label class="form-label">Height (mm)</label><input type="number" class="form-input" id="f-height" placeholder="e.g. 1150"></div>
+              <div class="form-group"><label class="form-label">Width (mm)</label><input type="number" class="form-input" id="f-width" placeholder="e.g. 900"></div>
+              <div class="form-group"><label class="form-label">Depth (mm)</label><input type="number" class="form-input" id="f-depth" placeholder="e.g. 420"></div>
+            </div>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Weight (kg)</label><input type="number" class="form-input" id="f-weight" placeholder="e.g. 95"></div>
+              <div class="form-group"><label class="form-label">Noise level</label><input type="number" class="form-input" id="f-noise" placeholder="e.g. 52" step="0.5"></div>
+            </div>
+            <div class="form-group" style="max-width:320px"><label class="form-label">Noise measurement reference</label>
+              <select class="form-select" id="f-noise_ref">
+                <option value="LwA">LwA — Sound power level (EN 12102)</option>
+                <option value="LpA @ 1m">LpA @ 1m — Sound pressure at 1 metre</option>
+                <option value="LpA @ 3m">LpA @ 3m — Sound pressure at 3 metres</option>
+                <option value="LpA @ 5m">LpA @ 5m — Sound pressure at 5 metres</option>
+                <option value="LpA @ 10m">LpA @ 10m — Sound pressure at 10 metres</option>
+              </select>
+              <div class="form-hint">Sound power (LwA) is the EN 12102 standard. Use sound pressure (LpA) with distance only if the manufacturer quotes it that way.</div>
+            </div>
+          </div>
+          <div class="card-a">
+            <h3>Notes</h3>
+            <div class="form-group"><label class="form-label">Additional notes</label><textarea class="form-textarea" id="f-notes" placeholder="Certifications, datasheet URL, additional COP data points, remarks…"></textarea></div>
+          </div>
+          <div style="display:flex;gap:10px;padding-bottom:2rem">
+            <button class="btn btn-primary" onclick="submitForm()">Save entry</button>
+            <button class="btn" onclick="adminNav('manage')">Cancel</button>
+            <button class="btn btn-danger" id="f-delete-btn" style="display:none;margin-left:auto" onclick="deleteEditingEntry()">Delete entry</button>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-import">
+          <h2 class="page-ttl">Import CSV</h2><p class="page-sub">Bulk-import heat pump records</p>
+          <div class="card-a">
+            <h3>Required CSV headers</h3>
+            <code style="display:block;background:var(--surface2);padding:10px 12px;border-radius:var(--radius);font-size:11px;line-height:2;color:var(--text);word-break:break-all">manufacturer, model, hp_type, type, refrigerant, op_temp_min, op_temp_max, flow_temp_min, flow_temp_max, cap_min, cap_max, peak_elec, cop, cop_cond, scop, eer, height, width, depth, weight, noise, noise_ref, source, product_url, notes</code>
+            <button class="btn btn-sm" style="margin-top:10px" onclick="downloadTemplate()">⬇ Download template CSV</button>
+          </div>
+          <div class="card-a">
+            <h3>Upload file</h3>
+            <div class="csv-drop" id="csv-drop" onclick="document.getElementById('csv-file').click()" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="handleDrop(event)">
+              <div style="font-size:32px;margin-bottom:10px">⬆</div>
+              <strong>Click to choose</strong> or drag &amp; drop a .csv file
+            </div>
+            <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="handleCSV(this.files[0])">
+            <div id="import-preview" style="margin-top:1rem"></div>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-sources">
+          <h2 class="page-ttl">Data sources</h2><p class="page-sub">Track data origins</p>
+          <div class="card-a">
+            <h3>Registered sources</h3>
+            <div id="sources-list"></div>
+            <div style="margin-top:1.125rem;padding-top:1.125rem;border-top:1px solid var(--border)">
+              <h4 style="font-size:13px;font-weight:500;margin-bottom:.75rem">Add new source</h4>
+              <div class="fg2">
+                <div class="form-group"><label class="form-label">Source name</label><input type="text" class="form-input" id="src-name" placeholder="e.g. Vaillant Product Catalogue 2025"></div>
+                <div class="form-group"><label class="form-label">Type</label><select class="form-select" id="src-type"><option value="manufacturer">Manufacturer</option><option value="third-party">Third-party</option><option value="import">Imported dataset</option><option value="manual">Manual</option></select></div>
+              </div>
+              <div class="form-group"><label class="form-label">URL / reference</label><input type="text" class="form-input" id="src-url" placeholder="https://…"></div>
+              <button class="btn btn-primary btn-sm" onclick="addSource()">Add source</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-clicks">
+          <h2 class="page-ttl">Link tracking</h2>
+          <p class="page-sub">Track how often users click through to manufacturer websites</p>
+          <div class="metrics-grid" id="click-metrics"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="card-a">
+              <h3>Clicks by product</h3>
+              <div id="click-by-product" style="max-height:350px;overflow-y:auto"></div>
+            </div>
+            <div class="card-a">
+              <h3>Clicks by manufacturer</h3>
+              <div id="click-by-mfr" style="max-height:350px;overflow-y:auto"></div>
+            </div>
+          </div>
+          <div class="card-a" style="margin-top:12px">
+            <h3>Recent clicks</h3>
+            <div id="click-recent" style="max-height:300px;overflow-y:auto"></div>
+          </div>
+          <div class="card-a" style="margin-top:12px">
+            <h3>Export &amp; manage</h3>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-sm" onclick="exportClicks()">⬇ Export click log (CSV)</button>
+              <button class="btn btn-sm btn-danger" onclick="if(confirm('Clear all click data?')){clickLog=[];saveClicks();renderClickAnalytics();}">Clear click data</button>
+            </div>
+            <div class="alert a-info" style="margin-top:1rem;font-size:12px;line-height:1.6">
+              <div><strong>Note on tracking scope:</strong> This analytics tracks clicks from the current browser only (localStorage). For multi-user tracking across all visitors, you would need to either:<br>
+              • Add a lightweight analytics script (e.g. Plausible, Fathom, or Google Analytics event tracking) to the deployed site<br>
+              • Deploy with a backend that logs click events to a central database<br>
+              • Use a link shortener with analytics (e.g. Bitly) for each product URL<br>
+              The admin export below gives you the local data in CSV format that can be combined with other sources.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="panel-editguide">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
+            <div><h2 class="page-ttl">Edit Guide page</h2><p class="page-sub" style="margin:0">Manage the Guide page content — titles, sections, and body text</p></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-sm" onclick="showPage('guide')">👁 Preview</button>
+              <button class="btn btn-sm btn-danger" onclick="resetGuideContent()">Reset to default</button>
+            </div>
+          </div>
+          <div id="cms-guide-editor"></div>
+        </div>
+
+        <div class="admin-panel" id="panel-editcontact">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
+            <div><h2 class="page-ttl">Edit Contact page</h2><p class="page-sub" style="margin:0">Manage the Contact page content — intro text, email address, and information sections</p></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-sm" onclick="showPage('contact')">👁 Preview</button>
+              <button class="btn btn-sm btn-danger" onclick="resetContactContent()">Reset to default</button>
+            </div>
+          </div>
+          <div id="cms-contact-editor"></div>
+        </div>
+
+        <div class="admin-panel" id="panel-settings">
+          <h2 class="page-ttl">Settings</h2><p class="page-sub">Configuration and administration</p>
+          <div class="card-a">
+            <h3>Homepage subtitle</h3>
+            <p style="font-size:12px;color:var(--text3);margin-bottom:.75rem">The text displayed under the main title on the Browse page.</p>
+            <div class="form-group">
+              <textarea class="form-textarea" id="s-hero-sub" style="min-height:70px"></textarea>
+            </div>
+            <div id="hero-sub-alert" style="display:none"></div>
+            <button class="btn btn-primary btn-sm" onclick="heroSubtitle=document.getElementById('s-hero-sub').value;saveCMS();updateHero();document.getElementById('hero-sub-alert').innerHTML='<div class=\'alert a-success\'>Subtitle updated.</div>';document.getElementById('hero-sub-alert').style.display='block';setTimeout(()=>document.getElementById('hero-sub-alert').style.display='none',3000)">Save subtitle</button>
+          </div>
+          <div class="card-a">
+            <h3>Change admin password</h3>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Current password</label><input type="password" class="form-input" id="s-old-pw" placeholder="Current password"></div>
+              <div class="form-group"><label class="form-label">New password</label><input type="password" class="form-input" id="s-new-pw" placeholder="New password"></div>
+            </div>
+            <div id="pw-alert" style="display:none"></div>
+            <button class="btn btn-primary btn-sm" onclick="changePw()">Update password</button>
+          </div>
+          <div class="card-a">
+            <h3>Export database</h3>
+            <p style="font-size:13px;color:var(--text2);margin-bottom:.875rem">Download all records as CSV.</p>
+            <button class="btn btn-sm" onclick="exportAll()">⬇ Export all records (CSV)</button>
+          </div>
+          <div class="card-a">
+            <h3>Reset database</h3>
+            <div class="alert a-warn" style="margin-bottom:.875rem">Resets all entries to the built-in demo dataset.</div>
+            <button class="btn btn-danger btn-sm" onclick="if(confirm('Reset all data to demo dataset?'))resetDB()">Reset to demo data</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-bg" id="detail-modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-hd">
+      <div><h2 id="modal-ttl"></h2><p id="modal-sub"></p></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════ SEED DATA ═══════════════
+// cop_cond: the exact test conditions the quoted COP applies to
+// hp_type: ASHP | WSHP | GSHP
+const SEED = [
+  // ── VAILLANT ASHP ──
+  {id:1,manufacturer:"Vaillant",model:"aroTHERM plus 5 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:75,cap_min:1.7,cap_max:5,peak_elec:1.4,cop:5.1,cop_cond:"A7/W35",scop:4.6,eer:null,height:1055,width:1055,depth:430,weight:89,noise:49,noise_ref:"LwA",source:"manufacturer",notes:"MCS certified. ErP A+++."},
+  {id:2,manufacturer:"Vaillant",model:"aroTHERM plus 7 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:75,cap_min:2.4,cap_max:7,peak_elec:2.1,cop:4.8,cop_cond:"A7/W35",scop:4.4,eer:null,height:1055,width:1055,depth:430,weight:91,noise:51,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:3,manufacturer:"Vaillant",model:"aroTHERM plus 12 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:75,cap_min:3.3,cap_max:12,peak_elec:3.8,cop:4.4,cop_cond:"A7/W35",scop:4.1,eer:null,height:1400,width:1055,depth:430,weight:108,noise:54,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── MITSUBISHI ECODAN ASHP ──
+  {id:4,manufacturer:"Mitsubishi Electric",model:"Ecodan PUHZ-SW50 5 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-28,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:2,cap_max:5,peak_elec:1.6,cop:4.2,cop_cond:"A7/W35",scop:3.8,eer:null,height:940,width:870,depth:370,weight:62,noise:46,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:5,manufacturer:"Mitsubishi Electric",model:"Ecodan PUHZ-SW80 8 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-28,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:3.5,cap_max:8,peak_elec:2.7,cop:4.0,cop_cond:"A7/W35",scop:3.7,eer:null,height:940,width:870,depth:370,weight:70,noise:48,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:6,manufacturer:"Mitsubishi Electric",model:"Ecodan PUHZ-SW120 12 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-28,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:4,cap_max:12,peak_elec:4.1,cop:3.8,cop_cond:"A7/W35",scop:3.6,eer:null,height:940,width:1170,depth:425,weight:90,noise:52,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:7,manufacturer:"Mitsubishi Electric",model:"Ecodan CAHV-R450 45 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:70,cap_min:15,cap_max:45,peak_elec:14,cop:3.6,cop_cond:"A7/W45",scop:null,eer:null,height:1870,width:3440,depth:1010,weight:580,noise:70,noise_ref:"LwA",source:"manufacturer",notes:"VRF-type commercial air-to-water. COP at A7/W45."},
+  // ── DAIKIN ASHP ──
+  {id:8,manufacturer:"Daikin",model:"Altherma 3 R 4 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:45,flow_temp_min:15,flow_temp_max:65,cap_min:1.4,cap_max:4,peak_elec:1.1,cop:4.78,cop_cond:"A7/W35",scop:4.3,eer:null,height:734,width:902,depth:395,weight:48,noise:44,noise_ref:"LwA",source:"manufacturer",notes:"Compact monobloc."},
+  {id:9,manufacturer:"Daikin",model:"Altherma 3 R 8 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:45,flow_temp_min:15,flow_temp_max:65,cap_min:2,cap_max:8,peak_elec:2.4,cop:4.6,cop_cond:"A7/W35",scop:4.2,eer:null,height:734,width:902,depth:395,weight:56,noise:48,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:10,manufacturer:"Daikin",model:"Altherma 3 R 16 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:45,flow_temp_min:15,flow_temp_max:65,cap_min:4,cap_max:16,peak_elec:5.8,cop:4.1,cop_cond:"A7/W35",scop:3.9,eer:null,height:1345,width:1198,depth:510,weight:109,noise:55,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:11,manufacturer:"Daikin",model:"Altherma 3 H HT 16 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:35,flow_temp_min:25,flow_temp_max:80,cap_min:5,cap_max:16,peak_elec:5.5,cop:2.71,cop_cond:"A7/W55",scop:3.1,eer:null,height:1580,width:1175,depth:760,weight:210,noise:55,noise_ref:"LwA",source:"manufacturer",notes:"High-temp unit. COP quoted at A7/W55 — lower than standard A7/W35."},
+  // ── SAMSUNG ASHP ──
+  {id:12,manufacturer:"Samsung",model:"EHS Mono HT Quiet 8 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-30,op_temp_max:43,flow_temp_min:25,flow_temp_max:80,cap_min:2,cap_max:8,peak_elec:2.4,cop:4.07,cop_cond:"A7/W35",scop:3.9,eer:null,height:810,width:1070,depth:380,weight:73,noise:45,noise_ref:"LwA",source:"manufacturer",notes:"80°C max flow temp — ideal for direct radiator retrofit without de-rating."},
+  {id:13,manufacturer:"Samsung",model:"EHS Mono HT Quiet 12 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-30,op_temp_max:43,flow_temp_min:25,flow_temp_max:80,cap_min:3,cap_max:12,peak_elec:3.8,cop:3.8,cop_cond:"A7/W35",scop:3.7,eer:null,height:1060,width:1070,depth:380,weight:97,noise:48,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:14,manufacturer:"Samsung",model:"EHS Gen 6 5 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:65,cap_min:1.5,cap_max:5,peak_elec:1.35,cop:5.3,cop_cond:"A7/W35",scop:4.7,eer:null,height:720,width:870,depth:370,weight:50,noise:43,noise_ref:"LwA",source:"manufacturer",notes:"R290 propane refrigerant. Ultra-low GWP."},
+  // ── PANASONIC ASHP ──
+  {id:15,manufacturer:"Panasonic",model:"Aquarea T-CAP 9 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:3,cap_max:9,peak_elec:2.9,cop:4.4,cop_cond:"A7/W35",scop:4.1,eer:null,height:810,width:1170,depth:380,weight:76,noise:47,noise_ref:"LwA",source:"manufacturer",notes:"Full rated capacity maintained down to −20°C ambient."},
+  {id:16,manufacturer:"Panasonic",model:"Aquarea T-CAP 16 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:5,cap_max:16,peak_elec:5.3,cop:4.1,cop_cond:"A7/W35",scop:3.9,eer:null,height:1200,width:1170,depth:380,weight:103,noise:52,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:17,manufacturer:"Panasonic",model:"Aquarea H Gen H 5 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:65,cap_min:1.5,cap_max:5,peak_elec:1.5,cop:4.9,cop_cond:"A7/W35",scop:4.5,eer:null,height:734,width:870,depth:380,weight:46,noise:43,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:18,manufacturer:"Panasonic",model:"Aquarea H Gen H 12 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:65,cap_min:3,cap_max:12,peak_elec:3.5,cop:4.4,cop_cond:"A7/W35",scop:4.1,eer:null,height:1200,width:1170,depth:380,weight:99,noise:51,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── BOSCH / BUDERUS ASHP ──
+  {id:19,manufacturer:"Bosch",model:"Compress 7000i AW 7 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-22,op_temp_max:43,flow_temp_min:20,flow_temp_max:60,cap_min:2,cap_max:7,peak_elec:2.1,cop:4.3,cop_cond:"A7/W35",scop:4.0,eer:null,height:900,width:1100,depth:435,weight:76,noise:49,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:20,manufacturer:"Bosch",model:"Compress CS7000iAW 17 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-22,op_temp_max:43,flow_temp_min:20,flow_temp_max:60,cap_min:6,cap_max:17,peak_elec:5.4,cop:4.0,cop_cond:"A7/W35",scop:3.8,eer:null,height:1170,width:1100,depth:435,weight:112,noise:55,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── VIESSMANN ASHP ──
+  {id:21,manufacturer:"Viessmann",model:"Vitocal 150-A 6 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-20,op_temp_max:40,flow_temp_min:20,flow_temp_max:60,cap_min:2,cap_max:6,peak_elec:1.7,cop:4.7,cop_cond:"A7/W35",scop:4.4,eer:null,height:735,width:1002,depth:400,weight:65,noise:47,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:22,manufacturer:"Viessmann",model:"Vitocal 300-A 13 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:20,flow_temp_max:65,cap_min:5,cap_max:13,peak_elec:4.1,cop:4.1,cop_cond:"A7/W35",scop:3.9,eer:null,height:1190,width:1230,depth:550,weight:138,noise:54,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:23,manufacturer:"Viessmann",model:"Vitocal 350-A 60 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:18,flow_temp_max:65,cap_min:15,cap_max:60,peak_elec:18,cop:3.7,cop_cond:"A7/W45",scop:null,eer:null,height:2015,width:3150,depth:1040,weight:610,noise:72,noise_ref:"LwA",source:"manufacturer",notes:"Commercial air-to-water. COP at A7/W45."},
+  // ── STIEBEL ELTRON ASHP ──
+  {id:24,manufacturer:"Stiebel Eltron",model:"WPL 15 ICS classic",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-20,op_temp_max:35,flow_temp_min:20,flow_temp_max:60,cap_min:3.5,cap_max:14.7,peak_elec:4.5,cop:4.2,cop_cond:"A7/W35",scop:3.8,eer:null,height:1115,width:1320,depth:570,weight:139,noise:55,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:25,manufacturer:"Stiebel Eltron",model:"WPL 25 AC classic",hp_type:"ASHP",type:"Commercial",refrigerant:"R290",op_temp_min:-22,op_temp_max:40,flow_temp_min:20,flow_temp_max:65,cap_min:6,cap_max:25,peak_elec:7.2,cop:3.9,cop_cond:"A7/W35",scop:3.7,eer:null,height:1320,width:1545,depth:695,weight:195,noise:60,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── NIBE ASHP ──
+  {id:26,manufacturer:"Nibe",model:"F2120-8",hp_type:"ASHP",type:"Residential",refrigerant:"R410A",op_temp_min:-20,op_temp_max:35,flow_temp_min:20,flow_temp_max:60,cap_min:2,cap_max:8,peak_elec:2.5,cop:3.8,cop_cond:"A7/W35",scop:3.4,eer:null,height:760,width:1000,depth:420,weight:79,noise:55,noise_ref:"LwA",source:"manufacturer",notes:"Older R410A refrigerant — check UK F-Gas phase-down schedule."},
+  {id:27,manufacturer:"Nibe",model:"F2120-16",hp_type:"ASHP",type:"Residential",refrigerant:"R410A",op_temp_min:-20,op_temp_max:35,flow_temp_min:20,flow_temp_max:60,cap_min:4,cap_max:16,peak_elec:5.0,cop:3.5,cop_cond:"A7/W35",scop:3.2,eer:null,height:760,width:1000,depth:420,weight:92,noise:60,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── MITSUBISHI ZUBADAN ASHP (cold climate) ──
+  {id:28,manufacturer:"Mitsubishi Electric",model:"Zubadan PUHZ-FRP71 7 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-30,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:2,cap_max:7.1,peak_elec:2.2,cop:3.43,cop_cond:"A-7/W35",scop:3.5,eer:null,height:940,width:870,depth:370,weight:66,noise:50,noise_ref:"LwA",source:"manufacturer",notes:"Cold-climate Zubadan series. COP quoted at A-7/W35 (EN 14825 cold). Maintains full output to −15°C."},
+  {id:29,manufacturer:"Mitsubishi Electric",model:"Zubadan PUHZ-FRP140 14 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-30,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:4,cap_max:14,peak_elec:4.4,cop:3.25,cop_cond:"A-7/W35",scop:3.4,eer:null,height:940,width:1170,depth:425,weight:95,noise:54,noise_ref:"LwA",source:"manufacturer",notes:"Cold-climate Zubadan. COP at A-7/W35."},
+  // ── CARRIER COMMERCIAL ASHP ──
+  {id:30,manufacturer:"Carrier",model:"AquaSnap 30RQS 20 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-20,op_temp_max:46,flow_temp_min:20,flow_temp_max:55,cap_min:8,cap_max:20,peak_elec:6,cop:3.8,cop_cond:"A7/W45",scop:null,eer:3.5,height:1245,width:2390,depth:1012,weight:290,noise:67,noise_ref:"LwA",source:"manufacturer",notes:"Also available in cooling mode. EER 3.5 at A35/W7. COP at A7/W45."},
+  {id:31,manufacturer:"Carrier",model:"AquaSnap 30RQS 60 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-20,op_temp_max:46,flow_temp_min:20,flow_temp_max:55,cap_min:20,cap_max:60,peak_elec:18,cop:3.6,cop_cond:"A7/W45",scop:null,eer:3.3,height:1245,width:3360,depth:1012,weight:580,noise:73,noise_ref:"LwA",source:"manufacturer",notes:"Reversible air-to-water. COP at A7/W45."},
+  // ── CARRIER INDUSTRIAL WSHP ──
+  {id:32,manufacturer:"Carrier",model:"AquaForce 30XWH-075",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:65,cap_min:40,cap_max:75,peak_elec:22,cop:4.8,cop_cond:"W10/W45",scop:null,eer:null,height:1640,width:3800,depth:2200,weight:2100,noise:74,noise_ref:"LwA",source:"manufacturer",notes:"Water-cooled WSHP. Source: chilled/ambient water loop or river water. COP at W10/W45."},
+  {id:33,manufacturer:"Carrier",model:"AquaForce 30XWH-150",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:65,cap_min:80,cap_max:150,peak_elec:44,cop:4.6,cop_cond:"W10/W45",scop:null,eer:null,height:1640,width:5600,depth:2200,weight:3600,noise:76,noise_ref:"LwA",source:"manufacturer",notes:"COP at W10/W45."},
+  {id:34,manufacturer:"Carrier",model:"AquaForce 30XWH-300",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:65,cap_min:150,cap_max:300,peak_elec:85,cop:4.5,cop_cond:"W10/W45",scop:null,eer:null,height:2000,width:7200,depth:2400,weight:6500,noise:78,noise_ref:"LwA",source:"manufacturer",notes:"Large industrial WSHP. COP at W10/W45."},
+  // ── JOHNSON CONTROLS / YORK INDUSTRIAL ──
+  {id:35,manufacturer:"Johnson Controls",model:"York YHAU 200 CO₂",hp_type:"ASHP",type:"Commercial",refrigerant:"R744",op_temp_min:-30,op_temp_max:25,flow_temp_min:60,flow_temp_max:90,cap_min:100,cap_max:200,peak_elec:52,cop:3.0,cop_cond:"A2/W65",scop:null,eer:null,height:2200,width:6000,depth:2400,weight:5800,noise:80,noise_ref:"LpA @ 5m",source:"manufacturer",notes:"CO₂ transcritical. High-temperature output for district heating. COP at A2/W65."},
+  {id:36,manufacturer:"Johnson Controls",model:"York YVFA 350 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R134a",op_temp_min:-15,op_temp_max:46,flow_temp_min:30,flow_temp_max:55,cap_min:150,cap_max:350,peak_elec:105,cop:3.4,cop_cond:"A7/W45",scop:null,eer:null,height:2350,width:8500,depth:2600,weight:12000,noise:82,noise_ref:"LpA @ 5m",source:"manufacturer",notes:"Variable-speed fans. Industrial air-to-water. COP at A7/W45."},
+  // ── CLIMAVENETA WSHP ──
+  {id:37,manufacturer:"Climaveneta",model:"NECS-Q 0202 200 kW",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:40,flow_temp_min:25,flow_temp_max:60,cap_min:80,cap_max:200,peak_elec:55,cop:5.2,cop_cond:"W10/W35",scop:null,eer:null,height:1900,width:4800,depth:2100,weight:4200,noise:72,noise_ref:"LwA",source:"manufacturer",notes:"Water-source chiller/heat pump. COP at W10/W35."},
+  {id:38,manufacturer:"Climaveneta",model:"NECS-Q 0502 500 kW",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:40,flow_temp_min:25,flow_temp_max:60,cap_min:200,cap_max:500,peak_elec:130,cop:5.0,cop_cond:"W10/W35",scop:null,eer:null,height:2100,width:7500,depth:2200,weight:9500,noise:75,noise_ref:"LwA",source:"manufacturer",notes:"Large industrial WSHP. COP at W10/W35."},
+  // ── NIBE WSHP ──
+  {id:39,manufacturer:"Nibe",model:"VPHB 300 WSHP 300 kW",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:25,flow_temp_min:35,flow_temp_max:65,cap_min:120,cap_max:300,peak_elec:80,cop:5.5,cop_cond:"W10/W45",scop:null,eer:null,height:2000,width:5600,depth:2100,weight:5100,noise:70,noise_ref:"LwA",source:"manufacturer",notes:"Industrial WSHP for district heating and large commercial. COP at W10/W45."},
+  // ── NIBE GSHP ──
+  {id:40,manufacturer:"Nibe",model:"F1345 17 kW GSHP",hp_type:"GSHP",type:"Commercial",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:5,cap_max:17,peak_elec:4.2,cop:4.7,cop_cond:"B0/W35",scop:null,eer:null,height:1550,width:600,depth:620,weight:205,noise:44,noise_ref:"LwA",source:"manufacturer",notes:"Brine-water ground source. COP at B0/W35. Indoor unit; requires external borehole or ground loop."},
+  {id:41,manufacturer:"Nibe",model:"F1345 40 kW GSHP",hp_type:"GSHP",type:"Commercial",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:10,cap_max:40,peak_elec:9.8,cop:4.5,cop_cond:"B0/W35",scop:null,eer:null,height:1900,width:800,depth:750,weight:450,noise:52,noise_ref:"LwA",source:"manufacturer",notes:"Commercial GSHP. COP at B0/W35."},
+  // ── DAIKIN WSHP ──
+  {id:42,manufacturer:"Daikin",model:"Altherma 3 GEO 16 kW GSHP",hp_type:"GSHP",type:"Commercial",refrigerant:"R32",op_temp_min:-5,op_temp_max:25,flow_temp_min:20,flow_temp_max:65,cap_min:4,cap_max:16,peak_elec:4.2,cop:5.5,cop_cond:"W10/W35",scop:5.0,eer:null,height:1490,width:600,depth:640,weight:150,noise:null,noise_ref:null,source:"manufacturer",notes:"Ground/water source. COP at W10/W35."},
+  {id:43,manufacturer:"Daikin",model:"EWWQ-KCW1 120 kW WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R1234ze",op_temp_min:5,op_temp_max:35,flow_temp_min:25,flow_temp_max:55,cap_min:50,cap_max:120,peak_elec:32,cop:5.3,cop_cond:"W15/W45",scop:null,eer:null,height:1900,width:4200,depth:1900,weight:3100,noise:68,noise_ref:"LwA",source:"manufacturer",notes:"R1234ze low-GWP HFO refrigerant. Water-source heat recovery. COP at W15/W45."},
+  // ── STIEBEL ELTRON GSHP ──
+  {id:44,manufacturer:"Stiebel Eltron",model:"WPF 16 E GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:60,cap_min:5,cap_max:15.6,peak_elec:3.5,cop:5.1,cop_cond:"B0/W35",scop:null,eer:null,height:1010,width:600,depth:630,weight:149,noise:46,noise_ref:"LwA",source:"manufacturer",notes:"Residential brine-to-water GSHP. COP at B0/W35."},
+  // ── VIESSMANN GSHP ──
+  {id:45,manufacturer:"Viessmann",model:"Vitocal 300-G 17 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:5,cap_max:17,peak_elec:3.9,cop:5.0,cop_cond:"B0/W35",scop:null,eer:null,height:1870,width:600,depth:650,weight:260,noise:42,noise_ref:"LwA",source:"manufacturer",notes:"Residential brine-water GSHP. COP at B0/W35. Requires ground loop or borehole."},
+  // ── MITSUBISHI WSHP ──
+  {id:46,manufacturer:"Mitsubishi Electric",model:"CAHV-P500 WSHP 500 kW",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:30,flow_temp_min:30,flow_temp_max:65,cap_min:200,cap_max:500,peak_elec:130,cop:5.0,cop_cond:"W10/W45",scop:null,eer:null,height:2200,width:7800,depth:2400,weight:8500,noise:73,noise_ref:"LwA",source:"manufacturer",notes:"Large industrial water-source heat pump. COP at W10/W45."},
+  // ── FINN GEOTHERM WSHP ──
+  {id:47,manufacturer:"Finn Geotherm",model:"Varme 12 GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:25,flow_temp_max:65,cap_min:3,cap_max:12,peak_elec:2.8,cop:4.9,cop_cond:"B0/W35",scop:null,eer:null,height:900,width:600,depth:600,weight:130,noise:40,noise_ref:"LwA",source:"manufacturer",notes:"UK-manufactured GSHP. MCS certified. COP at B0/W35."},
+  // ── KENSA GSHP ──
+  {id:48,manufacturer:"Kensa",model:"Evo 5 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:25,flow_temp_max:55,cap_min:2,cap_max:5,peak_elec:1.2,cop:4.8,cop_cond:"B0/W35",scop:null,eer:null,height:750,width:450,depth:430,weight:68,noise:38,noise_ref:"LwA",source:"manufacturer",notes:"UK-manufactured compact GSHP. Quiet operation. COP at B0/W35."},
+  {id:49,manufacturer:"Kensa",model:"Evo 13 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:25,flow_temp_max:55,cap_min:4,cap_max:13,peak_elec:3.1,cop:4.6,cop_cond:"B0/W35",scop:null,eer:null,height:840,width:600,depth:470,weight:105,noise:41,noise_ref:"LwA",source:"manufacturer",notes:"MCS certified. COP at B0/W35."},
+  // ── VIESSMAN / ENERVENT WSHP COMMERCIAL ──
+  {id:50,manufacturer:"Trane",model:"CGWS 30-60 WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R513A",op_temp_min:5,op_temp_max:35,flow_temp_min:25,flow_temp_max:55,cap_min:30,cap_max:60,peak_elec:14,cop:5.5,cop_cond:"W20/W45",scop:null,eer:3.8,height:850,width:2200,depth:950,weight:780,noise:60,noise_ref:"LwA",source:"manufacturer",notes:"R513A low-GWP refrigerant. Reversible cooling/heating. COP at W20/W45; EER at W30/W7."},
+  {id:51,manufacturer:"Trane",model:"CGWS 100-150 WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R513A",op_temp_min:5,op_temp_max:35,flow_temp_min:25,flow_temp_max:55,cap_min:80,cap_max:150,peak_elec:38,cop:5.3,cop_cond:"W20/W45",scop:null,eer:3.6,height:1600,width:4200,depth:1800,weight:3200,noise:67,noise_ref:"LwA",source:"manufacturer",notes:"Large water-source. COP at W20/W45."},
+  // ── OCHSNER ASHP ──
+  {id:52,manufacturer:"Ochsner",model:"GMLW 15 Plus E ASHP",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-22,op_temp_max:40,flow_temp_min:20,flow_temp_max:65,cap_min:4,cap_max:15,peak_elec:4.2,cop:4.5,cop_cond:"A7/W35",scop:4.1,eer:null,height:1330,width:1270,depth:560,weight:145,noise:51,noise_ref:"LwA",source:"manufacturer",notes:"Austrian manufacturer. MCS certified for UK."},
+  // ── HITACHI ASHP ──
+  {id:53,manufacturer:"Hitachi",model:"Yutaki S 8 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:60,cap_min:2.5,cap_max:8,peak_elec:2.3,cop:4.45,cop_cond:"A7/W35",scop:4.2,eer:null,height:770,width:900,depth:380,weight:66,noise:47,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:54,manufacturer:"Hitachi",model:"Yutaki S Combi 14 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:60,cap_min:4,cap_max:14,peak_elec:4.2,cop:4.2,cop_cond:"A7/W35",scop:4.0,eer:null,height:1560,width:900,depth:380,weight:94,noise:52,noise_ref:"LwA",source:"manufacturer",notes:"Integrated DHW cylinder."},
+  {id:55,manufacturer:"Hitachi",model:"Yutaki M 30 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:20,flow_temp_max:60,cap_min:10,cap_max:30,peak_elec:9,cop:3.9,cop_cond:"A7/W45",scop:null,eer:null,height:1760,width:2140,depth:830,weight:290,noise:67,noise_ref:"LwA",source:"manufacturer",notes:"Commercial air-to-water. COP at A7/W45."},
+  // ── LG THERMA V ASHP ──
+  {id:56,manufacturer:"LG",model:"Therma V R32 9 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:3,cap_max:9,peak_elec:2.6,cop:4.53,cop_cond:"A7/W35",scop:4.2,eer:null,height:853,width:1049,depth:380,weight:79,noise:48,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:57,manufacturer:"LG",model:"Therma V R290 12 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:65,cap_min:3.5,cap_max:12,peak_elec:3.5,cop:5.0,cop_cond:"A7/W35",scop:4.6,eer:null,height:1062,width:1099,depth:396,weight:95,noise:50,noise_ref:"LwA",source:"manufacturer",notes:"R290 propane. Ultra-low GWP."},
+  // ── SAMSUNG WSHP ──
+  {id:58,manufacturer:"Samsung",model:"EHS WSHP 20 kW",hp_type:"WSHP",type:"Commercial",refrigerant:"R410A",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:55,cap_min:8,cap_max:20,peak_elec:5,cop:5.2,cop_cond:"W10/W35",scop:null,eer:null,height:870,width:1000,depth:420,weight:160,noise:50,noise_ref:"LwA",source:"manufacturer",notes:"Commercial water-source. COP at W10/W35."},
+  // ── HEATPUMP SOLUTIONS / eCURVE INDUSTRIAL WSHP ──
+  {id:59,manufacturer:"Star Refrigeration",model:"Azanefreezer WSHP 1 MW",hp_type:"WSHP",type:"Commercial",refrigerant:"R717",op_temp_min:5,op_temp_max:25,flow_temp_min:60,flow_temp_max:90,cap_min:500,cap_max:1000,peak_elec:280,cop:3.5,cop_cond:"W10/W65",scop:null,eer:null,height:3000,width:12000,depth:4000,weight:25000,noise:85,noise_ref:"LpA @ 10m",source:"manufacturer",notes:"Ammonia (R717) industrial heat pump. District heating / process heat applications. COP at W10/W65."},
+  // ── BOSCH COMPRESS 6000 GSHP ──
+  {id:60,manufacturer:"Bosch",model:"Compress 6000 LW 12 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:60,cap_min:4,cap_max:12,peak_elec:2.8,cop:4.8,cop_cond:"B0/W35",scop:null,eer:null,height:1300,width:600,depth:620,weight:180,noise:42,noise_ref:"LwA",source:"manufacturer",notes:"Brine-water residential GSHP. COP at B0/W35."},
+  // ── THERMIA ATLAS GSHP ──
+  {id:61,manufacturer:"Thermia",model:"Atlas GSHP 17 kW",hp_type:"GSHP",type:"Commercial",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:70,cap_min:5,cap_max:17,peak_elec:4.0,cop:5.3,cop_cond:"B0/W35",scop:null,eer:null,height:1870,width:640,depth:690,weight:295,noise:40,noise_ref:"LwA",source:"manufacturer",notes:"Swedish manufacturer. High-temp output option (70°C). COP at B0/W35."},
+  // ── IVT WSHP ──
+  {id:62,manufacturer:"IVT",model:"Greenline E17 GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:5,cap_max:17,peak_elec:4.1,cop:4.9,cop_cond:"B0/W35",scop:null,eer:null,height:1740,width:600,depth:640,weight:240,noise:42,noise_ref:"LwA",source:"manufacturer",notes:"Swedish IVT brand. COP at B0/W35."},
+  // ── MITSUBISHI INDUSTRIAL WSHP ──
+  {id:63,manufacturer:"Mitsubishi Heavy Industries",model:"FDC Series 100 kW WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R32",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:55,cap_min:40,cap_max:100,peak_elec:28,cop:4.9,cop_cond:"W10/W45",scop:null,eer:null,height:1600,width:3800,depth:1600,weight:1800,noise:65,noise_ref:"LwA",source:"manufacturer",notes:"COP at W10/W45."},
+  // ── SWEGON / GOLD WSHP ──
+  {id:64,manufacturer:"Swegon",model:"WSHP 50 kW",hp_type:"WSHP",type:"Commercial",refrigerant:"R410A",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:55,cap_min:20,cap_max:50,peak_elec:12,cop:5.4,cop_cond:"W10/W35",scop:null,eer:null,height:1200,width:2400,depth:1200,weight:900,noise:58,noise_ref:"LwA",source:"manufacturer",notes:"Commercial WSHP. COP at W10/W35."},
+  // ── HOVAL THERMALIA WSHP ──
+  {id:65,manufacturer:"Hoval",model:"Thermalia Twin 180 WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R134a",op_temp_min:5,op_temp_max:30,flow_temp_min:30,flow_temp_max:65,cap_min:80,cap_max:180,peak_elec:47,cop:4.9,cop_cond:"W10/W45",scop:null,eer:null,height:2000,width:5200,depth:2000,weight:4600,noise:70,noise_ref:"LwA",source:"manufacturer",notes:"Twin-compressor industrial WSHP. COP at W10/W45."},
+  // ── GRANT AERONA3 ASHP ──
+  {id:66,manufacturer:"Grant",model:"Aerona3 R32 6 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:2,cap_max:6,peak_elec:1.8,cop:4.51,cop_cond:"A7/W35",scop:4.0,eer:null,height:960,width:1200,depth:440,weight:74,noise:48,noise_ref:"LwA",source:"manufacturer",notes:"MCS certified. Irish manufacturer with strong UK presence."},
+  {id:67,manufacturer:"Grant",model:"Aerona3 R32 13 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:3.5,cap_max:13,peak_elec:4.0,cop:4.21,cop_cond:"A7/W35",scop:3.7,eer:null,height:960,width:1200,depth:440,weight:88,noise:53,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:68,manufacturer:"Grant",model:"Aerona3 R32 17 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:35,flow_temp_min:25,flow_temp_max:60,cap_min:5,cap_max:17,peak_elec:5.2,cop:3.86,cop_cond:"A7/W35",scop:3.5,eer:null,height:1350,width:1200,depth:440,weight:115,noise:57,noise_ref:"LwA",source:"manufacturer",notes:"Largest residential model."},
+  // ── IDEAL HEATING ASHP ──
+  {id:69,manufacturer:"Ideal Heating",model:"Logic Air 5 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:70,cap_min:1.5,cap_max:5,peak_elec:1.4,cop:4.85,cop_cond:"A7/W35",scop:4.4,eer:null,height:800,width:980,depth:380,weight:58,noise:45,noise_ref:"LwA",source:"manufacturer",notes:"R290 propane. UK manufacturer (Hull)."},
+  {id:70,manufacturer:"Ideal Heating",model:"Logic Air 11 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:70,cap_min:3,cap_max:11,peak_elec:3.2,cop:4.45,cop_cond:"A7/W35",scop:4.1,eer:null,height:980,width:1080,depth:420,weight:82,noise:49,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:71,manufacturer:"Ideal Heating",model:"Logic Air 16 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:70,cap_min:5,cap_max:16,peak_elec:4.8,cop:4.15,cop_cond:"A7/W35",scop:3.9,eer:null,height:1200,width:1080,depth:420,weight:105,noise:54,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── WORCESTER BOSCH ASHP ──
+  {id:72,manufacturer:"Worcester Bosch",model:"Greensource 8 kW ASHP",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:2.5,cap_max:8,peak_elec:2.4,cop:4.3,cop_cond:"A7/W35",scop:4.0,eer:null,height:860,width:1080,depth:400,weight:72,noise:47,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:73,manufacturer:"Worcester Bosch",model:"Greensource 14 kW ASHP",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:4,cap_max:14,peak_elec:4.3,cop:3.95,cop_cond:"A7/W35",scop:3.7,eer:null,height:1100,width:1080,depth:400,weight:96,noise:52,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── DIMPLEX ASHP ──
+  {id:74,manufacturer:"Dimplex",model:"A-Class 6 kW ASHP",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:40,flow_temp_min:25,flow_temp_max:60,cap_min:2,cap_max:6,peak_elec:1.7,cop:4.4,cop_cond:"A7/W35",scop:4.0,eer:null,height:840,width:1000,depth:380,weight:64,noise:46,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:75,manufacturer:"Dimplex",model:"A-Class 12 kW ASHP",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:40,flow_temp_min:25,flow_temp_max:60,cap_min:3.5,cap_max:12,peak_elec:3.6,cop:4.1,cop_cond:"A7/W35",scop:3.8,eer:null,height:1050,width:1000,depth:380,weight:86,noise:50,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── LG ADDITIONAL ASHP ──
+  {id:76,manufacturer:"LG",model:"Therma V R32 5 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:1.5,cap_max:5,peak_elec:1.4,cop:4.65,cop_cond:"A7/W35",scop:4.3,eer:null,height:853,width:1049,depth:380,weight:66,noise:44,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:77,manufacturer:"LG",model:"Therma V R32 16 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:5,cap_max:16,peak_elec:5.0,cop:4.08,cop_cond:"A7/W35",scop:3.8,eer:null,height:1340,width:1049,depth:380,weight:107,noise:54,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── SAMSUNG ADDITIONAL ──
+  {id:78,manufacturer:"Samsung",model:"EHS Gen 6 8 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:65,cap_min:2.5,cap_max:8,peak_elec:2.2,cop:5.1,cop_cond:"A7/W35",scop:4.6,eer:null,height:870,width:1020,depth:380,weight:68,noise:45,noise_ref:"LwA",source:"manufacturer",notes:"R290 Gen 6 range with top-tier efficiency."},
+  // ── TOSHIBA ESTIA ──
+  {id:79,manufacturer:"Toshiba",model:"Estia R32 Monobloc 8 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:60,cap_min:2.5,cap_max:8,peak_elec:2.3,cop:4.5,cop_cond:"A7/W35",scop:4.1,eer:null,height:810,width:880,depth:350,weight:62,noise:46,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:80,manufacturer:"Toshiba",model:"Estia R32 Monobloc 14 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:60,cap_min:4,cap_max:14,peak_elec:4.5,cop:4.15,cop_cond:"A7/W35",scop:3.9,eer:null,height:1080,width:1040,depth:420,weight:90,noise:51,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── KENSA SHOEBOX (compact GSHP) ──
+  {id:81,manufacturer:"Kensa",model:"Shoebox 3 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R290",op_temp_min:-5,op_temp_max:20,flow_temp_min:25,flow_temp_max:55,cap_min:1,cap_max:3,peak_elec:0.7,cop:5.1,cop_cond:"B0/W35",scop:null,eer:null,height:550,width:400,depth:350,weight:32,noise:35,noise_ref:"LwA",source:"manufacturer",notes:"Ultra-compact GSHP. R290 propane. UK-manufactured. Designed for apartments and small dwellings. COP at B0/W35."},
+  // ── VAILLANT FLEXOTHERM GSHP ──
+  {id:82,manufacturer:"Vaillant",model:"flexoTHERM 11 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:62,cap_min:3,cap_max:11,peak_elec:2.5,cop:5.0,cop_cond:"B0/W35",scop:null,eer:null,height:1070,width:600,depth:620,weight:175,noise:42,noise_ref:"LwA",source:"manufacturer",notes:"Indoor unit. Pairs with ground loop or borehole. Also available in water-source configuration. COP at B0/W35."},
+  // ── NIBE S1255 GSHP ──
+  {id:83,manufacturer:"Nibe",model:"S1255-6 GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:2,cap_max:6,peak_elec:1.4,cop:5.3,cop_cond:"B0/W35",scop:null,eer:null,height:1800,width:600,depth:620,weight:195,noise:40,noise_ref:"LwA",source:"manufacturer",notes:"Integrated 180L DHW tank. All-in-one GSHP solution. COP at B0/W35."},
+  {id:84,manufacturer:"Nibe",model:"S1255-12 GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:4,cap_max:12,peak_elec:2.8,cop:4.8,cop_cond:"B0/W35",scop:null,eer:null,height:1800,width:600,depth:620,weight:210,noise:44,noise_ref:"LwA",source:"manufacturer",notes:"Integrated DHW. COP at B0/W35."},
+  // ── NIBE F1345 60kW COMMERCIAL GSHP ──
+  {id:85,manufacturer:"Nibe",model:"F1345 60 kW GSHP",hp_type:"GSHP",type:"Commercial",refrigerant:"R407C",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:20,cap_max:60,peak_elec:14.5,cop:4.3,cop_cond:"B0/W35",scop:null,eer:null,height:1900,width:800,depth:750,weight:580,noise:55,noise_ref:"LwA",source:"manufacturer",notes:"Can be cascaded for higher output. COP at B0/W35."},
+  // ── ALPHA INNOTEC GSHP ──
+  {id:86,manufacturer:"Alpha Innotec",model:"SWC 102H3 10 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:65,cap_min:3,cap_max:10,peak_elec:2.3,cop:5.1,cop_cond:"B0/W35",scop:null,eer:null,height:1290,width:600,depth:620,weight:185,noise:43,noise_ref:"LwA",source:"manufacturer",notes:"German manufacturer. COP at B0/W35."},
+  // ── WORCESTER BOSCH GSHP ──
+  {id:87,manufacturer:"Worcester Bosch",model:"Greensource 10 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:60,cap_min:3,cap_max:10,peak_elec:2.3,cop:4.9,cop_cond:"B0/W35",scop:null,eer:null,height:1150,width:600,depth:620,weight:170,noise:42,noise_ref:"LwA",source:"manufacturer",notes:"COP at B0/W35."},
+  // ── BOSCH COMPRESS 7000 GSHP ──
+  {id:88,manufacturer:"Bosch",model:"Compress 7000i LW 8 kW GSHP",hp_type:"GSHP",type:"Residential",refrigerant:"R410A",op_temp_min:-5,op_temp_max:20,flow_temp_min:20,flow_temp_max:62,cap_min:2.5,cap_max:8,peak_elec:1.9,cop:5.0,cop_cond:"B0/W35",scop:null,eer:null,height:1300,width:600,depth:620,weight:170,noise:40,noise_ref:"LwA",source:"manufacturer",notes:"COP at B0/W35."},
+  // ── MASTERTHERM AQUAMASTER WSHP ──
+  {id:89,manufacturer:"MasterTherm",model:"AquaMaster 22 kW WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R410A",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:55,cap_min:8,cap_max:22,peak_elec:5.2,cop:5.8,cop_cond:"W10/W35",scop:null,eer:null,height:900,width:1100,depth:600,weight:190,noise:48,noise_ref:"LwA",source:"manufacturer",notes:"Czech manufacturer. High-COP water source. COP at W10/W35."},
+  {id:90,manufacturer:"MasterTherm",model:"AquaMaster 45 kW WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R410A",op_temp_min:5,op_temp_max:30,flow_temp_min:25,flow_temp_max:60,cap_min:18,cap_max:45,peak_elec:11,cop:5.5,cop_cond:"W10/W35",scop:null,eer:null,height:1200,width:1600,depth:800,weight:390,noise:55,noise_ref:"LwA",source:"manufacturer",notes:"COP at W10/W35."},
+  // ── MHI QAHV COMMERCIAL ASHP ──
+  {id:91,manufacturer:"Mitsubishi Heavy Industries",model:"QAHV-N560 56 kW ASHP",hp_type:"ASHP",type:"Commercial",refrigerant:"R744",op_temp_min:-25,op_temp_max:43,flow_temp_min:60,flow_temp_max:90,cap_min:25,cap_max:56,peak_elec:16.5,cop:3.4,cop_cond:"A7/W65",scop:null,eer:null,height:1900,width:2350,depth:960,weight:530,noise:68,noise_ref:"LwA",source:"manufacturer",notes:"CO₂ transcritical. Delivers 90°C hot water directly — no booster needed. COP quoted at A7/W65 (note high leaving water temp)."},
+  // ── CIAT DYNACIAT WSHP ──
+  {id:92,manufacturer:"CIAT",model:"Dynaciat LG 75 kW WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R410A",op_temp_min:5,op_temp_max:35,flow_temp_min:25,flow_temp_max:55,cap_min:30,cap_max:75,peak_elec:19,cop:5.1,cop_cond:"W12/W45",scop:null,eer:3.7,height:1600,width:3100,depth:1500,weight:1300,noise:64,noise_ref:"LwA",source:"manufacturer",notes:"Reversible water-source. COP at W12/W45. EER at W30/W7."},
+  // ── DAIKIN ADDITIONAL WSHP ──
+  {id:93,manufacturer:"Daikin",model:"EWWQ-KBW1 80 kW WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R410A",op_temp_min:5,op_temp_max:35,flow_temp_min:25,flow_temp_max:55,cap_min:35,cap_max:80,peak_elec:21,cop:5.0,cop_cond:"W10/W45",scop:null,eer:3.5,height:1750,width:3600,depth:1700,weight:2200,noise:66,noise_ref:"LwA",source:"manufacturer",notes:"COP at W10/W45."},
+  // ── CARRIER INDUSTRIAL ASHP ──
+  {id:94,manufacturer:"Carrier",model:"61AF 450 kW ASHP",hp_type:"ASHP",type:"Commercial",refrigerant:"R32",op_temp_min:-20,op_temp_max:46,flow_temp_min:25,flow_temp_max:55,cap_min:200,cap_max:450,peak_elec:135,cop:3.3,cop_cond:"A7/W45",scop:null,eer:3.2,height:2650,width:11200,depth:2500,weight:13500,noise:84,noise_ref:"LpA @ 5m",source:"manufacturer",notes:"Large air-cooled screw chiller/heat pump. COP at A7/W45. Requires 3-phase supply."},
+  // ── LG COMMERCIAL ASHP ──
+  {id:95,manufacturer:"LG",model:"Therma V Multi V Water IV 50 kW",hp_type:"ASHP",type:"Commercial",refrigerant:"R410A",op_temp_min:-22,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:20,cap_max:50,peak_elec:15,cop:3.7,cop_cond:"A7/W45",scop:null,eer:null,height:1740,width:2040,depth:765,weight:410,noise:68,noise_ref:"LwA",source:"manufacturer",notes:"VRF-based air-to-water. COP at A7/W45."},
+  // ── PANASONIC AQUAREA J-SERIES ──
+  {id:96,manufacturer:"Panasonic",model:"Aquarea J-Series 5 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:1.5,cap_max:5,peak_elec:1.45,cop:4.75,cop_cond:"A7/W35",scop:4.4,eer:null,height:730,width:870,depth:350,weight:44,noise:42,noise_ref:"LwA",source:"manufacturer",notes:""},
+  {id:97,manufacturer:"Panasonic",model:"Aquarea J-Series 9 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-20,op_temp_max:43,flow_temp_min:25,flow_temp_max:55,cap_min:3,cap_max:9,peak_elec:2.8,cop:4.4,cop_cond:"A7/W35",scop:4.1,eer:null,height:730,width:1120,depth:350,weight:65,noise:47,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── BOSCH COMPRESS 7000 12kW ASHP ──
+  {id:98,manufacturer:"Bosch",model:"Compress 7000i AW 12 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-22,op_temp_max:43,flow_temp_min:20,flow_temp_max:60,cap_min:3.5,cap_max:12,peak_elec:3.7,cop:4.1,cop_cond:"A7/W35",scop:3.8,eer:null,height:1100,width:1100,depth:435,weight:95,noise:52,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── MIDEA ARCTIC ASHP ──
+  {id:99,manufacturer:"Midea",model:"M-Thermal Arctic 8 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-30,op_temp_max:43,flow_temp_min:25,flow_temp_max:60,cap_min:2.5,cap_max:8,peak_elec:2.3,cop:4.35,cop_cond:"A7/W35",scop:4.0,eer:null,height:880,width:1070,depth:425,weight:79,noise:48,noise_ref:"LwA",source:"manufacturer",notes:"-30°C minimum operating temp. Arctic series optimised for cold climates."},
+  {id:100,manufacturer:"Midea",model:"M-Thermal Arctic 14 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-30,op_temp_max:43,flow_temp_min:25,flow_temp_max:60,cap_min:4,cap_max:14,peak_elec:4.3,cop:4.05,cop_cond:"A7/W35",scop:3.8,eer:null,height:1180,width:1070,depth:425,weight:105,noise:53,noise_ref:"LwA",source:"manufacturer",notes:""},
+  // ── SAMSUNG COMMERCIAL ASHP ──
+  {id:101,manufacturer:"Samsung",model:"EHS Mono HT 16 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R32",op_temp_min:-30,op_temp_max:43,flow_temp_min:25,flow_temp_max:80,cap_min:5,cap_max:16,peak_elec:5.2,cop:3.65,cop_cond:"A7/W35",scop:3.5,eer:null,height:1320,width:1070,depth:380,weight:115,noise:53,noise_ref:"LwA",source:"manufacturer",notes:"High-temp 80°C range. Largest mono unit."},
+  // ── STAR RENEWABLE NEATPUMP ──
+  {id:102,manufacturer:"Star Renewable Energy",model:"Neatpump 2.5 MW WSHP",hp_type:"WSHP",type:"Commercial",refrigerant:"R717",op_temp_min:5,op_temp_max:25,flow_temp_min:60,flow_temp_max:90,cap_min:1000,cap_max:2500,peak_elec:700,cop:3.4,cop_cond:"W10/W65",scop:null,eer:null,height:3500,width:16000,depth:5000,weight:35000,noise:88,noise_ref:"LpA @ 10m",source:"manufacturer",notes:"Ammonia (R717) large-scale WSHP for district heating. Installed in Drammen, Norway & Queens Quay, Clydebank. COP at W10/W65."},
+  // ── VAILLANT 15kW ASHP ──
+  {id:103,manufacturer:"Vaillant",model:"aroTHERM plus 15 kW",hp_type:"ASHP",type:"Residential",refrigerant:"R290",op_temp_min:-25,op_temp_max:43,flow_temp_min:25,flow_temp_max:75,cap_min:4,cap_max:15,peak_elec:4.5,cop:4.3,cop_cond:"A7/W35",scop:4.0,eer:null,height:1400,width:1055,depth:430,weight:105,noise:53,noise_ref:"LwA",source:"manufacturer",notes:""}
+];
+
+// ═══════════════ MANUFACTURER URLs ═══════════════
+const MFR_URLS = {
+  "Vaillant":"https://www.vaillant.co.uk/products/renewable-energy/heat-pumps/",
+  "Mitsubishi Electric":"https://les.mitsubishielectric.co.uk/products/heating/ecodan-range",
+  "Daikin":"https://www.daikin.co.uk/en_gb/product-group/air-to-water-heat-pumps.html",
+  "Samsung":"https://www.samsung.com/uk/business/climate/ehs-mono/",
+  "Panasonic":"https://www.aircon.panasonic.eu/GB_en/ranges/aquarea/",
+  "Bosch":"https://www.bosch-thermotechnology.com/gb/en/residential/products/heat-pumps/",
+  "Viessmann":"https://www.viessmann.co.uk/en/products/heat-pump.html",
+  "Stiebel Eltron":"https://www.stiebel-eltron.co.uk/en/products-solutions/renewables/heat-pump/",
+  "Nibe":"https://www.nibe.eu/en-gb/products/heat-pumps/",
+  "Hitachi":"https://www.hitachiaircon.com/uk/ranges/yutaki",
+  "LG":"https://www.lg.com/uk/business/heating/therma-v/",
+  "Grant":"https://www.grantuk.com/products/heat-pumps/",
+  "Ideal Heating":"https://idealheating.com/products/heat-pumps",
+  "Worcester Bosch":"https://www.worcester-bosch.co.uk/heat-pumps",
+  "Dimplex":"https://www.dimplex.co.uk/heating/heat-pumps",
+  "Toshiba":"https://www.toshiba-aircon.co.uk/products/domestic-hot-water-heat-pumps/estia/",
+  "Kensa":"https://www.kensaheatpumps.com/heat-pump-products/",
+  "Carrier":"https://www.carrier.com/commercial/en/uk/products/heating-cooling/",
+  "Johnson Controls":"https://www.johnsoncontrols.com/hvac-equipment/chillers",
+  "Climaveneta":"https://www.climaveneta.com/en/products/",
+  "Trane":"https://www.trane.com/commercial/europe/uk/en/products/chillers-and-heat-pumps.html",
+  "Ochsner":"https://www.ochsner.com/en/products/",
+  "Finn Geotherm":"https://www.finngeotherm.co.uk/heat-pumps/",
+  "Thermia":"https://www.thermia.com/products/",
+  "IVT":"https://www.ivt.se/en/products/",
+  "Swegon":"https://www.swegon.com/heating-and-cooling/",
+  "Hoval":"https://www.hoval.com/products/",
+  "Mitsubishi Heavy Industries":"https://www.mhi-mth.co.jp/en/products/",
+  "Star Refrigeration":"https://www.star-ref.co.uk/products/",
+  "Star Renewable Energy":"https://www.neatpumps.com/",
+  "Alpha Innotec":"https://www.alpha-innotec.com/en/products/",
+  "MasterTherm":"https://www.mastertherm.co.uk/heat-pumps/",
+  "CIAT":"https://www.ciat.com/products-systems/",
+  "Midea":"https://www.midea.com/uk/heat-pumps"
+};
+
+// ═══════════════ STATE ═══════════════
+let db = JSON.parse(localStorage.getItem('hpdb_v5') || 'null') || SEED.map(d=>({...d}));
+let sources = JSON.parse(localStorage.getItem('hpsrc_v5') || 'null') || [
+  {id:1,name:"Manufacturer datasheets (compiled 2025)",type:"manufacturer",url:"",added:"2025-01"},
+  {id:2,name:"MCS Certified Products List",type:"third-party",url:"https://mcscertified.com",added:"2025-01"},
+  {id:3,name:"EN 14511 / EN 14825 test data",type:"third-party",url:"",added:"2025-01"}
+];
+let clickLog = JSON.parse(localStorage.getItem('hp_clicks') || '[]');
+let adminPw = localStorage.getItem('hpadminpw') || 'admin123';
+
+// ═══════════════ CMS CONTENT DEFAULTS ═══════════════
+const DEFAULT_GUIDE = {
+  title: 'Guide',
+  subtitle: 'Key specifications explained for heat pump selection in the UK',
+  sections: [
+    {id:'g1',title:'🌬 ASHP vs WSHP vs GSHP',body:'<p><strong>Air Source Heat Pumps (ASHP)</strong> extract heat from outdoor air. They are the most common choice for UK residential and commercial buildings, easy to install, and do not require a ground loop or water source. Performance (COP) drops as outdoor air temperature falls.</p><p style="margin-top:.75rem"><strong>Water Source Heat Pumps (WSHP)</strong> extract heat from a body of water — river, lake, borehole, or a closed-loop aquifer. The more stable temperature of the water source (typically 8–15°C year-round) gives WSHPs a higher and more consistent COP than ASHPs. They are more complex to permit and install but are excellent for riverside and lakeside commercial/industrial sites.</p><p style="margin-top:.75rem"><strong>Ground Source Heat Pumps (GSHP)</strong> use buried ground loops or boreholes. Treated separately in this database — their source temperatures are similar to WSHPs and their COP test conditions differ significantly from standard ASHP tests.</p>'},
+    {id:'g2',title:'⚡ COP test conditions — why they matter',body:'<p>COP is always quoted at a specific pair of conditions: <strong>source temperature / leaving water temperature</strong>. Comparing COPs across products without checking the test conditions is misleading.</p><table><thead><tr><th>Notation</th><th>Source temp</th><th>Leaving water temp</th><th>Typical use</th></tr></thead><tbody><tr><td>A7/W35 ✓ Standard</td><td>+7°C air</td><td>35°C water</td><td>ASHP residential UFH baseline</td></tr><tr><td>A7/W45</td><td>+7°C air</td><td>45°C water</td><td>ASHP with lower-temp radiators</td></tr><tr><td>A7/W55</td><td>+7°C air</td><td>55°C water</td><td>ASHP with standard radiators</td></tr><tr><td>A2/W35</td><td>+2°C air</td><td>35°C water</td><td>Cold weather ASHP performance</td></tr><tr><td>A-7/W35</td><td>−7°C air</td><td>35°C water</td><td>Cold climate ASHP test (EN 14825)</td></tr><tr><td>W10/W35 ✓ WSHP std</td><td>10°C water in</td><td>35°C water out</td><td>WSHP / GSHP standard</td></tr><tr><td>W10/W45</td><td>10°C water in</td><td>45°C water out</td><td>WSHP higher temp</td></tr><tr><td>W15/W45</td><td>15°C water in</td><td>45°C water out</td><td>River/lake source with warm source</td></tr><tr><td>B0/W35 ✓ GSHP std</td><td>0°C brine</td><td>35°C water</td><td>GSHP / brine-water standard</td></tr></tbody></table><p style="margin-top:.75rem;font-size:13px">This database flags each COP with its test conditions using colour-coded labels: <span class="cop-tag cop-std">A7/W35</span> for the ASHP standard, <span class="cop-tag cop-water">W10/W35</span> for WSHP/GSHP water-to-water, and <span class="cop-tag cop-nonstd">other conditions</span> for non-standard or manufacturer-specified test points.</p>'},
+    {id:'g3',title:'🌡 Operating temperatures',body:'<p>For ASHPs, the <strong>minimum ambient operating temperature</strong> (modern units: −20 to −30°C) determines cold-weather performance. The <strong>maximum flow temperature</strong> governs compatibility with your heating system — older radiators need 60–70°C+, underfloor heating works at 35–45°C. For WSHPs, the key spec is the <strong>entering water temperature (EWT)</strong> range the unit can accept.</p>'},
+    {id:'g4',title:'❄ Refrigerants & F-Gas',body:'<p><strong>R290 (propane)</strong> — GWP 3, natural refrigerant, dominant in new residential ASHPs. <strong>R32</strong> — GWP 675, most widespread residential ASHP refrigerant. <strong>R134a</strong> — GWP 1430, used in some WSHP and commercial units, under phase-down. <strong>R410A</strong> — GWP 2088, being phased out under UK F-Gas regulations. <strong>R744 (CO₂)</strong> — GWP 1, used in high-temperature and transcritical applications. <strong>R1234ze/R513A</strong> — low-GWP HFO options appearing in newer WSHP ranges.</p>'},
+    {id:'g5',title:'📐 Sizing & electrical supply',body:'<p>UK residential homes typically need <strong>5–16 kW</strong>. Always commission an MCS-certified heat loss calculation (BS EN 12831). WSHP and larger commercial units require hydraulic and hydrogeological assessments. Units above <strong>3.68 kW single-phase</strong> need DNO notification; larger commercial units require three-phase supply. Peak electrical input (kW) determines fuse board requirements.</p>'}
+  ]
+};
+
+const DEFAULT_CONTACT = {
+  title: 'Contact us',
+  intro: 'HeatPumpDB is an independent resource for the UK heat pump market. Whether you are a homeowner researching your first installation, an installer looking for specification data, or a manufacturer who wants to ensure your products are accurately represented — we want to hear from you.',
+  email: 'info@heatpumpdb.co.uk',
+  sections: [
+    {id:'c1',title:'📊 Data submissions & manufacturer partnerships',body:'If you are a heat pump manufacturer or distributor and would like your products included in the database, or would like to verify and update existing listings, please get in touch. We welcome official datasheets, technical specifications, and product catalogues. Accurate data helps the whole industry.'},
+    {id:'c2',title:'✏️ Corrections & updates',body:'Spotted an error in a product listing? Have updated specifications or a discontinued model that should be flagged? Let us know the product, the field that needs correcting, and your source — we will review and update promptly.'},
+    {id:'c3',title:'💬 General enquiries',body:'For questions about how to use the database, partnership opportunities, API access, or anything else, drop us a line at the email address above. We aim to respond within two working days.'}
+  ]
+};
+
+let guideContent = JSON.parse(localStorage.getItem('hp_guide') || 'null') || JSON.parse(JSON.stringify(DEFAULT_GUIDE));
+let contactContent = JSON.parse(localStorage.getItem('hp_contact') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CONTACT));
+let heroSubtitle = localStorage.getItem('hp_hero_sub') || 'Air source and water source heat pumps — residential and commercial specifications, performance data, and COP test conditions from UK manufacturers.';
+let isAdmin = false;
+let view = 'grid';
+let sortKey = null, sortDir = 1;
+let editingId = null;
+let compareIds = [];
+let filtered = [];
+
+function saveDB(){localStorage.setItem('hpdb_v5',JSON.stringify(db));localStorage.setItem('hpsrc_v5',JSON.stringify(sources));}
+function saveClicks(){localStorage.setItem('hp_clicks',JSON.stringify(clickLog));}
+function nextId(){return (Math.max(0,...db.map(d=>d.id))+1);}
+
+// ═══════════════ LINK & TRACKING HELPERS ═══════════════
+function getProductUrl(d){
+  return d.product_url || MFR_URLS[d.manufacturer] || null;
+}
+function trackClick(id,url){
+  clickLog.push({id,url,ts:Date.now()});
+  saveClicks();
+}
+function handleMfrClick(e,id){
+  e.stopPropagation();
+  e.preventDefault();
+  const d=db.find(x=>x.id===id);if(!d)return;
+  const url=getProductUrl(d);
+  if(!url)return;
+  trackClick(id,url);
+  window.open(url,'_blank','noopener');
+}
+
+// ═══════════════ COP CONDITION HELPERS ═══════════════
+function copCondClass(cond) {
+  if (!cond) return 'cop-nonstd';
+  if (cond === 'A7/W35') return 'cop-std';
+  if (cond.startsWith('W') || cond.startsWith('B')) return 'cop-water';
+  return 'cop-nonstd';
+}
+function copLabel(cop, cond) {
+  if (cop == null) return '—';
+  const cls = copCondClass(cond);
+  const condStr = cond || 'see notes';
+  return `<span>${cop}</span><span class="cop-tag ${cls}">${condStr}</span>`;
+}
+
+// ═══════════════ PAGE NAV ═══════════════
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
+  document.getElementById('page-'+p).classList.add('show');
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active',['browse','compare','guide','contact'][i]===p));
+  document.getElementById('admin-nav-btn').classList.toggle('active',p==='admin');
+  if(p==='browse'){applyFilters();updateHero();}
+  if(p==='compare')renderCompare();
+  if(p==='guide')renderGuidePage();
+  if(p==='contact')renderContactPage();
+}
+function toggleAdmin(){
+  const ap=document.getElementById('page-admin');
+  if(ap.classList.contains('show')){showPage('browse');return;}
+  showPage('admin');
+  if(!isAdmin){document.getElementById('admin-login').style.display='flex';document.getElementById('admin-dash').style.display='none';}
+  else{document.getElementById('admin-login').style.display='none';document.getElementById('admin-dash').style.display='block';adminNav('overview');}
+}
+function doLogin(){
+  if(document.getElementById('admin-pw').value===adminPw){
+    isAdmin=true;document.getElementById('admin-login').style.display='none';
+    document.getElementById('admin-dash').style.display='block';
+    document.getElementById('admin-nav-btn').classList.add('active');adminNav('overview');
+  } else {document.getElementById('login-err').style.display='flex';}
+}
+function doLogout(){isAdmin=false;showPage('browse');}
+function adminNav(p){
+  document.querySelectorAll('.admin-panel').forEach(x=>x.classList.remove('show'));
+  document.getElementById('panel-'+p).classList.add('show');
+  document.querySelectorAll('.sb-item').forEach(x=>x.classList.remove('active'));
+  const el=document.getElementById('sb-'+p);if(el)el.classList.add('active');
+  if(p==='overview')renderOverview();
+  if(p==='manage')renderAdminTable();
+  if(p==='add'&&editingId===null)resetForm();
+  if(p==='sources')renderSources();
+  if(p==='clicks')renderClickAnalytics();
+  if(p==='editguide')renderAdminGuide();
+  if(p==='editcontact')renderAdminContact();
+  if(p==='settings'){const el=document.getElementById('s-hero-sub');if(el)el.value=heroSubtitle;}
+}
+
+// ═══════════════ BROWSE ═══════════════
+function updateHero(){
+  document.getElementById('hero-count').textContent=db.length;
+  document.getElementById('hero-mfr').textContent=new Set(db.map(d=>d.manufacturer)).size;
+  document.getElementById('hero-ashp').textContent=db.filter(d=>d.hp_type==='ASHP').length;
+  document.getElementById('hero-wshp').textContent=db.filter(d=>d.hp_type==='WSHP'||d.hp_type==='GSHP').length;
+  document.getElementById('hero-subtitle').textContent=heroSubtitle;
+}
+function populateFilters(){
+  const ms=document.getElementById('filt-mfr');
+  ms.innerHTML='<option value="">All manufacturers</option>';
+  [...new Set(db.map(d=>d.manufacturer))].sort().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;ms.appendChild(o);});
+  const rs=document.getElementById('filt-ref');
+  rs.innerHTML='<option value="">All refrigerants</option>';
+  [...new Set(db.map(d=>d.refrigerant))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;rs.appendChild(o);});
+}
+function getFiltered(){
+  const q=(document.getElementById('search-input').value||'').toLowerCase();
+  const hpt=document.getElementById('filt-hptype').value;
+  const typ=document.getElementById('filt-type').value;
+  const mfr=document.getElementById('filt-mfr').value;
+  const ref=document.getElementById('filt-ref').value;
+  const cap=document.getElementById('filt-cap').value;
+  const flow=document.getElementById('filt-flow').value;
+  const copcond=document.getElementById('filt-copcond').value;
+  return db.filter(d=>{
+    if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''} ${d.notes||''}`.toLowerCase().includes(q))return false;
+    if(hpt&&d.hp_type!==hpt)return false;
+    if(typ&&d.type!==typ)return false;
+    if(mfr&&d.manufacturer!==mfr)return false;
+    if(ref&&d.refrigerant!==ref)return false;
+    if(cap){const[mn,mx]=cap.split('-').map(Number);if(d.cap_max<mn||d.cap_max>mx)return false;}
+    if(flow&&(d.flow_temp_max==null||d.flow_temp_max<Number(flow)))return false;
+    if(copcond&&d.cop_cond!==copcond)return false;
+    return true;
+  });
+}
+function applyFilters(){
+  filtered=getFiltered();
+  if(sortKey)filtered.sort((a,b)=>sortDir*(a[sortKey]>b[sortKey]?1:a[sortKey]<b[sortKey]?-1:0));
+  document.getElementById('res-count').textContent=filtered.length+' result'+(filtered.length!==1?'s':'');
+  document.getElementById('empty-browse').style.display=filtered.length?'none':'block';
+  if(view==='grid'){document.getElementById('hp-grid').style.display=filtered.length?'grid':'none';renderGrid();}
+  else{document.getElementById('hp-table').style.display=filtered.length?'block':'none';renderTableView();}
+  // Show/hide clear button
+  const hasFilters=document.getElementById('search-input').value||document.getElementById('filt-hptype').value||document.getElementById('filt-type').value||document.getElementById('filt-mfr').value||document.getElementById('filt-ref').value||document.getElementById('filt-cap').value||document.getElementById('filt-flow').value||document.getElementById('filt-copcond').value;
+  document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
+}
+function clearAllFilters(){
+  document.getElementById('search-input').value='';
+  ['filt-hptype','filt-type','filt-mfr','filt-ref','filt-cap','filt-flow','filt-copcond'].forEach(id=>{document.getElementById(id).value='';});
+  applyFilters();
+}
+function setView(v){
+  view=v;
+  document.getElementById('vbtn-grid').classList.toggle('active',v==='grid');
+  document.getElementById('vbtn-table').classList.toggle('active',v==='table');
+  document.getElementById('hp-grid').style.display=v==='grid'&&filtered.length?'grid':'none';
+  document.getElementById('hp-table').style.display=v==='table'&&filtered.length?'block':'none';
+  applyFilters();
+}
+function sortBy(k){
+  if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=1;}
+  document.querySelectorAll('.sort-arr').forEach(e=>{e.classList.remove('on');e.textContent='↕';});
+  const el=document.getElementById('sa-'+k);if(el){el.classList.add('on');el.textContent=sortDir===1?'↑':'↓';}
+  applyFilters();
+}
+function bc(t){return t==='Residential'?'badge-res':'badge-comm';}
+function hptc(h){return h==='ASHP'?'badge-ashp':h==='WSHP'?'badge-wshp':'badge-gshp';}
+function sc(s){return 'src-'+(s||'manual').replace(/[^a-z-]/g,'');}
+function fmt(v,u){return v!=null?v+u:'—';}
+function fmtNoise(d){
+  if(d.noise==null)return '—';
+  const ref=d.noise_ref||'dB(A)';
+  if(ref==='LwA') return d.noise+' dB(A) LwA';
+  if(ref.startsWith('LpA')) return d.noise+' dB(A) '+ref.replace('LpA','LpA');
+  return d.noise+' '+ref;
+}
+
+function renderGrid(){
+  document.getElementById('hp-grid').innerHTML=filtered.map(d=>`
+    <div class="hp-card" onclick="openModal(${d.id})">
+      <div class="hp-card-head">
+        <div class="hp-card-brand">${d.manufacturer}</div>
+        <div class="hp-card-name">${d.model}</div>
+        <div class="hp-card-badges">
+          <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
+          <span class="badge ${bc(d.type)}">${d.type}</span>
+          <span class="badge badge-ref">${d.refrigerant}</span>
+        </div>
+      </div>
+      <div class="hp-card-body">
+        <div class="hp-spec-grid">
+          <div class="hp-spec"><div class="hp-spec-label">Capacity</div><div class="hp-spec-val">${d.cap_min?d.cap_min+'–':''}${d.cap_max} kW</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">COP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${copLabel(d.cop,d.cop_cond)}</div></div></div>
+          <div class="hp-spec"><div class="hp-spec-label">${d.hp_type==='ASHP'?'Min ambient':'Min source temp'}</div><div class="hp-spec-val">${fmt(d.op_temp_min,'°C')}</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">Max flow temp</div><div class="hp-spec-val">${fmt(d.flow_temp_max,'°C')}</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">Peak elec</div><div class="hp-spec-val">${fmt(d.peak_elec,' kW')}</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">SCOP</div><div class="hp-spec-val acc">${d.scop??'—'}</div></div>
+        </div>
+      </div>
+      <div class="hp-card-footer">
+        <div class="card-actions">
+          ${getProductUrl(d)?`<a href="${getProductUrl(d)}" class="card-act card-act-web" onclick="handleMfrClick(event,${d.id})" target="_blank" rel="noopener" title="Visit manufacturer">↗ Website</a>`:''}
+          <button class="card-act card-act-cmp${compareIds.includes(d.id)?' added':''}" id="cmp-btn-${d.id}" onclick="event.stopPropagation();addCompare(${d.id})">${compareIds.includes(d.id)?'✓ Added':'+ Compare'}</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function renderTableView(){
+  document.getElementById('hp-tbody').innerHTML=filtered.map(d=>`
+    <tr onclick="openModal(${d.id})">
+      <td>${d.manufacturer}</td>
+      <td><strong>${d.model}</strong></td>
+      <td><span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span></td>
+      <td><span class="badge ${bc(d.type)}">${d.type}</span></td>
+      <td class="mv">${d.cap_min?d.cap_min+'–':''}${d.cap_max} kW</td>
+      <td class="mv acc">${d.cop??'—'}</td>
+      <td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>
+      <td class="mv">${fmt(d.op_temp_min,'°C')}</td>
+      <td class="mv">${fmt(d.flow_temp_max,'°C')}</td>
+      <td class="mv">${d.refrigerant}</td>
+      <td><span class="source-tag ${sc(d.source)}">${d.source||'manual'}</span></td>
+    </tr>`).join('');
+}
+
+// ═══════════════ MODAL ═══════════════
+function openModal(id){
+  const d=db.find(x=>x.id===id);if(!d)return;
+  document.getElementById('modal-ttl').textContent=d.model;
+  document.getElementById('modal-sub').textContent=d.manufacturer+' · '+d.hp_type+' · '+d.type;
+  const row=(l,v,hi)=>`<div class="spec-row"><div class="spec-row-l">${l}</div><div class="spec-row-v${hi?' hi':''}">${v??'—'}</div></div>`;
+  const isASHP=d.hp_type==='ASHP';
+  const isWater=d.hp_type==='WSHP'||d.hp_type==='GSHP';
+  const copNote=d.cop!=null?`<div class="cop-explain">COP <strong>${d.cop}</strong> quoted at <strong>${d.cop_cond||'unspecified conditions'}</strong>. ${d.cop_cond==='A7/W35'?'This is the standard ASHP test condition (EN 14511): +7°C outdoor air, 35°C leaving water.':d.cop_cond&&d.cop_cond.startsWith('W')?'This is a water-source test condition. Water-source COPs are typically higher than ASHP figures and are not directly comparable.':d.cop_cond&&d.cop_cond.startsWith('B')?'This is the standard brine-water (GSHP) test condition: 0°C brine in, 35°C leaving water.':'Non-standard test point — compare with caution against products tested at different conditions.'}</div>`:'';
+  document.getElementById('modal-body').innerHTML=`
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem">
+      <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
+      <span class="badge ${bc(d.type)}">${d.type}</span>
+      <span class="badge badge-ref">${d.refrigerant}</span>
+      <span class="source-tag ${sc(d.source)}">${d.source||'manual'}</span>
+    </div>
+    ${copNote}
+    <div class="spec-section">
+      <h4>${isASHP?'Operating temperatures':'Source &amp; flow temperatures'}</h4>
+      ${row(isASHP?'Min ambient operating temp':'Min entering source temp',d.op_temp_min!=null?d.op_temp_min+'°C':null)}
+      ${row(isASHP?'Max ambient operating temp':'Max entering source temp',d.op_temp_max!=null?d.op_temp_max+'°C':null)}
+      ${row('Min flow temperature',d.flow_temp_min!=null?d.flow_temp_min+'°C':null)}
+      ${row('Max flow temperature',d.flow_temp_max!=null?d.flow_temp_max+'°C':null,true)}
+    </div>
+    <div class="spec-section">
+      <h4>Thermal capacity</h4>
+      ${row('Min capacity',d.cap_min!=null?d.cap_min+' kW':null)}
+      ${row('Max capacity',d.cap_max!=null?d.cap_max+' kW':null,true)}
+      ${row('Peak electrical input',d.peak_elec!=null?d.peak_elec+' kW':null)}
+    </div>
+    <div class="spec-section">
+      <h4>Performance</h4>
+      <div class="spec-row"><div class="spec-row-l">COP</div><div class="spec-row-v hi">${d.cop!=null?`${d.cop} <span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</div></div>
+      ${row('SCOP',d.scop,true)}
+      ${d.eer!=null?row('EER (cooling)',d.eer):''}
+      ${row('Noise level',d.noise!=null?fmtNoise(d):null)}
+    </div>
+    <div class="spec-section">
+      <h4>Physical dimensions</h4>
+      ${row('H × W × D',d.height&&d.width&&d.depth?`${d.height}×${d.width}×${d.depth} mm`:null)}
+      ${row('Weight',d.weight!=null?d.weight+' kg':null)}
+    </div>
+    ${d.notes?`<div class="spec-section"><h4>Notes</h4><p style="font-size:13px;color:var(--text2);line-height:1.65">${d.notes}</p></div>`:''}
+    ${getProductUrl(d)?`<div style="margin-top:.5rem;padding:12px 14px;background:var(--info-light);border:1px solid #B5D4F4;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center">
+      <div style="font-size:13px"><span style="color:#0C447C;font-weight:500">View on ${d.manufacturer}</span><br><span style="font-size:11px;color:#5A574F;font-family:'DM Mono',monospace;word-break:break-all">${getProductUrl(d)}</span></div>
+      <a href="${getProductUrl(d)}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${getProductUrl(d)}')" class="btn btn-sm" style="flex-shrink:0;color:var(--info);border-color:var(--info);text-decoration:none">↗ Visit site</a>
+    </div>`:''}
+    ${isAdmin?`<div style="margin-top:1rem;text-align:right"><button class="btn btn-sm" onclick="editEntry(${d.id})">✎ Edit in admin</button></div>`:''}
+  `;
+  document.getElementById('detail-modal').classList.add('show');
+}
+function closeModal(){document.getElementById('detail-modal').classList.remove('show');}
+
+// ═══════════════ COMPARE ═══════════════
+function addCompare(id){
+  if(compareIds.includes(id)){
+    showToast('Already in your compare list. Head to the <strong>Compare</strong> tab to review.');
+    return;
+  }
+  if(compareIds.length>=4){
+    showToast('Maximum 4 units — remove one from the <strong>Compare</strong> tab first.');
+    return;
+  }
+  compareIds.push(id);
+  const d=db.find(x=>x.id===id);
+  const name=d?d.model:'this unit';
+  // Update the button on the card
+  const btn=document.getElementById('cmp-btn-'+id);
+  if(btn){btn.textContent='✓ Added';btn.classList.add('added');}
+  showToast(`<strong>${name}</strong> added to compare (${compareIds.length}/4). Visit the <strong>Compare</strong> tab to review.`);
+}
+
+function showToast(html){
+  const c=document.getElementById('toast-container');
+  const t=document.createElement('div');
+  t.className='toast';
+  t.innerHTML=`<span class="toast-icon">✓</span><span class="toast-text">${html}</span>`;
+  c.appendChild(t);
+  setTimeout(()=>{t.style.animation='toastOut .3s ease forwards';setTimeout(()=>t.remove(),300);},4000);
+}
+function removeCompare(id){compareIds=compareIds.filter(x=>x!==id);renderCompare();}
+function renderCompare(){
+  const items=compareIds.map(id=>db.find(d=>d.id===id)).filter(Boolean);
+  const sE=document.getElementById('cmp-slots'),tE=document.getElementById('cmp-table');
+  if(!items.length){sE.innerHTML='<div class="empty-state"><h3>No units selected</h3><p>Go to Browse and click "+ Compare" on any product card.</p></div>';tE.innerHTML='';return;}
+  const conds=new Set(items.map(d=>d.cop_cond).filter(Boolean));
+  const mixedCop=conds.size>1?`<div class="alert a-warn" style="margin-bottom:1rem;font-size:13px"><strong>Caution:</strong> These units have different COP test conditions (${[...conds].join(', ')}). COP values are not directly comparable across different test conditions — a higher COP at W10/W35 does not mean better real-world performance than a lower COP at A7/W35.</div>`:'';
+  sE.innerHTML=mixedCop+`<div class="cmp-grid">${items.map(d=>`
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
+      <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border)">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:'DM Mono',monospace">${d.manufacturer}</div>
+        <div style="font-family:'Fraunces',serif;font-size:15px;margin-top:2px;line-height:1.2">${d.model}</div>
+        <div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap"><span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span><span class="badge ${bc(d.type)}">${d.type}</span><span class="badge badge-ref">${d.refrigerant}</span></div>
+      </div>
+      <div style="padding:10px 14px">
+        ${[['COP',d.cop!=null?`${d.cop} <span class="cop-tag ${copCondClass(d.cop_cond)} "style="font-size:9px">${d.cop_cond||'?'}</span>`:'—'],['SCOP',d.scop??'—'],['Max capacity',d.cap_max!=null?d.cap_max+' kW':'—'],['Max flow',fmt(d.flow_temp_max,'°C')],['Min source',fmt(d.op_temp_min,'°C')]].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:.5px solid var(--border);font-size:13px"><span style="color:var(--text3)">${l}</span><span style="font-family:'DM Mono',monospace;font-weight:500">${v}</span></div>`).join('')}
+      </div>
+      <div style="padding:8px 14px;border-top:1px solid var(--border)"><button class="btn btn-sm btn-danger" onclick="removeCompare(${d.id})">✕ Remove</button></div>
+    </div>`).join('')}</div>`;
+  const specs=[['HP Type','hp_type'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Max flow temp (°C)','flow_temp_max'],['Min capacity (kW)','cap_min'],['Max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value','cop'],['SCOP','scop'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Weight (kg)','weight']];
+  tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}</th>`).join('')}</tr></thead><tbody>
+    <tr><td style="color:var(--text3);font-size:12px">COP conditions</td>${items.map(d=>`<td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>`).join('')}</tr>
+    ${specs.map(([l,k])=>{
+      const rk=k==='_noise'?'noise':k;
+      const vals=items.map(d=>d[rk]);const numVals=vals.filter(v=>typeof v==='number');
+      const bestFn=rk==='op_temp_min'||rk==='noise'?Math.min:Math.max;
+      const best=numVals.length?bestFn(...numVals):null;
+      return `<tr><td style="color:var(--text3);font-size:12px">${l}</td>${items.map(d=>{const v=d[rk];const isNum=typeof v==='number';const isBest=isNum&&numVals.length>1&&v===best;return `<td class="mv${isBest?' acc':''}">${k==='_noise'?fmtNoise(d):(v!=null?v:'—')}</td>`;}).join('')}</tr>`;
+    }).join('')}
+  </tbody></table></div>`;
+}
+
+// ═══════════════ ADMIN OVERVIEW ═══════════════
+function renderOverview(){
+  const total=db.length,types={},mfrs={},srcs={},hpts={};
+  db.forEach(d=>{
+    types[d.type]=(types[d.type]||0)+1;
+    mfrs[d.manufacturer]=(mfrs[d.manufacturer]||0)+1;
+    srcs[d.source||'manual']=(srcs[d.source||'manual']||0)+1;
+    hpts[d.hp_type]=(hpts[d.hp_type]||0)+1;
+  });
+  document.getElementById('admin-metrics').innerHTML=`
+    <div class="metric-card"><div class="metric-n">${total}</div><div class="metric-l">Total entries</div></div>
+    <div class="metric-card"><div class="metric-n">${Object.keys(mfrs).length}</div><div class="metric-l">Manufacturers</div></div>
+    <div class="metric-card"><div class="metric-n">${hpts.ASHP||0}</div><div class="metric-l">ASHP</div></div>
+    <div class="metric-card"><div class="metric-n">${hpts.WSHP||0}</div><div class="metric-l">WSHP</div></div>
+    <div class="metric-card"><div class="metric-n">${hpts.GSHP||0}</div><div class="metric-l">GSHP</div></div>
+    <div class="metric-card"><div class="metric-n">${types.Residential||0}</div><div class="metric-l">Residential</div></div>
+    <div class="metric-card"><div class="metric-n">${types.Commercial||0}</div><div class="metric-l">Commercial</div></div>`;
+  document.getElementById('ov-mfrs').innerHTML=Object.entries(mfrs).sort((a,b)=>b[1]-a[1]).map(([m,c])=>`<div class="mfr-row"><div class="mfr-name" style="font-size:13px">${m}</div><div class="mfr-count">${c}</div><div class="pb-wrap"><div class="pb" style="width:${Math.round(c/total*100)}%"></div></div></div>`).join('');
+  document.getElementById('ov-hptypes').innerHTML=Object.entries(hpts).map(([h,c])=>`<div class="mfr-row"><div class="mfr-name"><span class="badge ${hptc(h)}">${h}</span></div><div class="mfr-count">${c}</div><div class="pb-wrap"><div class="pb" style="width:${Math.round(c/total*100)}%"></div></div></div>`).join('');
+  document.getElementById('ov-types').innerHTML=Object.entries(types).map(([t,c])=>`<div class="mfr-row"><div class="mfr-name"><span class="badge ${bc(t)}">${t}</span></div><div class="mfr-count">${c}</div><div class="pb-wrap"><div class="pb" style="width:${Math.round(c/total*100)}%"></div></div></div>`).join('');
+  document.getElementById('ov-sources').innerHTML=Object.entries(srcs).map(([s,c])=>`<div class="mfr-row"><div class="mfr-name"><span class="source-tag ${sc(s)}">${s}</span></div><div class="mfr-count">${c} entries</div></div>`).join('');
+}
+
+// ═══════════════ ADMIN TABLE ═══════════════
+function renderAdminTable(){
+  document.getElementById('admin-tbody').innerHTML=db.map(d=>`
+    <tr><td>${d.manufacturer}</td><td><strong>${d.model}</strong></td>
+    <td><span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span></td>
+    <td><span class="badge ${bc(d.type)}">${d.type}</span></td>
+    <td class="mono">${d.cap_max} kW</td>
+    <td class="mono">${d.cop??'—'}</td>
+    <td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>
+    <td><span class="source-tag ${sc(d.source)}">${d.source||'manual'}</span></td>
+    <td><div class="act-btns"><button class="btn btn-sm" onclick="editEntry(${d.id})">✎</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(${d.id})">✕</button></div></td></tr>`).join('');
+}
+function filterAdminRows(q){
+  document.querySelectorAll('#admin-tbody tr').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';});
+}
+
+// ═══════════════ FORM ═══════════════
+const FIELDS=['manufacturer','model','hp_type','type','refrigerant','source','product_url','op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','peak_elec','cop','cop_cond','scop','eer','height','width','depth','weight','noise','noise_ref','notes'];
+function resetForm(){
+  editingId=null;
+  FIELDS.forEach(f=>{const el=document.getElementById('f-'+f);if(el)el.value='';});
+  document.getElementById('f-hp_type').value='ASHP';
+  document.getElementById('f-type').value='Residential';
+  document.getElementById('f-source').value='manufacturer';
+  document.getElementById('f-cop_cond').value='A7/W35';
+  document.getElementById('f-noise_ref').value='LwA';
+  document.getElementById('f-delete-btn').style.display='none';
+  document.getElementById('form-ttl').textContent='Add new entry';
+  document.getElementById('form-sub').textContent='Manually enter heat pump specifications';
+  document.getElementById('form-alert').style.display='none';
+}
+function editEntry(id){
+  editingId=id;const d=db.find(x=>x.id===id);if(!d)return;
+  adminNav('add');
+  FIELDS.forEach(f=>{const el=document.getElementById('f-'+f);if(el)el.value=d[f]??'';});
+  document.getElementById('f-delete-btn').style.display='inline-flex';
+  document.getElementById('form-ttl').textContent='Edit entry';
+  document.getElementById('form-sub').textContent=d.manufacturer+' '+d.model;
+  closeModal();
+}
+function submitForm(){
+  const mfr=document.getElementById('f-manufacturer').value.trim();
+  const model=document.getElementById('f-model').value.trim();
+  if(!mfr||!model){showFA('Manufacturer and model are required.','a-danger');return;}
+  const n=k=>{const v=document.getElementById('f-'+k).value;return v!==''?parseFloat(v):null;};
+  const s=k=>document.getElementById('f-'+k).value||null;
+  const entry={id:editingId||nextId(),manufacturer:mfr,model,hp_type:s('hp_type')||'ASHP',type:s('type')||'Residential',refrigerant:s('refrigerant')||'',source:s('source')||'manual',
+    product_url:s('product_url')||null,
+    op_temp_min:n('op_temp_min'),op_temp_max:n('op_temp_max'),flow_temp_min:n('flow_temp_min'),flow_temp_max:n('flow_temp_max'),
+    cap_min:n('cap_min'),cap_max:n('cap_max'),peak_elec:n('peak_elec'),cop:n('cop'),cop_cond:s('cop_cond')||'A7/W35',scop:n('scop'),eer:n('eer'),
+    height:n('height'),width:n('width'),depth:n('depth'),weight:n('weight'),noise:n('noise'),noise_ref:s('noise_ref')||'LwA',notes:s('notes')||''};
+  if(editingId){const idx=db.findIndex(x=>x.id===editingId);if(idx>=0)db[idx]=entry;}
+  else db.push(entry);
+  saveDB();populateFilters();updateHero();
+  showFA(editingId?'Entry updated.':'Entry added.','a-success');
+  editingId=null;setTimeout(()=>adminNav('manage'),800);
+}
+function deleteEditingEntry(){if(confirm('Permanently delete?'))deleteEntry(editingId);}
+function deleteEntry(id){if(!confirm('Delete this entry permanently?'))return;db=db.filter(d=>d.id!==id);saveDB();populateFilters();updateHero();renderAdminTable();}
+function showFA(msg,cls){const el=document.getElementById('form-alert');el.innerHTML=msg;el.className='alert '+cls;el.style.display='flex';}
+
+// ═══════════════ IMPORT ═══════════════
+function handleDrop(e){e.preventDefault();document.getElementById('csv-drop').classList.remove('over');const f=e.dataTransfer.files[0];if(f)handleCSV(f);}
+function handleCSV(file){
+  if(!file)return;const r=new FileReader();
+  r.onload=e=>{
+    const lines=e.target.result.split(/\r?\n/).filter(l=>l.trim());
+    if(!lines.length){document.getElementById('import-preview').innerHTML='<div class="alert a-danger">Empty file.</div>';return;}
+    const headers=lines[0].split(',').map(h=>h.trim().toLowerCase().replace(/"/g,''));
+    const rows=lines.slice(1).map(l=>{const vals=l.split(',').map(v=>v.trim().replace(/^"|"$/g,''));const obj={};headers.forEach((h,i)=>obj[h]=vals[i]||'');return obj;}).filter(r=>r.manufacturer&&r.model);
+    if(!rows.length){document.getElementById('import-preview').innerHTML='<div class="alert a-danger">No valid rows found.</div>';return;}
+    document.getElementById('import-preview').innerHTML=`
+      <div class="alert a-info">Found <strong>${rows.length}</strong> rows. Preview:</div>
+      <div class="table-wrap" style="margin-bottom:.875rem"><table class="admin-table"><thead><tr><th>Manufacturer</th><th>Model</th><th>HP Type</th><th>Capacity</th><th>COP</th><th>Conditions</th></tr></thead>
+      <tbody>${rows.slice(0,5).map(r=>`<tr><td>${r.manufacturer}</td><td>${r.model}</td><td>${r.hp_type||'?'}</td><td>${r.cap_max||'?'}</td><td>${r.cop||'?'}</td><td>${r.cop_cond||'?'}</td></tr>`).join('')}</tbody></table></div>
+      <button class="btn btn-primary" onclick='importRows(${JSON.stringify(rows).replace(/'/g,"&#39;")})'>Import ${rows.length} records</button>`;
+  };r.readAsText(file);
+}
+function importRows(rows){
+  const numF=['op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','peak_elec','cop','scop','eer','height','width','depth','weight','noise'];
+  rows.forEach(r=>{
+    const entry={id:nextId(),source:'import'};
+    Object.keys(r).forEach(k=>{entry[k]=numF.includes(k)&&r[k]!==''?parseFloat(r[k]):(r[k]||null);});
+    db.push(entry);
+  });
+  saveDB();populateFilters();updateHero();
+  document.getElementById('import-preview').innerHTML=`<div class="alert a-success">✓ Imported ${rows.length} records.</div>`;
+}
+function downloadTemplate(){
+  const h='manufacturer,model,hp_type,type,refrigerant,op_temp_min,op_temp_max,flow_temp_min,flow_temp_max,cap_min,cap_max,peak_elec,cop,cop_cond,scop,eer,height,width,depth,weight,noise,noise_ref,source,product_url,notes\n';
+  const ex='Mitsubishi,Example 10kW,ASHP,Residential,R32,-25,43,25,60,3,10,3.2,4.2,A7/W35,3.9,,940,870,370,70,48,LwA,manufacturer,https://example.com/product,Notes here';
+  const blob=new Blob([h+ex],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heatpump_template.csv';a.click();
+}
+
+// ═══════════════ SOURCES ═══════════════
+function renderSources(){
+  const list=document.getElementById('sources-list');
+  if(!sources.length){list.innerHTML='<p style="font-size:13px;color:var(--text3)">No sources.</p>';return;}
+  list.innerHTML=`<div class="table-wrap"><table class="admin-table"><thead><tr><th>Name</th><th>Type</th><th>URL</th><th>Added</th><th></th></tr></thead>
+    <tbody>${sources.map(s=>`<tr><td>${s.name}</td><td><span class="source-tag ${sc(s.type)}">${s.type}</span></td><td style="font-size:12px;color:var(--info)">${s.url||'—'}</td><td style="font-size:12px;color:var(--text3)">${s.added||''}</td><td><button class="btn btn-sm btn-danger" onclick="deleteSource(${s.id})">✕</button></td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+function addSource(){
+  const name=document.getElementById('src-name').value.trim();if(!name)return;
+  sources.push({id:Math.max(0,...sources.map(s=>s.id))+1,name,type:document.getElementById('src-type').value,url:document.getElementById('src-url').value,added:new Date().toISOString().slice(0,7)});
+  saveDB();renderSources();document.getElementById('src-name').value='';document.getElementById('src-url').value='';
+}
+function deleteSource(id){sources=sources.filter(s=>s.id!==id);saveDB();renderSources();}
+
+// ═══════════════ SETTINGS ═══════════════
+function changePw(){
+  const old=document.getElementById('s-old-pw').value,nw=document.getElementById('s-new-pw').value;
+  const al=document.getElementById('pw-alert');
+  if(old!==adminPw){al.innerHTML='<div class="alert a-danger">Incorrect current password.</div>';al.style.display='block';return;}
+  if(!nw){al.innerHTML='<div class="alert a-danger">New password cannot be empty.</div>';al.style.display='block';return;}
+  adminPw=nw;localStorage.setItem('hpadminpw',nw);
+  al.innerHTML='<div class="alert a-success">Password updated.</div>';al.style.display='block';
+  document.getElementById('s-old-pw').value='';document.getElementById('s-new-pw').value='';
+}
+function exportAll(){
+  const hdr='manufacturer,model,hp_type,type,refrigerant,op_temp_min,op_temp_max,flow_temp_min,flow_temp_max,cap_min,cap_max,peak_elec,cop,cop_cond,scop,eer,height,width,depth,weight,noise,noise_ref,source,product_url,notes';
+  const rows=db.map(d=>[d.manufacturer,d.model,d.hp_type,d.type,d.refrigerant,d.op_temp_min,d.op_temp_max,d.flow_temp_min,d.flow_temp_max,d.cap_min,d.cap_max,d.peak_elec,d.cop,d.cop_cond,d.scop,d.eer,d.height,d.width,d.depth,d.weight,d.noise,d.noise_ref||'',d.source,d.product_url||'',`"${(d.notes||'').replace(/"/g,'""')}"`].join(','));
+  const blob=new Blob([[hdr,...rows].join('\n')],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heatpumpdb_export.csv';a.click();
+}
+function resetDB(){db=SEED.map(d=>({...d}));saveDB();populateFilters();updateHero();adminNav('overview');}
+
+// ═══════════════ CLICK ANALYTICS ═══════════════
+function renderClickAnalytics(){
+  const total=clickLog.length;
+  const today=clickLog.filter(c=>c.ts>Date.now()-86400000).length;
+  const week=clickLog.filter(c=>c.ts>Date.now()-604800000).length;
+  const uniqueProducts=new Set(clickLog.map(c=>c.id)).size;
+
+  document.getElementById('click-metrics').innerHTML=`
+    <div class="metric-card"><div class="metric-n">${total}</div><div class="metric-l">Total clicks</div></div>
+    <div class="metric-card"><div class="metric-n">${today}</div><div class="metric-l">Today</div></div>
+    <div class="metric-card"><div class="metric-n">${week}</div><div class="metric-l">Last 7 days</div></div>
+    <div class="metric-card"><div class="metric-n">${uniqueProducts}</div><div class="metric-l">Unique products</div></div>`;
+
+  // By product
+  const byProd={};
+  clickLog.forEach(c=>{byProd[c.id]=(byProd[c.id]||0)+1;});
+  const prodSorted=Object.entries(byProd).sort((a,b)=>b[1]-a[1]);
+  const maxProd=prodSorted.length?prodSorted[0][1]:1;
+  document.getElementById('click-by-product').innerHTML=prodSorted.length?prodSorted.map(([id,count])=>{
+    const d=db.find(x=>x.id===Number(id));
+    const name=d?`${d.manufacturer} ${d.model}`:`Product #${id}`;
+    return `<div class="mfr-row"><div class="mfr-name" style="font-size:12px">${name}</div><div class="mfr-count">${count}</div><div class="pb-wrap"><div class="pb" style="width:${Math.round(count/maxProd*100)}%"></div></div></div>`;
+  }).join(''):'<p style="font-size:13px;color:var(--text3)">No click data yet.</p>';
+
+  // By manufacturer
+  const byMfr={};
+  clickLog.forEach(c=>{const d=db.find(x=>x.id===c.id);if(d)byMfr[d.manufacturer]=(byMfr[d.manufacturer]||0)+1;});
+  const mfrSorted=Object.entries(byMfr).sort((a,b)=>b[1]-a[1]);
+  const maxMfr=mfrSorted.length?mfrSorted[0][1]:1;
+  document.getElementById('click-by-mfr').innerHTML=mfrSorted.length?mfrSorted.map(([m,count])=>`<div class="mfr-row"><div class="mfr-name" style="font-size:12px">${m}</div><div class="mfr-count">${count}</div><div class="pb-wrap"><div class="pb" style="width:${Math.round(count/maxMfr*100)}%"></div></div></div>`).join(''):'<p style="font-size:13px;color:var(--text3)">No click data yet.</p>';
+
+  // Recent clicks
+  const recent=clickLog.slice(-20).reverse();
+  document.getElementById('click-recent').innerHTML=recent.length?`<div class="table-wrap"><table class="admin-table">
+    <thead><tr><th>Time</th><th>Product</th><th>URL</th></tr></thead>
+    <tbody>${recent.map(c=>{
+      const d=db.find(x=>x.id===c.id);
+      const name=d?`${d.manufacturer} ${d.model}`:`#${c.id}`;
+      const dt=new Date(c.ts);
+      const timeStr=dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'})+' '+dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      return `<tr><td style="white-space:nowrap;font-size:12px;color:var(--text3)">${timeStr}</td><td style="font-size:12px">${name}</td><td style="font-size:11px;color:var(--info);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.url||''}</td></tr>`;
+    }).join('')}</tbody></table></div>`:'<p style="font-size:13px;color:var(--text3)">No clicks recorded yet. Clicks are logged when users visit manufacturer links.</p>';
+}
+
+function exportClicks(){
+  const hdr='timestamp,date_time,product_id,manufacturer,model,url';
+  const rows=clickLog.map(c=>{
+    const d=db.find(x=>x.id===c.id);
+    const dt=new Date(c.ts).toISOString();
+    return [c.ts,dt,c.id,d?d.manufacturer:'',d?d.model:'',`"${c.url||''}"`].join(',');
+  });
+  const blob=new Blob([[hdr,...rows].join('\n')],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heatpumpdb_clicks.csv';a.click();
+}
+
+// ═══════════════ CMS: GUIDE & CONTACT ═══════════════
+function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_hero_sub',heroSubtitle);}
+
+function renderGuidePage(){
+  const g=guideContent;
+  document.getElementById('guide-content').innerHTML=`
+    <h1 style="font-size:26px;margin:1rem 0 .35rem">${g.title}</h1>
+    <p style="color:var(--text3);font-size:13px;margin-bottom:1.5rem">${g.subtitle}</p>
+    ${g.sections.map(s=>`<div class="guide-card"><h3>${s.title}</h3>${s.body}</div>`).join('')}`;
+}
+
+function renderContactPage(){
+  const c=contactContent;
+  document.getElementById('contact-content').innerHTML=`
+    <h1 style="font-size:26px;margin:1rem 0 .35rem">${c.title}</h1>
+    <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:1.5rem">${c.intro}</p>
+    <div class="guide-card" style="background:var(--accent-light);border-color:#9FE1CB">
+      <h3 style="color:var(--accent-dark)">📧 Email us</h3>
+      <p style="font-size:15px"><a href="mailto:${c.email}" style="color:var(--accent);font-weight:500;text-decoration:none">${c.email}</a></p>
+    </div>
+    ${c.sections.map(s=>`<div class="guide-card"><h3>${s.title}</h3><p style="font-size:14px;color:var(--text2);line-height:1.75">${s.body}</p></div>`).join('')}`;
+}
+
+// ═══════════════ ADMIN CMS: GUIDE EDITOR ═══════════════
+let editingGuideIdx = null;
+
+function renderAdminGuide(){
+  const g=guideContent;
+  document.getElementById('cms-guide-editor').innerHTML=`
+    <div class="card-a">
+      <h3>Page header</h3>
+      <div class="fg2">
+        <div class="form-group"><label class="form-label">Page title</label><input type="text" class="form-input" id="ge-title" value="${g.title}"></div>
+        <div class="form-group"><label class="form-label">Subtitle</label><input type="text" class="form-input" id="ge-subtitle" value="${g.subtitle}"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="guideContent.title=document.getElementById('ge-title').value;guideContent.subtitle=document.getElementById('ge-subtitle').value;saveCMS();showCmsAlert('guide','Header updated.','a-success')">Save header</button>
+    </div>
+    <div class="card-a">
+      <h3>Sections <span style="font-size:12px;color:var(--text3);font-weight:400;margin-left:6px">(${g.sections.length} sections)</span></h3>
+      <p style="font-size:12px;color:var(--text3);margin-bottom:1rem">Drag to reorder. Click Edit to modify content. Section body supports basic HTML for formatting.</p>
+      <div id="guide-sections-list">
+        ${g.sections.map((s,i)=>`
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;background:var(--surface2)">
+            <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;padding-top:2px">
+              ${i>0?`<button class="btn btn-sm" style="padding:2px 6px;font-size:10px" onclick="moveGuideSection(${i},-1)">▲</button>`:'<span style="width:26px"></span>'}
+              ${i<g.sections.length-1?`<button class="btn btn-sm" style="padding:2px 6px;font-size:10px" onclick="moveGuideSection(${i},1)">▼</button>`:'<span style="width:26px"></span>'}
+            </div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:14px;font-weight:500;margin-bottom:2px">${s.title}</div>
+              <div style="font-size:12px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:400px">${s.body.replace(/<[^>]*>/g,'').slice(0,80)}…</div>
+            </div>
+            <div class="act-btns" style="flex-shrink:0">
+              <button class="btn btn-sm" onclick="editGuideSection(${i})">✎ Edit</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteGuideSection(${i})">✕</button>
+            </div>
+          </div>`).join('')}
+      </div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="addGuideSection()">+ Add section</button>
+    </div>
+    <div id="guide-section-editor" style="display:none"></div>
+    <div id="cms-guide-alert" style="display:none"></div>`;
+}
+
+function editGuideSection(i){
+  editingGuideIdx=i;
+  const s=guideContent.sections[i];
+  document.getElementById('guide-section-editor').style.display='block';
+  document.getElementById('guide-section-editor').innerHTML=`
+    <div class="card-a" style="border-color:var(--accent);border-width:2px">
+      <h3>Edit section: ${s.title}</h3>
+      <div class="form-group"><label class="form-label">Section title (include emoji if desired)</label><input type="text" class="form-input" id="ges-title" value="${s.title.replace(/"/g,'&quot;')}"></div>
+      <div class="form-group"><label class="form-label">Body content <span style="font-weight:400;color:var(--text3)">(HTML supported — use &lt;p&gt;, &lt;strong&gt;, &lt;table&gt; etc.)</span></label>
+        <textarea class="form-textarea" id="ges-body" style="min-height:180px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.6">${s.body.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</textarea></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary btn-sm" onclick="saveGuideSection()">Save section</button>
+        <button class="btn btn-sm" onclick="document.getElementById('guide-section-editor').style.display='none'">Cancel</button>
+      </div>
+    </div>`;
+  document.getElementById('guide-section-editor').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function saveGuideSection(){
+  const s=guideContent.sections[editingGuideIdx];
+  s.title=document.getElementById('ges-title').value;
+  s.body=document.getElementById('ges-body').value;
+  saveCMS();
+  document.getElementById('guide-section-editor').style.display='none';
+  renderAdminGuide();
+  showCmsAlert('guide','Section updated.','a-success');
+}
+
+function addGuideSection(){
+  guideContent.sections.push({id:'g'+Date.now(),title:'New section',body:'<p>Enter content here.</p>'});
+  saveCMS();renderAdminGuide();
+  editGuideSection(guideContent.sections.length-1);
+}
+
+function deleteGuideSection(i){
+  if(!confirm('Delete this section?'))return;
+  guideContent.sections.splice(i,1);saveCMS();renderAdminGuide();
+}
+
+function moveGuideSection(i,dir){
+  const arr=guideContent.sections;
+  const j=i+dir;if(j<0||j>=arr.length)return;
+  [arr[i],arr[j]]=[arr[j],arr[i]];
+  saveCMS();renderAdminGuide();
+}
+
+function resetGuideContent(){
+  if(!confirm('Reset guide page to default content?'))return;
+  guideContent=JSON.parse(JSON.stringify(DEFAULT_GUIDE));
+  saveCMS();renderAdminGuide();
+  showCmsAlert('guide','Guide reset to default.','a-success');
+}
+
+// ═══════════════ ADMIN CMS: CONTACT EDITOR ═══════════════
+let editingContactIdx = null;
+
+function renderAdminContact(){
+  const c=contactContent;
+  document.getElementById('cms-contact-editor').innerHTML=`
+    <div class="card-a">
+      <h3>Page header &amp; email</h3>
+      <div class="fg2">
+        <div class="form-group"><label class="form-label">Page title</label><input type="text" class="form-input" id="ce-title" value="${c.title}"></div>
+        <div class="form-group"><label class="form-label">Contact email</label><input type="email" class="form-input" id="ce-email" value="${c.email}"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Introduction text</label>
+        <textarea class="form-textarea" id="ce-intro" style="min-height:100px">${c.intro}</textarea></div>
+      <button class="btn btn-primary btn-sm" onclick="contactContent.title=document.getElementById('ce-title').value;contactContent.email=document.getElementById('ce-email').value;contactContent.intro=document.getElementById('ce-intro').value;saveCMS();showCmsAlert('contact','Header &amp; email updated.','a-success')">Save header</button>
+    </div>
+    <div class="card-a">
+      <h3>Sections <span style="font-size:12px;color:var(--text3);font-weight:400;margin-left:6px">(${c.sections.length} sections)</span></h3>
+      <div id="contact-sections-list">
+        ${c.sections.map((s,i)=>`
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;background:var(--surface2)">
+            <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;padding-top:2px">
+              ${i>0?`<button class="btn btn-sm" style="padding:2px 6px;font-size:10px" onclick="moveContactSection(${i},-1)">▲</button>`:'<span style="width:26px"></span>'}
+              ${i<c.sections.length-1?`<button class="btn btn-sm" style="padding:2px 6px;font-size:10px" onclick="moveContactSection(${i},1)">▼</button>`:'<span style="width:26px"></span>'}
+            </div>
+            <div style="flex:1;min-width:0">
+              <div style="font-size:14px;font-weight:500;margin-bottom:2px">${s.title}</div>
+              <div style="font-size:12px;color:var(--text3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:400px">${s.body.slice(0,80)}…</div>
+            </div>
+            <div class="act-btns" style="flex-shrink:0">
+              <button class="btn btn-sm" onclick="editContactSection(${i})">✎ Edit</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteContactSection(${i})">✕</button>
+            </div>
+          </div>`).join('')}
+      </div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="addContactSection()">+ Add section</button>
+    </div>
+    <div id="contact-section-editor" style="display:none"></div>
+    <div id="cms-contact-alert" style="display:none"></div>`;
+}
+
+function editContactSection(i){
+  editingContactIdx=i;
+  const s=contactContent.sections[i];
+  document.getElementById('contact-section-editor').style.display='block';
+  document.getElementById('contact-section-editor').innerHTML=`
+    <div class="card-a" style="border-color:var(--accent);border-width:2px">
+      <h3>Edit section</h3>
+      <div class="form-group"><label class="form-label">Section title (include emoji if desired)</label><input type="text" class="form-input" id="ces-title" value="${s.title.replace(/"/g,'&quot;')}"></div>
+      <div class="form-group"><label class="form-label">Body content</label>
+        <textarea class="form-textarea" id="ces-body" style="min-height:120px">${s.body}</textarea></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary btn-sm" onclick="saveContactSection()">Save section</button>
+        <button class="btn btn-sm" onclick="document.getElementById('contact-section-editor').style.display='none'">Cancel</button>
+      </div>
+    </div>`;
+  document.getElementById('contact-section-editor').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function saveContactSection(){
+  const s=contactContent.sections[editingContactIdx];
+  s.title=document.getElementById('ces-title').value;
+  s.body=document.getElementById('ces-body').value;
+  saveCMS();
+  document.getElementById('contact-section-editor').style.display='none';
+  renderAdminContact();
+  showCmsAlert('contact','Section updated.','a-success');
+}
+
+function addContactSection(){
+  contactContent.sections.push({id:'c'+Date.now(),title:'New section',body:'Enter content here.'});
+  saveCMS();renderAdminContact();
+  editContactSection(contactContent.sections.length-1);
+}
+
+function deleteContactSection(i){
+  if(!confirm('Delete this section?'))return;
+  contactContent.sections.splice(i,1);saveCMS();renderAdminContact();
+}
+
+function moveContactSection(i,dir){
+  const arr=contactContent.sections;
+  const j=i+dir;if(j<0||j>=arr.length)return;
+  [arr[i],arr[j]]=[arr[j],arr[i]];
+  saveCMS();renderAdminContact();
+}
+
+function resetContactContent(){
+  if(!confirm('Reset contact page to default content?'))return;
+  contactContent=JSON.parse(JSON.stringify(DEFAULT_CONTACT));
+  saveCMS();renderAdminContact();
+  showCmsAlert('contact','Contact page reset to default.','a-success');
+}
+
+function showCmsAlert(page,msg,cls){
+  const el=document.getElementById('cms-'+page+'-alert');
+  if(!el)return;
+  el.innerHTML=`<div class="alert ${cls}" style="margin-top:1rem">${msg}</div>`;
+  el.style.display='block';
+  setTimeout(()=>{el.style.display='none';},3000);
+}
+
+// ═══════════════ INIT ═══════════════
+populateFilters();
+applyFilters();
+updateHero();
+renderGuidePage();
+renderContactPage();
+</script>
+</body>
+</html>
