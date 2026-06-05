@@ -933,40 +933,40 @@ const SEED = [
 
 // ═══════════════ MANUFACTURER URLs ═══════════════
 const MFR_URLS = {
-  "Vaillant":"https://www.vaillant.co.uk/products/renewable-energy/heat-pumps/",
-  "Mitsubishi Electric":"https://les.mitsubishielectric.co.uk/products/heating/ecodan-range",
-  "Daikin":"https://www.daikin.co.uk/en_gb/product-group/air-to-water-heat-pumps.html",
-  "Samsung":"https://www.samsung.com/uk/business/climate/ehs-mono/",
-  "Panasonic":"https://www.aircon.panasonic.eu/GB_en/ranges/aquarea/",
-  "Bosch":"https://www.bosch-thermotechnology.com/gb/en/residential/products/heat-pumps/",
-  "Viessmann":"https://www.viessmann.co.uk/en/products/heat-pump.html",
-  "Stiebel Eltron":"https://www.stiebel-eltron.co.uk/en/products-solutions/renewables/heat-pump/",
-  "Nibe":"https://www.nibe.eu/en-gb/products/heat-pumps/",
-  "Hitachi":"https://www.hitachiaircon.com/uk/ranges/yutaki",
-  "LG":"https://www.lg.com/uk/business/heating/therma-v/",
-  "Grant":"https://www.grantuk.com/products/heat-pumps/",
-  "Ideal Heating":"https://idealheating.com/products/heat-pumps",
-  "Worcester Bosch":"https://www.worcester-bosch.co.uk/heat-pumps",
-  "Dimplex":"https://www.dimplex.co.uk/heating/heat-pumps",
-  "Toshiba":"https://www.toshiba-aircon.co.uk/products/domestic-hot-water-heat-pumps/estia/",
-  "Kensa":"https://www.kensaheatpumps.com/heat-pump-products/",
-  "Carrier":"https://www.carrier.com/commercial/en/uk/products/heating-cooling/",
-  "Johnson Controls":"https://www.johnsoncontrols.com/hvac-equipment/chillers",
-  "Climaveneta":"https://www.climaveneta.com/en/products/",
-  "Trane":"https://www.trane.com/commercial/europe/uk/en/products/chillers-and-heat-pumps.html",
-  "Ochsner":"https://www.ochsner.com/en/products/",
-  "Finn Geotherm":"https://www.finngeotherm.co.uk/heat-pumps/",
-  "Thermia":"https://www.thermia.com/products/",
-  "IVT":"https://www.ivt.se/en/products/",
-  "Swegon":"https://www.swegon.com/heating-and-cooling/",
-  "Hoval":"https://www.hoval.com/products/",
-  "Mitsubishi Heavy Industries":"https://www.mhi-mth.co.jp/en/products/",
-  "Star Refrigeration":"https://www.star-ref.co.uk/products/",
+  "Vaillant":"https://www.vaillant.co.uk/product-systems/heat-pumps/view-all-heat-pumps/",
+  "Mitsubishi Electric":"https://les.mitsubishielectric.co.uk/homeowners/our-heat-pumps",
+  "Daikin":"https://www.daikin.co.uk/",
+  "Samsung":"https://www.samsung.com/uk/business/climate/",
+  "Panasonic":"https://www.aircon.panasonic.eu/GB_en/",
+  "Bosch":"https://www.bosch-home.co.uk/",
+  "Viessmann":"https://www.viessmann.co.uk/",
+  "Stiebel Eltron":"https://www.stiebel-eltron.co.uk/",
+  "Nibe":"https://www.nibe.eu/en-gb/",
+  "Hitachi":"https://www.hitachiaircon.com/uk/",
+  "LG":"https://www.lg.com/uk/business/",
+  "Grant":"https://www.grantuk.com/",
+  "Ideal Heating":"https://idealheating.com/",
+  "Worcester Bosch":"https://www.worcester-bosch.co.uk/",
+  "Dimplex":"https://www.dimplex.co.uk/",
+  "Toshiba":"https://www.toshiba-aircon.co.uk/",
+  "Kensa":"https://www.kensaheatpumps.com/",
+  "Carrier":"https://www.carrier.com/",
+  "Johnson Controls":"https://www.johnsoncontrols.com/",
+  "Climaveneta":"https://www.climaveneta.com/",
+  "Trane":"https://www.trane.com/",
+  "Ochsner":"https://www.ochsner.com/en/",
+  "Finn Geotherm":"https://www.finngeotherm.co.uk/",
+  "Thermia":"https://www.thermia.com/",
+  "IVT":"https://www.ivt.se/en/",
+  "Swegon":"https://www.swegon.com/",
+  "Hoval":"https://www.hoval.com/",
+  "Mitsubishi Heavy Industries":"https://www.mhi.com/",
+  "Star Refrigeration":"https://www.star-ref.co.uk/",
   "Star Renewable Energy":"https://www.neatpumps.com/",
-  "Alpha Innotec":"https://www.alpha-innotec.com/en/products/",
-  "MasterTherm":"https://www.mastertherm.co.uk/heat-pumps/",
-  "CIAT":"https://www.ciat.com/products-systems/",
-  "Midea":"https://www.midea.com/uk/heat-pumps"
+  "Alpha Innotec":"https://www.alpha-innotec.com/",
+  "MasterTherm":"https://www.mastertherm.co.uk/",
+  "CIAT":"https://www.ciat.com/",
+  "Midea":"https://www.midea.com/uk"
 };
 
 // ═══════════════ STATE ═══════════════
@@ -1010,15 +1010,17 @@ const DEFAULT_LINKS = {
   title: 'Useful Links',
   subtitle: 'Helpful resources for heat pump research, installation, and UK regulations.',
   items: [
-    {id:'l1',title:'MCS Certified Products',description:'The official register of MCS-certified heat pump products. Required for eligibility under the Boiler Upgrade Scheme and other government incentives.',url:'https://mcscertified.com/find-a-product/',image:'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=320&fit=crop'},
+    {id:'l1',title:'MCS Certified Products',description:'The official register of MCS-certified heat pump products. Required for eligibility under the Boiler Upgrade Scheme and other government incentives.',url:'https://mcscertified.com/product-directory/',image:'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=320&fit=crop'},
     {id:'l2',title:'Boiler Upgrade Scheme',description:'Government grant of £7,500 towards air source heat pumps or £7,500 towards ground source heat pumps for eligible properties in England and Wales.',url:'https://www.gov.uk/apply-boiler-upgrade-scheme',image:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=320&fit=crop'},
     {id:'l3',title:'Energy Saving Trust — Heat Pumps',description:'Independent advice on how heat pumps work, running costs, installation considerations, and how to find a qualified installer in the UK.',url:'https://energysavingtrust.org.uk/advice/air-source-heat-pumps/',image:'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=320&fit=crop'},
     {id:'l4',title:'Heat Pump Association',description:'The UK trade body for the heat pump industry. Resources on policy, installer training, best practice guides, and industry statistics.',url:'https://www.heatpumps.org.uk/',image:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=320&fit=crop'},
     {id:'l5',title:'CIBSE Heat Pump Guide',description:'Technical guidance from the Chartered Institution of Building Services Engineers on heat pump system design for commercial and residential applications.',url:'https://www.cibse.org/',image:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=320&fit=crop'},
-    {id:'l6',title:'UK F-Gas Regulations',description:'Current UK regulations on fluorinated greenhouse gases including phase-down schedules, servicing requirements, and implications for refrigerant choice.',url:'https://www.gov.uk/guidance/fluorinated-gases-f-gases',image:'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=600&h=320&fit=crop'}
+    {id:'l6',title:'UK F-Gas Regulations',description:'Current UK regulations on fluorinated greenhouse gases including phase-down schedules, servicing requirements, and implications for refrigerant choice.',url:'https://www.gov.uk/guidance/fluorinated-gases-f-gases',image:'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=600&h=320&fit=crop'},
+    {id:'l7',title:'HeatPumpMonitor.org — Real-World Performance Data',description:'An open-source community initiative tracking over 600 real-world UK heat pump installations. The Heatpump + Fabric view shows actual seasonal performance (SPF/COP) alongside building data, letting you compare how different makes and models perform in real homes — not just lab conditions.',url:'https://heatpumpmonitor.org/?mode=heatpumpfabric',image:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=320&fit=crop'},
+    {id:'l8',title:'NoiseTools.net — Sound Level Calculators',description:'Free browser-based acoustic tools including a noise propagation calculator, barrier calculator, and decibel calculator. Useful for estimating heat pump noise levels at property boundaries, assessing the effect of acoustic barriers, and checking compliance with permitted development noise limits.',url:'https://noisetools.net/',image:'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=320&fit=crop'}
   ]
 };
-let linksContent = JSON.parse(localStorage.getItem('hp_links') || 'null') || JSON.parse(JSON.stringify(DEFAULT_LINKS));
+let linksContent = JSON.parse(localStorage.getItem('hp_links_v2') || 'null') || JSON.parse(JSON.stringify(DEFAULT_LINKS));
 let heroSubtitle = localStorage.getItem('hp_hero_sub') || 'Air source and water source heat pumps — residential and commercial specifications, performance data, and COP test conditions from UK manufacturers.';
 let copyrightText = localStorage.getItem('hp_copyright') || '© 2025 Heat Pumps Database. All rights reserved. Product specifications are sourced from manufacturer datasheets and may change without notice. This site is an independent resource and is not affiliated with any manufacturer.';
 let isAdmin = false;
@@ -1551,7 +1553,7 @@ function exportClicks(){
 }
 
 // ═══════════════ CMS: GUIDE & CONTACT ═══════════════
-function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_links',JSON.stringify(linksContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);}
+function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_links_v2',JSON.stringify(linksContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);}
 
 function renderGuidePage(){
   const g=guideContent;
