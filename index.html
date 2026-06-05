@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UK Heat Pumps Database — ASHP, WSHP & GSHP Specifications</title>
+<title>Heat Pumps Database — ASHP, WSHP & GSHP Specifications</title>
 <meta name="description" content="The UK's most complete heat pump database. Compare air source, water source, and ground source heat pumps — specifications, COP data, and manufacturer details from 100+ products across 30+ brands.">
 <meta name="keywords" content="heat pump, ASHP, WSHP, GSHP, air source heat pump, water source heat pump, ground source heat pump, UK, COP, specifications, database">
-<meta name="author" content="UK Heat Pumps Database">
+<meta name="author" content="Heat Pumps Database">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.yourdomain.co.uk/">
+<link rel="canonical" href="https://www.heatpumpdatabase.com/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="UK Heat Pumps Database">
+<meta property="og:title" content="Heat Pumps Database">
 <meta property="og:description" content="Compare 100+ air source, water source and ground source heat pumps. Full specifications, COP test conditions, and manufacturer data.">
-<meta property="og:url" content="https://www.yourdomain.co.uk/">
-<meta property="og:site_name" content="UK Heat Pumps Database">
+<meta property="og:url" content="https://www.heatpumpdatabase.com/">
+<meta property="og:site_name" content="Heat Pumps Database">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UK Heat Pumps Database">
+<meta name="twitter:title" content="Heat Pumps Database">
 <meta name="twitter:description" content="Compare 100+ ASHP, WSHP & GSHP heat pumps with full UK specifications and COP data.">
 
 <!-- Favicon (inline SVG) -->
@@ -41,11 +41,11 @@
   --teal:#0E7490;--teal-light:#E0F5F9;
   --radius:8px;--radius-lg:14px;
 }
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;display:flex;flex-direction:column}
 h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400}
 .mono{font-family:'DM Mono',monospace}
 /* NAV */
-.nav{background:var(--text);padding:0 2rem;display:flex;align-items:center;height:56px;position:sticky;top:0;z-index:50}
+.nav{background:var(--text);padding:0 2rem;display:flex;align-items:center;height:56px;position:sticky;top:0;z-index:50;flex-shrink:0}
 .nav-brand{font-family:'Fraunces',serif;font-size:19px;color:#fff;font-weight:500;margin-right:auto;display:flex;align-items:center;gap:10px}
 .nav-brand span{color:#5DCAA5}
 .nav-pill{font-size:10px;background:#1D9E75;color:#fff;padding:2px 7px;border-radius:20px;font-family:'DM Mono',monospace;letter-spacing:.5px}
@@ -57,8 +57,8 @@ h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400}
 .nav-admin:hover{border-color:#5DCAA5;color:#5DCAA5}
 .nav-admin.active{background:#1D9E75;border-color:#1D9E75;color:#fff}
 /* LAYOUT */
-.page{display:none;min-height:calc(100vh - 56px)}
-.page.show{display:block}
+.page{display:none;min-height:0}
+.page.show{display:block;flex:1}
 .container{max-width:1280px;margin:0 auto;padding:2rem}
 /* HERO */
 .hero{background:var(--text);padding:2.5rem 2rem 2rem}
@@ -84,8 +84,21 @@ select.filt{padding:7px 9px;border:1px solid var(--border2);border-radius:var(--
 .view-btn.active{background:var(--text);color:#fff}
 .clear-btn{background:none;border:1px solid var(--danger);color:var(--danger);font-size:11px;cursor:pointer;padding:5px 10px;border-radius:var(--radius);font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all .15s}
 .clear-btn:hover{background:var(--danger);color:#fff}
+/* LINKS CARDS */
+.links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:1.5rem}
+.link-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .2s,box-shadow .2s;display:flex;flex-direction:column}
+.link-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.link-card-img{width:100%;height:160px;object-fit:cover;background:var(--surface2);display:block}
+.link-card-img-placeholder{width:100%;height:160px;background:var(--surface2);display:flex;align-items:center;justify-content:center;color:var(--border2);font-size:40px}
+.link-card-body{padding:16px 18px;flex:1;display:flex;flex-direction:column}
+.link-card-title{font-family:'Fraunces',serif;font-size:17px;font-weight:400;margin-bottom:6px;color:var(--text);line-height:1.3}
+.link-card-desc{font-size:13px;color:var(--text2);line-height:1.65;flex:1;margin-bottom:12px}
+.link-card-url{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--info);text-decoration:none;font-family:'DM Mono',monospace;word-break:break-all}
+.link-card-url:hover{text-decoration:underline}
+.link-card-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;background:var(--info-light);color:#0C447C;border:1px solid #B5D4F4;border-radius:var(--radius);font-size:12px;font-family:'DM Sans',sans-serif;font-weight:500;text-decoration:none;transition:all .15s;margin-top:auto}
+.link-card-btn:hover{background:var(--info);color:#fff;border-color:var(--info)}
 /* FOOTER */
-.site-footer{background:var(--text);padding:1.5rem 2rem;text-align:center;color:#888780;font-size:12px;line-height:1.6;font-family:'DM Sans',sans-serif}
+.site-footer{background:var(--text);padding:1.5rem 2rem;text-align:center;color:#888780;font-size:12px;line-height:1.6;font-family:'DM Sans',sans-serif;flex-shrink:0;margin-top:auto}
 .site-footer a{color:#5DCAA5;text-decoration:none}
 .site-footer a:hover{text-decoration:underline}
 /* RESPONSIVE */
@@ -121,6 +134,7 @@ select.filt{padding:7px 9px;border:1px solid var(--border2);border-radius:var(--
   .metrics-grid{grid-template-columns:repeat(3,1fr)}
   .cmp-grid{grid-template-columns:1fr}
   .guide-card{padding:1.25rem}
+  .links-grid{grid-template-columns:1fr}
   .site-footer{padding:1.25rem 1rem}
 }
 @media(max-width:480px){
@@ -292,13 +306,14 @@ td.acc{color:var(--accent);font-weight:500}
 <nav class="nav">
   <div class="nav-brand">
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C7.5 2 4 5 4 9c0 4.5 4 8 7 10 3-2 7-5.5 7-10 0-4-3.5-7-7-7z" stroke="#5DCAA5" stroke-width="1.5" fill="none"/><circle cx="11" cy="9" r="2.5" fill="#5DCAA5"/><path d="M8 14l3 4 3-4" stroke="#5DCAA5" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
-    UK Heat Pumps <span>Database</span>
+    Heat Pumps <span>Database</span>
     <span class="nav-pill">BETA</span>
   </div>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('browse')">Browse</button>
     <button class="nav-tab" onclick="showPage('compare')">Compare</button>
     <button class="nav-tab" onclick="showPage('guide')">Guide</button>
+    <button class="nav-tab" onclick="showPage('links')">Useful Links</button>
     <button class="nav-tab" onclick="showPage('contact')">Contact</button>
   </div>
   <button class="nav-admin" id="admin-nav-btn" onclick="toggleAdmin()">⚙ Admin</button>
@@ -309,7 +324,7 @@ td.acc{color:var(--accent);font-weight:500}
   <div class="hero">
     <div class="hero-inner">
       <div>
-        <h1>The UK's most complete<br><em>heat pump database</em></h1>
+        <h1><em>Heat Pumps Database</em></h1>
         <p id="hero-subtitle">—</p>
       </div>
       <div class="hero-stats">
@@ -327,6 +342,13 @@ td.acc{color:var(--accent);font-weight:500}
           <span class="search-icon">⌕</span>
           <input type="text" placeholder="Search model, manufacturer, refrigerant…" id="search-input" oninput="applyFilters()">
         </div>
+        <span class="res-count" id="res-count" style="margin-left:auto"></span>
+        <div class="view-toggle">
+          <button class="view-btn active" id="vbtn-grid" onclick="setView('grid')" title="Grid">▦</button>
+          <button class="view-btn" id="vbtn-table" onclick="setView('table')" title="Table">☰</button>
+        </div>
+      </div>
+      <div class="toolbar-row">
         <select class="filt" id="filt-hptype" onchange="applyFilters()">
           <option value="">All HP types</option>
           <option value="ASHP">ASHP</option>
@@ -344,8 +366,6 @@ td.acc{color:var(--accent);font-weight:500}
         <select class="filt" id="filt-ref" onchange="applyFilters()">
           <option value="">All refrigerants</option>
         </select>
-      </div>
-      <div class="toolbar-row">
         <select class="filt" id="filt-cap" onchange="applyFilters()">
           <option value="">Any capacity</option>
           <option value="0-15">≤15 kW</option>
@@ -359,24 +379,7 @@ td.acc{color:var(--accent);font-weight:500}
           <option value="70">≥70°C</option>
           <option value="80">≥80°C</option>
         </select>
-        <select class="filt" id="filt-copcond" onchange="applyFilters()">
-          <option value="">All COP conditions</option>
-          <option value="A7/W35">A7/W35 (ASHP std)</option>
-          <option value="A7/W45">A7/W45</option>
-          <option value="A7/W55">A7/W55</option>
-          <option value="A-7/W35">A-7/W35 (cold)</option>
-          <option value="A7/W65">A7/W65 (high temp)</option>
-          <option value="W10/W35">W10/W35 (WSHP std)</option>
-          <option value="W10/W45">W10/W45</option>
-          <option value="W10/W65">W10/W65 (district)</option>
-          <option value="B0/W35">B0/W35 (GSHP std)</option>
-        </select>
         <button class="clear-btn" id="clear-filters-btn" onclick="clearAllFilters()" style="display:none">✕ Clear all</button>
-        <span class="res-count" id="res-count" style="margin-left:auto"></span>
-        <div class="view-toggle">
-          <button class="view-btn active" id="vbtn-grid" onclick="setView('grid')" title="Grid">▦</button>
-          <button class="view-btn" id="vbtn-table" onclick="setView('table')" title="Table">☰</button>
-        </div>
       </div>
     </div>
   </div>
@@ -406,12 +409,6 @@ td.acc{color:var(--accent);font-weight:500}
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer class="site-footer" id="site-footer"></footer>
-
-<!-- TOAST CONTAINER -->
-<div class="toast-container" id="toast-container"></div>
-
 <!-- ═══ COMPARE ═══ -->
 <div class="page" id="page-compare">
   <div class="container">
@@ -426,6 +423,13 @@ td.acc{color:var(--accent);font-weight:500}
 <div class="page" id="page-guide">
   <div class="container" style="max-width:820px">
     <div id="guide-content"></div>
+  </div>
+</div>
+
+<!-- ═══ USEFUL LINKS ═══ -->
+<div class="page" id="page-links">
+  <div class="container" style="max-width:1100px">
+    <div id="links-content"></div>
   </div>
 </div>
 
@@ -463,8 +467,9 @@ td.acc{color:var(--accent);font-weight:500}
         <span class="sb-label">Analytics</span>
         <button class="sb-item" id="sb-clicks" onclick="adminNav('clicks')"><span>◎</span> Link tracking</button>
         <span class="sb-label">Content</span>
-        <button class="sb-item" id="sb-editguide" onclick="adminNav('editguide')"><span>📄</span> Edit Guide page</button>
-        <button class="sb-item" id="sb-editcontact" onclick="adminNav('editcontact')"><span>📧</span> Edit Contact page</button>
+        <button class="sb-item" id="sb-editguide" onclick="adminNav('editguide')"><span>📄</span> Edit Guide</button>
+        <button class="sb-item" id="sb-editlinks" onclick="adminNav('editlinks')"><span>🔗</span> Edit Links</button>
+        <button class="sb-item" id="sb-editcontact" onclick="adminNav('editcontact')"><span>📧</span> Edit Contact</button>
         <span class="sb-label">System</span>
         <button class="sb-item" id="sb-settings" onclick="adminNav('settings')"><span>⚙</span> Settings</button>
         <button class="sb-item" onclick="doLogout()"><span>↩</span> Sign out</button>
@@ -675,6 +680,17 @@ td.acc{color:var(--accent);font-weight:500}
             </div>
           </div>
           <div id="cms-guide-editor"></div>
+        </div>
+
+        <div class="admin-panel" id="panel-editlinks">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem">
+            <div><h2 class="page-ttl">Edit Useful Links</h2><p class="page-sub" style="margin:0">Manage the links shown on the Useful Links page — each with a title, description, URL, and image</p></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-sm" onclick="showPage('links')">👁 Preview</button>
+              <button class="btn btn-sm btn-danger" onclick="resetLinksContent()">Reset to default</button>
+            </div>
+          </div>
+          <div id="cms-links-editor"></div>
         </div>
 
         <div class="admin-panel" id="panel-editcontact">
@@ -989,8 +1005,22 @@ const DEFAULT_CONTACT = {
 
 let guideContent = JSON.parse(localStorage.getItem('hp_guide') || 'null') || JSON.parse(JSON.stringify(DEFAULT_GUIDE));
 let contactContent = JSON.parse(localStorage.getItem('hp_contact') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CONTACT));
+
+const DEFAULT_LINKS = {
+  title: 'Useful Links',
+  subtitle: 'Helpful resources for heat pump research, installation, and UK regulations.',
+  items: [
+    {id:'l1',title:'MCS Certified Products',description:'The official register of MCS-certified heat pump products. Required for eligibility under the Boiler Upgrade Scheme and other government incentives.',url:'https://mcscertified.com/find-a-product/',image:'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=320&fit=crop'},
+    {id:'l2',title:'Boiler Upgrade Scheme',description:'Government grant of £7,500 towards air source heat pumps or £7,500 towards ground source heat pumps for eligible properties in England and Wales.',url:'https://www.gov.uk/apply-boiler-upgrade-scheme',image:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=320&fit=crop'},
+    {id:'l3',title:'Energy Saving Trust — Heat Pumps',description:'Independent advice on how heat pumps work, running costs, installation considerations, and how to find a qualified installer in the UK.',url:'https://energysavingtrust.org.uk/advice/air-source-heat-pumps/',image:'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=320&fit=crop'},
+    {id:'l4',title:'Heat Pump Association',description:'The UK trade body for the heat pump industry. Resources on policy, installer training, best practice guides, and industry statistics.',url:'https://www.heatpumps.org.uk/',image:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=320&fit=crop'},
+    {id:'l5',title:'CIBSE Heat Pump Guide',description:'Technical guidance from the Chartered Institution of Building Services Engineers on heat pump system design for commercial and residential applications.',url:'https://www.cibse.org/',image:'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=320&fit=crop'},
+    {id:'l6',title:'UK F-Gas Regulations',description:'Current UK regulations on fluorinated greenhouse gases including phase-down schedules, servicing requirements, and implications for refrigerant choice.',url:'https://www.gov.uk/guidance/fluorinated-gases-f-gases',image:'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=600&h=320&fit=crop'}
+  ]
+};
+let linksContent = JSON.parse(localStorage.getItem('hp_links') || 'null') || JSON.parse(JSON.stringify(DEFAULT_LINKS));
 let heroSubtitle = localStorage.getItem('hp_hero_sub') || 'Air source and water source heat pumps — residential and commercial specifications, performance data, and COP test conditions from UK manufacturers.';
-let copyrightText = localStorage.getItem('hp_copyright') || '© 2025 UK Heat Pumps Database. All rights reserved. Product specifications are sourced from manufacturer datasheets and may change without notice. This site is an independent resource and is not affiliated with any manufacturer.';
+let copyrightText = localStorage.getItem('hp_copyright') || '© 2025 Heat Pumps Database. All rights reserved. Product specifications are sourced from manufacturer datasheets and may change without notice. This site is an independent resource and is not affiliated with any manufacturer.';
 let isAdmin = false;
 let view = 'grid';
 let sortKey = null, sortDir = 1;
@@ -1038,11 +1068,12 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active',['browse','compare','guide','contact'][i]===p));
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active',['browse','compare','guide','links','contact'][i]===p));
   document.getElementById('admin-nav-btn').classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}
   if(p==='compare')renderCompare();
   if(p==='guide')renderGuidePage();
+  if(p==='links')renderLinksPage();
   if(p==='contact')renderContactPage();
 }
 function toggleAdmin(){
@@ -1071,6 +1102,7 @@ function adminNav(p){
   if(p==='sources')renderSources();
   if(p==='clicks')renderClickAnalytics();
   if(p==='editguide')renderAdminGuide();
+  if(p==='editlinks')renderAdminLinks();
   if(p==='editcontact')renderAdminContact();
   if(p==='settings'){const el=document.getElementById('s-hero-sub');if(el)el.value=heroSubtitle;const el2=document.getElementById('s-copyright');if(el2)el2.value=copyrightText;}
 }
@@ -1099,7 +1131,7 @@ function getFiltered(){
   const ref=document.getElementById('filt-ref').value;
   const cap=document.getElementById('filt-cap').value;
   const flow=document.getElementById('filt-flow').value;
-  const copcond=document.getElementById('filt-copcond').value;
+  
   return db.filter(d=>{
     if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''} ${d.notes||''}`.toLowerCase().includes(q))return false;
     if(hpt&&d.hp_type!==hpt)return false;
@@ -1108,7 +1140,6 @@ function getFiltered(){
     if(ref&&d.refrigerant!==ref)return false;
     if(cap){const[mn,mx]=cap.split('-').map(Number);if(d.cap_max<mn||d.cap_max>mx)return false;}
     if(flow&&(d.flow_temp_max==null||d.flow_temp_max<Number(flow)))return false;
-    if(copcond&&d.cop_cond!==copcond)return false;
     return true;
   });
 }
@@ -1120,12 +1151,12 @@ function applyFilters(){
   if(view==='grid'){document.getElementById('hp-grid').style.display=filtered.length?'grid':'none';renderGrid();}
   else{document.getElementById('hp-table').style.display=filtered.length?'block':'none';renderTableView();}
   // Show/hide clear button
-  const hasFilters=document.getElementById('search-input').value||document.getElementById('filt-hptype').value||document.getElementById('filt-type').value||document.getElementById('filt-mfr').value||document.getElementById('filt-ref').value||document.getElementById('filt-cap').value||document.getElementById('filt-flow').value||document.getElementById('filt-copcond').value;
+  const hasFilters=document.getElementById('search-input').value||document.getElementById('filt-hptype').value||document.getElementById('filt-type').value||document.getElementById('filt-mfr').value||document.getElementById('filt-ref').value||document.getElementById('filt-cap').value||document.getElementById('filt-flow').value;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-type','filt-mfr','filt-ref','filt-cap','filt-flow','filt-copcond'].forEach(id=>{document.getElementById(id).value='';});
+  ['filt-hptype','filt-type','filt-mfr','filt-ref','filt-cap','filt-flow'].forEach(id=>{document.getElementById(id).value='';});
   applyFilters();
 }
 function setView(v){
@@ -1520,7 +1551,7 @@ function exportClicks(){
 }
 
 // ═══════════════ CMS: GUIDE & CONTACT ═══════════════
-function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);}
+function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_links',JSON.stringify(linksContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);}
 
 function renderGuidePage(){
   const g=guideContent;
@@ -1737,14 +1768,137 @@ function showCmsAlert(page,msg,cls){
   setTimeout(()=>{el.style.display='none';},3000);
 }
 
+// ═══════════════ CMS: LINKS PAGE ═══════════════
+function renderLinksPage(){
+  const lk=linksContent;
+  document.getElementById('links-content').innerHTML=`
+    <h1 style="font-size:26px;margin:1rem 0 .35rem">${lk.title}</h1>
+    <p style="color:var(--text3);font-size:13px;margin-bottom:.5rem">${lk.subtitle}</p>
+    <div class="links-grid">${lk.items.map(item=>`
+      <div class="link-card">
+        ${item.image?`<img class="link-card-img" src="${item.image}" alt="${item.title}" onerror="this.outerHTML='<div class=\\'link-card-img-placeholder\\'>🔗</div>'">`:'<div class="link-card-img-placeholder">🔗</div>'}
+        <div class="link-card-body">
+          <div class="link-card-title">${item.title}</div>
+          <div class="link-card-desc">${item.description}</div>
+          <a href="${item.url}" target="_blank" rel="noopener" class="link-card-btn">↗ Visit site</a>
+        </div>
+      </div>`).join('')}</div>`;
+}
+
+// ═══════════════ ADMIN CMS: LINKS EDITOR ═══════════════
+let editingLinkIdx=null;
+
+function renderAdminLinks(){
+  const lk=linksContent;
+  document.getElementById('cms-links-editor').innerHTML=`
+    <div class="card-a">
+      <h3>Page header</h3>
+      <div class="fg2">
+        <div class="form-group"><label class="form-label">Page title</label><input type="text" class="form-input" id="le-title" value="${lk.title}"></div>
+        <div class="form-group"><label class="form-label">Subtitle</label><input type="text" class="form-input" id="le-subtitle" value="${lk.subtitle}"></div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="linksContent.title=document.getElementById('le-title').value;linksContent.subtitle=document.getElementById('le-subtitle').value;saveCMS();showCmsAlert('links','Header updated.','a-success')">Save header</button>
+    </div>
+    <div class="card-a">
+      <h3>Links <span style="font-size:12px;color:var(--text3);font-weight:400;margin-left:6px">(${lk.items.length} items)</span></h3>
+      <div id="links-items-list">
+        ${lk.items.map((item,i)=>`
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;background:var(--surface2)">
+            <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0">
+              ${i>0?`<button class="btn btn-sm" style="padding:2px 6px;font-size:10px" onclick="moveLinkItem(${i},-1)">▲</button>`:'<span style="width:26px"></span>'}
+              ${i<lk.items.length-1?`<button class="btn btn-sm" style="padding:2px 6px;font-size:10px" onclick="moveLinkItem(${i},1)">▼</button>`:'<span style="width:26px"></span>'}
+            </div>
+            ${item.image?`<img src="${item.image}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;flex-shrink:0" onerror="this.style.display='none'">`:''}
+            <div style="flex:1;min-width:0">
+              <div style="font-size:14px;font-weight:500;margin-bottom:2px">${item.title}</div>
+              <div style="font-size:11px;color:var(--info);font-family:'DM Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${item.url}</div>
+            </div>
+            <div class="act-btns" style="flex-shrink:0">
+              <button class="btn btn-sm" onclick="editLinkItem(${i})">✎ Edit</button>
+              <button class="btn btn-sm btn-danger" onclick="deleteLinkItem(${i})">✕</button>
+            </div>
+          </div>`).join('')}
+      </div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="addLinkItem()">+ Add link</button>
+    </div>
+    <div id="link-item-editor" style="display:none"></div>
+    <div id="cms-links-alert" style="display:none"></div>`;
+}
+
+function editLinkItem(i){
+  editingLinkIdx=i;
+  const item=linksContent.items[i];
+  document.getElementById('link-item-editor').style.display='block';
+  document.getElementById('link-item-editor').innerHTML=`
+    <div class="card-a" style="border-color:var(--accent);border-width:2px">
+      <h3>${i===null?'Add new link':'Edit link'}</h3>
+      <div class="form-group"><label class="form-label">Title</label><input type="text" class="form-input" id="les-title" value="${(item.title||'').replace(/"/g,'&quot;')}"></div>
+      <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" id="les-desc" style="min-height:80px">${item.description||''}</textarea></div>
+      <div class="form-group"><label class="form-label">Link URL</label><input type="url" class="form-input" id="les-url" value="${item.url||''}" placeholder="https://..."></div>
+      <div class="form-group"><label class="form-label">Image URL</label><input type="url" class="form-input" id="les-image" value="${item.image||''}" placeholder="https://... (optional — paste any image URL)">
+        <div class="form-hint">Paste a direct image URL. Recommended size: 600×320px. Leave empty for a placeholder icon.</div>
+      </div>
+      ${document.getElementById('les-image')&&document.getElementById('les-image').value?'':''}
+      <div id="les-preview" style="margin-bottom:1rem"></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary btn-sm" onclick="saveLinkItem()">Save link</button>
+        <button class="btn btn-sm" onclick="document.getElementById('link-item-editor').style.display='none'">Cancel</button>
+      </div>
+    </div>`;
+  // Show image preview
+  const imgVal=item.image||'';
+  if(imgVal){document.getElementById('les-preview').innerHTML=`<img src="${imgVal}" style="max-width:200px;height:80px;object-fit:cover;border-radius:var(--radius);border:1px solid var(--border)" onerror="this.outerHTML='<span style=\\'font-size:12px;color:var(--danger)\\'>Image failed to load</span>'">`;}
+  document.getElementById('link-item-editor').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function saveLinkItem(){
+  const item=linksContent.items[editingLinkIdx];
+  item.title=document.getElementById('les-title').value;
+  item.description=document.getElementById('les-desc').value;
+  item.url=document.getElementById('les-url').value;
+  item.image=document.getElementById('les-image').value||null;
+  saveCMS();
+  document.getElementById('link-item-editor').style.display='none';
+  renderAdminLinks();
+  showCmsAlert('links','Link updated.','a-success');
+}
+
+function addLinkItem(){
+  linksContent.items.push({id:'l'+Date.now(),title:'New link',description:'Description goes here.',url:'https://',image:null});
+  saveCMS();renderAdminLinks();
+  editLinkItem(linksContent.items.length-1);
+}
+
+function deleteLinkItem(i){
+  if(!confirm('Delete this link?'))return;
+  linksContent.items.splice(i,1);saveCMS();renderAdminLinks();
+}
+
+function moveLinkItem(i,dir){
+  const arr=linksContent.items;
+  const j=i+dir;if(j<0||j>=arr.length)return;
+  [arr[i],arr[j]]=[arr[j],arr[i]];
+  saveCMS();renderAdminLinks();
+}
+
+function resetLinksContent(){
+  if(!confirm('Reset links page to default content?'))return;
+  linksContent=JSON.parse(JSON.stringify(DEFAULT_LINKS));
+  saveCMS();renderAdminLinks();
+  showCmsAlert('links','Links reset to default.','a-success');
+}
+
 // ═══════════════ INIT ═══════════════
 function renderFooter(){document.getElementById('site-footer').innerHTML=copyrightText;}
 populateFilters();
 applyFilters();
 updateHero();
 renderGuidePage();
+renderLinksPage();
 renderContactPage();
 renderFooter();
 </script>
+<footer class="site-footer" id="site-footer"></footer>
+<div class="toast-container" id="toast-container"></div>
 </body>
 </html>
