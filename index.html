@@ -526,8 +526,19 @@ td.acc{color:var(--accent);font-weight:500}
 <!-- ═══ COMPARE ═══ -->
 <div class="page" id="page-compare">
   <div class="container">
-    <h1 style="font-size:26px;margin-top:1rem;margin-bottom:.35rem">Compare heat pumps</h1>
-    <p style="color:var(--text3);margin-bottom:1.25rem;font-size:13px">Select up to 4 units from Browse, then review side-by-side here.</p>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem">
+      <div>
+        <h1 style="font-size:26px;margin-top:1rem;margin-bottom:.35rem">Compare heat pumps</h1>
+        <p style="color:var(--text3);margin-bottom:1.25rem;font-size:13px">Select units from Browse, then review side-by-side here.</p>
+      </div>
+      <div id="cmp-export-btns" style="display:none;margin-top:1rem">
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn btn-sm btn-primary" onclick="exportComparePDF()">⬇ Export PDF</button>
+          <button class="btn btn-sm" onclick="exportCompareCSV()">⬇ Export Excel</button>
+        </div>
+        <p style="font-size:11px;color:var(--text3);margin-top:6px">Export limited to 3 products</p>
+      </div>
+    </div>
     <div id="cmp-slots"></div>
     <div id="cmp-table"></div>
   </div>
@@ -1544,8 +1555,8 @@ function addCompare(id){
     showToast('Already in your compare list. Head to the <strong>Compare</strong> tab to review.');
     return;
   }
-  if(compareIds.length>=4){
-    showToast('Maximum 4 units — remove one from the <strong>Compare</strong> tab first.');
+  if(compareIds.length>=3){
+    showToast('Maximum 3 units to compare. Remove one from the <strong>Compare</strong> tab first.');
     return;
   }
   compareIds.push(id);
@@ -1554,7 +1565,7 @@ function addCompare(id){
   // Update the button on the card
   const btn=document.getElementById('cmp-btn-'+id);
   if(btn){btn.textContent='✓ Added';btn.classList.add('added');}
-  showToast(`<strong>${name}</strong> added to compare (${compareIds.length}/4). Visit the <strong>Compare</strong> tab to review.`);
+  showToast(`<strong>${name}</strong> added to compare (${compareIds.length}/3). Visit the <strong>Compare</strong> tab to review.`);
 }
 
 function showToast(html){
@@ -1566,10 +1577,69 @@ function showToast(html){
   setTimeout(()=>{t.style.animation='toastOut .3s ease forwards';setTimeout(()=>t.remove(),300);},4000);
 }
 function removeCompare(id){compareIds=compareIds.filter(x=>x!==id);renderCompare();}
+
+function getCompareExportItems(){
+  const items=compareIds.map(id=>db.find(d=>d.id===id)).filter(Boolean);
+  if(!items.length){showToast('No units selected to export.');return null;}
+  if(items.length>3){showToast('Export is limited to <strong>3 products</strong>. Please remove some units from your compare list first.');return null;}
+  return items;
+}
+
+function exportCompareCSV(){
+  const items=getCompareExportItems();if(!items)return;
+  const specs=['manufacturer','model','hp_type','type','mode','refrigerant','op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','peak_elec','cop','cop_cond','scop','eer','noise','noise_ref','height','width','depth','weight'];
+  const labels=['Manufacturer','Model','HP Type','Segment','Mode','Refrigerant','Min Op Temp (°C)','Max Op Temp (°C)','Min Flow Temp (°C)','Max Flow Temp (°C)','Min Capacity (kW)','Max Capacity (kW)','Peak Elec Input (kW)','COP','COP Conditions','SCOP','EER','Noise','Noise Reference','Height (mm)','Width (mm)','Depth (mm)','Weight (kg)'];
+  let csv='Specification,'+items.map(d=>`"${d.manufacturer} ${d.model}"`).join(',')+'\n';
+  specs.forEach((k,i)=>{csv+='"'+labels[i]+'",'+items.map(d=>{const v=d[k];return v!=null?`"${v}"`:'""';}).join(',')+'\n';});
+  const blob=new Blob([csv],{type:'text/csv'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heat-pump-comparison.csv';a.click();
+  showToast('Comparison exported as <strong>Excel CSV</strong>.');
+}
+
+function exportComparePDF(){
+  const items=getCompareExportItems();if(!items)return;
+  const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Max Operating Temp','op_temp_max','°C'],['Min Flow Temp','flow_temp_min','°C'],['Max Flow Temp','flow_temp_max','°C'],['Min Capacity','cap_min',' kW'],['Max Capacity','cap_max',' kW'],['Peak Elec Input','peak_elec',' kW'],['COP','cop'],['COP Test Conditions','cop_cond'],['SCOP','scop'],['EER','eer'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Weight','weight',' kg']];
+  const htmlContent=`<!DOCTYPE html><html><head><title>Heat Pump Comparison — heatpumpdatabase.com</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;padding:2.5rem;font-size:12px;line-height:1.5}
+h1{font-size:20px;font-weight:700;margin-bottom:4px;color:#0D7377}p.sub{font-size:11px;color:#777;margin-bottom:1.5rem}
+table{width:100%;border-collapse:collapse;margin-top:1rem}th,td{border:1px solid #ddd;padding:7px 10px;text-align:left}
+th{background:#f0f6f6;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#555}
+td:first-child{font-weight:500;color:#555;width:200px}
+.best{color:#0D7377;font-weight:600}
+.footer{margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:10px;color:#999}
+@media print{body{padding:1.5rem}}</style></head><body>
+<h1>Heat Pump Comparison</h1>
+<p class="sub">Generated from heatpumpdatabase.com · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
+<table><thead><tr><th>Specification</th>${items.map(d=>'<th>'+d.manufacturer+'<br>'+d.model+'</th>').join('')}</tr></thead><tbody>
+${specs.map(([label,key,unit])=>{
+  const rk=key==='_noise'?'noise':key;
+  const vals=items.map(d=>d[rk]);
+  const numVals=vals.filter(v=>typeof v==='number');
+  const bestFn=(rk==='op_temp_min'||rk==='noise')?Math.min:Math.max;
+  const best=numVals.length>1?bestFn(...numVals):null;
+  return '<tr><td>'+label+'</td>'+items.map(d=>{
+    if(key==='_noise')return '<td>'+(d.noise!=null?d.noise+' '+(d.noise_ref||'dB(A)'):'—')+'</td>';
+    const v=d[rk];
+    const isNum=typeof v==='number';
+    const isBest=isNum&&numVals.length>1&&v===best;
+    return '<td'+(isBest?' class="best"':'')+'>'+(v!=null?v+(unit||''):'—')+'</td>';
+  }).join('')+'</tr>';
+}).join('')}
+</tbody></table>
+<div class="footer">Data sourced from manufacturer datasheets. Specifications may vary — always verify with the manufacturer before purchasing.<br>heatpumpdatabase.com</div>
+</body></html>`;
+  const blob=new Blob([htmlContent],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const w=window.open(url,'_blank');
+  if(!w){showToast('Popup blocked — please allow popups for this site, then try again.');URL.revokeObjectURL(url);return;}
+  w.onload=function(){setTimeout(function(){w.print();},300);};
+  showToast('Comparison opened as <strong>PDF</strong> — use your browser\'s print dialog to save.');
+}
 function renderCompare(){
   const items=compareIds.map(id=>db.find(d=>d.id===id)).filter(Boolean);
   const sE=document.getElementById('cmp-slots'),tE=document.getElementById('cmp-table');
-  if(!items.length){sE.innerHTML='<div class="empty-state"><h3>No units selected</h3><p>Go to Browse and click "+ Compare" on any product card.</p></div>';tE.innerHTML='';return;}
+  if(!items.length){sE.innerHTML='<div class="empty-state"><h3>No units selected</h3><p>Go to Browse and click "+ Compare" on any product card.</p></div>';tE.innerHTML='';document.getElementById('cmp-export-btns').style.display='none';return;}
+  document.getElementById('cmp-export-btns').style.display='block';
   const conds=new Set(items.map(d=>d.cop_cond).filter(Boolean));
   const mixedCop=conds.size>1?`<div class="alert a-warn" style="margin-bottom:1rem;font-size:13px"><strong>Caution:</strong> These units have different COP test conditions (${[...conds].join(', ')}). COP values are not directly comparable across different test conditions — a higher COP at W10/W35 does not mean better real-world performance than a lower COP at A7/W35.</div>`:'';
   sE.innerHTML=mixedCop+`<div class="cmp-grid">${items.map(d=>`
