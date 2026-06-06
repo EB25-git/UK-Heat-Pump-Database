@@ -23,7 +23,7 @@
 <meta name="twitter:description" content="Compare 100+ ASHP, WSHP & GSHP heat pumps with full UK specifications and COP data.">
 
 <!-- Favicon (inline SVG) -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 3C11 3 6 7 6 12.5c0 6 6.5 11 10 14 3.5-3 10-8 10-14C26 7 21 3 16 3z' fill='%230D7377'/><circle cx='16' cy='12' r='3.5' fill='white'/></svg>" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><g transform='translate(16,16)'><circle r='14' stroke='%230D7377' stroke-width='1.5' fill='none' opacity='.3'/><circle r='2.5' fill='%230D7377'/><path d='M0 -3.5 C-1.2 -7.5 -4.5 -11 -8 -12.5' stroke='%230D7377' stroke-width='2.5' stroke-linecap='round' fill='none'/><path d='M0 -3.5 C-1.2 -7.5 -4.5 -11 -8 -12.5' stroke='%230D7377' stroke-width='2.5' stroke-linecap='round' fill='none' transform='rotate(60)'/><path d='M0 -3.5 C-1.2 -7.5 -4.5 -11 -8 -12.5' stroke='%230D7377' stroke-width='2.5' stroke-linecap='round' fill='none' transform='rotate(120)'/><path d='M0 -3.5 C-1.2 -7.5 -4.5 -11 -8 -12.5' stroke='%230D7377' stroke-width='2.5' stroke-linecap='round' fill='none' transform='rotate(180)'/><path d='M0 -3.5 C-1.2 -7.5 -4.5 -11 -8 -12.5' stroke='%230D7377' stroke-width='2.5' stroke-linecap='round' fill='none' transform='rotate(240)'/><path d='M0 -3.5 C-1.2 -7.5 -4.5 -11 -8 -12.5' stroke='%230D7377' stroke-width='2.5' stroke-linecap='round' fill='none' transform='rotate(300)'/></g></svg>" type="image/svg+xml">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -50,16 +50,25 @@ h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.03em
 
 /* ── NAV ── */
 .nav{background:#0F2B2B;padding:0 2.5rem;display:flex;align-items:center;height:64px;position:sticky;top:0;z-index:50;flex-shrink:0}
-.nav-brand{font-family:'Inter',sans-serif;font-size:20px;color:#fff;font-weight:700;margin-right:auto;display:flex;align-items:center;gap:10px;letter-spacing:-.03em}
-.nav-brand span{color:#3ECCC0}
-.nav-pill{font-size:9px;background:var(--accent);color:#fff;padding:3px 8px;border-radius:20px;font-family:'DM Mono',monospace;letter-spacing:.8px;text-transform:uppercase}
-.nav-tabs{display:flex;height:100%}
-.nav-tab{background:none;border:none;color:rgba(255,255,255,.5);font-size:14px;font-family:'Inter',sans-serif;font-weight:400;padding:0 20px;cursor:pointer;border-bottom:2px solid transparent;height:100%;transition:all .2s;letter-spacing:.01em}
-.nav-tab:hover{color:rgba(255,255,255,.85)}
-.nav-tab.active{color:#3ECCC0;border-bottom-color:#3ECCC0}
-.nav-admin{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5);font-size:13px;font-family:'Inter',sans-serif;padding:7px 16px;border-radius:var(--radius);cursor:pointer;margin-left:20px;transition:all .2s}
-.nav-admin:hover{border-color:#3ECCC0;color:#3ECCC0}
-.nav-admin.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.nav-brand{font-family:'Inter',sans-serif;font-size:20px;color:#fff;font-weight:700;margin-right:auto;display:flex;align-items:center;gap:10px;letter-spacing:-.03em;user-select:none}
+.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
+/* BURGER */
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
+.burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.burger-menu{position:fixed;top:64px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 64px);overflow-y:auto}
+.burger-menu.open{transform:translateX(0)}
+.burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;cursor:pointer;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%}
+.burger-item:hover{background:rgba(255,255,255,.05);color:#fff}
+.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-divider{height:1px;background:rgba(255,255,255,.1);margin:8px 0}
+.burger-admin{font-size:13px;color:rgba(255,255,255,.3);padding:14px 28px}
+.burger-admin:hover{color:rgba(255,255,255,.5)}
+.burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
+.burger-overlay.open{opacity:1;pointer-events:auto}
 
 /* ── LAYOUT ── */
 .page{display:none;min-height:0}
@@ -94,6 +103,22 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .view-btn.active{background:var(--accent);color:#fff}
 .clear-btn{background:none;border:1px solid var(--danger);color:var(--danger);font-size:12px;cursor:pointer;padding:7px 14px;border-radius:var(--radius);font-family:'Inter',sans-serif;white-space:nowrap;transition:all .15s;font-weight:500}
 .clear-btn:hover{background:var(--danger);color:#fff}
+/* FILTER TOGGLE & PANEL */
+.filter-toggle{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);font-size:13px;font-family:'Inter',sans-serif;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
+.filter-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.filter-toggle.open{background:var(--accent);color:#fff;border-color:var(--accent)}
+.filter-toggle svg{flex-shrink:0}
+.filter-badge{background:var(--accent);color:#fff;font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center;line-height:1.4}
+.filter-toggle.open .filter-badge{background:rgba(255,255,255,.3)}
+.filter-panel{max-height:0;overflow:hidden;transition:max-height .3s ease;background:var(--surface);border-bottom:1px solid transparent}
+.filter-panel.open{max-height:300px;border-bottom-color:var(--border);box-shadow:0 4px 16px rgba(13,115,119,.06)}
+.filter-panel-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem}
+.filter-panel.open .filter-panel-inner{padding-top:1rem;padding-bottom:1.25rem}
+.filter-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
+.filter-panel-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text3)}
+.filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.filter-col label.filter-label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:4px}
+.filter-col select.filt{width:100%;margin-bottom:0}
 
 /* ── LINKS CARDS ── */
 .links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:2rem}
@@ -118,9 +143,7 @@ select.filt:focus{border-color:var(--accent);outline:none}
 @media(max-width:768px){
   .nav{padding:0 1rem;height:56px}
   .nav-brand{font-size:17px}
-  .nav-brand .nav-pill{display:none}
-  .nav-tab{padding:0 10px;font-size:13px}
-  .nav-admin{padding:5px 10px;font-size:12px;margin-left:8px}
+  .burger-menu{top:56px;width:100%}
   .hero{padding:2rem 1.25rem 1.75rem}
   .hero-img{width:100%;opacity:.2}
   .hero h1{font-size:26px}
@@ -128,7 +151,9 @@ select.filt:focus{border-color:var(--accent);outline:none}
   .stat-n{font-size:26px}
   .toolbar{padding:.75rem 1rem;top:56px}
   .toolbar-row{gap:6px}
-  select.filt{font-size:12px;padding:7px 8px;flex:1;min-width:0}
+  .filter-panel-inner{padding-left:1rem;padding-right:1rem}
+  .filter-grid{grid-template-columns:1fr 1fr}
+  select.filt{font-size:12px;padding:7px 8px}
   .search-wrap{min-width:100%;flex-basis:100%}
   .container{padding:1.25rem}
   .hp-grid{grid-template-columns:1fr;gap:12px}
@@ -152,7 +177,6 @@ select.filt:focus{border-color:var(--accent);outline:none}
   .site-footer{padding:1.5rem 1rem}
 }
 @media(max-width:480px){
-  .nav-tab{padding:0 7px;font-size:12px}
   .hero-inner{flex-direction:column;align-items:flex-start}
   .hero-stats{width:100%}
   .stat-n{font-size:24px}
@@ -330,20 +354,35 @@ td.acc{color:var(--accent);font-weight:500}
 <body>
 
 <nav class="nav">
-  <div class="nav-brand">
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C7.5 2 4 5 4 9c0 4.5 4 8 7 10 3-2 7-5.5 7-10 0-4-3.5-7-7-7z" stroke="#3ECCC0" stroke-width="1.5" fill="none"/><circle cx="11" cy="9" r="2.5" fill="#3ECCC0"/><path d="M8 14l3 4 3-4" stroke="#3ECCC0" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
-    Heat Pumps <span>Database</span>
-    <span class="nav-pill">BETA</span>
+  <div class="nav-brand" onclick="showPage('browse')" style="cursor:pointer">
+    <svg viewBox="0 0 28 28" width="26" height="26" fill="none">
+      <g transform="translate(14,14)">
+        <circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/>
+        <circle r="2" fill="#3ECCC0"/>
+        <path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/>
+        <path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/>
+        <path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/>
+        <path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/>
+        <path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/>
+      </g>
+    </svg>
+    <span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span>
   </div>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('browse')">Browse</button>
-    <button class="nav-tab" onclick="showPage('compare')">Compare</button>
-    <button class="nav-tab" onclick="showPage('guide')">Guide</button>
-    <button class="nav-tab" onclick="showPage('links')">Useful Links</button>
-    <button class="nav-tab" onclick="showPage('contact')">Contact</button>
+  <button class="burger" id="burger-btn" onclick="toggleBurger()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="burger-menu" id="burger-menu">
+    <button class="burger-item active" onclick="showPage('browse');closeBurger()">Browse</button>
+    <button class="burger-item" onclick="showPage('compare');closeBurger()">Compare</button>
+    <button class="burger-item" onclick="showPage('guide');closeBurger()">Guide</button>
+    <button class="burger-item" onclick="showPage('links');closeBurger()">Useful Links</button>
+    <button class="burger-item" onclick="showPage('contact');closeBurger()">Contact</button>
+    <div class="burger-divider"></div>
+    <button class="burger-item burger-admin" id="admin-nav-btn" onclick="toggleAdmin();closeBurger()">⚙ Admin</button>
   </div>
-  <button class="nav-admin" id="admin-nav-btn" onclick="toggleAdmin()">⚙ Admin</button>
 </nav>
+<div class="burger-overlay" id="burger-overlay" onclick="closeBurger()"></div>
 
 <!-- ═══ BROWSE ═══ -->
 <div class="page show" id="page-browse">
@@ -369,56 +408,91 @@ td.acc{color:var(--accent);font-weight:500}
           <span class="search-icon">⌕</span>
           <input type="text" placeholder="Search model, manufacturer, refrigerant…" id="search-input" oninput="applyFilters()">
         </div>
-        <span class="res-count" id="res-count" style="margin-left:auto"></span>
+        <button class="filter-toggle" id="filter-toggle-btn" onclick="toggleFilters()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 3h14M3 8h10M5.5 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Filters <span class="filter-badge" id="filter-badge" style="display:none">0</span>
+        </button>
+        <span class="res-count" id="res-count"></span>
         <div class="view-toggle">
           <button class="view-btn active" id="vbtn-grid" onclick="setView('grid')" title="Grid">▦</button>
           <button class="view-btn" id="vbtn-table" onclick="setView('table')" title="Table">☰</button>
         </div>
       </div>
-      <div class="toolbar-row">
-        <select class="filt" id="filt-hptype" onchange="applyFilters()">
-          <option value="">All HP types</option>
-          <option value="ASHP">ASHP</option>
-          <option value="WSHP">WSHP</option>
-          <option value="GSHP">GSHP</option>
-        </select>
-        <select class="filt" id="filt-type" onchange="applyFilters()">
-          <option value="">All segments</option>
-          <option value="Residential">Residential</option>
-          <option value="Commercial">Commercial</option>
-        </select>
-        <select class="filt" id="filt-mode" onchange="applyFilters()">
-          <option value="">Heating & cooling</option>
-          <option value="Heating only">Heating only</option>
-          <option value="Heating & cooling">Cooling capable</option>
-        </select>
-        <select class="filt" id="filt-mfr" onchange="applyFilters()">
-          <option value="">All manufacturers</option>
-        </select>
-        <select class="filt" id="filt-ref" onchange="applyFilters()">
-          <option value="">All refrigerants</option>
-        </select>
-        <select class="filt" id="filt-refcat" onchange="applyFilters()">
-          <option value="">All refrigerant types</option>
-          <option value="hydrocarbon">Hydrocarbon (R290, R600a, R601a)</option>
-          <option value="co2">CO₂ / R744</option>
-          <option value="hfc">HFC / F-Gas (R32, R410A, R134a…)</option>
-          <option value="ammonia">Ammonia / R717</option>
-        </select>
-        <select class="filt" id="filt-cap" onchange="applyFilters()">
-          <option value="">Any capacity</option>
-          <option value="0-15">≤15 kW</option>
-          <option value="15-50">15–50 kW</option>
-          <option value="50-250">50–250 kW</option>
-          <option value="250-99999">250 kW+</option>
-        </select>
-        <select class="filt" id="filt-flow" onchange="applyFilters()">
-          <option value="">Any flow temp</option>
-          <option value="60">≥60°C</option>
-          <option value="70">≥70°C</option>
-          <option value="80">≥80°C</option>
-        </select>
-        <button class="clear-btn" id="clear-filters-btn" onclick="clearAllFilters()" style="display:none">✕ Clear all</button>
+    </div>
+  </div>
+  <div class="filter-panel" id="filter-panel">
+    <div class="filter-panel-inner">
+      <div class="filter-panel-header">
+        <span class="filter-panel-title">Filter heat pumps</span>
+        <button class="clear-btn" id="clear-filters-btn" onclick="clearAllFilters()" style="display:none">✕ Clear all filters</button>
+      </div>
+      <div class="filter-grid">
+        <div class="filter-col">
+          <label class="filter-label">HP type</label>
+          <select class="filt" id="filt-hptype" onchange="applyFilters()">
+            <option value="">All HP types</option>
+            <option value="ASHP">ASHP</option>
+            <option value="WSHP">WSHP</option>
+            <option value="GSHP">GSHP</option>
+          </select>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Market segment</label>
+          <select class="filt" id="filt-type" onchange="applyFilters()">
+            <option value="">All segments</option>
+            <option value="Residential">Residential</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Mode</label>
+          <select class="filt" id="filt-mode" onchange="applyFilters()">
+            <option value="">All modes</option>
+            <option value="Heating only">Heating only</option>
+            <option value="Heating & cooling">Cooling capable</option>
+          </select>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Manufacturer</label>
+          <select class="filt" id="filt-mfr" onchange="applyFilters()">
+            <option value="">All manufacturers</option>
+          </select>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Refrigerant</label>
+          <select class="filt" id="filt-ref" onchange="applyFilters()">
+            <option value="">All refrigerants</option>
+          </select>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Refrigerant type</label>
+          <select class="filt" id="filt-refcat" onchange="applyFilters()">
+            <option value="">All types</option>
+            <option value="hydrocarbon">Hydrocarbon</option>
+            <option value="co2">CO₂ / R744</option>
+            <option value="hfc">HFC / F-Gas</option>
+            <option value="ammonia">Ammonia / R717</option>
+          </select>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Capacity</label>
+          <select class="filt" id="filt-cap" onchange="applyFilters()">
+            <option value="">Any capacity</option>
+            <option value="0-15">≤15 kW</option>
+            <option value="15-50">15–50 kW</option>
+            <option value="50-250">50–250 kW</option>
+            <option value="250-99999">250 kW+</option>
+          </select>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Max flow temp</label>
+          <select class="filt" id="filt-flow" onchange="applyFilters()">
+            <option value="">Any flow temp</option>
+            <option value="60">≥60°C</option>
+            <option value="70">≥70°C</option>
+            <option value="80">≥80°C</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -489,7 +563,7 @@ td.acc{color:var(--accent);font-weight:500}
         <label class="form-label">Password <span class="req">*</span></label>
         <input type="password" class="form-input" id="admin-pw" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
       </div>
-      <div id="login-err" class="alert a-danger" style="display:none">Incorrect password. Default: <code>admin123</code></div>
+      <div id="login-err" class="alert a-danger" style="display:none">Incorrect password. Please try again.</div>
       <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">Sign in →</button>
     </div>
   </div>
@@ -807,6 +881,9 @@ td.acc{color:var(--accent);font-weight:500}
   </div>
 </div>
 
+<footer class="site-footer" id="site-footer"></footer>
+<div class="toast-container" id="toast-container"></div>
+
 <script>
 // ═══════════════ SEED DATA ═══════════════
 // cop_cond: the exact test conditions the quoted COP applies to
@@ -1071,7 +1148,7 @@ let sources = JSON.parse(localStorage.getItem('hpsrc_v8') || 'null') || [
   {id:3,name:"EN 14511 / EN 14825 test data",type:"third-party",url:"",added:"2025-01"}
 ];
 let clickLog = JSON.parse(localStorage.getItem('hp_clicks') || '[]');
-let adminPw = localStorage.getItem('hpadminpw') || 'admin123';
+let adminPw = localStorage.getItem('hpadminpw') || 'vufke0-zevhez-moqbAx';
 
 // ═══════════════ CMS CONTENT DEFAULTS ═══════════════
 const DEFAULT_GUIDE = {
@@ -1164,13 +1241,29 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active',['browse','compare','guide','links','contact'][i]===p));
+  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach((t,i)=>t.classList.toggle('active',['browse','compare','guide','links','contact'][i]===p));
   document.getElementById('admin-nav-btn').classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}
   if(p==='compare')renderCompare();
   if(p==='guide')renderGuidePage();
   if(p==='links')renderLinksPage();
   if(p==='contact')renderContactPage();
+}
+
+// BURGER MENU
+function toggleBurger(){
+  document.getElementById('burger-btn').classList.toggle('open');
+  document.getElementById('burger-menu').classList.toggle('open');
+  document.getElementById('burger-overlay').classList.toggle('open');
+}
+function closeBurger(){
+  document.getElementById('burger-btn').classList.remove('open');
+  document.getElementById('burger-menu').classList.remove('open');
+  document.getElementById('burger-overlay').classList.remove('open');
+}
+function toggleFilters(){
+  document.getElementById('filter-panel').classList.toggle('open');
+  document.getElementById('filter-toggle-btn').classList.toggle('open');
 }
 function toggleAdmin(){
   const ap=document.getElementById('page-admin');
@@ -1258,9 +1351,13 @@ function applyFilters(){
   document.getElementById('empty-browse').style.display=filtered.length?'none':'block';
   if(view==='grid'){document.getElementById('hp-grid').style.display=filtered.length?'grid':'none';renderGrid();}
   else{document.getElementById('hp-table').style.display=filtered.length?'block':'none';renderTableView();}
-  // Show/hide clear button
-  const hasFilters=document.getElementById('search-input').value||document.getElementById('filt-hptype').value||document.getElementById('filt-type').value||document.getElementById('filt-mode').value||document.getElementById('filt-mfr').value||document.getElementById('filt-ref').value||document.getElementById('filt-refcat').value||document.getElementById('filt-cap').value||document.getElementById('filt-flow').value;
+  // Show/hide clear button and filter badge
+  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-cap','filt-flow'].filter(id=>document.getElementById(id).value).length;
+  const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
+  const badge=document.getElementById('filter-badge');
+  if(activeCount>0){badge.textContent=activeCount;badge.style.display='inline-block';}
+  else{badge.style.display='none';}
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
@@ -2014,7 +2111,5 @@ renderLinksPage();
 renderContactPage();
 renderFooter();
 </script>
-<footer class="site-footer" id="site-footer"></footer>
-<div class="toast-container" id="toast-container"></div>
 </body>
 </html>
