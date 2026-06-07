@@ -1431,7 +1431,8 @@ function populateFilters(){
   [...new Set(db.map(d=>d.manufacturer))].sort().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;ms.appendChild(o);});
   const rs=document.getElementById('filt-ref');
   rs.innerHTML='<option value="">All refrigerants</option>';
-  [...new Set(db.map(d=>d.refrigerant))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;rs.appendChild(o);});
+  const refNames={'R290':'Propane','R600a':'Isobutane','R601a':'Isopentane','R744':'CO₂','R717':'Ammonia','R32':'HFC','R410A':'HFC blend','R407C':'HFC blend','R134a':'HFC'};
+  [...new Set(db.map(d=>d.refrigerant))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=refNames[r]?r+' ('+refNames[r]+')':r;rs.appendChild(o);});
 }
 function getRefCategory(ref){
   if(!ref)return 'unknown';
@@ -1502,6 +1503,7 @@ function sortBy(k){
 function bc(t){return t==='Residential'?'badge-res':'badge-comm';}
 function hptc(h){return h==='ASHP'?'badge-ashp':h==='WSHP'?'badge-wshp':'badge-gshp';}
 function sc(s){return 'src-'+(s||'manual').replace(/[^a-z-]/g,'');}
+function srcLabel(s){const v=s||'manual';return 'Source: '+v.charAt(0).toUpperCase()+v.slice(1).replace(/-/g,' ');}
 function fmt(v,u){return v!=null?v+u:'—';}
 function fmtNoise(d){
   if(d.noise==null)return '—';
@@ -1555,7 +1557,7 @@ function renderTableView(){
       <td class="mv">${fmt(d.op_temp_min,'°C')}</td>
       <td class="mv">${fmt(d.flow_temp_max,'°C')}</td>
       <td class="mv">${d.refrigerant}</td>
-      <td><span class="source-tag ${sc(d.source)}">${d.source||'manual'}</span></td>
+      <td><span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span></td>
     </tr>`).join('');
 }
 
@@ -1574,7 +1576,7 @@ function openModal(id){
       <span class="badge ${bc(d.type)}">${d.type}</span>
       <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
       <span class="badge badge-ref">${d.refrigerant}</span>
-      <span class="source-tag ${sc(d.source)}">${d.source||'manual'}</span>
+      <span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span>
     </div>
     ${copNote}
     <div class="spec-section">
@@ -1609,7 +1611,7 @@ function openModal(id){
     </div>`:''}
     <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3)">
       <span>Data added: ${d.date_added||'—'}</span>
-      <span class="source-tag ${sc(d.source)}">${d.source||'manual'}</span>
+      <span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span>
     </div>
     ${isAdmin?`<div style="margin-top:.75rem;text-align:right"><button class="btn btn-sm" onclick="editEntry(${d.id})">✎ Edit in admin</button></div>`:''}
   `;
@@ -1767,7 +1769,7 @@ function renderAdminTable(){
     <td class="mono">${d.cap_max} kW</td>
     <td class="mono">${d.cop??'—'}</td>
     <td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>
-    <td><span class="source-tag ${sc(d.source)}">${d.source||'manual'}</span></td>
+    <td><span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span></td>
     <td><div class="act-btns"><button class="btn btn-sm" onclick="editEntry(${d.id})">✎</button><button class="btn btn-sm btn-danger" onclick="deleteEntry(${d.id})">✕</button></div></td></tr>`).join('');
 }
 function filterAdminRows(q){
