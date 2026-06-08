@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.yourdomain.co.uk/sitemap.xml
+Sitemap: https://www.heatpumpdatabase.com/sitemap.xml
