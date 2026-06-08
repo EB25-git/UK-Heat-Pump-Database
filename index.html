@@ -233,6 +233,12 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .cop-nonstd{background:var(--amber-light);color:var(--amber);border:1px solid #F0D090}
 .cop-water{background:var(--purple-light);color:var(--purple);border:1px solid #C5BBDE}
 
+/* ── MANUFACTURER PROFILE ── */
+.mfr-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+.mfr-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.mfr-card-name{font-size:20px;font-weight:600;letter-spacing:-.02em;color:var(--text);margin-bottom:6px}
+.mfr-card-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.mfr-card-desc{font-size:13px;color:var(--text2);line-height:1.7;margin:0}
 /* ── PRODUCT GRID ── */
 .hp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding:1.5rem 0}
 .hp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .25s;cursor:pointer;box-shadow:var(--shadow-sm)}
@@ -462,6 +468,15 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           Filters <span class="filter-badge" id="filter-badge" style="display:none">0</span>
         </button>
         <span class="res-count" id="res-count"></span>
+        <select class="filt" id="sort-select" onchange="applyFilters()" style="min-width:140px">
+          <option value="mfr-az">Manufacturer A–Z</option>
+          <option value="cop-desc">COP: High → Low</option>
+          <option value="cop-asc">COP: Low → High</option>
+          <option value="cap-desc">Capacity: Large → Small</option>
+          <option value="cap-asc">Capacity: Small → Large</option>
+          <option value="noise-asc">Noise: Quiet → Loud</option>
+          <option value="date-desc">Newest first</option>
+        </select>
         <div class="view-toggle">
           <button class="view-btn active" id="vbtn-grid" onclick="setView('grid')" title="Grid">▦</button>
           <button class="view-btn" id="vbtn-table" onclick="setView('table')" title="Table">☰</button>
@@ -552,6 +567,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     </div>
   </div>
   <div class="container">
+    <div id="mfr-profile" style="display:none"></div>
     <div id="hp-grid" class="hp-grid"></div>
     <div id="hp-table" class="table-wrap" style="display:none">
       <table>
@@ -1466,13 +1482,69 @@ function getFiltered(){
     return true;
   });
 }
+const MFR_PROFILES={
+  "Vaillant":{country:"Germany",focus:"Residential",desc:"One of Europe\'s largest heating manufacturers. The aroTHERM plus range uses R290 propane and is among the most widely installed ASHPs in the UK. Known for high SCOP values and quiet operation."},
+  "Mitsubishi Electric":{country:"Japan",focus:"Residential & Commercial",desc:"Pioneer of the Ecodan range, one of the first ASHPs widely adopted in the UK market. Extensive installer network and strong reputation for reliability. Offers both monobloc and split system configurations."},
+  "Daikin":{country:"Japan",focus:"Residential & Commercial",desc:"Global leader in HVAC and one of the few manufacturers that produces its own compressors and refrigerants. The Altherma range covers residential through to large commercial, with reversible heating and cooling across all models."},
+  "Samsung":{country:"South Korea",focus:"Residential & Commercial",desc:"The EHS (Eco Heating System) range offers competitive pricing with strong performance. Known for wide operating temperature ranges (down to -30°C on some models) and reversible heating/cooling capability."},
+  "Panasonic":{country:"Japan",focus:"Residential & Commercial",desc:"The Aquarea range is well-established in the UK market. All models are reversible for heating and cooling. Strong integration with smart home systems and solar PV optimisation features."},
+  "Bosch":{country:"Germany",focus:"Residential & Commercial",desc:"Part of the Bosch Thermotechnology division. The Compress range covers residential monobloc ASHPs. Benefits from Bosch\'s extensive service network and brand recognition in the UK."},
+  "Viessmann":{country:"Germany",focus:"Residential",desc:"Premium German manufacturer now part of the Carrier Global group. The Vitocal range has moved to R290 propane. Known for build quality, smart controls, and integrated system design."},
+  "Stiebel Eltron":{country:"Germany",focus:"Residential",desc:"German manufacturer with over 100 years of experience in heating technology. The WPL range focuses on high efficiency and low noise. Strong presence in the new-build and retrofit markets."},
+  "Nibe":{country:"Sweden",focus:"Residential",desc:"Scandinavian manufacturer with deep expertise in cold-climate heat pump operation. The F2120 ASHP and S-series GSHPs are designed for Nordic conditions, making them well-suited to Scottish and northern UK climates."},
+  "Hitachi":{country:"Japan",focus:"Residential & Commercial",desc:"The Yutaki range offers air-to-water heat pumps with reversible heating and cooling. Known for robust build quality and good performance at low ambient temperatures."},
+  "LG":{country:"South Korea",focus:"Residential & Commercial",desc:"The Therma V range spans residential monobloc units to large commercial systems. All models offer reversible heating and cooling with R32 refrigerant."},
+  "Grant":{country:"Ireland",focus:"Residential",desc:"Well-known in the UK and Ireland for oil boilers, Grant has expanded into ASHPs with the Aerona3 range. R32 refrigerant, heating-only, with a strong rural installer network."},
+  "Ideal Heating":{country:"UK",focus:"Residential",desc:"Part of the Groupe Atlantic family. The Logic Air range uses R290 propane. UK-based manufacturing and support, with strong ties to the British installer community."},
+  "Worcester Bosch":{country:"UK/Germany",focus:"Residential",desc:"The UK\'s best-known boiler brand, now offering the Greensource ASHP range. Benefits from an enormous existing installer network and strong consumer brand recognition."},
+  "Dimplex":{country:"UK/Ireland",focus:"Residential",desc:"Part of Glen Dimplex Group. Long history in electric heating and heat pumps in the UK. Offers both ASHP and GSHP ranges with a focus on the retrofit market."},
+  "Toshiba":{country:"Japan",focus:"Residential & Commercial",desc:"The Estia range provides air-to-water heat pumps with reversible heating and cooling. Strong commercial HVAC heritage with proven compressor technology."},
+  "Kensa":{country:"UK",focus:"Residential",desc:"UK-based ground source heat pump specialist, manufactured in Cornwall. Pioneered shared ground loop arrays for social housing. Strong focus on GSHP-only solutions."},
+  "Baxi":{country:"UK",focus:"Residential & Commercial",desc:"UK manufacturer based in Warwick. The HP60 residential range uses R290 propane and is manufactured in the UK. Strong SCOP values (up to 5.34) and quiet operation."},
+  "Ariston":{country:"Italy",focus:"Residential",desc:"Italian manufacturer with a growing UK presence. The Nimbus range offers R32 reversible air-to-water heat pumps with heating and active cooling capability."},
+  "Fujitsu":{country:"Japan",focus:"Residential",desc:"The Waterstage range provides monobloc air-to-water heat pumps with R32 refrigerant. All models are reversible for heating and cooling with inverter-driven compressors."},
+  "CTC":{country:"Sweden",focus:"Residential",desc:"Swedish manufacturer distributed by Go Geothermal in the UK. The EcoAir range uses R290 propane with ultra-compact designs. Also offers GSHP ranges for ground source applications."},
+  "Carrier":{country:"USA",focus:"Commercial",desc:"One of the world\'s largest HVAC companies. Offers large commercial and industrial heat pump and chiller systems. Now incorporates Viessmann under the Carrier Global umbrella."},
+  "Climaveneta":{country:"Italy",focus:"Commercial",desc:"Italian manufacturer specialising in large commercial HVAC. Part of the Mitsubishi Electric group. Offers high-capacity reversible heat pumps and chillers for commercial buildings."},
+  "Trane":{country:"USA",focus:"Commercial",desc:"Major commercial HVAC manufacturer. Offers large-capacity heat pumps and chillers for commercial and industrial applications, with a focus on building automation integration."},
+  "Solid Energy":{country:"Denmark",focus:"Commercial & Industrial",desc:"Danish manufacturer of large-scale industrial heat pumps for district heating and process heat. Hydrocarbon refrigerants (R290, R601a) with flow temperatures up to 170°C."},
+  "Clade":{country:"UK",focus:"Commercial & Industrial",desc:"UK manufacturer of commercial and industrial heat pumps. Offers both R290 and CO₂ (R744) ranges. The Elm HT delivers 80°C flow as a direct boiler replacement. UK-manufactured."},
+  "Fenagy":{country:"Denmark",focus:"Commercial & Industrial",desc:"Danish manufacturer specialising in large-scale CO₂ and hydrocarbon heat pumps. The H-range (R744) serves district heating up to 3 MW per rack. The HCI (R600a) and HCP (R290) ranges serve industrial and data centre applications."},
+  "Star Renewable Energy":{country:"UK",focus:"Commercial & Industrial",desc:"UK manufacturer of large-scale water source heat pumps for district heating. The Neatpump range uses ammonia (R717) refrigerant for very high COPs from river and sea water sources."},
+  "Alpha Innotec":{country:"Germany",focus:"Residential & Commercial",desc:"German manufacturer offering a comprehensive range of air, ground, and water source heat pumps. Part of the Schulthess Group with strong expertise in cold-climate applications."},
+  "MasterTherm":{country:"Czech Republic",focus:"Residential & Commercial",desc:"Czech manufacturer with a UK presence. Offers reversible ASHP and GSHP ranges with integrated smart monitoring and remote diagnostics via their online portal."}
+};
+
+function renderMfrProfile(){
+  const mfr=document.getElementById('filt-mfr').value;
+  const el=document.getElementById('mfr-profile');
+  if(!mfr||!MFR_PROFILES[mfr]){el.style.display='none';return;}
+  const p=MFR_PROFILES[mfr];
+  const url=MFR_URLS[mfr]||'#';
+  const count=filtered.length;
+  el.style.display='block';
+  el.innerHTML=`<div class="mfr-card"><div class="mfr-card-header"><div><div class="mfr-card-name">${mfr}</div><div class="mfr-card-meta"><span class="badge badge-ref">${p.country}</span> <span class="badge ${p.focus.includes('Residential')?'badge-ashp':'badge-comm'}">${p.focus}</span> <span style="color:var(--text3);font-size:12px;margin-left:4px">${count} product${count!==1?'s':''} listed</span></div></div><a href="${url}" target="_blank" rel="noopener" class="card-act card-act-web" style="flex-shrink:0">↗ Website</a></div><p class="mfr-card-desc">${p.desc}</p></div>`;
+}
+
 function applyFilters(){
   filtered=getFiltered();
+  // Apply sort from dropdown
+  const sortVal=document.getElementById('sort-select').value;
+  if(sortVal==='mfr-az')filtered.sort((a,b)=>(a.manufacturer+a.model).localeCompare(b.manufacturer+b.model));
+  else if(sortVal==='cop-desc')filtered.sort((a,b)=>(b.cop||0)-(a.cop||0));
+  else if(sortVal==='cop-asc')filtered.sort((a,b)=>(a.cop||0)-(b.cop||0));
+  else if(sortVal==='cap-desc')filtered.sort((a,b)=>(b.cap_max||0)-(a.cap_max||0));
+  else if(sortVal==='cap-asc')filtered.sort((a,b)=>(a.cap_max||0)-(b.cap_max||0));
+  else if(sortVal==='noise-asc')filtered.sort((a,b)=>(a.noise||999)-(b.noise||999));
+  else if(sortVal==='date-desc')filtered.sort((a,b)=>(b.date_added||'').localeCompare(a.date_added||''));
+  // Override with table column sort if active
   if(sortKey)filtered.sort((a,b)=>sortDir*(a[sortKey]>b[sortKey]?1:a[sortKey]<b[sortKey]?-1:0));
   document.getElementById('res-count').textContent=filtered.length+' result'+(filtered.length!==1?'s':'');
   document.getElementById('empty-browse').style.display=filtered.length?'none':'block';
   if(view==='grid'){document.getElementById('hp-grid').style.display=filtered.length?'grid':'none';renderGrid();}
   else{document.getElementById('hp-table').style.display=filtered.length?'block':'none';renderTableView();}
+  // Show/hide manufacturer profile card
+  renderMfrProfile();
   // Show/hide clear button and filter badge
   const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-cap','filt-flow'].filter(id=>document.getElementById(id).value).length;
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
