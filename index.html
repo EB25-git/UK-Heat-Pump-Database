@@ -455,6 +455,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item" onclick="showPage('links');closeBurger()">Useful Links</button>
     <button class="burger-item" onclick="showPage('guide');closeBurger()">Site Guide</button>
     <button class="burger-item" onclick="showPage('contact');closeBurger()">Contact</button>
+    <button class="burger-item" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
   </div>
 </nav>
 <div class="burger-overlay" id="burger-overlay" onclick="closeBurger()"></div>
@@ -665,6 +666,51 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 <div class="page" id="page-contact">
   <div class="container" style="max-width:820px">
     <div id="contact-content"></div>
+  </div>
+</div>
+
+<!-- ═══ TERMS ═══ -->
+<div class="page" id="page-terms">
+  <div class="container" style="max-width:820px">
+    <div class="guide-card">
+      <h2 style="font-size:24px;margin-bottom:4px;letter-spacing:-.02em">Terms of Use</h2>
+      <p style="color:var(--text3);font-size:13px;margin-bottom:1.5rem">Heat Pump Database — heatpumpdatabase.com</p>
+
+      <h3>1. Overview</h3>
+      <p>This website provides a searchable database of heat pump products available in the UK market, alongside technical guidance and educational content. It is intended for informational and comparison purposes only.</p>
+
+      <h3>2. Informational Use Only</h3>
+      <p>All content, including product specifications, performance data, and technical articles, is provided for general information purposes only. While reasonable efforts have been made to ensure accuracy by sourcing data from manufacturer datasheets and official documentation, no guarantee is given regarding completeness, reliability, or suitability for any particular technical, commercial, or operational use.</p>
+
+      <h3>3. No Professional Advice</h3>
+      <p>The information on this website does not constitute engineering, installation, commercial, legal, or regulatory advice. Product specifications should always be verified directly with the manufacturer before making purchasing or design decisions. Users should seek appropriate professional guidance — including MCS-certified installers and qualified engineers — before specifying, purchasing, or installing heat pump equipment.</p>
+
+      <h3>4. Data Sources and Accuracy</h3>
+      <p>Product data is compiled from publicly available manufacturer datasheets, product information sheets, and official brochures. Specifications including COP, capacity, noise levels, dimensions, and other performance metrics are reproduced as published by manufacturers at their stated test conditions. Actual installed performance will vary depending on site conditions, system design, and operating parameters. No warranty is given as to data accuracy, completeness, or currency — manufacturers may update specifications without notice.</p>
+
+      <h3>5. Acceptable Use</h3>
+      <p>Users of this website agree to the following conditions: no misuse or misrepresentation of data presented on this site; no scraping, harvesting, or automated extraction of data for commercial redistribution; no interference with site functionality or security; and retention of attribution and disclaimers when sharing or referencing content from this site.</p>
+
+      <h3>6. Intellectual Property</h3>
+      <p>The design, layout, code, and editorial content of this website are owned by the site operator unless otherwise stated. Product names, model numbers, and manufacturer trademarks remain the property of their respective owners. Product specification data is sourced from manufacturer publications and remains subject to the original rights and licences of those manufacturers.</p>
+
+      <h3>7. Third-Party Links</h3>
+      <p>This website contains links to third-party websites and resources. These links are provided for convenience and do not imply endorsement. We have no control over the content, availability, or privacy practices of linked sites and accept no responsibility for them.</p>
+
+      <h3>8. Limitation of Liability</h3>
+      <p>The operators of this website accept no liability for any loss, damage, or expense arising from the use of, or reliance upon, any information provided on this site. This includes but is not limited to errors or omissions in product data, decisions made based on comparison results, or any consequential losses arising from equipment selection or installation. Use of this website is entirely at your own risk.</p>
+
+      <h3>9. Privacy and Cookies</h3>
+      <p>This website uses Google Analytics to understand how visitors use the site. Analytics cookies are only loaded after the visitor provides explicit consent via the cookie banner. No personal data is shared with third parties for marketing purposes. Product comparison selections and filter preferences are stored locally in your browser and are not transmitted to any server.</p>
+
+      <h3>10. Changes to Terms</h3>
+      <p>These Terms of Use may be updated periodically. Continued use of this website following any changes constitutes acceptance of the revised terms. The date of the most recent update is noted below.</p>
+
+      <h3>11. Contact</h3>
+      <p>For queries regarding these Terms of Use, or to report inaccurate product data, please contact: <a href="mailto:info@heatpumpdatabase.com" style="color:var(--accent)">info@heatpumpdatabase.com</a></p>
+
+      <p style="margin-top:2rem;color:var(--text3);font-size:12px;border-top:1px solid var(--border);padding-top:1rem">Heat Pump Database • Terms of Use • Last updated June 2026</p>
+    </div>
   </div>
 </div>
 
@@ -1657,6 +1703,7 @@ const SEED = [
   {id:597,manufacturer:'Carrier',model:'61XWH-VZE',product_code:'61XWH-VZE 15',hp_type:'WSHP',type:'Commercial',refrigerant:'R1234ze(E) / R515B option',source:'Carrier PSD',product_url:null,date_added:'2026-06-11',mode:'Heating only',op_temp_min:-6,op_temp_max:55,flow_temp_min:null,flow_temp_max:85,cap_min:null,cap_max:1563,peak_elec:694,cop:3.01,cop_cond:'W20/W75',scop:null,eer:null,height:2305,width:1480,depth:4790,weight:9768,noise:103,noise_ref:'Acoustic power standard unit',description:'Variable-speed high-temperature water-source heat pump for sustainable hot-water production up to 85°C.',notes:'Heating condition: evaporator 20/15°C, condenser 70/75°C, EN14511-3:2022. Standard R1234ze(E) capacity 1563 kW, COP 3.01; option 330 R515B capacity 1485 kW, COP 2.86. Max operating input power 694 kW. Version-specific weight used.'},
   {id:598,manufacturer:'Carrier',model:'61XWHHVZE',product_code:'61XWHHVZE 7',hp_type:'WSHP',type:'Commercial',refrigerant:'R1234ze(E) / R515B option',source:'Carrier PSD',product_url:null,date_added:'2026-06-11',mode:'Heating only',op_temp_min:-6,op_temp_max:55,flow_temp_min:null,flow_temp_max:85,cap_min:null,cap_max:739,peak_elec:347,cop:2.92,cop_cond:'W20/W75',scop:null,eer:null,height:1968,width:1317,depth:3290,weight:4557,noise:100,noise_ref:'Acoustic power standard unit',description:'Variable-speed high-temperature water-source heat pump for sustainable hot-water production up to 85°C.',notes:'Heating condition: evaporator 20/15°C, condenser 70/75°C, EN14511-3:2022. Standard R1234ze(E) capacity 739 kW, COP 2.92; option 330 R515B capacity 703 kW, COP 2.77. Max operating input power 347 kW. Version-specific weight used.'},
   {id:599,manufacturer:'Carrier',model:'61XWHHVZE',product_code:'61XWHHVZE 15',hp_type:'WSHP',type:'Commercial',refrigerant:'R1234ze(E) / R515B option',source:'Carrier PSD',product_url:null,date_added:'2026-06-11',mode:'Heating only',op_temp_min:-6,op_temp_max:55,flow_temp_min:null,flow_temp_max:85,cap_min:null,cap_max:1563,peak_elec:694,cop:3.01,cop_cond:'W20/W75',scop:null,eer:null,height:2305,width:1480,depth:4790,weight:9768,noise:103,noise_ref:'Acoustic power standard unit',description:'Variable-speed high-temperature water-source heat pump for sustainable hot-water production up to 85°C.',notes:'Heating condition: evaporator 20/15°C, condenser 70/75°C, EN14511-3:2022. Standard R1234ze(E) capacity 1563 kW, COP 3.01; option 330 R515B capacity 1485 kW, COP 2.86. Max operating input power 694 kW. Version-specific weight used.'},
+  {id:600,manufacturer:'Fenagy',model:'CC Close-Coupled CO\u2082 370 kW',product_code:'CC Close-Coupled',hp_type:'ASHP',type:'Commercial',refrigerant:'R744',source:'manufacturer',product_url:'https://fenagy.dk',date_added:'2026-06-11',mode:'Heating & cooling',op_temp_min:null,op_temp_max:null,flow_temp_min:null,flow_temp_max:85,cap_min:null,cap_max:370,peak_elec:135,cop:2.8,cop_cond:'A7/W70',scop:null,eer:null,height:2800,width:9800,depth:2450,weight:10800,noise:49,noise_ref:'LpA @ 10m',description:'Close-coupled CO\u2082 air source heat pump with integrated V-shape upflow evaporators. 370 kW heating and 245 kW cooling. Compact single-unit design combining rack and evaporators for simplified installation.',notes:'R744 CO\u2082 GWP 1. 3 compressors, VSD optional. 4 evaporators with EC fans and cold gas defrost. Siemens PLC, Modbus/Profinet. 130 kg refrigerant charge. Design pressure 140/80 bar. Evaporator LpA approx 46 dB(A).'},
   // ── MITSUBISHI ELECTRIC (Ecodan residential, commercial, Climaveneta/INTEGRA) ──
 
 ];
@@ -1829,7 +1876,7 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach((t,i)=>t.classList.toggle('active',['browse','compare','faq','links','guide','contact'][i]===p));
+  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach((t,i)=>t.classList.toggle('active',['browse','compare','faq','links','guide','contact','terms'][i]===p));
   const anb=document.getElementById('admin-nav-btn');
   if(anb)anb.classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}
