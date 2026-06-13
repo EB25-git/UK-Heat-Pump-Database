@@ -90,6 +90,42 @@ h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.03em
 .burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;cursor:pointer;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff}
 .burger-item.active{color:#3ECCC0;font-weight:500}
+/* ANALYTICS */
+.an-filters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:1.25rem}
+.an-fg{display:flex;flex-direction:column;gap:3px}
+.an-fg label{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);font-weight:600}
+.an-fg select{font-family:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--border2);border-radius:8px;background:var(--surface);color:var(--text);cursor:pointer}
+.an-stat{margin-left:auto;font-size:12px;color:var(--text3)}
+.an-stat strong{color:var(--accent);font-size:15px}
+.an-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:900px){.an-grid{grid-template-columns:1fr}}
+.an-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 18px 10px;box-shadow:var(--shadow-sm)}
+.an-card-h h3{font-size:15px;margin:0 0 4px;color:var(--text)}
+.an-card-h p{font-size:11.5px;color:var(--text3);line-height:1.55;margin:0 0 8px}
+.an-chart-wrap{position:relative;width:100%}
+.an-chart{width:100%}
+.an-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.an-xlabel{text-align:center;font-size:11px;color:var(--text3);margin-top:2px;font-weight:500}
+.an-dot{cursor:pointer;transition:r .12s,opacity .12s;opacity:.78}
+.an-dot:hover{opacity:1}
+.an-yaxis-label{font-size:11px;fill:var(--text3);font-weight:500}
+.an-tick{font-size:9.5px;fill:var(--text3)}
+.an-grid-line{stroke:var(--border);stroke-width:1}
+.an-tooltip{position:absolute;pointer-events:none;background:#0F2B2B;color:#fff;border-radius:8px;padding:9px 12px;font-size:12px;line-height:1.5;box-shadow:0 6px 24px rgba(0,0,0,.25);opacity:0;transition:opacity .12s;z-index:50;max-width:240px;transform:translate(-50%,-115%)}
+.an-tooltip.show{opacity:1}
+.an-tooltip .tt-model{font-weight:600;margin-bottom:2px}
+.an-tooltip .tt-mfr{color:#9FD9D5;font-size:11px}
+.an-tooltip .tt-spec{color:#CFE8E6;font-size:11px;margin-top:3px}
+.an-tooltip .tt-hint{color:#6FA8A4;font-size:10px;margin-top:4px;font-style:italic}
+.an-legend{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:1.5rem;padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
+.an-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
+.an-legend-dot{width:12px;height:12px;border-radius:50%}
+/* BETA BANNER */
+.beta-banner{background:var(--warn-light);border-bottom:1px solid #EBD9B8}
+.beta-banner-inner{max-width:1200px;margin:0 auto;padding:11px 24px;display:flex;align-items:flex-start;gap:10px}
+.beta-banner-icon{font-size:16px;flex-shrink:0;line-height:1.5}
+.beta-banner-text{font-size:12.5px;color:#7A5418;line-height:1.55}
+.beta-banner-text strong{color:#5E3F0F}
 .burger-divider{height:1px;background:rgba(255,255,255,.1);margin:8px 0}
 .burger-admin{font-size:13px;color:rgba(255,255,255,.3);padding:14px 28px}
 .burger-admin:hover{color:rgba(255,255,255,.5)}
@@ -451,6 +487,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   <div class="burger-menu" id="burger-menu">
     <button class="burger-item active" onclick="showPage('browse');closeBurger()">Browse</button>
     <button class="burger-item" onclick="showPage('compare');closeBurger()">Compare</button>
+    <button class="burger-item" onclick="showPage('analytics');closeBurger()">Visualise</button>
     <button class="burger-item" onclick="showPage('faq');closeBurger()">FAQ</button>
     <button class="burger-item" onclick="showPage('links');closeBurger()">Useful Links</button>
     <button class="burger-item" onclick="showPage('guide');closeBurger()">Site Guide</button>
@@ -475,6 +512,12 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         <div><div class="stat-n" id="hero-ashp">—</div><div class="stat-l">ASHP</div></div>
         <div><div class="stat-n" id="hero-wshp">—</div><div class="stat-l">WSHP / GSHP</div></div>
       </div>
+    </div>
+  </div>
+  <div class="beta-banner">
+    <div class="beta-banner-inner">
+      <span class="beta-banner-icon">🚧</span>
+      <span class="beta-banner-text"><strong>This website is under construction.</strong> We're still building the database and verifying product data, so there may be errors or incomplete entries. Please use the information with caution and always confirm specifications with the manufacturer before making decisions.</span>
     </div>
   </div>
   <div class="faq-callout">
@@ -638,6 +681,57 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     </div>
     <div id="cmp-slots"></div>
     <div id="cmp-table"></div>
+  </div>
+</div>
+
+<!-- ═══ ANALYTICS ═══ -->
+<div class="page" id="page-analytics">
+  <div class="container">
+    <h1 style="font-size:26px;margin-top:1rem;margin-bottom:.35rem">Visualise the data</h1>
+    <p style="color:var(--text3);margin-bottom:1.25rem;font-size:13px;max-width:760px">Explore the whole database visually. Hover or tap any point to see the product; click it to open full specifications. Use the filters to narrow the dataset across every chart.</p>
+
+    <div class="an-filters" id="an-filters"></div>
+
+    <div class="an-grid">
+      <div class="an-card">
+        <div class="an-card-h">
+          <h3>COP vs Maximum capacity</h3>
+          <p>Efficiency against heat output. Larger units sit to the right; higher points are more efficient. Note that COP is measured at differing test conditions — colour shows heat-pump type.</p>
+        </div>
+        <div class="an-chart-wrap"><div id="chart-cop-cap" class="an-chart"></div></div>
+        <div class="an-xlabel">Maximum heating capacity (kW, log scale)</div>
+      </div>
+
+      <div class="an-card">
+        <div class="an-card-h">
+          <h3>COP vs Maximum flow temperature</h3>
+          <p>The efficiency–temperature trade-off. Units delivering hotter water (right) generally show lower COP. Higher and further-right is the harder engineering challenge.</p>
+        </div>
+        <div class="an-chart-wrap"><div id="chart-cop-flow" class="an-chart"></div></div>
+        <div class="an-xlabel">Maximum flow temperature (°C)</div>
+      </div>
+
+      <div class="an-card">
+        <div class="an-card-h">
+          <h3>Operating temperature range</h3>
+          <p>Each point is plotted at its minimum and maximum operating source/ambient temperature. Wider span (left-to-right reach) means more flexible operation across conditions.</p>
+        </div>
+        <div class="an-chart-wrap"><div id="chart-temp-range" class="an-chart"></div></div>
+        <div class="an-xlabel">Operating temperature (°C)</div>
+      </div>
+
+      <div class="an-card">
+        <div class="an-card-h">
+          <h3>SCOP vs Maximum capacity</h3>
+          <p>Seasonal efficiency (a more realistic year-round figure than spot COP) against capacity. Only products with a published SCOP appear here.</p>
+        </div>
+        <div class="an-chart-wrap"><div id="chart-scop-cap" class="an-chart"></div></div>
+        <div class="an-xlabel">Maximum heating capacity (kW, log scale)</div>
+      </div>
+    </div>
+
+    <div class="an-legend" id="an-legend"></div>
+    <p style="color:var(--text3);font-size:11px;margin-top:1.5rem;max-width:760px">Charts reflect the manufacturer-published figures held in this database. COP and SCOP are measured at different test conditions across products (shown in each product's detail view) — compare like-for-like where possible. Points with missing values are omitted from the relevant chart.</p>
   </div>
 </div>
 
@@ -2035,11 +2129,12 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach((t,i)=>t.classList.toggle('active',['browse','compare','faq','links','guide','contact','terms'][i]===p));
+  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach((t,i)=>t.classList.toggle('active',['browse','compare','analytics','faq','links','guide','contact','terms'][i]===p));
   const anb=document.getElementById('admin-nav-btn');
   if(anb)anb.classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}
   if(p==='compare')renderCompare();
+  if(p==='analytics')renderAnalytics();
   if(p==='faq')renderFaqPage();
   if(p==='guide')renderGuidePage();
   if(p==='links')renderLinksPage();
@@ -2295,6 +2390,146 @@ function renderTableView(){
 }
 
 // ═══════════════ MODAL ═══════════════
+// ═══ ANALYTICS ═══
+const AN_COLORS={ASHP:'#0D7377',WSHP:'#11999E',GSHP:'#6558A6'};
+let anFilters={hp_type:'all',type:'all',refrigerant:'all'};
+
+function renderAnalytics(){
+  // Build filter controls once
+  const fp=document.getElementById('an-filters');
+  const refs=[...new Set(db.map(d=>d.refrigerant).filter(Boolean))].sort();
+  fp.innerHTML=`
+    <div class="an-fg"><label>Heat pump type</label>
+      <select id="anf-hp" onchange="anSetFilter('hp_type',this.value)">
+        <option value="all">All types</option><option value="ASHP">Air source</option><option value="WSHP">Water source</option><option value="GSHP">Ground source</option></select></div>
+    <div class="an-fg"><label>Market</label>
+      <select id="anf-type" onchange="anSetFilter('type',this.value)">
+        <option value="all">All markets</option><option value="Residential">Residential</option><option value="Commercial">Commercial</option></select></div>
+    <div class="an-fg"><label>Refrigerant</label>
+      <select id="anf-ref" onchange="anSetFilter('refrigerant',this.value)">
+        <option value="all">All refrigerants</option>${refs.map(r=>`<option value="${r}">${r}</option>`).join('')}</select></div>
+    <div class="an-stat" id="an-stat"></div>`;
+  document.getElementById('anf-hp').value=anFilters.hp_type;
+  document.getElementById('anf-type').value=anFilters.type;
+  document.getElementById('anf-ref').value=anFilters.refrigerant;
+  // Legend
+  document.getElementById('an-legend').innerHTML=Object.entries(AN_COLORS).map(([k,v])=>
+    `<div class="an-legend-item"><span class="an-legend-dot" style="background:${v}"></span>${k==='ASHP'?'Air source (ASHP)':k==='WSHP'?'Water source (WSHP)':'Ground source (GSHP)'}</div>`).join('');
+  anDraw();
+}
+function anSetFilter(k,v){anFilters[k]=v;anDraw();}
+function anData(){
+  return db.filter(d=>
+    (anFilters.hp_type==='all'||d.hp_type===anFilters.hp_type)&&
+    (anFilters.type==='all'||d.type===anFilters.type)&&
+    (anFilters.refrigerant==='all'||d.refrigerant===anFilters.refrigerant));
+}
+function anDraw(){
+  const data=anData();
+  const st=document.getElementById('an-stat');
+  if(st)st.innerHTML=`<strong>${data.length}</strong> products shown`;
+  // Scatter: COP vs capacity (log x)
+  anScatter('chart-cop-cap',data.filter(d=>d.cop!=null&&d.cap_max!=null),
+    d=>d.cap_max,d=>d.cop,{xLog:true,yLabel:'COP',xMinTick:1,fmtX:v=>v>=1000?(v/1000)+'MW':v+'kW',fmtY:v=>v.toFixed(1),
+    spec:d=>`${d.cap_max} kW · COP ${d.cop} @ ${d.cop_cond||'?'}`});
+  // Scatter: COP vs flow temp
+  anScatter('chart-cop-flow',data.filter(d=>d.cop!=null&&d.flow_temp_max!=null),
+    d=>d.flow_temp_max,d=>d.cop,{xLog:false,yLabel:'COP',fmtX:v=>v+'°C',fmtY:v=>v.toFixed(1),
+    spec:d=>`${d.flow_temp_max}°C flow · COP ${d.cop} @ ${d.cop_cond||'?'}`});
+  // Range chart: operating temp min->max
+  anRangeChart('chart-temp-range',data.filter(d=>d.op_temp_min!=null&&d.op_temp_max!=null&&d.op_temp_min<d.op_temp_max));
+  // Scatter: SCOP vs capacity (log x)
+  anScatter('chart-scop-cap',data.filter(d=>d.scop!=null&&d.cap_max!=null),
+    d=>d.cap_max,d=>d.scop,{xLog:true,yLabel:'SCOP',xMinTick:1,fmtX:v=>v>=1000?(v/1000)+'MW':v+'kW',fmtY:v=>v.toFixed(1),
+    spec:d=>`${d.cap_max} kW · SCOP ${d.scop}`});
+}
+
+function anTooltipEl(){
+  let t=document.getElementById('an-tt');
+  if(!t){t=document.createElement('div');t.id='an-tt';t.className='an-tooltip';document.body.appendChild(t);}
+  return t;
+}
+function anDotEvents(c,d,specStr){
+  const tt=anTooltipEl();
+  c.addEventListener('mouseenter',e=>{
+    tt.innerHTML=`<div class="tt-model">${d.model}</div><div class="tt-mfr">${d.manufacturer}${d.hp_type?' · '+d.hp_type:''}</div><div class="tt-spec">${specStr}</div><div class="tt-hint">Click for full specs →</div>`;
+    tt.classList.add('show');
+  });
+  c.addEventListener('mousemove',e=>{tt.style.left=e.clientX+'px';tt.style.top=e.clientY+'px';});
+  c.addEventListener('mouseleave',()=>tt.classList.remove('show'));
+  c.addEventListener('click',()=>{tt.classList.remove('show');openModal(d.id);});
+}
+
+function anScatter(elId,data,fx,fy,opt){
+  const el=document.getElementById(elId);if(!el)return;
+  const W=560,H=340,m={t:14,r:16,b:34,l:46};
+  const pw=W-m.l-m.r,ph=H-m.t-m.b;
+  if(!data.length){el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'"><text x="'+(W/2)+'" y="'+(H/2)+'" text-anchor="middle" class="an-tick">No data for current filters</text></svg>';return;}
+  const xs=data.map(fx),ys=data.map(fy);
+  let xmin=Math.min(...xs),xmax=Math.max(...xs),ymin=Math.min(...ys),ymax=Math.max(...ys);
+  const ypad=(ymax-ymin)*0.08||0.5;ymin-=ypad;ymax+=ypad;
+  const xLog=opt.xLog;
+  if(xLog){xmin=Math.max(opt.xMinTick||1,xmin);}
+  else{const xp=(xmax-xmin)*0.05||1;xmin-=xp;xmax+=xp;}
+  const sx=v=>{if(xLog){const lo=Math.log10(xmin),hi=Math.log10(xmax);return m.l+(Math.log10(Math.max(v,xmin))-lo)/(hi-lo)*pw;}return m.l+(v-xmin)/(xmax-xmin)*pw;};
+  const sy=v=>m.t+ph-(v-ymin)/(ymax-ymin)*ph;
+  // gridlines + y ticks
+  let g='';
+  const yticks=5;
+  for(let i=0;i<=yticks;i++){const yv=ymin+(ymax-ymin)*i/yticks;const yp=sy(yv);g+=`<line class="an-grid-line" x1="${m.l}" y1="${yp}" x2="${W-m.r}" y2="${yp}"/><text class="an-tick" x="${m.l-6}" y="${yp+3}" text-anchor="end">${opt.fmtY(yv)}</text>`;}
+  // x ticks
+  let xticks;
+  if(xLog){xticks=[];let p=Math.ceil(Math.log10(xmin));for(;Math.pow(10,p)<=xmax;p++)xticks.push(Math.pow(10,p));if(xticks.length<2)xticks=[xmin,xmax];}
+  else{xticks=[];for(let i=0;i<=5;i++)xticks.push(xmin+(xmax-xmin)*i/5);}
+  xticks.forEach(xv=>{const xp=sx(xv);g+=`<text class="an-tick" x="${xp}" y="${H-m.b+14}" text-anchor="middle">${opt.fmtX(Math.round(xv))}</text>`;});
+  g+=`<text class="an-yaxis-label" transform="translate(13,${m.t+ph/2}) rotate(-90)" text-anchor="middle">${opt.yLabel}</text>`;
+  // axis lines
+  g+=`<line class="an-grid-line" x1="${m.l}" y1="${m.t}" x2="${m.l}" y2="${m.t+ph}"/><line class="an-grid-line" x1="${m.l}" y1="${m.t+ph}" x2="${W-m.r}" y2="${m.t+ph}"/>`;
+  el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'">'+g+'</svg>';
+  const svg=el.querySelector('svg');
+  // dots
+  data.forEach(d=>{
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',sx(fx(d)).toFixed(1));c.setAttribute('cy',sy(fy(d)).toFixed(1));
+    c.setAttribute('r',4.5);c.setAttribute('fill',AN_COLORS[d.hp_type]||'#888');c.setAttribute('class','an-dot');
+    svg.appendChild(c);
+    anDotEvents(c,d,opt.spec(d));
+  });
+}
+
+function anRangeChart(elId,data){
+  const el=document.getElementById(elId);if(!el)return;
+  const W=560,m={t:14,r:16,b:34,l:46};
+  if(!data.length){el.innerHTML='<svg viewBox="0 0 '+W+' 340"><text x="'+(W/2)+'" y="170" text-anchor="middle" class="an-tick">No data for current filters</text></svg>';return;}
+  // Sort by op_temp_min for a clean ridgeline; cap rows shown to keep readable
+  const sorted=[...data].sort((a,b)=>a.op_temp_min-b.op_temp_min);
+  const rowH=Math.max(3,Math.min(13,Math.floor(620/sorted.length)));
+  const ph=sorted.length*rowH;
+  const H=m.t+ph+m.b;
+  const xmin=Math.min(...data.map(d=>d.op_temp_min))-2,xmax=Math.max(...data.map(d=>d.op_temp_max))+2;
+  const pw=W-m.l-m.r;
+  const sx=v=>m.l+(v-xmin)/(xmax-xmin)*pw;
+  let g='';
+  // vertical gridlines every 10°C
+  for(let t=Math.ceil(xmin/10)*10;t<=xmax;t+=10){const xp=sx(t);g+=`<line class="an-grid-line" x1="${xp}" y1="${m.t}" x2="${xp}" y2="${m.t+ph}" opacity="0.5"/><text class="an-tick" x="${xp}" y="${H-m.b+14}" text-anchor="middle">${t}°C</text>`;}
+  // zero line emphasis
+  if(xmin<0&&xmax>0){const zp=sx(0);g+=`<line x1="${zp}" y1="${m.t}" x2="${zp}" y2="${m.t+ph}" stroke="var(--border2)" stroke-width="1.5" stroke-dasharray="3,3"/>`;}
+  el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'">'+g+'</svg>';
+  const svg=el.querySelector('svg');
+  sorted.forEach((d,i)=>{
+    const y=m.t+i*rowH+rowH/2;
+    const x1=sx(d.op_temp_min),x2=sx(d.op_temp_max);
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',x1.toFixed(1));line.setAttribute('y1',y.toFixed(1));
+    line.setAttribute('x2',x2.toFixed(1));line.setAttribute('y2',y.toFixed(1));
+    line.setAttribute('stroke',AN_COLORS[d.hp_type]||'#888');
+    line.setAttribute('stroke-width',Math.max(2,rowH-2));line.setAttribute('stroke-linecap','round');
+    line.setAttribute('class','an-dot');
+    svg.appendChild(line);
+    anDotEvents(line,d,`Operating range ${d.op_temp_min}°C to ${d.op_temp_max}°C · ${d.cap_max||'?'} kW`);
+  });
+}
+
 function openModal(id){
   const d=db.find(x=>x.id===id);if(!d)return;
   document.getElementById('modal-ttl').textContent=d.model;
