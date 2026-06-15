@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build.py — Heat Pumps Database static-page generator (SEO multi-page architecture).
+build.py — Heat Pump Database static-page generator (SEO multi-page architecture).
 
 Reads products.json (the data) and generates individually-rankable static pages:
   products/<slug>/index.html        one page per product
@@ -18,7 +18,7 @@ import json, os, re, html, shutil, datetime
 
 # ───────────────────────── Config ─────────────────────────
 BASE_URL  = "https://www.heatpumpdatabase.com"   # no trailing slash
-SITE_NAME = "Heat Pumps Database"
+SITE_NAME = "Heat Pump Database"
 ROOT      = os.path.dirname(os.path.abspath(__file__))
 DATA      = os.path.join(ROOT, "products.json")
 TODAY     = datetime.date.today().isoformat()
@@ -94,9 +94,12 @@ CSS = """
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
-header.site{background:#0F2B2B;color:#fff;padding:14px 0}
-header.site .wrap{display:flex;align-items:center;gap:10px}
-header.site a{color:#fff;font-weight:700;font-size:18px;letter-spacing:-.02em}
+header.site{background:#0F2B2B;padding:13px 0}
+header.site .wrap{display:flex;align-items:center}
+header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em}
+header.site .brand:hover{text-decoration:none}
+.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
 main{padding:28px 0 56px}
 nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
@@ -155,7 +158,9 @@ def page(title, description, canonical, body, jsonld_list, og_type="website"):
 {blocks}
 </head>
 <body>
-<header class="site"><div class="wrap"><a href="{BASE_URL}/">{SITE_NAME}</a></div></header>
+<header class="site"><div class="wrap"><a class="brand" href="{BASE_URL}/">
+<svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
+<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a></div></header>
 <main><div class="wrap">
 {body}
 </div></main>

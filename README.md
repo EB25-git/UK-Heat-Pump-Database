@@ -1,4 +1,4 @@
-# Heat Pumps Database — site repository
+# Heat Pump Database — site repository
 
 This repository holds both the interactive database **and** the generated SEO pages.
 
