@@ -90,6 +90,8 @@ h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.03em
 .burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;cursor:pointer;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff}
 .burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-subitem{padding-left:50px;font-size:14px;position:relative}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}
 /* ANALYTICS */
 .an-filters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:1.25rem}
 .an-fg{display:flex;flex-direction:column;gap:3px}
@@ -490,14 +492,15 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <span></span><span></span><span></span>
   </button>
   <div class="burger-menu" id="burger-menu">
-    <button class="burger-item active" onclick="showPage('browse');closeBurger()">Browse</button>
-    <button class="burger-item" onclick="showPage('compare');closeBurger()">Compare</button>
-    <button class="burger-item" onclick="showPage('analytics');closeBurger()">Visualise</button>
-    <button class="burger-item" onclick="showPage('faq');closeBurger()">FAQ</button>
-    <button class="burger-item" onclick="showPage('links');closeBurger()">Useful Links</button>
-    <button class="burger-item" onclick="showPage('guide');closeBurger()">Site Guide</button>
-    <button class="burger-item" onclick="showPage('contact');closeBurger()">Contact</button>
-    <button class="burger-item" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
+    <button class="burger-item active" data-page="browse" onclick="showPage('browse');closeBurger()">Browse</button>
+    <button class="burger-item" data-page="compare" onclick="showPage('compare');closeBurger()">Compare</button>
+    <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
+    <button class="burger-item" data-page="knowledge" onclick="showPage('knowledge');closeBurger()">Knowledge</button>
+    <button class="burger-item burger-subitem" data-page="faq" onclick="showPage('faq');closeBurger()">FAQ</button>
+    <button class="burger-item burger-subitem" data-page="links" onclick="showPage('links');closeBurger()">Useful Links</button>
+    <button class="burger-item" data-page="guide" onclick="showPage('guide');closeBurger()">Site Guide</button>
+    <button class="burger-item" data-page="contact" onclick="showPage('contact');closeBurger()">Contact</button>
+    <button class="burger-item" data-page="terms" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
   </div>
 </nav>
 <div class="burger-overlay" id="burger-overlay" onclick="closeBurger()"></div>
@@ -737,6 +740,30 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 
     <div class="an-legend" id="an-legend"></div>
     <p style="color:var(--text3);font-size:11px;margin-top:1.5rem;max-width:760px">Charts reflect the manufacturer-published figures held in this database. COP and SCOP are measured at different test conditions across products (shown in each product's detail view) — compare like-for-like where possible. Points with missing values are omitted from the relevant chart.</p>
+  </div>
+</div>
+
+<!-- ═══ KNOWLEDGE ═══ -->
+<div class="page" id="page-knowledge">
+  <div class="container" style="max-width:820px">
+    <div style="padding:8px 0 4px">
+      <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Knowledge</h1>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.6;margin:0 0 28px;max-width:640px">Background reading and resources to help you make sense of the database. Start with the FAQ to learn the fundamentals, or browse our directory of useful external links.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <a href="#" onclick="showPage('faq');return false" style="display:block;text-decoration:none;border:1px solid #e2e8e7;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#3ECCC0';this.style.boxShadow='0 6px 24px rgba(15,43,43,.08)'" onmouseout="this.style.borderColor='#e2e8e7';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:10px">❓</div>
+          <div style="font-size:18px;font-weight:600;color:#0F2B2B;margin-bottom:6px">FAQ</div>
+          <div style="font-size:14px;color:#5b6b6b;line-height:1.55">Frequently asked questions covering COP and SCOP, refrigerants, sizing, flow temperatures and UK grant schemes.</div>
+          <div style="margin-top:14px;font-size:13px;font-weight:600;color:#3ECCC0">Read the FAQ →</div>
+        </a>
+        <a href="#" onclick="showPage('links');return false" style="display:block;text-decoration:none;border:1px solid #e2e8e7;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#3ECCC0';this.style.boxShadow='0 6px 24px rgba(15,43,43,.08)'" onmouseout="this.style.borderColor='#e2e8e7';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:10px">🔗</div>
+          <div style="font-size:18px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Useful Links</div>
+          <div style="font-size:14px;color:#5b6b6b;line-height:1.55">A curated directory of manufacturers, certification bodies, grant schemes and independent advice on heat pumps.</div>
+          <div style="margin-top:14px;font-size:13px;font-weight:600;color:#3ECCC0">Browse links →</div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2755,7 +2782,7 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach((t,i)=>t.classList.toggle('active',['browse','compare','analytics','faq','links','guide','contact','terms'][i]===p));
+  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='faq'||p==='links'))));
   const anb=document.getElementById('admin-nav-btn');
   if(anb)anb.classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}
