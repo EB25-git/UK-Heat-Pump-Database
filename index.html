@@ -2857,8 +2857,8 @@ function populateFilters(){
   [...new Set(db.map(d=>d.manufacturer))].sort().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;ms.appendChild(o);});
   const rs=document.getElementById('filt-ref');
   rs.innerHTML='<option value="">All refrigerants</option>';
-  const refNames={'R290':'Propane','R600a':'Isobutane','R601a':'Isopentane','R744':'CO₂','R717':'Ammonia','R32':'HFC','R410A':'HFC blend','R407C':'HFC blend','R134a':'HFC'};
-  [...new Set(db.map(d=>d.refrigerant))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=refNames[r]?r+' ('+refNames[r]+')':r;rs.appendChild(o);});
+  const refNames={'R290':'Propane','R600a':'Isobutane','R601a':'Isopentane','R744':'CO₂','R717':'Ammonia','R32':'HFC','R410A':'HFC blend','R407C':'HFC blend','R134a':'HFC','R454B':'HFC/HFO blend','R454C':'HFC/HFO blend','R452B':'HFC/HFO blend','R513A':'HFC/HFO blend','R448A':'HFC/HFO blend','R515B':'HFO blend','R1234ze':'HFO','R1233zd':'HFO'};
+  [...new Set(db.flatMap(d=>parseRefrigerants(d.refrigerant)))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=refNames[r]?r+' ('+refNames[r]+')':r;rs.appendChild(o);});
 }
 function getRefCategory(ref){
   if(!ref)return 'unknown';
@@ -2868,6 +2868,22 @@ function getRefCategory(ref){
   if(r==='R717')return 'ammonia';
   if(r==='R32'||r==='R410A'||r==='R407C'||r==='R134A')return 'hfc';
   return 'other';
+}
+function parseRefrigerants(ref){
+  // Split a refrigerant value (which may list several, e.g. "R1234ze / R515B option")
+  // into individual, de-duplicated refrigerant codes for filtering.
+  if(!ref)return [];
+  return [...new Set(ref.split(/\s*(?:\/|\+|,|\bor\b)\s*/i).map(part=>{
+    part=part.trim();
+    if(!part)return null;
+    const m=part.match(/^R\s?\d+[a-zA-Z]*(?:\([A-Za-z]\))?/);   // leading refrigerant code
+    if(!m){                                                     // no code: keep known words, drop descriptors
+      return /^(hydrocarbon|ammonia|propane|isobutane|co2|co₂)$/i.test(part)?part:null;
+    }
+    let code=m[0].replace(/\s/,'').replace(/\([A-Za-z]\)$/,'');  // strip isomer suffix e.g. R1234ze(E)->R1234ze
+    if(code.toUpperCase()==='R134A')code='R134a';               // normalise casing duplicate
+    return code;
+  }).filter(Boolean))];
 }
 function getFiltered(){
   const q=(document.getElementById('search-input').value||'').toLowerCase();
@@ -2885,7 +2901,7 @@ function getFiltered(){
     if(typ&&d.type!==typ)return false;
     if(mod&&(d.mode||'Heating only')!==mod)return false;
     if(mfr&&d.manufacturer!==mfr)return false;
-    if(ref&&d.refrigerant!==ref)return false;
+    if(ref&&!parseRefrigerants(d.refrigerant).includes(ref))return false;
     if(refcat&&getRefCategory(d.refrigerant)!==refcat)return false;
     if(cap){const[mn,mx]=cap.split('-').map(Number);if(d.cap_max<mn||d.cap_max>mx)return false;}
     if(flow&&(d.flow_temp_max==null||d.flow_temp_max<Number(flow)))return false;
