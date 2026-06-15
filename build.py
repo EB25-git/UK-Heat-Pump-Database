@@ -23,7 +23,7 @@ ROOT      = os.path.dirname(os.path.abspath(__file__))
 DATA      = os.path.join(ROOT, "products.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["products", "manufacturers", "types"]
+GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -161,7 +161,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website"):
 </div></main>
 <footer class="site"><div class="wrap">
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
-<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a></p>
+<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a></p>
 </div></footer>
 </body>
 </html>
@@ -349,6 +349,47 @@ def write(path, content):
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
 
+def render_knowledge_refrigerants():
+    """Generate /knowledge/refrigerants/ by extracting the Refrigerant Guide
+    content from the app (index.html), so the two never drift apart.
+    Returns HTML, or None if the section can't be found."""
+    app_path = os.path.join(ROOT, "index.html")
+    if not os.path.exists(app_path):
+        return None
+    app = open(app_path, encoding="utf-8").read()
+    start = app.find('<div class="page" id="page-refrigerants">')
+    if start == -1:
+        return None
+    end = app.find('<!-- ═══ FAQ ═══ -->', start)
+    if end == -1:
+        end = app.find('id="page-faq"', start)
+    block = app[start:end if end != -1 else len(app)]
+    marker = '<div style="padding:8px 0 4px">'
+    if marker not in block:
+        return None
+    inner = block.split(marker, 1)[1]
+    for _ in range(3):                       # drop padding/container/page wrapper closers
+        inner = inner.rstrip()
+        if inner.endswith('</div>'):
+            inner = inner[:-len('</div>')]
+    inner = inner.strip()
+    inner = re.sub(r'^\s*<nav\b.*?</nav>', '', inner, count=1, flags=re.S)   # drop in-app breadcrumb
+    inner = re.sub(r'\s*onclick="showPage\([^)]*\)[^"]*"', '', inner)        # neutralise app handlers
+    inner = inner.replace('href="#"', f'href="{BASE_URL}/"')
+    inner = inner.strip()
+
+    url = f"{BASE_URL}/knowledge/refrigerants/"
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Knowledge", None), ("Refrigerant Guide", None)]
+    title = f"Heat Pump Refrigerants Compared \u2014 GWP, Safety & F-Gas Rules | {SITE_NAME}"
+    desc = ("Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the "
+            "EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.")
+    article_ld = {"@context": "https://schema.org", "@type": "Article",
+                  "headline": "Heat Pump Refrigerants Compared", "description": desc, "url": url,
+                  "publisher": {"@type": "Organization", "name": SITE_NAME},
+                  "mainEntityOfPage": url}
+    return page(title, desc, url, crumbs(crumb_items) + inner,
+                [article_ld, breadcrumb_jsonld(crumb_items)], og_type="article")
+
 def main():
     with open(DATA, encoding="utf-8") as f:
         products = json.load(f)
@@ -426,6 +467,12 @@ def main():
               render_type(slug, heading, desc, ps))
         urls.append(f"{BASE_URL}/types/{slug}/")
 
+    # knowledge: refrigerant guide (static SEO page generated from the app content)
+    kg = render_knowledge_refrigerants()
+    if kg:
+        write(os.path.join(ROOT, "knowledge", "refrigerants", "index.html"), kg)
+        urls.append(f"{BASE_URL}/knowledge/refrigerants/")
+
     # sitemap.xml
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
@@ -439,7 +486,7 @@ def main():
           f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n")
 
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
-          f"{len(type_pages)} category pages.")
+          f"{len(type_pages)} category pages{', 1 knowledge page' if kg else ''}.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
 
 if __name__ == "__main__":

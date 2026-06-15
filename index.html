@@ -500,6 +500,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item" data-page="knowledge" onclick="showPage('knowledge');closeBurger()">Knowledge</button>
     <button class="burger-item burger-subitem" data-page="faq" onclick="showPage('faq');closeBurger()">FAQ</button>
     <button class="burger-item burger-subitem" data-page="links" onclick="showPage('links');closeBurger()">Useful Links</button>
+    <button class="burger-item burger-subitem" data-page="refrigerants" onclick="showPage('refrigerants');closeBurger()">Refrigerant Guide</button>
     <button class="burger-item" data-page="guide" onclick="showPage('guide');closeBurger()">Site Guide</button>
     <button class="burger-item" data-page="contact" onclick="showPage('contact');closeBurger()">Contact</button>
     <button class="burger-item" data-page="terms" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
@@ -750,8 +751,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   <div class="container" style="max-width:820px">
     <div style="padding:8px 0 4px">
       <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Knowledge</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.6;margin:0 0 28px;max-width:640px">Background reading and resources to help you make sense of the database. Start with the FAQ to learn the fundamentals, or browse our directory of useful external links.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.6;margin:0 0 28px;max-width:640px">Background reading and resources to help you make sense of the database. Learn the fundamentals in the FAQ, compare the refrigerants used in heat pumps, or browse our directory of useful external links.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
         <a href="#" onclick="showPage('faq');return false" style="display:block;text-decoration:none;border:1px solid #e2e8e7;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#3ECCC0';this.style.boxShadow='0 6px 24px rgba(15,43,43,.08)'" onmouseout="this.style.borderColor='#e2e8e7';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">❓</div>
           <div style="font-size:18px;font-weight:600;color:#0F2B2B;margin-bottom:6px">FAQ</div>
@@ -764,7 +765,157 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <div style="font-size:14px;color:#5b6b6b;line-height:1.55">A curated directory of manufacturers, certification bodies, grant schemes and independent advice on heat pumps.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#3ECCC0">Browse links →</div>
         </a>
+        <a href="#" onclick="showPage('refrigerants');return false" style="display:block;text-decoration:none;border:1px solid #e2e8e7;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#3ECCC0';this.style.boxShadow='0 6px 24px rgba(15,43,43,.08)'" onmouseout="this.style.borderColor='#e2e8e7';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:10px">🧪</div>
+          <div style="font-size:18px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Refrigerant Guide</div>
+          <div style="font-size:14px;color:#5b6b6b;line-height:1.55">Compare the refrigerants used in heat pumps — GWP, safety class, pros and cons, and the F-Gas regulations shaping their future.</div>
+          <div style="margin-top:14px;font-size:13px;font-weight:600;color:#3ECCC0">Compare refrigerants →</div>
+        </a>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ REFRIGERANT GUIDE ═══ -->
+<div class="page" id="page-refrigerants">
+  <div class="container" style="max-width:880px">
+    <div style="padding:8px 0 4px">
+      <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>Refrigerant Guide</span></nav>
+      <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Refrigerants Compared</h1>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 8px;max-width:680px">The refrigerant is the working fluid that lets a heat pump move heat from outside to inside. Which one a unit uses affects its environmental impact, its efficiency and achievable flow temperature, how it must be installed, and — increasingly — whether it can still be sold in the years ahead. This guide compares the refrigerants you will find across the database.</p>
+      <p style="color:#5b6b6b;font-size:14px;line-height:1.6;margin:0 0 26px;max-width:680px">Two numbers do most of the work. <strong>GWP</strong> (Global Warming Potential) measures how strongly one kilogram of the gas warms the planet over 100 years compared with one kilogram of CO₂ — so CO₂ is 1, and a refrigerant with a GWP of 2,000 is 2,000 times worse if it leaks. The <strong>safety class</strong> (ASHRAE) flags flammability and toxicity: <strong>A1</strong> non-flammable and low toxicity, <strong>A2L</strong> mildly flammable, <strong>A3</strong> highly flammable, <strong>B2L</strong> mildly flammable but toxic.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:28px 0 12px">At a glance</h2>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:620px">
+        <thead><tr style="background:#fafcfb">
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Refrigerant</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Family</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">GWP (100-yr)</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Safety</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Typical heat-pump use</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R717</strong> Ammonia</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Natural</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">0</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">B2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Large industrial / district water source</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R1234ze</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFO</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">&lt;1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Large commercial / centrifugal chillers</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R744</strong> CO₂</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Natural</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Commercial high-temp, hot water</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R1233zd</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFO</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">High-temp commercial, centrifugal</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R290</strong> Propane</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Hydrocarbon</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Modern residential air source (monobloc)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R600a</strong> Isobutane</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Hydrocarbon</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Industrial high-temperature</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R454C</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">148</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Low-GWP R410A replacement</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R515B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFO/HFC blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">293</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">R134a replacement (non-flammable)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R454B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">466</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Main R410A replacement, commercial</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R513A</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">631</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">R134a replacement (non-flammable)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R32</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">675</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Current residential &amp; commercial air source</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R452B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">698</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">R410A replacement</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R448A</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1387</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Commercial systems</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R134a</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1430</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Commercial high-temp (legacy)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R407C</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1774</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Legacy systems</td></tr>
+          <tr><td style="padding:9px 14px"><strong>R410A</strong></td><td style="padding:9px 14px">HFC blend</td><td style="padding:9px 14px">2088</td><td style="padding:9px 14px">A1</td><td style="padding:9px 14px">Legacy / commercial (phasing out)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:10px 0 0">GWP figures are 100-year values, rounded. They vary slightly between IPCC assessment reports — the EU moved from AR4 to AR5 values in 2025 — but the relative picture is unchanged.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 6px">The families, with pros and cons</h2>
+
+      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Hydrocarbons — R290 (propane), R600a (isobutane)</div>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Natural refrigerants with negligible GWP. R290 has become the default for new residential air source heat pumps, while R600a appears in large industrial high-temperature machines.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈3) — no meaningful climate impact if it leaks</li><li>Excellent efficiency; high COP and SCOP</li><li>Reaches high flow temperatures (up to ~75&nbsp;°C), good for radiators and retrofit</li><li>Not subject to the F-Gas phase-down — future-proof</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>A3 — highly flammable, so charge limits, siting rules and a competent installer are essential</li><li>Generally confined to outdoor monobloc units</li><li>Charge-size limits can constrain very large indoor systems</li></ul></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">CO₂ — R744</div>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">A natural refrigerant that excels at producing very hot water and works well in cold weather. Common in commercial hot-water and high-temperature applications.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>GWP of 1 — the benchmark</li><li>Non-flammable (A1)</li><li>Excellent at high temperatures (70–90&nbsp;°C) and in cold ambient air</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Very high operating pressures need specialised components</li><li>Efficiency falls if the return-water temperature is high — best with a large temperature lift</li><li>Mainly commercial and hot-water duties</li></ul></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Ammonia — R717</div>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The workhorse of large industrial refrigeration, also used for big water-source and district-heating heat pumps.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Zero GWP and zero ozone impact</li><li>Outstanding efficiency, especially at scale</li><li>Decades of proven industrial use; inexpensive</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Toxic and mildly flammable (B2L) — not for domestic use</li><li>Needs a plant room, leak detection and specialist design</li><li>Incompatible with copper pipework</li></ul></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFOs — R1234ze, R1233zd</div>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Synthetic but ultra-low-GWP fluids, mostly used in large commercial and high-temperature centrifugal machines.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈1 or below)</li><li>R1233zd is A1 (non-flammable) and low-pressure — ideal for large high-temperature systems</li><li>Not meaningfully affected by the phase-down</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Lower capacity per unit volume means larger equipment</li><li>Higher cost; mainly commercial/industrial</li><li>R1234ze is rated A2L (mildly flammable)</li></ul></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFCs — R32, R410A, R407C, R134a</div>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The fluorinated gases that dominated the last two decades. R32 is the current mainstream choice and far cleaner than the older R410A it replaced, but all are subject to the phase-down.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Mature, widely available and well understood</li><li>R32 has roughly a third of R410A's GWP and is a single compound (simple to recharge)</li><li>R410A, R407C and R134a are non-flammable (A1)</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Mid-to-high GWP (675 up to ~2,088) — supply shrinks and prices rise under the phase-down</li><li>R32's 675 GWP exceeds the EU's 150 limit for small monobloc heat pumps from 2027</li><li>R410A/R407C/R134a are legacy choices being replaced</li><li>R32 is A2L (mildly flammable)</li></ul></div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Lower-GWP blends — R454B, R454C, R452B, R513A, R515B, R448A</div>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Engineered mixtures that cut GWP while staying close to the equipment design of the gases they replace — R454B/R452B for R410A, R513A/R515B for R134a.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Much lower GWP than the HFCs they replace (148–700)</li><li>Near drop-in for manufacturers, easing the transition</li><li>R513A, R515B and R448A are A1 (non-flammable)</li><li>R454C sits below the key 150 GWP threshold</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Still contain fluorinated components, so still caught by the phase-down</li><li>R454B, R454C and R452B are A2L (mildly flammable)</li><li>Being blends, they have temperature "glide" and must be recharged carefully</li></ul></div>
+        </div>
+      </div>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">The regulations</h2>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Fluorinated refrigerants are controlled by <strong>F-Gas regulations</strong>, which shrink the supply of high-GWP gases over time and ban them in new equipment where cleaner alternatives exist. Natural refrigerants (R290, CO₂, ammonia) and HFOs largely sit outside these limits. The picture differs across the UK.</p>
+      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 8px">European Union — Regulation (EU) 2024/573 (also applies in Northern Ireland)</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:8px">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:560px">
+        <thead><tr style="background:#fafcfb"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600;width:80px">From</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">What changes for air conditioning &amp; heat pumps</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2025</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Steep cut in the HFC quota (EU supply roughly halved versus 2023); servicing ban on virgin gas with GWP ≥ 2,500 begins</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2026</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Servicing/maintenance ban on GWP ≥ 2,500 extends to AC and heat pumps (reclaimed/recycled gas exempt)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2027</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">New self-contained / monobloc AC &amp; heat pumps ≤ 12 kW must use GWP &lt; 150; monoblocs &gt; 12–50 kW with GWP ≥ 150 banned; quota tightens again</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2029</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">New split air-to-air systems ≤ 12 kW with GWP ≥ 150 banned</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2030</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Other self-contained AC/HP with GWP ≥ 150 banned; HFC quota falls to ~5% of the 2015 baseline</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2032</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Full F-gas ban on new monobloc / self-contained AC &amp; heat pumps ≤ 12 kW (bar safety exemptions)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2035</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">New split AC &amp; heat pumps ≤ 12 kW containing any F-gas banned</td></tr>
+          <tr><td style="padding:9px 14px;font-weight:600">2050</td><td style="padding:9px 14px">HFC phase-down reaches zero</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:0 0 16px">Thresholds and category definitions are simplified here; some categories have safety-related exemptions. Existing installed equipment is unaffected — the bans apply to new products placed on the market.</p>
+      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 6px">Great Britain (England, Scotland, Wales)</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Great Britain did <strong>not</strong> adopt the EU's 2024 regulation. It keeps the retained Regulation (EU) 517/2014 — the earlier HFC quota phase-down plus existing rules such as the GWP ≥ 2,500 servicing ban — so the EU's new product bans above do not currently apply in GB. Defra reviewed the rules and launched a consultation on a tighter GB HFC phase-down in November 2025; in May 2026 it confirmed it would not change the phase-down steps for the 2027 period yet, with a fuller response due later in 2026. The direction of travel mirrors the EU — tighter HFC limits and a shift to low-GWP and natural refrigerants — but the precise GB timeline is still being decided.</p>
+      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 6px">Northern Ireland</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Under the Windsor Framework, Northern Ireland continues to follow the EU F-Gas Regulation, so the EU timeline above applies there.</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">All of this sits under the global <strong>Kigali Amendment</strong> to the Montreal Protocol, which commits developed countries to cutting HFC use to a small fraction of historic levels over the coming decades.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Where it's heading</h2>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 10px">The shrinking quota makes high-GWP gases such as R410A and R134a steadily scarcer and more expensive, pushing the whole market toward low-GWP and natural refrigerants. In practice:</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.7">
+        <li><strong>Residential heat pumps are converging on R290 (propane).</strong> It already dominates new monobloc ranges, has a GWP of 3, sits outside the phase-down and supports the higher flow temperatures UK retrofits often need — the most future-proof choice.</li>
+        <li><strong>R32 remains common today</strong> but its 675 GWP exceeds the EU's 150 limit for small monoblocs from 2027, so EU and Northern Ireland units are moving to R290. R32 is likely to persist longer in GB and in larger or split systems.</li>
+        <li><strong>Commercial and industrial systems</strong> are shifting to R290, CO₂, ammonia and HFOs (R1234ze, R1233zd, R515B) for large and high-temperature duties.</li>
+      </ul>
+
+      <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
+        <div style="font-size:17px;font-weight:600;margin-bottom:10px">If you're choosing a heat pump</div>
+        <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
+          <li>For a new home system, <strong style="color:#3ECCC0">R290</strong> is the most future-proof option and often the strongest performer at higher flow temperatures.</li>
+          <li>Already have an R410A or R32 unit? It's fine to keep running and servicing — the rules target new equipment, not existing installations — though servicing the highest-GWP gases will get costlier.</li>
+          <li>Flammable refrigerants (A3, A2L) simply need a competent installer and correct siting; this is routine for modern units.</li>
+          <li>Check the refrigerant when comparing models here — it shapes environmental impact, long-term serviceability and sometimes efficiency and flow temperature.</li>
+        </ul>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed June 2026. Regulations change and the GB rules are under review — always confirm the current position before making decisions. This guide is general information, not regulatory or professional advice.</p>
     </div>
   </div>
 </div>
@@ -2784,7 +2935,7 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='faq'||p==='links'))));
+  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='faq'||p==='links'||p==='refrigerants'))));
   const anb=document.getElementById('admin-nav-btn');
   if(anb)anb.classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}
