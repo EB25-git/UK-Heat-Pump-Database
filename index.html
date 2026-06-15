@@ -90,6 +90,7 @@ h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.03em
 .burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;cursor:pointer;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff}
 .burger-item.active{color:#3ECCC0;font-weight:500}
+a.burger-item{display:block;text-decoration:none;box-sizing:border-box}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
 .burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}
 /* ANALYTICS */
@@ -493,6 +494,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   </button>
   <div class="burger-menu" id="burger-menu">
     <button class="burger-item active" data-page="browse" onclick="showPage('browse');closeBurger()">Browse</button>
+    <a class="burger-item" href="/manufacturers/" onclick="closeBurger()">Manufacturers</a>
     <button class="burger-item" data-page="compare" onclick="showPage('compare');closeBurger()">Compare</button>
     <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
     <button class="burger-item" data-page="knowledge" onclick="showPage('knowledge');closeBurger()">Knowledge</button>
