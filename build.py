@@ -94,12 +94,27 @@ CSS = """
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
-header.site{background:#0F2B2B;padding:13px 0}
-header.site .wrap{display:flex;align-items:center}
-header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em}
+header.site{background:#0F2B2B;height:60px;display:flex;align-items:center}
+header.site .wrap{display:flex;align-items:center;width:100%}
+header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
 header.site .brand:hover{text-decoration:none}
 .wm-bold{color:#3ECCC0;font-weight:700}
 .wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
+.burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto}
+.burger-menu.open{transform:translateX(0)}
+.burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%;display:block;text-decoration:none;box-sizing:border-box}
+.burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
+.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-subitem{padding-left:50px;font-size:14px;position:relative}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}
+.burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
+.burger-overlay.open{opacity:1;pointer-events:auto}
+@media(max-width:560px){.burger-menu{width:100%}}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
 main{padding:28px 0 56px}
 nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
@@ -133,7 +148,29 @@ footer.site a{color:#7a8a88}
 @media(max-width:560px){table.spec th{width:48%}h1{font-size:23px}}
 """
 
-def page(title, description, canonical, body, jsonld_list, og_type="website"):
+def burger_menu(active=None):
+    knowledge_active = active in ("faq", "links", "refrigerants", "knowledge")
+    def it(label, href, key=None, sub=False, extra=""):
+        cls = "burger-item" + (" burger-subitem" if sub else "")
+        if key == active or (key == "knowledge" and knowledge_active):
+            cls += " active"
+        return f'<a class="{cls}" href="{href}"{extra}>{label}</a>'
+    return (
+        it("Browse", f"{BASE_URL}/", "browse")
+        + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
+        + it("Compare", f"{BASE_URL}/#compare", "compare")
+        + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
+        + it("Knowledge", f"{BASE_URL}/#knowledge", "knowledge")
+        + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
+        + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
+        + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
+        + it("Site Guide", f"{BASE_URL}/#guide", "guide")
+        + it("Contact", f"{BASE_URL}/#contact", "contact")
+        + it("Terms of Use", f"{BASE_URL}/#terms", "terms",
+             extra=' style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)"')
+    )
+
+def page(title, description, canonical, body, jsonld_list, og_type="website", active=None):
     blocks = "\n".join(
         '<script type="application/ld+json">%s</script>' % json.dumps(j, ensure_ascii=False)
         for j in jsonld_list
@@ -160,7 +197,11 @@ def page(title, description, canonical, body, jsonld_list, og_type="website"):
 <body>
 <header class="site"><div class="wrap"><a class="brand" href="{BASE_URL}/">
 <svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
-<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a></div></header>
+<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a>
+<button class="burger" id="bbtn" aria-label="Menu" onclick="tB()"><span></span><span></span><span></span></button>
+<nav class="burger-menu" id="bmenu">{burger_menu(active)}</nav>
+</div></header>
+<div class="burger-overlay" id="bov" onclick="cB()"></div>
 <main><div class="wrap">
 {body}
 </div></main>
@@ -168,6 +209,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website"):
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
 <p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a></p>
 </div></footer>
+<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}</script>
 </body>
 </html>
 """
@@ -311,7 +353,7 @@ def render_manufacturer(mfr, products):
                     "name": f"{mfr} {p['model']}"}
                    for i, p in enumerate(products)]}
     title = f"{mfr} Heat Pumps \u2014 Models & Specifications | {SITE_NAME}"
-    return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items)])
+    return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items)], active="manufacturers")
 
 def render_manufacturers_index(by_mfr):
     url = f"{BASE_URL}/manufacturers/"
@@ -328,7 +370,7 @@ def render_manufacturers_index(by_mfr):
     return page(f"Heat Pump Manufacturers (A\u2013Z) | {SITE_NAME}",
                 f"Browse heat pumps by manufacturer. {len(by_mfr)} brands with full specifications, "
                 f"COP and SCOP data in the {SITE_NAME}.", url, body,
-                [breadcrumb_jsonld(crumb_items)])
+                [breadcrumb_jsonld(crumb_items)], active="manufacturers")
 
 def render_type(slug, heading, desc, products):
     url = f"{BASE_URL}/types/{slug}/"
@@ -393,7 +435,7 @@ def render_knowledge_refrigerants():
                   "publisher": {"@type": "Organization", "name": SITE_NAME},
                   "mainEntityOfPage": url}
     return page(title, desc, url, crumbs(crumb_items) + inner,
-                [article_ld, breadcrumb_jsonld(crumb_items)], og_type="article")
+                [article_ld, breadcrumb_jsonld(crumb_items)], og_type="article", active="refrigerants")
 
 def main():
     with open(DATA, encoding="utf-8") as f:

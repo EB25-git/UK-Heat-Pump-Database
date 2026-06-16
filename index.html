@@ -725,10 +725,10 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <div class="an-card">
         <div class="an-card-h">
           <h3>Operating temperature range</h3>
-          <p>Each point is plotted at its minimum and maximum operating source/ambient temperature. Wider span (left-to-right reach) means more flexible operation across conditions.</p>
+          <p>Heat pumps grouped by how cold they can run — their minimum source/ambient temperature — with bars coloured by type. Click any band to list the models in it and open full specs.</p>
         </div>
         <div class="an-chart-wrap"><div id="chart-temp-range" class="an-chart"></div></div>
-        <div class="an-xlabel">Operating temperature (°C)</div>
+        <div class="an-xlabel">Number of heat pumps in each band</div>
       </div>
 
       <div class="an-card">
@@ -3319,37 +3319,56 @@ function anScatter(elId,data,fx,fy,opt){
   });
 }
 
+let anRangeSel=null, anRangeData=[];
+const AN_RANGE_BANDS=[
+  {label:'\u2264 \u221225\u00b0C (extreme cold)', test:m=>m<=-25},
+  {label:'\u221224 to \u221215\u00b0C',           test:m=>m>-25&&m<=-15},
+  {label:'\u221214 to \u22125\u00b0C',            test:m=>m>-15&&m<=-5},
+  {label:'\u22124 to 0\u00b0C',                   test:m=>m>-5&&m<=0},
+  {label:'Above 0\u00b0C (water / ground source)',test:m=>m>0}
+];
+const AN_TYPE_ORDER=['ASHP','WSHP','GSHP'];
+function anRangeToggle(k){anRangeSel=(anRangeSel===k?null:k);anRangeChart('chart-temp-range',anRangeData);}
 function anRangeChart(elId,data){
   const el=document.getElementById(elId);if(!el)return;
-  const W=560,m={t:14,r:16,b:34,l:46};
-  if(!data.length){el.innerHTML='<svg viewBox="0 0 '+W+' 340"><text x="'+(W/2)+'" y="170" text-anchor="middle" class="an-tick">No data for current filters</text></svg>';return;}
-  // Sort by op_temp_min for a clean ridgeline; cap rows shown to keep readable
-  const sorted=[...data].sort((a,b)=>a.op_temp_min-b.op_temp_min);
-  const rowH=Math.max(3,Math.min(13,Math.floor(620/sorted.length)));
-  const ph=sorted.length*rowH;
-  const H=m.t+ph+m.b;
-  const xmin=Math.min(...data.map(d=>d.op_temp_min))-2,xmax=Math.max(...data.map(d=>d.op_temp_max))+2;
-  const pw=W-m.l-m.r;
-  const sx=v=>m.l+(v-xmin)/(xmax-xmin)*pw;
+  anRangeData=data;
+  const W=560;
+  if(!data.length){el.innerHTML='<svg viewBox="0 0 '+W+' 160"><text x="'+(W/2)+'" y="80" text-anchor="middle" class="an-tick">No data for current filters</text></svg>';return;}
+  const bands=AN_RANGE_BANDS.map(b=>({label:b.label,items:[]}));
+  data.forEach(d=>{const i=AN_RANGE_BANDS.findIndex(b=>b.test(d.op_temp_min));if(i>=0)bands[i].items.push(d);});
+  const maxN=Math.max(...bands.map(b=>b.items.length),1);
+  const L=150,rowH=46,barH=22,padR=46,barX=L+8,barMaxW=W-barX-padR;
+  const n=bands.length,H=10+n*rowH+6;
   let g='';
-  // vertical gridlines every 10°C
-  for(let t=Math.ceil(xmin/10)*10;t<=xmax;t+=10){const xp=sx(t);g+=`<line class="an-grid-line" x1="${xp}" y1="${m.t}" x2="${xp}" y2="${m.t+ph}" opacity="0.5"/><text class="an-tick" x="${xp}" y="${H-m.b+14}" text-anchor="middle">${t}°C</text>`;}
-  // zero line emphasis
-  if(xmin<0&&xmax>0){const zp=sx(0);g+=`<line x1="${zp}" y1="${m.t}" x2="${zp}" y2="${m.t+ph}" stroke="var(--border2)" stroke-width="1.5" stroke-dasharray="3,3"/>`;}
-  el.innerHTML='<svg viewBox="0 0 '+W+' '+H+'">'+g+'</svg>';
-  const svg=el.querySelector('svg');
-  sorted.forEach((d,i)=>{
-    const y=m.t+i*rowH+rowH/2;
-    const x1=sx(d.op_temp_min),x2=sx(d.op_temp_max);
-    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
-    line.setAttribute('x1',x1.toFixed(1));line.setAttribute('y1',y.toFixed(1));
-    line.setAttribute('x2',x2.toFixed(1));line.setAttribute('y2',y.toFixed(1));
-    line.setAttribute('stroke',AN_COLORS[d.hp_type]||'#888');
-    line.setAttribute('stroke-width',Math.max(2,rowH-2));line.setAttribute('stroke-linecap','round');
-    line.setAttribute('class','an-dot');
-    svg.appendChild(line);
-    anDotEvents(line,d,`Operating range ${d.op_temp_min}°C to ${d.op_temp_max}°C · ${d.cap_max||'?'} kW`);
+  bands.forEach((b,i)=>{
+    const y=10+i*rowH,mid=y+rowH/2,total=b.items.length,sel=anRangeSel===i;
+    g+=`<g style="cursor:pointer" onclick="anRangeToggle(${i})">`;
+    g+=`<rect x="0" y="${y}" width="${W}" height="${rowH-6}" rx="8" fill="${sel?'rgba(13,115,119,.09)':'transparent'}"/>`;
+    g+=`<text x="8" y="${mid-3}" font-size="12.5" font-weight="600" fill="#26403e">${b.label}</text>`;
+    g+=`<text x="8" y="${mid+13}" font-size="11" fill="#7a8a88">${total} unit${total!==1?'s':''}${sel?' \u2014 click to close':''}</text>`;
+    if(total){
+      let x=barX;const w0=total/maxN*barMaxW;
+      AN_TYPE_ORDER.forEach(tp=>{const c=b.items.filter(d=>d.hp_type===tp).length;if(!c)return;
+        const w=c/total*w0;
+        g+=`<rect x="${x.toFixed(1)}" y="${(mid-barH/2).toFixed(1)}" width="${Math.max(w,0).toFixed(1)}" height="${barH}" fill="${AN_COLORS[tp]}" opacity="${sel?1:.9}"><title>${c} ${tp}</title></rect>`;
+        x+=w;});
+      const known=b.items.filter(d=>AN_TYPE_ORDER.includes(d.hp_type)).length;
+      if(known<total){const w=(total-known)/total*w0;g+=`<rect x="${x.toFixed(1)}" y="${(mid-barH/2).toFixed(1)}" width="${w.toFixed(1)}" height="${barH}" fill="#9aa6a5"/>`;}
+      g+=`<text x="${(barX+w0+6).toFixed(1)}" y="${(mid+4).toFixed(1)}" font-size="12" font-weight="700" fill="#26403e">${total}</text>`;
+    }else{
+      g+=`<text x="${barX}" y="${mid+4}" font-size="11" fill="#aeb8b7">none</text>`;
+    }
+    g+=`</g>`;
   });
+  let html='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block">'+g+'</svg>';
+  if(anRangeSel!=null&&bands[anRangeSel]&&bands[anRangeSel].items.length){
+    const b=bands[anRangeSel];
+    const items=[...b.items].sort((p,q)=>p.op_temp_min-q.op_temp_min||(p.manufacturer||'').localeCompare(q.manufacturer||''));
+    const bc=tp=>tp==='ASHP'?'badge-ashp':tp==='WSHP'?'badge-wshp':tp==='GSHP'?'badge-gshp':'badge-ref';
+    const rows=items.map(d=>`<div onclick="openModal(${d.id})" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border);cursor:pointer;font-size:13px" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='transparent'"><span style="flex:1;min-width:0"><span style="font-weight:600;color:var(--text)">${d.manufacturer}</span> <span style="color:var(--text2)">${d.model}</span></span><span class="badge ${bc(d.hp_type)}" style="flex-shrink:0">${d.hp_type||'?'}</span><span style="flex-shrink:0;color:var(--text2);font-variant-numeric:tabular-nums;width:104px;text-align:right">${d.op_temp_min}\u00b0C to ${d.op_temp_max}\u00b0C</span><span style="flex-shrink:0;color:var(--text3);width:60px;text-align:right">${d.cap_max!=null?d.cap_max+' kW':''}</span></div>`).join('');
+    html+=`<div style="margin-top:10px;border:1px solid var(--border);border-radius:12px;overflow:hidden"><div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface2);border-bottom:1px solid var(--border)"><strong style="font-size:13px;color:var(--text)">${b.label} \u00b7 ${items.length} heat pump${items.length!==1?'s':''}</strong><span onclick="anRangeToggle(${anRangeSel})" style="cursor:pointer;color:var(--text3);font-size:20px;line-height:1">&times;</span></div><div style="max-height:340px;overflow-y:auto">${rows}</div></div>`;
+  }
+  el.innerHTML=html;
 }
 
 function openModal(id){
@@ -4206,6 +4225,13 @@ renderFaqPage();
 renderLinksPage();
 renderContactPage();
 renderFooter();
+// Hash routing: lets links from the static SEO pages deep-link into in-app sections (e.g. /#compare)
+(function(){
+  var valid=['browse','compare','analytics','knowledge','faq','links','refrigerants','guide','contact','terms'];
+  function route(){var h=(location.hash||'').replace(/^#/,'');if(valid.indexOf(h)>-1)showPage(h);}
+  window.addEventListener('hashchange',route);
+  route();
+})();
 // Generate FAQPage JSON-LD dynamically from FAQ content
 function buildFaqJsonLd(){
   var strip=function(html){var tmp=document.createElement('div');tmp.innerHTML=html;return (tmp.textContent||tmp.innerText||'').replace(/\s+/g,' ').trim();};
