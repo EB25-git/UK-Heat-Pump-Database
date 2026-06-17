@@ -72,7 +72,12 @@ def spec_rows(p):
     if p.get("cop") is not None:
         cc = f" at {esc(p['cop_cond'])}" if p.get("cop_cond") else ""
         add("COP", f"{num(p['cop'])}{cc}")
-    if p.get("scop") is not None: add("SCOP", num(p["scop"]))
+    if p.get("scop") is not None:
+        sc = p.get("scop_cond")
+        if sc and sc != "not stated":
+            add("SCOP", f"{num(p['scop'])} at {esc(sc)}")
+        else:
+            add("SCOP", f"{num(p['scop'])} (conditions not stated)")
     if p.get("eer")  is not None: add("EER (cooling)", num(p["eer"]))
     add("Operating range (air)", range_str(p.get("op_temp_min"), p.get("op_temp_max"), "\u00b0C", " to "))
     add("Flow temperature", range_str(p.get("flow_temp_min"), p.get("flow_temp_max"), "\u00b0C"))
