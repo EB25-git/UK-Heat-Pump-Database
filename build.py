@@ -154,7 +154,7 @@ footer.site a{color:#7a8a88}
 """
 
 def burger_menu(active=None):
-    knowledge_active = active in ("faq", "links", "refrigerants", "knowledge")
+    knowledge_active = active in ("faq", "links", "refrigerants", "cop-scop", "flow-temp", "knowledge")
     def it(label, href, key=None, sub=False, extra=""):
         cls = "burger-item" + (" burger-subitem" if sub else "")
         if key == active or (key == "knowledge" and knowledge_active):
@@ -169,6 +169,8 @@ def burger_menu(active=None):
         + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
+        + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
+        + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
         + it("Site Guide", f"{BASE_URL}/#guide", "guide")
         + it("Contact", f"{BASE_URL}/#contact", "contact")
         + it("Terms of Use", f"{BASE_URL}/#terms", "terms",
@@ -212,7 +214,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 </div></main>
 <footer class="site"><div class="wrap">
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
-<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a></p>
+<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
 </div></footer>
 <script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}</script>
 </body>
@@ -436,20 +438,17 @@ def write(path, content):
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
 
-def render_knowledge_refrigerants():
-    """Generate /knowledge/refrigerants/ by extracting the Refrigerant Guide
-    content from the app (index.html), so the two never drift apart.
-    Returns HTML, or None if the section can't be found."""
+def extract_app_section(start_id, end_marker):
+    """Pull a knowledge page's inner HTML out of the app (index.html) so the
+    static SEO page and the in-app page never drift apart."""
     app_path = os.path.join(ROOT, "index.html")
     if not os.path.exists(app_path):
         return None
     app = open(app_path, encoding="utf-8").read()
-    start = app.find('<div class="page" id="page-refrigerants">')
+    start = app.find(f'<div class="page" id="{start_id}">')
     if start == -1:
         return None
-    end = app.find('<!-- ═══ FAQ ═══ -->', start)
-    if end == -1:
-        end = app.find('id="page-faq"', start)
+    end = app.find(end_marker, start)
     block = app[start:end if end != -1 else len(app)]
     marker = '<div style="padding:8px 0 4px">'
     if marker not in block:
@@ -463,19 +462,43 @@ def render_knowledge_refrigerants():
     inner = re.sub(r'^\s*<nav\b.*?</nav>', '', inner, count=1, flags=re.S)   # drop in-app breadcrumb
     inner = re.sub(r'\s*onclick="showPage\([^)]*\)[^"]*"', '', inner)        # neutralise app handlers
     inner = inner.replace('href="#"', f'href="{BASE_URL}/"')
-    inner = inner.strip()
+    return inner.strip()
 
-    url = f"{BASE_URL}/knowledge/refrigerants/"
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Knowledge", None), ("Refrigerant Guide", None)]
-    title = f"Heat Pump Refrigerants Compared \u2014 GWP, Safety & F-Gas Rules | {SITE_NAME}"
-    desc = ("Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the "
-            "EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.")
+# Knowledge guides that exist as app sections and are mirrored to static SEO pages.
+# end_marker is the HTML comment that opens the NEXT section in index.html.
+KNOWLEDGE_PAGES = [
+    {"page_id": "page-refrigerants", "end_marker": "<!-- ═══ COP & SCOP GUIDE ═══ -->",
+     "dir": "refrigerants", "active": "refrigerants", "crumb": "Refrigerant Guide",
+     "headline": "Heat Pump Refrigerants Compared",
+     "title": f"Heat Pump Refrigerants Compared \u2014 GWP, Safety & F-Gas Rules | {SITE_NAME}",
+     "desc": ("Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the "
+              "EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.")},
+    {"page_id": "page-cop-scop", "end_marker": "<!-- ═══ FLOW TEMPERATURE GUIDE ═══ -->",
+     "dir": "cop-scop", "active": "cop-scop", "crumb": "Understanding COP & SCOP",
+     "headline": "Understanding COP & SCOP",
+     "title": f"Understanding Heat Pump COP & SCOP \u2014 Test Conditions Explained | {SITE_NAME}",
+     "desc": ("What COP and SCOP mean for heat pumps, why test conditions like A7/W35 and W35 vs W55 "
+              "matter, how seasonal SCOP differs from COP, and how to compare efficiency figures fairly.")},
+    {"page_id": "page-flow-temp", "end_marker": "<!-- ═══ FAQ ═══ -->",
+     "dir": "flow-temperature", "active": "flow-temp", "crumb": "Flow Temperature & Efficiency",
+     "headline": "Flow Temperature & Efficiency",
+     "title": f"Heat Pump Flow Temperature & Efficiency Explained | {SITE_NAME}",
+     "desc": ("Why a lower flow temperature makes a heat pump more efficient, the trade-off with radiator "
+              "and underfloor sizing, weather compensation, and how flow temperature relates to COP and SCOP.")},
+]
+
+def render_knowledge_page(cfg):
+    inner = extract_app_section(cfg["page_id"], cfg["end_marker"])
+    if not inner:
+        return None
+    url = f'{BASE_URL}/knowledge/{cfg["dir"]}/'
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Knowledge", None), (cfg["crumb"], None)]
     article_ld = {"@context": "https://schema.org", "@type": "Article",
-                  "headline": "Heat Pump Refrigerants Compared", "description": desc, "url": url,
+                  "headline": cfg["headline"], "description": cfg["desc"], "url": url,
                   "publisher": {"@type": "Organization", "name": SITE_NAME},
                   "mainEntityOfPage": url}
-    return page(title, desc, url, crumbs(crumb_items) + inner,
-                [article_ld, breadcrumb_jsonld(crumb_items)], og_type="article", active="refrigerants")
+    return page(cfg["title"], cfg["desc"], url, crumbs(crumb_items) + inner,
+                [article_ld, breadcrumb_jsonld(crumb_items)], og_type="article", active=cfg["active"])
 
 def main():
     with open(DATA, encoding="utf-8") as f:
@@ -554,11 +577,14 @@ def main():
               render_type(slug, heading, desc, ps))
         urls.append(f"{BASE_URL}/types/{slug}/")
 
-    # knowledge: refrigerant guide (static SEO page generated from the app content)
-    kg = render_knowledge_refrigerants()
-    if kg:
-        write(os.path.join(ROOT, "knowledge", "refrigerants", "index.html"), kg)
-        urls.append(f"{BASE_URL}/knowledge/refrigerants/")
+    # knowledge guides (static SEO pages generated from the app content)
+    kg_count = 0
+    for cfg in KNOWLEDGE_PAGES:
+        html_ = render_knowledge_page(cfg)
+        if html_:
+            write(os.path.join(ROOT, "knowledge", cfg["dir"], "index.html"), html_)
+            urls.append(f'{BASE_URL}/knowledge/{cfg["dir"]}/')
+            kg_count += 1
 
     # sitemap.xml
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -573,7 +599,7 @@ def main():
           f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n")
 
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
-          f"{len(type_pages)} category pages{', 1 knowledge page' if kg else ''}.")
+          f"{len(type_pages)} category pages, {kg_count} knowledge pages.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
 
 if __name__ == "__main__":

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Understanding Heat Pump COP &amp; SCOP — Test Conditions Explained | Heat Pump Database</title>
+<meta name="description" content="What COP and SCOP mean for heat pumps, why test conditions like A7/W35 and W35 vs W55 matter, how seasonal SCOP differs from COP, and how to compare efficiency figures fairly.">
+<link rel="canonical" href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding Heat Pump COP &amp; SCOP — Test Conditions Explained | Heat Pump Database">
+<meta property="og:description" content="What COP and SCOP mean for heat pumps, why test conditions like A7/W35 and W35 vs W55 matter, how seasonal SCOP differs from COP, and how to compare efficiency figures fairly.">
+<meta property="og:url" content="https://www.heatpumpdatabase.com/knowledge/cop-scop/">
+<meta property="og:site_name" content="Heat Pump Database">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
+header.site{background:#0F2B2B;height:60px;display:flex;align-items:center}
+header.site .wrap{display:flex;align-items:center;width:100%}
+header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
+header.site .brand:hover{text-decoration:none}
+.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
+.burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto}
+.burger-menu.open{transform:translateX(0)}
+.burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%;display:block;text-decoration:none;box-sizing:border-box}
+.burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
+.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-subitem{padding-left:50px;font-size:14px;position:relative}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}
+.burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
+.burger-overlay.open{opacity:1;pointer-events:auto}
+@media(max-width:560px){.burger-menu{width:100%}}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+main{padding:28px 0 56px}
+nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
+nav.crumbs a{color:#5b6b6b}nav.crumbs span{color:#9aa}
+h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.sub{color:#5b6b6b;font-size:15px;margin-bottom:24px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
+.badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden}
+table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #eef2f1;font-size:14.5px;vertical-align:top}
+table.spec th{width:42%;color:#42514f;font-weight:500;background:#fafcfb}
+table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
+.notes{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#34433f}
+.notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
+h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
+.card .s{color:#5b6b6b;font-size:12.5px;margin-top:4px}
+table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
+table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
+table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+table.list tr:last-child td{border-bottom:none}
+table.list tr:hover td{background:#fafdfc}
+.cta{display:inline-block;margin-top:8px;background:#0F2B2B;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
+.cta:hover{background:#16413f;text-decoration:none}
+footer.site{border-top:1px solid #e2e8e7;padding:26px 0;color:#7a8a88;font-size:13px;margin-top:30px}
+footer.site a{color:#7a8a88}
+.disclaimer{background:#fff7ed;border:1px solid #fbe3c4;color:#92651f;border-radius:10px;padding:12px 16px;font-size:13px;margin:20px 0}
+@media(max-width:560px){table.spec th{width:48%}h1{font-size:23px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Understanding COP & SCOP", "description": "What COP and SCOP mean for heat pumps, why test conditions like A7/W35 and W35 vs W55 matter, how seasonal SCOP differs from COP, and how to compare efficiency figures fairly.", "url": "https://www.heatpumpdatabase.com/knowledge/cop-scop/", "publisher": {"@type": "Organization", "name": "Heat Pump Database"}, "mainEntityOfPage": "https://www.heatpumpdatabase.com/knowledge/cop-scop/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.heatpumpdatabase.com/"}, {"@type": "ListItem", "position": 2, "name": "Knowledge"}, {"@type": "ListItem", "position": 3, "name": "Understanding COP & SCOP"}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="https://www.heatpumpdatabase.com/">
+<svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
+<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a>
+<button class="burger" id="bbtn" aria-label="Menu" onclick="tB()"><span></span><span></span><span></span></button>
+<nav class="burger-menu" id="bmenu"><a class="burger-item" href="https://www.heatpumpdatabase.com/">Browse</a><a class="burger-item" href="https://www.heatpumpdatabase.com/manufacturers/">Manufacturers</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#compare">Compare</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#analytics">Visualise</a><a class="burger-item active" href="https://www.heatpumpdatabase.com/#knowledge">Knowledge</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#faq">FAQ</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#links">Useful Links</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant Guide</a><a class="burger-item burger-subitem active" href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">Understanding COP &amp; SCOP</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow Temperature &amp; Efficiency</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#guide">Site Guide</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#contact">Contact</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#terms" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</a></nav>
+</div></header>
+<div class="burger-overlay" id="bov" onclick="cB()"></div>
+<main><div class="wrap">
+<nav class="crumbs"><a href="https://www.heatpumpdatabase.com/">Home</a> &rsaquo; <span>Knowledge</span> &rsaquo; <span>Understanding COP &amp; SCOP</span></nav><h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Understanding COP &amp; SCOP</h1>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">COP and SCOP both describe how efficiently a heat pump turns electricity into heat — but they answer different questions, and neither figure means anything without the conditions it was measured at. This guide explains what each one is, how to read the test conditions shown throughout this database, and how to compare models fairly.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">What COP measures</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px"><strong>COP (Coefficient of Performance)</strong> is the heat delivered divided by the electricity consumed at one specific operating point. A COP of 4 means the unit produces 4&nbsp;kW of heat for every 1&nbsp;kW of electricity it draws — in other words, 400% efficient. It is an instantaneous snapshot, taken with the source and output temperatures held fixed.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Why the conditions are everything</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">A COP only has meaning alongside the two temperatures it was measured at, written as <em>source/output</em>. For an air source heat pump, <strong>A7/W35</strong> means 7°C outdoor air going in and 35°C water leaving to the heating system. Change either temperature and the COP changes — often dramatically. The same machine might post a COP of 5.0 at A7/W35 and 2.7 at A7/W55; both are true.</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:520px;margin:0 0 16px">
+        <thead><tr style="background:#fafcfb">
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Notation</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">What it means</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Used for</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>A7/W35</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">7°C air in, 35°C water out</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Standard headline rating for air source (EN&nbsp;14511)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>A2/W35</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Colder air, same 35°C flow</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Performance as it gets colder outside</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>A7/W55</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">7°C air, hotter 55°C flow</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Higher flow-temperature operation</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>B0/W35</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">0°C brine in, 35°C water out</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Ground source heat pumps</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>W10/W35</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">10°C source water in, 35°C out</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Water source heat pumps</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">How COP changes with conditions</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Two levers move the number: a <strong>colder source</strong> lowers COP (the unit has to work harder to gather heat), and a <strong>higher flow temperature</strong> lowers it (it has to lift the heat further). The figures below are illustrative ranges for a typical modern air source unit, not a specification — they show the <em>shape</em> of the effect.</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:520px;margin:0 0 16px">
+        <thead><tr style="background:#fafcfb"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Condition</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Typical COP (illustrative)</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A7/W35</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~4.5 – 5.0</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2/W35</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~3.5 – 4.0</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A-7/W35</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~2.5 – 3.0</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A7/W55</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~2.7 – 3.2</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The flow-temperature effect is the one you have most control over once a system is installed — see the <a href="/knowledge/flow-temperature/" style="color:#3ECCC0;font-weight:600;text-decoration:none">Flow temperature &amp; efficiency</a> guide.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">What SCOP measures</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px"><strong>SCOP (Seasonal Coefficient of Performance)</strong> averages efficiency across a whole heating season. The EN&nbsp;14825 standard, often used by manufacturers, sets very specific test procedures for estimating SCOP. Rather than a single operating point, it weights many points across a full year of outdoor temperatures and part-load conditions for a reference climate. That makes it a far better predictor of real annual running cost than any single COP.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">SCOP carries conditions too. The two that matter are the <strong>application flow temperature</strong> and the <strong>climate</strong>. A complete figure therefore reads something like "SCOP&nbsp;4.6 (W35, average climate)". The familiar <strong>ErP energy label</strong> (A+++ to G) is derived directly from SCOP.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">What the EN&nbsp;14825 SCOP test assumes</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Because SCOP is a calculation across a season rather than a single measurement, EN&nbsp;14825 fixes a detailed set of assumptions so every manufacturer's figure is built the same way. Knowing them explains both how the number is reached and why a lab SCOP won't exactly match your own bills.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px"><strong>A reference climate, not your weather.</strong> Efficiency is weighted across a standard heating season for one of three defined climates. The <strong>Average</strong> profile is mandatory and is the one behind the ErP energy label; Warmer and Colder are optional. Each sets a reference outdoor <em>design temperature</em> (the coldest design point) and a total number of heating hours.</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:520px;margin:0 0 16px">
+        <thead><tr style="background:#fafcfb">
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Reference climate</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Design temperature</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Heating hours (approx.)</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Role</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>Average</strong> (Strasbourg)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">&minus;10°C</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~4,910</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Mandatory; basis of the ErP label</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>Warmer</strong> (Athens)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">+2°C</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~3,590</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Optional</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>Colder</strong> (Helsinki)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">&minus;22°C</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~6,446</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Optional</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Within the chosen climate, the rest of the framework is:</p>
+      <ul style="margin:0 0 16px;padding-left:20px;color:#5b6b6b;font-size:14.5px;line-height:1.75;max-width:680px">
+        <li><strong>A spread of temperatures, not one.</strong> The season is divided into temperature "bins", each with a number of hours and a matching heating demand that rises as it gets colder. COP is tested at part-load points of <strong>+12, +7, +2 and &minus;7°C</strong> plus the design temperature (&minus;10°C for Average; a &minus;15°C point is added for Colder), then averaged by how many hours fall in each bin.</li>
+        <li><strong>Mostly part-load running.</strong> Most of the season is mild, so the unit spends most hours well below full output. The method therefore rewards good part-load and modulating efficiency — where inverter-driven units do well.</li>
+        <li><strong>A backup heater below the bivalent point.</strong> Below a declared outdoor temperature the heat pump can't meet demand alone, and a supplementary (usually electric) heater covers the shortfall at lower efficiency — and that penalty is counted in.</li>
+        <li><strong>A defined flow-temperature application.</strong> The test is run for a low-temperature (<strong>35°C</strong>) and/or medium-temperature (<strong>55°C</strong>) application — which is why a SCOP only means something alongside its W35 or W55 basis.</li>
+        <li><strong>Auxiliary electricity counts.</strong> The headline SCOP also includes power drawn in thermostat-off, standby, off and crankcase-heater modes. You may also see <em>SCOP<sub>on</sub></em> (active mode only) and <em>SCOP<sub>net</sub></em> (excluding auxiliary modes and any backup heater).</li>
+      </ul>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">What it deliberately leaves out is your building. EN&nbsp;14825 assumes a standardised climate and load, not your home's heat loss, controls or installation quality. A figure measured in a real installation is called the <strong>Seasonal Performance Factor (SPF)</strong>, and it can sit either side of the rated SCOP.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">COP or SCOP — which should you use?</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">COP is a snapshot at one condition; SCOP looks at the whole year. To judge how a unit will perform — and cost to run — over a year, <strong>SCOP at the flow temperature you intend to use</strong> is the more useful number. COP is best for understanding behaviour at a particular point, such as a cold snap (A-7/W35) or heating domestic hot water at a high flow temperature.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Comparing fairly</h2>
+      <ul style="margin:0 0 16px;padding-left:20px;color:#5b6b6b;font-size:14.5px;line-height:1.75;max-width:680px">
+        <li><strong>Match the conditions.</strong> Compare A7/W35 with A7/W35, or SCOP W35 with SCOP W35 — never across different tests.</li>
+        <li><strong>Don't compare across source types.</strong> A ground- or water-source COP (B0/W35, W10/W35) looks higher than an air-source one because the source is warmer and steadier — it isn't directly comparable.</li>
+        <li><strong>Be wary of an easy headline.</strong> A high COP quoted at an unusually mild condition flatters the unit.</li>
+        <li><strong>Read the spread.</strong> A strong A7/W35 figure with a much weaker W55 one tells you the unit is happiest at low flow temperatures.</li>
+        <li><strong>"Not stated" means caution.</strong> If the test basis isn't recorded, you can't reliably compare it.</li>
+      </ul>
+
+      <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:26px 0 8px">
+        <div style="font-size:17px;font-weight:600;margin-bottom:10px">Using the figures in this database</div>
+        <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
+          <li>Every COP and SCOP here is shown with its test condition (for example <strong style="color:#3ECCC0">A7/W35</strong>, or <strong style="color:#3ECCC0">W35</strong> for a SCOP).</li>
+          <li>Where the basis couldn't be verified from the source data, it is marked <strong style="color:#3ECCC0">"not stated"</strong> rather than assumed.</li>
+          <li>Compare units at matching conditions, and prefer SCOP at the flow temperature you actually plan to run.</li>
+          <li>The lower the flow temperature you need, the higher these numbers climb.</li>
+        </ul>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed June 2026. This guide is general information to help interpret the data, not professional or design advice; always confirm performance figures against the manufacturer's datasheet.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<p>Heat Pump Database &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
+<p style="margin-top:6px"><a href="https://www.heatpumpdatabase.com/">Search the full database</a> &middot; <a href="https://www.heatpumpdatabase.com/manufacturers/">All manufacturers</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow temperature</a></p>
+</div></footer>
+<script>function tB(){['bbtn','bmenu','bov'].forEach(function(i){document.getElementById(i).classList.toggle('open')})}function cB(){['bbtn','bmenu','bov'].forEach(function(i){document.getElementById(i).classList.remove('open')})}</script>
+</body>
+</html>
