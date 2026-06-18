@@ -1359,6 +1359,30 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 // ═══════════════ SEED DATA ═══════════════
 // cop_cond: the exact test conditions the quoted COP applies to
 // hp_type: ASHP | WSHP | GSHP
+// UK suppliers / distributors per manufacturer (brand-level). Strict JSON so build.py can parse it.
+// Each: {"direct": <url|null>, "suppliers": [{"name","url"}, ... up to 5]}
+const MFR_SUPPLIERS = {
+"Baxi": {"direct":null,"suppliers":[{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]},
+"Bosch": {"direct":null,"suppliers":[{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"},{"name":"BHL","url":"https://bhl.co.uk/heating-plumbing/renewable.html"}]},
+"CTC": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/product-category/heat-pumps/air-source-heat-pumps/ctc/"}]},
+"Daikin": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"},{"name":"Space Air","url":"https://www.spaceair.co.uk/"},{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]},
+"Ebac": {"direct":null,"suppliers":[{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"}]},
+"Fenagy": {"direct":null,"suppliers":[{"name":"Pure Renewables","url":"https://purerenewables.com/commercial-renewables-solutions/fenagy/"}]},
+"Grant": {"direct":null,"suppliers":[{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"},{"name":"BHL","url":"https://bhl.co.uk/heating-plumbing/renewable.html"}]},
+"Hitachi": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"},{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"}]},
+"Ideal Heating": {"direct":null,"suppliers":[{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"}]},
+"Kensa": {"direct":"https://www.kensaheatpumps.com/","suppliers":[]},
+"LG": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"}]},
+"Midea": {"direct":null,"suppliers":[{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]},
+"Mitsubishi Electric": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"},{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"},{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"},{"name":"BHL","url":"https://bhl.co.uk/heating-plumbing/renewable.html"}]},
+"Octopus Energy": {"direct":"https://octopus.energy/","suppliers":[]},
+"Panasonic": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"},{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"}]},
+"Samsung": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"},{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"},{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]},
+"Solid Energy": {"direct":null,"suppliers":[{"name":"Pure Renewables","url":"https://purerenewables.com/commercial-renewables-solutions/solid-energy/"}]},
+"Thermonova": {"direct":null,"suppliers":[{"name":"Pure Renewables","url":"https://purerenewables.com/commercial-renewables-solutions/thermonova/"}]},
+"Vaillant": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"},{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"},{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]},
+"Viessmann": {"direct":null,"suppliers":[{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"}]}
+};
 const SEED = [
   {id:1532,manufacturer:'LG',model:'Therma V R32 Monobloc S 5 kW (HM051MR.U44)',product_code:'HM051MR.U44',hp_type:'ASHP',type:'Residential',refrigerant:'R32',source:'LG THERMA V R32 Monobloc S Technical Data Table (2024, EU)',product_url:'https://www.lg.com/uk/air-to-water-heat-pumps/monobloc/',date_added:'2026-06',mode:'Heating & cooling',op_temp_min:-25,op_temp_max:35,flow_temp_min:15,flow_temp_max:65,cap_min:null,cap_max:5.5,peak_elec:1.2,cop:4.7,cop_cond:'A7/W35',scop:4.46,scop_cond:'not stated',eer:4.7,height:834,width:1239,depth:330,weight:89.5,noise:57,noise_ref:'LwA rated',description:'LG THERMA V R32 Monobloc S air-to-water heat pump, 5 kW, 1Ø.',notes:'THERMA V R32 Monobloc S (2nd-gen, Silence Supreme). 1Ø supply. COP 4.7 at A7/W35; 3.6 at A2/W35; 2.7 at A7/W55. SCOP 4.46 (W35) / 3.2 (W55). Cooling EER 4.7 at A35/W18. ErP A+++ (W35) / A++ (W55). DHW to 80C with booster heater. R32 charge 1400 g. Sound power 57 dB(A) rated. Quiet Mark certified (5-12 kW).'},
   {id:1533,manufacturer:'LG',model:'Therma V R32 Monobloc S 7 kW (HM071MR.U44)',product_code:'HM071MR.U44',hp_type:'ASHP',type:'Residential',refrigerant:'R32',source:'LG THERMA V R32 Monobloc S Technical Data Table (2024, EU)',product_url:'https://www.lg.com/uk/air-to-water-heat-pumps/monobloc/',date_added:'2026-06',mode:'Heating & cooling',op_temp_min:-25,op_temp_max:35,flow_temp_min:15,flow_temp_max:65,cap_min:null,cap_max:7,peak_elec:1.5,cop:4.7,cop_cond:'A7/W35',scop:4.48,scop_cond:'not stated',eer:4.7,height:834,width:1239,depth:330,weight:89.5,noise:57,noise_ref:'LwA rated',description:'LG THERMA V R32 Monobloc S air-to-water heat pump, 7 kW, 1Ø.',notes:'THERMA V R32 Monobloc S (2nd-gen, Silence Supreme). 1Ø supply. COP 4.7 at A7/W35; 3.55 at A2/W35; 2.7 at A7/W55. SCOP 4.48 (W35) / 3.2 (W55). Cooling EER 4.7 at A35/W18. ErP A+++ (W35) / A++ (W55). DHW to 80C with booster heater. R32 charge 1400 g. Sound power 57 dB(A) rated. Quiet Mark certified (5-12 kW).'},
@@ -3483,6 +3507,18 @@ function anRangeChart(elId,data){
   el.innerHTML=html;
 }
 
+function suppliersHTML(d){
+  const s=(typeof MFR_SUPPLIERS!=='undefined')?MFR_SUPPLIERS[d.manufacturer]:null;
+  if(!s) return '';
+  let rows='';
+  if(s.direct){
+    rows+=`<div class="spec-row"><div class="spec-row-l">Availability</div><div class="spec-row-v">Direct sales from manufacturer: <a href="${s.direct}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${s.direct}')">${d.manufacturer}</a></div></div>`;
+  }
+  (s.suppliers||[]).slice(0,5).forEach(sup=>{
+    rows+=`<div class="spec-row"><div class="spec-row-l">UK Supplier</div><div class="spec-row-v"><a href="${sup.url}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${sup.url}')">${sup.name}</a></div></div>`;
+  });
+  return rows?`<div class="spec-section"><h4>Where to buy (UK)</h4>${rows}</div>`:'';
+}
 function openModal(id){
   const d=db.find(x=>x.id===id);if(!d)return;
   document.getElementById('modal-ttl').textContent=d.model;
@@ -3527,6 +3563,7 @@ function openModal(id){
       ${row('H × W × D',d.height&&d.width&&d.depth?`${d.height}×${d.width}×${d.depth} mm`:null)}
       ${row('Weight',d.weight!=null?d.weight+' kg':null)}
     </div>
+    ${suppliersHTML(d)}
     ${d.notes?`<div class="spec-section"><h4>Notes</h4><p style="font-size:13px;color:var(--text2);line-height:1.65">${d.notes}</p></div>`:''}
     ${getProductUrl(d)?`<div style="margin-top:.5rem;padding:12px 14px;background:var(--info-light);border:1px solid #B5D4F4;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center">
       <div style="font-size:13px"><span style="color:#0C447C;font-weight:500">View on ${d.manufacturer}</span><br><span style="font-size:11px;color:#5A574F;font-family:'DM Mono',monospace;word-break:break-all">${getProductUrl(d)}</span></div>

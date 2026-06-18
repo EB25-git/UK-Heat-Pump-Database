@@ -243,6 +243,41 @@ def product_card(p):
             f'<div class="m">{esc(p["model"])}</div>'
             f'<div class="s">{esc(" \u00b7 ".join(bits))}</div></a>')
 
+def load_suppliers():
+    """Parse the MFR_SUPPLIERS map (strict JSON) out of the app's index.html."""
+    p = os.path.join(ROOT, "index.html")
+    if not os.path.exists(p):
+        return {}
+    t = open(p, encoding="utf-8").read()
+    i = t.find("const MFR_SUPPLIERS = ")
+    if i == -1:
+        return {}
+    start = t.find("{", i)
+    end = t.find("\n};", start)
+    if end == -1:
+        return {}
+    try:
+        return json.loads(t[start:end + 2])
+    except Exception:
+        return {}
+
+SUPPLIERS = load_suppliers()
+
+def render_suppliers(p):
+    s = SUPPLIERS.get(p.get("manufacturer"))
+    if not s:
+        return ""
+    rows = []
+    if s.get("direct"):
+        rows.append(f'<tr><th>Availability</th><td>Direct sales from manufacturer: '
+                    f'<a href="{esc(s["direct"])}" rel="nofollow" target="_blank">{esc(p["manufacturer"])}</a></td></tr>')
+    for sup in (s.get("suppliers") or [])[:5]:
+        rows.append(f'<tr><th>UK Supplier</th><td>'
+                    f'<a href="{esc(sup["url"])}" rel="nofollow" target="_blank">{esc(sup["name"])}</a></td></tr>')
+    if not rows:
+        return ""
+    return '<h2 class="sec">Where to buy (UK)</h2><table class="spec">' + "".join(rows) + "</table>"
+
 def render_product(p, by_mfr, by_type):
     slug = p["_slug"]
     url  = f"{BASE_URL}/products/{slug}/"
@@ -311,7 +346,7 @@ def render_product(p, by_mfr, by_type):
             f'<p class="sub">Specifications and technical data</p>'
             f'<div class="badges">{badges}</div>'
             f'<table class="spec">{rows}</table>'
-            f'{mfr_link}{notes_html}'
+            f'{mfr_link}{notes_html}{render_suppliers(p)}'
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{rel}'
