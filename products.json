@@ -17973,7 +17973,7 @@
   "cop": 5.15,
   "cop_cond": "A7/W35",
   "scop": 5.07,
-  "scop_cond": "W55",
+  "scop_cond": "W35",
   "eer": null,
   "height": 717,
   "width": 1299,
@@ -17982,7 +17982,8 @@
   "noise": 56,
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
-  "notes": "HP290 4.5kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 4.5 kW, power input 0.87 kW, COP 5.15. A7/W55 capacity 4.6 kW, power input 1.44 kW, COP 3.2. SCOP 35/55°C 5.07/3.79; ηs 35/55°C 199/148; ErP 35/55°C A+++/A++. R290 charge 0.7 kg. Heating flow/return connection 1\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022."
+  "notes": "HP290 4.5kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 4.5 kW, power input 0.87 kW, COP 5.15. A7/W55 capacity 4.6 kW, power input 1.44 kW, COP 3.2. SCOP 35/55°C 5.07/3.79; ηs 35/55°C 199/148; ErP 35/55°C A+++/A++. R290 charge 0.7 kg. Heating flow/return connection 1\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
+  "verified": "Eurovent"
  },
  {
   "id": 615,
@@ -18006,7 +18007,7 @@
   "cop": 4.9,
   "cop_cond": "A7/W35",
   "scop": 4.89,
-  "scop_cond": "W55",
+  "scop_cond": "W35",
   "eer": null,
   "height": 717,
   "width": 1299,
@@ -18015,7 +18016,8 @@
   "noise": 58,
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
-  "notes": "HP290 6kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 6.2 kW, power input 1.27 kW, COP 4.9. A7/W55 capacity 6.2 kW, power input 2.0 kW, COP 3.1. SCOP 35/55°C 4.89/3.82; ηs 35/55°C 192/149; ErP 35/55°C A+++/A++. R290 charge 0.7 kg. Heating flow/return connection 1\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022."
+  "notes": "HP290 6kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 6.2 kW, power input 1.27 kW, COP 4.9. A7/W55 capacity 6.2 kW, power input 2.0 kW, COP 3.1. SCOP 35/55°C 4.89/3.82; ηs 35/55°C 192/149; ErP 35/55°C A+++/A++. R290 charge 0.7 kg. Heating flow/return connection 1\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
+  "verified": "Eurovent"
  },
  {
   "id": 616,
@@ -18039,7 +18041,7 @@
   "cop": 4.7,
   "cop_cond": "A7/W35",
   "scop": 5.07,
-  "scop_cond": "W55",
+  "scop_cond": "W35",
   "eer": null,
   "height": 865,
   "width": 1385,
@@ -18048,7 +18050,8 @@
   "noise": 61,
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
-  "notes": "HP290 8kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 10.0 kW, power input 2.13 kW, COP 4.7. A7/W55 capacity 9.5 kW, power input 3.12 kW, COP 3.05. SCOP 35/55°C 5.07/3.82; ηs 35/55°C 199/149; ErP 35/55°C A+++/A++. R290 charge 1.1 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022."
+  "notes": "HP290 8kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 10.0 kW, power input 2.13 kW, COP 4.7. A7/W55 capacity 9.5 kW, power input 3.12 kW, COP 3.05. SCOP 35/55°C 5.07/3.82; ηs 35/55°C 199/149; ErP 35/55°C A+++/A++. R290 charge 1.1 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
+  "verified": "Eurovent"
  },
  {
   "id": 617,
@@ -18072,7 +18075,7 @@
   "cop": 4.8,
   "cop_cond": "A7/W35",
   "scop": 4.67,
-  "scop_cond": "W55",
+  "scop_cond": "W35",
   "eer": null,
   "height": 865,
   "width": 1385,
@@ -18081,7 +18084,8 @@
   "noise": 65,
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
-  "notes": "HP290 10kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 12.0 kW, power input 2.5 kW, COP 4.8. A7/W55 capacity 12.0 kW, power input 3.87 kW, COP 3.1. SCOP 35/55°C 4.67/3.62; ηs 35/55°C 183/141; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022."
+  "notes": "HP290 10kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 12.0 kW, power input 2.5 kW, COP 4.8. A7/W55 capacity 12.0 kW, power input 3.87 kW, COP 3.1. SCOP 35/55°C 4.67/3.62; ηs 35/55°C 183/141; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
+  "verified": "Eurovent"
  },
  {
   "id": 618,
@@ -18105,7 +18109,7 @@
   "cop": 4.5,
   "cop_cond": "A7/W35",
   "scop": 4.63,
-  "scop_cond": "W55",
+  "scop_cond": "W35",
   "eer": null,
   "height": 865,
   "width": 1385,
@@ -18114,7 +18118,8 @@
   "noise": 65,
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
-  "notes": "HP290 12kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 14.0 kW, power input 3.11 kW, COP 4.5. A7/W55 capacity 14.0 kW, power input 4.67 kW, COP 3.0. SCOP 35/55°C 4.63/3.61; ηs 35/55°C 182/141; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022."
+  "notes": "HP290 12kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 14.0 kW, power input 3.11 kW, COP 4.5. A7/W55 capacity 14.0 kW, power input 4.67 kW, COP 3.0. SCOP 35/55°C 4.63/3.61; ηs 35/55°C 182/141; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
+  "verified": "Eurovent"
  },
  {
   "id": 619,
@@ -18138,7 +18143,7 @@
   "cop": 4.4,
   "cop_cond": "A7/W35",
   "scop": 4.59,
-  "scop_cond": "W55",
+  "scop_cond": "W35",
   "eer": null,
   "height": 865,
   "width": 1385,
@@ -18147,7 +18152,8 @@
   "noise": 69,
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
-  "notes": "HP290 14kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 15.0 kW, power input 3.41 kW, COP 4.4. A7/W55 capacity 15.0 kW, power input 5.26 kW, COP 2.85. SCOP 35/55°C 4.59/3.57; ηs 35/55°C 180/139; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022."
+  "notes": "HP290 14kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 15.0 kW, power input 3.41 kW, COP 4.4. A7/W55 capacity 15.0 kW, power input 5.26 kW, COP 2.85. SCOP 35/55°C 4.59/3.57; ηs 35/55°C 180/139; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
+  "verified": "Eurovent"
  },
  {
   "id": 610,

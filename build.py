@@ -280,6 +280,13 @@ def render_suppliers(p):
         return ""
     return '<h2 class="sec">Where to buy (UK)</h2><table class="spec">' + "".join(rows) + "</table>"
 
+def render_verified(p):
+    v = p.get("verified")
+    if not v:
+        return ""
+    return (f'<p style="margin:14px 0 0;font-size:13.5px;color:#0F8074;font-weight:600">'
+            f'&#10003; Verified via {esc(v)} data</p>')
+
 def render_product(p, by_mfr, by_type):
     slug = p["_slug"]
     url  = f"{BASE_URL}/products/{slug}/"
@@ -348,7 +355,7 @@ def render_product(p, by_mfr, by_type):
             f'<p class="sub">Specifications and technical data</p>'
             f'<div class="badges">{badges}</div>'
             f'<table class="spec">{rows}</table>'
-            f'{mfr_link}{notes_html}{render_suppliers(p)}'
+            f'{mfr_link}{notes_html}{render_suppliers(p)}{render_verified(p)}'
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{rel}'
