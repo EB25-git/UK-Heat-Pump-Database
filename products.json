@@ -17998,7 +17998,8 @@
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
   "notes": "HP290 4.5kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 4.5 kW, power input 0.87 kW, COP 5.15. A7/W55 capacity 4.6 kW, power input 1.44 kW, COP 3.2. SCOP 35/55°C 5.07/3.79; ηs 35/55°C 199/148; ErP 35/55°C A+++/A++. R290 charge 0.7 kg. Heating flow/return connection 1\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
-  "verified": "Eurovent"
+  "verified": "Eurovent",
+  "mcs_listed": true
  },
  {
   "id": 615,
@@ -18032,7 +18033,8 @@
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
   "notes": "HP290 6kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 6.2 kW, power input 1.27 kW, COP 4.9. A7/W55 capacity 6.2 kW, power input 2.0 kW, COP 3.1. SCOP 35/55°C 4.89/3.82; ηs 35/55°C 192/149; ErP 35/55°C A+++/A++. R290 charge 0.7 kg. Heating flow/return connection 1\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
-  "verified": "Eurovent"
+  "verified": "Eurovent",
+  "mcs_listed": true
  },
  {
   "id": 616,
@@ -18066,7 +18068,8 @@
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
   "notes": "HP290 8kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 10.0 kW, power input 2.13 kW, COP 4.7. A7/W55 capacity 9.5 kW, power input 3.12 kW, COP 3.05. SCOP 35/55°C 5.07/3.82; ηs 35/55°C 199/149; ErP 35/55°C A+++/A++. R290 charge 1.1 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
-  "verified": "Eurovent"
+  "verified": "Eurovent",
+  "mcs_listed": true
  },
  {
   "id": 617,
@@ -18100,7 +18103,8 @@
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
   "notes": "HP290 10kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 12.0 kW, power input 2.5 kW, COP 4.8. A7/W55 capacity 12.0 kW, power input 3.87 kW, COP 3.1. SCOP 35/55°C 4.67/3.62; ηs 35/55°C 183/141; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
-  "verified": "Eurovent"
+  "verified": "Eurovent",
+  "mcs_listed": true
  },
  {
   "id": 618,
@@ -18134,7 +18138,8 @@
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
   "notes": "HP290 12kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 14.0 kW, power input 3.11 kW, COP 4.5. A7/W55 capacity 14.0 kW, power input 4.67 kW, COP 3.0. SCOP 35/55°C 4.63/3.61; ηs 35/55°C 182/141; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
-  "verified": "Eurovent"
+  "verified": "Eurovent",
+  "mcs_listed": true
  },
  {
   "id": 619,
@@ -18168,7 +18173,8 @@
   "noise_ref": "Sound power level EN12102-1",
   "description": "HP290 monobloc air source heat pump using low-GWP R290 refrigerant for residential heating and domestic hot water.",
   "notes": "HP290 14kW. Flow temperatures up to 75°C. Heating A7/W35 capacity 15.0 kW, power input 3.41 kW, COP 4.4. A7/W55 capacity 15.0 kW, power input 5.26 kW, COP 2.85. SCOP 35/55°C 4.59/3.57; ηs 35/55°C 180/139; ErP 35/55°C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
-  "verified": "Eurovent"
+  "verified": "Eurovent",
+  "mcs_listed": true
  },
  {
   "id": 610,
@@ -20588,7 +20594,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 4.4 kW. SCOP/class at 35°C is 5.07; SCOP/class at 50°C is 3.79. Supply 220-240/1/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 713,
@@ -20622,7 +20629,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 5.8 kW. SCOP/class at 35°C is 4.89; SCOP/class at 50°C is 3.82. Supply 220-240/1/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 714,
@@ -20656,13 +20664,14 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 7.8 kW. SCOP/class at 35°C is 5.19; SCOP/class at 50°C is 3.82. Supply 220-240/1/50; recommended fuse 20 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 715,
   "manufacturer": "Midea",
   "model": "M Thermal R290",
-  "product_code": "MHC-V10W/DN7",
+  "product_code": "MHC-V10W/D2N7",
   "hp_type": "ASHP",
   "type": "Residential",
   "refrigerant": "R290",
@@ -20689,7 +20698,9 @@
   "noise": 49,
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
-  "notes": "Output at A-2/W50 is 8.4 kW. SCOP/class at 35°C is 5.07; SCOP/class at 50°C is 3.82. Supply 220-240/1/50; recommended fuse 20 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet."
+  "notes": "Output at A-2/W50 is 8.4 kW. SCOP/class at 35°C is 5.07; SCOP/class at 50°C is 3.82. Supply 220-240/1/50; recommended fuse 20 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
+  "verified": "MCS",
+  "mcs_listed": true
  },
  {
   "id": 716,
@@ -20723,7 +20734,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 11.3 kW. SCOP/class at 35°C is 4.67; SCOP/class at 50°C is 3.62. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 717,
@@ -20757,7 +20769,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 12.0 kW. SCOP/class at 35°C is 4.63; SCOP/class at 50°C is 3.61. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 718,
@@ -20791,7 +20804,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 13.1 kW. SCOP/class at 35°C is 4.59; SCOP/class at 50°C is 3.57. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 719,
@@ -20825,7 +20839,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 11.3 kW. SCOP/class at 35°C is 4.67; SCOP/class at 50°C is 3.62. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 720,
@@ -20859,7 +20874,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 12.0 kW. SCOP/class at 35°C is 4.63; SCOP/class at 50°C is 3.61. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 721,
@@ -20893,7 +20909,8 @@
   "noise_ref": "Sound pressure level at 1 m in front",
   "description": "M Thermal R290 monobloc air-to-water heat pump for domestic and light commercial heating and hot water.",
   "notes": "Output at A-2/W50 is 13.1 kW. SCOP/class at 35°C is 4.59; SCOP/class at 50°C is 3.57. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
-  "verified": "Heat Pump KEYMARK"
+  "verified": "Heat Pump KEYMARK",
+  "mcs_listed": true
  },
  {
   "id": 722,

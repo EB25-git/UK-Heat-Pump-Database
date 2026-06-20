@@ -230,12 +230,17 @@ def crumbs(items):
             parts.append(f'<span>{esc(label)}</span>')
     return '<nav class="crumbs">' + ' &rsaquo; '.join(parts) + '</nav>'
 
-def breadcrumb_jsonld(items):
+def breadcrumb_jsonld(items, self_url=None):
+    out = []
+    n = len(items)
+    for i, (label, href) in enumerate(items):
+        li = {"@type": "ListItem", "position": i + 1, "name": label}
+        u = href or (self_url if i == n - 1 else None)
+        if u:
+            li["item"] = u
+        out.append(li)
     return {"@context": "https://schema.org", "@type": "BreadcrumbList",
-            "itemListElement": [
-                {"@type": "ListItem", "position": i + 1, "name": label,
-                 **({"item": href} if href else {})}
-                for i, (label, href) in enumerate(items)]}
+            "itemListElement": out}
 
 # ───────────────────────── Page renderers ─────────────────────────
 def product_card(p):
@@ -280,12 +285,46 @@ def render_suppliers(p):
         return ""
     return '<h2 class="sec">Where to buy (UK)</h2><table class="spec">' + "".join(rows) + "</table>"
 
+def render_mcs(p):
+    if not p.get("mcs_listed"):
+        return ""
+    return ('<p style="margin:14px 0 0;font-size:13.5px;color:#0a6b3b;font-weight:600">'
+            '&#10003; MCS-listed product &mdash; eligible for the Boiler Upgrade Scheme '
+            '(&pound;7,500 in England &amp; Wales; &pound;9,000 for off-grid/oil homes from July 2026), '
+            'subject to an MCS-certified installation.</p>')
+
 def render_verified(p):
     v = p.get("verified")
-    if not v:
-        return ""
-    return (f'<p style="margin:14px 0 0;font-size:13.5px;color:#0F8074;font-weight:600">'
-            f'&#10003; Verified via {esc(v)} data</p>')
+    if v:
+        return (f'<p style="margin:14px 0 0;font-size:13.5px;color:#0F8074;font-weight:600">'
+                f'&#10003; Verified via {esc(v)} data</p>')
+    return ('<p style="margin:14px 0 0;font-size:13.5px;color:#9a7b1f;font-weight:600">'
+            '&#9675; Awaiting verification</p>')
+
+def render_correction(p):
+    from urllib.parse import quote
+    url = f"{BASE_URL}/products/{p['_slug']}/"
+    cop = p.get("cop"); scop = p.get("scop")
+    subject = f"Data correction: {p.get('manufacturer','')} {p.get('model','')} (ID {p.get('id')})"
+    body = (
+        "I would like to suggest a correction to the following heat pump record on Heat Pump Database.\n\n"
+        "--- Product (please keep this section so we can identify the record) ---\n"
+        f"ID: {p.get('id')}\n"
+        f"Manufacturer: {p.get('manufacturer','')}\n"
+        f"Model: {p.get('model','')}\n"
+        + (f"Product code: {p.get('product_code')}\n" if p.get('product_code') else "")
+        + f"Page: {url}\n"
+        f"Current COP: {cop if cop is not None else '—'}" + (f" ({p.get('cop_cond')})" if p.get('cop_cond') else "") + "\n"
+        f"Current SCOP: {scop if scop is not None else '—'}" + (f" ({p.get('scop_cond')})" if p.get('scop_cond') else "") + "\n"
+        f"Verification: {'Verified via '+p['verified'] if p.get('verified') else 'Awaiting verification'}\n\n"
+        "--- Your correction ---\n"
+        "Which field(s) are incorrect:\n\n"
+        "Correct value(s):\n\n"
+        "Source (datasheet link / certificate number, so we can verify):\n\n"
+    )
+    href = "mailto:info@heatpumpdatabase.com?subject=" + quote(subject) + "&body=" + quote(body)
+    return (f'<p style="margin:10px 0 0;font-size:12.5px"><a href="{esc(href)}" '
+            f'style="color:#5a6b6b">&#9998; Suggest a correction to this data</a></p>')
 
 def render_product(p, by_mfr, by_type):
     slug = p["_slug"]
@@ -335,27 +374,18 @@ def render_product(p, by_mfr, by_type):
                    (mfr, f"{BASE_URL}/manufacturers/{mslug}/"),
                    (model, None)]
 
-    # Product JSON-LD
-    props = []
-    for l, v in spec_rows(p):
-        if l not in ("Manufacturer", "Model", "Data source", "Data added"):
-            props.append({"@type": "PropertyValue", "name": l,
-                          "value": re.sub("<[^>]+>", "", str(v))})
-    product_ld = {"@context": "https://schema.org", "@type": "Product",
-                  "name": f"{mfr} {model}".strip(),
-                  "url": url,
-                  "category": TYPE_LABEL.get(p.get("hp_type"), "Heat pump"),
-                  "brand": {"@type": "Brand", "name": mfr},
-                  "additionalProperty": props}
-    if p.get("product_code"): product_ld["mpn"] = p["product_code"]
-    if extra: product_ld["description"] = re.sub("<[^>]+>", " ", extra).strip()
+    # NOTE: No schema.org/Product markup is emitted. Google's Product rich result
+    # requires offers, review, or aggregateRating — none of which apply to an
+    # informational spec database. We deliberately omit Product rather than
+    # fabricate commerce data. (If real pricing/reviews are ever added, a valid
+    # Product+offers block can be reinstated here.)
 
     body = (crumbs(crumb_items) +
             f"<h1>{esc(mfr)} {esc(model)}</h1>"
             f'<p class="sub">Specifications and technical data</p>'
             f'<div class="badges">{badges}</div>'
             f'<table class="spec">{rows}</table>'
-            f'{mfr_link}{notes_html}{render_suppliers(p)}{render_verified(p)}'
+            f'{mfr_link}{notes_html}{render_suppliers(p)}{render_mcs(p)}{render_verified(p)}{render_correction(p)}'
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{rel}'
@@ -364,7 +394,7 @@ def render_product(p, by_mfr, by_type):
 
     title = f"{mfr} {model} \u2014 Specifications | {SITE_NAME}"
     return page(title, desc, url, body,
-                [product_ld, breadcrumb_jsonld(crumb_items)], og_type="product")
+                [breadcrumb_jsonld(crumb_items, url)], og_type="product")
 
 def list_table(products):
     head = ("<tr><th>Model</th><th>Type</th><th>Capacity</th><th>COP</th>"
@@ -402,7 +432,7 @@ def render_manufacturer(mfr, products):
                     "name": f"{mfr} {p['model']}"}
                    for i, p in enumerate(products)]}
     title = f"{mfr} Heat Pumps \u2014 Models & Specifications | {SITE_NAME}"
-    return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items)], active="manufacturers")
+    return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)], active="manufacturers")
 
 def render_manufacturers_index(by_mfr):
     url = f"{BASE_URL}/manufacturers/"
@@ -419,7 +449,7 @@ def render_manufacturers_index(by_mfr):
     return page(f"Heat Pump Manufacturers (A\u2013Z) | {SITE_NAME}",
                 f"Browse heat pumps by manufacturer. {len(by_mfr)} brands with full specifications, "
                 f"COP and SCOP data in the {SITE_NAME}.", url, body,
-                [breadcrumb_jsonld(crumb_items)], active="manufacturers")
+                [breadcrumb_jsonld(crumb_items, url)], active="manufacturers")
 
 def render_type(slug, heading, desc, products):
     url = f"{BASE_URL}/types/{slug}/"
@@ -431,13 +461,13 @@ def render_type(slug, heading, desc, products):
     for m in sorted(by_m):
         sections += (f'<h2 class="sec">{esc(m)}</h2>' +
                      list_table(sorted(by_m[m], key=lambda x: x.get("cap_max") or 0)))
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Categories", None), (heading, None)]
+    crumb_items = [("Home", f"{BASE_URL}/"), (heading, None)]
     body = (crumbs([("Home", f"{BASE_URL}/"), (heading, None)]) +
             f"<h1>{esc(heading)}</h1>"
             f'<p class="sub">{len(products)} products &middot; {len(by_m)} manufacturers</p>'
             f'{sections}'
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
-    return page(f"{heading} | {SITE_NAME}", desc, url, body, [breadcrumb_jsonld(crumb_items)])
+    return page(f"{heading} | {SITE_NAME}", desc, url, body, [breadcrumb_jsonld(crumb_items, url)])
 
 # ───────────────────────── Build ─────────────────────────
 def write(path, content):
@@ -499,13 +529,13 @@ def render_knowledge_page(cfg):
     if not inner:
         return None
     url = f'{BASE_URL}/knowledge/{cfg["dir"]}/'
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Knowledge", None), (cfg["crumb"], None)]
+    crumb_items = [("Home", f"{BASE_URL}/"), (cfg["crumb"], None)]
     article_ld = {"@context": "https://schema.org", "@type": "Article",
                   "headline": cfg["headline"], "description": cfg["desc"], "url": url,
                   "publisher": {"@type": "Organization", "name": SITE_NAME},
                   "mainEntityOfPage": url}
     return page(cfg["title"], cfg["desc"], url, crumbs(crumb_items) + inner,
-                [article_ld, breadcrumb_jsonld(crumb_items)], og_type="article", active=cfg["active"])
+                [article_ld, breadcrumb_jsonld(crumb_items, url)], og_type="article", active=cfg["active"])
 
 def main():
     with open(DATA, encoding="utf-8") as f:
