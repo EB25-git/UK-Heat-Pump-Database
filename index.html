@@ -1862,7 +1862,7 @@ function populateFilters(){
   [...new Set(db.flatMap(d=>parseRefrigerants(d.refrigerant)))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=refNames[r]?r+' ('+refNames[r]+')':r;rs.appendChild(o);});
   const vs=document.getElementById('filt-verif');
   vs.innerHTML='<option value="">Any status</option>';
-  [...new Set(db.filter(d=>d.verified).map(d=>d.verified))].sort().forEach(src=>{const o=document.createElement('option');o.value=src;o.textContent='Verified via '+src;vs.appendChild(o);});
+  [...new Set(db.filter(d=>d.verified).map(d=>d.verified))].sort().forEach(src=>{const o=document.createElement('option');o.value=src;o.textContent=(src==='Manual verification'?'Manually verified (Heat Pump Database)':'Verified via '+src);vs.appendChild(o);});
   const oa=document.createElement('option');oa.value='__awaiting__';oa.textContent='Awaiting verification';vs.appendChild(oa);
 }
 function getRefCategory(ref){
@@ -2300,7 +2300,7 @@ function openModal(id){
       <a href="${getProductUrl(d)}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${getProductUrl(d)}')" class="btn btn-sm" style="flex-shrink:0;color:var(--info);border-color:var(--info);text-decoration:none">↗ Visit site</a>
     </div>`:''}
     ${d.mcs_listed?`<div style="margin-top:.75rem;font-size:12.5px;color:#0a6b3b;font-weight:600">✓ MCS-listed product — eligible for the Boiler Upgrade Scheme (£7,500 in England &amp; Wales; £9,000 for off-grid/oil homes from July 2026), subject to an MCS-certified installation.</div>`:''}
-    ${d.verified?`<div style="margin-top:.75rem;font-size:12.5px;color:#0F8074;font-weight:600">✓ Verified via ${d.verified} data</div>`:`<div style="margin-top:.75rem;font-size:12.5px;color:#9a7b1f;font-weight:600">○ Awaiting verification</div>`}
+    ${d.verified?`<div style="margin-top:.75rem;font-size:12.5px;color:#0F8074;font-weight:600">✓ ${d.verified==='Manual verification'?'Manually verified by Heat Pump Database':'Verified via '+d.verified+' data'}</div>`:`<div style="margin-top:.75rem;font-size:12.5px;color:#9a7b1f;font-weight:600">○ Awaiting verification</div>`}
     <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3)">
       <span>Data added: ${d.date_added||'—'}</span>
       <span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span>

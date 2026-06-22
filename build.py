@@ -296,8 +296,10 @@ def render_mcs(p):
 def render_verified(p):
     v = p.get("verified")
     if v:
+        label = ('Manually verified by Heat Pump Database' if v == 'Manual verification'
+                 else f'Verified via {esc(v)} data')
         return (f'<p style="margin:14px 0 0;font-size:13.5px;color:#0F8074;font-weight:600">'
-                f'&#10003; Verified via {esc(v)} data</p>')
+                f'&#10003; {label}</p>')
     return ('<p style="margin:14px 0 0;font-size:13.5px;color:#9a7b1f;font-weight:600">'
             '&#9675; Awaiting verification</p>')
 
