@@ -1565,35 +1565,25 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 </div>
 <div class="toast-container" id="toast-container"></div>
 
-<!-- Browse onboarding guide -->
+<!-- Browse onboarding coach-marks -->
 <style>
-#browse-guide .bg-card{max-width:440px;width:calc(100% - 32px);background:var(--surface);border-radius:var(--radius-lg);box-shadow:0 24px 64px rgba(15,43,43,.25);overflow:hidden}
-#browse-guide .bg-top{background:linear-gradient(135deg,#0F8074,#0a6b3b);color:#fff;padding:20px 22px}
-#browse-guide .bg-step{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;opacity:.85;font-family:'DM Mono',monospace}
-#browse-guide .bg-title{font-size:19px;font-weight:600;margin:6px 0 0;line-height:1.25}
-#browse-guide .bg-body{padding:18px 22px;font-size:14px;line-height:1.65;color:var(--text2);min-height:96px}
-#browse-guide .bg-foot{display:flex;align-items:center;gap:12px;padding:14px 22px 18px;border-top:1px solid var(--border)}
-#browse-guide .bg-dots{display:flex;gap:7px;margin-right:auto}
-#browse-guide .bg-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:background .2s}
-#browse-guide .bg-dot.on{background:var(--accent)}
-#browse-guide .bg-btn{border:1px solid var(--border);background:var(--surface);color:var(--text2);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer}
-#browse-guide .bg-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-#browse-guide .bg-btn:disabled{opacity:.4;cursor:default}
+#cm-catcher{position:fixed;inset:0;z-index:99990;background:transparent}
+#cm-ring{position:fixed;z-index:99991;border:2.5px solid var(--accent);border-radius:10px;box-shadow:0 0 0 4px rgba(62,204,192,.4),0 0 0 9999px rgba(15,43,43,.42);pointer-events:none;transition:top .2s,left .2s,width .2s,height .2s}
+#cm-pop{position:fixed;z-index:99992;width:300px;max-width:calc(100vw - 24px);background:var(--surface);border-radius:12px;box-shadow:0 16px 48px rgba(15,43,43,.32)}
+#cm-pop .cm-top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 14px 0}
+#cm-pop .cm-step{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--accent);font-family:'DM Mono',monospace;font-weight:600}
+#cm-pop .cm-x{border:none;background:none;color:var(--text3);font-size:17px;line-height:1;cursor:pointer;padding:2px 5px;border-radius:6px}
+#cm-pop .cm-x:hover{background:var(--surface2);color:var(--text)}
+#cm-pop .cm-title{font-size:16px;font-weight:600;padding:4px 14px 0;color:var(--text);line-height:1.25}
+#cm-pop .cm-body{font-size:13px;line-height:1.6;color:var(--text2);padding:6px 14px 12px}
+#cm-pop .cm-foot{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--border)}
+#cm-pop .cm-dots{display:flex;gap:6px;margin-right:auto}
+#cm-pop .cm-dot{width:7px;height:7px;border-radius:50%;background:var(--border)}
+#cm-pop .cm-dot.on{background:var(--accent)}
+#cm-pop .cm-btn{border:1px solid var(--border);background:var(--surface);color:var(--text2);padding:6px 13px;border-radius:7px;font-size:12.5px;font-weight:500;cursor:pointer}
+#cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+#cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<div class="modal-bg" id="browse-guide" role="dialog" aria-modal="true" aria-labelledby="bg-title" onclick="if(event.target===this)closeBrowseGuide()" style="align-items:center">
-  <div class="bg-card">
-    <div class="bg-top">
-      <div class="bg-step" id="bg-step"></div>
-      <h2 class="bg-title" id="bg-title"></h2>
-    </div>
-    <div class="bg-body" id="bg-body"></div>
-    <div class="bg-foot">
-      <div class="bg-dots" id="bg-dots"></div>
-      <button class="bg-btn" id="bg-back" onclick="guideNav(-1)">Back</button>
-      <button class="bg-btn primary" id="bg-next" onclick="guideNav(1)">Next</button>
-    </div>
-  </div>
-</div>
 
 <script src="data.js"></script>
 <script>
@@ -3215,29 +3205,50 @@ function acceptCookies(){localStorage.setItem('cookie_consent','accepted');docum
 function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').classList.remove('show');maybeAutoGuide();}
 if(!localStorage.getItem('cookie_consent'))document.getElementById('cookie-banner').classList.add('show');
 
-// Browse onboarding guide (auto-once for newcomers, plus the "How to use" button)
+// Browse onboarding coach-marks (auto-once for newcomers, plus the "How to use" button)
 const GUIDE_STEPS=[
-  {t:'Search &amp; filter',b:'Start here. Use the <strong>search bar</strong> to find a model, manufacturer or refrigerant, then tap <strong>Filters</strong> to narrow by type, capacity, max flow temperature, refrigerant, sound power, verification status and MCS / Boiler Upgrade Scheme eligibility.'},
-  {t:'Add products to compare',b:'On any product you\u2019re interested in, click <strong>\u201C+ Compare\u201D</strong> to add it to your shortlist (up to 3 at a time). Clicking the product itself opens its full specifications, data sources and verification status.'},
-  {t:'The Compare page',b:'Open <strong>Compare</strong> from the menu (\u2630) to see your shortlisted products <strong>side by side</strong> in one specification table \u2014 making it easy to weigh COP, SCOP, capacity, flow temperature and noise. Remove a unit from its column header any time.'},
-  {t:'Learn the background',b:'New to heat pumps? The <strong>Knowledge</strong> section and <strong>FAQ</strong> (in the menu \u2630) explain COP and SCOP, flow temperature and efficiency, refrigerants, UK grants, and exactly how our data is sourced and verified.'}
+  {sel:'.toolbar-row',menu:false,title:'Search &amp; filter',body:'Start here. Use the <strong>search bar</strong> to find a model, manufacturer or refrigerant, then tap <strong>Filters</strong> to narrow by type, capacity, max flow temperature, refrigerant, sound power, verification status and MCS / Boiler Upgrade Scheme eligibility.'},
+  {sel:'.card-act-cmp',menu:false,scroll:true,title:'Add products to compare',body:'On any product, click <strong>\u201C+ Compare\u201D</strong> to add it to your shortlist (up to 3). Clicking the product card itself opens its full specifications, data sources and verification status.'},
+  {sel:'#burger-menu [data-page="compare"]',menu:true,title:'Compare side by side',body:'Open <strong>Compare</strong> to see your shortlisted products <strong>side by side</strong> in one specification table \u2014 easy for weighing COP, SCOP, capacity, flow temperature and noise. Remove a unit from its column header any time.'},
+  {sel:'#burger-menu [data-page="knowledge"]',menu:true,title:'Learn the background',body:'New to heat pumps? <strong>Knowledge</strong> and the <strong>FAQ</strong> beneath it explain COP and SCOP, flow temperature and efficiency, refrigerants, UK grants, and exactly how our data is sourced and verified.'}
 ];
-let guideStep=0;
-function renderGuideStep(){
-  const s=GUIDE_STEPS[guideStep];
-  document.getElementById('bg-step').textContent='Step '+(guideStep+1)+' of '+GUIDE_STEPS.length;
-  document.getElementById('bg-title').innerHTML=s.t;
-  document.getElementById('bg-body').innerHTML=s.b;
-  document.getElementById('bg-dots').innerHTML=GUIDE_STEPS.map((_,i)=>`<span class="bg-dot${i===guideStep?' on':''}"></span>`).join('');
-  document.getElementById('bg-back').disabled=(guideStep===0);
-  document.getElementById('bg-next').textContent=(guideStep===GUIDE_STEPS.length-1)?'Got it':'Next';
+let guideStep=0, cmEls=null;
+function cmBuild(){
+  if(cmEls)return cmEls;
+  const mk=(id)=>{const e=document.createElement('div');e.id=id;e.style.display='none';document.body.appendChild(e);return e;};
+  const catcher=mk('cm-catcher'),ring=mk('cm-ring'),pop=mk('cm-pop');
+  catcher.addEventListener('click',closeBrowseGuide); // click-away exits
+  cmEls={catcher,ring,pop};return cmEls;
 }
-function openBrowseGuide(){guideStep=0;renderGuideStep();window.__guideLastFocus=document.activeElement;document.getElementById('browse-guide').classList.add('show');document.getElementById('bg-next').focus();}
-function guideNav(d){guideStep+=d;if(guideStep>=GUIDE_STEPS.length){closeBrowseGuide();return;}if(guideStep<0)guideStep=0;renderGuideStep();}
-function closeBrowseGuide(){document.getElementById('browse-guide').classList.remove('show');localStorage.setItem('hp_browseguide_seen','1');if(window.__guideLastFocus&&window.__guideLastFocus.focus){window.__guideLastFocus.focus();window.__guideLastFocus=null;}}
+function cmOpenBurger(){['burger-btn','burger-menu','burger-overlay'].forEach(i=>document.getElementById(i).classList.add('open'));document.getElementById('burger-btn').setAttribute('aria-expanded','true');}
+function openBrowseGuide(){guideStep=0;cmBuild();window.__guideLastFocus=document.activeElement;['catcher','ring','pop'].forEach(k=>cmEls[k].style.display='block');cmRender();}
+function closeBrowseGuide(){if(cmEls)['catcher','ring','pop'].forEach(k=>cmEls[k].style.display='none');if(typeof closeBurger==='function')closeBurger();localStorage.setItem('hp_browseguide_seen','1');if(window.__guideLastFocus&&window.__guideLastFocus.focus){window.__guideLastFocus.focus();window.__guideLastFocus=null;}}
+function guideNav(d){guideStep+=d;if(guideStep>=GUIDE_STEPS.length){closeBrowseGuide();return;}if(guideStep<0)guideStep=0;cmRender();}
+function cmRender(){
+  const s=GUIDE_STEPS[guideStep],pop=cmEls.pop;
+  pop.innerHTML=`<div class="cm-top"><span class="cm-step">Step ${guideStep+1} of ${GUIDE_STEPS.length}</span><button class="cm-x" aria-label="Close guide" onclick="closeBrowseGuide()">\u2715</button></div>`
+    +`<div class="cm-title">${s.title}</div><div class="cm-body">${s.body}</div>`
+    +`<div class="cm-foot"><span class="cm-dots">${GUIDE_STEPS.map((_,i)=>`<span class="cm-dot${i===guideStep?' on':''}"></span>`).join('')}</span>`
+    +`<button class="cm-btn" ${guideStep===0?'disabled':''} onclick="guideNav(-1)">Back</button>`
+    +`<button class="cm-btn primary" onclick="guideNav(1)">${guideStep===GUIDE_STEPS.length-1?'Got it':'Next'}</button></div>`;
+  if(s.menu){cmOpenBurger();setTimeout(()=>cmPosition(s),340);}
+  else{if(typeof closeBurger==='function')closeBurger();requestAnimationFrame(()=>cmPosition(s));}
+}
+function cmPosition(s){
+  const ring=cmEls.ring,pop=cmEls.pop,t=document.querySelector(s.sel);
+  if(!t){ring.style.display='none';pop.style.left=Math.max(12,(innerWidth-pop.offsetWidth)/2)+'px';pop.style.top=Math.max(12,(innerHeight-pop.offsetHeight)/2)+'px';return;}
+  if(s.scroll)t.scrollIntoView({block:'center'});
+  const r=t.getBoundingClientRect(),pad=6;
+  ring.style.display='block';
+  ring.style.top=(r.top-pad)+'px';ring.style.left=(r.left-pad)+'px';ring.style.width=(r.width+pad*2)+'px';ring.style.height=(r.height+pad*2)+'px';
+  const pw=pop.offsetWidth,ph=pop.offsetHeight,gap=14;
+  let top=r.bottom+gap;if(top+ph>innerHeight-12)top=r.top-ph-gap;if(top<12)top=12;
+  let left=r.left+r.width/2-pw/2;left=Math.max(12,Math.min(left,innerWidth-pw-12));
+  pop.style.top=top+'px';pop.style.left=left+'px';
+}
+window.addEventListener('resize',()=>{if(cmEls&&cmEls.pop.style.display==='block')cmPosition(GUIDE_STEPS[guideStep]);});
 document.addEventListener('keydown',function(e){
-  const g=document.getElementById('browse-guide');
-  if(!g||!g.classList.contains('show'))return;
+  if(!cmEls||cmEls.pop.style.display!=='block')return;
   if(e.key==='Escape')closeBrowseGuide();
   else if(e.key==='ArrowRight')guideNav(1);
   else if(e.key==='ArrowLeft'&&guideStep>0)guideNav(-1);
