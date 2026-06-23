@@ -644,9 +644,14 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <label class="filter-label">Max flow temp</label>
           <select class="filt" id="filt-flow" onchange="applyFilters()">
             <option value="">Any flow temp</option>
+            <option value="40">≥40°C</option>
+            <option value="50">≥50°C</option>
             <option value="60">≥60°C</option>
             <option value="70">≥70°C</option>
             <option value="80">≥80°C</option>
+            <option value="90">≥90°C</option>
+            <option value="100">≥100°C</option>
+            <option value="101">&gt;100°C</option>
           </select>
         </div>
         <div class="filter-col">
@@ -2080,12 +2085,14 @@ function renderTableView(){
 // ═══════════════ MODAL ═══════════════
 // ═══ ANALYTICS ═══
 const AN_COLORS={ASHP:'#0D7377',WSHP:'#11999E',GSHP:'#6558A6'};
-let anFilters={hp_type:'all',type:'all',refrigerant:'all'};
+let anFilters={hp_type:'all',type:'all',refrigerant:'all',cop_cond:'all',scop_cond:'all'};
 
 function renderAnalytics(){
   // Build filter controls once
   const fp=document.getElementById('an-filters');
   const refs=[...new Set(db.flatMap(d=>parseRefrigerants(d.refrigerant)))].sort();
+  const copConds=[...new Set(db.filter(d=>d.cop!=null&&d.cop_cond).map(d=>d.cop_cond))].sort((a,b)=>{const ra=/^[0-9]/.test(a),rb=/^[0-9]/.test(b);if(ra!==rb)return ra?1:-1;return a.localeCompare(b);});
+  const scopConds=[...new Set(db.filter(d=>d.scop!=null&&d.scop_cond).map(d=>d.scop_cond))].sort();
   fp.innerHTML=`
     <div class="an-fg"><label>Heat pump type</label>
       <select id="anf-hp" onchange="anSetFilter('hp_type',this.value)">
@@ -2096,10 +2103,18 @@ function renderAnalytics(){
     <div class="an-fg"><label>Refrigerant</label>
       <select id="anf-ref" onchange="anSetFilter('refrigerant',this.value)">
         <option value="all">All refrigerants</option>${refs.map(r=>`<option value="${r}">${r}</option>`).join('')}</select></div>
+    <div class="an-fg"><label>COP test condition</label>
+      <select id="anf-cop" onchange="anSetFilter('cop_cond',this.value)">
+        <option value="all">All COP conditions</option>${copConds.map(c=>`<option value="${c}">${c}</option>`).join('')}</select></div>
+    <div class="an-fg"><label>SCOP test condition</label>
+      <select id="anf-scop" onchange="anSetFilter('scop_cond',this.value)">
+        <option value="all">All SCOP conditions</option>${scopConds.map(c=>`<option value="${c}">${c}</option>`).join('')}</select></div>
     <div class="an-stat" id="an-stat"></div>`;
   document.getElementById('anf-hp').value=anFilters.hp_type;
   document.getElementById('anf-type').value=anFilters.type;
   document.getElementById('anf-ref').value=anFilters.refrigerant;
+  document.getElementById('anf-cop').value=anFilters.cop_cond;
+  document.getElementById('anf-scop').value=anFilters.scop_cond;
   // Legend
   document.getElementById('an-legend').innerHTML=Object.entries(AN_COLORS).map(([k,v])=>
     `<div class="an-legend-item"><span class="an-legend-dot" style="background:${v}"></span>${k==='ASHP'?'Air source (ASHP)':k==='WSHP'?'Water source (WSHP)':'Ground source (GSHP)'}</div>`).join('');
@@ -2114,22 +2129,24 @@ function anData(){
 }
 function anDraw(){
   const data=anData();
+  const copData=data.filter(d=>anFilters.cop_cond==='all'||d.cop_cond===anFilters.cop_cond);
+  const scopData=data.filter(d=>anFilters.scop_cond==='all'||d.scop_cond===anFilters.scop_cond);
   const st=document.getElementById('an-stat');
   if(st)st.innerHTML=`<strong>${data.length}</strong> products shown`;
   // Scatter: COP vs capacity (log x)
-  anScatter('chart-cop-cap',data.filter(d=>d.cop!=null&&d.cap_max!=null),
+  anScatter('chart-cop-cap',copData.filter(d=>d.cop!=null&&d.cap_max!=null),
     d=>d.cap_max,d=>d.cop,{xLog:true,yLabel:'COP',xMinTick:1,fmtX:v=>v>=1000?(v/1000)+'MW':v+'kW',fmtY:v=>v.toFixed(1),
     spec:d=>`${d.cap_max} kW · COP ${d.cop} @ ${d.cop_cond||'?'}`});
   // Scatter: COP vs flow temp
-  anScatter('chart-cop-flow',data.filter(d=>d.cop!=null&&d.flow_temp_max!=null),
+  anScatter('chart-cop-flow',copData.filter(d=>d.cop!=null&&d.flow_temp_max!=null),
     d=>d.flow_temp_max,d=>d.cop,{xLog:false,yLabel:'COP',fmtX:v=>v+'°C',fmtY:v=>v.toFixed(1),
     spec:d=>`${d.flow_temp_max}°C flow · COP ${d.cop} @ ${d.cop_cond||'?'}`});
   // Range chart: operating temp min->max
   anRangeChart('chart-temp-range',data.filter(d=>d.op_temp_min!=null&&d.op_temp_max!=null&&d.op_temp_min<d.op_temp_max));
   // Scatter: SCOP vs capacity (log x)
-  anScatter('chart-scop-cap',data.filter(d=>d.scop!=null&&d.cap_max!=null),
+  anScatter('chart-scop-cap',scopData.filter(d=>d.scop!=null&&d.cap_max!=null),
     d=>d.cap_max,d=>d.scop,{xLog:true,yLabel:'SCOP',xMinTick:1,fmtX:v=>v>=1000?(v/1000)+'MW':v+'kW',fmtY:v=>v.toFixed(1),
-    spec:d=>`${d.cap_max} kW · SCOP ${d.scop}`});
+    spec:d=>`${d.cap_max} kW · SCOP ${d.scop} @ ${d.scop_cond||'?'}`});
 }
 
 function anTooltipEl(){
@@ -2418,22 +2435,9 @@ function renderCompare(){
   document.getElementById('cmp-export-btns').style.display='block';
   const conds=new Set(items.map(d=>d.cop_cond).filter(Boolean));
   const mixedCop=conds.size>1?`<div class="alert a-warn" style="margin-bottom:1rem;font-size:13px"><strong>Caution:</strong> These units have different COP test conditions (${[...conds].join(', ')}). COP values are not directly comparable across different test conditions — a higher COP at W10/W35 does not mean better real-world performance than a lower COP at A7/W35.</div>`:'';
-  sE.innerHTML=mixedCop+`<div class="cmp-grid">${items.map(d=>`
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
-      <div style="padding:12px 14px 10px;border-bottom:1px solid var(--border)">
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);font-family:'DM Mono',monospace">${d.manufacturer}</div>
-        <div style="font-family:'Inter',sans-serif;font-size:15px;margin-top:2px;line-height:1.2">${d.model}</div>
-        ${d.product_code?'<div style="font-size:11px;color:var(--text3);font-family:DM Mono,monospace;margin-top:2px">'+d.product_code+'</div>':''}
-        <div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap"><span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span><span class="badge ${bc(d.type)}">${d.type}</span><span class="badge badge-ref">${d.refrigerant}</span></div>
-      </div>
-      ${d.description?'<div style="padding:10px 14px;font-size:12px;color:var(--text2);line-height:1.6;border-bottom:1px solid var(--border);background:var(--surface2)">'+d.description+'</div>':''}
-      <div style="padding:10px 14px">
-        ${[['COP',d.cop!=null?`${d.cop} <span class="cop-tag ${copCondClass(d.cop_cond)} "style="font-size:9px">${d.cop_cond||'?'}</span>`:'—'],['SCOP',d.scop!=null?`${d.scop} <span class="cop-tag ${scopCondClass(d.scop_cond)} "style="font-size:9px">${d.scop_cond||'not stated'}</span>`:'—'],['Max capacity',d.cap_max!=null?d.cap_max+' kW':'—'],['Max flow',fmt(d.flow_temp_max,'°C')],['Min source',fmt(d.op_temp_min,'°C')]].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:.5px solid var(--border);font-size:13px"><span style="color:var(--text3)">${l}</span><span style="font-family:'DM Mono',monospace;font-weight:500">${v}</span></div>`).join('')}
-      </div>
-      <div style="padding:8px 14px;border-top:1px solid var(--border)"><button class="btn btn-sm btn-danger" onclick="removeCompare(${d.id})">✕ Remove</button></div>
-    </div>`).join('')}</div>`;
+  sE.innerHTML=mixedCop;
   const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Max flow temp (°C)','flow_temp_max'],['Min capacity (kW)','cap_min'],['Max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value','cop'],['SCOP','scop'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Weight (kg)','weight']];
-  tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}</th>`).join('')}</tr></thead><tbody>
+  tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
     ${items.some(d=>d.description)?`<tr><td style="color:var(--text3);font-size:12px">Description</td>${items.map(d=>`<td style="font-size:12px;color:var(--text2);line-height:1.5">${d.description||'—'}</td>`).join('')}</tr>`:''}
     <tr><td style="color:var(--text3);font-size:12px">COP conditions</td>${items.map(d=>`<td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>`).join('')}</tr>
     <tr><td style="color:var(--text3);font-size:12px">SCOP conditions</td>${items.map(d=>`<td>${d.scop!=null?`<span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</td>`).join('')}</tr>
