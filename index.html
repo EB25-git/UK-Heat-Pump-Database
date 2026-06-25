@@ -108,6 +108,17 @@ a.burger-item{display:block;text-decoration:none;box-sizing:border-box}
 .an-chart-wrap{position:relative;width:100%}
 .an-chart{width:100%}
 .an-chart svg{width:100%;height:auto;display:block;overflow:visible}
+/* Compare-page bar charts (shared markup with PDF export) */
+.charts-wrap{margin-top:1.75rem}
+.charts-h{font-size:18px;font-weight:700;color:var(--text);margin-bottom:.35rem}
+.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1rem;font-size:12px;color:var(--text2)}
+.cl-item{display:inline-flex;align-items:center;gap:6px}
+.cl-sw{width:12px;height:12px;border-radius:3px;display:inline-block;flex-shrink:0}
+.charts-grid{display:flex;flex-wrap:wrap;gap:16px}
+.chart-block{flex:1 1 280px;min-width:260px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;box-shadow:var(--shadow-sm)}
+.chart-ttl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:8px}
+.chart-empty{font-size:12px;color:var(--text3);padding:32px 0;text-align:center}
+.charts-note{font-size:11px;color:var(--text3);margin-top:1rem;line-height:1.55;max-width:760px}
 .an-xlabel{text-align:center;font-size:11px;color:var(--text3);margin-top:2px;font-weight:500}
 .an-dot{cursor:pointer;transition:r .12s,opacity .12s;opacity:.78}
 .an-dot:hover{opacity:1}
@@ -729,6 +740,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       </div>
     </div>
     <div id="cmp-slots"></div>
+    <div id="cmp-charts"></div>
     <div id="cmp-table"></div>
   </div>
 </div>
@@ -2503,12 +2515,13 @@ ${specs.map(([label,key,unit])=>{
 }
 function renderCompare(){
   const items=compareIds.map(id=>db.find(d=>d.id===id)).filter(Boolean);
-  const sE=document.getElementById('cmp-slots'),tE=document.getElementById('cmp-table');
-  if(!items.length){sE.innerHTML='<div class="empty-state"><h3>No units selected</h3><p>Go to Browse and click "+ Compare" on any product card.</p></div>';tE.innerHTML='';document.getElementById('cmp-export-btns').style.display='none';return;}
+  const sE=document.getElementById('cmp-slots'),tE=document.getElementById('cmp-table'),cE=document.getElementById('cmp-charts');
+  if(!items.length){sE.innerHTML='<div class="empty-state"><h3>No units selected</h3><p>Go to Browse and click "+ Compare" on any product card.</p></div>';tE.innerHTML='';cE.innerHTML='';document.getElementById('cmp-export-btns').style.display='none';return;}
   document.getElementById('cmp-export-btns').style.display='block';
   const conds=new Set(items.map(d=>d.cop_cond).filter(Boolean));
   const mixedCop=conds.size>1?`<div class="alert a-warn" style="margin-bottom:1rem;font-size:13px"><strong>Caution:</strong> These units have different COP test conditions (${[...conds].join(', ')}). COP values are not directly comparable across different test conditions — a higher COP at W10/W35 does not mean better real-world performance than a lower COP at A7/W35.</div>`:'';
   sE.innerHTML=mixedCop;
+  cE.innerHTML=cmpChartsSection(items);
   const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Max flow temp (°C)','flow_temp_max'],['Min capacity (kW)','cap_min'],['Max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value','cop'],['SCOP','scop'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Weight (kg)','weight']];
   tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
     ${items.some(d=>d.description)?`<tr><td style="color:var(--text3);font-size:12px">Description</td>${items.map(d=>`<td style="font-size:12px;color:var(--text2);line-height:1.5">${d.description||'—'}</td>`).join('')}</tr>`:''}
