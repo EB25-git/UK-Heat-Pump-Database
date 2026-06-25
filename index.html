@@ -2414,8 +2414,47 @@ function exportCompareCSV(){
   showToast('Comparison exported as <strong>Excel CSV</strong>.');
 }
 
+// ── Compare PDF charts ──
+const CMP_CHART_COLORS=['#0D7377','#3ECCC0','#C07B1A'];
+function cmpEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function cmpShort(s,n){s=String(s||'');return s.length>n?s.slice(0,n-1)+'…':s;}
+function cmpNiceMax(v){if(v<=0)return 1;const pow=Math.pow(10,Math.floor(Math.log10(v)));const x=v/pow;const m=x<=1?1:x<=2?2:x<=2.5?2.5:x<=5?5:10;return m*pow;}
+function cmpBarChart(title,unit,accessor,subAccessor,items){
+  const W=520,H=250,padL=46,padR=16,padT=30,padB=64,plotW=W-padL-padR,plotH=H-padT-padB,yBase=padT+plotH;
+  const data=items.map((d,i)=>({val:accessor(d),sub:subAccessor?subAccessor(d):null,name:d.model,color:CMP_CHART_COLORS[i]}));
+  const present=data.filter(d=>typeof d.val==='number'&&!isNaN(d.val));
+  if(!present.length)return `<div class="chart-block"><div class="chart-ttl">${cmpEsc(title)}</div><div class="chart-empty">No data available for the selected products.</div></div>`;
+  const axisMax=cmpNiceMax(Math.max(...present.map(d=>d.val)));
+  const slot=plotW/data.length,barW=Math.min(78,slot*0.5);
+  let grid='';
+  for(let g=0;g<=4;g++){const gy=yBase-plotH*g/4,gv=axisMax*g/4;
+    grid+=`<line x1="${padL}" y1="${gy.toFixed(1)}" x2="${W-padR}" y2="${gy.toFixed(1)}" stroke="${g===0?'#bcc9c9':'#e6eced'}" stroke-width="1"/>`;
+    grid+=`<text x="${padL-8}" y="${(gy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#7a9494">${+gv.toFixed(2)}</text>`;}
+  const bars=data.map((d,i)=>{
+    const cx=padL+slot*i+slot/2;
+    const nameTxt=`<text x="${cx.toFixed(1)}" y="${yBase+18}" text-anchor="middle" font-size="9" fill="#3d5c5c">${cmpEsc(cmpShort(d.name,18))}</text>`;
+    const subTxt=d.sub?`<text x="${cx.toFixed(1)}" y="${yBase+32}" text-anchor="middle" font-size="8" fill="#9aa">${cmpEsc(cmpShort(d.sub,18))}</text>`:'';
+    if(typeof d.val!=='number'||isNaN(d.val))return `<text x="${cx.toFixed(1)}" y="${(yBase-6)}" text-anchor="middle" font-size="9" fill="#aab">n/a</text>${nameTxt}${subTxt}`;
+    const bh=plotH*(d.val/axisMax),by=yBase-bh;
+    return `<rect x="${(cx-barW/2).toFixed(1)}" y="${by.toFixed(1)}" width="${barW.toFixed(1)}" height="${bh.toFixed(1)}" rx="2" fill="${d.color}"/>`+
+      `<text x="${cx.toFixed(1)}" y="${(by-6).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="#0f2b2b">${d.val}${unit||''}</text>${nameTxt}${subTxt}`;
+  }).join('');
+  return `<div class="chart-block"><div class="chart-ttl">${cmpEsc(title)}</div>`+
+    `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:${W}px;height:auto;display:block">${grid}${bars}</svg></div>`;
+}
+function cmpChartsSection(items){
+  const legend=`<div class="chart-legend">${items.map((d,i)=>`<span class="cl-item"><span class="cl-sw" style="background:${CMP_CHART_COLORS[i]}"></span>${cmpEsc(d.manufacturer)} ${cmpEsc(cmpShort(d.model,28))}</span>`).join('')}</div>`;
+  const charts=[
+    cmpBarChart('Max capacity (kW)',' kW',d=>d.cap_max,null,items),
+    cmpBarChart('COP','',d=>d.cop,d=>d.cop_cond,items),
+    cmpBarChart('SCOP','',d=>d.scop,d=>d.scop_cond,items)
+  ].join('');
+  return `<div class="charts-wrap"><h2 class="charts-h">Visual comparison</h2>${legend}<div class="charts-grid">${charts}</div>`+
+    `<p class="charts-note">Bars show manufacturer-published figures. COP and SCOP are measured at the test conditions shown beneath each bar — compare like-for-like only. Missing values are marked “n/a”.</p></div>`;
+}
 function exportComparePDF(){
   const items=getCompareExportItems();if(!items)return;
+  const chartsSection=cmpChartsSection(items);
   const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Max Operating Temp','op_temp_max','°C'],['Min Flow Temp','flow_temp_min','°C'],['Max Flow Temp','flow_temp_max','°C'],['Min Capacity','cap_min',' kW'],['Max Capacity','cap_max',' kW'],['Peak Elec Input','peak_elec',' kW'],['COP','cop'],['COP Test Conditions','cop_cond'],['SCOP','scop'],['EER','eer'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Weight','weight',' kg']];
   const htmlContent=`<!DOCTYPE html><html><head><title>Heat Pump Comparison — heatpumpdatabase.com</title>
 <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;padding:2.5rem;font-size:12px;line-height:1.5}
@@ -2425,9 +2464,18 @@ th{background:#f0f6f6;font-size:10px;text-transform:uppercase;letter-spacing:.05
 td:first-child{font-weight:500;color:#555;width:200px}
 .best{color:#0D7377;font-weight:600}
 .footer{margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:10px;color:#999}
-@media print{body{padding:1.5rem}}</style></head><body>
+.charts-wrap{margin:0 0 1.75rem}.charts-h{font-size:14px;font-weight:700;color:#0D7377;margin-bottom:8px}
+.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;font-size:10px;color:#333}
+.cl-item{display:inline-flex;align-items:center;gap:6px}.cl-sw{width:11px;height:11px;border-radius:2px;display:inline-block}
+.charts-grid{display:flex;flex-wrap:wrap;gap:18px}
+.chart-block{flex:1 1 300px;min-width:280px;border:1px solid #e2e8e8;border-radius:8px;padding:12px 14px;page-break-inside:avoid;break-inside:avoid}
+.chart-ttl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px}
+.chart-empty{font-size:11px;color:#999;padding:24px 0;text-align:center}
+.charts-note{font-size:10px;color:#888;margin-top:12px;line-height:1.5}
+@media print{body{padding:1.5rem}.chart-block{flex-basis:46%}}</style></head><body>
 <h1>Heat Pump Comparison</h1>
 <p class="sub">Generated from heatpumpdatabase.com · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
+${chartsSection}
 <table><thead><tr><th>Specification</th>${items.map(d=>'<th>'+d.manufacturer+'<br>'+d.model+'</th>').join('')}</tr></thead><tbody>
 ${specs.map(([label,key,unit])=>{
   const rk=key==='_noise'?'noise':key;
