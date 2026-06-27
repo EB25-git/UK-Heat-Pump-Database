@@ -2097,11 +2097,11 @@ function renderGrid(){
       <div class="hp-card-body">
         <div class="hp-spec-grid">
           <div class="hp-spec"><div class="hp-spec-label">Capacity</div><div class="hp-spec-val">${d.cap_min?d.cap_min+'–':''}${d.cap_max} kW</div></div>
-          <div class="hp-spec"><div class="hp-spec-label">COP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${copLabel(d.cop,d.cop_cond)}</div></div></div>
-          <div class="hp-spec"><div class="hp-spec-label">${d.hp_type==='ASHP'?'Min ambient':'Min source temp'}</div><div class="hp-spec-val">${fmt(d.op_temp_min,'°C')}</div></div>
           <div class="hp-spec"><div class="hp-spec-label">Max flow temp</div><div class="hp-spec-val">${fmt(d.flow_temp_max,'°C')}</div></div>
-          <div class="hp-spec"><div class="hp-spec-label">Peak elec</div><div class="hp-spec-val">${fmt(d.peak_elec,' kW')}</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">COP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${copLabel(d.cop,d.cop_cond)}</div></div></div>
           <div class="hp-spec"><div class="hp-spec-label">SCOP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${scopLabel(d.scop,d.scop_cond)}</div></div></div>
+          <div class="hp-spec"><div class="hp-spec-label">${d.hp_type==='ASHP'?'Min ambient':'Min source temp'}</div><div class="hp-spec-val">${fmt(d.op_temp_min,'°C')}</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">Peak elec</div><div class="hp-spec-val">${fmt(d.peak_elec,' kW')}</div></div>
         </div>
       </div>
       <div class="hp-card-footer">
@@ -2438,24 +2438,24 @@ function exportCompareCSV(){
 
 // ── Compare parameter info tooltips ──
 const CMP_PARAM_INFO={
- hp_type:"Heat pump type — the heat source the unit draws from: Air Source (ASHP) uses outside air, Ground Source (GSHP) uses buried ground loops, Water Source (WSHP) uses a body of water.",
- mode:"Whether the unit provides heating only, or both heating and cooling (reversible).",
- refrigerant:"The working fluid that carries heat around the cycle (e.g. R290 propane, R32, R410A). It affects efficiency and global-warming potential (GWP).",
- op_temp_min:"The lowest source temperature (outdoor air, ground or water) at which the unit can still operate.",
- flow_temp_max:"The hottest water the unit can deliver to the heating circuit. Higher flow temps suit radiators and hot water; lower temps suit underfloor heating and improve efficiency.",
- cap_min:"The lowest heat output (kW) the unit can modulate down to. A lower minimum reduces wasteful on/off short-cycling in mild weather.",
- cap_max:"The maximum heat output the unit can deliver, in kilowatts (kW).",
- peak_elec:"The maximum electrical power the unit draws, in kilowatts (kW) — useful for sizing the electrical supply and fuse.",
- cop:"Coefficient of Performance — heat output ÷ electrical input at a single test point. A COP of 4 means 4 kW of heat per 1 kW of electricity. Higher is better.",
- cop_cond:"The test condition the COP was measured at, e.g. A7/W35 = 7 °C source air and 35 °C water flow. Only compare COPs measured at the same condition.",
- scop:"Seasonal Coefficient of Performance — average efficiency across a whole heating season (EN 14825), so it reflects real-world running better than a single-point COP. Higher is better.",
- scop_cond:"The climate and flow-temperature basis for the SCOP figure (e.g. Average climate, W35). Compare like-for-like only.",
- eer:"Energy Efficiency Ratio — cooling output ÷ electrical input; the cooling-mode equivalent of COP. Higher is better.",
- noise:"Sound level in decibels, dB(A). Lower is quieter. Check the reference: sound power (Lw) and sound pressure (Lp, at a stated distance) are not directly comparable.",
- height:"Physical height of the unit, in millimetres.",
- width:"Physical width of the unit, in millimetres.",
- depth:"Physical depth of the unit, in millimetres.",
- weight:"Unit weight, in kilograms."
+ hp_type:"Heat-pump type: ASHP (air-source), GSHP (ground-source) or WSHP (water-source).",
+ mode:"Heating only, or heating and cooling (reversible).",
+ refrigerant:"Working fluid in the cycle (e.g. R290, R32). Affects efficiency and GWP (global-warming potential).",
+ op_temp_min:"Lowest source temperature the unit can run at.",
+ flow_temp_max:"Hottest water the unit can deliver to the heating system.",
+ cap_min:"Smallest heat output it can turn down to (kW).",
+ cap_max:"Largest heat output it can deliver (kW).",
+ peak_elec:"Maximum electrical power drawn (kW).",
+ cop:"COP = Coefficient of Performance. Heat out ÷ electricity in, at one test point. Higher is better.",
+ cop_cond:"The test point for the COP, e.g. A7/W35 = 7 °C air in, 35 °C water out. Compare like-for-like.",
+ scop:"SCOP = Seasonal Coefficient of Performance. Average efficiency over a heating season. Higher is better.",
+ scop_cond:"Climate and flow-temperature basis for the SCOP (e.g. Average, W35).",
+ eer:"EER = Energy Efficiency Ratio. Cooling out ÷ electricity in. Higher is better.",
+ noise:"Sound level in dB(A). Lower is quieter — check the reference.",
+ height:"Unit height (mm).",
+ width:"Unit width (mm).",
+ depth:"Unit depth (mm).",
+ weight:"Unit weight (kg)."
 };
 function cmpAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function cmpInfo(key,label){
@@ -2521,7 +2521,7 @@ function cmpChartsSection(items){
 function exportComparePDF(){
   const items=getCompareExportItems();if(!items)return;
   const chartsSection=cmpChartsSection(items);
-  const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Max Operating Temp','op_temp_max','°C'],['Min Flow Temp','flow_temp_min','°C'],['Max Flow Temp','flow_temp_max','°C'],['Min Capacity','cap_min',' kW'],['Max Capacity','cap_max',' kW'],['Peak Elec Input','peak_elec',' kW'],['COP','cop'],['COP Test Conditions','cop_cond'],['SCOP','scop'],['EER','eer'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Weight','weight',' kg']];
+  const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Max Operating Temp','op_temp_max','°C'],['Min Flow Temp','flow_temp_min','°C'],['Max Flow Temp','flow_temp_max','°C'],['Min Capacity','cap_min',' kW'],['Max Capacity','cap_max',' kW'],['Peak Elec Input','peak_elec',' kW'],['COP','cop'],['COP Test Conditions','cop_cond'],['SCOP','scop'],['SCOP Test Conditions','scop_cond'],['EER','eer'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Weight','weight',' kg']];
   const htmlContent=`<!DOCTYPE html><html><head><title>Heat Pump Comparison — heatpumpdatabase.com</title>
 <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;padding:2.5rem;font-size:12px;line-height:1.5}
 h1{font-size:20px;font-weight:700;margin-bottom:4px;color:#0D7377}p.sub{font-size:11px;color:#777;margin-bottom:1.5rem}
@@ -2576,12 +2576,12 @@ function renderCompare(){
   const mixedCop=conds.size>1?`<div class="alert a-warn" style="margin-bottom:1rem;font-size:13px"><strong>Caution:</strong> These units have different COP test conditions (${[...conds].join(', ')}). COP values are not directly comparable across different test conditions — a higher COP at W10/W35 does not mean better real-world performance than a lower COP at A7/W35.</div>`:'';
   sE.innerHTML=mixedCop;
   cE.innerHTML=cmpChartsSection(items);
-  const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Max flow temp (°C)','flow_temp_max'],['Min capacity (kW)','cap_min'],['Max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value','cop'],['SCOP','scop'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Weight (kg)','weight']];
+  const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Max flow temp (°C)','flow_temp_max'],['Min capacity (kW)','cap_min'],['Max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value','cop'],['COP test conditions','cop_cond'],['SCOP value','scop'],['SCOP test conditions','scop_cond'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Weight (kg)','weight']];
   tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
     ${items.some(d=>d.description)?`<tr><td style="color:var(--text3);font-size:12px">Description</td>${items.map(d=>`<td style="font-size:12px;color:var(--text2);line-height:1.5">${d.description||'—'}</td>`).join('')}</tr>`:''}
-    <tr><td style="color:var(--text3);font-size:12px">COP conditions${cmpInfo('cop_cond','COP conditions')}</td>${items.map(d=>`<td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>`).join('')}</tr>
-    <tr><td style="color:var(--text3);font-size:12px">SCOP conditions${cmpInfo('scop_cond','SCOP conditions')}</td>${items.map(d=>`<td>${d.scop!=null?`<span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</td>`).join('')}</tr>
     ${specs.map(([l,k])=>{
+      if(k==='cop_cond')return `<tr><td style="color:var(--text3);font-size:12px">${l}${cmpInfo(k,l)}</td>${items.map(d=>`<td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>`).join('')}</tr>`;
+      if(k==='scop_cond')return `<tr><td style="color:var(--text3);font-size:12px">${l}${cmpInfo(k,l)}</td>${items.map(d=>`<td>${d.scop!=null?`<span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</td>`).join('')}</tr>`;
       const rk=k==='_noise'?'noise':k;
       const vals=items.map(d=>d[rk]);const numVals=vals.filter(v=>typeof v==='number');
       const bestFn=rk==='op_temp_min'||rk==='noise'?Math.min:Math.max;
