@@ -316,6 +316,13 @@ select.filt:focus{border-color:var(--accent);outline:none}
 
 /* ── COP LABELS ── */
 .cop-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;padding:2px 7px;border-radius:6px;margin-left:4px;vertical-align:middle;white-space:nowrap;font-weight:500}
+.info-i{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:5px;padding:0;border:1px solid var(--border);border-radius:50%;background:var(--surface);color:var(--text3);font:italic 600 10px/1 Georgia,'Times New Roman',serif;cursor:pointer;vertical-align:middle;transition:border-color .12s,color .12s;flex:none}
+.info-i:hover,.info-i:focus-visible{border-color:var(--accent);color:var(--accent)}
+.info-i:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(62,204,192,.35)}
+#info-tip{position:fixed;left:-9999px;top:0;z-index:9999;max-width:262px;padding:9px 11px;border-radius:8px;background:var(--text);color:#fff;font:400 12px/1.45 'Inter',system-ui,sans-serif;letter-spacing:normal;text-transform:none;box-shadow:0 6px 20px rgba(0,0,0,.22);opacity:0;transform:translateY(3px);transition:opacity .12s,transform .12s;pointer-events:none}
+#info-tip.show{opacity:1;transform:none}
+#info-tip::after{content:"";position:absolute;left:var(--arrow,20px);top:100%;border:5px solid transparent;border-top-color:var(--text)}
+#info-tip.below::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--text)}
 .cop-std{background:#E0F5F4;color:#0D7377;border:1px solid #A3DDD9}
 .cop-nonstd{background:var(--amber-light);color:var(--amber);border:1px solid #F0D090}
 .cop-water{background:var(--purple-light);color:var(--purple);border:1px solid #C5BBDE}
@@ -2429,6 +2436,50 @@ function exportCompareCSV(){
   showToast('Comparison exported as <strong>Excel CSV</strong>.');
 }
 
+// ── Compare parameter info tooltips ──
+const CMP_PARAM_INFO={
+ hp_type:"Heat pump type — the heat source the unit draws from: Air Source (ASHP) uses outside air, Ground Source (GSHP) uses buried ground loops, Water Source (WSHP) uses a body of water.",
+ mode:"Whether the unit provides heating only, or both heating and cooling (reversible).",
+ refrigerant:"The working fluid that carries heat around the cycle (e.g. R290 propane, R32, R410A). It affects efficiency and global-warming potential (GWP).",
+ op_temp_min:"The lowest source temperature (outdoor air, ground or water) at which the unit can still operate.",
+ flow_temp_max:"The hottest water the unit can deliver to the heating circuit. Higher flow temps suit radiators and hot water; lower temps suit underfloor heating and improve efficiency.",
+ cap_min:"The lowest heat output (kW) the unit can modulate down to. A lower minimum reduces wasteful on/off short-cycling in mild weather.",
+ cap_max:"The maximum heat output the unit can deliver, in kilowatts (kW).",
+ peak_elec:"The maximum electrical power the unit draws, in kilowatts (kW) — useful for sizing the electrical supply and fuse.",
+ cop:"Coefficient of Performance — heat output ÷ electrical input at a single test point. A COP of 4 means 4 kW of heat per 1 kW of electricity. Higher is better.",
+ cop_cond:"The test condition the COP was measured at, e.g. A7/W35 = 7 °C source air and 35 °C water flow. Only compare COPs measured at the same condition.",
+ scop:"Seasonal Coefficient of Performance — average efficiency across a whole heating season (EN 14825), so it reflects real-world running better than a single-point COP. Higher is better.",
+ scop_cond:"The climate and flow-temperature basis for the SCOP figure (e.g. Average climate, W35). Compare like-for-like only.",
+ eer:"Energy Efficiency Ratio — cooling output ÷ electrical input; the cooling-mode equivalent of COP. Higher is better.",
+ noise:"Sound level in decibels, dB(A). Lower is quieter. Check the reference: sound power (Lw) and sound pressure (Lp, at a stated distance) are not directly comparable.",
+ height:"Physical height of the unit, in millimetres.",
+ width:"Physical width of the unit, in millimetres.",
+ depth:"Physical depth of the unit, in millimetres.",
+ weight:"Unit weight, in kilograms."
+};
+function cmpAttr(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function cmpInfo(key,label){
+  const k=key==='_noise'?'noise':key;const t=CMP_PARAM_INFO[k];if(!t)return '';
+  return ` <button type="button" class="info-i" data-tip="${cmpAttr(t)}" aria-label="${cmpAttr(label)}: ${cmpAttr(t)}">i</button>`;
+}
+(function(){
+  let tip=null,active=null;
+  function el(){if(!tip){tip=document.createElement('div');tip.id='info-tip';tip.setAttribute('role','tooltip');}if(!tip.parentNode&&document.body)document.body.appendChild(tip);return tip;}
+  function show(btn){const t=btn.getAttribute('data-tip');if(!t)return;const tp=el();tp.textContent=t;tp.style.left='-9999px';tp.classList.add('show');
+    const r=btn.getBoundingClientRect(),tr=tp.getBoundingClientRect();
+    let left=Math.round(r.left+r.width/2-tr.width/2);left=Math.max(8,Math.min(left,window.innerWidth-tr.width-8));
+    let top=Math.round(r.top-tr.height-9);if(top<8){top=Math.round(r.bottom+9);tp.classList.add('below');}else tp.classList.remove('below');
+    tp.style.left=left+'px';tp.style.top=top+'px';tp.style.setProperty('--arrow',Math.round(r.left+r.width/2-left-5)+'px');active=btn;}
+  function hide(){if(tip)tip.classList.remove('show');active=null;}
+  const find=e=>e.target&&e.target.closest?e.target.closest('.info-i'):null;
+  document.addEventListener('mouseover',e=>{const b=find(e);if(b)show(b);});
+  document.addEventListener('mouseout',e=>{if(find(e))hide();});
+  document.addEventListener('focusin',e=>{const b=find(e);if(b)show(b);});
+  document.addEventListener('focusout',e=>{if(find(e))hide();});
+  document.addEventListener('click',e=>{const b=find(e);if(b){e.preventDefault();if(active===b)hide();else show(b);}else hide();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')hide();});
+  window.addEventListener('scroll',hide,true);window.addEventListener('resize',hide);
+})();
 // ── Compare PDF charts ──
 const CMP_CHART_COLORS=['#0D7377','#3ECCC0','#C07B1A'];
 function cmpEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -2528,14 +2579,14 @@ function renderCompare(){
   const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Max flow temp (°C)','flow_temp_max'],['Min capacity (kW)','cap_min'],['Max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value','cop'],['SCOP','scop'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Weight (kg)','weight']];
   tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
     ${items.some(d=>d.description)?`<tr><td style="color:var(--text3);font-size:12px">Description</td>${items.map(d=>`<td style="font-size:12px;color:var(--text2);line-height:1.5">${d.description||'—'}</td>`).join('')}</tr>`:''}
-    <tr><td style="color:var(--text3);font-size:12px">COP conditions</td>${items.map(d=>`<td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>`).join('')}</tr>
-    <tr><td style="color:var(--text3);font-size:12px">SCOP conditions</td>${items.map(d=>`<td>${d.scop!=null?`<span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</td>`).join('')}</tr>
+    <tr><td style="color:var(--text3);font-size:12px">COP conditions${cmpInfo('cop_cond','COP conditions')}</td>${items.map(d=>`<td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>`).join('')}</tr>
+    <tr><td style="color:var(--text3);font-size:12px">SCOP conditions${cmpInfo('scop_cond','SCOP conditions')}</td>${items.map(d=>`<td>${d.scop!=null?`<span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</td>`).join('')}</tr>
     ${specs.map(([l,k])=>{
       const rk=k==='_noise'?'noise':k;
       const vals=items.map(d=>d[rk]);const numVals=vals.filter(v=>typeof v==='number');
       const bestFn=rk==='op_temp_min'||rk==='noise'?Math.min:Math.max;
       const best=numVals.length?bestFn(...numVals):null;
-      return `<tr><td style="color:var(--text3);font-size:12px">${l}</td>${items.map(d=>{const v=d[rk];const isNum=typeof v==='number';const isBest=isNum&&numVals.length>1&&v===best;return `<td class="mv${isBest?' acc':''}">${k==='_noise'?fmtNoise(d):(v!=null?v:'—')}</td>`;}).join('')}</tr>`;
+      return `<tr><td style="color:var(--text3);font-size:12px">${l}${cmpInfo(k,l)}</td>${items.map(d=>{const v=d[rk];const isNum=typeof v==='number';const isBest=isNum&&numVals.length>1&&v===best;return `<td class="mv${isBest?' acc':''}">${k==='_noise'?fmtNoise(d):(v!=null?v:'—')}</td>`;}).join('')}</tr>`;
     }).join('')}
   </tbody></table></div>`;
 }
