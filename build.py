@@ -71,17 +71,27 @@ def spec_rows(p):
     add("Heating capacity", cap_str(p))
     if p.get("cop") is not None:
         cc = f" at {esc(p['cop_cond'])}" if p.get("cop_cond") else ""
-        add("COP", f"{num(p['cop'])}{cc}")
+        add("COP (heating)", f"{num(p['cop'])}{cc}")
     if p.get("scop") is not None:
         sc = p.get("scop_cond")
         if sc and sc != "not stated":
-            add("SCOP", f"{num(p['scop'])} at {esc(sc)}")
+            add("SCOP (heating)", f"{num(p['scop'])} at {esc(sc)}")
         else:
-            add("SCOP", f"{num(p['scop'])} (conditions not stated)")
-    if p.get("eer")  is not None: add("EER (cooling)", num(p["eer"]))
+            add("SCOP (heating)", f"{num(p['scop'])} (conditions not stated)")
     add("Operating range (air)", range_str(p.get("op_temp_min"), p.get("op_temp_max"), "\u00b0C", " to "))
-    add("Flow temperature", range_str(p.get("flow_temp_min"), p.get("flow_temp_max"), "\u00b0C"))
+    add("Heating flow temperature", range_str(p.get("flow_temp_min"), p.get("flow_temp_max"), "\u00b0C"))
     if p.get("peak_elec") is not None: add("Power input", f"{num(p['peak_elec'])} kW")
+    # Cooling
+    clo, chi = p.get("cool_cap_min"), p.get("cool_cap_max")
+    if clo is not None or chi is not None:
+        add("Cooling capacity", range_str(clo, chi, " kW") if (clo is not None and chi is not None) else f"{num(chi if chi is not None else clo)} kW")
+    add("Cooling flow temperature", range_str(p.get("cool_flow_temp_min"), p.get("cool_flow_temp_max"), "\u00b0C"))
+    if p.get("eer") is not None:
+        ec = f" at {esc(p['eer_cond'])}" if p.get("eer_cond") else ""
+        add("EER (cooling)", f"{num(p['eer'])}{ec}")
+    if p.get("seer") is not None:
+        sec = f" at {esc(p['seer_cond'])}" if p.get("seer_cond") else ""
+        add("SEER (cooling)", f"{num(p['seer'])}{sec}")
     if any(p.get(k) is not None for k in ("height", "width", "depth")):
         h, w, d = p.get("height"), p.get("width"), p.get("depth")
         dims = " \u00d7 ".join(num(x) for x in (h, w, d) if x is not None)
