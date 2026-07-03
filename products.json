@@ -51388,7 +51388,7 @@
     "cap_min": null,
     "cap_max": 165.3,
     "peak_elec": null,
-    "cop": 342,
+    "cop": 3.42,
     "cop_cond": "A7/W45",
     "scop": 3.32,
     "scop_cond": "W55",
