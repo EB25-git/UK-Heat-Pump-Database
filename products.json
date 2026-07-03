@@ -532,7 +532,8 @@
     "notes": "A7/W35 data under DIN EN14511-x:2013. A7/W45 capacity 13.9 kW, COP 3.5. Sound pressure outside 50 dB(A). Refrigerant R407C | 5.8 kg.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=LW%20140A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=LW%20140A",
+    "mcs_cert": "041-K001-38/2"
   },
   {
     "id": 300,
@@ -575,7 +576,8 @@
     "notes": "A7/W35 data under DIN EN14511-x:2013. A7/W45 capacity 18.7 kW, COP 3.3. Sound pressure outside 52 dB(A). Refrigerant R407C | 6.8 kg.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=LW%20180A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=LW%20180A",
+    "mcs_cert": "041-K001-39/2"
   },
   {
     "id": 301,
@@ -618,7 +620,8 @@
     "notes": "A7/W35 data under DIN EN14511-x:2013. A7/W45 capacity 26.1 kW, COP 3.3. Sound pressure outside 57 dB(A). Refrigerant R407C | 9.8 kg.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=LW%20251A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=LW%20251A",
+    "mcs_cert": "041-K001-40"
   },
   {
     "id": 302,
@@ -2222,7 +2225,8 @@
     "notes": "Technical table in DOCX is heavily corrupted. B0/W35 capacity/COP recovered in second pass; further dimensions/noise/refrigerant should be confirmed from original technical data.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZSV%2062%28H%29%28K%293M"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZSV%2062%28H%29%28K%293M",
+    "mcs_cert": "041-K001-12"
   },
   {
     "id": 307,
@@ -2306,7 +2310,8 @@
     "notes": "Technical table in DOCX is heavily corrupted. B0/W35 capacity/COP recovered in second pass; further dimensions/noise/refrigerant should be confirmed from original technical data.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZSV%20122%28H%29%28K%293M"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZSV%20122%28H%29%28K%293M",
+    "mcs_cert": "041-K001-13"
   },
   {
     "id": 313,
@@ -2349,7 +2354,8 @@
     "notes": "Passive cooling version",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZSV%2042K3M"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZSV%2042K3M",
+    "mcs_cert": "041-K001-50"
   },
   {
     "id": 350,
@@ -19746,7 +19752,8 @@
     "notes": "Haier AU052FYCRA(HW) air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.05. SCOP 4.59 (W35) / 3.32 (W55). Sound power 61 dB(A) (LwO). Refrigerant R32. Design heat output 4.78 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU052FYCRA%28HW%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU052FYCRA%28HW%29",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1694,
@@ -19789,7 +19796,8 @@
     "notes": "Haier AU082FYCRA(HW) air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.48. SCOP 4.47 (W35) / 3.2 (W55). Sound power 64 dB(A) (LwO). Refrigerant R32. Design heat output 7.8 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU082FYCRA%28HW%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU082FYCRA%28HW%29",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1695,
@@ -19832,7 +19840,8 @@
     "notes": "Haier AU112FYCRA(HW) air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.22. SCOP 4.35 (W35) / 3.2 (W55). Sound power 72 dB(A) (LwO). Refrigerant R32. Design heat output 10.81 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU112FYCRA%28HW%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU112FYCRA%28HW%29",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1696,
@@ -19875,7 +19884,8 @@
     "notes": "Haier AU162FYCRA(HW) air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.02. SCOP 4.13 (W35) / 3.24 (W55). Sound power 68 dB(A) (LwO). Refrigerant R32. Design heat output 15.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU162FYCRA%28HW%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AU162FYCRA%28HW%29",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1697,
@@ -19918,7 +19928,8 @@
     "notes": "Haier AW042HUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.5. SCOP 5.1 (W35) / 3.85 (W55). Sound power 63 dB(A) (LwO). Refrigerant R290. Design heat output 4.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW042HUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW042HUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1698,
@@ -19961,7 +19972,8 @@
     "notes": "Haier AW042MUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.5. SCOP 5.1 (W35) / 3.85 (W55). Sound power 65 dB(A) (LwO). Refrigerant R290. Design heat output 4.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW042MUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW042MUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1729,
@@ -20004,7 +20016,8 @@
     "notes": "Haier AW042SSCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.02. SCOP 5.0 (W35) / 3.45 (W55). Sound power 58 dB(A) (LwO). Refrigerant R32. Design heat output 4.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW042SSCHA/HU062WAMNA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW042SSCHA/HU062WAMNA",
+    "mcs_cert": "24.01.020"
   },
   {
     "id": 1699,
@@ -20047,7 +20060,8 @@
     "notes": "Haier AW052MUCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.06. SCOP 4.97 (W35) / 3.52 (W55). Sound power 65 dB(A) (LwO). Refrigerant R32. Design heat output 5.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW052MUCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW052MUCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1700,
@@ -20090,7 +20104,8 @@
     "notes": "Haier AW062HUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.35. SCOP 5.1 (W35) / 3.83 (W55). Sound power 64 dB(A) (LwO). Refrigerant R290. Design heat output 4.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW062HUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW062HUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1701,
@@ -20133,7 +20148,8 @@
     "notes": "Haier AW062MUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.35. SCOP 5.1 (W35) / 3.83 (W55). Sound power 66 dB(A) (LwO). Refrigerant R290. Design heat output 4.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW062MUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW062MUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1730,
@@ -20176,7 +20192,8 @@
     "notes": "Haier AW062SSCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.98. SCOP 4.8 (W35) / 3.38 (W55). Sound power 61 dB(A) (LwO). Refrigerant R32. Design heat output 6.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW062SSCHA/HU062WAMNA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW062SSCHA/HU062WAMNA",
+    "mcs_cert": "24.01.020"
   },
   {
     "id": 1702,
@@ -20219,7 +20236,8 @@
     "notes": "Haier AW072MUCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.0. SCOP 4.95 (W35) / 3.38 (W55). Sound power 66 dB(A) (LwO). Refrigerant R32. Design heat output 7.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW072MUCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW072MUCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1703,
@@ -20262,7 +20280,8 @@
     "notes": "Haier AW082HUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.35. SCOP 5.2 (W35) / 3.85 (W55). Sound power 64 dB(A) (LwO). Refrigerant R290. Design heat output 7.2 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW082HUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW082HUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1704,
@@ -20305,7 +20324,8 @@
     "notes": "Haier AW082MUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.35. SCOP 5.2 (W35) / 3.85 (W55). Sound power 66 dB(A) (LwO). Refrigerant R290. Design heat output 7.2 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW082MUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW082MUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1731,
@@ -20348,7 +20368,8 @@
     "notes": "Haier AW082SNCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.0. SCOP 4.9 (W35) / 3.32 (W55). Sound power 65 dB(A) (LwO). Refrigerant R32. Design heat output 8.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW082SNCHA/HU102WAMNA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW082SNCHA/HU102WAMNA",
+    "mcs_cert": "24.01.020"
   },
   {
     "id": 1705,
@@ -20391,7 +20412,8 @@
     "notes": "Haier AW092MUCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.9. SCOP 4.95 (W35) / 3.34 (W55). Sound power 68 dB(A) (LwO). Refrigerant R32. Design heat output 9.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW092MUCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW092MUCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1706,
@@ -20434,7 +20456,8 @@
     "notes": "Haier AW102HUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 5.1 (W35) / 3.83 (W55). Sound power 66 dB(A) (LwO). Refrigerant R290. Design heat output 7.2 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW102HUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW102HUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1707,
@@ -20477,7 +20500,8 @@
     "notes": "Haier AW102MUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 5.1 (W35) / 3.83 (W55). Sound power 68 dB(A) (LwO). Refrigerant R290. Design heat output 7.2 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW102MUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW102MUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1732,
@@ -20520,7 +20544,8 @@
     "notes": "Haier AW102SNCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.6. SCOP 4.85 (W35) / 3.3 (W55). Sound power 68 dB(A) (LwO). Refrigerant R32. Design heat output 10.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW102SNCHA%2BHU102WAMNA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW102SNCHA%2BHU102WAMNA",
+    "mcs_cert": "24.01.020"
   },
   {
     "id": 1708,
@@ -20563,7 +20588,8 @@
     "notes": "Haier AW10NHUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 5.1 (W35) / 3.83 (W55). Sound power 66 dB(A) (LwO). Refrigerant R290. Design heat output 7.2 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW10NHUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW10NHUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1709,
@@ -20606,7 +20632,8 @@
     "notes": "Haier AW10NMUGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 5.1 (W35) / 3.83 (W55). Sound power 68 dB(A) (LwO). Refrigerant R290. Design heat output 7.2 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW10NMUGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW10NMUGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1710,
@@ -20649,7 +20676,8 @@
     "notes": "Haier AW112MXCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.9. SCOP 4.7 (W35) / 3.4 (W55). Sound power 69 dB(A) (LwO). Refrigerant R32. Design heat output 10.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW112MXCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW112MXCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1711,
@@ -20692,7 +20720,8 @@
     "notes": "Haier AW11NMXCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.9. SCOP 4.7 (W35) / 3.4 (W55). Sound power 69 dB(A) (LwO). Refrigerant R32. Design heat output 10.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW11NMXCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW11NMXCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1712,
@@ -20735,7 +20764,8 @@
     "notes": "Haier AW122HVGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 4.82 (W35) / 3.85 (W55). Sound power 66 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW122HVGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW122HVGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1713,
@@ -20778,7 +20808,8 @@
     "notes": "Haier AW122MXGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 4.82 (W35) / 3.85 (W55). Sound power 68 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW122MXGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW122MXGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1714,
@@ -20821,7 +20852,8 @@
     "notes": "Haier AW12NHVGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 4.82 (W35) / 3.85 (W55). Sound power 66 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW12NHVGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW12NHVGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1715,
@@ -20864,7 +20896,8 @@
     "notes": "Haier AW12NMXGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 5.1. SCOP 4.82 (W35) / 3.85 (W55). Sound power 68 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW12NMXGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW12NMXGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1716,
@@ -20907,7 +20940,8 @@
     "notes": "Haier AW142HVGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.83 (W55). Sound power 67 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW142HVGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW142HVGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1717,
@@ -20950,7 +20984,8 @@
     "notes": "Haier AW142MXCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.75. SCOP 4.65 (W35) / 3.45 (W55). Sound power 72 dB(A) (LwO). Refrigerant R32. Design heat output 14.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW142MXCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW142MXCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1718,
@@ -20993,7 +21028,8 @@
     "notes": "Haier AW142MXGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.83 (W55). Sound power 69 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW142MXGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW142MXGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1719,
@@ -21036,7 +21072,8 @@
     "notes": "Haier AW14NHVGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.83 (W55). Sound power 67 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW14NHVGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW14NHVGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1720,
@@ -21079,7 +21116,8 @@
     "notes": "Haier AW14NMXCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.75. SCOP 4.65 (W35) / 3.45 (W55). Sound power 72 dB(A) (LwO). Refrigerant R32. Design heat output 14.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW14NMXCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW14NMXCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1721,
@@ -21122,7 +21160,8 @@
     "notes": "Haier AW14NMXGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.83 (W55). Sound power 69 dB(A) (LwO). Refrigerant R290. Design heat output 8.5 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW14NMXGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW14NMXGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1722,
@@ -21165,7 +21204,8 @@
     "notes": "Haier AW162HVGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.85 (W55). Sound power 69 dB(A) (LwO). Refrigerant R290. Design heat output 12.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW162HVGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW162HVGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1723,
@@ -21208,7 +21248,8 @@
     "notes": "Haier AW162MXCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.53. SCOP 4.55 (W35) / 3.4 (W55). Sound power 72 dB(A) (LwO). Refrigerant R32. Design heat output 14.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW162MXCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW162MXCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1724,
@@ -21251,7 +21292,8 @@
     "notes": "Haier AW162MXGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.85 (W55). Sound power 71 dB(A) (LwO). Refrigerant R290. Design heat output 12.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW162MXGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW162MXGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1725,
@@ -21294,7 +21336,8 @@
     "notes": "Haier AW16NHVGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.85 (W55). Sound power 69 dB(A) (LwO). Refrigerant R290. Design heat output 12.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW16NHVGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW16NHVGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1726,
@@ -21337,7 +21380,8 @@
     "notes": "Haier AW16NMXCHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.53. SCOP 4.55 (W35) / 3.4 (W55). Sound power 72 dB(A) (LwO). Refrigerant R32. Design heat output 14.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW16NMXCHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW16NMXCHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1727,
@@ -21380,7 +21424,8 @@
     "notes": "Haier AW16NMXGHA air-to-water heat pump. NF PAC (Eurovent) certified. A7/W35 COP 4.95. SCOP 4.8 (W35) / 3.85 (W55). Sound power 71 dB(A) (LwO). Refrigerant R290. Design heat output 12.0 kW (EN 14825).",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW16NMXGHA"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AW16NMXGHA",
+    "mcs_cert": "24.01.019"
   },
   {
     "id": 1677,
@@ -21982,7 +22027,8 @@
     "notes": "Model AHZ-100HCDS1. Power supply AC 1Φ, 220-240V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 10 kW, COP 5.1. A7/W55 capacity 10 kW, COP 3.1. A-7/W35 capacity 9.5 kW, COP 3.1. A-7/W55 capacity 8 kW, COP 2.15. Cooling A35/W7 8.5 kW, EER 3.0; A35/W18 9 kW, EER 4.5. SCOP W35 4.8 (ηs 188%, A+++), SCOP W55 3.4 (ηs 133%, A++). Sound pressure normal/low/night 47/43/42 dB(A); sound power 61 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-100HCDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-100HCDS1",
+    "mcs_cert": "011-1W0661_1"
   },
   {
     "id": 1577,
@@ -22025,7 +22071,8 @@
     "notes": "Model AHZ-100HEDS1. Power supply AC 3Φ, 380-415V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 10 kW, COP 5.1. A7/W55 capacity 10 kW, COP 3.1. A-7/W35 capacity 9.5 kW, COP 3.1. A-7/W55 capacity 8 kW, COP 2.15. Cooling A35/W7 8.5 kW, EER 3.0; A35/W18 9 kW, EER 4.5. SCOP W35 4.8 (ηs 188%, A+++), SCOP W55 3.4 (ηs 133%, A++). Sound pressure normal/low/night 47/43/42 dB(A); sound power 61 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-100HEDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-100HEDS1",
+    "mcs_cert": "011-1W0661_2"
   },
   {
     "id": 1578,
@@ -22068,7 +22115,8 @@
     "notes": "Model AHZ-120HCDS1. Power supply AC 1Φ, 220-240V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 12 kW, COP 4.95. A7/W55 capacity 12 kW, COP 3.05. A-7/W35 capacity 10.8 kW, COP 3.0. A-7/W55 capacity 8.5 kW, COP 2.1. Cooling A35/W7 10 kW, EER 2.85; A35/W18 11 kW, EER 4.1. SCOP W35 4.7 (ηs 185%, A+++), SCOP W55 3.35 (ηs 130%, A++). Sound pressure normal/low/night 50/46/42 dB(A); sound power 63 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-120HCDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-120HCDS1",
+    "mcs_cert": "011-1W0661_3"
   },
   {
     "id": 1579,
@@ -22111,7 +22159,8 @@
     "notes": "Model AHZ-120HEDS1. Power supply AC 3Φ, 380-415V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 12 kW, COP 4.95. A7/W55 capacity 12 kW, COP 3.05. A-7/W35 capacity 10.8 kW, COP 3.0. A-7/W55 capacity 8.5 kW, COP 2.1. Cooling A35/W7 10 kW, EER 2.85; A35/W18 11 kW, EER 4.1. SCOP W35 4.7 (ηs 185%, A+++), SCOP W55 3.35 (ηs 130%, A++). Sound pressure normal/low/night 50/46/42 dB(A); sound power 63 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-120HEDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-120HEDS1",
+    "mcs_cert": "011-1W0661_4"
   },
   {
     "id": 1580,
@@ -22154,7 +22203,8 @@
     "notes": "Model AHZ-140HCDS1. Power supply AC 1Φ, 220-240V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 14 kW, COP 4.8. A7/W55 capacity 14 kW, COP 3.05. A-7/W35 capacity 13.5 kW, COP 2.85. A-7/W55 capacity 10 kW, COP 2.05. Cooling A35/W7 11 kW, EER 2.85; A35/W18 14 kW, EER 4.2. SCOP W35 4.6 (ηs 180%, A+++), SCOP W55 3.3 (ηs 128%, A++). Sound pressure normal/low/night 50/46/44 dB(A); sound power 64 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-140HCDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-140HCDS1",
+    "mcs_cert": "011-1W0662_1"
   },
   {
     "id": 1581,
@@ -22197,7 +22247,8 @@
     "notes": "Model AHZ-140HEDS1. Power supply AC 3Φ, 380-415V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 14 kW, COP 4.8. A7/W55 capacity 14 kW, COP 3.05. A-7/W35 capacity 13.5 kW, COP 2.85. A-7/W55 capacity 10 kW, COP 2.05. Cooling A35/W7 11 kW, EER 2.85; A35/W18 14 kW, EER 4.2. SCOP W35 4.6 (ηs 180%, A+++), SCOP W55 3.3 (ηs 128%, A++). Sound pressure normal/low/night 50/46/44 dB(A); sound power 64 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-140HEDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-140HEDS1",
+    "mcs_cert": "011-1W0662_2"
   },
   {
     "id": 1582,
@@ -22240,7 +22291,8 @@
     "notes": "Model AHZ-160HCDS1. Power supply AC 1Φ, 220-240V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 16 kW, COP 4.6. A7/W55 capacity 15.5 kW, COP 2.95. A-7/W35 capacity 14.0 kW, COP 2.8. A-7/W55 capacity 11 kW, COP 2.0. Cooling A35/W7 13 kW, EER 2.7; A35/W18 15.5 kW, EER 3.9. SCOP W35 4.5 (ηs 177%, A+++), SCOP W55 3.3 (ηs 127%, A++). Sound pressure normal/low/night 54/48/44 dB(A); sound power 67 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-160HCDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-160HCDS1",
+    "mcs_cert": "011-1W0662_3"
   },
   {
     "id": 1583,
@@ -22283,7 +22335,8 @@
     "notes": "Model AHZ-160HEDS1. Power supply AC 3Φ, 380-415V/50Hz. Brochure table indicates same performance for single-phase and three-phase versions. A7/W35 capacity 16 kW, COP 4.6. A7/W55 capacity 15.5 kW, COP 2.95. A-7/W35 capacity 14.0 kW, COP 2.8. A-7/W55 capacity 11 kW, COP 2.0. Cooling A35/W7 13 kW, EER 2.7; A35/W18 15.5 kW, EER 3.9. SCOP W35 4.5 (ηs 177%, A+++), SCOP W55 3.3 (ηs 127%, A++). Sound pressure normal/low/night 54/48/44 dB(A); sound power 67 dB(A). Working ranges: heating -25~35°C ambient, 20~65°C water; cooling 5~46°C ambient, 5~22°C water; DHW -25~43°C ambient, 30~60°C water (75°C with DHW electric heater). Space heating pipe connection G 1 inch female.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-160HEDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-160HEDS1",
+    "mcs_cert": "011-1W0662_4"
   },
   {
     "id": 1574,
@@ -22326,7 +22379,8 @@
     "notes": "Model AHZ-044HCDS1. Power supply 220-240V~50Hz. A7/W35 capacity 1.85/4.40/7.00 kW (min/nom/max), COP 5.10. A7/W55 capacity 4.40/6.00 kW, COP 3.00. A-7/W35 capacity 4.40/5.00 kW, COP 3.26. A-7/W55 capacity 4.00/4.20 kW, COP 1.97. Cooling A35/W7 4.40 kW, EER 4.00; A35/W18 5.60 kW, EER 5.60. SCOP W55 3.47. Sound pressure normal/low/night 47/40/36 dB(A). Refrigerant charge 1.17 kg. Net/gross weight 88/104 kg. Nominal/min water flow 0.77/0.50 m3/h. Operation ranges: heating -25~35°C ambient and 15~60°C water; DHW -25~40°C ambient and 30~55°C (75°C with DHW electric heater); cooling 5~46°C ambient and 5~22°C water.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-044HCDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-044HCDS1",
+    "mcs_cert": "041-K021-03"
   },
   {
     "id": 1575,
@@ -22369,7 +22423,8 @@
     "notes": "Model AHZ-080HCDS1. Power supply 220-240V~50Hz. A7/W35 capacity 2.10/8.00/11.0 kW (min/nom/max), COP 4.90. A7/W55 capacity 8.00/9.00 kW, COP 2.80. A-7/W35 capacity 5.80/7.30 kW, COP 3.14. A-7/W55 capacity 5.00/6.40 kW, COP 1.94. Cooling A35/W7 6.50 kW, EER 3.35; A35/W18 7.00 kW, EER 5.10. SCOP W55 3.50. Sound pressure normal/low/night 50/43/39 dB(A). Refrigerant charge 1.21 kg. Net/gross weight 88/105 kg. Nominal/min water flow 1.38/0.60 m3/h. Operation ranges: heating -25~35°C ambient and 15~60°C water; DHW -25~40°C ambient and 30~55°C (75°C with DHW electric heater); cooling 5~46°C ambient and 5~22°C water.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-080HCDS1"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AHZ-080HCDS1",
+    "mcs_cert": "041-K021-04"
   },
   {
     "id": 653,
@@ -26792,7 +26847,8 @@
     "notes": "Output at A-2/W50 is 4.4 kW. SCOP/class at 35°C is 5.07; SCOP/class at 50°C is 3.79. Supply 220-240/1/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V4WD2N7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V4WD2N7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 713,
@@ -26835,7 +26891,8 @@
     "notes": "Output at A-2/W50 is 5.8 kW. SCOP/class at 35°C is 4.89; SCOP/class at 50°C is 3.82. Supply 220-240/1/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V6WD2N7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V6WD2N7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 714,
@@ -26878,7 +26935,8 @@
     "notes": "Output at A-2/W50 is 7.8 kW. SCOP/class at 35°C is 5.19; SCOP/class at 50°C is 3.82. Supply 220-240/1/50; recommended fuse 20 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V8WD2N7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V8WD2N7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 715,
@@ -26921,7 +26979,8 @@
     "notes": "Output at A-2/W50 is 8.4 kW. SCOP/class at 35°C is 5.07; SCOP/class at 50°C is 3.82. Supply 220-240/1/50; recommended fuse 20 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "MCS",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V10WD2N7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V10WD2N7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 716,
@@ -26964,7 +27023,8 @@
     "notes": "Output at A-2/W50 is 11.3 kW. SCOP/class at 35°C is 4.67; SCOP/class at 50°C is 3.62. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12WD2N7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12WD2N7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 717,
@@ -27007,7 +27067,8 @@
     "notes": "Output at A-2/W50 is 12.0 kW. SCOP/class at 35°C is 4.63; SCOP/class at 50°C is 3.61. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14WD2N7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14WD2N7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 718,
@@ -27050,7 +27111,8 @@
     "notes": "Output at A-2/W50 is 13.1 kW. SCOP/class at 35°C is 4.59; SCOP/class at 50°C is 3.57. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16WD2N7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16WD2N7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 719,
@@ -27093,7 +27155,8 @@
     "notes": "Output at A-2/W50 is 11.3 kW. SCOP/class at 35°C is 4.67; SCOP/class at 50°C is 3.62. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12WD2RN7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12WD2RN7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 720,
@@ -27136,7 +27199,8 @@
     "notes": "Output at A-2/W50 is 12.0 kW. SCOP/class at 35°C is 4.63; SCOP/class at 50°C is 3.61. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14WD2RN7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14WD2RN7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 721,
@@ -27179,7 +27243,8 @@
     "notes": "Output at A-2/W50 is 13.1 kW. SCOP/class at 35°C is 4.59; SCOP/class at 50°C is 3.57. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 75°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16WD2RN7-%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16WD2RN7-%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 722,
@@ -27222,7 +27287,8 @@
     "notes": "Output at A-2/W50 is 4.2 kW. SCOP/class at 35°C is 4.85; SCOP/class at 50°C is 3.31. Supply 220-240/1/50; recommended fuse 16 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V4W/D2N8-B%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V4W/D2N8-B%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 723,
@@ -27265,7 +27331,8 @@
     "notes": "Output at A-2/W50 is 5.7 kW. SCOP/class at 35°C is 4.95; SCOP/class at 50°C is 3.52. Supply 220-240/1/50; recommended fuse 16 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V6W/D2N8-B%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V6W/D2N8-B%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 724,
@@ -27308,7 +27375,8 @@
     "notes": "Output at A-2/W50 is 7.3 kW. SCOP/class at 35°C is 5.22; SCOP/class at 50°C is 3.37. Supply 220-240/1/50; recommended fuse 20 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V8W/D2N8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V8W/D2N8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 725,
@@ -27351,7 +27419,8 @@
     "notes": "Output at A-2/W50 is 8.0 kW. SCOP/class at 35°C is 5.2; SCOP/class at 50°C is 3.47. Supply 220-240/1/50; recommended fuse 20 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V10W/D2N8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V10W/D2N8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 726,
@@ -27394,7 +27463,8 @@
     "notes": "Output at A-2/W50 is 11.0 kW. SCOP/class at 35°C is 4.81; SCOP/class at 50°C is 3.45. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12W/D2N8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12W/D2N8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 727,
@@ -27437,7 +27507,8 @@
     "notes": "Output at A-2/W50 is 11.4 kW. SCOP/class at 35°C is 4.72; SCOP/class at 50°C is 3.47. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14W/D2N8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14W/D2N8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 728,
@@ -27480,7 +27551,8 @@
     "notes": "Output at A-2/W50 is 13.0 kW. SCOP/class at 35°C is 4.62; SCOP/class at 50°C is 3.41. Supply 220-240/1/50; recommended fuse 32 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16W/D2N8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16W/D2N8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 729,
@@ -27523,7 +27595,8 @@
     "notes": "Output at A-2/W50 is 11.0 kW. SCOP/class at 35°C is 4.81; SCOP/class at 50°C is 3.45. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12W/D2RN8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V12W/D2RN8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 730,
@@ -27566,7 +27639,8 @@
     "notes": "Output at A-2/W50 is 11.4 kW. SCOP/class at 35°C is 4.72; SCOP/class at 50°C is 3.47. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14W/D2RN8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14W/D2RN8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 731,
@@ -27609,7 +27683,8 @@
     "notes": "Output at A-2/W50 is 13.0 kW. SCOP/class at 35°C is 4.62; SCOP/class at 50°C is 3.41. Supply 380-415/3/50; recommended fuse 16 A. Hot water temperatures up to 65°C. Sales sheet notes M Thermal supports heating, domestic hot water, underfloor heating, built-in energy monitoring, Wi-Fi/Midea Smart Home app and quiet operation. EER/cooling performance not separately published in the supplied sheet.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16W/D2RN8-B%2A%2A%2A%2A"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V16W/D2RN8-B%2A%2A%2A%2A",
+    "mcs_cert": "23.09.025"
   },
   {
     "id": 732,
@@ -27824,7 +27899,8 @@
     "notes": null,
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CAHV-R450YA-HPB%28-BS%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CAHV-R450YA-HPB%28-BS%29",
+    "mcs_cert": "037-0113-23"
   },
   {
     "id": 202,
@@ -31762,7 +31838,8 @@
     "notes": "SCOP 4.5",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=PUZ-HWM140VHA-BS"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=PUZ-HWM140VHA-BS",
+    "mcs_cert": "037-0035-20-02"
   },
   {
     "id": 199,
@@ -31805,7 +31882,8 @@
     "notes": "SCOP 4.9; sound power 58 dBA",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=PUZ-WM60VAA-BS"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=PUZ-WM60VAA-BS",
+    "mcs_cert": "037-0033-20-02"
   },
   {
     "id": 169,
@@ -32504,7 +32582,8 @@
     "notes": "Part no. 065297. EN14511 B0/W35: capacity 23.0 kW, power input 4.94 kW, COP 4.65. Pdesignh 35°C 28 kW; SCOP average climate 35/55°C 4.8/3.8. Two refrigerant circuits, R407C fill 2.0 kg each. Max operating current 20.5 A; recommended fuse 25 A. Width/depth/height 600/643/1800 mm; required ceiling height 1950 mm.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-24"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-24",
+    "mcs_cert": "012-050"
   },
   {
     "id": 703,
@@ -32547,7 +32626,8 @@
     "notes": "Part no. 065298. EN14511 B0/W35: capacity 30.72 kW, power input 6.92 kW, COP 4.44. Pdesignh 35°C 35 kW; SCOP average climate 35/55°C 4.7/3.6. Two refrigerant circuits, R407C fill 2.0 kg each. Max operating current 25.3 A; recommended fuse 30 A. Width/depth/height 600/643/1800 mm; required ceiling height 1950 mm.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-30"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-30",
+    "mcs_cert": "012-051"
   },
   {
     "id": 704,
@@ -32590,7 +32670,8 @@
     "notes": "Part no. 065299. EN14511 B0/W35: capacity 39.94 kW, power input 8.9 kW, COP 4.49. Pdesignh 35°C 46 kW; SCOP average climate 35/55°C 4.8/3.8. Two refrigerant circuits, R407C fill 1.7 kg each. Max operating current 29.5 A; recommended fuse 35 A. Width/depth/height 600/643/1800 mm; required ceiling height 1950 mm.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-40"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-40",
+    "mcs_cert": "012-052"
   },
   {
     "id": 705,
@@ -32633,7 +32714,8 @@
     "notes": "Part no. 065300. EN14511 B0/W35: capacity 59.22 kW, power input 13.72 kW, COP 4.32. Pdesignh 35°C 67 kW; SCOP average climate 35/55°C 4.6/3.7. Two refrigerant circuits, R410A fill 1.7 kg each. Max operating current 44.3 A; recommended fuse 50 A. Width/depth/height 600/643/1800 mm; required ceiling height 1950 mm.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-24"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1345-24",
+    "mcs_cert": "012-050"
   },
   {
     "id": 706,
@@ -32676,7 +32758,8 @@
     "notes": "Part no. 065436. Output range 4-28 kW. EN14511 B0/W35 nominal: capacity 20.77 kW, power input 4.56 kW, COP 4.55. SCOP average climate 35/55°C 5.0/4.0. Complete heat pump weight 335 kg. Max operating current 22.1 A; recommended fuse 25 A.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1355%20-%2028"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1355%20-%2028",
+    "mcs_cert": "012-SC1196-17"
   },
   {
     "id": 707,
@@ -32719,7 +32802,8 @@
     "notes": "Part no. 065496. Output range 6-43 kW. EN14511 B0/W35 nominal: capacity 31.1 kW, power input 7.1 kW, COP 4.38. SCOP average climate 35/55°C 5.0/4.0. Complete heat pump weight 362 kg. Max operating current 25.6 A; recommended fuse 30 A.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1355%20-%2028"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F1355%20-%2028",
+    "mcs_cert": "012-SC1196-17"
   },
   {
     "id": 693,
@@ -32762,7 +32846,8 @@
     "notes": "Part no. 064328. EN14511 values used: A7/W35 capacity 2.65 kW, power input 0.49 kW, COP 5.41. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 5.08. Cooling EER uses 35/18°C maximum-flow value 3.58. Refrigerant charge 1.3 kg; max airflow 2530 m3/h; max operating current 15 A. Flow temperature range continuous operation 25/58°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29",
+    "mcs_cert": "012-C700141"
   },
   {
     "id": 694,
@@ -32805,7 +32890,8 @@
     "notes": "Part no. 064318. EN14511 values used: A7/W35 capacity 4.0 kW, power input 0.75 kW, COP 5.33. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 4.59. Cooling EER uses 35/18°C maximum-flow value 3.6. Refrigerant charge 1.84 kg; max airflow 3000 m3/h; max operating current 16 A. Flow temperature range continuous operation 25/58°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29",
+    "mcs_cert": "012-C700141"
   },
   {
     "id": 695,
@@ -32848,7 +32934,8 @@
     "notes": "Part no. 064361. EN14511 values used: A7/W35 capacity 5.36 kW, power input 1.01 kW, COP 5.31. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 4.87. Cooling EER uses 35/18°C maximum-flow value 3.4. Refrigerant charge 2.0 kg; max airflow 3180 m3/h; max operating current 21 A. Flow temperature range continuous operation 25/60°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29",
+    "mcs_cert": "012-C700141"
   },
   {
     "id": 696,
@@ -32891,7 +32978,8 @@
     "notes": "Part no. 064362. EN14511 values used: A7/W35 capacity 6.31 kW, power input 1.2 kW, COP 5.26. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 4.58. Cooling EER uses 35/18°C maximum-flow value 3.8. Refrigerant charge 2.9 kg; max airflow 3600 m3/h; max operating current 28 A. Flow temperature range continuous operation 25/60°C.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29",
+    "mcs_cert": "012-C700141"
   },
   {
     "id": 701,
@@ -32934,7 +33022,8 @@
     "notes": "Part no. 065498. Output range 6-25 kW. EN14511 B0/W35 nominal: capacity 12.68 kW, power input 2.71 kW, COP 4.68. W10/W35 COP 6.34. SCOP average climate 35/55°C 5.2/4.0. Refrigerant charge R410A 2.1 kg. Complete heat pump weight 205 kg; cooling module 140 kg.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1155-6%201x230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1155-6%201x230",
+    "mcs_cert": "012-SC0190-19-1"
   },
   {
     "id": 710,
@@ -32977,7 +33066,8 @@
     "notes": "Part no. 065694. EN14511 B0/W35 nominal: capacity 2.85 kW, power input 0.56 kW, COP 5.05. Output range 1.5-8 kW. SCOP average climate 35/55°C 5.67/4.26. R454B charge 1.15 kg. Max supply line factory setting 70°C; compressor working range provides up to 65°C at -5°C incoming brine. No integrated DHW cylinder; can be used with VPB S300 hot water heater.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V",
+    "mcs_cert": "012-C700186"
   },
   {
     "id": 711,
@@ -33020,7 +33110,8 @@
     "notes": "Part no. 065708. EN14511 B0/W35 nominal: capacity 5.12 kW, power input 1.01 kW, COP 5.06. Output range 3-13 kW. SCOP average climate 35/55°C 5.88/4.29. R454B charge 1.45 kg. Max supply line factory setting 70°C; compressor working range provides up to 65°C at -5°C incoming brine. No integrated DHW cylinder; can be used with VPB S300 hot water heater.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V",
+    "mcs_cert": "012-C700186"
   },
   {
     "id": 708,
@@ -33063,7 +33154,8 @@
     "notes": "Part no. 065894. EN14511 B0/W35 nominal: capacity 2.85 kW, power input 0.56 kW, COP 5.05. Output range 1.5-8 kW. SCOP average climate 35/55°C 5.67/4.26. R454B charge 1.15 kg. Max supply line factory setting 70°C; compressor working range provides up to 65°C at -5°C incoming brine. Integrated 173 litre water heater; tap volume 40°C comfort mode 235/250/275 L; COPDHW XL 3.0.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V",
+    "mcs_cert": "012-C700186"
   },
   {
     "id": 709,
@@ -33106,7 +33198,8 @@
     "notes": "Part no. 065715. EN14511 B0/W35 nominal: capacity 5.12 kW, power input 1.01 kW, COP 5.06. Output range 3-13 kW. SCOP average climate 35/55°C 5.88/4.29. R454B charge 1.45 kg. Max supply line factory setting 70°C; compressor working range provides up to 65°C at -5°C incoming brine. Integrated 173 litre water heater; tap volume 40°C comfort mode 235/250/275 L; COPDHW XL 3.0.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S1156-8%20PC%20EM%201x230V%20%26%20S1256-8%20PC%20EM%201x230V",
+    "mcs_cert": "012-C700186"
   },
   {
     "id": 697,
@@ -33149,7 +33242,8 @@
     "notes": "Part no. 064220. EN14511 values used: A7/W35 capacity 3.15 kW, power input 0.61 kW, COP 5.16. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 5.33. Cooling EER uses 35/18°C maximum-flow value 3.34. R290 charge 0.8 kg; max airflow 2400 m3/h; rated current 13 A; fuse 16 A. Heating operation air range -25/38°C; HM supply 25/75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-8%20%281x230V%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-8%20%281x230V%29",
+    "mcs_cert": "012-C700114"
   },
   {
     "id": 698,
@@ -33192,7 +33286,8 @@
     "notes": "Part no. 064218. EN14511 values used: A7/W35 capacity 3.67 kW, power input 0.7 kW, COP 5.24. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 5.0. Cooling EER uses 35/18°C maximum-flow value 3.34. R290 charge 0.8 kg; max airflow 2950 m3/h; rated current 19.6 A; fuse 20 A. Heating operation air range -25/38°C; HM supply 25/75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-8%20%281x230V%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-8%20%281x230V%29",
+    "mcs_cert": "012-C700114"
   },
   {
     "id": 699,
@@ -33235,7 +33330,8 @@
     "notes": "Part no. 064216. EN14511 values used: A7/W35 capacity 5.1 kW, power input 0.92 kW, COP 5.55. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 5.33. Cooling EER uses 35/18°C maximum-flow value 3.93. R290 charge 1.15 kg; max airflow 3100 m3/h; rated current 30 A; fuse 35 A. Heating operation air range -25/40°C; HM supply 25/75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-16"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-16",
+    "mcs_cert": "012-C700272"
   },
   {
     "id": 700,
@@ -33278,7 +33374,8 @@
     "notes": "Part no. 064214. EN14511 values used: A7/W35 capacity 5.1 kW, power input 0.92 kW, COP 5.55. SCOP average climate 35°C/55°C published; database SCOP uses 35°C value 5.3. Cooling EER uses 35/18°C maximum-flow value 3.93. R290 charge 1.15 kg; max airflow 3800 m3/h; rated current 33 A; fuse 35 A. Heating operation air range -25/40°C; HM supply 25/75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-20"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-20",
+    "mcs_cert": "012-C700273"
   },
   {
     "id": 737,
@@ -34030,7 +34127,8 @@
     "notes": "Residential Aquarea M Series model. COP approximated from brochure table where text extraction was image-based. R290, max flow 75°C, operation down to -28°C, T-CAP maintains capacity to -20°C. Wi-Fi included. Detailed tables were image-based; fields left blank where not confidently readable.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG09ME5%20%28Outdoor%20unit%20Stand-alone%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG09ME5%20%28Outdoor%20unit%20Stand-alone%29",
+    "mcs_cert": "011-1W0850_5"
   },
   {
     "id": 749,
@@ -34073,7 +34171,8 @@
     "notes": "Residential Aquarea M Series model. Quiet Mode sound pressure as low as 29 dB(A) at 5 m is stated in brochure. R290, max flow 75°C, operation down to -28°C, T-CAP maintains capacity to -20°C. Wi-Fi included. Detailed tables were image-based; fields left blank where not confidently readable.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG12ME5%20%28Outdoor%20unit%20Stand-alone%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG12ME5%20%28Outdoor%20unit%20Stand-alone%29",
+    "mcs_cert": "011-1W0850_7"
   },
   {
     "id": 750,
@@ -34116,7 +34215,8 @@
     "notes": "Residential Aquarea M Series model. Three-phase model code suffix ME8. R290, max flow 75°C, operation down to -28°C, T-CAP maintains capacity to -20°C. Wi-Fi included. Detailed tables were image-based; fields left blank where not confidently readable.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG16ME8%20%28Outdoor%20unit%20Stand-alone%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG16ME8%20%28Outdoor%20unit%20Stand-alone%29",
+    "mcs_cert": "011-1W0924_1"
   },
   {
     "id": 751,
@@ -34159,7 +34259,8 @@
     "notes": "Detailed brochure performance: A7/W35 20 kW COP 4.8; A2/W35 COP 3.39; A-7/W35 COP 2.48; SCOP 35/55°C 5.37/4.07. A7/W55 COP 3.18; A2/W55 COP 2.08; A-7/W55 COP 1.90. R290, max flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG20ME8%20%28Outdoor%20unit%20Stand-alone%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG20ME8%20%28Outdoor%20unit%20Stand-alone%29",
+    "mcs_cert": "011-1W0925_1"
   },
   {
     "id": 752,
@@ -34202,7 +34303,8 @@
     "notes": "Detailed brochure performance: A7/W35 25 kW COP 4.5; A2/W35 COP 2.8; A-7/W35 COP 2.36; SCOP 35/55°C 5.22/4.14. A7/W55 COP 3.00; A2/W55 COP 1.97; A-7/W55 COP 1.80. R290, max flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG25ME8%20%28Outdoor%20unit%20Stand-alone%29"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG25ME8%20%28Outdoor%20unit%20Stand-alone%29",
+    "mcs_cert": "011-1W0925_3"
   },
   {
     "id": 753,
@@ -34245,7 +34347,8 @@
     "notes": "Detailed brochure performance: A7/W35 30 kW COP 4.4; A2/W35 COP 2.5; A-7/W35 COP 2.33; SCOP 35/55°C 4.93/4.01. A7/W55 COP 3.00; A2/W55 COP 1.95; A-7/W55 COP 1.49. R290, max flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG30ME8"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-WXG30ME8",
+    "mcs_cert": "011-1W1146_01"
   },
   {
     "id": 761,
@@ -35518,7 +35621,8 @@
     "notes": "Cooling capacity 12.0 kW, EER 4.55, cooling power input 2.64 kW. Sound pressure 46 dBA; refrigerant charge 3.3 kg R32. Cooling operating range 10~46°C; heating and DHW -30~43°C. Heating LWT 15~70°C; cooling LWT 5~25°C. MCA/MFA 32.0/35.2 A; cooling/heating current 12.46/11.12 A; airflow 95 CMM. Samsung page states HT Quiet can provide leaving water temperature to 70°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120BXYDEG/EU%20%26%20MIM-E03EN"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120BXYDEG/EU%20%26%20MIM-E03EN",
+    "mcs_cert": "011-1W0550_01"
   },
   {
     "id": 790,
@@ -35561,7 +35665,8 @@
     "notes": "Cooling capacity 14.0 kW, EER 4.46, cooling power input 3.14 kW. Sound pressure 47 dBA; refrigerant charge 3.3 kg R32. Cooling operating range 10~46°C; heating and DHW -30~43°C. Heating LWT 15~70°C; cooling LWT 5~25°C. MCA/MFA 32.0/35.2 A; cooling/heating current 14.87/13.1 A; airflow 95 CMM. Samsung page states HT Quiet can provide leaving water temperature to 70°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE140BXYDEG/EU%20%26%20MIM-E03EN"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE140BXYDEG/EU%20%26%20MIM-E03EN",
+    "mcs_cert": "011-1W0550_05"
   },
   {
     "id": 781,
@@ -35604,7 +35709,8 @@
     "notes": "Cooling capacity 5.0 kW, EER 3.91, cooling power input 1.28 kW. Sound pressure 41 dBA; refrigerant charge 0.63 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 16.1/17.6 A; cooling/heating current 6.05/4.63 A; airflow 55 m3/min. R290 GWP=3.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE050CXYDEK/EU%20%26%20MIM-E03EN"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE050CXYDEK/EU%20%26%20MIM-E03EN",
+    "mcs_cert": "011-1W0686_1"
   },
   {
     "id": 782,
@@ -35647,7 +35753,8 @@
     "notes": "Cooling capacity 8.0 kW, EER 3.9, cooling power input 2.05 kW. Sound pressure 45 dBA; refrigerant charge 0.87 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 26.0/28.6 A; cooling/heating current 9.69/7.70 A; airflow 69 m3/min. R290 GWP=3.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080CXYDEK/EU%C2%A0%2B%C2%A0MIM-E03EN"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080CXYDEK/EU%C2%A0%2B%C2%A0MIM-E03EN",
+    "mcs_cert": "011-1W0687_1"
   },
   {
     "id": 783,
@@ -35690,7 +35797,8 @@
     "notes": "Cooling capacity 12.0 kW, EER 4.0, cooling power input 3.0 kW. Sound pressure 47 dBA; refrigerant charge 1.25 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 32.0/35.2 A; cooling/heating current 14.18/11.81 A; airflow 90 m3/min. R290 GWP=3.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYDEK/EU%20%2BAE260CNWMEG/EU"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYDEK/EU%20%2BAE260CNWMEG/EU",
+    "mcs_cert": "011-1W0684_3"
   },
   {
     "id": 784,
@@ -35733,7 +35841,8 @@
     "notes": "Cooling capacity 14.0 kW, EER 3.8, cooling power input 3.68 kW. Sound pressure 51 dBA; refrigerant charge 1.25 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 32.0/35.2 A; cooling/heating current 17.39/16.78 A; airflow 94 m3/min. R290 GWP=3.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE160CXYDEK/EU%20%2B%20AE260CNWMEG/EU"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE160CXYDEK/EU%20%2B%20AE260CNWMEG/EU",
+    "mcs_cert": "011-1W0684_5"
   },
   {
     "id": 785,
@@ -35776,7 +35885,8 @@
     "notes": "Cooling capacity 8.0 kW, EER 3.9, cooling power input 2.05 kW. Sound pressure 45 dBA; refrigerant charge 0.87 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 26/28.6 A; cooling/heating current 9.69/7.70 A; airflow 69 m3/min. Wi-Fi Kit and SmartThings support stated as Yes. R290 GWP=3.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080CXYBEK/EU"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080CXYBEK/EU",
+    "mcs_cert": "011-1W0687_3"
   },
   {
     "id": 786,
@@ -35819,7 +35929,8 @@
     "notes": "Cooling capacity 12.0 kW, EER 4.0, cooling power input 3.0 kW. Sound pressure 47 dBA; refrigerant charge 1.25 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 32/35.2 A; cooling/heating current 14.18/11.81 A; airflow 90 m3/min. Wi-Fi Kit and SmartThings support stated as Yes. R290 GWP=3.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYBEK/EU%20AE160CXYBEK/EU"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYBEK/EU%20AE160CXYBEK/EU",
+    "mcs_cert": "011-1W0685_5"
   },
   {
     "id": 787,
@@ -35862,7 +35973,8 @@
     "notes": "Cooling capacity 14.0 kW, EER 3.8, cooling power input 3.68 kW. Sound pressure 51 dBA; refrigerant charge 1.25 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 32/35.2 A; cooling/heating current 17.39/16.78 A; airflow 94 m3/min. Wi-Fi Kit and SmartThings support stated as Yes. R290 GWP=3.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYBEK/EU%20AE160CXYBEK/EU"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYBEK/EU%20AE160CXYBEK/EU",
+    "mcs_cert": "011-1W0685_5"
   },
   {
     "id": 788,
@@ -36276,7 +36388,8 @@
     "notes": "HPA-O Trend HC; compressor voltage 230 V; colour Dark grey RAL 7021. SCOP W55 3.85. Heating outputs: A7/W35 2.76 kW, A2/W35 3.02 kW, A-7/W35 4.91 kW. Cooling: A35/W7 max 4.28 kW; A35/W18 partial 3.27 kW; A35/W18 max 4.8 kW. COPs: A7/W35 5.39; A2/W35 4.04; A-7/W35 2.86. EERs: A35/W7 max 2.85; A35/W18 partial 5.12; A35/W18 max 3.72. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2005.2%20Trend%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2005.2%20Trend%20HC%20230",
+    "mcs_cert": "011-1W0981_01"
   },
   {
     "id": 1463,
@@ -36319,7 +36432,8 @@
     "notes": "HPA-O Plus HC; compressor voltage 230 V; colour Dark grey RAL 7021. SCOP W55 4.02. Heating outputs: A7/W35 3.05 kW, A2/W35 3.29 kW, A-7/W35 7.09 kW. Cooling: A35/W7 max 6.51 kW; A35/W18 partial 3.15 kW; A35/W18 max 6.98 kW. COPs: A7/W35 5.5; A2/W35 4.57; A-7/W35 3.25. EERs: A35/W7 max 2.97; A35/W18 partial 5.29; A35/W18 max 4.28. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2007.2%20Plus%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2007.2%20Plus%20HC%20230",
+    "mcs_cert": "011-1W0978"
   },
   {
     "id": 1458,
@@ -36362,7 +36476,8 @@
     "notes": "HPA-O Trend HC; compressor voltage 230 V; colour Dark grey RAL 7021. SCOP W55 3.83. Heating outputs: A7/W35 2.91 kW, A2/W35 4.24 kW, A-7/W35 6.92 kW. Cooling: A35/W7 max 6.04 kW; A35/W18 partial 3.35 kW; A35/W18 max 6.66 kW. COPs: A7/W35 5.44; A2/W35 4.02; A-7/W35 2.84. EERs: A35/W7 max 2.8; A35/W18 partial 5.18; A35/W18 max 3.7. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2007.2%20Trend%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2007.2%20Trend%20HC%20230",
+    "mcs_cert": "011-1W0981_02"
   },
   {
     "id": 1467,
@@ -36405,7 +36520,8 @@
     "notes": "HPA-O W Plus HC; compressor voltage 230 V; colour Signal white RAL 9003. SCOP W55 4.02. Heating outputs: A7/W35 3.05 kW, A2/W35 3.29 kW, A-7/W35 7.09 kW. Cooling: A35/W7 max 6.51 kW; A35/W18 partial 3.15 kW; A35/W18 max 6.98 kW. COPs: A7/W35 5.5; A2/W35 4.57; A-7/W35 3.25. EERs: A35/W7 max 2.97; A35/W18 partial 5.29; A35/W18 max 4.28. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2007.2%20W%20Plus%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2007.2%20W%20Plus%20HC%20230",
+    "mcs_cert": "011-1W0978_01"
   },
   {
     "id": 1464,
@@ -36448,7 +36564,8 @@
     "notes": "HPA-O Plus HC; compressor voltage 230 V; colour Dark grey RAL 7021. SCOP W55 3.99. Heating outputs: A7/W35 4.32 kW, A2/W35 4.09 kW, A-7/W35 10.07 kW. Cooling: A35/W7 max 9.33 kW; A35/W18 partial 4.29 kW; A35/W18 max 10.51 kW. COPs: A7/W35 5.4; A2/W35 4.54; A-7/W35 3.15. EERs: A35/W7 max 2.76; A35/W18 partial 5.46; A35/W18 max 4.01. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20Plus%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20Plus%20HC%20230",
+    "mcs_cert": "011-1W0979_01"
   },
   {
     "id": 1465,
@@ -36491,7 +36608,8 @@
     "notes": "HPA-O Plus HC; compressor voltage 400 V; colour Dark grey RAL 7021. SCOP W55 3.99. Heating outputs: A7/W35 4.32 kW, A2/W35 4.09 kW, A-7/W35 10.07 kW. Cooling: A35/W7 max 9.33 kW; A35/W18 partial 4.29 kW; A35/W18 max 10.51 kW. COPs: A7/W35 5.4; A2/W35 4.54; A-7/W35 3.15. EERs: A35/W7 max 2.76; A35/W18 partial 5.46; A35/W18 max 4.01. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20Plus%20HC%20400"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20Plus%20HC%20400",
+    "mcs_cert": "011-1W0979"
   },
   {
     "id": 1459,
@@ -36534,7 +36652,8 @@
     "notes": "HPA-O Trend HC; compressor voltage 230 V; colour Dark grey RAL 7021. SCOP W55 3.79. Heating outputs: A7/W35 4.26 kW, A2/W35 5.87 kW, A-7/W35 9.49 kW. Cooling: A35/W7 max 8.27 kW; A35/W18 partial 3.96 kW; A35/W18 max 8.94 kW. COPs: A7/W35 5.4; A2/W35 3.96; A-7/W35 2.8. EERs: A35/W7 max 2.52; A35/W18 partial 5.24; A35/W18 max 3.65. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20Trend%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20Trend%20HC%20230",
+    "mcs_cert": "011-1W0981"
   },
   {
     "id": 1468,
@@ -36577,7 +36696,8 @@
     "notes": "HPA-O W Plus HC; compressor voltage 230 V; colour Signal white RAL 9003. SCOP W55 3.99. Heating outputs: A7/W35 4.32 kW, A2/W35 4.09 kW, A-7/W35 10.07 kW. Cooling: A35/W7 max 9.33 kW; A35/W18 partial 4.29 kW; A35/W18 max 10.51 kW. COPs: A7/W35 5.4; A2/W35 4.54; A-7/W35 3.15. EERs: A35/W7 max 2.76; A35/W18 partial 5.46; A35/W18 max 4.01. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20W%20Plus%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20W%20Plus%20HC%20230",
+    "mcs_cert": "011-1W0979_02"
   },
   {
     "id": 1469,
@@ -36620,7 +36740,8 @@
     "notes": "HPA-O W Plus HC; compressor voltage 400 V; colour Signal white RAL 9003. SCOP W55 3.99. Heating outputs: A7/W35 4.32 kW, A2/W35 4.09 kW, A-7/W35 10.07 kW. Cooling: A35/W7 max 9.33 kW; A35/W18 partial 4.29 kW; A35/W18 max 10.51 kW. COPs: A7/W35 5.4; A2/W35 4.54; A-7/W35 3.15. EERs: A35/W7 max 2.76; A35/W18 partial 5.46; A35/W18 max 4.01. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20W%20Plus%20HC%20400"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2010.2%20W%20Plus%20HC%20400",
+    "mcs_cert": "011-1W0979_03"
   },
   {
     "id": 1466,
@@ -36663,7 +36784,8 @@
     "notes": "HPA-O Plus HC; compressor voltage 400 V; colour Dark grey RAL 7021. SCOP W55 4.01. Heating outputs: A7/W35 5.79 kW, A2/W35 4.82 kW, A-7/W35 13.15 kW. Cooling: A35/W7 max 10.09 kW; A35/W18 partial 5.81 kW; A35/W18 max 12.95 kW. COPs: A7/W35 5.41; A2/W35 4.41; A-7/W35 3.11. EERs: A35/W7 max 3.14; A35/W18 partial 5.41; A35/W18 max 4.11. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20Plus%20HC%20400"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20Plus%20HC%20400",
+    "mcs_cert": "011-1W0980"
   },
   {
     "id": 1460,
@@ -36706,7 +36828,8 @@
     "notes": "HPA-O Trend HC; compressor voltage 230 V; colour Dark grey RAL 7021. SCOP W55 3.85. Heating outputs: A7/W35 5.56 kW, A2/W35 4.09 kW, A-7/W35 12.47 kW. Cooling: A35/W7 max 9.56 kW; A35/W18 partial 4.29 kW; A35/W18 max 11.49 kW. COPs: A7/W35 5.36; A2/W35 4.54; A-7/W35 2.75. EERs: A35/W7 max 2.7; A35/W18 partial 5.45; A35/W18 max 3.61. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20Trend%20HC%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20Trend%20HC%20230",
+    "mcs_cert": "011-1W0982_01"
   },
   {
     "id": 1461,
@@ -36749,7 +36872,8 @@
     "notes": "HPA-O Trend HC; compressor voltage 400 V; colour Dark grey RAL 7021. SCOP W55 3.85. Heating outputs: A7/W35 5.56 kW, A2/W35 7.45 kW, A-7/W35 12.47 kW. Cooling: A35/W7 max 9.56 kW; A35/W18 partial 4.99 kW; A35/W18 max 11.49 kW. COPs: A7/W35 5.36; A2/W35 3.91; A-7/W35 2.75. EERs: A35/W7 max 2.7; A35/W18 partial 4.81; A35/W18 max 3.6. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20Trend%20HC%20400"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20Trend%20HC%20400",
+    "mcs_cert": "011-1W0982"
   },
   {
     "id": 1470,
@@ -36792,7 +36916,8 @@
     "notes": "HPA-O W Plus HC; compressor voltage 400 V; colour Signal white RAL 9003. SCOP W55 4.01. Heating outputs: A7/W35 5.79 kW, A2/W35 4.82 kW, A-7/W35 13.15 kW. Cooling: A35/W7 max 10.09 kW; A35/W18 partial 5.81 kW; A35/W18 max 12.95 kW. COPs: A7/W35 5.41; A2/W35 4.41; A-7/W35 3.11. EERs: A35/W7 max 3.14; A35/W18 partial 5.41; A35/W18 max 4.11. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20W%20Plus%20HC%20400"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2013.2%20W%20Plus%20HC%20400",
+    "mcs_cert": "011-1W0980_01"
   },
   {
     "id": 1462,
@@ -36835,7 +36960,8 @@
     "notes": "HPA-O Trend HC; compressor voltage 400 V; colour Dark grey RAL 7021. SCOP W55 3.83. Heating outputs: A7/W35 7.96 kW, A2/W35 10.29 kW, A-7/W35 17.36 kW. Cooling: A35/W7 max 9.75 kW; A35/W18 partial 7.13 kW; A35/W18 max 15.55 kW. COPs: A7/W35 5.29; A2/W35 3.91; A-7/W35 2.62. EERs: A35/W7 max 3.16; A35/W18 partial 5.13; A35/W18 max 3.75. Application limits heat source -25/40°C; max heating flow 75°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2017.2%20Trend%20HC%20400"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPA-O%2017.2%20Trend%20HC%20400",
+    "mcs_cert": "011-1W1166_01"
   },
   {
     "id": 1472,
@@ -36878,7 +37004,8 @@
     "notes": "B0/W35 heating output 3.36 kW; output range 1.4-7.0 kW; COP 4.62; SCOP W35 5.21. Max heating-side application limit 65°C. Compressor voltage 230 V. Auxiliary heater voltage 400 V; active/passive cooling possible with additional component; cascade up to six devices.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2007.1%20Plus%20H%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2007.1%20Plus%20H%20230",
+    "mcs_cert": "012-C700369"
   },
   {
     "id": 1474,
@@ -36962,7 +37089,8 @@
     "notes": "B0/W35 heating output 6.2 kW; output range 2.7-11.6 kW; COP 4.87; SCOP W35 5.4. Max heating-side application limit 65°C. Compressor voltage 400 V. Auxiliary heater voltage 400 V; active/passive cooling possible with additional component; cascade up to six devices.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2012.1%20Plus%20H%20230"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2012.1%20Plus%20H%20230",
+    "mcs_cert": "012-C700370"
   },
   {
     "id": 1475,
@@ -37046,7 +37174,8 @@
     "notes": "B0/W35 heating output 20.18 kW; output range 10-33 kW; COP 4.73; SCOP W35 5.55. Max heating-side application limit 65°C. Compressor voltage 400 V. Commercial cascade-capable unit; heating and DHW. Connections: heating side, hot gas and heat source sizes are listed in the source.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2033%20H%20400%20Premium"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2033%20H%20400%20Premium",
+    "mcs_cert": "011-1W0332"
   },
   {
     "id": 1477,
@@ -37089,7 +37218,8 @@
     "notes": "B0/W35 heating output 26.71 kW; output range 11-44 kW; COP 4.6; SCOP W35 5.65. Max heating-side application limit 65°C. Compressor voltage 400 V. Commercial cascade-capable unit; heating and DHW. Connections: heating side, hot gas and heat source sizes are listed in the source.",
     "verified": "Heat Pump KEYMARK",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2044%20H%20400%20Premium"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPE-I%2044%20H%20400%20Premium",
+    "mcs_cert": "011-1W0333"
   },
   {
     "id": 1478,
@@ -37214,7 +37344,8 @@
     "notes": "SCOP W35 4.88. Heating outputs: A7/W35 3.31 kW, A2/W35 4.30 kW, A-7/W35 6.87 kW. Cooling: A35/W7 max 7.30 kW, A35/W18 partial 4.94 kW, A35/W18 max 10.15 kW. COPs: A7/W35 5.42; A2/W35 4.30; A-7/W35 2.93. EERs: A35/W7 max 2.35; A35/W18 partial 4.28; A35/W18 max 2.87. Voltage 230 V; refrigerant R454C; white.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPL-A%2007%20HK%20230%20Premium"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WPL-A%2007%20HK%20230%20Premium",
+    "mcs_cert": "011-1W0393_02"
   },
   {
     "id": 829,
@@ -59320,7 +59451,8 @@
     "notes": "Rated A7/W35 output 4.0 kW, operating range 2.1-4.0 kW. Cooling capacity 4.0 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1372,
@@ -59363,7 +59495,8 @@
     "notes": "Rated A7/W35 output 4.8 kW, operating range 2.1-6.0 kW. Cooling capacity 5.0 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20151-A%20AWOT-M-E-AC-AF%20151.A10"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1373,
@@ -59404,7 +59537,10 @@
     "noise_ref": "Sound Power LW(A)",
     "description": "R290 monobloc air/water heat pump available as Modular, standard and Compact indoor package.",
     "notes": "Rated A7/W35 output 5.6 kW, operating range 2.1-8.0 kW. Cooling capacity 6.0 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
-    "verified": "Manual verification"
+    "verified": "Manual verification",
+    "mcs_listed": true,
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1374,
@@ -59445,7 +59581,10 @@
     "noise_ref": "Sound Power LW(A)",
     "description": "R290 monobloc air/water heat pump available as Modular, standard and Compact indoor package.",
     "notes": "Rated A7/W35 output 7.3 kW, operating range 2.6-12.0 kW. Cooling capacity 9.6 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
-    "verified": "Manual verification"
+    "verified": "Manual verification",
+    "mcs_listed": true,
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1377,
@@ -59486,7 +59625,10 @@
     "noise_ref": "Sound Power LW(A)",
     "description": "R290 monobloc air/water heat pump available as Modular, standard and Compact indoor package.",
     "notes": "Rated A7/W35 output 7.4 kW, operating range 2.6-12.0 kW. Cooling capacity 9.5 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
-    "verified": "Manual verification"
+    "verified": "Manual verification",
+    "mcs_listed": true,
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1375,
@@ -59527,7 +59669,10 @@
     "noise_ref": "Sound Power LW(A)",
     "description": "R290 monobloc air/water heat pump available as Modular, standard and Compact indoor package.",
     "notes": "Rated A7/W35 output 8.1 kW, operating range 2.6-12.3 kW. Cooling capacity 11.0 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
-    "verified": "Manual verification"
+    "verified": "Manual verification",
+    "mcs_listed": true,
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1378,
@@ -59568,7 +59713,10 @@
     "noise_ref": "Sound Power LW(A)",
     "description": "R290 monobloc air/water heat pump available as Modular, standard and Compact indoor package.",
     "notes": "Rated A7/W35 output 8.1 kW, operating range 3.0-13.4 kW. Cooling capacity 11.2 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
-    "verified": "Manual verification"
+    "verified": "Manual verification",
+    "mcs_listed": true,
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1376,
@@ -59609,7 +59757,10 @@
     "noise_ref": "Sound Power LW(A)",
     "description": "R290 monobloc air/water heat pump available as Modular, standard and Compact indoor package.",
     "notes": "Rated A7/W35 output 9.1 kW, operating range 3.0-13.7 kW. Cooling capacity 13.2 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
-    "verified": "Manual verification"
+    "verified": "Manual verification",
+    "mcs_listed": true,
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1379,
@@ -59650,7 +59801,10 @@
     "noise_ref": "Sound Power LW(A)",
     "description": "R290 monobloc air/water heat pump available as Modular, standard and Compact indoor package.",
     "notes": "Rated A7/W35 output 9.1 kW, operating range 3.3-14.9 kW. Cooling capacity 13.3 kW. Outdoor dimensions are W x H x L in source; entered as height/width/depth. Refrigerant charge 2 kg. Indoor unit weight: 47 kg for IDU-A/Modular, 170 kg for Compact with 190 L DHW cylinder.",
-    "verified": "Manual verification"
+    "verified": "Manual verification",
+    "mcs_listed": true,
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20150-A%20AWO-M-E-AC-AF%20151.A10",
+    "mcs_cert": "011-1W0465_01"
   },
   {
     "id": 1383,
@@ -60185,7 +60339,8 @@
     "notes": "Heating output 39.5 kW, cooling capacity 26.0 kW. Refrigerant charge 3.3 kg. Cascade up to four units for 158 kW. Max flow temperature 70°C down to -2°C. Dimensions and detailed COP not cleanly parsed from brochure.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AWO-AC-AF251.A40"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AWO-AC-AF251.A40",
+    "mcs_cert": "011-1W0833_01"
   },
   {
     "id": 1393,
@@ -60228,7 +60383,8 @@
     "notes": "B0/W35 rated output 4.28 kW; modulation 1.7-8.6 kW. SCOP W55 3.72. Refrigerant charge 2.0 kg. Sound power B0/W55 min-max also published.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20300-G%20BWC%20301.C06"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20300-G%20BWC%20301.C06",
+    "mcs_cert": "011-1W0291"
   },
   {
     "id": 1394,
@@ -60271,7 +60427,8 @@
     "notes": "B0/W35 rated output 5.31 kW; modulation 2.4-11.4 kW. SCOP W55 3.97. Refrigerant charge 2.3 kg. Sound power B0/W55 min-max also published.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20300-G%20BWC%20301.C12"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20300-G%20BWC%20301.C12",
+    "mcs_cert": "011-1W0292"
   },
   {
     "id": 1395,
@@ -60314,7 +60471,8 @@
     "notes": "B0/W35 rated output 7.44 kW; modulation 3.8-15.9 kW. SCOP W55 4.18. Refrigerant charge 3.25 kg. Sound power B0/W55 min-max also published.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20300-G%20BWC%20301.C16"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Vitocal%20300-G%20BWC%20301.C16",
+    "mcs_cert": "011-1W0212"
   },
   {
     "id": 1399,
@@ -63431,7 +63589,8 @@
     "notes": null,
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HP290%20Monobloc%2012kW"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HP290%20Monobloc%2012kW",
+    "mcs_cert": "24.04.001"
   },
   {
     "id": 1780,
@@ -64214,7 +64373,8 @@
     "notes": "Cooling capacity 12.0 kW, EER 4.55, cooling power input 2.64 kW. Sound pressure 46 dBA; refrigerant charge 3.3 kg R32. Cooling operating range 10~46°C; heating and DHW -30~43°C. Heating LWT 15~70°C; cooling LWT 5~25°C. MCA/MFA 32.0/35.2 A; cooling/heating current 12.46/11.12 A; airflow 95 CMM. Samsung page states HT Quiet can provide leaving water temperature to 70°C.",
     "verified": "Manual verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080BXYDEG/EU%20%26%20MIM-E03EN"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080BXYDEG/EU%20%26%20MIM-E03EN",
+    "mcs_cert": "011-1W0547_01"
   },
   {
     "id": 1799,
@@ -64257,7 +64417,8 @@
     "notes": "Cooling capacity 8.0 kW, EER 3.9, cooling power input 2.05 kW. Sound pressure 45 dBA; refrigerant charge 0.87 kg. Cooling operating range 10~46°C; heating -25~35°C; DHW -25~43°C. Heating LWT 15~75°C; cooling LWT 5~25°C. MCA/MFA 26/28.6 A; cooling/heating current 9.69/7.70 A; airflow 69 m3/min. Wi-Fi Kit and SmartThings support stated as Yes. R290 GWP=3.",
     "verified": "Awaiting Verification",
     "mcs_listed": true,
-    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE050CXYBEK/EU"
+    "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE050CXYBEK/EU",
+    "mcs_cert": "011-1W0686_3"
   },
   {
     "id": 1800,

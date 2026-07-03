@@ -306,10 +306,10 @@ def render_mcs(p):
             f'style="display:inline-flex;align-items:center;gap:4px;background:#0a6b3b;color:#fff;'
             f'font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none;'
             f'vertical-align:middle">View on MCS &#8599;</a>') if p.get("mcs_url") else ""
+    cert = (f' <span style="font-weight:500;color:#5F7E7E">Cert no. {esc(p["mcs_cert"])}</span>') if p.get("mcs_cert") else ""
     return ('<p style="margin:14px 0 0;font-size:13.5px;color:#0a6b3b;font-weight:600">'
-            '&#10003; MCS-listed product &mdash; eligible for the Boiler Upgrade Scheme '
-            '(&pound;7,500 in England &amp; Wales; &pound;9,000 for off-grid/oil homes from July 2026), '
-            f'subject to an MCS-certified installation.{link}</p>')
+            '&#10003; MCS listed product &mdash; eligible for the Boiler Upgrade Scheme, '
+            f'subject to an MCS-certified installation.{cert}{link}</p>')
 
 def render_verified(p):
     v = p.get("verified")
