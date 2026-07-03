@@ -292,10 +292,14 @@ def render_suppliers(p):
 def render_mcs(p):
     if not p.get("mcs_listed"):
         return ""
+    link = (f' <a href="{esc(p["mcs_url"])}" target="_blank" rel="noopener nofollow" '
+            f'style="display:inline-flex;align-items:center;gap:4px;background:#0a6b3b;color:#fff;'
+            f'font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none;'
+            f'vertical-align:middle">View on MCS &#8599;</a>') if p.get("mcs_url") else ""
     return ('<p style="margin:14px 0 0;font-size:13.5px;color:#0a6b3b;font-weight:600">'
             '&#10003; MCS-listed product &mdash; eligible for the Boiler Upgrade Scheme '
             '(&pound;7,500 in England &amp; Wales; &pound;9,000 for off-grid/oil homes from July 2026), '
-            'subject to an MCS-certified installation.</p>')
+            f'subject to an MCS-certified installation.{link}</p>')
 
 def render_verified(p):
     v = p.get("verified")
