@@ -81,6 +81,7 @@ def spec_rows(p):
     add("Operating range (air)", range_str(p.get("op_temp_min"), p.get("op_temp_max"), "\u00b0C", " to "))
     add("Heating flow temperature", range_str(p.get("flow_temp_min"), p.get("flow_temp_max"), "\u00b0C"))
     if p.get("peak_elec") is not None: add("Power input", f"{num(p['peak_elec'])} kW")
+    if p.get("electrical"): add("Electrical supply", esc(p["electrical"]))
     # Cooling
     clo, chi = p.get("cool_cap_min"), p.get("cool_cap_max")
     if clo is not None or chi is not None:
