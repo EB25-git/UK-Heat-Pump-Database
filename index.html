@@ -216,7 +216,7 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .filter-col select.filt{width:100%;margin-bottom:0}
 .f-slider-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);float:right}
 .range-wrap{position:relative;height:30px}
-.range-track{position:absolute;top:13px;left:0;right:0;height:4px;background:var(--surface2);border-radius:3px}
+.range-track{position:absolute;top:13px;left:5%;right:5%;height:4px;background:var(--surface2);border-radius:3px}
 .range-fill{position:absolute;top:13px;height:4px;background:var(--accent);border-radius:3px}
 .range-thumb{position:absolute;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.18);transform:translateX(-50%);pointer-events:none;box-sizing:border-box}
 .range-wrap input[type=range]{position:absolute;top:0;left:0;width:100%;height:30px;margin:0;opacity:0;pointer-events:none;-webkit-appearance:none;appearance:none}
@@ -607,14 +607,6 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
             <option value="ASHP">ASHP</option>
             <option value="WSHP">WSHP</option>
             <option value="GSHP">GSHP</option>
-          </select>
-        </div>
-        <div class="filter-col">
-          <label class="filter-label">Market segment</label>
-          <select class="filt" id="filt-type" onchange="applyFilters()">
-            <option value="">All segments</option>
-            <option value="Residential">Residential</option>
-            <option value="Commercial">Commercial</option>
           </select>
         </div>
         <div class="filter-col">
@@ -1924,8 +1916,8 @@ function mkDual(el,vEl,onchg){
   const[lo,hi]=el.querySelectorAll('input'),fill=el.querySelector('.range-fill'),[t1,t2]=el.querySelectorAll('.range-thumb'),n=CAP_STOPS.length-1;
   function upd(fire){
     let a=Math.min(+lo.value,+hi.value),b=Math.max(+lo.value,+hi.value);
-    fill.style.left=(a/n*100)+'%';fill.style.width=((b-a)/n*100)+'%';
-    t1.style.left=(a/n*100)+'%';t2.style.left=(b/n*100)+'%';
+    const pa=5+a/n*90,pb=5+b/n*90;fill.style.left=pa+'%';fill.style.width=(pb-pa)+'%';
+    t1.style.left=pa+'%';t2.style.left=pb+'%';
     SF.capLo=capFromIdx(a);SF.capHi=capFromIdx(b);
     vEl.textContent=(a===0&&b===n)?'Any':SF.capLo+'–'+(b===n?'1000+':SF.capHi)+' kW';
     if(fire)onchg();
@@ -1939,8 +1931,8 @@ function mkSingle(el,vEl,min,max,init,mode,fmt,key,onchg){
     `<input type="range" min="${min}" max="${max}" step="1" value="${init}" aria-label="${key} filter">`;
   const inp=el.querySelector('input'),fill=el.querySelector('.range-fill'),th=el.querySelector('.range-thumb');
   function upd(fire){
-    const v=+inp.value,p=(v-min)/(max-min)*100;
-    if(mode==='max'){fill.style.left='0%';fill.style.width=p+'%';}else{fill.style.left=p+'%';fill.style.width=(100-p)+'%';}
+    const v=+inp.value,p=5+(v-min)/(max-min)*90;
+    if(mode==='max'){fill.style.left='5%';fill.style.width=(p-5)+'%';}else{fill.style.left=p+'%';fill.style.width=(95-p)+'%';}
     th.style.left=p+'%';
     SF[key]=v;vEl.textContent=fmt(v);
     if(fire)onchg();
@@ -1962,7 +1954,6 @@ function slidersActive(){return (SF.capLo>0||SF.capHi<1000)+(SF.flow>0)+(SF.soun
 function getFiltered(){
   const q=(document.getElementById('search-input').value||'').toLowerCase();
   const hpt=document.getElementById('filt-hptype').value;
-  const typ=document.getElementById('filt-type').value;
   const mod=document.getElementById('filt-mode').value;
   const mfr=document.getElementById('filt-mfr').value;
   const ref=document.getElementById('filt-ref').value;
@@ -1973,8 +1964,7 @@ function getFiltered(){
   return db.filter(d=>{
     if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''} ${d.notes||''}`.toLowerCase().includes(q))return false;
     if(hpt&&d.hp_type!==hpt)return false;
-    if(typ&&d.type!==typ)return false;
-    if(mod&&(d.mode||'Heating only')!==mod)return false;
+        if(mod&&(d.mode||'Heating only')!==mod)return false;
     if(mfr&&d.manufacturer!==mfr)return false;
     if(ref&&!parseRefrigerants(d.refrigerant).includes(ref))return false;
     if(refcat&&getRefCategory(d.refrigerant)!==refcat)return false;
@@ -2057,7 +2047,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
+  const activeCount=['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -2066,7 +2056,7 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   resetSliderFilters();
   applyFilters();
 }
@@ -2161,9 +2151,6 @@ function renderAnalytics(){
     <div class="an-fg"><label>Heat pump type</label>
       <select id="anf-hp" onchange="anSetFilter('hp_type',this.value)">
         <option value="all">All types</option><option value="ASHP">Air source</option><option value="WSHP">Water source</option><option value="GSHP">Ground source</option></select></div>
-    <div class="an-fg"><label>Market</label>
-      <select id="anf-type" onchange="anSetFilter('type',this.value)">
-        <option value="all">All markets</option><option value="Residential">Residential</option><option value="Commercial">Commercial</option></select></div>
     <div class="an-fg"><label>Refrigerant</label>
       <select id="anf-ref" onchange="anSetFilter('refrigerant',this.value)">
         <option value="all">All refrigerants</option>${refs.map(r=>`<option value="${r}">${r}</option>`).join('')}</select></div>
@@ -2175,7 +2162,6 @@ function renderAnalytics(){
         <option value="all">All SCOP conditions</option>${scopConds.map(c=>`<option value="${c}">${c}</option>`).join('')}</select></div>
     <div class="an-stat" id="an-stat"></div>`;
   document.getElementById('anf-hp').value=anFilters.hp_type;
-  document.getElementById('anf-type').value=anFilters.type;
   document.getElementById('anf-ref').value=anFilters.refrigerant;
   document.getElementById('anf-cop').value=anFilters.cop_cond;
   document.getElementById('anf-scop').value=anFilters.scop_cond;
