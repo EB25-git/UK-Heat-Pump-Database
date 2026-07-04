@@ -308,8 +308,8 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .badge-ind{background:#E0F5F4;color:#0D7377}
 .badge-comm{background:var(--amber-light);color:var(--amber)}
 .badge-ref{background:var(--surface2);color:var(--text2)}
-.badge-heat{background:var(--amber-light);color:var(--amber)}
-.badge-cool{background:#E0F5F4;color:#0D7377}
+.badge-heat{background:#FBE6E6;color:#B02A2A}
+.badge-cool{background:#E3EFFB;color:#0C447C}
 .badge-ashp{background:#EAEDED;color:#4A5A5A}
 .badge-wshp{background:#E3EFFB;color:#0C447C}
 .badge-gshp{background:#E4F3E7;color:#1E6B3A}
@@ -2090,7 +2090,6 @@ function renderGrid(){
         ${d.product_code?'<div style="font-size:11px;color:var(--text3);font-family:DM Mono,monospace;margin-top:2px">'+d.product_code+'</div>':''}
         <div class="hp-card-badges">
           <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
-          <span class="badge ${bc(d.type)}">${d.type}</span>
           <span class="badge badge-ref">${d.refrigerant}</span>
           <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
           ${d.mcs_listed?`<span class="badge" style="background:#0a6b3b;color:#fff">✓ MCS</span>`:''}
@@ -2120,7 +2119,7 @@ function renderTableView(){
       <td>${d.manufacturer}</td>
       <td><strong>${d.model}</strong></td>
       <td><span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span></td>
-      <td><span class="badge ${bc(d.type)}">${d.type}</span></td>
+      <td>${d.type}</td>
       <td class="mv">${d.cap_min?d.cap_min+'–':''}${d.cap_max} kW</td>
       <td class="mv acc">${d.cop??'—'}</td>
       <td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>
@@ -2327,7 +2326,6 @@ function openModal(id){
   document.getElementById('modal-body').innerHTML=`
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem">
       <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
-      <span class="badge ${bc(d.type)}">${d.type}</span>
       <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
       <span class="badge badge-ref">${d.refrigerant}</span>
       <span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span>
@@ -2642,7 +2640,7 @@ function renderAdminTable(){
   document.getElementById('admin-tbody').innerHTML=db.map(d=>`
     <tr><td>${d.manufacturer}</td><td><strong>${d.model}</strong></td>
     <td><span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span></td>
-    <td><span class="badge ${bc(d.type)}">${d.type}</span></td>
+    <td>${d.type}</td>
     <td class="mono">${d.cap_max} kW</td>
     <td class="mono">${d.cop??'—'}</td>
     <td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>
