@@ -216,15 +216,13 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .filter-col select.filt{width:100%;margin-bottom:0}
 .f-slider-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);float:right}
 .range-wrap{position:relative;height:30px}
-.range-track{position:absolute;top:12px;left:0;right:0;height:4px;background:var(--surface2);border:1px solid var(--border);border-radius:3px}
-.range-fill{position:absolute;top:12px;height:4px;background:var(--accent);border-radius:3px}
-.range-wrap input[type=range]{position:absolute;top:0;left:0;width:100%;height:30px;-webkit-appearance:none;appearance:none;background:none;pointer-events:none;margin:0}
-.range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:15px;height:15px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);cursor:pointer;pointer-events:auto;box-shadow:0 1px 3px rgba(0,0,0,.18)}
-.range-wrap input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);cursor:pointer;pointer-events:auto;box-shadow:0 1px 3px rgba(0,0,0,.18)}
-.range-wrap input[type=range]::-webkit-slider-runnable-track{background:transparent;border:none;height:30px}
-.range-wrap input[type=range]::-moz-range-track{background:transparent;border:none;height:30px}
-.range-wrap input[type=range]:focus{outline:none}
-.range-wrap input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(62,204,192,.35)}
+.range-track{position:absolute;top:13px;left:0;right:0;height:4px;background:var(--surface2);border-radius:3px}
+.range-fill{position:absolute;top:13px;height:4px;background:var(--accent);border-radius:3px}
+.range-thumb{position:absolute;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.18);transform:translateX(-50%);pointer-events:none;box-sizing:border-box}
+.range-wrap input[type=range]{position:absolute;top:0;left:0;width:100%;height:30px;margin:0;opacity:0;pointer-events:none;-webkit-appearance:none;appearance:none}
+.range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:30px;pointer-events:auto;cursor:pointer}
+.range-wrap input[type=range]::-moz-range-thumb{width:24px;height:30px;pointer-events:auto;cursor:pointer;border:none;background:transparent}
+.range-wrap.focus .range-thumb{box-shadow:0 0 0 4px rgba(62,204,192,.35)}
 /* RANGE SLIDER */
 .range-slider-wrap{padding:4px 0}
 .range-values{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:8px}
@@ -769,8 +767,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 
       <div class="an-card">
         <div class="an-card-h">
-          <h3>Operating temperature range</h3>
-          <p>Heat pumps grouped by how cold they can run — their minimum source/ambient temperature — with bars coloured by type. Click any band to list the models in it and open full specs.</p>
+          <h3>Maximum heating flow temperature</h3>
+          <p>Heat pumps grouped by the hottest water they can deliver for heating, with bars coloured by type. Click any band to list the models in it and open full specs.</p>
         </div>
         <div class="an-chart-wrap"><div id="chart-temp-range" class="an-chart"></div></div>
         <div class="an-xlabel">Number of heat pumps in each band</div>
@@ -1931,32 +1929,35 @@ const SF={capLo:0,capHi:1000,flow:0,sound:85};   // capHi>=1000 & sound>=85 => u
 const CAP_STOPS=[0,1,2,3,4,5,6,8,10,12,15,20,25,30,40,50,60,80,100,150,200,300,400,500,700,1000]; // log-ish detents
 function capFromIdx(i){return CAP_STOPS[Math.max(0,Math.min(CAP_STOPS.length-1,i))];}
 function mkDual(el,vEl,onchg){
-  el.innerHTML='<div class="range-track"></div><div class="range-fill"></div>'+
+  el.innerHTML='<div class="range-track"></div><div class="range-fill"></div><div class="range-thumb"></div><div class="range-thumb"></div>'+
     `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="0" aria-label="Minimum heating capacity">`+
     `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="${CAP_STOPS.length-1}" aria-label="Maximum heating capacity">`;
-  const[lo,hi]=el.querySelectorAll('input'),fill=el.querySelector('.range-fill'),n=CAP_STOPS.length-1;
+  const[lo,hi]=el.querySelectorAll('input'),fill=el.querySelector('.range-fill'),[t1,t2]=el.querySelectorAll('.range-thumb'),n=CAP_STOPS.length-1;
   function upd(fire){
     let a=Math.min(+lo.value,+hi.value),b=Math.max(+lo.value,+hi.value);
     fill.style.left=(a/n*100)+'%';fill.style.width=((b-a)/n*100)+'%';
+    t1.style.left=(a/n*100)+'%';t2.style.left=(b/n*100)+'%';
     SF.capLo=capFromIdx(a);SF.capHi=capFromIdx(b);
     vEl.textContent=(a===0&&b===n)?'Any':SF.capLo+'–'+(b===n?'1000+':SF.capHi)+' kW';
     if(fire)onchg();
   }
-  lo.addEventListener('input',()=>upd(true));hi.addEventListener('input',()=>upd(true));
+  [lo,hi].forEach(i=>{i.addEventListener('input',()=>upd(true));i.addEventListener('focus',()=>el.classList.add('focus'));i.addEventListener('blur',()=>el.classList.remove('focus'));});
   el._reset=()=>{lo.value=0;hi.value=n;upd(false);};
   upd(false);
 }
 function mkSingle(el,vEl,min,max,init,mode,fmt,key,onchg){
-  el.innerHTML='<div class="range-track"></div><div class="range-fill"></div>'+
+  el.innerHTML='<div class="range-track"></div><div class="range-fill"></div><div class="range-thumb"></div>'+
     `<input type="range" min="${min}" max="${max}" step="1" value="${init}" aria-label="${key} filter">`;
-  const inp=el.querySelector('input'),fill=el.querySelector('.range-fill');
+  const inp=el.querySelector('input'),fill=el.querySelector('.range-fill'),th=el.querySelector('.range-thumb');
   function upd(fire){
     const v=+inp.value,p=(v-min)/(max-min)*100;
     if(mode==='max'){fill.style.left='0%';fill.style.width=p+'%';}else{fill.style.left=p+'%';fill.style.width=(100-p)+'%';}
+    th.style.left=p+'%';
     SF[key]=v;vEl.textContent=fmt(v);
     if(fire)onchg();
   }
   inp.addEventListener('input',()=>upd(true));
+  inp.addEventListener('focus',()=>el.classList.add('focus'));inp.addEventListener('blur',()=>el.classList.remove('focus'));
   el._reset=()=>{inp.value=init;upd(false);};
   upd(false);
 }
@@ -2278,11 +2279,11 @@ function anScatter(elId,data,fx,fy,opt){
 
 let anRangeSel=null, anRangeData=[];
 const AN_RANGE_BANDS=[
-  {label:'\u2264 \u221225\u00b0C (extreme cold)', test:m=>m<=-25},
-  {label:'\u221224 to \u221215\u00b0C',           test:m=>m>-25&&m<=-15},
-  {label:'\u221214 to \u22125\u00b0C',            test:m=>m>-15&&m<=-5},
-  {label:'\u22124 to 0\u00b0C',                   test:m=>m>-5&&m<=0},
-  {label:'Above 0\u00b0C (water / ground source)',test:m=>m>0}
+  {label:'\u2264 55\u00b0C (low-temp / underfloor)', test:m=>m<=55},
+  {label:'56 to 65\u00b0C (standard radiators)',      test:m=>m>55&&m<=65},
+  {label:'66 to 75\u00b0C (high-temp retrofit)',      test:m=>m>65&&m<=75},
+  {label:'76 to 90\u00b0C (very high temp)',          test:m=>m>75&&m<=90},
+  {label:'Above 90\u00b0C (industrial / process)',    test:m=>m>90}
 ];
 const AN_TYPE_ORDER=['ASHP','WSHP','GSHP'];
 function anRangeToggle(k){anRangeSel=(anRangeSel===k?null:k);anRangeChart('chart-temp-range',anRangeData);}
@@ -2292,37 +2293,37 @@ function anRangeChart(elId,data){
   const W=560;
   if(!data.length){el.innerHTML='<svg viewBox="0 0 '+W+' 160"><text x="'+(W/2)+'" y="80" text-anchor="middle" class="an-tick">No data for current filters</text></svg>';return;}
   const bands=AN_RANGE_BANDS.map(b=>({label:b.label,items:[]}));
-  data.forEach(d=>{const i=AN_RANGE_BANDS.findIndex(b=>b.test(d.op_temp_min));if(i>=0)bands[i].items.push(d);});
+  data.forEach(d=>{if(d.flow_temp_max==null)return;const i=AN_RANGE_BANDS.findIndex(b=>b.test(d.flow_temp_max));if(i>=0)bands[i].items.push(d);});
   const maxN=Math.max(...bands.map(b=>b.items.length),1);
-  const L=150,rowH=46,barH=22,padR=46,barX=L+8,barMaxW=W-barX-padR;
+  const rowH=58,barH=18,padR=46,barX=8,barMaxW=W-barX-padR;
   const n=bands.length,H=10+n*rowH+6;
   let g='';
   bands.forEach((b,i)=>{
-    const y=10+i*rowH,mid=y+rowH/2,total=b.items.length,sel=anRangeSel===i;
+    const y=10+i*rowH,total=b.items.length,sel=anRangeSel===i;
+    const labelY=y+14,barY=y+24;
     g+=`<g style="cursor:pointer" onclick="anRangeToggle(${i})">`;
-    g+=`<rect x="0" y="${y}" width="${W}" height="${rowH-6}" rx="8" fill="${sel?'rgba(13,115,119,.09)':'transparent'}"/>`;
-    g+=`<text x="8" y="${mid-3}" font-size="12.5" font-weight="600" fill="#26403e">${b.label}</text>`;
-    g+=`<text x="8" y="${mid+13}" font-size="11" fill="#7a8a88">${total} unit${total!==1?'s':''}${sel?' \u2014 click to close':''}</text>`;
+    g+=`<rect x="0" y="${y}" width="${W}" height="${rowH-8}" rx="8" fill="${sel?'rgba(13,115,119,.09)':'transparent'}"/>`;
+    g+=`<text x="8" y="${labelY}" font-size="12.5" font-weight="600" fill="#26403e">${b.label} <tspan font-weight="400" fill="#7a8a88" font-size="11">\u00b7 ${total} unit${total!==1?'s':''}${sel?' \u2014 click to close':''}</tspan></text>`;
     if(total){
       let x=barX;const w0=total/maxN*barMaxW;
       AN_TYPE_ORDER.forEach(tp=>{const c=b.items.filter(d=>d.hp_type===tp).length;if(!c)return;
         const w=c/total*w0;
-        g+=`<rect x="${x.toFixed(1)}" y="${(mid-barH/2).toFixed(1)}" width="${Math.max(w,0).toFixed(1)}" height="${barH}" fill="${AN_COLORS[tp]}" opacity="${sel?1:.9}"><title>${c} ${tp}</title></rect>`;
+        g+=`<rect x="${x.toFixed(1)}" y="${barY}" width="${Math.max(w,0).toFixed(1)}" height="${barH}" fill="${AN_COLORS[tp]}" opacity="${sel?1:.9}"><title>${c} ${tp}</title></rect>`;
         x+=w;});
       const known=b.items.filter(d=>AN_TYPE_ORDER.includes(d.hp_type)).length;
-      if(known<total){const w=(total-known)/total*w0;g+=`<rect x="${x.toFixed(1)}" y="${(mid-barH/2).toFixed(1)}" width="${w.toFixed(1)}" height="${barH}" fill="#9aa6a5"/>`;}
-      g+=`<text x="${(barX+w0+6).toFixed(1)}" y="${(mid+4).toFixed(1)}" font-size="12" font-weight="700" fill="#26403e">${total}</text>`;
+      if(known<total){const w=(total-known)/total*w0;g+=`<rect x="${x.toFixed(1)}" y="${barY}" width="${w.toFixed(1)}" height="${barH}" fill="#9aa6a5"/>`;}
+      g+=`<text x="${(barX+w0+6).toFixed(1)}" y="${(barY+barH/2+4).toFixed(1)}" font-size="12" font-weight="700" fill="#26403e">${total}</text>`;
     }else{
-      g+=`<text x="${barX}" y="${mid+4}" font-size="11" fill="#aeb8b7">none</text>`;
+      g+=`<text x="${barX}" y="${barY+barH/2+4}" font-size="11" fill="#aeb8b7">none</text>`;
     }
     g+=`</g>`;
   });
   let html='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block">'+g+'</svg>';
   if(anRangeSel!=null&&bands[anRangeSel]&&bands[anRangeSel].items.length){
     const b=bands[anRangeSel];
-    const items=[...b.items].sort((p,q)=>p.op_temp_min-q.op_temp_min||(p.manufacturer||'').localeCompare(q.manufacturer||''));
+    const items=[...b.items].sort((p,q)=>p.flow_temp_max-q.flow_temp_max||(p.manufacturer||'').localeCompare(q.manufacturer||''));
     const bc=tp=>tp==='ASHP'?'badge-ashp':tp==='WSHP'?'badge-wshp':tp==='GSHP'?'badge-gshp':'badge-ref';
-    const rows=items.map(d=>`<div onclick="openModal(${d.id})" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border);cursor:pointer;font-size:13px" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='transparent'"><span style="flex:1;min-width:0"><span style="font-weight:600;color:var(--text)">${d.manufacturer}</span> <span style="color:var(--text2)">${d.model}</span></span><span class="badge ${bc(d.hp_type)}" style="flex-shrink:0">${d.hp_type||'?'}</span><span style="flex-shrink:0;color:var(--text2);font-variant-numeric:tabular-nums;width:104px;text-align:right">${d.op_temp_min}\u00b0C to ${d.op_temp_max}\u00b0C</span><span style="flex-shrink:0;color:var(--text3);width:60px;text-align:right">${d.cap_max!=null?d.cap_max+' kW':''}</span></div>`).join('');
+    const rows=items.map(d=>`<div onclick="openModal(${d.id})" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--border);cursor:pointer;font-size:13px" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='transparent'"><span style="flex:1;min-width:0"><span style="font-weight:600;color:var(--text)">${d.manufacturer}</span> <span style="color:var(--text2)">${d.model}</span></span><span class="badge ${bc(d.hp_type)}" style="flex-shrink:0">${d.hp_type||'?'}</span><span style="flex-shrink:0;color:var(--text2);font-variant-numeric:tabular-nums;width:104px;text-align:right">${d.flow_temp_max}\u00b0C max flow</span><span style="flex-shrink:0;color:var(--text3);width:60px;text-align:right">${d.cap_max!=null?d.cap_max+' kW':''}</span></div>`).join('');
     html+=`<div style="margin-top:10px;border:1px solid var(--border);border-radius:12px;overflow:hidden"><div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface2);border-bottom:1px solid var(--border)"><strong style="font-size:13px;color:var(--text)">${b.label} \u00b7 ${items.length} heat pump${items.length!==1?'s':''}</strong><span onclick="anRangeToggle(${anRangeSel})" style="cursor:pointer;color:var(--text3);font-size:20px;line-height:1">&times;</span></div><div style="max-height:340px;overflow-y:auto">${rows}</div></div>`;
   }
   el.innerHTML=html;
