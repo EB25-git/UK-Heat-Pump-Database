@@ -213,6 +213,15 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .filter-col label.filter-label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:4px}
 .filter-col select.filt{width:100%;margin-bottom:0}
+.f-slider-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);float:right}
+.range-wrap{position:relative;height:30px}
+.range-track{position:absolute;top:12px;left:0;right:0;height:4px;background:var(--surface2);border:1px solid var(--border);border-radius:3px}
+.range-fill{position:absolute;top:12px;height:4px;background:var(--accent);border-radius:3px}
+.range-wrap input[type=range]{position:absolute;top:0;left:0;width:100%;height:30px;-webkit-appearance:none;appearance:none;background:none;pointer-events:none;margin:0}
+.range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:15px;height:15px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);cursor:pointer;pointer-events:auto;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.range-wrap input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:#fff;border:2.5px solid var(--accent);cursor:pointer;pointer-events:auto;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.range-wrap input[type=range]:focus{outline:none}
+.range-wrap input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(62,204,192,.35)}
 /* RANGE SLIDER */
 .range-slider-wrap{padding:4px 0}
 .range-values{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:8px}
@@ -650,34 +659,12 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           </select>
         </div>
         <div class="filter-col">
-          <label class="filter-label">Capacity</label>
-          <select class="filt" id="filt-cap" onchange="applyFilters()">
-            <option value="">Any capacity</option>
-            <option value="0-5">≤5 kW</option>
-            <option value="0-10">≤10 kW</option>
-            <option value="0-15">≤15 kW</option>
-            <option value="0-25">≤25 kW</option>
-            <option value="10-50">10–50 kW</option>
-            <option value="50-100">50–100 kW</option>
-            <option value="100-250">100–250 kW</option>
-            <option value="250-500">250–500 kW</option>
-            <option value="500-1000">500 kW–1 MW</option>
-            <option value="1000-99999">1 MW+</option>
-          </select>
+          <label class="filter-label">Heating capacity <span class="f-slider-val" id="sv-cap">Any</span></label>
+          <div class="range-wrap" id="sl-cap"></div>
         </div>
         <div class="filter-col">
-          <label class="filter-label">Max flow temp</label>
-          <select class="filt" id="filt-flow" onchange="applyFilters()">
-            <option value="">Any flow temp</option>
-            <option value="40">≥40°C</option>
-            <option value="50">≥50°C</option>
-            <option value="60">≥60°C</option>
-            <option value="70">≥70°C</option>
-            <option value="80">≥80°C</option>
-            <option value="90">≥90°C</option>
-            <option value="100">≥100°C</option>
-            <option value="101">&gt;100°C</option>
-          </select>
+          <label class="filter-label">Min required flow temp <span class="f-slider-val" id="sv-flow">Any</span></label>
+          <div class="range-wrap" id="sl-flow"></div>
         </div>
         <div class="filter-col">
           <label class="filter-label">Verification</label>
@@ -686,15 +673,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           </select>
         </div>
         <div class="filter-col">
-          <label class="filter-label">Max sound power</label>
-          <select class="filt" id="filt-sound" onchange="applyFilters()">
-            <option value="">Any sound power</option>
-            <option value="42">≤42 dB(A)</option>
-            <option value="45">≤45 dB(A)</option>
-            <option value="50">≤50 dB(A)</option>
-            <option value="55">≤55 dB(A)</option>
-            <option value="60">≤60 dB(A)</option>
-          </select>
+          <label class="filter-label">Max sound power <span class="f-slider-val" id="sv-sound">Any</span></label>
+          <div class="range-wrap" id="sl-sound"></div>
         </div>
         <div class="filter-col">
           <label class="filter-label">Grant / certification</label>
@@ -1943,6 +1923,49 @@ function parseRefrigerants(ref){
     return code;
   }).filter(Boolean))];
 }
+// ── Slider filters ──
+const SF={capLo:0,capHi:1000,flow:0,sound:85};   // capHi>=1000 & sound>=85 => unbounded; flow 0 => any
+const CAP_STOPS=[0,1,2,3,4,5,6,8,10,12,15,20,25,30,40,50,60,80,100,150,200,300,400,500,700,1000]; // log-ish detents
+function capFromIdx(i){return CAP_STOPS[Math.max(0,Math.min(CAP_STOPS.length-1,i))];}
+function mkDual(el,vEl,onchg){
+  el.innerHTML='<div class="range-track"></div><div class="range-fill"></div>'+
+    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="0" aria-label="Minimum heating capacity">`+
+    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="${CAP_STOPS.length-1}" aria-label="Maximum heating capacity">`;
+  const[lo,hi]=el.querySelectorAll('input'),fill=el.querySelector('.range-fill'),n=CAP_STOPS.length-1;
+  function upd(fire){
+    let a=Math.min(+lo.value,+hi.value),b=Math.max(+lo.value,+hi.value);
+    fill.style.left=(a/n*100)+'%';fill.style.width=((b-a)/n*100)+'%';
+    SF.capLo=capFromIdx(a);SF.capHi=capFromIdx(b);
+    vEl.textContent=(a===0&&b===n)?'Any':SF.capLo+'–'+(b===n?'1000+':SF.capHi)+' kW';
+    if(fire)onchg();
+  }
+  lo.addEventListener('input',()=>upd(true));hi.addEventListener('input',()=>upd(true));
+  el._reset=()=>{lo.value=0;hi.value=n;upd(false);};
+  upd(false);
+}
+function mkSingle(el,vEl,min,max,init,mode,fmt,key,onchg){
+  el.innerHTML='<div class="range-track"></div><div class="range-fill"></div>'+
+    `<input type="range" min="${min}" max="${max}" step="1" value="${init}" aria-label="${key} filter">`;
+  const inp=el.querySelector('input'),fill=el.querySelector('.range-fill');
+  function upd(fire){
+    const v=+inp.value,p=(v-min)/(max-min)*100;
+    if(mode==='max'){fill.style.left='0%';fill.style.width=p+'%';}else{fill.style.left=p+'%';fill.style.width=(100-p)+'%';}
+    SF[key]=v;vEl.textContent=fmt(v);
+    if(fire)onchg();
+  }
+  inp.addEventListener('input',()=>upd(true));
+  el._reset=()=>{inp.value=init;upd(false);};
+  upd(false);
+}
+function initSliderFilters(){
+  const c=document.getElementById('sl-cap');
+  if(!c||c._init)return; c._init=true;
+  mkDual(c,document.getElementById('sv-cap'),applyFilters);
+  mkSingle(document.getElementById('sl-flow'),document.getElementById('sv-flow'),0,100,0,'min',v=>v<=0?'Any':'\u2265'+v+'\u00b0C','flow',applyFilters);
+  mkSingle(document.getElementById('sl-sound'),document.getElementById('sv-sound'),40,85,85,'max',v=>v>=85?'Any':'\u2264'+v+' dB(A)','sound',applyFilters);
+}
+function resetSliderFilters(){['sl-cap','sl-flow','sl-sound'].forEach(id=>{const e=document.getElementById(id);if(e&&e._reset)e._reset();});}
+function slidersActive(){return (SF.capLo>0||SF.capHi<1000)+(SF.flow>0)+(SF.sound<85);}
 function getFiltered(){
   const q=(document.getElementById('search-input').value||'').toLowerCase();
   const hpt=document.getElementById('filt-hptype').value;
@@ -1951,10 +1974,8 @@ function getFiltered(){
   const mfr=document.getElementById('filt-mfr').value;
   const ref=document.getElementById('filt-ref').value;
   const refcat=document.getElementById('filt-refcat').value;
-  const cap=document.getElementById('filt-cap').value;
-  const flow=document.getElementById('filt-flow').value;
+
   const verif=document.getElementById('filt-verif').value;
-  const sound=document.getElementById('filt-sound').value;
   const mcs=document.getElementById('filt-mcs').value;
   return db.filter(d=>{
     if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''} ${d.notes||''}`.toLowerCase().includes(q))return false;
@@ -1964,10 +1985,11 @@ function getFiltered(){
     if(mfr&&d.manufacturer!==mfr)return false;
     if(ref&&!parseRefrigerants(d.refrigerant).includes(ref))return false;
     if(refcat&&getRefCategory(d.refrigerant)!==refcat)return false;
-    if(cap){const[mn,mx]=cap.split('-').map(Number);if(d.cap_max<mn||d.cap_max>mx)return false;}
-    if(flow&&(d.flow_temp_max==null||d.flow_temp_max<Number(flow)))return false;
+    if(SF.capLo>0&&(d.cap_max==null||d.cap_max<SF.capLo))return false;
+    if(SF.capHi<1000&&(d.cap_max==null||d.cap_max>SF.capHi))return false;
+    if(SF.flow>0&&(d.flow_temp_max==null||d.flow_temp_max<SF.flow))return false;
     if(verif){if(verif==='__awaiting__'){if(d.verified)return false;}else if(d.verified!==verif)return false;}
-    if(sound){if(!isSoundPower(d)||d.noise>Number(sound))return false;}
+    if(SF.sound<85){if(!isSoundPower(d)||d.noise>SF.sound)return false;}
     if(mcs==='mcs'&&!d.mcs_listed)return false;
     return true;
   });
@@ -2042,7 +2064,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-cap','filt-flow','filt-verif'].filter(id=>document.getElementById(id).value).length;
+  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -2051,7 +2073,8 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-cap','filt-flow','filt-verif'].forEach(id=>{document.getElementById(id).value='';});
+  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  resetSliderFilters();
   applyFilters();
 }
 function setView(v){
@@ -3299,6 +3322,7 @@ function resetLinksContent(){
 // ═══════════════ INIT ═══════════════
 function renderFooter(){document.getElementById('site-footer').innerHTML=copyrightText;}
 populateFilters();
+initSliderFilters();
 applyFilters();
 updateHero();
 renderGuidePage();
