@@ -310,9 +310,9 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .badge-ref{background:var(--surface2);color:var(--text2)}
 .badge-heat{background:var(--amber-light);color:var(--amber)}
 .badge-cool{background:#E0F5F4;color:#0D7377}
-.badge-ashp{background:#E0F5F4;color:#0D7377}
-.badge-wshp{background:var(--purple-light);color:var(--purple)}
-.badge-gshp{background:#FDF2E9;color:#935116}
+.badge-ashp{background:#EAEDED;color:#4A5A5A}
+.badge-wshp{background:#E3EFFB;color:#0C447C}
+.badge-gshp{background:#E4F3E7;color:#1E6B3A}
 
 /* ── COP LABELS ── */
 .cop-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;padding:2px 7px;border-radius:6px;margin-left:4px;vertical-align:middle;white-space:nowrap;font-weight:500}
@@ -2019,7 +2019,7 @@ function renderMfrProfile(){
   const url=MFR_URLS[mfr]||'#';
   const count=filtered.length;
   el.style.display='block';
-  el.innerHTML=`<div class="mfr-card"><div class="mfr-card-header"><div><div class="mfr-card-name">${mfr}</div><div class="mfr-card-meta"><span class="badge badge-ref">${p.country}</span> <span class="badge ${p.focus.includes('Residential')?'badge-ashp':'badge-comm'}">${p.focus}</span> <span style="color:var(--text3);font-size:12px;margin-left:4px">${count} product${count!==1?'s':''} listed</span></div></div><a href="${url}" target="_blank" rel="noopener" class="card-act card-act-web" style="flex-shrink:0">↗ Website</a></div><p class="mfr-card-desc">${p.desc}</p></div>`;
+  el.innerHTML=`<div class="mfr-card"><div class="mfr-card-header"><div><div class="mfr-card-name">${mfr}</div><div class="mfr-card-meta"><span class="badge badge-ref">${p.country}</span> <span class="badge ${p.focus.includes('Residential')?'badge-res':'badge-comm'}">${p.focus}</span> <span style="color:var(--text3);font-size:12px;margin-left:4px">${count} product${count!==1?'s':''} listed</span></div></div><a href="${url}" target="_blank" rel="noopener" class="card-act card-act-web" style="flex-shrink:0">↗ Website</a></div><p class="mfr-card-desc">${p.desc}</p></div>`;
 }
 
 function applyFilters(){
@@ -2365,15 +2365,20 @@ function openModal(id){
     <div class="spec-section">
       <h4>Physical dimensions</h4>
       ${row('H × W × D',d.height&&d.width&&d.depth?`${d.height}×${d.width}×${d.depth} mm`:null)}
-      ${row('Weight',d.weight!=null?d.weight+' kg':null)}
+      ${row('Operational Weight',d.weight!=null?d.weight+' kg':null)}
     </div>
+    ${d.mcs_listed?`<div class="spec-section">
+      <h4>MCS certification</h4>
+      <div class="spec-row"><div class="spec-row-l">Scheme eligibility</div><div class="spec-row-v" style="color:#0a6b3b;font-weight:600">✓ MCS listed — eligible for Boiler Upgrade Scheme (MCS-certified install required)</div></div>
+      ${row('Certificate no.',d.mcs_cert||null)}
+      ${d.mcs_url?`<div class="spec-row"><div class="spec-row-l">MCS listing</div><div class="spec-row-v"><a href="${d.mcs_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;background:#0a6b3b;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none">View on MCS ↗</a></div></div>`:''}
+    </div>`:''}
     ${suppliersHTML(d)}
     ${d.notes?`<div class="spec-section"><h4>Notes</h4><p style="font-size:13px;color:var(--text2);line-height:1.65">${d.notes}</p></div>`:''}
     ${getProductUrl(d)?`<div style="margin-top:.5rem;padding:12px 14px;background:var(--info-light);border:1px solid #B5D4F4;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center">
       <div style="font-size:13px"><span style="color:#0C447C;font-weight:500">View on ${d.manufacturer}</span><br><span style="font-size:11px;color:#5A574F;font-family:'DM Mono',monospace;word-break:break-all">${getProductUrl(d)}</span></div>
       <a href="${getProductUrl(d)}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${getProductUrl(d)}')" class="btn btn-sm" style="flex-shrink:0;color:var(--info);border-color:var(--info);text-decoration:none">↗ Visit site</a>
     </div>`:''}
-    ${d.mcs_listed?`<div style="margin-top:.75rem;font-size:12.5px;color:#0a6b3b;font-weight:600;display:flex;align-items:center;flex-wrap:wrap;gap:8px"><span>✓ MCS listed product — eligible for the Boiler Upgrade Scheme, subject to an MCS-certified installation.${d.mcs_cert?` <span style="font-weight:500;color:var(--text3)">Cert no. ${d.mcs_cert}</span>`:''}</span>${d.mcs_url?`<a href="${d.mcs_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;background:#0a6b3b;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none;white-space:nowrap">View on MCS ↗</a>`:''}</div>`:''}
     ${d.verified?`<div style="margin-top:.75rem;font-size:12.5px;color:#0F8074;font-weight:600">✓ ${d.verified==='Manual verification'?'Manually verified by Heat Pump Database':'Verified via '+d.verified+' data'}</div>`:`<div style="margin-top:.75rem;font-size:12.5px;color:#9a7b1f;font-weight:600">○ Awaiting verification</div>`}
     <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3)">
       <span>Data added: ${d.date_added||'—'}</span>
@@ -2539,7 +2544,7 @@ function cmpChartsSection(items){
 function exportComparePDF(){
   const items=getCompareExportItems();if(!items)return;
   const chartsSection=cmpChartsSection(items);
-  const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Heating Min Flow Temp','flow_temp_min','°C'],['Heating Max Flow Temp','flow_temp_max','°C'],['Heating Min Capacity','cap_min',' kW'],['Heating Max Capacity','cap_max',' kW'],['Peak Elec Input','peak_elec',' kW'],['COP (heating)','cop'],['COP Test Conditions','cop_cond'],['SCOP (heating)','scop'],['SCOP Test Conditions','scop_cond'],['Cooling Min Capacity','cool_cap_min',' kW'],['Cooling Max Capacity','cool_cap_max',' kW'],['Cooling Min Flow Temp','cool_flow_temp_min','°C'],['Cooling Max Flow Temp','cool_flow_temp_max','°C'],['EER (cooling)','eer'],['EER Test Conditions','eer_cond'],['SEER (cooling)','seer'],['SEER Test Conditions','seer_cond'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Weight','weight',' kg']];
+  const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Heating Min Flow Temp','flow_temp_min','°C'],['Heating Max Flow Temp','flow_temp_max','°C'],['Heating Min Capacity','cap_min',' kW'],['Heating Max Capacity','cap_max',' kW'],['Peak Elec Input','peak_elec',' kW'],['COP (heating)','cop'],['COP Test Conditions','cop_cond'],['SCOP (heating)','scop'],['SCOP Test Conditions','scop_cond'],['Cooling Min Capacity','cool_cap_min',' kW'],['Cooling Max Capacity','cool_cap_max',' kW'],['Cooling Min Flow Temp','cool_flow_temp_min','°C'],['Cooling Max Flow Temp','cool_flow_temp_max','°C'],['EER (cooling)','eer'],['EER Test Conditions','eer_cond'],['SEER (cooling)','seer'],['SEER Test Conditions','seer_cond'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Operational Weight','weight',' kg']];
   const htmlContent=`<!DOCTYPE html><html><head><title>Heat Pump Comparison — heatpumpdatabase.com</title>
 <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;padding:2.5rem;font-size:12px;line-height:1.5}
 h1{font-size:20px;font-weight:700;margin-bottom:4px;color:#0D7377}p.sub{font-size:11px;color:#777;margin-bottom:1.5rem}
@@ -2594,7 +2599,7 @@ function renderCompare(){
   const mixedCop=conds.size>1?`<div class="alert a-warn" style="margin-bottom:1rem;font-size:13px"><strong>Caution:</strong> These units have different COP test conditions (${[...conds].join(', ')}). COP values are not directly comparable across different test conditions — a higher COP at W10/W35 does not mean better real-world performance than a lower COP at A7/W35.</div>`:'';
   sE.innerHTML=mixedCop;
   cE.innerHTML=cmpChartsSection(items);
-  const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Heating min flow temp (°C)','flow_temp_min'],['Heating max flow temp (°C)','flow_temp_max'],['Heating min capacity (kW)','cap_min'],['Heating max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value (heating)','cop'],['COP test conditions','cop_cond'],['SCOP value (heating)','scop'],['SCOP test conditions','scop_cond'],['Cooling min capacity (kW)','cool_cap_min'],['Cooling max capacity (kW)','cool_cap_max'],['Cooling min flow temp (°C)','cool_flow_temp_min'],['Cooling max flow temp (°C)','cool_flow_temp_max'],['EER value (cooling)','eer'],['EER test conditions','eer_cond'],['SEER value (cooling)','seer'],['SEER test conditions','seer_cond'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Weight (kg)','weight']];
+  const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Heating min flow temp (°C)','flow_temp_min'],['Heating max flow temp (°C)','flow_temp_max'],['Heating min capacity (kW)','cap_min'],['Heating max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['COP value (heating)','cop'],['COP test conditions','cop_cond'],['SCOP value (heating)','scop'],['SCOP test conditions','scop_cond'],['Cooling min capacity (kW)','cool_cap_min'],['Cooling max capacity (kW)','cool_cap_max'],['Cooling min flow temp (°C)','cool_flow_temp_min'],['Cooling max flow temp (°C)','cool_flow_temp_max'],['EER value (cooling)','eer'],['EER test conditions','eer_cond'],['SEER value (cooling)','seer'],['SEER test conditions','seer_cond'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Operational Weight (kg)','weight']];
   tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
     ${items.some(d=>d.description)?`<tr><td style="color:var(--text3);font-size:12px">Description</td>${items.map(d=>`<td style="font-size:12px;color:var(--text2);line-height:1.5">${d.description||'—'}</td>`).join('')}</tr>`:''}
     ${specs.map(([l,k])=>{

@@ -96,12 +96,17 @@ def spec_rows(p):
         h, w, d = p.get("height"), p.get("width"), p.get("depth")
         dims = " \u00d7 ".join(num(x) for x in (h, w, d) if x is not None)
         add("Dimensions (H\u00d7W\u00d7D)", f"{dims} mm")
-    if p.get("weight") is not None: add("Weight", f"{num(p['weight'])} kg")
+    if p.get("weight") is not None: add("Operational Weight", f"{num(p['weight'])} kg")
     if p.get("noise") is not None:
         ref = f" ({esc(p['noise_ref'])})" if p.get("noise_ref") else ""
         add("Sound power level", f"{num(p['noise'])} dB(A){ref}")
     add("Data added", esc(p.get("date_added")))
     add("Data source", esc(p.get("source")))
+    if p.get("mcs_listed"):
+        add("MCS certification", "&#10003; MCS listed &mdash; eligible for Boiler Upgrade Scheme (MCS-certified install required)")
+        if p.get("mcs_cert"): add("MCS certificate no.", esc(p["mcs_cert"]))
+        if p.get("mcs_url"):
+            add("MCS listing", f'<a href="{esc(p["mcs_url"])}" target="_blank" rel="noopener nofollow">View on MCS &#8599;</a>')
     return rows
 
 # ───────────────────────── HTML shell ─────────────────────────
@@ -405,7 +410,7 @@ def render_product(p, by_mfr, by_type):
             f'<p class="sub">Specifications and technical data</p>'
             f'<div class="badges">{badges}</div>'
             f'<table class="spec">{rows}</table>'
-            f'{mfr_link}{notes_html}{render_suppliers(p)}{render_mcs(p)}{render_verified(p)}{render_correction(p)}'
+            f'{mfr_link}{notes_html}{render_suppliers(p)}{render_verified(p)}{render_correction(p)}'
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{rel}'
