@@ -2104,13 +2104,12 @@ function renderGrid(){
       </div>
       <div class="hp-card-body">
         <div class="hp-spec-grid">
-          <div class="hp-spec"><div class="hp-spec-label">Heating capacity</div><div class="hp-spec-val">${d.cap_min?d.cap_min+'–':''}${d.cap_max} kW</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">Heating capacity (max)</div><div class="hp-spec-val">${fmt(d.cap_max,' kW')}</div></div>
           <div class="hp-spec"><div class="hp-spec-label">Heating flow (max)</div><div class="hp-spec-val">${fmt(d.flow_temp_max,'°C')}</div></div>
           <div class="hp-spec"><div class="hp-spec-label">COP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${copLabel(d.cop,d.cop_cond)}</div></div></div>
           <div class="hp-spec"><div class="hp-spec-label">SCOP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${scopLabel(d.scop,d.scop_cond)}</div></div></div>
-          <div class="hp-spec"><div class="hp-spec-label">${d.hp_type==='ASHP'?'Min ambient':'Min source temp'}</div><div class="hp-spec-val">${fmt(d.op_temp_min,'°C')}</div></div>
-          <div class="hp-spec"><div class="hp-spec-label">Peak elec</div><div class="hp-spec-val">${fmt(d.peak_elec,' kW')}</div></div>
-          ${d.electrical?`<div class="hp-spec"><div class="hp-spec-label">Electrical supply</div><div class="hp-spec-val">${d.electrical}</div></div>`:''}
+          <div class="hp-spec"><div class="hp-spec-label">Cooling capacity</div><div class="hp-spec-val">${fmt(d.cool_cap_max,' kW')}</div></div>
+          <div class="hp-spec"><div class="hp-spec-label">Max noise</div><div class="hp-spec-val">${fmt(d.noise,' dB(A)')}</div></div>
         </div>
       </div>
       <div class="hp-card-footer">
