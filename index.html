@@ -115,14 +115,14 @@ a.burger-item{display:block;text-decoration:none;box-sizing:border-box}
 /* Compare-page bar charts (shared markup with PDF export) */
 .charts-wrap{margin-top:1.75rem}
 .charts-h{font-size:18px;font-weight:700;color:var(--text);margin-bottom:.35rem}
-.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1rem;font-size:12px;color:var(--text2)}
+.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1rem;font-size:13px;color:var(--text2)}
 .cl-item{display:inline-flex;align-items:center;gap:6px}
 .cl-sw{width:12px;height:12px;border-radius:3px;display:inline-block;flex-shrink:0}
 .charts-grid{display:flex;flex-wrap:wrap;gap:16px}
 .chart-block{flex:1 1 280px;min-width:260px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;box-shadow:var(--shadow-sm)}
-.chart-ttl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:8px}
-.chart-empty{font-size:12px;color:var(--text3);padding:32px 0;text-align:center}
-.charts-note{font-size:11px;color:var(--text3);margin-top:1rem;line-height:1.55;max-width:760px}
+.chart-ttl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:8px}
+.chart-empty{font-size:13px;color:var(--text3);padding:32px 0;text-align:center}
+.charts-note{font-size:12px;color:var(--text3);margin-top:1rem;line-height:1.55;max-width:760px}
 .an-xlabel{text-align:center;font-size:11px;color:var(--text3);margin-top:2px;font-weight:500}
 .an-dot{cursor:pointer;transition:r .12s,opacity .12s;opacity:.78}
 .an-dot:hover{opacity:1}
@@ -601,6 +601,22 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       </div>
       <div class="filter-grid">
         <div class="filter-col">
+          <label class="filter-label">Heating capacity <span class="f-slider-val" id="sv-cap">Any</span></label>
+          <div class="range-wrap" id="sl-cap"></div>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Cooling capacity <span class="f-slider-val" id="sv-cool">Any</span></label>
+          <div class="range-wrap" id="sl-cool"></div>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Min required flow temp <span class="f-slider-val" id="sv-flow">Any</span></label>
+          <div class="range-wrap" id="sl-flow"></div>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Max sound power <span class="f-slider-val" id="sv-sound">Any</span></label>
+          <div class="range-wrap" id="sl-sound"></div>
+        </div>
+        <div class="filter-col">
           <label class="filter-label">HP type</label>
           <select class="filt" id="filt-hptype" onchange="applyFilters()">
             <option value="">All HP types</option>
@@ -640,22 +656,10 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           </select>
         </div>
         <div class="filter-col">
-          <label class="filter-label">Heating capacity <span class="f-slider-val" id="sv-cap">Any</span></label>
-          <div class="range-wrap" id="sl-cap"></div>
-        </div>
-        <div class="filter-col">
-          <label class="filter-label">Min required flow temp <span class="f-slider-val" id="sv-flow">Any</span></label>
-          <div class="range-wrap" id="sl-flow"></div>
-        </div>
-        <div class="filter-col">
           <label class="filter-label">Verification</label>
           <select class="filt" id="filt-verif" onchange="applyFilters()">
             <option value="">Any status</option>
           </select>
-        </div>
-        <div class="filter-col">
-          <label class="filter-label">Max sound power <span class="f-slider-val" id="sv-sound">Any</span></label>
-          <div class="range-wrap" id="sl-sound"></div>
         </div>
         <div class="filter-col">
           <label class="filter-label">Grant / certification</label>
@@ -1907,20 +1911,20 @@ function parseRefrigerants(ref){
   }).filter(Boolean))];
 }
 // ── Slider filters ──
-const SF={capLo:0,capHi:1000,flow:0,sound:85};   // capHi>=1000 & sound>=85 => unbounded; flow 0 => any
+const SF={capLo:0,capHi:1000,coolLo:0,coolHi:1000,flow:0,sound:85};   // capHi/coolHi>=1000 & sound>=85 => unbounded; flow 0 => any
 const CAP_STOPS=[0,1,2,3,4,5,6,8,10,12,15,20,25,30,40,50,60,80,100,150,200,300,400,500,700,1000]; // log-ish detents
 function capFromIdx(i){return CAP_STOPS[Math.max(0,Math.min(CAP_STOPS.length-1,i))];}
-function mkDual(el,vEl,onchg){
+function mkDual(el,vEl,loKey,hiKey,label,onchg){
   el.innerHTML='<div class="range-track"></div><div class="range-fill"></div><div class="range-thumb"></div><div class="range-thumb"></div>'+
-    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="0" aria-label="Minimum heating capacity">`+
-    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="${CAP_STOPS.length-1}" aria-label="Maximum heating capacity">`;
+    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="0" aria-label="Minimum ${label}">`+
+    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="${CAP_STOPS.length-1}" aria-label="Maximum ${label}">`;
   const[lo,hi]=el.querySelectorAll('input'),fill=el.querySelector('.range-fill'),[t1,t2]=el.querySelectorAll('.range-thumb'),n=CAP_STOPS.length-1;
   function upd(fire){
     let a=Math.min(+lo.value,+hi.value),b=Math.max(+lo.value,+hi.value);
     const pa=5+a/n*90,pb=5+b/n*90;fill.style.left=pa+'%';fill.style.width=(pb-pa)+'%';
     t1.style.left=pa+'%';t2.style.left=pb+'%';
-    SF.capLo=capFromIdx(a);SF.capHi=capFromIdx(b);
-    vEl.textContent=(a===0&&b===n)?'Any':SF.capLo+'–'+(b===n?'1000+':SF.capHi)+' kW';
+    SF[loKey]=capFromIdx(a);SF[hiKey]=capFromIdx(b);
+    vEl.textContent=(a===0&&b===n)?'Any':SF[loKey]+'–'+(b===n?'1000+':SF[hiKey])+' kW';
     if(fire)onchg();
   }
   [lo,hi].forEach(i=>{i.addEventListener('input',()=>upd(true));i.addEventListener('focus',()=>el.classList.add('focus'));i.addEventListener('blur',()=>el.classList.remove('focus'));});
@@ -1946,12 +1950,13 @@ function mkSingle(el,vEl,min,max,init,mode,fmt,key,onchg){
 function initSliderFilters(){
   const c=document.getElementById('sl-cap');
   if(!c||c._init)return; c._init=true;
-  mkDual(c,document.getElementById('sv-cap'),applyFilters);
+  mkDual(c,document.getElementById('sv-cap'),'capLo','capHi','heating capacity',applyFilters);
+  mkDual(document.getElementById('sl-cool'),document.getElementById('sv-cool'),'coolLo','coolHi','cooling capacity',applyFilters);
   mkSingle(document.getElementById('sl-flow'),document.getElementById('sv-flow'),0,100,0,'min',v=>v<=0?'Any':'\u2265'+v+'\u00b0C','flow',applyFilters);
   mkSingle(document.getElementById('sl-sound'),document.getElementById('sv-sound'),40,85,85,'max',v=>v>=85?'Any':'\u2264'+v+' dB(A)','sound',applyFilters);
 }
-function resetSliderFilters(){['sl-cap','sl-flow','sl-sound'].forEach(id=>{const e=document.getElementById(id);if(e&&e._reset)e._reset();});}
-function slidersActive(){return (SF.capLo>0||SF.capHi<1000)+(SF.flow>0)+(SF.sound<85);}
+function resetSliderFilters(){['sl-cap','sl-cool','sl-flow','sl-sound'].forEach(id=>{const e=document.getElementById(id);if(e&&e._reset)e._reset();});}
+function slidersActive(){return (SF.capLo>0||SF.capHi<1000)+(SF.coolLo>0||SF.coolHi<1000)+(SF.flow>0)+(SF.sound<85);}
 function getFiltered(){
   const q=(document.getElementById('search-input').value||'').toLowerCase();
   const hpt=document.getElementById('filt-hptype').value;
@@ -1971,6 +1976,8 @@ function getFiltered(){
     if(refcat&&getRefCategory(d.refrigerant)!==refcat)return false;
     if(SF.capLo>0&&(d.cap_max==null||d.cap_max<SF.capLo))return false;
     if(SF.capHi<1000&&(d.cap_max==null||d.cap_max>SF.capHi))return false;
+    if(SF.coolLo>0&&(d.cool_cap_max==null||d.cool_cap_max<SF.coolLo))return false;
+    if(SF.coolHi<1000&&(d.cool_cap_max==null||d.cool_cap_max>SF.coolHi))return false;
     if(SF.flow>0&&(d.flow_temp_max==null||d.flow_temp_max<SF.flow))return false;
     if(verif){if(verif==='__awaiting__'){if(d.verified)return false;}else if(d.verified!==verif)return false;}
     if(SF.sound<85){if(!isSoundPower(d)||d.noise>SF.sound)return false;}
@@ -2511,8 +2518,8 @@ function cmpEsc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').r
 function cmpShort(s,n){s=String(s||'');return s.length>n?s.slice(0,n-1)+'…':s;}
 function cmpNiceMax(v){if(v<=0)return 1;const pow=Math.pow(10,Math.floor(Math.log10(v)));const x=v/pow;const m=x<=1?1:x<=2?2:x<=2.5?2.5:x<=5?5:10;return m*pow;}
 function cmpBarChart(title,unit,accessor,subAccessor,items){
-  const W=520,H=250,padL=46,padR=16,padT=30,padB=64,plotW=W-padL-padR,plotH=H-padT-padB,yBase=padT+plotH;
-  const data=items.map((d,i)=>({val:accessor(d),sub:subAccessor?subAccessor(d):null,name:d.model,color:CMP_CHART_COLORS[i]}));
+  const W=520,H=272,padL=46,padR=16,padT=30,padB=78,plotW=W-padL-padR,plotH=H-padT-padB,yBase=padT+plotH;
+  const data=items.map((d,i)=>({val:accessor(d),sub:subAccessor?subAccessor(d):null,name:d.model,code:d.product_code,color:CMP_CHART_COLORS[i]}));
   const present=data.filter(d=>typeof d.val==='number'&&!isNaN(d.val));
   if(!present.length)return `<div class="chart-block"><div class="chart-ttl">${cmpEsc(title)}</div><div class="chart-empty">No data available for the selected products.</div></div>`;
   const axisMax=cmpNiceMax(Math.max(...present.map(d=>d.val)));
@@ -2520,15 +2527,16 @@ function cmpBarChart(title,unit,accessor,subAccessor,items){
   let grid='';
   for(let g=0;g<=4;g++){const gy=yBase-plotH*g/4,gv=axisMax*g/4;
     grid+=`<line x1="${padL}" y1="${gy.toFixed(1)}" x2="${W-padR}" y2="${gy.toFixed(1)}" stroke="${g===0?'#bcc9c9':'#e6eced'}" stroke-width="1"/>`;
-    grid+=`<text x="${padL-8}" y="${(gy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#7a9494">${+gv.toFixed(2)}</text>`;}
+    grid+=`<text x="${padL-8}" y="${(gy+3).toFixed(1)}" text-anchor="end" font-size="10" fill="#7a9494">${+gv.toFixed(2)}</text>`;}
   const bars=data.map((d,i)=>{
     const cx=padL+slot*i+slot/2;
-    const nameTxt=`<text x="${cx.toFixed(1)}" y="${yBase+18}" text-anchor="middle" font-size="9" fill="#3d5c5c">${cmpEsc(cmpShort(d.name,18))}</text>`;
-    const subTxt=d.sub?`<text x="${cx.toFixed(1)}" y="${yBase+32}" text-anchor="middle" font-size="8" fill="#9aa">${cmpEsc(cmpShort(d.sub,18))}</text>`:'';
-    if(typeof d.val!=='number'||isNaN(d.val))return `<text x="${cx.toFixed(1)}" y="${(yBase-6)}" text-anchor="middle" font-size="9" fill="#aab">n/a</text>${nameTxt}${subTxt}`;
+    const nameTxt=`<text x="${cx.toFixed(1)}" y="${yBase+18}" text-anchor="middle" font-size="10" font-weight="600" fill="#3d5c5c">${cmpEsc(cmpShort(d.name,18))}</text>`;
+    const codeTxt=d.code?`<text x="${cx.toFixed(1)}" y="${yBase+32}" text-anchor="middle" font-size="9" fill="#9aa">${cmpEsc(cmpShort(d.code,20))}</text>`:'';
+    if(typeof d.val!=='number'||isNaN(d.val))return `<text x="${cx.toFixed(1)}" y="${(yBase-6)}" text-anchor="middle" font-size="10" fill="#aab">n/a</text>${nameTxt}${codeTxt}`;
     const bh=plotH*(d.val/axisMax),by=yBase-bh;
+    const valLabel=d.val+(unit||'')+(d.sub?' @ '+cmpEsc(d.sub):'');
     return `<rect x="${(cx-barW/2).toFixed(1)}" y="${by.toFixed(1)}" width="${barW.toFixed(1)}" height="${bh.toFixed(1)}" rx="2" fill="${d.color}"/>`+
-      `<text x="${cx.toFixed(1)}" y="${(by-6).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="#0f2b2b">${d.val}${unit||''}</text>${nameTxt}${subTxt}`;
+      `<text x="${cx.toFixed(1)}" y="${(by-6).toFixed(1)}" text-anchor="middle" font-size="13" font-weight="700" fill="#0f2b2b">${valLabel}</text>${nameTxt}${codeTxt}`;
   }).join('');
   return `<div class="chart-block"><div class="chart-ttl">${cmpEsc(title)}</div>`+
     `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:${W}px;height:auto;display:block">${grid}${bars}</svg></div>`;
@@ -2556,13 +2564,13 @@ td:first-child{font-weight:500;color:#555;width:200px}
 .best{color:#0D7377;font-weight:600}
 .footer{margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:10px;color:#999}
 .charts-wrap{margin:0 0 1.75rem}.charts-h{font-size:14px;font-weight:700;color:#0D7377;margin-bottom:8px}
-.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;font-size:10px;color:#333}
+.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px;font-size:11px;color:#333}
 .cl-item{display:inline-flex;align-items:center;gap:6px}.cl-sw{width:11px;height:11px;border-radius:2px;display:inline-block}
 .charts-grid{display:flex;flex-wrap:wrap;gap:18px}
 .chart-block{flex:1 1 300px;min-width:280px;border:1px solid #e2e8e8;border-radius:8px;padding:12px 14px;page-break-inside:avoid;break-inside:avoid}
-.chart-ttl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px}
-.chart-empty{font-size:11px;color:#999;padding:24px 0;text-align:center}
-.charts-note{font-size:10px;color:#888;margin-top:12px;line-height:1.5}
+.chart-ttl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px}
+.chart-empty{font-size:12px;color:#999;padding:24px 0;text-align:center}
+.charts-note{font-size:11px;color:#888;margin-top:12px;line-height:1.5}
 @media print{body{padding:1.5rem}.chart-block{flex-basis:46%}}</style></head><body>
 <h1>Heat Pump Comparison</h1>
 <p class="sub">Generated from heatpumpdatabase.com · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
@@ -2602,7 +2610,8 @@ function renderCompare(){
   sE.innerHTML=mixedCop;
   cE.innerHTML=cmpChartsSection(items);
   const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Heating min flow temp (°C)','flow_temp_min'],['Heating max flow temp (°C)','flow_temp_max'],['Heating min capacity (kW)','cap_min'],['Heating max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['Electrical supply','electrical'],['COP value (heating)','cop'],['COP test conditions','cop_cond'],['SCOP value (heating)','scop'],['SCOP test conditions','scop_cond'],['Cooling min capacity (kW)','cool_cap_min'],['Cooling max capacity (kW)','cool_cap_max'],['Cooling min flow temp (°C)','cool_flow_temp_min'],['Cooling max flow temp (°C)','cool_flow_temp_max'],['EER value (cooling)','eer'],['EER test conditions','eer_cond'],['SEER value (cooling)','seer'],['SEER test conditions','seer_cond'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Operational Weight (kg)','weight']];
-  tE.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
+  const colgroup=`<colgroup><col style="width:160px">${items.map(()=>`<col style="width:calc((100% - 160px) / ${items.length})">`).join('')}</colgroup>`;
+  tE.innerHTML=`<div class="table-wrap"><table style="table-layout:fixed;width:100%">${colgroup}<thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
     ${items.some(d=>d.description)?`<tr><td style="color:var(--text3);font-size:12px">Description</td>${items.map(d=>`<td style="font-size:12px;color:var(--text2);line-height:1.5">${d.description||'—'}</td>`).join('')}</tr>`:''}
     ${specs.map(([l,k])=>{
       if(k==='cop_cond')return `<tr><td style="color:var(--text3);font-size:12px">${l}${cmpInfo(k,l)}</td>${items.map(d=>`<td>${d.cop!=null?`<span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</td>`).join('')}</tr>`;
