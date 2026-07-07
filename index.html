@@ -2369,28 +2369,24 @@ function openModal(id){
     ${descBlock}
     ${copNote}
     <div class="spec-section">
-      <h4>${isASHP?'Operating temperatures':'Source &amp; flow temperatures'}</h4>
       ${row(isASHP?'Min ambient operating temp':'Min entering source temp',d.op_temp_min!=null?d.op_temp_min+'°C':null)}
       ${row(isASHP?'Max ambient operating temp':'Max entering source temp',d.op_temp_max!=null?d.op_temp_max+'°C':null)}
       ${row('Heating min flow temperature',d.flow_temp_min!=null?d.flow_temp_min+'°C':null)}
       ${row('Heating max flow temperature',d.flow_temp_max!=null?d.flow_temp_max+'°C':null,true)}
     </div>
     <div class="spec-section">
-      <h4>Heating capacity</h4>
       ${row('Heating min capacity',d.cap_min!=null?d.cap_min+' kW':null)}
       ${row('Heating max capacity',d.cap_max!=null?d.cap_max+' kW':null,true)}
       ${row('Peak electrical input',d.peak_elec!=null?d.peak_elec+' kW':null)}
       ${row('Electrical supply',d.electrical||null)}
     </div>
     <div class="spec-section">
-      <h4>Heating performance</h4>
       <div class="spec-row"><div class="spec-row-l">COP (heating)</div><div class="spec-row-v hi">${d.cop!=null?`${d.cop} <span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</div></div>
       <div class="spec-row"><div class="spec-row-l">SCOP (heating)</div><div class="spec-row-v hi">${d.scop!=null?`${d.scop} <span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</div></div>
       ${row('Noise level',d.noise!=null?fmtNoise(d):null)}
       ${row('Price (unit only)',d.price_min!=null?(d.price_min===d.price_max?`~£${d.price_min.toLocaleString()} (checked ${d.price_check_date})`:`£${d.price_min.toLocaleString()}–£${d.price_max.toLocaleString()} (checked ${d.price_check_date})`):null)}
     </div>
     ${(d.eer!=null||d.seer!=null||d.cool_cap_max!=null||d.cool_flow_temp_max!=null)?`<div class="spec-section">
-      <h4>Cooling performance</h4>
       ${row('Cooling min capacity',d.cool_cap_min!=null?d.cool_cap_min+' kW':null)}
       ${row('Cooling max capacity',d.cool_cap_max!=null?d.cool_cap_max+' kW':null,true)}
       ${row('Cooling min flow temp',d.cool_flow_temp_min!=null?d.cool_flow_temp_min+'°C':null)}
@@ -2399,7 +2395,6 @@ function openModal(id){
       <div class="spec-row"><div class="spec-row-l">SEER (cooling)</div><div class="spec-row-v hi">${d.seer!=null?`${d.seer}${d.seer_cond?` <span class="cop-tag ${scopCondClass(d.seer_cond)}">${d.seer_cond}</span>`:''}`:'—'}</div></div>
     </div>`:''}
     <div class="spec-section">
-      <h4>Physical dimensions</h4>
       ${row('H × W × D',d.height&&d.width&&d.depth?`${d.height}×${d.width}×${d.depth} mm`:null)}
       ${row('Operational Weight',d.weight!=null?d.weight+' kg':null)}
     </div>
