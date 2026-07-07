@@ -662,6 +662,18 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           </select>
         </div>
         <div class="filter-col">
+          <label class="filter-label">Price</label>
+          <select class="filt" id="filt-price" onchange="applyFilters()">
+            <option value="">Any price</option>
+            <option value="0-3000">Under £3,000</option>
+            <option value="3000-4000">£3,000–£4,000</option>
+            <option value="4000-5000">£4,000–£5,000</option>
+            <option value="5000-7000">£5,000–£7,000</option>
+            <option value="7000-999999">£7,000+</option>
+            <option value="unpriced">No price data</option>
+          </select>
+        </div>
+        <div class="filter-col">
           <label class="filter-label">Grant / certification</label>
           <select class="filt" id="filt-mcs" onchange="applyFilters()">
             <option value="">Any</option>
@@ -1971,6 +1983,7 @@ function getFiltered(){
 
   const verif=document.getElementById('filt-verif').value;
   const mcs=document.getElementById('filt-mcs').value;
+  const price=document.getElementById('filt-price').value;
   return db.filter(d=>{
     if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''} ${d.notes||''}`.toLowerCase().includes(q))return false;
     if(hpt&&d.hp_type!==hpt)return false;
@@ -1978,6 +1991,14 @@ function getFiltered(){
     if(mfr&&d.manufacturer!==mfr)return false;
     if(ref&&!parseRefrigerants(d.refrigerant).includes(ref))return false;
     if(refcat&&getRefCategory(d.refrigerant)!==refcat)return false;
+    if(price){
+      if(price==='unpriced'){if(d.price_min!=null)return false;}
+      else{
+        if(d.price_min==null)return false;
+        const [lo,hi]=price.split('-').map(Number);
+        if(d.price_min<lo||d.price_min>hi)return false;
+      }
+    }
     if(SF.capLo>0&&(d.cap_max==null||d.cap_max<SF.capLo))return false;
     if(SF.capHi<1000&&(d.cap_max==null||d.cap_max>SF.capHi))return false;
     if(SF.coolLo>0&&(d.cool_cap_max==null||d.cool_cap_max<SF.coolLo))return false;
@@ -2059,7 +2080,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
+  const activeCount=['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -2068,7 +2089,7 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   resetSliderFilters();
   applyFilters();
 }
@@ -2389,7 +2410,7 @@ function openModal(id){
       ${d.mcs_url?`<div class="spec-row"><div class="spec-row-l">MCS listing</div><div class="spec-row-v"><a href="${d.mcs_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;background:#0a6b3b;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none">View on MCS ↗</a></div></div>`:''}
     </div>`:''}
     ${suppliersHTML(d)}
-    ${d.notes?`<div class="spec-section"><h4>Notes</h4><p style="font-size:13px;color:var(--text2);line-height:1.65">${d.notes}</p></div>`:''}
+
     ${getProductUrl(d)?`<div style="margin-top:.5rem;padding:12px 14px;background:var(--info-light);border:1px solid #B5D4F4;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center">
       <div style="font-size:13px"><span style="color:#0C447C;font-weight:500">View on ${d.manufacturer}</span><br><span style="font-size:11px;color:#5A574F;font-family:'DM Mono',monospace;word-break:break-all">${getProductUrl(d)}</span></div>
       <a href="${getProductUrl(d)}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${getProductUrl(d)}')" class="btn btn-sm" style="flex-shrink:0;color:var(--info);border-color:var(--info);text-decoration:none">↗ Visit site</a>

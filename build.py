@@ -380,8 +380,7 @@ def render_product(p, by_mfr, by_type):
 
     extra = ""
     if p.get("description"): extra += f"<p>{esc(p['description'])}</p>"
-    if p.get("notes"):       extra += f"<p>{esc(p['notes'])}</p>"
-    notes_html = f'<div class="notes"><h2>Notes</h2>{extra}</div>' if extra else ""
+    notes_html = f'<div class="notes">{extra}</div>' if extra else ""
 
     mfr_link = ""
     if p.get("product_url"):
