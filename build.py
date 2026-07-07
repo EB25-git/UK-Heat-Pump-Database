@@ -101,6 +101,11 @@ def spec_rows(p):
     if p.get("noise") is not None:
         ref = f" ({esc(p['noise_ref'])})" if p.get("noise_ref") else ""
         add("Sound power level", f"{num(p['noise'])} dB(A){ref}")
+    if p.get("price_min") is not None:
+        if p["price_min"] == p["price_max"]:
+            add("Price (unit only)", f"~£{num(p['price_min'])} (checked {esc(p.get('price_check_date'))})")
+        else:
+            add("Price (unit only)", f"£{num(p['price_min'])}&ndash;£{num(p['price_max'])} (checked {esc(p.get('price_check_date'))})")
     add("Data added", esc(p.get("date_added")))
     add("Data source", esc(p.get("source")))
     if p.get("mcs_listed"):

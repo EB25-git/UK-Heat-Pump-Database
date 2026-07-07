@@ -1601,7 +1601,11 @@ const MFR_SUPPLIERS = {
 "Solid Energy": {"direct":null,"suppliers":[{"name":"Pure Renewables","url":"https://purerenewables.com/commercial-renewables-solutions/solid-energy/"}]},
 "Thermonova": {"direct":null,"suppliers":[{"name":"Pure Renewables","url":"https://purerenewables.com/commercial-renewables-solutions/thermonova/"}]},
 "Vaillant": {"direct":null,"suppliers":[{"name":"The Heat Pump Warehouse","url":"https://www.theheatpumpwarehouse.co.uk/"},{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"},{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]},
-"Viessmann": {"direct":null,"suppliers":[{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"}]}
+"Viessmann": {"direct":null,"suppliers":[{"name":"Secon Renewables","url":"https://www.seconrenewables.com/"}]},
+"Riello": {"direct":null,"suppliers":[{"name":"Midsummer Wholesale","url":"https://midsummerwholesale.co.uk/buy/riello-heat-pumps"},{"name":"UK Renewable Supplies","url":"https://www.ukrenewablesupplies.co.uk/collections/riello"}]},
+"Stiebel Eltron": {"direct":null,"suppliers":[{"name":"Midsummer Wholesale","url":"https://midsummerwholesale.co.uk/buy/stiebel-eltron"},{"name":"Heat Pump Central","url":"https://www.heatpumpcentral.co.uk/products/ground-source-heat-pumps/stiebel-eltron-ground-source-heat-pumps"}]},
+"Trianco": {"direct":null,"suppliers":[{"name":"City Plumbing","url":"https://www.cityplumbing.co.uk/content/brands/trianco"},{"name":"Cool Energy","url":"https://coolenergyshop.com/collections/trinaco-air-source-heat-pumps"}]},
+"Nibe": {"direct":null,"suppliers":[{"name":"Baxter Heat Pumps","url":"https://www.baxterheatpumps.co.uk/"},{"name":"IMS Heat Pumps","url":"https://www.imsheatpumps.co.uk/nibe/"}]}
 };
 
 // ═══════════════ MANUFACTURER URLs ═══════════════
@@ -2117,11 +2121,12 @@ function renderGrid(){
           <div class="hp-spec"><div class="hp-spec-label">SCOP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${scopLabel(d.scop,d.scop_cond)}</div></div></div>
           <div class="hp-spec"><div class="hp-spec-label">Cooling capacity</div><div class="hp-spec-val">${fmt(d.cool_cap_max,' kW')}</div></div>
           <div class="hp-spec"><div class="hp-spec-label">Max noise</div><div class="hp-spec-val">${fmt(d.noise,' dB(A)')}</div></div>
+          ${d.price_min?`<div class="hp-spec"><div class="hp-spec-label">Price (unit only)</div><div class="hp-spec-val">${d.price_min===d.price_max?'~£'+d.price_min.toLocaleString():'£'+d.price_min.toLocaleString()+'–£'+d.price_max.toLocaleString()}<div style="font-size:10px;color:var(--text3);font-weight:400">checked ${d.price_check_date}</div></div></div>`:''}
+          ${getProductUrl(d)?`<div class="hp-spec"><div class="hp-spec-label">Website</div><div class="hp-spec-val"><a href="${getProductUrl(d)}" onclick="event.stopPropagation();handleMfrClick(event,${d.id})" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">${d.manufacturer} ↗</a></div></div>`:''}
         </div>
       </div>
       <div class="hp-card-footer">
         <div class="card-actions">
-          ${getProductUrl(d)?`<a href="${getProductUrl(d)}" class="card-act card-act-web" onclick="handleMfrClick(event,${d.id})" target="_blank" rel="noopener" title="Visit manufacturer">↗ Website</a>`:''}
           <button class="card-act card-act-cmp${compareIds.includes(d.id)?' added':''}" id="cmp-btn-${d.id}" onclick="event.stopPropagation();addCompare(${d.id})">${compareIds.includes(d.id)?'✓ Added':'+ Compare'}</button>
         </div>
       </div>
@@ -2361,6 +2366,7 @@ function openModal(id){
       <div class="spec-row"><div class="spec-row-l">COP (heating)</div><div class="spec-row-v hi">${d.cop!=null?`${d.cop} <span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</div></div>
       <div class="spec-row"><div class="spec-row-l">SCOP (heating)</div><div class="spec-row-v hi">${d.scop!=null?`${d.scop} <span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</div></div>
       ${row('Noise level',d.noise!=null?fmtNoise(d):null)}
+      ${row('Price (unit only)',d.price_min!=null?(d.price_min===d.price_max?`~£${d.price_min.toLocaleString()} (checked ${d.price_check_date})`:`£${d.price_min.toLocaleString()}–£${d.price_max.toLocaleString()} (checked ${d.price_check_date})`):null)}
     </div>
     ${(d.eer!=null||d.seer!=null||d.cool_cap_max!=null||d.cool_flow_temp_max!=null)?`<div class="spec-section">
       <h4>Cooling performance</h4>
