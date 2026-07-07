@@ -3244,14 +3244,24 @@ function openOnboard(){
   onboardRender();
 }
 function onboardRender(){
-  const s=ONBOARD_STEPS[onboardStep];
+  let s=ONBOARD_STEPS[onboardStep];
+  if(s.key==='cap'&&onboardAns.seg==='Commercial'){
+    s={q:s.q,key:'cap',opts:[
+      {label:'Small (up to 50kW)',val:[0,50]},{label:'Medium (50–150kW)',val:[50,150]},
+      {label:'Large (150–400kW)',val:[150,400]},{label:'Very large (400kW+)',val:[400,1000]},
+      {label:"Not sure",val:null}]};
+  }
   const body=document.getElementById('onboard-body');
   body.innerHTML=`<div class="cm-step" style="margin-bottom:10px">Step ${onboardStep+1} of ${ONBOARD_STEPS.length}</div>`
     +`<div style="font-size:17px;font-weight:600;margin-bottom:14px;color:var(--text)">${s.q}</div>`
     +s.opts.map((o,i)=>`<button class="onboard-opt" onclick="onboardPick(${i})">${o.label}</button>`).join('');
 }
 function onboardPick(i){
-  const s=ONBOARD_STEPS[onboardStep];
+  let s=ONBOARD_STEPS[onboardStep];
+  if(s.key==='cap'&&onboardAns.seg==='Commercial'){
+    s={key:'cap',opts:[
+      {val:[0,50]},{val:[50,150]},{val:[150,400]},{val:[400,1000]},{val:null}]};
+  }
   onboardAns[s.key]=s.opts[i].val;
   onboardStep++;
   if(onboardStep>=ONBOARD_STEPS.length){onboardFinish();return;}
