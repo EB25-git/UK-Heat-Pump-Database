@@ -1941,6 +1941,7 @@ function renderMfrProfile(){
 }
 function applyFilters(){
   filtered=getFiltered();
+  gridPage=GRID_STEP;
   // Apply sort from dropdown
   const sortVal=document.getElementById('sort-select').value;
   if(sortVal==='mfr-az')filtered.sort((a,b)=>(a.manufacturer+a.model).localeCompare(b.manufacturer+b.model));
@@ -1998,8 +1999,10 @@ function fmtNoise(d){
   if(ref.startsWith('LpA')) return d.noise+' dB(A) '+ref.replace('LpA','LpA');
   return d.noise+' '+ref;
 }
-function renderGrid(){
-  document.getElementById('hp-grid').innerHTML=filtered.map(d=>`
+let gridPage=24;
+const GRID_STEP=24;
+function cardHTML(d){
+  return `
     <div class="hp-card" onclick="openModal(${d.id})">
       <div class="hp-card-head">
         <div class="hp-card-brand">${d.manufacturer}</div>
@@ -2029,7 +2032,24 @@ function renderGrid(){
           <button class="card-act card-act-cmp${compareIds.includes(d.id)?' added':''}" id="cmp-btn-${d.id}" onclick="event.stopPropagation();addCompare(${d.id})">${compareIds.includes(d.id)?'✓ Added':'+ Compare'}</button>
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+}
+let gridObserver=null;
+function renderGrid(){
+  const grid=document.getElementById('hp-grid');
+  grid.innerHTML=filtered.slice(0,gridPage).map(cardHTML).join('')
+    +(filtered.length>gridPage?'<div id="grid-sentinel" style="grid-column:1/-1;height:1px"></div>':'');
+  if(gridObserver){gridObserver.disconnect();gridObserver=null;}
+  const sentinel=document.getElementById('grid-sentinel');
+  if(sentinel){
+    gridObserver=new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){
+        gridPage+=GRID_STEP;
+        renderGrid();
+      }
+    },{rootMargin:'600px'});
+    gridObserver.observe(sentinel);
+  }
 }
 function renderTableView(){
   document.getElementById('hp-tbody').innerHTML=filtered.map(d=>`

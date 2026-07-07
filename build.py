@@ -166,6 +166,8 @@ table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px 
 table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
 table.list tr:last-child td{border-bottom:none}
 table.list tr:hover td{background:#fafdfc}
+table.list tr.grp-row td{background:#f3f7f6;font-weight:600;color:#0F2B2B;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
+table.list tr.grp-row:hover td{background:#f3f7f6}
 .cta{display:inline-block;margin-top:8px;background:#0F2B2B;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
 .cta:hover{background:#16413f;text-decoration:none}
 footer.site{border-top:1px solid #e2e8e7;padding:26px 0;color:#7a8a88;font-size:13px;margin-top:30px}
@@ -427,16 +429,27 @@ def render_product(p, by_mfr, by_type):
                 [breadcrumb_jsonld(crumb_items, url)], og_type="product")
 
 def list_table(products):
-    head = ("<tr><th>Model</th><th>Type</th><th>Capacity</th><th>COP</th>"
+    head = ("<tr><th>Model</th><th>Product code</th><th>Type</th><th>Capacity</th><th>COP</th>"
             "<th>SCOP</th><th>Refrigerant</th></tr>")
-    rows = ""
+    groups = {}
+    order = []
     for p in products:
-        rows += (f'<tr><td><a href="{BASE_URL}/products/{p["_slug"]}/">{esc(p["model"])}</a></td>'
-                 f'<td>{esc(p.get("hp_type") or "")}</td>'
-                 f'<td>{esc(cap_str(p) or "")}</td>'
-                 f'<td>{esc(num(p["cop"]) if p.get("cop") is not None else "")}</td>'
-                 f'<td>{esc(num(p["scop"]) if p.get("scop") is not None else "")}</td>'
-                 f'<td>{esc(p.get("refrigerant") or "")}</td></tr>')
+        m = p.get("model") or ""
+        if m not in groups:
+            groups[m] = []
+            order.append(m)
+        groups[m].append(p)
+    rows = ""
+    for m in order:
+        rows += f'<tr class="grp-row"><td colspan="7">{esc(m)}</td></tr>'
+        for p in groups[m]:
+            rows += (f'<tr><td><a href="{BASE_URL}/products/{p["_slug"]}/">{esc(p["model"])}</a></td>'
+                     f'<td>{esc(p.get("product_code") or "")}</td>'
+                     f'<td>{esc(p.get("hp_type") or "")}</td>'
+                     f'<td>{esc(cap_str(p) or "")}</td>'
+                     f'<td>{esc(num(p["cop"]) if p.get("cop") is not None else "")}</td>'
+                     f'<td>{esc(num(p["scop"]) if p.get("scop") is not None else "")}</td>'
+                     f'<td>{esc(p.get("refrigerant") or "")}</td></tr>')
     return f'<table class="list">{head}{rows}</table>'
 
 def render_manufacturer(mfr, products):
@@ -452,7 +465,7 @@ def render_manufacturer(mfr, products):
     body = (crumbs(crumb_items) +
             f"<h1>{esc(mfr)} Heat Pumps</h1>"
             f'<p class="sub">{n} model{"s" if n != 1 else ""} in the database</p>' +
-            list_table(sorted(products, key=lambda x: (x.get("hp_type") or "", x.get("cap_max") or 0))) +
+            list_table(sorted(products, key=lambda x: (x.get("model") or "", x.get("cap_max") or 0))) +
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Search the full database &rarr;</a></p>')
     item_ld = {"@context": "https://schema.org", "@type": "ItemList",
                "name": f"{mfr} heat pumps",
