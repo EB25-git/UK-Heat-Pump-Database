@@ -197,7 +197,7 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .filter-badge{background:var(--accent);color:#fff;font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center;line-height:1.4}
 .filter-toggle.open .filter-badge{background:rgba(255,255,255,.3)}
 .filter-panel{max-height:0;overflow:hidden;transition:max-height .3s ease;background:var(--surface);border-bottom:1px solid transparent}
-.filter-panel.open{max-height:300px;border-bottom-color:var(--border);box-shadow:0 4px 16px rgba(13,115,119,.06)}
+.filter-panel.open{max-height:min(640px,80vh);overflow-y:auto;border-bottom-color:var(--border);box-shadow:0 4px 16px rgba(13,115,119,.06)}
 .filter-panel-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem}
 .filter-panel.open .filter-panel-inner{padding-top:1rem;padding-bottom:1.25rem}
 .filter-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
@@ -524,12 +524,6 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         <div><div class="stat-n" id="hero-ashp">—</div><div class="stat-l">ASHP</div></div>
         <div><div class="stat-n" id="hero-wshp">—</div><div class="stat-l">WSHP / GSHP</div></div>
       </div>
-    </div>
-  </div>
-  <div class="beta-banner">
-    <div class="beta-banner-inner">
-      <span class="beta-banner-icon">🚧</span>
-      <span class="beta-banner-text"><strong>This website is under construction.</strong> We're still building the database and verifying product data, so there may be errors or incomplete entries. Please use the information with caution and always confirm specifications with the manufacturer before making decisions.</span>
     </div>
   </div>
   <div class="faq-callout">
@@ -2024,7 +2018,6 @@ function cardHTML(d){
           <div class="hp-spec"><div class="hp-spec-label">Cooling capacity</div><div class="hp-spec-val">${fmt(d.cool_cap_max,' kW')}</div></div>
           <div class="hp-spec"><div class="hp-spec-label">Max noise</div><div class="hp-spec-val">${fmt(d.noise,' dB(A)')}</div></div>
           ${d.price_min?`<div class="hp-spec"><div class="hp-spec-label">Price (unit only)</div><div class="hp-spec-val">${d.price_min===d.price_max?'~£'+d.price_min.toLocaleString():'£'+d.price_min.toLocaleString()+'–£'+d.price_max.toLocaleString()}<div style="font-size:10px;color:var(--text3);font-weight:400">checked ${d.price_check_date}</div></div></div>`:''}
-          ${getProductUrl(d)?`<div class="hp-spec"><div class="hp-spec-label">Website</div><div class="hp-spec-val"><a href="${getProductUrl(d)}" onclick="event.stopPropagation();handleMfrClick(event,${d.id})" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none">${d.manufacturer} ↗</a></div></div>`:''}
         </div>
       </div>
       <div class="hp-card-footer">
@@ -2277,6 +2270,7 @@ function openModal(id){
       <div class="spec-row"><div class="spec-row-l">SCOP (heating)</div><div class="spec-row-v hi">${d.scop!=null?`${d.scop} <span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</div></div>
       ${row('Noise level',d.noise!=null?fmtNoise(d):null)}
       ${row('Price (unit only)',d.price_min!=null?(d.price_min===d.price_max?`~£${d.price_min.toLocaleString()} (checked ${d.price_check_date})`:`£${d.price_min.toLocaleString()}–£${d.price_max.toLocaleString()} (checked ${d.price_check_date})`):null)}
+      ${row('Website',getProductUrl(d)?`<a href="${getProductUrl(d)}" onclick="event.stopPropagation();handleMfrClick(event,${d.id})" target="_blank" rel="noopener">${d.manufacturer} ↗</a>`:null)}
     </div>
     ${(d.eer!=null||d.seer!=null||d.cool_cap_max!=null||d.cool_flow_temp_max!=null)?`<div class="spec-section">
       ${row('Cooling min capacity',d.cool_cap_min!=null?d.cool_cap_min+' kW':null)}
