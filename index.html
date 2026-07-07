@@ -129,6 +129,8 @@ a.burger-item{display:block;text-decoration:none;box-sizing:border-box}
 .an-tooltip .tt-mfr{color:#9FD9D5;font-size:11px}
 .an-tooltip .tt-spec{color:#CFE8E6;font-size:11px;margin-top:3px}
 .an-tooltip .tt-hint{color:#6FA8A4;font-size:10px;margin-top:4px;font-style:italic}
+.onboard-opt{display:block;width:100%;text-align:left;padding:12px 14px;margin-bottom:8px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font-size:14px;cursor:pointer;transition:.15s}
+.onboard-opt:hover{border-color:var(--accent);background:rgba(62,204,192,.08)}
 .an-legend{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:1.5rem;padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
 .an-legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
 .an-legend-dot{width:12px;height:12px;border-radius:50%}
@@ -586,6 +588,14 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         <div class="filter-col">
           <label class="filter-label">Max sound power <span class="f-slider-val" id="sv-sound">Any</span></label>
           <div class="range-wrap" id="sl-sound"></div>
+        </div>
+        <div class="filter-col">
+          <label class="filter-label">Segment</label>
+          <select class="filt" id="filt-type" onchange="applyFilters()">
+            <option value="">Residential & Commercial</option>
+            <option value="Residential">Residential</option>
+            <option value="Commercial">Commercial</option>
+          </select>
         </div>
         <div class="filter-col">
           <label class="filter-label">HP type</label>
@@ -1454,6 +1464,18 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   </div>
 </div>
 <footer class="site-footer" id="site-footer"></footer>
+<div id="onboard-modal" style="display:none;position:fixed;inset:0;z-index:99993;background:rgba(15,43,43,.55);align-items:center;justify-content:center;padding:16px">
+  <div style="background:var(--surface);border-radius:16px;max-width:420px;width:100%;padding:24px 22px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)">Quick start</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button onclick="onboardSkip()" style="border:none;background:none;color:var(--text3);font-size:12px;cursor:pointer;text-decoration:underline">Skip, show me everything</button>
+        <button onclick="onboardCancel()" aria-label="Close" style="border:none;background:none;color:var(--text3);font-size:18px;cursor:pointer;line-height:1;padding:0 2px">✕</button>
+      </div>
+    </div>
+    <div id="onboard-body"></div>
+  </div>
+</div>
 <div class="cookie-banner" id="cookie-banner">
   <div class="cookie-inner">
     <p class="cookie-text">This site uses cookies to help us understand how visitors use the site. No personal data is shared with third parties.</p>
@@ -1854,6 +1876,7 @@ function slidersActive(){return (SF.capLo>0||SF.capHi<1000)+(SF.coolLo>0||SF.coo
 function getFiltered(){
   const q=(document.getElementById('search-input').value||'').toLowerCase();
   const hpt=document.getElementById('filt-hptype').value;
+  const seg=document.getElementById('filt-type').value;
   const mod=document.getElementById('filt-mode').value;
   const mfr=document.getElementById('filt-mfr').value;
   const ref=document.getElementById('filt-ref').value;
@@ -1864,6 +1887,7 @@ function getFiltered(){
   return db.filter(d=>{
     if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''}`.toLowerCase().includes(q))return false;
     if(hpt&&d.hp_type!==hpt)return false;
+    if(seg&&d.type!==seg)return false;
         if(mod&&(d.mode||'Heating only')!==mod)return false;
     if(mfr&&d.manufacturer!==mfr)return false;
     if(ref&&!parseRefrigerants(d.refrigerant).includes(ref))return false;
@@ -1954,7 +1978,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
+  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -1963,7 +1987,7 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   resetSliderFilters();
   applyFilters();
 }
@@ -3203,8 +3227,71 @@ window.addEventListener('hashchange',checkAdminHash);
 checkAdminHash();
 // Cookie consent
 function maybeAutoGuide(){if(!localStorage.getItem('hp_browseguide_seen')&&document.getElementById('page-browse').classList.contains('show')){setTimeout(openBrowseGuide,700);}}
-function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').classList.remove('show');loadGA();maybeAutoGuide();}
-function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').classList.remove('show');maybeAutoGuide();}
+const ONBOARD_STEPS=[
+  {q:'Residential or commercial?',key:'seg',opts:[
+    {label:'Residential',val:'Residential'},{label:'Commercial',val:'Commercial'},{label:"Not sure",val:''}]},
+  {q:'Heating only, or heating & cooling?',key:'mode',opts:[
+    {label:'Heating only',val:'Heating only'},{label:'Heating & cooling',val:'Heating & cooling'},
+    {label:"Doesn't matter",val:''}]},
+  {q:'Roughly what heating capacity do you need?',key:'cap',opts:[
+    {label:'Small home (up to 8kW)',val:[0,8]},{label:'Medium home (8–16kW)',val:[8,16]},
+    {label:'Large home / commercial (16kW+)',val:[16,1000]},{label:"Not sure",val:null}]}
+];
+let onboardStep=0,onboardAns={};
+function openOnboard(){
+  onboardStep=0;onboardAns={};
+  document.getElementById('onboard-modal').style.display='flex';
+  onboardRender();
+}
+function onboardRender(){
+  const s=ONBOARD_STEPS[onboardStep];
+  const body=document.getElementById('onboard-body');
+  body.innerHTML=`<div class="cm-step" style="margin-bottom:10px">Step ${onboardStep+1} of ${ONBOARD_STEPS.length}</div>`
+    +`<div style="font-size:17px;font-weight:600;margin-bottom:14px;color:var(--text)">${s.q}</div>`
+    +s.opts.map((o,i)=>`<button class="onboard-opt" onclick="onboardPick(${i})">${o.label}</button>`).join('');
+}
+function onboardPick(i){
+  const s=ONBOARD_STEPS[onboardStep];
+  onboardAns[s.key]=s.opts[i].val;
+  onboardStep++;
+  if(onboardStep>=ONBOARD_STEPS.length){onboardFinish();return;}
+  onboardRender();
+}
+function onboardSkip(){onboardStep=ONBOARD_STEPS.length;onboardFinish();}
+function onboardCancel(){
+  document.getElementById('onboard-modal').style.display='none';
+  localStorage.setItem('hp_onboard_seen','1');
+  maybeAutoGuide();
+}
+function onboardFinish(){
+  document.getElementById('onboard-modal').style.display='none';
+  localStorage.setItem('hp_onboard_seen','1');
+  if(onboardAns.seg)document.getElementById('filt-type').value=onboardAns.seg;
+  if(onboardAns.mode)document.getElementById('filt-mode').value=onboardAns.mode;
+  if(onboardAns.cap){
+    const c=document.getElementById('sl-cap');
+    if(c){
+      const idx=v=>CAP_STOPS.reduce((best,s,i)=>Math.abs(s-v)<Math.abs(CAP_STOPS[best]-v)?i:best,0);
+      const inputs=c.querySelectorAll('input');
+      if(inputs.length===2){
+        inputs[0].value=idx(onboardAns.cap[0]);
+        inputs[1].value=onboardAns.cap[1]>=1000?CAP_STOPS.length-1:idx(onboardAns.cap[1]);
+        inputs[1].dispatchEvent(new Event('input'));
+      }
+    }
+  }
+  if(typeof applyFilters==='function')applyFilters();
+  maybeAutoGuide();
+}
+function maybeOnboard(){
+  if(!localStorage.getItem('hp_onboard_seen')&&document.getElementById('page-browse').classList.contains('show')){
+    setTimeout(openOnboard,500);
+  }else{
+    maybeAutoGuide();
+  }
+}
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').classList.remove('show');loadGA();maybeOnboard();}
+function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').classList.remove('show');maybeOnboard();}
 if(!localStorage.getItem('cookie_consent'))document.getElementById('cookie-banner').classList.add('show');
 // Browse onboarding coach-marks (auto-once for newcomers, plus the "How to use" button)
 const GUIDE_STEPS=[
@@ -3256,7 +3343,7 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='ArrowLeft'&&guideStep>0)guideNav(-1);
 });
 // First-visit auto-show: only once cookie choice is made, so the two never overlap
-if(localStorage.getItem('cookie_consent'))maybeAutoGuide();
+if(localStorage.getItem('cookie_consent'))maybeOnboard();
 </script>
 </body>
 </html>
