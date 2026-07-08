@@ -501,12 +501,12 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
     <button class="burger-item" data-page="knowledge" onclick="showPage('knowledge');closeBurger()">Knowledge</button>
     <button class="burger-item burger-subitem" data-page="what-is-a-heat-pump" onclick="showPage('what-is-a-heat-pump');closeBurger()">What Is a Heat Pump?</button>
-    <button class="burger-item burger-subitem" data-page="faq" onclick="showPage('faq');closeBurger()">FAQ</button>
-    <button class="burger-item burger-subitem" data-page="links" onclick="showPage('links');closeBurger()">Useful Links</button>
-    <button class="burger-item burger-subitem" data-page="refrigerants" onclick="showPage('refrigerants');closeBurger()">Refrigerant Guide</button>
     <button class="burger-item burger-subitem" data-page="cop-scop" onclick="showPage('cop-scop');closeBurger()">Understanding COP &amp; SCOP</button>
     <button class="burger-item burger-subitem" data-page="flow-temp" onclick="showPage('flow-temp');closeBurger()">Flow Temperature &amp; Efficiency</button>
-    <button class="burger-item" data-page="guide" onclick="showPage('guide');closeBurger()">Site Guide</button>
+    <button class="burger-item burger-subitem" data-page="refrigerants" onclick="showPage('refrigerants');closeBurger()">Refrigerant Guide</button>
+    <button class="burger-item burger-subitem" data-page="faq" onclick="showPage('faq');closeBurger()">FAQ</button>
+    <button class="burger-item burger-subitem" data-page="guide" onclick="showPage('guide');closeBurger()">Site Guide</button>
+    <button class="burger-item burger-subitem" data-page="links" onclick="showPage('links');closeBurger()">Useful Links</button>
     <button class="burger-item" data-page="contact" onclick="showPage('contact');closeBurger()">Contact</button>
     <button class="burger-item" data-page="terms" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
   </div>
@@ -1892,7 +1892,7 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='what-is-a-heat-pump'||p==='faq'||p==='links'||p==='refrigerants'||p==='cop-scop'||p==='flow-temp'))));
+  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='faq'||p==='guide'||p==='links'))));
   const anb=document.getElementById('admin-nav-btn');
   if(anb)anb.classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}

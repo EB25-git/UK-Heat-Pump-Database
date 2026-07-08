@@ -4303,9 +4303,9 @@
     "description": "Baxi HP40 Monobloc, 5kW is a 7.41 kW air source heat pump, using R32 refrigerant.",
     "notes": "5kW. Capacity range from A-5/W35 to A+7/W35. SCOP35=4.77.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2387,
+    "price_max": 2387,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 376,
@@ -4753,9 +4753,9 @@
     "description": "Bosch Compress 2000 AWF 4kW (230V) is a 4 kW air source heat pump, using R32 refrigerant.",
     "notes": "Model CS2000AWF 4 R-S. Product information sheet gives rated heat output 4 kW, outdoor sound power 55 dB(A), WTOL 60\u00b0C and COPd 4.41 at Tj +7\u00b0C. Refrigerant not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2346,
+    "price_max": 2346,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 393,
@@ -4798,9 +4798,9 @@
     "description": "Bosch Compress 2000 AWF 6kW (230V) is a 6 kW air source heat pump, using R32 refrigerant.",
     "notes": "Model CS2000AWF 6 R-S. Product information sheet gives rated heat output 6 kW, outdoor sound power 58 dB(A), WTOL 60\u00b0C and COPd 4.54 at Tj +7\u00b0C. Refrigerant not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2666,
+    "price_max": 2666,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 395,
@@ -4843,9 +4843,9 @@
     "description": "Bosch Compress 2000 AWF 10kW (230V) is a 8 kW air source heat pump, using R32 refrigerant.",
     "notes": "Model CS2000AWF 8 R-S. Values from ERP product information sheet. COP is COPd at Tj +7\u00b0C, treated as A7/W35 equivalent. SCOP field uses seasonal space heating energy efficiency for low-temperature application divided by 100. Refrigerant, dimensions and weight not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3244,
+    "price_max": 3244,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 396,
@@ -4888,9 +4888,9 @@
     "description": "Bosch Compress 2000 AWF 12kW (230V) is a 12 kW air source heat pump, using R32 refrigerant.",
     "notes": "Model CS2000AWF 8 R-S. Values from ERP product information sheet. COP is COPd at Tj +7\u00b0C, treated as A7/W35 equivalent. SCOP field uses seasonal space heating energy efficiency for low-temperature application divided by 100. Refrigerant, dimensions and weight not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3666,
+    "price_max": 3666,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 397,
@@ -4933,9 +4933,9 @@
     "description": "Bosch Compress 2000 AWF 14kW (230V) is a 12 kW air source heat pump, using R32 refrigerant.",
     "notes": "Model CS2000AWF 8 R-S. Values from ERP product information sheet. COP is COPd at Tj +7\u00b0C, treated as A7/W35 equivalent. SCOP field uses seasonal space heating energy efficiency for low-temperature application divided by 100. Refrigerant, dimensions and weight not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 4012,
+    "price_max": 4012,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 398,
@@ -4978,9 +4978,9 @@
     "description": "Bosch Compress 2000 AWF 16kW (230V) is a 13 kW air source heat pump, using R32 refrigerant.",
     "notes": "Model CS2000AWF 8 R-S. Values from ERP product information sheet. COP is COPd at Tj +7\u00b0C, treated as A7/W35 equivalent. SCOP field uses seasonal space heating energy efficiency for low-temperature application divided by 100. Refrigerant, dimensions and weight not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 4204,
+    "price_max": 4204,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 399,
@@ -5203,9 +5203,9 @@
     "description": "Bosch Compress 2000 AWF 8kW (230V) is a 7 kW air source heat pump, using R32 refrigerant.",
     "notes": "Model CS2000AWF 8 R-S. Values from ERP product information sheet. COP is COPd at Tj +7\u00b0C, treated as A7/W35 equivalent. SCOP field uses seasonal space heating energy efficiency for low-temperature application divided by 100. Refrigerant, dimensions and weight not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2878,
+    "price_max": 2878,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 389,
@@ -5383,9 +5383,9 @@
     "description": "Bosch Compress 7001i AW 13kW (230V) is a 9 kW air source heat pump, using R410A refrigerant.",
     "notes": "Model CS7001iAW 13 OR-S. Values from ERP product information sheet. COP is COPd at Tj +7\u00b0C, treated as A7/W35 equivalent. SCOP field uses seasonal space heating energy efficiency for low-temperature application divided by 100. Refrigerant, dimensions and weight not stated in supplied ERP datasheet.",
     "verified": "Manual verification",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3787,
+    "price_max": 3787,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 407,
@@ -21243,9 +21243,9 @@
     "verified": "Manual verification",
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Aerona%20HPR2904",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2329,
+    "price_max": 2329,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 658,
@@ -21290,9 +21290,9 @@
     "verified": "Manual verification",
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Aerona%20HPR29065",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2445,
+    "price_max": 2445,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 659,
@@ -21337,9 +21337,9 @@
     "verified": "Manual verification",
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Aerona%20HPR2909",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2717,
+    "price_max": 2717,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 660,
@@ -21384,9 +21384,9 @@
     "verified": "Manual verification",
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HPR29012",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3260,
+    "price_max": 3260,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 661,
@@ -21431,9 +21431,9 @@
     "verified": "Manual verification",
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Aerona%20HPR290155",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3881,
+    "price_max": 3881,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 663,
@@ -26069,9 +26069,9 @@
     "notes": "HP290 6kW. Flow temperatures up to 75\u00b0C. Heating A7/W35 capacity 6.2 kW, power input 1.27 kW, COP 4.9. A7/W55 capacity 6.2 kW, power input 2.0 kW, COP 3.1. SCOP 35/55\u00b0C 4.89/3.82; \u03b7s 35/55\u00b0C 192/149; ErP 35/55\u00b0C A+++/A++. R290 charge 0.7 kg. Heating flow/return connection 1\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2721,
+    "price_max": 2721,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 616,
@@ -26115,9 +26115,9 @@
     "notes": "HP290 8kW. Flow temperatures up to 75\u00b0C. Heating A7/W35 capacity 10.0 kW, power input 2.13 kW, COP 4.7. A7/W55 capacity 9.5 kW, power input 3.12 kW, COP 3.05. SCOP 35/55\u00b0C 5.07/3.82; \u03b7s 35/55\u00b0C 199/149; ErP 35/55\u00b0C A+++/A++. R290 charge 1.1 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3036,
+    "price_max": 3036,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 617,
@@ -26161,9 +26161,9 @@
     "notes": "HP290 10kW. Flow temperatures up to 75\u00b0C. Heating A7/W35 capacity 12.0 kW, power input 2.5 kW, COP 4.8. A7/W55 capacity 12.0 kW, power input 3.87 kW, COP 3.1. SCOP 35/55\u00b0C 4.67/3.62; \u03b7s 35/55\u00b0C 183/141; ErP 35/55\u00b0C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3540,
+    "price_max": 3540,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 618,
@@ -26207,9 +26207,9 @@
     "notes": "HP290 12kW. Flow temperatures up to 75\u00b0C. Heating A7/W35 capacity 14.0 kW, power input 3.11 kW, COP 4.5. A7/W55 capacity 14.0 kW, power input 4.67 kW, COP 3.0. SCOP 35/55\u00b0C 4.63/3.61; \u03b7s 35/55\u00b0C 182/141; ErP 35/55\u00b0C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3848,
+    "price_max": 3848,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 619,
@@ -26253,9 +26253,9 @@
     "notes": "HP290 14kW. Flow temperatures up to 75\u00b0C. Heating A7/W35 capacity 15.0 kW, power input 3.41 kW, COP 4.4. A7/W55 capacity 15.0 kW, power input 5.26 kW, COP 2.85. SCOP 35/55\u00b0C 4.59/3.57; \u03b7s 35/55\u00b0C 180/139; ErP 35/55\u00b0C A+++/A++. R290 charge 1.25 kg. Heating flow/return connection 1 1/4\" BSP. Certification EN14511:2018, EN14825:2018, EN12102-1:2022.",
     "verified": "Eurovent",
     "mcs_listed": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 4000,
+    "price_max": 4000,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 610,
@@ -34954,9 +34954,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=PUZ-WM60VAA-BS",
     "mcs_cert": "037-0033-20-02",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2579,
+    "price_max": 2579,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 169,
@@ -39049,9 +39049,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120BXYDEG/EU%20%26%20MIM-E03EN",
     "mcs_cert": "011-1W0550_01",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3100,
+    "price_max": 3100,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 790,
@@ -39097,9 +39097,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE140BXYDEG/EU%20%26%20MIM-E03EN",
     "mcs_cert": "011-1W0550_05",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3925,
+    "price_max": 3925,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 781,
@@ -39289,9 +39289,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE160CXYDEK/EU%20%2B%20AE260CNWMEG/EU",
     "mcs_cert": "011-1W0684_5",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3710,
+    "price_max": 3710,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 785,
@@ -39337,9 +39337,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080CXYBEK/EU",
     "mcs_cert": "011-1W0687_3",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2625,
+    "price_max": 2625,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 786,
@@ -39385,9 +39385,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYBEK/EU%20AE160CXYBEK/EU",
     "mcs_cert": "011-1W0685_5",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3650,
+    "price_max": 3650,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 787,
@@ -39433,9 +39433,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE120CXYBEK/EU%20AE160CXYBEK/EU",
     "mcs_cert": "011-1W0685_5",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 4015,
+    "price_max": 4015,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 788,
@@ -70625,9 +70625,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE080BXYDEG/EU%20%26%20MIM-E03EN",
     "mcs_cert": "011-1W0547_01",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2915,
+    "price_max": 2915,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 1799,
@@ -70673,9 +70673,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE050CXYBEK/EU",
     "mcs_cert": "011-1W0686_3",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2260,
+    "price_max": 2260,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 1800,
@@ -84414,9 +84414,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NXHM%20006",
     "mcs_cert": "MCS HP0291/02",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2104,
+    "price_max": 2104,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 2114,
@@ -84510,9 +84510,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NXHM%20010",
     "mcs_cert": "MCS HP0291/04",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2189,
+    "price_max": 2189,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 2116,
@@ -84606,9 +84606,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NXHM%20014",
     "mcs_cert": "MCS HP0291/06",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 2875,
+    "price_max": 2875,
+    "price_check_date": "2026-07-08"
   },
   {
     "id": 2118,

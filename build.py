@@ -177,7 +177,7 @@ footer.site a{color:#7a8a88}
 """
 
 def burger_menu(active=None):
-    knowledge_active = active in ("what-is-a-heat-pump", "faq", "links", "refrigerants", "cop-scop", "flow-temp", "knowledge")
+    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "faq", "guide", "links", "knowledge")
     def it(label, href, key=None, sub=False, extra=""):
         cls = "burger-item" + (" burger-subitem" if sub else "")
         if key == active or (key == "knowledge" and knowledge_active):
@@ -190,12 +190,12 @@ def burger_menu(active=None):
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
         + it("Knowledge", f"{BASE_URL}/#knowledge", "knowledge")
         + it("What Is a Heat Pump?", f"{BASE_URL}/knowledge/what-is-a-heat-pump/", "what-is-a-heat-pump", sub=True)
-        + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
-        + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
-        + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
         + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
         + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
-        + it("Site Guide", f"{BASE_URL}/#guide", "guide")
+        + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
+        + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
+        + it("Site Guide", f"{BASE_URL}/#guide", "guide", sub=True)
+        + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + it("Contact", f"{BASE_URL}/#contact", "contact")
         + it("Terms of Use", f"{BASE_URL}/#terms", "terms",
              extra=' style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)"')
