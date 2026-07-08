@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What Is a Heat Pump? A Plain-English Guide | Heat Pump Database</title>
+<meta name="description" content="What a heat pump is and how it works, explained for complete beginners with diagrams. Includes a straight comparison against gas boilers and the key things to consider before switching.">
+<link rel="canonical" href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What Is a Heat Pump? A Plain-English Guide | Heat Pump Database">
+<meta property="og:description" content="What a heat pump is and how it works, explained for complete beginners with diagrams. Includes a straight comparison against gas boilers and the key things to consider before switching.">
+<meta property="og:url" content="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">
+<meta property="og:site_name" content="Heat Pump Database">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
+header.site{background:#0F2B2B;height:60px;display:flex;align-items:center}
+header.site .wrap{display:flex;align-items:center;width:100%}
+header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
+header.site .brand:hover{text-decoration:none}
+.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
+.burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto}
+.burger-menu.open{transform:translateX(0)}
+.burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%;display:block;text-decoration:none;box-sizing:border-box}
+.burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
+.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-subitem{padding-left:50px;font-size:14px;position:relative}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}
+.burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
+.burger-overlay.open{opacity:1;pointer-events:auto}
+@media(max-width:560px){.burger-menu{width:100%}}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+main{padding:28px 0 56px}
+nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
+nav.crumbs a{color:#5b6b6b}nav.crumbs span{color:#9aa}
+h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.sub{color:#5b6b6b;font-size:15px;margin-bottom:24px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
+.badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden}
+table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #eef2f1;font-size:14.5px;vertical-align:top}
+table.spec th{width:42%;color:#42514f;font-weight:500;background:#fafcfb}
+table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
+.notes{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#34433f}
+.notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
+h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
+.card .s{color:#5b6b6b;font-size:12.5px;margin-top:4px}
+table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
+table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
+table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+table.list tr:last-child td{border-bottom:none}
+table.list tr:hover td{background:#fafdfc}
+table.list tr.grp-row td{background:#f3f7f6;font-weight:600;color:#0F2B2B;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
+table.list tr.grp-row:hover td{background:#f3f7f6}
+.cta{display:inline-block;margin-top:8px;background:#0F2B2B;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
+.cta:hover{background:#16413f;text-decoration:none}
+footer.site{border-top:1px solid #e2e8e7;padding:26px 0;color:#7a8a88;font-size:13px;margin-top:30px}
+footer.site a{color:#7a8a88}
+.disclaimer{background:#fff7ed;border:1px solid #fbe3c4;color:#92651f;border-radius:10px;padding:12px 16px;font-size:13px;margin:20px 0}
+@media(max-width:560px){table.spec th{width:48%}h1{font-size:23px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "What Is a Heat Pump?", "description": "What a heat pump is and how it works, explained for complete beginners with diagrams. Includes a straight comparison against gas boilers and the key things to consider before switching.", "url": "https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/", "publisher": {"@type": "Organization", "name": "Heat Pump Database"}, "mainEntityOfPage": "https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.heatpumpdatabase.com/"}, {"@type": "ListItem", "position": 2, "name": "What Is a Heat Pump?", "item": "https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/"}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="https://www.heatpumpdatabase.com/">
+<svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
+<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a>
+<button class="burger" id="bbtn" aria-label="Menu" onclick="tB()"><span></span><span></span><span></span></button>
+<nav class="burger-menu" id="bmenu"><a class="burger-item" href="https://www.heatpumpdatabase.com/">Browse</a><a class="burger-item" href="https://www.heatpumpdatabase.com/manufacturers/">Manufacturers</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#compare">Compare</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#analytics">Visualise</a><a class="burger-item active" href="https://www.heatpumpdatabase.com/#knowledge">Knowledge</a><a class="burger-item burger-subitem active" href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What Is a Heat Pump?</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#faq">FAQ</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#links">Useful Links</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant Guide</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">Understanding COP &amp; SCOP</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow Temperature &amp; Efficiency</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#guide">Site Guide</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#contact">Contact</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#terms" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</a></nav>
+</div></header>
+<div class="burger-overlay" id="bov" onclick="cB()"></div>
+<main><div class="wrap">
+<nav class="crumbs"><a href="https://www.heatpumpdatabase.com/">Home</a> &rsaquo; <span>What Is a Heat Pump?</span></nav><h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">What Is a Heat Pump?</h1>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 12px;max-width:680px">A heat pump is an electric appliance that heats your home (and often your hot water) by <strong>moving</strong> heat that already exists outside &mdash; in the air, the ground, or a body of water &mdash; rather than burning fuel to <strong>create</strong> heat. It's the same technology as a fridge, just running in reverse.</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 26px;max-width:680px">A fridge pulls heat out of the cold inside of the box and dumps it into your warm kitchen &mdash; that's why the back of a fridge feels warm. A heat pump does exactly the same thing, but on a much bigger scale: it pulls heat out of the cold outdoors, however chilly, and pumps it into your warm home. It can do this even when it's close to freezing outside, because there is still usable heat energy in the air down to well below 0&nbsp;&deg;C.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:28px 0 12px">How it works</h2>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 14px;max-width:680px">A small amount of electricity runs a compressor, which is used to concentrate and move heat rather than generate it directly. That's why a heat pump can deliver several times more heat energy than the electrical energy it consumes &mdash; typically 3&ndash;4&nbsp;units of heat for every 1&nbsp;unit of electricity.</p>
+      <div style="margin:1.25rem 0;background:#f5f7f7;border:1px solid #d9e2e2;border-radius:10px;padding:1rem;overflow-x:auto">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 250" style="width:100%;max-width:640px;height:auto;display:block;margin:0 auto" font-family="Inter,Arial,sans-serif">
+          <rect x="0" y="0" width="640" height="250" fill="#f5f7f7" rx="8"/>
+          <defs>
+            <marker id="wihp1-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#0D7377"/></marker>
+            <marker id="wihp1-arrU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#3ECCC0"/></marker>
+          </defs>
+          <!-- outside box -->
+          <rect x="15" y="50" width="150" height="120" rx="12" fill="#eef3f2" stroke="#c7d6d4"/>
+          <text x="90" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#0F2B2B">OUTSIDE</text>
+          <text x="90" y="108" text-anchor="middle" font-size="10.5" fill="#5b6b6b">Heat energy already</text>
+          <text x="90" y="126" text-anchor="middle" font-size="10.5" fill="#5b6b6b">there, even when cold</text>
+          <!-- arrow into heat pump -->
+          <path d="M165 110 L243 110" stroke="#0D7377" stroke-width="3" marker-end="url(#wihp1-arr)"/>
+          <text x="204" y="95" text-anchor="middle" font-size="10.5" fill="#3D5C5C">extracts the heat</text>
+          <!-- heat pump box -->
+          <rect x="245" y="50" width="150" height="120" rx="12" fill="#0D7377"/>
+          <text x="320" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">HEAT PUMP</text>
+          <text x="320" y="108" text-anchor="middle" font-size="10.5" fill="rgba(255,255,255,.85)">Compresses &amp; moves</text>
+          <text x="320" y="126" text-anchor="middle" font-size="10.5" fill="rgba(255,255,255,.85)">the heat indoors</text>
+          <!-- electricity chip + arrow up -->
+          <path d="M320 200 L320 172" stroke="#3ECCC0" stroke-width="2.5" marker-end="url(#wihp1-arrU)"/>
+          <rect x="255" y="200" width="130" height="28" rx="14" fill="#0F2B2B"/>
+          <text x="320" y="218" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff">+ ELECTRICITY IN</text>
+          <!-- arrow into house -->
+          <path d="M395 110 L473 110" stroke="#0D7377" stroke-width="3" marker-end="url(#wihp1-arr)"/>
+          <text x="434" y="95" text-anchor="middle" font-size="10.5" fill="#3D5C5C">delivers 3&ndash;4&times; the heat</text>
+          <!-- inside box -->
+          <rect x="475" y="50" width="150" height="120" rx="12" fill="#e7f4f2" stroke="#cde9e5"/>
+          <text x="550" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#0F2B2B">INSIDE YOUR HOME</text>
+          <text x="550" y="108" text-anchor="middle" font-size="10.5" fill="#5b6b6b">Radiators, underfloor</text>
+          <text x="550" y="126" text-anchor="middle" font-size="10.5" fill="#5b6b6b">heating &amp; hot water</text>
+        </svg>
+      </div>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:14px 0 0;max-width:680px">Behind that simple picture is a repeating loop: a cold refrigerant gas <strong>absorbs</strong> heat from outside (the evaporator), a <strong>compressor</strong> squeezes it to raise its temperature further, the hot gas gives up its heat to your home's water or air (the condenser), and an <strong>expansion valve</strong> drops the pressure so the cycle can start again. You don't need to understand this to use the database &mdash; it just explains why figures like COP, SCOP and flow temperature (covered in our other guides) matter so much.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">The three main types</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:8px">
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:15px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Air source (ASHP)</div>
+          <div style="font-size:13.5px;color:#5b6b6b;line-height:1.55">Draws heat from the outside air via an outdoor unit. Cheapest to install and by far the most common choice in UK homes.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:15px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Ground source (GSHP)</div>
+          <div style="font-size:13.5px;color:#5b6b6b;line-height:1.55">Draws heat from buried pipes (a "ground loop"). Higher install cost and needs garden space, but very steady, efficient performance year-round.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:15px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Water source (WSHP)</div>
+          <div style="font-size:13.5px;color:#5b6b6b;line-height:1.55">Draws heat from a lake, river, borehole or similar. Excellent efficiency where a suitable water source is available, though this is rare in practice.</div>
+        </div>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:8px 0 0">Browse <a href="/types/air-source-heat-pumps/" style="color:#0f8a80">air source</a>, <a href="/types/ground-source-heat-pumps/" style="color:#0f8a80">ground source</a> and <a href="/types/water-source-heat-pumps/" style="color:#0f8a80">water source</a> products in the database.</p>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Heat pump vs gas boiler</h2>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px;max-width:680px">A gas boiler burns fuel on-site to generate heat directly; a heat pump uses electricity to move heat that's already there. That fundamental difference shows up across almost every point of comparison:</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:620px">
+        <thead><tr style="background:#fafcfb">
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600"></th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Heat pump</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Gas boiler</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">How it makes heat</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Moves existing heat from outside air/ground/water</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Burns natural gas on-site</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Typical efficiency</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">300&ndash;400% (COP/SCOP of 3&ndash;4)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~90% (some heat lost up the flue)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Running cost driver</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Electricity price &divide; efficiency</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Gas price &divide; efficiency</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Typical running cost</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Often on par with or cheaper than gas, but it depends on your electricity-to-gas price ratio and the system's real-world COP &mdash; see <a href="https://www.heatpumpdatabase.com/" onclick="openFaqItem('f1');return false" style="color:#0f8a80">What is COP and why does it matter?</a></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Tracks the gas price directly; electricity has historically cost several times more than gas per kWh, which is why a heat pump's efficiency matters so much</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Emissions (running)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">None on-site; depends on the electricity grid mix, which keeps getting cleaner</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Direct CO&#8322; emissions every time it fires, for the boiler's whole life</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Output temperature</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Most efficient at 35&ndash;55&nbsp;&deg;C &mdash; suits underfloor heating and larger radiators</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Can run hot, 60&ndash;80&nbsp;&deg;C &mdash; copes with small/older radiators</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Upfront cost</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Higher, though UK grants can offset a significant chunk</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Lower</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Space needed</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Outdoor unit (or ground loop/borehole), often a larger hot water cylinder</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Compact; usually wall-mounted</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Noise</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Outdoor unit makes a low hum, similar to an air conditioner</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Near-silent</td></tr>
+          <tr><td style="padding:9px 14px;font-weight:600;color:#0F2B2B">Typical lifespan</td><td style="padding:9px 14px">15&ndash;20 years</td><td style="padding:9px 14px">10&ndash;15 years</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:10px 0 0">Figures are typical UK ranges for guidance only &mdash; actual performance depends on the specific product, installation and property. See our <a href="https://www.heatpumpdatabase.com/" style="color:#0f8a80">COP &amp; SCOP guide</a> for how efficiency is measured.</p>
+
+      <h3 style="font-size:16px;margin:26px 0 10px;color:#0F2B2B">Why "300&ndash;400% efficient" sounds strange</h3>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 14px;max-width:680px">A gas boiler can never be more than 100% efficient &mdash; it can only release the energy locked in the gas it burns, and some is always lost. A heat pump isn't creating extra energy; it's <strong>moving</strong> free heat from outside, so the "output" can be several times the electricity "input". The diagram below shows roughly what happens to one unit of input energy in each case.</p>
+      <div style="margin:1.25rem 0;background:#f5f7f7;border:1px solid #d9e2e2;border-radius:10px;padding:1rem;overflow-x:auto">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 200" style="width:100%;max-width:620px;height:auto;display:block;margin:0 auto" font-family="Inter,Arial,sans-serif">
+          <rect x="0" y="0" width="620" height="200" fill="#f5f7f7" rx="8"/>
+          <defs><marker id="wihp2-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#0D7377"/></marker></defs>
+          <line x1="15" y1="95" x2="605" y2="95" stroke="#d9e2e2"/>
+          <!-- gas boiler row -->
+          <text x="15" y="45" text-anchor="start" dominant-baseline="middle" font-size="13" font-weight="700" fill="#0F2B2B">GAS BOILER</text>
+          <rect x="170" y="23" width="44" height="44" rx="8" fill="#0F2B2B"/>
+          <text x="192" y="45" text-anchor="middle" dominant-baseline="middle" font-size="16" font-weight="700" fill="#fff">1</text>
+          <text x="192" y="82" text-anchor="middle" font-size="10.5" fill="#5b6b6b">unit of gas</text>
+          <path d="M222 45 L266 45" stroke="#0D7377" stroke-width="2.5" marker-end="url(#wihp2-arr)"/>
+          <rect x="276" y="23" width="44" height="44" rx="8" fill="#0D7377"/>
+          <text x="298" y="45" text-anchor="middle" dominant-baseline="middle" font-size="16" font-weight="700" fill="#fff">0.9</text>
+          <text x="298" y="82" text-anchor="middle" font-size="10.5" fill="#5b6b6b">unit of heat</text>
+          <text x="336" y="45" text-anchor="start" dominant-baseline="middle" font-size="10.5" fill="#9aa">~10% lost as flue gases</text>
+          <!-- heat pump row -->
+          <text x="15" y="145" text-anchor="start" dominant-baseline="middle" font-size="13" font-weight="700" fill="#0F2B2B">HEAT PUMP</text>
+          <rect x="170" y="123" width="44" height="44" rx="8" fill="#0F2B2B"/>
+          <text x="192" y="145" text-anchor="middle" dominant-baseline="middle" font-size="16" font-weight="700" fill="#fff">1</text>
+          <text x="192" y="182" text-anchor="middle" font-size="10.5" fill="#5b6b6b">unit of electricity</text>
+          <path d="M222 145 L266 145" stroke="#0D7377" stroke-width="2.5" marker-end="url(#wihp2-arr)"/>
+          <rect x="276" y="123" width="200" height="44" rx="8" fill="#3ECCC0"/>
+          <text x="376" y="145" text-anchor="middle" dominant-baseline="middle" font-size="16" font-weight="700" fill="#0F2B2B">3&ndash;4</text>
+          <text x="376" y="182" text-anchor="middle" font-size="10.5" fill="#5b6b6b">units of heat (300&ndash;400%)</text>
+        </svg>
+      </div>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Key considerations &mdash; is a heat pump right for your home?</h2>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 16px;max-width:680px">Heat pumps can heat pretty much any UK home, but a good result depends on getting a few things right beforehand. These are the main factors worth thinking through before you commit:</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:8px">
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Insulation &amp; heat loss</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">The better insulated your home, the smaller and cheaper the heat pump needed, and the easier it is to run efficiently. Loft, wall and floor insulation are worth tackling first.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Radiators &amp; emitters</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Heat pumps work best at lower flow temperatures than a boiler. Many homes need larger radiators, underfloor heating, or more radiators, to heat rooms comfortably at that lower temperature.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Siting &amp; placement</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Outdoor units typically need more space than a boiler cupboard &mdash; a firm, level base, clearance from walls, boundaries and windows, airflow on at least one side, and a route for condensate drainage. Ground source needs room for a buried loop or a borehole, plus rig access during installation.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Noise</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Outdoor units make a low hum, similar to an air conditioner. Modern models run quietly, but tight gardens or close neighbours are worth discussing with your installer.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Hot water cylinder</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Most heat pump systems need a hot water cylinder &mdash; if you currently have a combi boiler with no cylinder, you'll need to find space for one.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Upfront cost &amp; grants</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Installation typically costs more than a gas boiler, though UK grant schemes can reduce this significantly. Running costs depend heavily on your electricity tariff.</div>
+        </div>
+        <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
+          <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Property type &amp; permissions</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Most houses are straightforward. Flats and listed or conservation-area properties may need extra care siting the outdoor unit, and occasionally planning permission.</div>
+        </div>
+      </div>
+
+      <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
+        <div style="font-size:17px;font-weight:600;margin-bottom:10px">Getting started</div>
+        <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
+          <li>Start with a <strong style="color:#3ECCC0">room-by-room heat loss survey</strong> from an MCS-certified installer &mdash; it tells you the size of heat pump you need and whether your radiators or pipework need upgrading.</li>
+          <li>Get quotes from more than one installer, and ask what flow temperature the system is designed around.</li>
+          <li>Check current UK grant schemes (such as the Boiler Upgrade Scheme) &mdash; support and eligibility rules change, so confirm the latest position before budgeting.</li>
+          <li>Once you know roughly what capacity and type you need, use the database to <a href="https://www.heatpumpdatabase.com/" style="color:#3ECCC0">browse and compare products</a>.</li>
+        </ul>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed July 2026. This guide is general information, not professional or installation advice &mdash; always get a proper heat loss survey and installer quote for your specific property.</p>
+</div></main>
+<footer class="site"><div class="wrap">
+<p>Heat Pump Database &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
+<p style="margin-top:6px"><a href="https://www.heatpumpdatabase.com/">Search the full database</a> &middot; <a href="https://www.heatpumpdatabase.com/manufacturers/">All manufacturers</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow temperature</a></p>
+</div></footer>
+<script>function tB(){['bbtn','bmenu','bov'].forEach(function(i){document.getElementById(i).classList.toggle('open')})}function cB(){['bbtn','bmenu','bov'].forEach(function(i){document.getElementById(i).classList.remove('open')})}</script>
+</body>
+</html>

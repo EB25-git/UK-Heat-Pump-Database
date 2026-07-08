@@ -177,7 +177,7 @@ footer.site a{color:#7a8a88}
 """
 
 def burger_menu(active=None):
-    knowledge_active = active in ("faq", "links", "refrigerants", "cop-scop", "flow-temp", "knowledge")
+    knowledge_active = active in ("what-is-a-heat-pump", "faq", "links", "refrigerants", "cop-scop", "flow-temp", "knowledge")
     def it(label, href, key=None, sub=False, extra=""):
         cls = "burger-item" + (" burger-subitem" if sub else "")
         if key == active or (key == "knowledge" and knowledge_active):
@@ -189,6 +189,7 @@ def burger_menu(active=None):
         + it("Compare", f"{BASE_URL}/#compare", "compare")
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
         + it("Knowledge", f"{BASE_URL}/#knowledge", "knowledge")
+        + it("What Is a Heat Pump?", f"{BASE_URL}/knowledge/what-is-a-heat-pump/", "what-is-a-heat-pump", sub=True)
         + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
@@ -241,7 +242,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 </div></main>
 <footer class="site"><div class="wrap">
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
-<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
+<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
 </div></footer>
 <script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}</script>
 </body>
@@ -547,6 +548,12 @@ def extract_app_section(start_id, end_marker):
 # Knowledge guides that exist as app sections and are mirrored to static SEO pages.
 # end_marker is the HTML comment that opens the NEXT section in index.html.
 KNOWLEDGE_PAGES = [
+    {"page_id": "page-what-is-a-heat-pump", "end_marker": "<!-- ═══ REFRIGERANT GUIDE ═══ -->",
+     "dir": "what-is-a-heat-pump", "active": "what-is-a-heat-pump", "crumb": "What Is a Heat Pump?",
+     "headline": "What Is a Heat Pump?",
+     "title": f"What Is a Heat Pump? A Plain-English Guide | {SITE_NAME}",
+     "desc": ("What a heat pump is and how it works, explained for complete beginners with diagrams. "
+              "Includes a straight comparison against gas boilers and the key things to consider before switching.")},
     {"page_id": "page-refrigerants", "end_marker": "<!-- ═══ COP & SCOP GUIDE ═══ -->",
      "dir": "refrigerants", "active": "refrigerants", "crumb": "Refrigerant Guide",
      "headline": "Heat Pump Refrigerants Compared",
