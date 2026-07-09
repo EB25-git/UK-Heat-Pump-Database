@@ -638,6 +638,12 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           </select>
         </div>
         <div class="filter-col">
+          <label class="filter-label">Electrical supply</label>
+          <select class="filt" id="filt-electrical" onchange="applyFilters()">
+            <option value="">All electrical supplies</option>
+          </select>
+        </div>
+        <div class="filter-col">
           <label class="filter-label">Verification</label>
           <select class="filt" id="filt-verif" onchange="applyFilters()">
             <option value="">Any status</option>
@@ -1405,6 +1411,21 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
               <div class="form-group"><label class="form-label">Min thermal capacity (kW)</label><input type="number" class="form-input" id="f-cap_min" placeholder="e.g. 3.5" step="0.1"></div>
               <div class="form-group"><label class="form-label">Max thermal capacity (kW) <span class="req">*</span></label><input type="number" class="form-input" id="f-cap_max" placeholder="e.g. 7.0" step="0.1"></div>
             </div>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Max heating output at low temp (kW)</label><input type="number" class="form-input" id="f-max_heat_capacity" placeholder="e.g. 7.0" step="0.1"><div class="form-hint">Manufacturer's stated max heating capacity at a specific low outdoor temperature, e.g. "7kW @ -3°C". Only fill in if the datasheet quotes this.</div></div>
+              <div class="form-group"><label class="form-label">...at this outdoor temp</label><input type="text" class="form-input" id="f-max_heat_capacity_temp" placeholder="e.g. -3 or A-7/W35"><div class="form-hint">The temperature/condition the figure above applies to — a plain temp (e.g. -3) or a full condition string (e.g. A-7/W35). Varies by manufacturer, enter whatever they publish.</div></div>
+            </div>
+          </div>
+          <div class="card-a">
+            <h3>Cooling capacity (kW)</h3>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Min cooling capacity (kW)</label><input type="number" class="form-input" id="f-cool_cap_min" placeholder="e.g. 2.0" step="0.1"></div>
+              <div class="form-group"><label class="form-label">Max cooling capacity (kW)</label><input type="number" class="form-input" id="f-cool_cap_max" placeholder="e.g. 7.0" step="0.1"></div>
+            </div>
+            <div class="fg2">
+              <div class="form-group"><label class="form-label">Max cooling output at high temp (kW)</label><input type="number" class="form-input" id="f-max_cool_capacity" placeholder="e.g. 6.5" step="0.1"><div class="form-hint">Manufacturer's stated max cooling capacity at a specific high outdoor temperature. Only fill in if the datasheet quotes this.</div></div>
+              <div class="form-group"><label class="form-label">...at this outdoor temp</label><input type="text" class="form-input" id="f-max_cool_capacity_temp" placeholder="e.g. 35 or A35/W18"><div class="form-hint">The temperature/condition the figure above applies to — a plain temp (e.g. 35) or a full condition string (e.g. A35/W18). Varies by manufacturer, enter whatever they publish.</div></div>
+            </div>
           </div>
           <div class="card-a">
             <h3>Electrical &amp; performance</h3>
@@ -1473,7 +1494,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <h2 class="page-ttl">Import CSV</h2><p class="page-sub">Bulk-import heat pump records</p>
           <div class="card-a">
             <h3>Required CSV headers</h3>
-            <code style="display:block;background:var(--surface2);padding:10px 12px;border-radius:var(--radius);font-size:11px;line-height:2;color:var(--text);word-break:break-all">manufacturer, model, hp_type, type, refrigerant, op_temp_min, op_temp_max, flow_temp_min, flow_temp_max, cap_min, cap_max, peak_elec, cop, cop_cond, scop, eer, height, width, depth, weight, noise, noise_ref, source, product_url, notes</code>
+            <code style="display:block;background:var(--surface2);padding:10px 12px;border-radius:var(--radius);font-size:11px;line-height:2;color:var(--text);word-break:break-all">manufacturer, model, hp_type, type, refrigerant, op_temp_min, op_temp_max, flow_temp_min, flow_temp_max, cap_min, cap_max, max_heat_capacity, max_heat_capacity_temp, peak_elec, cop, cop_cond, scop, cool_cap_min, cool_cap_max, max_cool_capacity, max_cool_capacity_temp, eer, height, width, depth, weight, noise, noise_ref, source, product_url, notes</code>
+            <div class="form-hint" style="margin-top:6px">max_heat_capacity / max_heat_capacity_temp and max_cool_capacity / max_cool_capacity_temp are optional — a manufacturer-published max output figure at a specific low (heating) or high (cooling) outdoor temperature, e.g. "7kW @ -3°C". Leave blank if not stated on the datasheet.</div>
             <button class="btn btn-sm" style="margin-top:10px" onclick="downloadTemplate()">⬇ Download template CSV</button>
           </div>
           <div class="card-a">
@@ -1967,6 +1989,9 @@ function populateFilters(){
   rs.innerHTML='<option value="">All refrigerants</option>';
   const refNames={'R290':'Propane','R600a':'Isobutane','R601a':'Isopentane','R744':'CO₂','R717':'Ammonia','R32':'HFC','R410A':'HFC blend','R407C':'HFC blend','R134a':'HFC','R454B':'HFC/HFO blend','R454C':'HFC/HFO blend','R452B':'HFC/HFO blend','R513A':'HFC/HFO blend','R448A':'HFC/HFO blend','R515B':'HFO blend','R1234ze':'HFO','R1233zd':'HFO'};
   [...new Set(db.flatMap(d=>parseRefrigerants(d.refrigerant)))].sort().forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=refNames[r]?r+' ('+refNames[r]+')':r;rs.appendChild(o);});
+  const es=document.getElementById('filt-electrical');
+  es.innerHTML='<option value="">All electrical supplies</option>';
+  [...new Set(db.filter(d=>d.electrical).map(d=>d.electrical))].sort().forEach(e=>{const o=document.createElement('option');o.value=e;o.textContent=e;es.appendChild(o);});
   const vs=document.getElementById('filt-verif');
   vs.innerHTML='<option value="">Any status</option>';
   [...new Set(db.filter(d=>d.verified).map(d=>d.verified))].sort().forEach(src=>{const o=document.createElement('option');o.value=src;o.textContent=(src==='Manual verification'?'Manually verified (Heat Pump Database)':'Verified via '+src);vs.appendChild(o);});
@@ -2055,6 +2080,7 @@ function getFiltered(){
   const verif=document.getElementById('filt-verif').value;
   const mcs=document.getElementById('filt-mcs').value;
   const price=document.getElementById('filt-price').value;
+  const electrical=document.getElementById('filt-electrical').value;
   return db.filter(d=>{
     if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''}`.toLowerCase().includes(q))return false;
     if(hpt&&d.hp_type!==hpt)return false;
@@ -2063,6 +2089,7 @@ function getFiltered(){
     if(mfr&&d.manufacturer!==mfr)return false;
     if(ref&&!parseRefrigerants(d.refrigerant).includes(ref))return false;
     if(refcat&&getRefCategory(d.refrigerant)!==refcat)return false;
+    if(electrical&&d.electrical!==electrical)return false;
     if(price){
       if(price==='unpriced'){if(d.price_min!=null)return false;}
       else{
@@ -2149,7 +2176,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
+  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -2158,7 +2185,7 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-verif','filt-mcs','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   resetSliderFilters();
   applyFilters();
 }
@@ -2181,6 +2208,14 @@ function hptc(h){return h==='ASHP'?'badge-ashp':h==='WSHP'?'badge-wshp':'badge-g
 function sc(s){return 'src-'+(s||'manual').replace(/[^a-z-]/g,'');}
 function srcLabel(s){const v=s||'manual';return 'Source: '+v.charAt(0).toUpperCase()+v.slice(1).replace(/-/g,' ');}
 function fmt(v,u){return v!=null?v+u:'—';}
+function tempCondStr(v){
+  if(v==null||v==='')return '';
+  if(typeof v==='number')return ' at '+v+'°C';
+  const s=String(v).trim();
+  if(!s)return '';
+  if(s.includes('/')||/[a-zA-Z]/.test(s))return ' at '+s;
+  return ' at '+s+'°C';
+}
 function fmtNoise(d){
   if(d.noise==null)return '—';
   const ref=d.noise_ref||'dB(A)';
@@ -2258,13 +2293,14 @@ function renderTableView(){
 // ═══════════════ MODAL ═══════════════
 // ═══ ANALYTICS ═══
 const AN_COLORS={ASHP:'#9AA7A7',WSHP:'#4DA3E0',GSHP:'#5BC47E'};
-let anFilters={hp_type:'all',type:'all',refrigerant:'all',cop_cond:'all',scop_cond:'all'};
+let anFilters={hp_type:'all',type:'all',refrigerant:'all',cop_cond:'all',scop_cond:'all',electrical:'all'};
 function renderAnalytics(){
   // Build filter controls once
   const fp=document.getElementById('an-filters');
   const refs=[...new Set(db.flatMap(d=>parseRefrigerants(d.refrigerant)))].sort();
   const copConds=[...new Set(db.filter(d=>d.cop!=null&&d.cop_cond).map(d=>d.cop_cond))].sort((a,b)=>{const ra=/^[0-9]/.test(a),rb=/^[0-9]/.test(b);if(ra!==rb)return ra?1:-1;return a.localeCompare(b);});
   const scopConds=[...new Set(db.filter(d=>d.scop!=null&&d.scop_cond).map(d=>d.scop_cond))].sort();
+  const elecs=[...new Set(db.filter(d=>d.electrical).map(d=>d.electrical))].sort();
   fp.innerHTML=`
     <div class="an-fg"><label>Heat pump type</label>
       <select id="anf-hp" onchange="anSetFilter('hp_type',this.value)">
@@ -2272,6 +2308,9 @@ function renderAnalytics(){
     <div class="an-fg"><label>Refrigerant</label>
       <select id="anf-ref" onchange="anSetFilter('refrigerant',this.value)">
         <option value="all">All refrigerants</option>${refs.map(r=>`<option value="${r}">${r}</option>`).join('')}</select></div>
+    <div class="an-fg"><label>Electrical supply</label>
+      <select id="anf-electrical" onchange="anSetFilter('electrical',this.value)">
+        <option value="all">All electrical supplies</option>${elecs.map(e=>`<option value="${e}">${e}</option>`).join('')}</select></div>
     <div class="an-fg"><label>COP test condition</label>
       <select id="anf-cop" onchange="anSetFilter('cop_cond',this.value)">
         <option value="all">All COP conditions</option>${copConds.map(c=>`<option value="${c}">${c}</option>`).join('')}</select></div>
@@ -2281,6 +2320,7 @@ function renderAnalytics(){
     <div class="an-stat" id="an-stat"></div>`;
   document.getElementById('anf-hp').value=anFilters.hp_type;
   document.getElementById('anf-ref').value=anFilters.refrigerant;
+  document.getElementById('anf-electrical').value=anFilters.electrical;
   document.getElementById('anf-cop').value=anFilters.cop_cond;
   document.getElementById('anf-scop').value=anFilters.scop_cond;
   // Legend
@@ -2293,7 +2333,8 @@ function anData(){
   return db.filter(d=>
     (anFilters.hp_type==='all'||d.hp_type===anFilters.hp_type)&&
     (anFilters.type==='all'||d.type===anFilters.type)&&
-    (anFilters.refrigerant==='all'||parseRefrigerants(d.refrigerant).includes(anFilters.refrigerant)));
+    (anFilters.refrigerant==='all'||parseRefrigerants(d.refrigerant).includes(anFilters.refrigerant))&&
+    (anFilters.electrical==='all'||d.electrical===anFilters.electrical));
 }
 function anDraw(){
   const data=anData();
@@ -2457,6 +2498,7 @@ function openModal(id){
     <div class="spec-section">
       ${row('Heating min capacity',d.cap_min!=null?d.cap_min+' kW':null)}
       ${row('Heating max capacity',d.cap_max!=null?d.cap_max+' kW':null,true)}
+      ${row('Max heating output (low temp)',d.max_heat_capacity!=null?d.max_heat_capacity+' kW'+tempCondStr(d.max_heat_capacity_temp):null)}
       ${row('Peak electrical input',d.peak_elec!=null?d.peak_elec+' kW':null)}
       ${row('Electrical supply',d.electrical||null)}
     </div>
@@ -2467,9 +2509,10 @@ function openModal(id){
       ${row('Price (unit only)',d.price_min!=null?(d.price_min===d.price_max?`~£${d.price_min.toLocaleString()} (checked ${d.price_check_date})`:`£${d.price_min.toLocaleString()}–£${d.price_max.toLocaleString()} (checked ${d.price_check_date})`):null)}
       ${row('Website',getProductUrl(d)?`<a href="${getProductUrl(d)}" onclick="event.stopPropagation();handleMfrClick(event,${d.id})" target="_blank" rel="noopener">${d.manufacturer} ↗</a>`:null)}
     </div>
-    ${(d.eer!=null||d.seer!=null||d.cool_cap_max!=null||d.cool_flow_temp_max!=null)?`<div class="spec-section">
+    ${(d.eer!=null||d.seer!=null||d.cool_cap_max!=null||d.cool_flow_temp_max!=null||d.max_cool_capacity!=null)?`<div class="spec-section">
       ${row('Cooling min capacity',d.cool_cap_min!=null?d.cool_cap_min+' kW':null)}
       ${row('Cooling max capacity',d.cool_cap_max!=null?d.cool_cap_max+' kW':null,true)}
+      ${row('Max cooling output (high temp)',d.max_cool_capacity!=null?d.max_cool_capacity+' kW'+tempCondStr(d.max_cool_capacity_temp):null)}
       ${row('Cooling min flow temp',d.cool_flow_temp_min!=null?d.cool_flow_temp_min+'°C':null)}
       ${row('Cooling max flow temp',d.cool_flow_temp_max!=null?d.cool_flow_temp_max+'°C':null)}
       <div class="spec-row"><div class="spec-row-l">EER (cooling)</div><div class="spec-row-v hi">${d.eer!=null?`${d.eer}${d.eer_cond?` <span class="cop-tag ${copCondClass(d.eer_cond)}">${d.eer_cond}</span>`:''}`:'—'}</div></div>
@@ -2549,8 +2592,8 @@ function getCompareExportItems(){
 }
 function exportCompareCSV(){
   const items=getCompareExportItems();if(!items)return;
-  const specs=['manufacturer','model','hp_type','type','mode','refrigerant','op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','peak_elec','cop','cop_cond','scop','eer','noise','noise_ref','height','width','depth','weight'];
-  const labels=['Manufacturer','Model','HP Type','Segment','Mode','Refrigerant','Min Op Temp (°C)','Max Op Temp (°C)','Min Flow Temp (°C)','Max Flow Temp (°C)','Min Capacity (kW)','Max Capacity (kW)','Peak Elec Input (kW)','COP','COP Conditions','SCOP','EER','Noise','Noise Reference','Height (mm)','Width (mm)','Depth (mm)','Weight (kg)'];
+  const specs=['manufacturer','model','hp_type','type','mode','refrigerant','op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','max_heat_capacity','max_heat_capacity_temp','peak_elec','cop','cop_cond','scop','cool_cap_min','cool_cap_max','max_cool_capacity','max_cool_capacity_temp','eer','noise','noise_ref','height','width','depth','weight'];
+  const labels=['Manufacturer','Model','HP Type','Segment','Mode','Refrigerant','Min Op Temp (°C)','Max Op Temp (°C)','Min Flow Temp (°C)','Max Flow Temp (°C)','Min Capacity (kW)','Max Capacity (kW)','Max Heating Output, Low Temp (kW)','...at Outdoor Temp (°C)','Peak Elec Input (kW)','COP','COP Conditions','SCOP','Cooling Min Capacity (kW)','Cooling Max Capacity (kW)','Max Cooling Output, High Temp (kW)','...at Outdoor Temp (°C)','EER','Noise','Noise Reference','Height (mm)','Width (mm)','Depth (mm)','Weight (kg)'];
   let csv='Specification,'+items.map(d=>`"${d.manufacturer} ${d.model}"`).join(',')+'\n';
   specs.forEach((k,i)=>{csv+='"'+labels[i]+'",'+items.map(d=>{const v=d[k];return v!=null?`"${v}"`:'""';}).join(',')+'\n';});
   const blob=new Blob([csv],{type:'text/csv'});
@@ -2567,8 +2610,12 @@ const CMP_PARAM_INFO={
  flow_temp_min:"Lowest heating flow temperature.",
  cap_min:"Smallest heating output it can turn down to (kW).",
  cap_max:"Largest heating output it can deliver (kW).",
+ max_heat_capacity:"Maximum heating output the unit can still deliver at a specific low outdoor temperature (as published by the manufacturer) — shows how well capacity holds up in cold weather. See the temperature it was tested at alongside it.",
+ max_heat_capacity_temp:"The outdoor air temperature the max heating output figure was measured at. Varies by manufacturer/datasheet — not a standardised test point.",
  cool_cap_min:"Smallest cooling output it can turn down to (kW).",
  cool_cap_max:"Largest cooling output it can deliver (kW).",
+ max_cool_capacity:"Maximum cooling output the unit can still deliver at a specific high outdoor temperature (as published by the manufacturer) — shows how well capacity holds up in extreme heat. See the temperature it was tested at alongside it.",
+ max_cool_capacity_temp:"The outdoor air temperature the max cooling output figure was measured at. Varies by manufacturer/datasheet — not a standardised test point.",
  cool_flow_temp_min:"Lowest chilled-water flow temperature in cooling mode.",
  cool_flow_temp_max:"Highest chilled-water flow temperature in cooling mode.",
  peak_elec:"Maximum electrical power drawn (kW).",
@@ -2651,7 +2698,7 @@ function cmpChartsSection(items){
 function exportComparePDF(){
   const items=getCompareExportItems();if(!items)return;
   const chartsSection=cmpChartsSection(items);
-  const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Heating Min Flow Temp','flow_temp_min','°C'],['Heating Max Flow Temp','flow_temp_max','°C'],['Heating Min Capacity','cap_min',' kW'],['Heating Max Capacity','cap_max',' kW'],['Peak Elec Input','peak_elec',' kW'],['Electrical Supply','electrical'],['COP (heating)','cop'],['COP Test Conditions','cop_cond'],['SCOP (heating)','scop'],['SCOP Test Conditions','scop_cond'],['Cooling Min Capacity','cool_cap_min',' kW'],['Cooling Max Capacity','cool_cap_max',' kW'],['Cooling Min Flow Temp','cool_flow_temp_min','°C'],['Cooling Max Flow Temp','cool_flow_temp_max','°C'],['EER (cooling)','eer'],['EER Test Conditions','eer_cond'],['SEER (cooling)','seer'],['SEER Test Conditions','seer_cond'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Operational Weight','weight',' kg']];
+  const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Heating Min Flow Temp','flow_temp_min','°C'],['Heating Max Flow Temp','flow_temp_max','°C'],['Heating Min Capacity','cap_min',' kW'],['Heating Max Capacity','cap_max',' kW'],['Max Heating Output, Low Temp','max_heat_capacity',' kW'],['...at Outdoor Temp','max_heat_capacity_temp','°C'],['Peak Elec Input','peak_elec',' kW'],['Electrical Supply','electrical'],['COP (heating)','cop'],['COP Test Conditions','cop_cond'],['SCOP (heating)','scop'],['SCOP Test Conditions','scop_cond'],['Cooling Min Capacity','cool_cap_min',' kW'],['Cooling Max Capacity','cool_cap_max',' kW'],['Max Cooling Output, High Temp','max_cool_capacity',' kW'],['...at Outdoor Temp','max_cool_capacity_temp','°C'],['Cooling Min Flow Temp','cool_flow_temp_min','°C'],['Cooling Max Flow Temp','cool_flow_temp_max','°C'],['EER (cooling)','eer'],['EER Test Conditions','eer_cond'],['SEER (cooling)','seer'],['SEER Test Conditions','seer_cond'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Operational Weight','weight',' kg']];
   const htmlContent=`<!DOCTYPE html><html><head><title>Heat Pump Comparison — heatpumpdatabase.com</title>
 <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;padding:2.5rem;font-size:12px;line-height:1.5}
 h1{font-size:20px;font-weight:700;margin-bottom:4px;color:#0D7377}p.sub{font-size:11px;color:#777;margin-bottom:1.5rem}
@@ -2706,7 +2753,7 @@ function renderCompare(){
   const mixedCop=conds.size>1?`<div class="alert a-warn" style="margin-bottom:1rem;font-size:13px"><strong>Caution:</strong> These units have different COP test conditions (${[...conds].join(', ')}). COP values are not directly comparable across different test conditions — a higher COP at W10/W35 does not mean better real-world performance than a lower COP at A7/W35.</div>`:'';
   sE.innerHTML=mixedCop;
   cE.innerHTML=cmpChartsSection(items);
-  const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Heating min flow temp (°C)','flow_temp_min'],['Heating max flow temp (°C)','flow_temp_max'],['Heating min capacity (kW)','cap_min'],['Heating max capacity (kW)','cap_max'],['Peak elec input (kW)','peak_elec'],['Electrical supply','electrical'],['COP value (heating)','cop'],['COP test conditions','cop_cond'],['SCOP value (heating)','scop'],['SCOP test conditions','scop_cond'],['Cooling min capacity (kW)','cool_cap_min'],['Cooling max capacity (kW)','cool_cap_max'],['Cooling min flow temp (°C)','cool_flow_temp_min'],['Cooling max flow temp (°C)','cool_flow_temp_max'],['EER value (cooling)','eer'],['EER test conditions','eer_cond'],['SEER value (cooling)','seer'],['SEER test conditions','seer_cond'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Operational Weight (kg)','weight']];
+  const specs=[['HP Type','hp_type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min source/ambient temp (°C)','op_temp_min'],['Heating min flow temp (°C)','flow_temp_min'],['Heating max flow temp (°C)','flow_temp_max'],['Heating min capacity (kW)','cap_min'],['Heating max capacity (kW)','cap_max'],['Max heating output, low temp (kW)','max_heat_capacity'],['...at outdoor temp (°C)','max_heat_capacity_temp'],['Peak elec input (kW)','peak_elec'],['Electrical supply','electrical'],['COP value (heating)','cop'],['COP test conditions','cop_cond'],['SCOP value (heating)','scop'],['SCOP test conditions','scop_cond'],['Cooling min capacity (kW)','cool_cap_min'],['Cooling max capacity (kW)','cool_cap_max'],['Max cooling output, high temp (kW)','max_cool_capacity'],['...at outdoor temp (°C)','max_cool_capacity_temp'],['Cooling min flow temp (°C)','cool_flow_temp_min'],['Cooling max flow temp (°C)','cool_flow_temp_max'],['EER value (cooling)','eer'],['EER test conditions','eer_cond'],['SEER value (cooling)','seer'],['SEER test conditions','seer_cond'],['Noise','_noise'],['Height (mm)','height'],['Width (mm)','width'],['Depth (mm)','depth'],['Operational Weight (kg)','weight']];
   const colgroup=`<colgroup><col style="width:160px">${items.map(()=>`<col style="width:calc((100% - 160px) / ${items.length})">`).join('')}</colgroup>`;
   tE.innerHTML=`<div class="table-wrap"><table style="table-layout:fixed;width:100%">${colgroup}<thead><tr><th>Specification</th>${items.map(d=>`<th>${d.model}${d.product_code?'<br><span style="font-size:8px;font-weight:400;color:var(--text3)">'+d.product_code+'</span>':''}<br><button class="btn btn-sm btn-danger" style="margin-top:8px;font-size:11px;padding:3px 9px;font-weight:500" onclick="removeCompare(${d.id})">✕ Remove</button></th>`).join('')}</tr></thead><tbody>
     ${items.some(d=>d.description)?`<tr><td style="color:var(--text3);font-size:12px">Description</td>${items.map(d=>`<td style="font-size:12px;color:var(--text2);line-height:1.5">${d.description||'—'}</td>`).join('')}</tr>`:''}
@@ -2759,7 +2806,7 @@ function filterAdminRows(q){
   document.querySelectorAll('#admin-tbody tr').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';});
 }
 // ═══════════════ FORM ═══════════════
-const FIELDS=['manufacturer','model','product_code','hp_type','type','refrigerant','source','product_url','date_added','mode','op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','peak_elec','electrical','cop','cop_cond','scop','scop_cond','eer','height','width','depth','weight','noise','noise_ref','description','notes'];
+const FIELDS=['manufacturer','model','product_code','hp_type','type','refrigerant','source','product_url','date_added','mode','op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','max_heat_capacity','max_heat_capacity_temp','peak_elec','electrical','cop','cop_cond','scop','scop_cond','eer','cool_cap_min','cool_cap_max','max_cool_capacity','max_cool_capacity_temp','height','width','depth','weight','noise','noise_ref','description','notes'];
 function resetForm(){
   editingId=null;
   FIELDS.forEach(f=>{const el=document.getElementById('f-'+f);if(el)el.value='';});
@@ -2794,7 +2841,8 @@ function submitForm(){
   const entry={id:editingId||nextId(),manufacturer:mfr,model,product_code:s('product_code')||'',hp_type:s('hp_type')||'ASHP',type:s('type')||'Residential',refrigerant:s('refrigerant')||'',source:s('source')||'manual',
     product_url:s('product_url')||null,date_added:s('date_added')||new Date().toISOString().slice(0,10),mode:s('mode')||'Heating only',
     op_temp_min:n('op_temp_min'),op_temp_max:n('op_temp_max'),flow_temp_min:n('flow_temp_min'),flow_temp_max:n('flow_temp_max'),
-    cap_min:n('cap_min'),cap_max:n('cap_max'),peak_elec:n('peak_elec'),electrical:s('electrical'),cop:n('cop'),cop_cond:s('cop_cond')||'A7/W35',scop:n('scop'),scop_cond:s('scop_cond')||'not stated',eer:n('eer'),
+    cap_min:n('cap_min'),cap_max:n('cap_max'),max_heat_capacity:n('max_heat_capacity'),max_heat_capacity_temp:s('max_heat_capacity_temp'),peak_elec:n('peak_elec'),electrical:s('electrical'),cop:n('cop'),cop_cond:s('cop_cond')||'A7/W35',scop:n('scop'),scop_cond:s('scop_cond')||'not stated',eer:n('eer'),
+    cool_cap_min:n('cool_cap_min'),cool_cap_max:n('cool_cap_max'),max_cool_capacity:n('max_cool_capacity'),max_cool_capacity_temp:s('max_cool_capacity_temp'),
     height:n('height'),width:n('width'),depth:n('depth'),weight:n('weight'),noise:n('noise'),noise_ref:s('noise_ref')||'LwA',description:s('description')||'',notes:s('notes')||''};
   if(editingId){const idx=db.findIndex(x=>x.id===editingId);if(idx>=0)db[idx]=entry;}
   else db.push(entry);
@@ -2823,7 +2871,7 @@ function handleCSV(file){
   };r.readAsText(file);
 }
 function importRows(rows){
-  const numF=['op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','peak_elec','cop','scop','eer','height','width','depth','weight','noise'];
+  const numF=['op_temp_min','op_temp_max','flow_temp_min','flow_temp_max','cap_min','cap_max','max_heat_capacity','peak_elec','cop','scop','cool_cap_min','cool_cap_max','max_cool_capacity','eer','height','width','depth','weight','noise'];
   rows.forEach(r=>{
     const entry={id:nextId(),source:'import'};
     Object.keys(r).forEach(k=>{entry[k]=numF.includes(k)&&r[k]!==''?parseFloat(r[k]):(r[k]||null);});
@@ -2833,8 +2881,8 @@ function importRows(rows){
   document.getElementById('import-preview').innerHTML=`<div class="alert a-success">✓ Imported ${rows.length} records.</div>`;
 }
 function downloadTemplate(){
-  const h='manufacturer,model,hp_type,type,refrigerant,op_temp_min,op_temp_max,flow_temp_min,flow_temp_max,cap_min,cap_max,peak_elec,cop,cop_cond,scop,eer,height,width,depth,weight,noise,noise_ref,date_added,source,product_url,notes\n';
-  const ex='Mitsubishi,Example 10kW,ASHP,Residential,R32,-25,43,25,60,3,10,3.2,4.2,A7/W35,3.9,,940,870,370,70,48,LwA,2025-06-05,manufacturer,https://example.com/product,Notes here';
+  const h='manufacturer,model,hp_type,type,refrigerant,op_temp_min,op_temp_max,flow_temp_min,flow_temp_max,cap_min,cap_max,max_heat_capacity,max_heat_capacity_temp,peak_elec,cop,cop_cond,scop,cool_cap_min,cool_cap_max,max_cool_capacity,max_cool_capacity_temp,eer,height,width,depth,weight,noise,noise_ref,date_added,source,product_url,notes\n';
+  const ex='Mitsubishi,Example 10kW,ASHP,Residential,R32,-25,43,25,60,3,10,7,-3,3.2,4.2,A7/W35,3.9,,,,,,940,870,370,70,48,LwA,2025-06-05,manufacturer,https://example.com/product,Notes here';
   const blob=new Blob([h+ex],{type:'text/csv'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heatpump_template.csv';a.click();
 }

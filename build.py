@@ -50,6 +50,20 @@ def cap_str(p):
         return f"{num(lo)}\u2013{num(hi)} kW"
     return f"{num(hi if hi is not None else lo)} kW"
 
+def temp_cond_str(v):
+    """Format a max_heat/cool_capacity_temp value \u2014 either a plain outdoor temp
+    number (e.g. -3) or a full condition string (e.g. 'A-7/W35')."""
+    if v is None:
+        return ""
+    if isinstance(v, (int, float)):
+        return f" at {num(v)}\u00b0C"
+    s = str(v).strip()
+    if not s:
+        return ""
+    if "/" in s or any(c.isalpha() for c in s):
+        return f" at {s}"
+    return f" at {s}\u00b0C"
+
 def range_str(lo, hi, unit, joiner="\u2013"):
     if lo is None and hi is None: return None
     if lo is not None and hi is not None:
@@ -69,6 +83,8 @@ def spec_rows(p):
     add("Refrigerant", esc(p.get("refrigerant")))
     add("Mode", esc(p.get("mode")))
     add("Heating capacity", cap_str(p))
+    if p.get("max_heat_capacity") is not None:
+        add("Max heating output (low temp)", f"{num(p['max_heat_capacity'])} kW{esc(temp_cond_str(p.get('max_heat_capacity_temp')))}")
     if p.get("cop") is not None:
         cc = f" at {esc(p['cop_cond'])}" if p.get("cop_cond") else ""
         add("COP (heating)", f"{num(p['cop'])}{cc}")
@@ -86,6 +102,8 @@ def spec_rows(p):
     clo, chi = p.get("cool_cap_min"), p.get("cool_cap_max")
     if clo is not None or chi is not None:
         add("Cooling capacity", range_str(clo, chi, " kW") if (clo is not None and chi is not None) else f"{num(chi if chi is not None else clo)} kW")
+    if p.get("max_cool_capacity") is not None:
+        add("Max cooling output (high temp)", f"{num(p['max_cool_capacity'])} kW{esc(temp_cond_str(p.get('max_cool_capacity_temp')))}")
     add("Cooling flow temperature", range_str(p.get("cool_flow_temp_min"), p.get("cool_flow_temp_max"), "\u00b0C"))
     if p.get("eer") is not None:
         ec = f" at {esc(p['eer_cond'])}" if p.get("eer_cond") else ""
@@ -274,9 +292,10 @@ def breadcrumb_jsonld(items, self_url=None):
 def product_card(p):
     bits = [t for t in (p.get("hp_type"), cap_str(p),
             (f"SCOP {num(p['scop'])}" if p.get("scop") is not None else None)) if t]
+    bits_str = " \u00b7 ".join(bits)
     return (f'<a class="card" href="{BASE_URL}/products/{p["_slug"]}/">'
             f'<div class="m">{esc(p["model"])}</div>'
-            f'<div class="s">{esc(" \u00b7 ".join(bits))}</div></a>')
+            f'<div class="s">{esc(bits_str)}</div></a>')
 
 def load_suppliers():
     """Parse the MFR_SUPPLIERS map (strict JSON) out of the app's index.html."""
