@@ -2503,8 +2503,8 @@ function openModal(id){
       ${row('Electrical supply',d.electrical||null)}
     </div>
     <div class="spec-section">
-      <div class="spec-row"><div class="spec-row-l">COP (heating)</div><div class="spec-row-v hi">${d.cop!=null?`${d.cop} <span class="cop-tag ${copCondClass(d.cop_cond)}">${d.cop_cond||'?'}</span>`:'—'}</div></div>
-      <div class="spec-row"><div class="spec-row-l">SCOP (heating)</div><div class="spec-row-v hi">${d.scop!=null?`${d.scop} <span class="cop-tag ${scopCondClass(d.scop_cond)}">${d.scop_cond||'not stated'}</span>`:'—'}</div></div>
+      ${row('COP (heating)',d.cop!=null?`${d.cop} at ${d.cop_cond||'?'}`:null,true)}
+      ${row('SCOP (heating)',d.scop!=null?`${d.scop} at ${d.scop_cond||'not stated'}`:null,true)}
       ${row('Noise level',d.noise!=null?fmtNoise(d):null)}
       ${row('Price (unit only)',d.price_min!=null?(d.price_min===d.price_max?`~£${d.price_min.toLocaleString()} (checked ${d.price_check_date})`:`£${d.price_min.toLocaleString()}–£${d.price_max.toLocaleString()} (checked ${d.price_check_date})`):null)}
       ${row('Website',getProductUrl(d)?`<a href="${getProductUrl(d)}" onclick="event.stopPropagation();handleMfrClick(event,${d.id})" target="_blank" rel="noopener">${d.manufacturer} ↗</a>`:null)}
@@ -2527,6 +2527,9 @@ function openModal(id){
       <div class="spec-row"><div class="spec-row-l">Scheme eligibility</div><div class="spec-row-v" style="color:#0a6b3b;font-weight:600">✓ MCS listed — eligible for Boiler Upgrade Scheme (MCS-certified install required)</div></div>
       ${row('Certificate no.',d.mcs_cert||null)}
       ${d.mcs_url?`<div class="spec-row"><div class="spec-row-l">MCS listing</div><div class="spec-row-v"><a href="${d.mcs_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;background:#0a6b3b;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none">View on MCS ↗</a></div></div>`:''}
+    </div>`:''}
+    ${d.heatpumpmonitor_url?`<div class="spec-section">
+      <div class="spec-row"><div class="spec-row-l">Real-world performance data</div><div class="spec-row-v"><a href="${d.heatpumpmonitor_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;background:#0f8a80;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none">View on HeatpumpMonitor.org ↗</a></div></div>
     </div>`:''}
     ${suppliersHTML(d)}
     ${getProductUrl(d)?`<div style="margin-top:.5rem;padding:12px 14px;background:var(--info-light);border:1px solid #B5D4F4;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center">

@@ -131,6 +131,8 @@ def spec_rows(p):
         if p.get("mcs_cert"): add("MCS certificate no.", esc(p["mcs_cert"]))
         if p.get("mcs_url"):
             add("MCS listing", f'<a href="{esc(p["mcs_url"])}" target="_blank" rel="noopener nofollow">View on MCS &#8599;</a>')
+    if p.get("heatpumpmonitor_url"):
+        add("Real-world performance data", f'<a href="{esc(p["heatpumpmonitor_url"])}" target="_blank" rel="noopener nofollow">View on HeatpumpMonitor.org &#8599;</a>')
     return rows
 
 # ───────────────────────── HTML shell ─────────────────────────
