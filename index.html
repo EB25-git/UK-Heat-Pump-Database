@@ -668,6 +668,13 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
             <option value="mcs">MCS-listed (BUS-eligible)</option>
           </select>
         </div>
+        <div class="filter-col">
+          <label class="filter-label">Real-world data</label>
+          <select class="filt" id="filt-hpm" onchange="applyFilters()">
+            <option value="">Any</option>
+            <option value="hpm">Has HeatpumpMonitor.org data</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -2079,6 +2086,7 @@ function getFiltered(){
   const refcat=document.getElementById('filt-refcat').value;
   const verif=document.getElementById('filt-verif').value;
   const mcs=document.getElementById('filt-mcs').value;
+  const hpm=document.getElementById('filt-hpm').value;
   const price=document.getElementById('filt-price').value;
   const electrical=document.getElementById('filt-electrical').value;
   return db.filter(d=>{
@@ -2106,6 +2114,7 @@ function getFiltered(){
     if(verif){if(verif==='__awaiting__'){if(d.verified)return false;}else if(d.verified!==verif)return false;}
     if(SF.sound<85){if(!isSoundPower(d)||d.noise>SF.sound)return false;}
     if(mcs==='mcs'&&!d.mcs_listed)return false;
+    if(hpm==='hpm'&&!d.heatpumpmonitor_url)return false;
     return true;
   });
 }
@@ -2176,7 +2185,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
+  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -2185,7 +2194,7 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   resetSliderFilters();
   applyFilters();
 }
@@ -2237,6 +2246,7 @@ function cardHTML(d){
           <span class="badge badge-ref">${d.refrigerant}</span>
           <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
           ${d.mcs_listed?`<span class="badge" style="background:#0a6b3b;color:#fff">✓ MCS</span>`:''}
+          ${d.heatpumpmonitor_url?`<span class="badge" style="background:#0f8a80;color:#fff">HPM</span>`:''}
         </div>
       </div>
       <div class="hp-card-body">
@@ -2247,7 +2257,6 @@ function cardHTML(d){
           <div class="hp-spec"><div class="hp-spec-label">SCOP</div><div class="hp-spec-val acc"><div class="hp-spec-cop">${scopLabel(d.scop,d.scop_cond)}</div></div></div>
           <div class="hp-spec"><div class="hp-spec-label">Cooling capacity</div><div class="hp-spec-val">${fmt(d.cool_cap_max,' kW')}</div></div>
           <div class="hp-spec"><div class="hp-spec-label">Max noise</div><div class="hp-spec-val">${fmt(d.noise,' dB(A)')}</div></div>
-          ${d.price_min?`<div class="hp-spec"><div class="hp-spec-label">Price (unit only)</div><div class="hp-spec-val">${d.price_min===d.price_max?'~£'+d.price_min.toLocaleString():'£'+d.price_min.toLocaleString()+'–£'+d.price_max.toLocaleString()}<div style="font-size:10px;color:var(--text3);font-weight:400">checked ${d.price_check_date}</div></div></div>`:''}
         </div>
       </div>
       <div class="hp-card-footer">
@@ -2532,10 +2541,6 @@ function openModal(id){
       <div class="spec-row"><div class="spec-row-l">Real-world performance data</div><div class="spec-row-v"><a href="${d.heatpumpmonitor_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;background:#0f8a80;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none">View on HeatpumpMonitor.org ↗</a></div></div>
     </div>`:''}
     ${suppliersHTML(d)}
-    ${getProductUrl(d)?`<div style="margin-top:.5rem;padding:12px 14px;background:var(--info-light);border:1px solid #B5D4F4;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center">
-      <div style="font-size:13px"><span style="color:#0C447C;font-weight:500">View on ${d.manufacturer}</span><br><span style="font-size:11px;color:#5A574F;font-family:'DM Mono',monospace;word-break:break-all">${getProductUrl(d)}</span></div>
-      <a href="${getProductUrl(d)}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${getProductUrl(d)}')" class="btn btn-sm" style="flex-shrink:0;color:var(--info);border-color:var(--info);text-decoration:none">↗ Visit site</a>
-    </div>`:''}
     ${d.verified?`<div style="margin-top:.75rem;font-size:12.5px;color:#0F8074;font-weight:600">✓ ${d.verified==='Manual verification'?'Manually verified by Heat Pump Database':'Verified via '+d.verified+' data'}</div>`:`<div style="margin-top:.75rem;font-size:12.5px;color:#9a7b1f;font-weight:600">○ Awaiting verification</div>`}
     <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3)">
       <span>Data added: ${d.date_added||'—'}</span>
