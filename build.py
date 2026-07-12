@@ -371,7 +371,7 @@ def render_correction(p):
         + f"Page: {url}\n"
         f"Current COP: {cop if cop is not None else '—'}" + (f" ({p.get('cop_cond')})" if p.get('cop_cond') else "") + "\n"
         f"Current SCOP: {scop if scop is not None else '—'}" + (f" ({p.get('scop_cond')})" if p.get('scop_cond') else "") + "\n"
-        f"Verification: {'Verified via '+p['verified'] if p.get('verified') else 'Awaiting verification'}\n\n"
+        f"Verification: {p['verified'] if p.get('verified') else 'Awaiting verification'}\n\n"
         "--- Your correction ---\n"
         "Which field(s) are incorrect:\n\n"
         "Correct value(s):\n\n"
