@@ -3542,9 +3542,11 @@ function maybeOnboard(){
     maybeAutoGuide();
   }
 }
-function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').classList.remove('show');loadGA();maybeOnboard();}
-function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').classList.remove('show');maybeOnboard();}
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');document.getElementById('cookie-banner').classList.remove('show');loadGA();}
+function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').classList.remove('show');}
 if(!localStorage.getItem('cookie_consent'))document.getElementById('cookie-banner').classList.add('show');
+// Quick start / how-to-use onboarding fires independently of cookie consent, whenever and however that gets resolved
+maybeOnboard();
 // Browse onboarding coach-marks (auto-once for newcomers, plus the "How to use" button)
 const GUIDE_STEPS=[
   {sel:'.toolbar-row',menu:false,title:'Search &amp; filter',body:'Start here. Use the <strong>search bar</strong> to find a model, manufacturer or refrigerant, then tap <strong>Filters</strong> to narrow by type, capacity, max flow temperature, refrigerant, sound power, verification status and MCS / Boiler Upgrade Scheme eligibility.'},
@@ -3594,8 +3596,6 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='ArrowRight')guideNav(1);
   else if(e.key==='ArrowLeft'&&guideStep>0)guideNav(-1);
 });
-// First-visit auto-show: only once cookie choice is made, so the two never overlap
-if(localStorage.getItem('cookie_consent'))maybeOnboard();
 </script>
 </body>
 </html>
