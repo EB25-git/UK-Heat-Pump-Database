@@ -467,7 +467,7 @@ function loadGA(){
   s.src='https://www.googletagmanager.com/gtag/js?id=G-3XMG9G84HQ';
   document.head.appendChild(s);
   window.dataLayer=window.dataLayer||[];
-  function gtag(){dataLayer.push(arguments);}
+  window.gtag=function(){dataLayer.push(arguments);};
   gtag('js',new Date());
   gtag('config','G-3XMG9G84HQ');
 }
@@ -1860,9 +1860,22 @@ function correctionMailto(d){
     'Source (datasheet link / certificate number, so we can verify):\n\n';
   return 'mailto:info@heatpumpdatabase.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
 }
-function trackClick(id,url){
+function trackClick(id,url,linkType,label){
   clickLog.push({id,url,ts:Date.now()});
   saveClicks();
+  if(typeof window.gtag==='function'){
+    const d=db.find(x=>x.id===id);
+    let domain=null;try{domain=new URL(url).hostname;}catch(e){}
+    window.gtag('event','outbound_click',{
+      link_type:linkType||'unknown',
+      destination_domain:domain,
+      product_id:id,
+      manufacturer:d?d.manufacturer:null,
+      model:d?d.model:null,
+      retailer_name:label||null,
+      source:'app'
+    });
+  }
 }
 function handleMfrClick(e,id){
   e.stopPropagation();
@@ -1870,7 +1883,7 @@ function handleMfrClick(e,id){
   const d=db.find(x=>x.id===id);if(!d)return;
   const url=getProductUrl(d);
   if(!url)return;
-  trackClick(id,url);
+  trackClick(id,url,'manufacturer');
   window.open(url,'_blank','noopener');
 }
 // ═══════════════ COP CONDITION HELPERS ═══════════════
@@ -2454,15 +2467,16 @@ function anRangeChart(elId,data){
   }
   el.innerHTML=html;
 }
+function jsAttrEsc(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
 function suppliersHTML(d){
   const s=(typeof MFR_SUPPLIERS!=='undefined')?MFR_SUPPLIERS[d.manufacturer]:null;
   if(!s) return '';
   let rows='';
   if(s.direct){
-    rows+=`<div class="spec-row"><div class="spec-row-l">Availability</div><div class="spec-row-v">Direct sales from manufacturer: <a href="${s.direct}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${s.direct}')">${d.manufacturer}</a></div></div>`;
+    rows+=`<div class="spec-row"><div class="spec-row-l">Availability</div><div class="spec-row-v">Direct sales from manufacturer: <a href="${s.direct}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${jsAttrEsc(s.direct)}','manufacturer_direct')">${d.manufacturer}</a></div></div>`;
   }
   (s.suppliers||[]).slice(0,5).forEach(sup=>{
-    rows+=`<div class="spec-row"><div class="spec-row-l">UK Supplier</div><div class="spec-row-v"><a href="${sup.url}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${sup.url}')">${sup.name}</a></div></div>`;
+    rows+=`<div class="spec-row"><div class="spec-row-l">UK Supplier</div><div class="spec-row-v"><a href="${sup.url}" target="_blank" rel="noopener" onclick="trackClick(${d.id},'${jsAttrEsc(sup.url)}','retailer','${jsAttrEsc(sup.name)}')">${sup.name}</a></div></div>`;
   });
   return rows?`<div class="spec-section"><h4>Where to buy (UK)</h4>${rows}</div>`:'';
 }

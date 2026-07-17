@@ -19,6 +19,8 @@ import json, os, re, html, shutil, datetime
 # ───────────────────────── Config ─────────────────────────
 BASE_URL  = "https://www.heatpumpdatabase.com"   # no trailing slash
 SITE_NAME = "Heat Pump Database"
+GA_MEASUREMENT_ID = "G-3XMG9G84HQ"   # same GA4 property as the interactive app (index.html),
+                                     # so static-page and app traffic land in one place
 ROOT      = os.path.dirname(os.path.abspath(__file__))
 DATA      = os.path.join(ROOT, "products.json")
 TODAY     = datetime.date.today().isoformat()
@@ -36,6 +38,14 @@ def slugify(s):
 
 def esc(s):
     return html.escape(str(s), quote=True)
+
+def track_attr(*args):
+    """Build an onclick="trackOut(...)" attribute value that is safe to embed in an
+    HTML attribute: each arg is JSON-encoded (so strings/None become valid JS literals),
+    then the whole onclick expression is HTML-escaped so embedded quotes can't break out
+    of the surrounding attribute."""
+    js_arglist = ",".join(json.dumps(a, ensure_ascii=False) for a in args)
+    return esc(f"trackOut({js_arglist})")
 
 def num(x):
     """Trim trailing .0 from whole-number floats for display."""
@@ -257,6 +267,26 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
 {blocks}
+<script>
+window.dataLayer=window.dataLayer||[];
+window.gtag=function(){{dataLayer.push(arguments);}};
+function loadGA(){{
+  if(document.getElementById('ga-script'))return;
+  var s=document.createElement('script');s.id='ga-script';s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}';
+  document.head.appendChild(s);
+  gtag('js',new Date());
+  gtag('config','{GA_MEASUREMENT_ID}');
+}}
+if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
+function acceptCookies(){{localStorage.setItem('cookie_consent','accepted');var b=document.getElementById('cookie-banner');if(b)b.style.display='none';loadGA();}}
+function declineCookies(){{localStorage.setItem('cookie_consent','declined');var b=document.getElementById('cookie-banner');if(b)b.style.display='none';}}
+function trackOut(){{
+  if(typeof window.gtag!=='function'||localStorage.getItem('cookie_consent')!=='accepted')return;
+  var a=Array.prototype.slice.call(arguments);
+  window.gtag('event','outbound_click',{{link_type:a[0]||'unknown',product_id:a[1],manufacturer:a[2],model:a[3],retailer_name:a[4]||null,source:'static_page'}});
+}}
+</script>
 </head>
 <body>
 <header class="site"><div class="wrap"><a class="brand" href="{BASE_URL}/">
@@ -273,7 +303,16 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
 <p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
 </div></footer>
-<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}</script>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
+<div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+<span>This site uses cookies to help us understand how visitors use the site. No personal data is shared with third parties.</span>
+<span style="display:flex;gap:8px;flex-shrink:0">
+<button onclick="acceptCookies()" style="background:#3ECCC0;color:#0F2B2B;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
+<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3a5757;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
+</span>
+</div>
+</div>
+<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}</script>
 </body>
 </html>
 """
@@ -332,13 +371,16 @@ def render_suppliers(p):
     s = SUPPLIERS.get(p.get("manufacturer"))
     if not s:
         return ""
+    pid, mfr, model = p.get("id"), p.get("manufacturer"), p.get("model")
     rows = []
     if s.get("direct"):
+        onclick = track_attr("manufacturer_direct", pid, mfr, model, None)
         rows.append(f'<tr><th>Availability</th><td>Direct sales from manufacturer: '
-                    f'<a href="{esc(s["direct"])}" rel="nofollow" target="_blank">{esc(p["manufacturer"])}</a></td></tr>')
+                    f'<a href="{esc(s["direct"])}" rel="nofollow" target="_blank" onclick="{onclick}">{esc(p["manufacturer"])}</a></td></tr>')
     for sup in (s.get("suppliers") or [])[:5]:
+        onclick = track_attr("retailer", pid, mfr, model, sup["name"])
         rows.append(f'<tr><th>UK Supplier</th><td>'
-                    f'<a href="{esc(sup["url"])}" rel="nofollow" target="_blank">{esc(sup["name"])}</a></td></tr>')
+                    f'<a href="{esc(sup["url"])}" rel="nofollow" target="_blank" onclick="{onclick}">{esc(sup["name"])}</a></td></tr>')
     if not rows:
         return ""
     return '<h2 class="sec">Where to buy (UK)</h2><table class="spec">' + "".join(rows) + "</table>"
@@ -417,8 +459,9 @@ def render_product(p, by_mfr, by_type):
 
     mfr_link = ""
     if p.get("product_url"):
+        onclick = track_attr("manufacturer", p.get("id"), mfr, model, None)
         mfr_link = (f'<p style="margin-top:16px"><a class="cta" href="{esc(p["product_url"])}" '
-                    f'rel="nofollow" target="_blank">View manufacturer page &rarr;</a></p>')
+                    f'rel="nofollow" target="_blank" onclick="{onclick}">View manufacturer page &rarr;</a></p>')
 
     # related: same manufacturer, then same type (different mfr)
     same_mfr = [q for q in by_mfr.get(mfr, []) if q["_slug"] != slug][:8]
