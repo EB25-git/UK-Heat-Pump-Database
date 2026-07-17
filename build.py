@@ -157,7 +157,7 @@ header.site .brand:hover{text-decoration:none}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
 .burger-item.active{color:#3ECCC0;font-weight:500}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
-.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease}.burger-subgroup.open{max-height:420px}
 .burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
 .burger-overlay.open{opacity:1;pointer-events:auto}
 @media(max-width:560px){.burger-menu{width:100%}}
@@ -203,12 +203,13 @@ def burger_menu(active=None):
         if key == active or (key == "knowledge" and knowledge_active):
             cls += " active"
         return f'<a class="{cls}" href="{href}"{extra}>{label}</a>'
-    return (
-        it("Browse", f"{BASE_URL}/", "browse")
-        + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
-        + it("Compare", f"{BASE_URL}/#compare", "compare")
-        + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
-        + it("Knowledge", f"{BASE_URL}/#knowledge", "knowledge")
+    k_open = " open" if knowledge_active else ""
+    k_expanded = "true" if knowledge_active else "false"
+    k_cls = "burger-item burger-toggle" + (" active" if knowledge_active else "")
+    knowledge_block = (
+        f'<button class="{k_cls}{k_open}" id="k-toggle" aria-expanded="{k_expanded}" aria-controls="k-group" onclick="toggleKnowledge()">'
+        f'Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>'
+        f'<div class="burger-subgroup{k_open}" id="k-group">'
         + it("What Is a Heat Pump?", f"{BASE_URL}/knowledge/what-is-a-heat-pump/", "what-is-a-heat-pump", sub=True)
         + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
         + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
@@ -216,6 +217,14 @@ def burger_menu(active=None):
         + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
         + it("Site Guide", f"{BASE_URL}/#guide", "guide", sub=True)
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
+        + '</div>'
+    )
+    return (
+        it("Browse", f"{BASE_URL}/", "browse")
+        + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
+        + it("Compare", f"{BASE_URL}/#compare", "compare")
+        + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
+        + knowledge_block
         + it("Contact", f"{BASE_URL}/#contact", "contact")
         + it("Terms of Use", f"{BASE_URL}/#terms", "terms",
              extra=' style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)"')
@@ -264,7 +273,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
 <p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
 </div></footer>
-<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}</script>
+<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}</script>
 </body>
 </html>
 """

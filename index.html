@@ -90,7 +90,7 @@ h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.03em
 .burger-item.active{color:#3ECCC0;font-weight:500}
 a.burger-item{display:block;text-decoration:none;box-sizing:border-box}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
-.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease}.burger-subgroup.open{max-height:420px}
 /* ANALYTICS */
 .an-filters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:1.25rem}
 .an-fg{display:flex;flex-direction:column;gap:3px}
@@ -499,7 +499,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <a class="burger-item" href="/manufacturers/" onclick="closeBurger()">Manufacturers</a>
     <button class="burger-item" data-page="compare" onclick="showPage('compare');closeBurger()">Compare</button>
     <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
-    <button class="burger-item" data-page="knowledge" onclick="showPage('knowledge');closeBurger()">Knowledge</button>
+    <button class="burger-item burger-toggle" data-page="knowledge" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>
+    <div class="burger-subgroup" id="k-group">
     <button class="burger-item burger-subitem" data-page="what-is-a-heat-pump" onclick="showPage('what-is-a-heat-pump');closeBurger()">What Is a Heat Pump?</button>
     <button class="burger-item burger-subitem" data-page="cop-scop" onclick="showPage('cop-scop');closeBurger()">Understanding COP &amp; SCOP</button>
     <button class="burger-item burger-subitem" data-page="flow-temp" onclick="showPage('flow-temp');closeBurger()">Flow Temperature &amp; Efficiency</button>
@@ -507,6 +508,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item burger-subitem" data-page="faq" onclick="showPage('faq');closeBurger()">FAQ</button>
     <button class="burger-item burger-subitem" data-page="guide" onclick="showPage('guide');closeBurger()">Site Guide</button>
     <button class="burger-item burger-subitem" data-page="links" onclick="showPage('links');closeBurger()">Useful Links</button>
+    </div>
     <button class="burger-item" data-page="contact" onclick="showPage('contact');closeBurger()">Contact</button>
     <button class="burger-item" data-page="terms" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
   </div>
@@ -1922,6 +1924,9 @@ function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
   document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='faq'||p==='guide'||p==='links'))));
+  const kOnPage=(p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='faq'||p==='guide'||p==='links'||p==='knowledge');
+  const kT=document.getElementById('k-toggle'),kG=document.getElementById('k-group');
+  if(kT&&kG){kT.classList.toggle('open',kOnPage);kG.classList.toggle('open',kOnPage);kT.setAttribute('aria-expanded',kOnPage);}
   const anb=document.getElementById('admin-nav-btn');
   if(anb)anb.classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}
@@ -1933,6 +1938,11 @@ function showPage(p) {
   if(p==='contact')renderContactPage();
 }
 // BURGER MENU
+function toggleKnowledge(){
+  const t=document.getElementById('k-toggle'),g=document.getElementById('k-group');
+  const open=!g.classList.contains('open');
+  t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);
+}
 function toggleBurger(){
   document.getElementById('burger-btn').classList.toggle('open');
   document.getElementById('burger-menu').classList.toggle('open');
