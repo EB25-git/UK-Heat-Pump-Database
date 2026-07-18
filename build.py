@@ -438,13 +438,29 @@ def render_product(p, by_mfr, by_type):
     mfr, model = p.get("manufacturer", ""), p.get("model", "")
     mslug = slugify(mfr)
 
+    # Disambiguation: many manufacturers reuse one generic model/series name across
+    # several distinct SKUs (capacity variants, phase variants, etc.), distinguished
+    # only by product_code. Left alone, every such page would share an identical
+    # <title>/<h1> - bad for both search matching and readers. Append whatever
+    # actually distinguishes this SKU from its same-named siblings.
+    siblings = [q for q in by_mfr.get(mfr, []) if q.get("model") == model]
+    disambig = ""
+    if len(siblings) > 1:
+        caps = set((q.get("cap_min"), q.get("cap_max")) for q in siblings)
+        codes = set(str(q.get("product_code")) for q in siblings)
+        if len(caps) > 1 and cap_str(p):
+            disambig = f" ({cap_str(p)})"
+        elif len(codes) > 1 and p.get("product_code"):
+            disambig = f" ({p['product_code']})"
+    display_name = f"{mfr} {model}{disambig}"
+
     # meta description from the most useful specs
     d_bits = [TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type") or "").split(" (")[0] + " heat pump"]
     if cap_str(p): d_bits.append(cap_str(p))
     if p.get("cop") is not None: d_bits.append(f"COP {num(p['cop'])}")
     if p.get("scop") is not None: d_bits.append(f"SCOP {num(p['scop'])}")
     if p.get("refrigerant"): d_bits.append(f"{p['refrigerant']} refrigerant")
-    desc = f"{mfr} {model}: " + ", ".join([b for b in d_bits if b]).rstrip(", ") + \
+    desc = f"{display_name}: " + ", ".join([b for b in d_bits if b]).rstrip(", ") + \
            ". Full specifications and data."
 
     rows = "".join(f"<tr><th>{l}</th><td>{v}</td></tr>" for l, v in spec_rows(p))
@@ -480,15 +496,42 @@ def render_product(p, by_mfr, by_type):
                    (mfr, f"{BASE_URL}/manufacturers/{mslug}/"),
                    (model, None)]
 
-    # NOTE: No schema.org/Product markup is emitted. Google's Product rich result
-    # requires offers, review, or aggregateRating — none of which apply to an
-    # informational spec database. We deliberately omit Product rather than
-    # fabricate commerce data. (If real pricing/reviews are ever added, a valid
-    # Product+offers block can be reinstated here.)
+    # "Also known as" line: retailers/datasheets/articles often list the same SKU
+    # under slightly different names or codes. Surfacing known aliases helps a
+    # visitor confirm they've landed on the right page even if they searched using
+    # a different source's naming, and feeds the alternateName values below.
+    aliases = [a for a in (p.get("aliases") or []) if a and a.strip() and a.strip() != model]
+    aliases_html = ""
+    if aliases:
+        aliases_html = (f'<p class="sub">Also known as: '
+                         f'{esc(", ".join(aliases))}</p>')
+
+    # Minimal schema.org/Product identity block: name/alternateName/sku/manufacturer
+    # only. We deliberately still omit offers/review/aggregateRating (see below) —
+    # this block exists purely to give search engines the alternate names/codes a
+    # product is known by, not to seek Product rich-result eligibility.
+    # NOTE: No offers/review/aggregateRating are emitted. Google's Product rich
+    # result requires one of those — none apply to an informational spec database.
+    # We deliberately omit them rather than fabricate commerce data. (If real
+    # pricing/reviews are ever added, a valid offers block can be added here.)
+    product_ld = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": display_name,
+        "manufacturer": {"@type": "Organization", "name": mfr},
+    }
+    alt_names = list(dict.fromkeys(aliases + ([p["product_code"]] if p.get("product_code") else [])))
+    if alt_names:
+        product_ld["alternateName"] = alt_names
+    if p.get("product_code"):
+        product_ld["sku"] = p["product_code"]
+    if url:
+        product_ld["url"] = url
 
     body = (crumbs(crumb_items) +
-            f"<h1>{esc(mfr)} {esc(model)}</h1>"
+            f"<h1>{esc(display_name)}</h1>"
             f'<p class="sub">Specifications and technical data</p>'
+            f'{aliases_html}'
             f'<div class="badges">{badges}</div>'
             f'<table class="spec">{rows}</table>'
             f'{mfr_link}{notes_html}{render_suppliers(p)}{render_verified(p)}{render_correction(p)}'
@@ -498,9 +541,9 @@ def render_product(p, by_mfr, by_type):
             f'<h2 class="sec">Compare with other products</h2>'
             f'<p><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
 
-    title = f"{mfr} {model} \u2014 Specifications | {SITE_NAME}"
+    title = f"{display_name} \u2014 Specifications | {SITE_NAME}"
     return page(title, desc, url, body,
-                [breadcrumb_jsonld(crumb_items, url)], og_type="product")
+                [breadcrumb_jsonld(crumb_items, url), product_ld], og_type="product")
 
 def list_table(products):
     head = ("<tr><th>Model</th><th>Product code</th><th>Type</th><th>Capacity</th><th>COP</th>"
