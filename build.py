@@ -191,6 +191,12 @@ h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
 .card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
 .card .s{color:#5b6b6b;font-size:12.5px;margin-top:4px}
+.card.has-logo{display:flex;gap:12px;align-items:flex-start}
+.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:4px;flex-shrink:0}
+.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:6px;margin-bottom:14px}
+.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px;vertical-align:middle;margin-right:8px}
+.mfr-header{display:flex;align-items:center;gap:14px;margin-bottom:2px}
+.trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
 table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
 table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
 table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
@@ -240,11 +246,13 @@ def burger_menu(active=None):
              extra=' style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)"')
     )
 
-def page(title, description, canonical, body, jsonld_list, og_type="website", active=None):
+def page(title, description, canonical, body, jsonld_list, og_type="website", active=None, og_image=None):
     blocks = "\n".join(
         '<script type="application/ld+json">%s</script>' % json.dumps(j, ensure_ascii=False)
         for j in jsonld_list
     )
+    og_image_tag = f'<meta property="og:image" content="{og_image}">\n' if og_image else ""
+    twitter_card = "summary_large_image" if og_image else "summary"
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -258,7 +266,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:site_name" content="{SITE_NAME}">
-<meta name="twitter:card" content="summary">
+{og_image_tag}<meta name="twitter:card" content="{twitter_card}">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -339,13 +347,79 @@ def breadcrumb_jsonld(items, self_url=None):
             "itemListElement": out}
 
 # ───────────────────────── Page renderers ─────────────────────────
+LOGO_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logos")
+LOGO_OUT_DIR = "images/manufacturers"
+LOGO_EXT_PRIORITY = [".svg", ".png", ".webp", ".jpg", ".jpeg"]
+
+# A small curated palette (not random/ugly hues) used to give each generated
+# wordmark badge a distinct, deterministic background color per manufacturer.
+BADGE_PALETTE = [
+    "#0F2B2B", "#0f8a80", "#2b6cb0", "#6b46c1", "#b7402a",
+    "#1f7a4d", "#a0522d", "#4a5568", "#2c7a7b", "#8a5a2b",
+]
+
+def _badge_color(name):
+    h = 0
+    for ch in name:
+        h = (h * 31 + ord(ch)) & 0xFFFFFFFF
+    return BADGE_PALETTE[h % len(BADGE_PALETTE)]
+
+def _badge_label(name):
+    """Short label for the generated badge: initials for multi-word names,
+    first 4 chars for single-word names (keeps it legible at small sizes)."""
+    words = [w for w in re.split(r"[\s-]+", name) if w]
+    if len(words) >= 2:
+        return "".join(w[0] for w in words[:3]).upper()
+    return name[:4].upper()
+
+def _badge_svg(name):
+    color = _badge_color(name)
+    label = esc(_badge_label(name))
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">'
+            f'<rect width="64" height="64" rx="12" fill="{color}"/>'
+            f'<text x="32" y="40" font-family="Inter,Arial,sans-serif" font-size="22" '
+            f'font-weight="700" fill="#fff" text-anchor="middle">{label}</text></svg>')
+
+_LOGO_CACHE = {}
+
+def get_logo_url(mfr):
+    """Return the site-relative URL for a manufacturer's logo, writing the file
+    into the build output the first time it's needed. Prefers a real logo file
+    dropped in ./logos/{slug}.{ext} (svg/png/webp/jpg, checked in that order);
+    falls back to a generated text/wordmark badge (no external assets, no
+    copyright exposure) so every manufacturer always has *something* to show.
+    Swapping in a real logo later requires no code change - just add the file
+    and rebuild.
+    """
+    if mfr in _LOGO_CACHE:
+        return _LOGO_CACHE[mfr]
+    slug = slugify(mfr)
+    out_rel = None
+    for ext in LOGO_EXT_PRIORITY:
+        src = os.path.join(LOGO_SRC_DIR, slug + ext)
+        if os.path.isfile(src):
+            out_rel = f"{LOGO_OUT_DIR}/{slug}{ext}"
+            dest = os.path.join(ROOT, out_rel)
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            shutil.copyfile(src, dest)
+            break
+    if out_rel is None:
+        out_rel = f"{LOGO_OUT_DIR}/{slug}.svg"
+        write(os.path.join(ROOT, out_rel), _badge_svg(mfr))
+    url = f"{BASE_URL}/{out_rel}"
+    _LOGO_CACHE[mfr] = url
+    return url
+
 def product_card(p):
     bits = [t for t in (p.get("hp_type"), cap_str(p),
             (f"SCOP {num(p['scop'])}" if p.get("scop") is not None else None)) if t]
     bits_str = " \u00b7 ".join(bits)
-    return (f'<a class="card" href="{BASE_URL}/products/{p["_slug"]}/">'
-            f'<div class="m">{esc(p["model"])}</div>'
-            f'<div class="s">{esc(bits_str)}</div></a>')
+    mfr = p.get("manufacturer", "")
+    logo = get_logo_url(mfr)
+    return (f'<a class="card has-logo" href="{BASE_URL}/products/{p["_slug"]}/">'
+            f'<img class="logo-thumb" src="{logo}" alt="{esc(mfr)} logo" loading="lazy" width="40" height="40">'
+            f'<span><div class="m">{esc(p["model"])}</div>'
+            f'<div class="s">{esc(bits_str)}</div></span></a>')
 
 def load_suppliers():
     """Parse the MFR_SUPPLIERS map (strict JSON) out of the app's index.html."""
@@ -528,8 +602,10 @@ def render_product(p, by_mfr, by_type):
     if url:
         product_ld["url"] = url
 
+    logo = get_logo_url(mfr)
     body = (crumbs(crumb_items) +
-            f"<h1>{esc(display_name)}</h1>"
+            f'<div class="mfr-header"><img class="mfr-logo-sm" src="{logo}" alt="{esc(mfr)} logo" width="32" height="32">'
+            f"<h1>{esc(display_name)}</h1></div>"
             f'<p class="sub">Specifications and technical data</p>'
             f'{aliases_html}'
             f'<div class="badges">{badges}</div>'
@@ -539,11 +615,13 @@ def render_product(p, by_mfr, by_type):
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{rel}'
             f'<h2 class="sec">Compare with other products</h2>'
-            f'<p><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
+            f'<p><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>'
+            f'<p class="trademark-note">The {esc(mfr)} name and logo are trademarks of their respective owner '
+            f'and are used here for identification purposes only.</p>')
 
     title = f"{display_name} \u2014 Specifications | {SITE_NAME}"
     return page(title, desc, url, body,
-                [breadcrumb_jsonld(crumb_items, url), product_ld], og_type="product")
+                [breadcrumb_jsonld(crumb_items, url), product_ld], og_type="product", og_image=logo)
 
 def list_table(products):
     head = ("<tr><th>Model</th><th>Product code</th><th>Type</th><th>Capacity</th><th>COP</th>"
@@ -579,11 +657,15 @@ def render_manufacturer(mfr, products):
     crumb_items = [("Home", f"{BASE_URL}/"),
                    ("Manufacturers", f"{BASE_URL}/manufacturers/"),
                    (mfr, None)]
+    logo = get_logo_url(mfr)
     body = (crumbs(crumb_items) +
-            f"<h1>{esc(mfr)} Heat Pumps</h1>"
+            f'<div class="mfr-header"><img class="mfr-logo" src="{logo}" alt="{esc(mfr)} logo" width="64" height="64">'
+            f"<h1>{esc(mfr)} Heat Pumps</h1></div>"
             f'<p class="sub">{n} model{"s" if n != 1 else ""} in the database</p>' +
             list_table(sorted(products, key=lambda x: (x.get("model") or "", x.get("cap_max") or 0))) +
-            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Search the full database &rarr;</a></p>')
+            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Search the full database &rarr;</a></p>'
+            f'<p class="trademark-note">The {esc(mfr)} name and logo are trademarks of their respective owner '
+            f'and are used here for identification purposes only.</p>')
     item_ld = {"@context": "https://schema.org", "@type": "ItemList",
                "name": f"{mfr} heat pumps",
                "itemListElement": [
@@ -592,14 +674,16 @@ def render_manufacturer(mfr, products):
                     "name": f"{mfr} {p['model']}"}
                    for i, p in enumerate(products)]}
     title = f"{mfr} Heat Pumps \u2014 Models & Specifications | {SITE_NAME}"
-    return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)], active="manufacturers")
+    return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)],
+                active="manufacturers", og_image=logo)
 
 def render_manufacturers_index(by_mfr):
     url = f"{BASE_URL}/manufacturers/"
     cards = "".join(
-        f'<a class="card" href="{BASE_URL}/manufacturers/{slugify(m)}/">'
-        f'<div class="m">{esc(m)}</div>'
-        f'<div class="s">{len(by_mfr[m])} model{"s" if len(by_mfr[m])!=1 else ""}</div></a>'
+        f'<a class="card has-logo" href="{BASE_URL}/manufacturers/{slugify(m)}/">'
+        f'<img class="logo-thumb" src="{get_logo_url(m)}" alt="{esc(m)} logo" loading="lazy" width="40" height="40">'
+        f'<span><div class="m">{esc(m)}</div>'
+        f'<div class="s">{len(by_mfr[m])} model{"s" if len(by_mfr[m])!=1 else ""}</div></span></a>'
         for m in sorted(by_mfr))
     crumb_items = [("Home", f"{BASE_URL}/"), ("Manufacturers", None)]
     body = (crumbs(crumb_items) +
