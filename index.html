@@ -376,6 +376,8 @@ td.acc{color:var(--accent);font-weight:500}
 .modal-hd{background:linear-gradient(135deg,#0F2B2B,#0D4F4F);padding:1.5rem 1.75rem;display:flex;justify-content:space-between;align-items:flex-start}
 .modal-hd h2{font-size:22px;color:#fff;margin-bottom:4px;font-weight:600;letter-spacing:-.02em}
 .modal-hd p{font-size:13px;color:rgba(255,255,255,.5)}
+.modal-hd-left{display:flex;gap:14px;align-items:flex-start}
+.modal-logo{width:44px;height:44px;border-radius:9px;object-fit:contain;background:#fff;padding:5px;flex-shrink:0;margin-top:2px}
 .modal-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:22px;cursor:pointer;line-height:1;flex-shrink:0;margin-left:14px;transition:color .15s}
 .modal-close:hover{color:#fff}
 .modal-body{padding:1.5rem 1.75rem;max-height:80vh;overflow-y:auto}
@@ -979,6 +981,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <li>Once you know roughly what capacity and type you need, use the database to <a href="#" onclick="showPage('browse');return false" style="color:#3ECCC0">browse and compare products</a>.</li>
         </ul>
       </div>
+      <h2 style="font-size:18px;letter-spacing:-.01em;margin:30px 0 12px">Continue learning</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px"><a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Heat Pump Refrigerants Compared</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">GWP, safety class and the F-Gas rules that are phasing out the older, higher-GWP refrigerants.</div></a><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Understanding COP &amp; SCOP</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">What the efficiency figures actually mean, why test conditions matter, and how to compare them fairly.</div></a><a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Flow Temperature &amp; Efficiency</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">The single biggest factor in real-world running costs &mdash; why lower flow temperatures work in your favour.</div></a></div>
       <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed July 2026. This guide is general information, not professional or installation advice &mdash; always get a proper heat loss survey and installer quote for your specific property.</p>
     </div>
   </div>
@@ -1111,6 +1114,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <li>Check the refrigerant when comparing models here — it shapes environmental impact, long-term serviceability and sometimes efficiency and flow temperature.</li>
         </ul>
       </div>
+      <h2 style="font-size:18px;letter-spacing:-.01em;margin:30px 0 12px">Continue learning</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px"><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">What Is a Heat Pump?</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">New to heat pumps? Start here for a plain-English overview of how they work and how they compare to a gas boiler.</div></a><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Understanding COP &amp; SCOP</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">What the efficiency figures actually mean, why test conditions matter, and how to compare them fairly.</div></a><a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Flow Temperature &amp; Efficiency</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">The single biggest factor in real-world running costs &mdash; why lower flow temperatures work in your favour.</div></a></div>
       <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed June 2026. Regulations change and the GB rules are under review — always confirm the current position before making decisions. This guide is general information, not regulatory or professional advice.</p>
     </div>
   </div>
@@ -1200,6 +1204,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <li>The lower the flow temperature you need, the higher these numbers climb.</li>
         </ul>
       </div>
+      <h2 style="font-size:18px;letter-spacing:-.01em;margin:30px 0 12px">Continue learning</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px"><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">What Is a Heat Pump?</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">New to heat pumps? Start here for a plain-English overview of how they work and how they compare to a gas boiler.</div></a><a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Heat Pump Refrigerants Compared</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">GWP, safety class and the F-Gas rules that are phasing out the older, higher-GWP refrigerants.</div></a><a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Flow Temperature &amp; Efficiency</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">The single biggest factor in real-world running costs &mdash; why lower flow temperatures work in your favour.</div></a></div>
       <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed June 2026. This guide is general information to help interpret the data, not professional or design advice; always confirm performance figures against the manufacturer's datasheet.</p>
     </div>
   </div>
@@ -1253,6 +1258,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <li>See the <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a> guide for how flow temperature shows up in the efficiency figures.</li>
         </ul>
       </div>
+      <h2 style="font-size:18px;letter-spacing:-.01em;margin:30px 0 12px">Continue learning</h2><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px"><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">What Is a Heat Pump?</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">New to heat pumps? Start here for a plain-English overview of how they work and how they compare to a gas boiler.</div></a><a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Heat Pump Refrigerants Compared</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">GWP, safety class and the F-Gas rules that are phasing out the older, higher-GWP refrigerants.</div></a><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="display:block;border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px;text-decoration:none"><div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:5px">Understanding COP &amp; SCOP</div><div style="font-size:12.5px;color:#5b6b6b;line-height:1.5">What the efficiency figures actually mean, why test conditions matter, and how to compare them fairly.</div></a></div>
       <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed June 2026. This guide is general information, not professional or design advice; a heat-loss survey by a qualified installer is the basis for any real system design.</p>
     </div>
   </div>
@@ -1660,7 +1666,10 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 <div class="modal-bg" id="detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-ttl" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="modal-hd">
-      <div><h2 id="modal-ttl"></h2><p id="modal-sub"></p></div>
+      <div class="modal-hd-left">
+        <img id="modal-logo" class="modal-logo" src="" alt="" style="display:none">
+        <div><h2 id="modal-ttl"></h2><p id="modal-sub"></p></div>
+      </div>
       <button class="modal-close" onclick="closeModal()" aria-label="Close details">✕</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
@@ -2490,6 +2499,10 @@ function openModal(id){
   const d=db.find(x=>x.id===id);if(!d)return;
   document.getElementById('modal-ttl').textContent=d.model;
   document.getElementById('modal-sub').textContent=d.manufacturer+(d.product_code?' · '+d.product_code:'')+' · '+d.hp_type+' · '+d.type;
+  const modalLogo=document.getElementById('modal-logo');
+  const logoSrc=(typeof MFR_LOGOS!=='undefined'&&MFR_LOGOS[d.manufacturer])||'';
+  if(logoSrc){modalLogo.src=logoSrc;modalLogo.alt=d.manufacturer+' logo';modalLogo.style.display='';}
+  else{modalLogo.style.display='none';}
   const row=(l,v,hi)=>`<div class="spec-row"><div class="spec-row-l">${l}</div><div class="spec-row-v${hi?' hi':''}">${v??'—'}</div></div>`;
   const isASHP=d.hp_type==='ASHP';
   const isWater=d.hp_type==='WSHP'||d.hp_type==='GSHP';
