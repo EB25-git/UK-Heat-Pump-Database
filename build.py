@@ -349,7 +349,7 @@ def breadcrumb_jsonld(items, self_url=None):
 # ───────────────────────── Page renderers ─────────────────────────
 LOGO_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logos")
 LOGO_OUT_DIR = "images/manufacturers"
-LOGO_EXT_PRIORITY = [".svg", ".png", ".webp", ".jpg", ".jpeg"]
+LOGO_EXT_PRIORITY = [".svg", ".png", ".webp", ".avif", ".jpg", ".jpeg", ".gif"]
 
 # A small curated palette (not random/ugly hues) used to give each generated
 # wordmark badge a distinct, deterministic background color per manufacturer.
@@ -925,6 +925,13 @@ def main():
         sm.append(f"  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>")
     sm.append("</urlset>")
     write(os.path.join(ROOT, "sitemap.xml"), "\n".join(sm))
+
+    # logos.js: manufacturer -> logo URL map, consumed by the interactive app
+    # (index.html) so its product cards can show the same logo/badge used on
+    # the static pages, without the client needing to guess file extensions.
+    logo_map = {m: get_logo_url(m) for m in by_mfr}
+    write(os.path.join(ROOT, "logos.js"),
+          "const MFR_LOGOS = " + json.dumps(logo_map, ensure_ascii=False) + ";\n")
 
     # robots.txt
     write(os.path.join(ROOT, "robots.txt"),

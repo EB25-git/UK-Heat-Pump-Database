@@ -322,7 +322,8 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .hp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding:1.5rem 0}
 .hp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .25s;cursor:pointer;box-shadow:var(--shadow-sm)}
 .hp-card:hover{box-shadow:var(--shadow-lg);border-color:transparent;transform:translateY(-2px)}
-.hp-card-head{padding:16px 18px 12px;border-bottom:1px solid var(--border)}
+.hp-card-head{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
+.hp-card-logo{width:36px;height:36px;border-radius:8px;object-fit:contain;background:var(--surface2);border:1px solid var(--border);padding:4px;flex-shrink:0}
 .hp-card-brand{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:4px}
 .hp-card-name{font-family:'Inter',sans-serif;font-size:16px;line-height:1.25;color:var(--text);font-weight:600;letter-spacing:-.02em}
 .hp-card-badges{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
@@ -1708,6 +1709,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
 <script src="data.js"></script>
+<script src="logos.js"></script>
 <script>
 // ═══════════════ SEED DATA ═══════════════
 // cop_cond: the exact test conditions the quoted COP applies to
@@ -2234,9 +2236,12 @@ function fmtNoise(d){
 let gridPage=24;
 const GRID_STEP=24;
 function cardHTML(d){
+  const logoSrc=(typeof MFR_LOGOS!=='undefined'&&MFR_LOGOS[d.manufacturer])||'';
   return `
     <div class="hp-card" onclick="openModal(${d.id})">
       <div class="hp-card-head">
+        ${logoSrc?`<img class="hp-card-logo" src="${logoSrc}" alt="${d.manufacturer} logo" loading="lazy" width="36" height="36">`:''}
+        <div style="min-width:0;flex:1">
         <div class="hp-card-brand">${d.manufacturer}</div>
         <div class="hp-card-name">${d.model}</div>
         ${d.product_code?'<div style="font-size:11px;color:var(--text3);font-family:DM Mono,monospace;margin-top:2px">'+d.product_code+'</div>':''}
@@ -2246,6 +2251,7 @@ function cardHTML(d){
           <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
           ${d.mcs_listed?`<span class="badge" style="background:#0a6b3b;color:#fff">✓ MCS</span>`:''}
           ${d.heatpumpmonitor_url?`<span class="badge" style="background:#0f8a80;color:#fff">HPM</span>`:''}
+        </div>
         </div>
       </div>
       <div class="hp-card-body">
