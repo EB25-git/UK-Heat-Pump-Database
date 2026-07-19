@@ -737,6 +737,51 @@ def main():
               render_product(p, by_mfr, by_type))
         urls.append(f"{BASE_URL}/products/{p['_slug']}/")
 
+    # --- Slug history & redirect stubs ---
+    # A product's URL slug is derived from its manufacturer+model text, so any time
+    # that text is corrected (e.g. fixing a generic name that collided with sibling
+    # products - see the MasterTherm/CTC/Grant cases), the URL changes. This site has
+    # no server-side redirect support (static GitHub Pages hosting), so without this,
+    # every corrected product silently orphans its previously-indexed URL: Google
+    # keeps it in the index pointing at a 404 forever. slug_history.json persists
+    # every slug a product has ever had; any historical slug no longer claimed by a
+    # live product gets a lightweight redirect stub (meta-refresh + canonical) so
+    # search engines consolidate to the current URL instead of hard-404ing.
+    history_path = os.path.join(ROOT, "slug_history.json")
+    try:
+        with open(history_path, encoding="utf-8") as f:
+            slug_history = json.load(f)
+    except FileNotFoundError:
+        slug_history = {}
+
+    for p in products:
+        pid = str(p.get("id", ""))
+        hist = slug_history.setdefault(pid, [])
+        if p["_slug"] not in hist:
+            hist.append(p["_slug"])
+
+    with open(history_path, "w", encoding="utf-8") as f:
+        json.dump(slug_history, f, indent=2, ensure_ascii=False)
+
+    current_slugs = {p["_slug"] for p in products}
+    current_url_by_id = {str(p.get("id", "")): f"{BASE_URL}/products/{p['_slug']}/" for p in products}
+    redirect_count = 0
+    for pid, hist in slug_history.items():
+        target = current_url_by_id.get(pid)
+        if not target:
+            continue  # product no longer exists at all; nothing to redirect to
+        for old_slug in hist:
+            if old_slug in current_slugs:
+                continue  # still a live slug (current, or reused/claimed by another product)
+            stub = (f"<!DOCTYPE html><html lang=\"en-GB\"><head><meta charset=\"utf-8\">"
+                    f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
+                    f"<link rel=\"canonical\" href=\"{target}\">"
+                    f"<meta http-equiv=\"refresh\" content=\"0; url={target}\">"
+                    f"</head><body><p>This page has moved. "
+                    f"<a href=\"{target}\">Continue to the updated page</a>.</p></body></html>")
+            write(os.path.join(ROOT, "products", old_slug, "index.html"), stub)
+            redirect_count += 1
+
     # manufacturer pages + index
     for m, ps in by_mfr.items():
         write(os.path.join(ROOT, "manufacturers", slugify(m), "index.html"),
@@ -804,6 +849,7 @@ def main():
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
           f"{len(type_pages)} category pages, {kg_count} knowledge pages.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
+    print(f"Wrote {redirect_count} redirect stub(s) for retired product slugs.")
 
 if __name__ == "__main__":
     main()
