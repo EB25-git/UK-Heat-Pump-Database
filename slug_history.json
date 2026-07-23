@@ -9098,5 +9098,482 @@
   ],
   "3302": [
     "clivet-large-evo-pl-85-4"
+  ],
+  "3303": [
+    "keyter-adriatica-euro-3052"
+  ],
+  "3304": [
+    "keyter-adriatica-euro-3060"
+  ],
+  "3305": [
+    "keyter-adriatica-euro-3070"
+  ],
+  "3306": [
+    "keyter-adriatica-euro-3080"
+  ],
+  "3307": [
+    "keyter-adriatica-euro-3090"
+  ],
+  "3308": [
+    "keyter-adriatica-euro-3100"
+  ],
+  "3309": [
+    "keyter-adriatica-euro-3120"
+  ],
+  "3310": [
+    "keyter-adriatica-euro-4130"
+  ],
+  "3311": [
+    "keyter-adriatica-euro-4140"
+  ],
+  "3312": [
+    "keyter-adriatica-euro-4150"
+  ],
+  "3313": [
+    "keyter-adriatica-euro-4180"
+  ],
+  "3314": [
+    "keyter-adriatica-inverter-3052"
+  ],
+  "3315": [
+    "keyter-adriatica-inverter-3070"
+  ],
+  "3316": [
+    "keyter-adriatica-inverter-3090"
+  ],
+  "3317": [
+    "keyter-argia-q-1035"
+  ],
+  "3318": [
+    "keyter-argia-i-1035"
+  ],
+  "3319": [
+    "keyter-argia-q-1045"
+  ],
+  "3320": [
+    "keyter-argia-i-1045"
+  ],
+  "3321": [
+    "keyter-argia-q-1055"
+  ],
+  "3322": [
+    "keyter-argia-i-1055"
+  ],
+  "3323": [
+    "keyter-argia-q-2080"
+  ],
+  "3324": [
+    "keyter-argia-i-2080"
+  ],
+  "3325": [
+    "keyter-argia-q-2090"
+  ],
+  "3326": [
+    "keyter-argia-i-2090"
+  ],
+  "3327": [
+    "keyter-argia-q-2105"
+  ],
+  "3328": [
+    "keyter-argia-i-2105"
+  ],
+  "3329": [
+    "keyter-hibernia-4250"
+  ],
+  "3330": [
+    "keyter-hibernia-4300"
+  ],
+  "3331": [
+    "keyter-hibernia-4350"
+  ],
+  "3332": [
+    "keyter-hibernia-4400"
+  ],
+  "3333": [
+    "keyter-hibernia-4450"
+  ],
+  "3334": [
+    "keyter-hibernia-6500"
+  ],
+  "3335": [
+    "keyter-hibernia-6550"
+  ],
+  "3336": [
+    "keyter-hibernia-6600"
+  ],
+  "3337": [
+    "keyter-hibernia-6650"
+  ],
+  "3338": [
+    "keyter-langia-1180"
+  ],
+  "3339": [
+    "keyter-langia-1225"
+  ],
+  "3340": [
+    "keyter-langia-2240"
+  ],
+  "3341": [
+    "keyter-langia-2270"
+  ],
+  "3342": [
+    "keyter-langia-2300"
+  ],
+  "3343": [
+    "keyter-langia-2340"
+  ],
+  "3344": [
+    "keyter-langia-2380"
+  ],
+  "3345": [
+    "keyter-langia-3440"
+  ],
+  "3346": [
+    "keyter-langia-3480"
+  ],
+  "3347": [
+    "keyter-langia-4510"
+  ],
+  "3348": [
+    "keyter-langia-4570"
+  ],
+  "3349": [
+    "keyter-langia-4640"
+  ],
+  "3350": [
+    "keyter-langia-4720"
+  ],
+  "3351": [
+    "keyter-medea-1025"
+  ],
+  "3352": [
+    "keyter-medea-1030"
+  ],
+  "3353": [
+    "keyter-medea-1035"
+  ],
+  "3354": [
+    "keyter-medea-1040"
+  ],
+  "3355": [
+    "keyter-medea-1045"
+  ],
+  "3356": [
+    "keyter-medea-2035"
+  ],
+  "3357": [
+    "keyter-medea-2040"
+  ],
+  "3358": [
+    "keyter-medea-2045"
+  ],
+  "3359": [
+    "keyter-medea-2050"
+  ],
+  "3360": [
+    "keyter-medea-2060"
+  ],
+  "3361": [
+    "keyter-medea-2070"
+  ],
+  "3362": [
+    "keyter-medea-2080"
+  ],
+  "3363": [
+    "keyter-medea-2090"
+  ],
+  "3364": [
+    "keyter-medea-2105"
+  ],
+  "3365": [
+    "keyter-medea-2120"
+  ],
+  "3366": [
+    "keyter-medea-2135"
+  ],
+  "3367": [
+    "keyter-medea-2150"
+  ],
+  "3368": [
+    "keyter-medea-3160"
+  ],
+  "3369": [
+    "keyter-medea-3180"
+  ],
+  "3370": [
+    "keyter-medea-3210"
+  ],
+  "3371": [
+    "keyter-medea-3240"
+  ],
+  "3372": [
+    "keyter-medea-3300"
+  ],
+  "3373": [
+    "keyter-medea-maxima-2035"
+  ],
+  "3374": [
+    "keyter-medea-maxima-2040"
+  ],
+  "3375": [
+    "keyter-medea-maxima-2050"
+  ],
+  "3376": [
+    "keyter-medea-maxima-2060"
+  ],
+  "3377": [
+    "keyter-medea-maxima-2080"
+  ],
+  "3378": [
+    "keyter-medea-maxima-3100"
+  ],
+  "3379": [
+    "keyter-medea-maxima-3120"
+  ],
+  "3380": [
+    "keyter-medea-maxima-3150"
+  ],
+  "3381": [
+    "keyter-medea-pro-1015"
+  ],
+  "3382": [
+    "keyter-nesea-pro-1020"
+  ],
+  "3383": [
+    "keyter-pacifica-2036-inverter"
+  ],
+  "3384": [
+    "keyter-pacifica-2046-inverter"
+  ],
+  "3385": [
+    "keyter-pacifica-2052-inverter"
+  ],
+  "3386": [
+    "keyter-pacifica-5070-inverter"
+  ],
+  "3387": [
+    "keyter-pacifica-5090-inverter"
+  ],
+  "3388": [
+    "keyter-pacifica-6130-inverter"
+  ],
+  "3389": [
+    "keyter-pacifica-6160-inverter"
+  ],
+  "3390": [
+    "keyter-pacifica-6200-inverter"
+  ],
+  "3391": [
+    "keyter-pacifica-2036"
+  ],
+  "3392": [
+    "keyter-pacifica-2046"
+  ],
+  "3393": [
+    "keyter-pacifica-2052"
+  ],
+  "3394": [
+    "keyter-pacifica-2065"
+  ],
+  "3395": [
+    "keyter-pacifica-5070"
+  ],
+  "3396": [
+    "keyter-pacifica-5080"
+  ],
+  "3397": [
+    "keyter-pacifica-5090"
+  ],
+  "3398": [
+    "keyter-pacifica-5100"
+  ],
+  "3399": [
+    "keyter-pacifica-5120"
+  ],
+  "3400": [
+    "keyter-pacifica-6130"
+  ],
+  "3401": [
+    "keyter-pacifica-6140"
+  ],
+  "3402": [
+    "keyter-pacifica-6150"
+  ],
+  "3403": [
+    "keyter-pacifica-6160"
+  ],
+  "3404": [
+    "keyter-pacifica-6200"
+  ],
+  "3405": [
+    "keyter-pacifica-6210"
+  ],
+  "3406": [
+    "keyter-pacifica-6240"
+  ],
+  "3407": [
+    "keyter-pacifica-6270"
+  ],
+  "3408": [
+    "keyter-pacifica-pro-2035"
+  ],
+  "3409": [
+    "keyter-pacifica-pro-2050"
+  ],
+  "3410": [
+    "keyter-pacifica-pro-2055"
+  ],
+  "3411": [
+    "keyter-pacifica-pro-5060"
+  ],
+  "3412": [
+    "keyter-pacifica-pro-5070"
+  ],
+  "3413": [
+    "keyter-pacifica-pro-6100"
+  ],
+  "3414": [
+    "keyter-pacifica-pro-6120"
+  ],
+  "3415": [
+    "keyter-qu4tro-1070"
+  ],
+  "3416": [
+    "keyter-qu4tro-1100"
+  ],
+  "3417": [
+    "keyter-qu4tro-1120"
+  ],
+  "3418": [
+    "keyter-qu4tro-1150"
+  ],
+  "3419": [
+    "keyter-qu4tro-2210"
+  ],
+  "3420": [
+    "keyter-qu4tro-2240"
+  ],
+  "3421": [
+    "keyter-qu4tro-2295"
+  ],
+  "3422": [
+    "keyter-qu4tro-2375"
+  ],
+  "3423": [
+    "keyter-ventia-1140"
+  ],
+  "3424": [
+    "keyter-ventia-1170"
+  ],
+  "3425": [
+    "keyter-ventia-2200"
+  ],
+  "3426": [
+    "keyter-ventia-2250"
+  ],
+  "3427": [
+    "keyter-ventia-2280"
+  ],
+  "3428": [
+    "keyter-ventia-2310"
+  ],
+  "3429": [
+    "keyter-ventia-2330"
+  ],
+  "3430": [
+    "keyter-ventia-3350"
+  ],
+  "3431": [
+    "keyter-ventia-3400"
+  ],
+  "3432": [
+    "keyter-ventia-3470"
+  ],
+  "3433": [
+    "keyter-ventia-3500"
+  ],
+  "3434": [
+    "keyter-ventia-4500"
+  ],
+  "3435": [
+    "keyter-ventia-4550"
+  ],
+  "3436": [
+    "keyter-ventia-4650"
+  ],
+  "3437": [
+    "keyter-ziran-pro-1030"
+  ],
+  "3438": [
+    "keyter-ziran-pro-1060"
+  ],
+  "3439": [
+    "keyter-ziran-pro-2070"
+  ],
+  "3440": [
+    "keyter-ziran-pro-2080"
+  ],
+  "3441": [
+    "keyter-ziran-pro-2100"
+  ],
+  "3442": [
+    "keyter-ziran-pro-3120"
+  ],
+  "3443": [
+    "keyter-ziran-pro-4140"
+  ],
+  "3444": [
+    "keyter-ziran-pro-4160"
+  ],
+  "3445": [
+    "keyter-ziran-pro-4200"
+  ],
+  "3446": [
+    "keyter-ziran-pro-maxima-2070"
+  ],
+  "3447": [
+    "cool-energy-groundtec-gti6"
+  ],
+  "3448": [
+    "cool-energy-groundtec-gti12"
+  ],
+  "3449": [
+    "cool-energy-groundtec-gti24"
+  ],
+  "3450": [
+    "cool-energy-proinverter-ih6"
+  ],
+  "3451": [
+    "cool-energy-proinverter-ih12"
+  ],
+  "3452": [
+    "cool-energy-proinverter-ih12-3ph"
+  ],
+  "3453": [
+    "cool-energy-proinverter-ih24"
+  ],
+  "3454": [
+    "cool-energy-proinverter-ih24-3ph"
+  ],
+  "3455": [
+    "cool-energy-proinverter-ih32-3ph"
+  ],
+  "3456": [
+    "cool-energy-proinverter-ih40-3ph"
+  ],
+  "3457": [
+    "cool-energy-proinverter-ih60-3ph"
+  ],
+  "3458": [
+    "cool-energy-proinverter-ih80-3ph"
+  ],
+  "3459": [
+    "cool-energy-proinverter-ih100-3ph"
+  ],
+  "3460": [
+    "cool-energy-proinverter-ih120-3ph"
+  ],
+  "3461": [
+    "cool-energy-proinverter-ih240-3ph"
   ]
 }
