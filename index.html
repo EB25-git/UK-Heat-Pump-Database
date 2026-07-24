@@ -1123,6 +1123,84 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </ul>
       </div>
       <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed June 2026. Regulations change and the GB rules are under review — always confirm the current position before making decisions. This guide is general information, not regulatory or professional advice.</p>
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">GWP impact calculator</h2>
+      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:20px 22px;margin:14px 0 8px" id="gwp-calc">
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 18px;max-width:640px">Enter a refrigerant charge to estimate its CO&#8322;e (carbon dioxide equivalent) impact if fully released, and how that impact builds up over time through ordinary annual leakage.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:20px">
+          <div style="flex:1;min-width:180px">
+            <label for="gwp-ref" style="display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px">Refrigerant</label>
+            <select id="gwp-ref" style="width:100%;padding:9px 10px;border:1px solid #d3dcdb;border-radius:8px;font-size:14px;background:#fff;color:#0F2B2B"></select>
+          </div>
+          <div style="flex:1;min-width:150px">
+            <label for="gwp-qty" style="display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px">Refrigerant charge (kg)</label>
+            <input id="gwp-qty" type="number" min="0" step="0.1" value="2.5" style="width:100%;padding:9px 10px;border:1px solid #d3dcdb;border-radius:8px;font-size:14px;color:#0F2B2B">
+          </div>
+          <div style="flex:1;min-width:150px">
+            <label for="gwp-leak" style="display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px">Annual leak rate (%)</label>
+            <input id="gwp-leak" type="number" min="0" max="100" step="0.5" value="4" style="width:100%;padding:9px 10px;border:1px solid #d3dcdb;border-radius:8px;font-size:14px;color:#0F2B2B">
+            <div style="font-size:11px;color:#9aa;margin-top:5px;line-height:1.4">Default 4%/yr is CIBSE TM65's typical rate for a heat pump with some on-site pipework (their range: 2% factory-sealed monobloc &ndash; 6% VRF). Edit to match your own system.</div>
+          </div>
+        </div>
+        <div id="gwp-result"></div>
+        <p style="color:#9aa;font-size:12px;margin:16px 0 0">Illustrative estimate only. GWP values are the 100-year AR5 figures from the table above (charge in kg &times; GWP = kg CO&#8322;e). Annual leak rate is user-adjustable &mdash; the 4% default follows <a href="https://www.cibse.org/knowledge-research/knowledge-portal/embodied-carbon-in-building-services-a-calculation-methodology-tm65" target="_blank" rel="noopener" style="color:#0D7377">CIBSE TM65: Embodied Carbon in Building Services &mdash; A Methodology</a>, which gives typical annual refrigerant leakage rates of roughly 2% for factory-sealed monobloc units with no on-site refrigerant work, 4% for systems with some on-site pipework, and 6% for VRF systems with large on-site-filled charges; well-installed heat pumps can leak far less, and any leak of this size should be found and repaired by a qualified installer, not budgeted for. This tool is not a substitute for a proper F-Gas leak check or emissions audit.</p>
+      </div>
+      <script>
+      (function(){
+        var GWP_DATA=[["R32","",675,true],["R410A","HFC blend",2088],["R290","Propane",3],["R744","CO\u2082",1],["R717","Ammonia",0],["R600a","Isobutane",3],["R1234ze","HFO",1],["R1233zd","HFO",1],["R454C","HFC/HFO blend",148],["R515B","HFO/HFC blend",293],["R454B","HFC/HFO blend",466],["R513A","HFC/HFO blend",631],["R452B","HFC/HFO blend",698],["R448A","HFC/HFO blend",1387],["R134a","HFC",1430],["R407C","HFC blend",1774]];
+        function fmt(n){
+          if(n>=1000000)return (n/1000000).toFixed(n>=10000000?0:1)+'M';
+          if(n>=1000)return (n/1000).toFixed(n>=10000?0:1)+'k';
+          return n.toFixed(n<10?2:1);
+        }
+        function calc(){
+          var sel=document.getElementById('gwp-ref'),qtyEl=document.getElementById('gwp-qty'),leakEl=document.getElementById('gwp-leak'),out=document.getElementById('gwp-result');
+          if(!sel||!qtyEl||!out)return;
+          var row=GWP_DATA[parseInt(sel.value,10)]||GWP_DATA[0];
+          var gwp=row[2];
+          var qty=parseFloat(qtyEl.value);if(isNaN(qty)||qty<0)qty=0;
+          var leak=parseFloat(leakEl.value);if(isNaN(leak)||leak<0)leak=0;if(leak>100)leak=100;
+          var totalKg=qty*gwp,totalT=totalKg/1000;
+          var carKm=gwp>0?totalKg/0.17:0;
+          var remaining=qty,cum=0,yearData={};
+          for(var y=1;y<=15;y++){var leaked=remaining*(leak/100);cum+=leaked*gwp;remaining-=leaked;yearData[y]=cum;}
+          var html='';
+          if(gwp===0){
+            html+='<div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:14px 18px;font-size:14.5px;color:#0c6f66"><strong>Zero GWP</strong> \u2014 '+qty+' kg of '+row[0]+' has no direct global warming impact if released.</div>';
+          }else{
+            html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:18px">';
+            html+='<div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:14px 16px"><div style="font-size:11.5px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Full charge released</div><div style="font-size:22px;font-weight:700;color:#0F2B2B">'+fmt(totalKg)+' kg CO\u2082e</div><div style="font-size:12.5px;color:#5f7e7e;margin-top:2px">'+totalT.toFixed(2)+' tonnes CO\u2082e</div></div>';
+            html+='<div style="background:#fafcfb;border:1px solid #e2e8e7;border-radius:10px;padding:14px 16px"><div style="font-size:11.5px;font-weight:700;color:#42514f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Roughly equivalent to</div><div style="font-size:22px;font-weight:700;color:#0F2B2B">'+fmt(carKm)+' km</div><div style="font-size:12.5px;color:#5f7e7e;margin-top:2px">of driving an average petrol car</div></div>';
+            html+='</div>';
+            html+='<div style="font-size:13px;font-weight:600;color:#42514f;margin:0 0 8px">Cumulative CO\u2082e released through leakage at '+leak.toFixed(1)+'%/year</div>';
+            html+='<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:10px;overflow:hidden;font-size:13.5px;min-width:340px"><thead><tr style="background:#fafcfb"><th style="text-align:left;padding:8px 12px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Time</th><th style="text-align:right;padding:8px 12px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Cumulative CO\u2082e</th><th style="text-align:right;padding:8px 12px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">% of charge</th></tr></thead><tbody>';
+            [1,5,10,15].forEach(function(y){
+              var pct=totalKg>0?(100*yearData[y]/totalKg).toFixed(0):'0';
+              html+='<tr><td style="padding:7px 12px;border-bottom:1px solid #eef2f1">Year '+y+'</td><td style="padding:7px 12px;border-bottom:1px solid #eef2f1;text-align:right">'+fmt(yearData[y])+' kg CO\u2082e</td><td style="padding:7px 12px;border-bottom:1px solid #eef2f1;text-align:right;color:#7A9494">'+pct+'%</td></tr>';
+            });
+            html+='</tbody></table></div>';
+          }
+          out.innerHTML=html;
+        }
+        function init(){
+          var sel=document.getElementById('gwp-ref');
+          if(!sel||sel.options.length)return;
+          GWP_DATA.forEach(function(r,i){
+            var o=document.createElement('option');
+            o.value=i;
+            o.textContent=r[0]+(r[1]?' ('+r[1]+')':'')+' \u2014 GWP '+r[2];
+            if(r[3])o.selected=true;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change',calc);
+          var qtyEl=document.getElementById('gwp-qty'),leakEl=document.getElementById('gwp-leak');
+          if(qtyEl)qtyEl.addEventListener('input',calc);
+          if(leakEl)leakEl.addEventListener('input',calc);
+          calc();
+        }
+        if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+      })();
+      </script>
+
     </div>
   </div>
 </div>
