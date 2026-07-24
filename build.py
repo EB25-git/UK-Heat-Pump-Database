@@ -213,7 +213,7 @@ footer.site a{color:#7a8a88}
 """
 
 def burger_menu(active=None):
-    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "faq", "guide", "links", "knowledge")
+    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "install-costs", "faq", "guide", "links", "knowledge")
     def it(label, href, key=None, sub=False, extra=""):
         cls = "burger-item" + (" burger-subitem" if sub else "")
         if key == active or (key == "knowledge" and knowledge_active):
@@ -227,6 +227,7 @@ def burger_menu(active=None):
         f'Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>'
         f'<div class="burger-subgroup{k_open}" id="k-group">'
         + it("What Is a Heat Pump?", f"{BASE_URL}/knowledge/what-is-a-heat-pump/", "what-is-a-heat-pump", sub=True)
+        + it("Installation Costs", f"{BASE_URL}/knowledge/installation-costs/", "install-costs", sub=True)
         + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
         + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
         + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
@@ -309,7 +310,7 @@ function trackOut(){{
 </div></main>
 <footer class="site"><div class="wrap">
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
-<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
+<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
 </div></footer>
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
 <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
@@ -741,7 +742,7 @@ def extract_app_section(start_id, end_marker):
             inner = inner[:-len('</div>')]
     inner = inner.strip()
     inner = re.sub(r'^\s*<nav\b.*?</nav>', '', inner, count=1, flags=re.S)   # drop in-app breadcrumb
-    inner = re.sub(r'\s*onclick="showPage\([^)]*\)[^"]*"', '', inner)        # neutralise app handlers
+    inner = re.sub(r'\s*onclick="(?:showPage|openFaqItem)\([^)]*\)[^"]*"', '', inner)  # neutralise app handlers
     inner = inner.replace('href="#"', f'href="{BASE_URL}/"')
     return inner.strip()
 
@@ -766,12 +767,19 @@ KNOWLEDGE_PAGES = [
      "title": f"Understanding Heat Pump COP & SCOP \u2014 Test Conditions Explained | {SITE_NAME}",
      "desc": ("What COP and SCOP mean for heat pumps, why test conditions like A7/W35 and W35 vs W55 "
               "matter, how seasonal SCOP differs from COP, and how to compare efficiency figures fairly.")},
-    {"page_id": "page-flow-temp", "end_marker": "<!-- ═══ FAQ ═══ -->",
+    {"page_id": "page-flow-temp", "end_marker": "<!-- ═══ INSTALLATION COSTS GUIDE ═══ -->",
      "dir": "flow-temperature", "active": "flow-temp", "crumb": "Flow Temperature & Efficiency",
      "headline": "Flow Temperature & Efficiency",
      "title": f"Heat Pump Flow Temperature & Efficiency Explained | {SITE_NAME}",
      "desc": ("Why a lower flow temperature makes a heat pump more efficient, the trade-off with radiator "
               "and underfloor sizing, weather compensation, and how flow temperature relates to COP and SCOP.")},
+    {"page_id": "page-install-costs", "end_marker": "<!-- ═══ FAQ ═══ -->",
+     "dir": "installation-costs", "active": "install-costs", "crumb": "Installation Costs",
+     "headline": "ASHP Installation Costs Explained",
+     "title": f"Air Source Heat Pump Installation Costs UK 2026 | {SITE_NAME}",
+     "desc": ("A breakdown of what a UK air source heat pump installation costs: the unit itself, hot water "
+              "cylinder, controls, and radiator upgrades, plus typical totals before and after the Boiler "
+              "Upgrade Scheme grant.")},
 ]
 
 def render_knowledge_page(cfg):
