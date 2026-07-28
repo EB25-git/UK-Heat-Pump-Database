@@ -1139,9 +1139,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <div style="flex:1;min-width:150px">
             <label for="gwp-leak" style="display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px">Annual leak rate (%)</label>
             <input id="gwp-leak" type="number" min="0" max="100" step="0.5" value="4" style="width:100%;padding:9px 10px;border:1px solid #d3dcdb;border-radius:8px;font-size:14px;color:#0F2B2B">
-            <div style="font-size:11px;color:#9aa;margin-top:5px;line-height:1.4">Default 4%/yr is CIBSE TM65's typical rate for a heat pump with some on-site pipework (their range: 2% factory-sealed monobloc &ndash; 6% VRF). Edit to match your own system.</div>
           </div>
         </div>
+        <div style="font-size:11px;color:#9aa;margin:-12px 0 20px;line-height:1.4">Default 4%/yr is CIBSE TM65's typical rate for a heat pump with some on-site pipework (their range: 2% factory-sealed monobloc &ndash; 6% VRF). Edit to match your own system.</div>
         <div id="gwp-result"></div>
         <p style="color:#9aa;font-size:12px;margin:16px 0 0">Illustrative estimate only. GWP values are the 100-year AR5 figures from the table above (charge in kg &times; GWP = kg CO&#8322;e). Annual leak rate is user-adjustable &mdash; the 4% default follows <a href="https://www.cibse.org/knowledge-research/knowledge-portal/embodied-carbon-in-building-services-a-calculation-methodology-tm65" target="_blank" rel="noopener" style="color:#0D7377">CIBSE TM65: Embodied Carbon in Building Services &mdash; A Methodology</a>, which gives typical annual refrigerant leakage rates of roughly 2% for factory-sealed monobloc units with no on-site refrigerant work, 4% for systems with some on-site pipework, and 6% for VRF systems with large on-site-filled charges; well-installed heat pumps can leak far less, and any leak of this size should be found and repaired by a qualified installer, not budgeted for. This tool is not a substitute for a proper F-Gas leak check or emissions audit.</p>
       </div>
