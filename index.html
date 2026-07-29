@@ -500,7 +500,11 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   <div class="burger-menu" id="burger-menu">
     <button class="burger-item active" data-page="browse" onclick="showPage('browse');closeBurger()">Browse</button>
     <a class="burger-item" href="/manufacturers/" onclick="closeBurger()">Manufacturers</a>
-    <button class="burger-item" data-page="compare" onclick="showPage('compare');closeBurger()">Compare</button>
+    <button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button>
+    <div class="burger-subgroup" id="c-group">
+    <button class="burger-item burger-subitem" data-page="compare" onclick="showPage('compare');closeBurger()">Compare Selected</button>
+    <a class="burger-item burger-subitem" href="/best/" onclick="closeBurger()">Best Of Rankings</a>
+    </div>
     <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
     <button class="burger-item burger-toggle" data-page="knowledge" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="k-group">
@@ -715,7 +719,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   <div class="container">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem">
       <div>
-        <h1 style="font-size:26px;margin-top:1rem;margin-bottom:.35rem">Compare heat pumps</h1>
+        <h1 style="font-size:26px;margin-top:1rem;margin-bottom:.35rem">Compare selected heat pumps</h1>
         <p style="color:var(--text3);margin-bottom:1.25rem;font-size:13px">Select units from Browse, then review side-by-side here.</p>
       </div>
       <div id="cmp-export-btns" style="display:none;margin-top:1rem">
@@ -1905,8 +1909,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<script src="data.js"></script>
-<script src="logos.js"></script>
+<script src="data.js?v=127"></script>
+<script src="logos.js?v=127"></script>
 <script>
 // ═══════════════ SEED DATA ═══════════════
 // cop_cond: the exact test conditions the quoted COP applies to
@@ -1954,7 +1958,20 @@ const MFR_URLS = {
   "CTC":"https://ctc-uk.com/"
 };
 // ═══════════════ STATE ═══════════════
-let db = JSON.parse(localStorage.getItem('hpdb_v9') || 'null') || SEED.map(d=>({...d}));
+let db = (()=>{
+  try{
+    const saved = JSON.parse(localStorage.getItem('hpdb_v9') || 'null');
+    // Validate: must be a non-empty array of objects with expected keys.
+    // Guards against corrupt data saved by a previous broken data.js format.
+    if(Array.isArray(saved) && saved.length && saved[0] && typeof saved[0]==='object'
+       && !Array.isArray(saved[0]) && saved[0].manufacturer && saved[0].model
+       && saved.length >= SEED.length){
+      return saved;
+    }
+    if(saved) localStorage.removeItem('hpdb_v9'); // stale or corrupt — discard
+  }catch(e){ localStorage.removeItem('hpdb_v9'); }
+  return SEED.map(d=>({...d}));
+})();
 let sources = JSON.parse(localStorage.getItem('hpsrc_v9') || 'null') || [
   {id:1,name:"Manufacturer datasheets (compiled 2025)",type:"manufacturer",url:"",added:"2025-01"},
   {id:2,name:"MCS Certified Products List",type:"third-party",url:"https://mcscertified.com",added:"2025-01"},
@@ -2129,6 +2146,11 @@ function showPage(p) {
 // BURGER MENU
 function toggleKnowledge(){
   const t=document.getElementById('k-toggle'),g=document.getElementById('k-group');
+  const open=!g.classList.contains('open');
+  t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);
+}
+function toggleCompare(){
+  const t=document.getElementById('c-toggle'),g=document.getElementById('c-group');
   const open=!g.classList.contains('open');
   t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);
 }

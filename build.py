@@ -25,7 +25,7 @@ ROOT      = os.path.dirname(os.path.abspath(__file__))
 DATA      = os.path.join(ROOT, "products.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge"]
+GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -236,10 +236,21 @@ def burger_menu(active=None):
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + '</div>'
     )
+    c_active = active in ("compare", "best")
+    c_open = " open" if c_active else ""
+    c_cls = "burger-item burger-toggle" + (" active" if c_active else "")
+    compare_block = (
+        f'<button class="{c_cls}{c_open}" id="c-toggle" aria-expanded="{"true" if c_active else "false"}" aria-controls="c-group" onclick="toggleCompare()">'
+        f'Compare<span class="burger-chevron" aria-hidden="true"></span></button>'
+        f'<div class="burger-subgroup{c_open}" id="c-group">'
+        + it("Compare Selected", f"{BASE_URL}/#compare", "compare", sub=True)
+        + it("Best Of Rankings", f"{BASE_URL}/best/", "best", sub=True)
+        + '</div>'
+    )
     return (
         it("Browse", f"{BASE_URL}/", "browse")
         + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
-        + it("Compare", f"{BASE_URL}/#compare", "compare")
+        + compare_block
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
         + knowledge_block
         + it("Contact", f"{BASE_URL}/#contact", "contact")
@@ -321,7 +332,7 @@ function trackOut(){{
 </span>
 </div>
 </div>
-<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}</script>
+<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}</script>
 </body>
 </html>
 """
@@ -716,6 +727,194 @@ def render_type(slug, heading, desc, products):
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
     return page(f"{heading} | {SITE_NAME}", desc, url, body, [breadcrumb_jsonld(crumb_items, url)])
 
+
+# ───────────────────────── Best-of ranking pages ─────────────────────────
+def _cond_is(p, field, prefix):
+    return str(p.get(field) or "").replace(" ", "").upper().startswith(prefix)
+
+def _dedupe_variants(ranked, metric):
+    """Collapse near-identical variants (same manufacturer, same model family,
+    same metric value) so one product family doesn't fill the table."""
+    out, seen = [], set()
+    for p in ranked:
+        fam = " ".join((p.get("model") or "").split()[:2])
+        key = (p.get("manufacturer"), fam, p.get(metric))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(p)
+    return out
+
+BEST_PAGES = [
+    {"slug": "best-air-source-heat-pumps-by-scop",
+     "title": "Best Air Source Heat Pumps by SCOP",
+     "h1": "Best Air Source Heat Pumps by SCOP",
+     "desc": "The most efficient air source heat pumps ranked by SCOP at 35\u00b0C flow. Top {n} of {pool} ASHPs compared on seasonal efficiency.",
+     "intro": "Ranked by SCOP (seasonal coefficient of performance) at a 35\u00b0C flow temperature \u2014 the fairest single measure of real-world heating efficiency. Only products with a published SCOP at W35 are included.",
+     "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("scop") and "35" in str(p.get("scop_cond") or ""),
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)"},
+
+    {"slug": "best-air-source-heat-pumps-by-cop",
+     "title": "Best Air Source Heat Pumps by COP",
+     "h1": "Best Air Source Heat Pumps by COP (A7/W35)",
+     "desc": "Air source heat pumps with the highest COP at A7/W35 test conditions. Top {n} of {pool} ASHPs ranked.",
+     "intro": "Ranked by COP at the standard A7/W35 test point (7\u00b0C outdoor air, 35\u00b0C flow). Only products tested at this condition are included, so figures are directly comparable.",
+     "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("cop") and _cond_is(p, "cop_cond", "A7/W35"),
+     "sort": lambda p: -(p.get("cop") or 0), "metric": "cop", "metric_label": "COP (A7/W35)"},
+
+    {"slug": "best-ground-source-heat-pumps",
+     "title": "Best Ground Source Heat Pumps",
+     "h1": "Best Ground Source Heat Pumps by COP",
+     "desc": "The most efficient ground source heat pumps ranked by COP. Top {n} of {pool} GSHPs compared.",
+     "intro": "Ground source heat pumps ranked by their published COP. Test conditions are shown for each product \u2014 B0/W35 (brine at 0\u00b0C, 35\u00b0C flow) is the most common benchmark.",
+     "filter": lambda p: p.get("hp_type") == "GSHP" and p.get("cop"),
+     "sort": lambda p: -(p.get("cop") or 0), "metric": "cop", "metric_label": "COP", "show_cond": True},
+
+    {"slug": "best-water-source-heat-pumps",
+     "title": "Best Water Source Heat Pumps",
+     "h1": "Best Water Source Heat Pumps by COP",
+     "desc": "The most efficient water source heat pumps ranked by COP. Top {n} of {pool} WSHPs compared.",
+     "intro": "Water source heat pumps ranked by their published COP. Test conditions are shown for each product \u2014 W10/W35 (water at 10\u00b0C, 35\u00b0C flow) is the most common benchmark.",
+     "filter": lambda p: p.get("hp_type") == "WSHP" and p.get("cop"),
+     "sort": lambda p: -(p.get("cop") or 0), "metric": "cop", "metric_label": "COP", "show_cond": True},
+
+    {"slug": "quietest-air-source-heat-pumps",
+     "title": "Quietest Air Source Heat Pumps",
+     "h1": "Quietest Air Source Heat Pumps",
+     "desc": "The quietest air source heat pumps ranked by sound power level. Top {n} of {pool} ASHPs under 25 kW compared.",
+     "intro": "Ranked by published sound power level (dB(A)) \u2014 lowest first. Limited to units up to 25 kW with a declared sound power figure, the measure used for UK permitted-development noise assessments (MCS 020).",
+     "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("noise") and (p.get("cap_max") or 99) <= 25
+                and "power" in str(p.get("noise_ref") or "").lower(),
+     "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)"},
+
+    {"slug": "best-r290-heat-pumps",
+     "title": "Best R290 (Propane) Heat Pumps",
+     "h1": "Best R290 (Propane) Heat Pumps by SCOP",
+     "desc": "The best heat pumps using natural refrigerant R290, ranked by SCOP. Top {n} of {pool} R290 models compared.",
+     "intro": "R290 (propane) is a natural refrigerant with a GWP of just 3, and typically enables higher flow temperatures. These are the most efficient R290 heat pumps in the database, ranked by SCOP.",
+     "filter": lambda p: p.get("refrigerant") == "R290" and p.get("scop"),
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP"},
+
+    {"slug": "best-small-heat-pumps-3-6kw",
+     "title": "Best Small Heat Pumps (3\u20136 kW)",
+     "h1": "Best Small Heat Pumps (3\u20136 kW) by SCOP",
+     "desc": "The best small air source heat pumps (3\u20136 kW) for flats and small homes, ranked by SCOP. Top {n} of {pool} compared.",
+     "intro": "Small-capacity heat pumps (3\u20136 kW) suit well-insulated flats and smaller homes. Ranked by SCOP \u2014 seasonal efficiency at 35\u00b0C flow.",
+     "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("scop") and p.get("cap_max") and 3 <= p["cap_max"] <= 6.5,
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP"},
+
+    {"slug": "best-medium-heat-pumps-7-12kw",
+     "title": "Best Medium Heat Pumps (7\u201312 kW)",
+     "h1": "Best Medium Heat Pumps (7\u201312 kW) by SCOP",
+     "desc": "The best 7\u201312 kW air source heat pumps for typical UK homes, ranked by SCOP. Top {n} of {pool} compared.",
+     "intro": "The 7\u201312 kW band covers most three- and four-bedroom UK homes. Ranked by SCOP \u2014 seasonal efficiency at 35\u00b0C flow.",
+     "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("scop") and p.get("cap_max") and 6.5 < p["cap_max"] <= 12,
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP"},
+
+    {"slug": "best-large-heat-pumps-13-25kw",
+     "title": "Best Large Heat Pumps (13\u201325 kW)",
+     "h1": "Best Large Heat Pumps (13\u201325 kW) by SCOP",
+     "desc": "The best 13\u201325 kW heat pumps for large homes and small commercial buildings, ranked by SCOP. Top {n} of {pool} compared.",
+     "intro": "Large-capacity units (13\u201325 kW) suit big or older homes and light commercial use. Ranked by SCOP \u2014 seasonal efficiency at 35\u00b0C flow.",
+     "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("scop") and p.get("cap_max") and 12 < p["cap_max"] <= 25,
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP"},
+
+    {"slug": "best-high-temperature-heat-pumps",
+     "title": "Best High-Temperature Heat Pumps",
+     "h1": "Best High-Temperature Heat Pumps (70\u00b0C+ flow)",
+     "desc": "Heat pumps capable of 70\u00b0C+ flow temperatures \u2014 ideal radiator retrofits \u2014 ranked by SCOP. Top {n} of {pool} compared.",
+     "intro": "High-temperature heat pumps reach 70\u00b0C+ flow, letting them replace a boiler without changing radiators. Ranked by SCOP among models with a maximum flow temperature of 70\u00b0C or higher.",
+     "filter": lambda p: (p.get("flow_temp_max") or 0) >= 70 and p.get("scop"),
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP", "show_flow": True, "show_type": True},
+]
+
+BEST_TOP_N = 20
+
+def render_best_page(cfg, ranked, pool_size, all_cfgs):
+    url = f"{BASE_URL}/best/{cfg['slug']}/"
+    n = len(ranked)
+    desc = cfg["desc"].format(n=n, pool=pool_size)
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Best Of", f"{BASE_URL}/best/"), (cfg["title"], None)]
+    show_cond = cfg.get("show_cond")
+    show_flow = cfg.get("show_flow")
+    metric = cfg["metric"]
+
+    show_type = cfg.get("show_type")
+    head_cells = "<th>#</th><th>Model</th>"
+    if show_type: head_cells += "<th>Type</th>"
+    head_cells += "<th>Capacity</th><th>" + cfg["metric_label"] + "</th>"
+    if show_cond: head_cells += "<th>Test condition</th>"
+    if show_flow: head_cells += "<th>Max flow</th>"
+    head_cells += "<th>Refrigerant</th>"
+    if metric != "noise": head_cells += "<th>Noise</th>"
+
+    rows = ""
+    for i, p in enumerate(ranked, 1):
+        mv = p.get(metric)
+        mv_s = num(mv) if isinstance(mv, (int, float)) else esc(str(mv or ""))
+        noise_s = f"{num(p['noise'])} dB(A)" if p.get("noise") is not None else ""
+        row = (f'<tr><td class="rank">{i}</td>'
+               f'<td><a href="{BASE_URL}/products/{p["_slug"]}/">{esc(p.get("manufacturer",""))} {esc(p.get("model",""))}</a></td>')
+        if show_type:
+            row += f'<td>{esc(p.get("hp_type") or "")}</td>'
+        row += (f'<td>{esc(cap_str(p) or "")}</td>'
+                f'<td><strong>{mv_s}</strong></td>')
+        if show_cond:
+            cond_field = "cop_cond" if metric == "cop" else "scop_cond"
+            row += f'<td>{esc(str(p.get(cond_field) or ""))}</td>'
+        if show_flow:
+            row += f'<td>{num(p["flow_temp_max"])}\u00b0C</td>' if p.get("flow_temp_max") else "<td></td>"
+        row += f'<td>{esc(p.get("refrigerant") or "")}</td>'
+        if metric != "noise":
+            row += f'<td>{noise_s}</td>'
+        row += '</tr>'
+        rows += row
+
+    others = "".join(
+        f'<a class="card" href="{BASE_URL}/best/{c["slug"]}/"><span><div class="m">{c["title"]}</div></span></a>'
+        for c in all_cfgs if c["slug"] != cfg["slug"])
+
+    body = (crumbs(crumb_items) +
+            f"<h1>{cfg['h1']}</h1>"
+            f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
+            f'<p>{cfg["intro"]}</p>'
+            f'<table class="list best-table">{"<tr>" + head_cells + "</tr>"}{rows}</table>'
+            f'<p style="margin-top:14px;font-size:13px;color:#5b6b6b">Rankings are generated automatically from '
+            f'manufacturer-published data in the {SITE_NAME} and refresh as new products are added. '
+            f'Figures come from different manufacturers\u2019 datasheets and certification documents; always '
+            f'confirm specifications with the manufacturer. Products without the relevant published figure are excluded.</p>'
+            f'<h2 class="sec">More rankings</h2><div class="grid">{others}</div>'
+            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
+
+    item_ld = {"@context": "https://schema.org", "@type": "ItemList",
+               "name": cfg["title"], "numberOfItems": n,
+               "itemListElement": [
+                   {"@type": "ListItem", "position": i + 1,
+                    "url": f"{BASE_URL}/products/{p['_slug']}/",
+                    "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
+                   for i, p in enumerate(ranked)]}
+    return page(f"{cfg['title']} ({TODAY[:4]}) | {SITE_NAME}", desc, url, body,
+                [item_ld, breadcrumb_jsonld(crumb_items, url)], active="best")
+
+def render_best_index(cfgs_with_counts):
+    url = f"{BASE_URL}/best/"
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Best Of", None)]
+    cards = "".join(
+        f'<a class="card" href="{BASE_URL}/best/{c["slug"]}/"><span><div class="m">{c["title"]}</div>'
+        f'<div class="s">Top {n} ranked</div></span></a>'
+        for c, n in cfgs_with_counts)
+    body = (crumbs(crumb_items) +
+            "<h1>Best Heat Pumps \u2014 Rankings</h1>"
+            f'<p class="sub">{len(cfgs_with_counts)} data-driven rankings \u00b7 updated {TODAY}</p>'
+            f'<p>Every ranking below is generated automatically from the specifications in the {SITE_NAME}, '
+            f'compared at matching test conditions wherever possible. They update as new products are added.</p>'
+            f'<div class="grid">{cards}</div>'
+            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
+    return page(f"Best Heat Pumps {TODAY[:4]} \u2014 Data-Driven Rankings | {SITE_NAME}",
+                f"The best heat pumps ranked by real specification data: SCOP, COP, noise and flow temperature. "
+                f"{len(cfgs_with_counts)} rankings updated automatically from the {SITE_NAME}.",
+                url, body, [breadcrumb_jsonld(crumb_items, url)], active="best")
+
 # ───────────────────────── Build ─────────────────────────
 def write(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -928,6 +1127,21 @@ def main():
             urls.append(f'{BASE_URL}/knowledge/{cfg["dir"]}/')
             kg_count += 1
 
+    # best-of ranking pages
+    best_built = []
+    for cfg in BEST_PAGES:
+        pool = [p for p in products if cfg["filter"](p)]
+        ranked = sorted(pool, key=cfg["sort"])
+        ranked = _dedupe_variants(ranked, cfg["metric"])[:BEST_TOP_N]
+        if len(ranked) < 5:
+            continue
+        write(os.path.join(ROOT, "best", cfg["slug"], "index.html"),
+              render_best_page(cfg, ranked, len(pool), BEST_PAGES))
+        urls.append(f"{BASE_URL}/best/{cfg['slug']}/")
+        best_built.append((cfg, len(ranked)))
+    write(os.path.join(ROOT, "best", "index.html"), render_best_index(best_built))
+    urls.append(f"{BASE_URL}/best/")
+
     # sitemap.xml
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
@@ -948,7 +1162,8 @@ def main():
           f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n")
 
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
-          f"{len(type_pages)} category pages, {kg_count} knowledge pages.")
+          f"{len(type_pages)} category pages, {kg_count} knowledge pages, "
+          f"{len(best_built)} best-of ranking pages.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
     print(f"Wrote {redirect_count} redirect stub(s) for retired product slugs.")
 
