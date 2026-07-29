@@ -9932,5 +9932,215 @@
   ],
   "3580": [
     "ochsner-air-basic-109-c11b-t200"
+  ],
+  "3581": [
+    "ochsner-air-basic-109-c11b-t200-3581"
+  ],
+  "3582": [
+    "ochsner-air-basic-211-c11b-t200"
+  ],
+  "3583": [
+    "ochsner-air-basic-211-c11b-t200-3583"
+  ],
+  "3584": [
+    "ochsner-air-basic-416-c12a-t200"
+  ],
+  "3585": [
+    "ochsner-air-basic-416-c12a-t200-3585"
+  ],
+  "3586": [
+    "ochsner-air-basic-618-c12b-t200"
+  ],
+  "3587": [
+    "ochsner-air-basic-618-c12b-t200-3587"
+  ],
+  "3588": [
+    "ochsner-air-basic-211-c11b-t201"
+  ],
+  "3589": [
+    "ochsner-air-basic-618-c12b-t201"
+  ],
+  "3590": [
+    "ochsner-air-eagle-414-c11b-t201"
+  ],
+  "3591": [
+    "ochsner-air-eagle-717-c11a-t201"
+  ],
+  "3592": [
+    "ochsner-air-7-c11a"
+  ],
+  "3593": [
+    "ochsner-air-11-c11b"
+  ],
+  "3594": [
+    "ochsner-air-80-c22a"
+  ],
+  "3595": [
+    "ochsner-terra-40-hpla"
+  ],
+  "3596": [
+    "ochsner-terra-40-cpla"
+  ],
+  "3597": [
+    "ochsner-terra-76-hpla"
+  ],
+  "3598": [
+    "ochsner-terra-76-cpla"
+  ],
+  "3599": [
+    "ochsner-aqua-54-hpla"
+  ],
+  "3600": [
+    "ochsner-aqua-97-hpla"
+  ],
+  "3601": [
+    "ochsner-aqua-11-hsta"
+  ],
+  "3602": [
+    "ochsner-aqua-14-hsta"
+  ],
+  "3603": [
+    "ochsner-aqua-17-hsta"
+  ],
+  "3604": [
+    "ochsner-aqua-22-hsta"
+  ],
+  "3605": [
+    "ochsner-aqua-36-hpla"
+  ],
+  "3606": [
+    "ochsner-terra-8-hpla"
+  ],
+  "3607": [
+    "ochsner-terra-8-hplb"
+  ],
+  "3608": [
+    "ochsner-terra-11-hpla"
+  ],
+  "3609": [
+    "ochsner-terra-11-hplb"
+  ],
+  "3610": [
+    "ochsner-terra-14-hpla"
+  ],
+  "3611": [
+    "ochsner-terra-14-hplb"
+  ],
+  "3612": [
+    "ochsner-terra-18-hpla"
+  ],
+  "3613": [
+    "ochsner-terra-27-hpla"
+  ],
+  "3614": [
+    "ochsner-air-falcon-212-c11a-t200"
+  ],
+  "3615": [
+    "ochsner-air-falcon-212-c11b-t200"
+  ],
+  "3616": [
+    "ochsner-air-falcon-212-c11b-t201"
+  ],
+  "3617": [
+    "ochsner-air-18-c11b"
+  ],
+  "3618": [
+    "ochsner-air-23-c12a"
+  ],
+  "3619": [
+    "ochsner-air-29-c12a"
+  ],
+  "3620": [
+    "ochsner-air-41-c12a"
+  ],
+  "3621": [
+    "ochsner-air-41-c12a-3621"
+  ],
+  "3622": [
+    "ochsner-air-hawk-208-c11a"
+  ],
+  "3623": [
+    "ochsner-air-hawk-208-c11b"
+  ],
+  "3624": [
+    "ochsner-air-hawk-518-c11a"
+  ],
+  "3625": [
+    "ochsner-air-hawk-616-c11a"
+  ],
+  "3626": [
+    "ochsner-air-hawk-726-c12a"
+  ],
+  "3627": [
+    "ochsner-air-hawk-1850-c12a"
+  ],
+  "3628": [
+    "ochsner-air-falcon-212-c11a-m1-5"
+  ],
+  "3629": [
+    "ochsner-air-falcon-212-c11b-m1-5"
+  ],
+  "3630": [
+    "ochsner-air-80-c13a"
+  ],
+  "3631": [
+    "ochsner-air-85-c14a"
+  ],
+  "3632": [
+    "ochsner-aqua-fox-312-hpla-s1"
+  ],
+  "3633": [
+    "ochsner-aqua-fox-416-hpla-s1"
+  ],
+  "3634": [
+    "ochsner-aqua-fox-312-hpla-s200"
+  ],
+  "3635": [
+    "ochsner-aqua-fox-416-hpla-s200"
+  ],
+  "3636": [
+    "ochsner-air-milan-612-c11a-t200"
+  ],
+  "3637": [
+    "ochsner-air-milan-612-c11a-cm1"
+  ],
+  "3638": [
+    "ochsner-air-milan-612-c11a-hm1"
+  ],
+  "3639": [
+    "ochsner-air-milan-612-c11b-cm1"
+  ],
+  "3640": [
+    "ochsner-air-milan-612-c11b-hm1"
+  ],
+  "3641": [
+    "ochsner-air-milan-1016-c11a-t200"
+  ],
+  "3642": [
+    "ochsner-air-milan-1016-c11a-cm1"
+  ],
+  "3643": [
+    "ochsner-air-milan-1016-c11a-hm1"
+  ],
+  "3644": [
+    "ochsner-air-milan-1016-c11b-cm1"
+  ],
+  "3645": [
+    "ochsner-air-milan-1016-c11b-hm1"
+  ],
+  "3646": [
+    "ochsner-air-milan-307-c11b-cm1"
+  ],
+  "3647": [
+    "ochsner-air-milan-307-c11b-hm1"
+  ],
+  "3648": [
+    "ochsner-air-milan-1220-c11a-cm1"
+  ],
+  "3649": [
+    "ochsner-air-eagle-1830-c12a-cm1"
+  ],
+  "3650": [
+    "ochsner-air-eagle-1830-c12a-hm1"
   ]
 }
