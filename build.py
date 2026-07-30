@@ -147,6 +147,32 @@ def spec_rows(p):
 
 # ───────────────────────── HTML shell ─────────────────────────
 CSS = """
+/* ── Best-of ranking pages ── */
+.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
+.best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
+.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
+.best-winner .bw-name{font-size:19px;font-weight:600;letter-spacing:-.01em}.best-winner .bw-name a{color:#fff}
+.best-winner .bw-val{margin-left:auto;text-align:right;flex:none}
+.best-winner .bw-num{font-size:26px;font-weight:700;color:#3ECCC0;line-height:1.1}
+.best-winner .bw-lab{font-size:12px;color:rgba(255,255,255,.55)}
+.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #e2e8e7}
+.best-scroll table.list{border:none;margin:0;min-width:640px}
+table.best-table th{position:sticky;top:0;background:#fafcfb;z-index:1}
+table.best-table tr:nth-child(even) td{background:#fafcfb}
+table.best-table tr:hover td{background:#eef7f5}
+td.rank{width:44px;text-align:center}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#42514f;background:#eef2f1}
+.rank-1 .rank-badge{background:#f6d873;color:#5c4a00}
+.rank-2 .rank-badge{background:#dfe4e6;color:#454d50}
+.rank-3 .rank-badge{background:#e8c39e;color:#5e3c14}
+.best-model{display:flex;align-items:center;gap:10px}
+.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #eef2f1;flex:none}
+.metric-cell{min-width:120px}
+.metric-val{font-weight:600}
+.metric-bar{height:5px;border-radius:3px;background:#e7f0ee;margin-top:5px;overflow:hidden}
+.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#3ECCC0,#0f8a80)}
+.hub-leader{font-size:12.5px;color:#0c6f66;margin-top:4px}
+
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
@@ -848,17 +874,31 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
     head_cells += "<th>Refrigerant</th>"
     if metric != "noise": head_cells += "<th>Noise</th>"
 
+    # relative bar widths: for noise lower is better, invert scale
+    vals = [p.get(metric) for p in ranked if isinstance(p.get(metric), (int, float))]
+    vmin, vmax = (min(vals), max(vals)) if vals else (0, 1)
+    def bar_pct(v):
+        if not isinstance(v, (int, float)) or vmax == vmin:
+            return 100
+        if metric == "noise":
+            return round(30 + 70 * (vmax - v) / (vmax - vmin))
+        return round(30 + 70 * (v - vmin) / (vmax - vmin))
+
     rows = ""
     for i, p in enumerate(ranked, 1):
         mv = p.get(metric)
         mv_s = num(mv) if isinstance(mv, (int, float)) else esc(str(mv or ""))
         noise_s = f"{num(p['noise'])} dB(A)" if p.get("noise") is not None else ""
-        row = (f'<tr><td class="rank">{i}</td>'
-               f'<td><a href="{BASE_URL}/products/{p["_slug"]}/">{esc(p.get("manufacturer",""))} {esc(p.get("model",""))}</a></td>')
+        rank_cls = f" class=\"rank-{i}\"" if i <= 3 else ""
+        logo = get_logo_url(p.get("manufacturer", ""))
+        row = (f'<tr{rank_cls}><td class="rank"><span class="rank-badge">{i}</span></td>'
+               f'<td><span class="best-model"><img src="{logo}" alt="" loading="lazy" width="26" height="26">'
+               f'<a href="{BASE_URL}/products/{p["_slug"]}/">{esc(p.get("manufacturer",""))} {esc(p.get("model",""))}</a></span></td>')
         if show_type:
             row += f'<td>{esc(p.get("hp_type") or "")}</td>'
         row += (f'<td>{esc(cap_str(p) or "")}</td>'
-                f'<td><strong>{mv_s}</strong></td>')
+                f'<td class="metric-cell"><span class="metric-val">{mv_s}</span>'
+                f'<span class="metric-bar"><i style="width:{bar_pct(mv)}%"></i></span></td>')
         if show_cond:
             cond_field = "cop_cond" if metric == "cop" else "scop_cond"
             row += f'<td>{esc(str(p.get(cond_field) or ""))}</td>'
@@ -870,6 +910,18 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
         row += '</tr>'
         rows += row
 
+    # winner hero card
+    w = ranked[0]
+    wv = w.get(metric)
+    wv_s = num(wv) if isinstance(wv, (int, float)) else esc(str(wv or ""))
+    winner_html = (
+        f'<div class="best-winner">'
+        f'<img src="{get_logo_url(w.get("manufacturer",""))}" alt="{esc(w.get("manufacturer",""))} logo" width="56" height="56">'
+        f'<div><div class="bw-crown">#1 \u00b7 {cfg["title"]}</div>'
+        f'<div class="bw-name"><a href="{BASE_URL}/products/{w["_slug"]}/">{esc(w.get("manufacturer",""))} {esc(w.get("model",""))}</a></div></div>'
+        f'<div class="bw-val"><div class="bw-num">{wv_s}</div><div class="bw-lab">{cfg["metric_label"]}</div></div>'
+        f'</div>')
+
     others = "".join(
         f'<a class="card" href="{BASE_URL}/best/{c["slug"]}/"><span><div class="m">{c["title"]}</div></span></a>'
         for c in all_cfgs if c["slug"] != cfg["slug"])
@@ -878,7 +930,8 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
             f"<h1>{cfg['h1']}</h1>"
             f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
             f'<p>{cfg["intro"]}</p>'
-            f'<table class="list best-table">{"<tr>" + head_cells + "</tr>"}{rows}</table>'
+            + winner_html +
+            f'<div class="best-scroll"><table class="list best-table">{"<tr>" + head_cells + "</tr>"}{rows}</table></div>'
             f'<p style="margin-top:14px;font-size:13px;color:#5b6b6b">Rankings are generated automatically from '
             f'manufacturer-published data in the {SITE_NAME} and refresh as new products are added. '
             f'Figures come from different manufacturers\u2019 datasheets and certification documents; always '
@@ -899,10 +952,17 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
 def render_best_index(cfgs_with_counts):
     url = f"{BASE_URL}/best/"
     crumb_items = [("Home", f"{BASE_URL}/"), ("Best Of", None)]
-    cards = "".join(
-        f'<a class="card" href="{BASE_URL}/best/{c["slug"]}/"><span><div class="m">{c["title"]}</div>'
-        f'<div class="s">Top {n} ranked</div></span></a>'
-        for c, n in cfgs_with_counts)
+    cards = ""
+    for c, n, leader in cfgs_with_counts:
+        lv = leader.get(c["metric"])
+        lv_s = num(lv) if isinstance(lv, (int, float)) else str(lv or "")
+        cards += (
+            f'<a class="card has-logo" href="{BASE_URL}/best/{c["slug"]}/">'
+            f'<img class="logo-thumb" src="{get_logo_url(leader.get("manufacturer",""))}" alt="" loading="lazy" width="40" height="40">'
+            f'<span><div class="m">{c["title"]}</div>'
+            f'<div class="s">Top {n} ranked</div>'
+            f'<div class="hub-leader">\U0001F3C6 {esc(leader.get("manufacturer",""))} {esc(leader.get("model",""))} \u00b7 {c["metric_label"]} {lv_s}</div>'
+            f'</span></a>')
     body = (crumbs(crumb_items) +
             "<h1>Best Heat Pumps \u2014 Rankings</h1>"
             f'<p class="sub">{len(cfgs_with_counts)} data-driven rankings \u00b7 updated {TODAY}</p>'
@@ -1138,7 +1198,7 @@ def main():
         write(os.path.join(ROOT, "best", cfg["slug"], "index.html"),
               render_best_page(cfg, ranked, len(pool), BEST_PAGES))
         urls.append(f"{BASE_URL}/best/{cfg['slug']}/")
-        best_built.append((cfg, len(ranked)))
+        best_built.append((cfg, len(ranked), ranked[0]))
     write(os.path.join(ROOT, "best", "index.html"), render_best_index(best_built))
     urls.append(f"{BASE_URL}/best/")
 

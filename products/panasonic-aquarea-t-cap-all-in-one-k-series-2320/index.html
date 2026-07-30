@@ -20,6 +20,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ── Best-of ranking pages ── */
+.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
+.best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
+.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
+.best-winner .bw-name{font-size:19px;font-weight:600;letter-spacing:-.01em}.best-winner .bw-name a{color:#fff}
+.best-winner .bw-val{margin-left:auto;text-align:right;flex:none}
+.best-winner .bw-num{font-size:26px;font-weight:700;color:#3ECCC0;line-height:1.1}
+.best-winner .bw-lab{font-size:12px;color:rgba(255,255,255,.55)}
+.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #e2e8e7}
+.best-scroll table.list{border:none;margin:0;min-width:640px}
+table.best-table th{position:sticky;top:0;background:#fafcfb;z-index:1}
+table.best-table tr:nth-child(even) td{background:#fafcfb}
+table.best-table tr:hover td{background:#eef7f5}
+td.rank{width:44px;text-align:center}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#42514f;background:#eef2f1}
+.rank-1 .rank-badge{background:#f6d873;color:#5c4a00}
+.rank-2 .rank-badge{background:#dfe4e6;color:#454d50}
+.rank-3 .rank-badge{background:#e8c39e;color:#5e3c14}
+.best-model{display:flex;align-items:center;gap:10px}
+.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #eef2f1;flex:none}
+.metric-cell{min-width:120px}
+.metric-val{font-weight:600}
+.metric-bar{height:5px;border-radius:3px;background:#e7f0ee;margin-top:5px;overflow:hidden}
+.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#3ECCC0,#0f8a80)}
+.hub-leader{font-size:12.5px;color:#0c6f66;margin-top:4px}
+
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
