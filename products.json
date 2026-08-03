@@ -11456,9 +11456,9 @@
     "description": "Baxi HP60 High Monobloc, 4kW is a 6.86 kW air source heat pump, using R290 refrigerant.",
     "notes": "4kW. R290 refrigerant. SCOP35=5.34.",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 3062.5,
+    "price_max": 3062.5,
+    "price_check_date": "2026-08-03",
     "mcs_listed": false
   },
   {
@@ -11506,9 +11506,9 @@
     "description": "Baxi HP60 High Monobloc, 6kW is a 7.7 kW air source heat pump, using R290 refrigerant.",
     "notes": "6kW. R290 refrigerant. SCOP35=5.22.",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 3283.75,
+    "price_max": 3283.75,
+    "price_check_date": "2026-08-03",
     "mcs_listed": false
   },
   {
@@ -11556,9 +11556,9 @@
     "description": "Baxi HP60 High Monobloc, 8kW is a 11.05 kW air source heat pump, using R290 refrigerant.",
     "notes": "8kW. R290 refrigerant. SCOP35=5.2.",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 3506.25,
+    "price_max": 3506.25,
+    "price_check_date": "2026-08-03",
     "mcs_listed": false
   },
   {
@@ -11606,9 +11606,9 @@
     "description": "Baxi HP60 High Monobloc, 11kW is a 14.72 kW air source heat pump, using R290 refrigerant.",
     "notes": "11kW. R290 refrigerant. SCOP35=4.77.",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 3861.25,
+    "price_max": 3861.25,
+    "price_check_date": "2026-08-03",
     "mcs_listed": false
   },
   {
@@ -11656,9 +11656,9 @@
     "description": "Baxi HP60 High Monobloc, 11kW (400V) is a 14.72 kW air source heat pump, using R290 refrigerant.",
     "notes": "11kW 3ph. R290 refrigerant. SCOP35=4.77.",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 4304.38,
+    "price_max": 4304.38,
+    "price_check_date": "2026-08-03",
     "mcs_listed": false
   },
   {
@@ -22600,9 +22600,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Shoebox%20NX5%20Single%20Compressor%20Single%20Phase%20-%20S5-P0K",
     "mcs_cert": "BBA 0055/46",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5295.0,
+    "price_max": 5295.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 602,
@@ -22652,9 +22652,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Shoebox%20NX5%20Single%20Compressor%20Single%20Phase%20-%20S5-P0K",
     "mcs_cert": "BBA 0055/45",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 6745.0,
+    "price_max": 6745.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 603,
@@ -22704,9 +22704,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Type%203kW%20Shoebox%20Single%20Compressor%20Single%20Phase%20%E2%80%93%20S3-P0K",
     "mcs_cert": "BBA 0055/31",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 4625.0,
+    "price_max": 4625.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 604,
@@ -22756,9 +22756,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Type%206kW%20Shoebox%20Twin%20Compressor%20Single%20Phase%20%E2%80%93%20S6-P0K",
     "mcs_cert": "BBA 0055/35",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 6200.0,
+    "price_max": 6200.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 605,
@@ -22808,9 +22808,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=K070-S1H%20%E2%80%93%20Ground%20source%20heat%20pump%20%287%20kW%20Evo%29",
     "mcs_cert": "BBA 0055/41",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 7660.0,
+    "price_max": 7660.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 606,
@@ -22860,9 +22860,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=K090-S1H%20%E2%80%93%20Ground%20source%20heat%20pump%20%289kW%20Evo%29",
     "mcs_cert": "BBA 0055/42",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 8320.0,
+    "price_max": 8320.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 607,
@@ -22912,9 +22912,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=K130-S1H%20%E2%80%93%20Ground%20source%20heat%20pump%20%2813kW%20Evo%29",
     "mcs_cert": "BBA 0055/43",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 9065.0,
+    "price_max": 9065.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 608,
@@ -22964,9 +22964,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=K150-S3H%20%E2%80%93%20Ground%20source%20heat%20pump%20%2815kW%20Evo%29",
     "mcs_cert": "BBA 0055/39",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 10685.0,
+    "price_max": 10685.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 609,
@@ -26835,9 +26835,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-6%20%281x230V%29",
     "mcs_cert": "012-C700141",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 4058.14,
+    "price_max": 4058.14,
+    "price_check_date": "2026-08-03",
     "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=63"
   },
   {
@@ -26888,9 +26888,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=F2050-10%20%281x230V%29",
     "mcs_cert": "012-C700142",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 5279.07,
+    "price_max": 5279.07,
+    "price_check_date": "2026-08-03",
     "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=60"
   },
   {
@@ -27045,9 +27045,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-8%20%281x230V%29",
     "mcs_cert": "012-C700114",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3329.17,
+    "price_max": 3329.17,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 698,
@@ -27097,9 +27097,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=S2125-12%20%281x230V%29",
     "mcs_cert": "012-C700115",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 4412.5,
+    "price_max": 4412.5,
+    "price_check_date": "2026-08-03",
     "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=58"
   },
   {
@@ -28190,9 +28190,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=BMHC-V12WD2RN7",
     "mcs_cert": "CN-MCS-250003/06",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3453.0,
+    "price_max": 3453.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 720,
@@ -28242,9 +28242,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=MHC-V14WD2RN7-%2A%2A%2A",
     "mcs_cert": "23.09.025 MHC-V14WD2RN7-***",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3677.0,
+    "price_max": 3677.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 721,
@@ -28294,9 +28294,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=BMHC-V16WD2RN7",
     "mcs_cert": "CN-MCS-250003/07",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 3896.36,
+    "price_max": 3896.36,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 736,
@@ -30826,9 +30826,9 @@
     "verified": true,
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AE160AXEDEH/EU%20/%20AE160ANYDEH/EU",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 2573.0,
+    "price_max": 2573.0,
+    "price_check_date": "2026-08-03",
     "mcs_cert": "MCS HP0227/17"
   },
   {
@@ -65556,9 +65556,9 @@
     "verified": true,
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HM123HF%20UB60%20/%20HN16XAHC%20NK1",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 3889.2,
+    "price_max": 3889.2,
+    "price_check_date": "2026-08-03",
     "mcs_cert": "011-1W0689_28"
   },
   {
@@ -93496,9 +93496,9 @@
     "mcs_listed": true,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 9258.0,
+    "price_max": 9258.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 2120,
@@ -93548,9 +93548,9 @@
     "mcs_listed": true,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 10552.0,
+    "price_max": 10552.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 2121,
@@ -93600,9 +93600,9 @@
     "mcs_listed": true,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 11360.0,
+    "price_max": 11360.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 2122,
@@ -93652,9 +93652,9 @@
     "mcs_listed": true,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 15420.0,
+    "price_max": 15420.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 2123,
@@ -93704,9 +93704,9 @@
     "mcs_listed": true,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 17046.0,
+    "price_max": 17046.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 2124,
@@ -93756,9 +93756,9 @@
     "mcs_listed": true,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 17864.0,
+    "price_max": 17864.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 2125,
@@ -93808,9 +93808,9 @@
     "mcs_listed": true,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 18664.0,
+    "price_max": 18664.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "id": 2126,
@@ -96201,9 +96201,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETBH16E6V%20%2B%20EPRA14DV3",
     "mcs_cert": "EPRA14DV3 / ETBH16E6V",
     "id": 2171,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5110.33,
+    "price_max": 5110.33,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96253,9 +96253,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETBH16E6V%20%2B%20EPRA16DV3",
     "mcs_cert": "EPRA16DV3 / ETBH16E6V",
     "id": 2172,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5459.44,
+    "price_max": 5459.44,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96305,9 +96305,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETBH16E6V%20%2B%20EPRA18DV3",
     "mcs_cert": "EPRA18DV3 / ETBH16E6V",
     "id": 2173,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5905.75,
+    "price_max": 5905.75,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96357,9 +96357,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETBX16E6V%20%2B%20EPRA14DV3",
     "mcs_cert": "EPRA14DV3 / ETBX16E6V",
     "id": 2174,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5380.93,
+    "price_max": 5380.93,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96409,9 +96409,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETBX16E6V%20%2B%20EPRA16DV3",
     "mcs_cert": "EPRA16DV3 / ETBX16E6V",
     "id": 2175,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5730.04,
+    "price_max": 5730.04,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96461,9 +96461,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETBX16E6V%20%2B%20EPRA18DV3",
     "mcs_cert": "EPRA18DV3 / ETBX16E6V",
     "id": 2176,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 6176.35,
+    "price_max": 6176.35,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96513,9 +96513,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETVH16SU18E6V%20%2B%20EPRA14DV3",
     "mcs_cert": "EPRA14DV3 / ETVH16SU18E6V",
     "id": 2177,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 6227.28,
+    "price_max": 6227.28,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96565,9 +96565,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETVH16SU18E6V%20%2B%20EPRA16DV3",
     "mcs_cert": "EPRA16DV3 / ETVH16SU18E6V",
     "id": 2178,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 6576.39,
+    "price_max": 6576.39,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96617,9 +96617,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETVH16SU18E6V%20%2B%20EPRA18DV3",
     "mcs_cert": "EPRA18DV3 / ETVH16SU18E6V",
     "id": 2179,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 7022.7,
+    "price_max": 7022.7,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96775,9 +96775,9 @@
     "mcs_url": null,
     "mcs_cert": null,
     "id": 2182,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 4448.13,
+    "price_max": 4995.0,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96879,9 +96879,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=EBLA09DV3U",
     "mcs_cert": "011-1W0423_09",
     "id": 2184,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 4034.4,
+    "price_max": 4761.6,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96931,9 +96931,9 @@
     "mcs_url": null,
     "mcs_cert": null,
     "id": 2185,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5165.6,
+    "price_max": 5165.6,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -96983,9 +96983,9 @@
     "mcs_url": null,
     "mcs_cert": null,
     "id": 2186,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 5546.4,
+    "price_max": 5546.4,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -97035,9 +97035,9 @@
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=EBLA16DV3",
     "mcs_cert": "EBLA16DAV37",
     "id": 2187,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null
+    "price_min": 6002.4,
+    "price_max": 6002.4,
+    "price_check_date": "2026-08-03"
   },
   {
     "manufacturer": "Daikin",
@@ -98704,7 +98704,7 @@
     "id": 2219,
     "price_min": 13335,
     "price_max": 13335,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -98756,7 +98756,7 @@
     "id": 2220,
     "price_min": 13658,
     "price_max": 13658,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -98808,7 +98808,7 @@
     "id": 2221,
     "price_min": 14613,
     "price_max": 14613,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -98860,7 +98860,7 @@
     "id": 2222,
     "price_min": 16274,
     "price_max": 16274,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -98912,7 +98912,7 @@
     "id": 2223,
     "price_min": 18335,
     "price_max": 18335,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -98964,7 +98964,7 @@
     "id": 2224,
     "price_min": 24794,
     "price_max": 24794,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -99016,7 +99016,7 @@
     "id": 2225,
     "price_min": 27575,
     "price_max": 27575,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -99068,7 +99068,7 @@
     "id": 2226,
     "price_min": 31816,
     "price_max": 31816,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -101460,7 +101460,7 @@
     "id": 2272,
     "price_min": 4137,
     "price_max": 4137,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -101512,7 +101512,7 @@
     "id": 2273,
     "price_min": 5546,
     "price_max": 5546,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -101564,7 +101564,7 @@
     "id": 2274,
     "price_min": 6421,
     "price_max": 6421,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -101616,7 +101616,7 @@
     "id": 2275,
     "price_min": 8747,
     "price_max": 8747,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -101668,7 +101668,7 @@
     "id": 2276,
     "price_min": 10370,
     "price_max": 10370,
-    "price_check_date": "01/10/2025"
+    "price_check_date": "2025-10-01"
   },
   {
     "manufacturer": "Daikin",
@@ -102649,9 +102649,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-ADC0509L3E5UK%20/%20WH-WDG05LE5",
     "mcs_cert": "011-1W0631_02",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 2583.33,
+    "price_max": 2583.33,
+    "price_check_date": "2026-08-03",
     "product_url": "https://www.aircon.panasonic.eu/GB_en/happening/aquarea-l-generation/",
     "date_added": "2026-07-10",
     "id": 2295,
@@ -102702,9 +102702,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-ADC0509L3E5UK%20/%20WH-WDG07LE5",
     "mcs_cert": "011-1W0631_04",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 2750.0,
+    "price_max": 2750.0,
+    "price_check_date": "2026-08-03",
     "product_url": "https://www.aircon.panasonic.eu/GB_en/happening/aquarea-l-generation/",
     "date_added": "2026-07-10",
     "id": 2296
@@ -102754,9 +102754,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-ADC0509L3E5UK%20/%20WH-WDG09LE5",
     "mcs_cert": "011-1W0632_02",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 2916.67,
+    "price_max": 2916.67,
+    "price_check_date": "2026-08-03",
     "product_url": "https://www.aircon.panasonic.eu/GB_en/happening/aquarea-l-generation/",
     "date_added": "2026-07-10",
     "id": 2297,
@@ -103121,9 +103121,9 @@
     "mcs_listed": true,
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WH-MXC12J6E5",
     "mcs_cert": "MCS HP0086/111",
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 4091.25,
+    "price_max": 4180.26,
+    "price_check_date": "2026-08-03",
     "product_url": "https://www.aircon.panasonic.eu/GB_en/product/aquarea-t-cap-mono-bloc-j-generation-1-phase-3-phase-heating-and-cooling---mxc-r32/",
     "date_added": "2026-07-10",
     "id": 2304,
@@ -119919,9 +119919,9 @@
     "mcs_listed": false,
     "mcs_url": null,
     "mcs_cert": null,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 4817.0,
+    "price_max": 4817.0,
+    "price_check_date": "2026-08-03",
     "heatpumpmonitor_url": null
   },
   {
@@ -121807,9 +121807,9 @@
     "description": "Firebird Enviroair ASH004FHP is a 4.2kW air source heat pump, using R32 refrigerant.",
     "notes": "SCOP@55C: 3.31 | Refrigerant charge (ambiguous, merged-cell in source): Page 6 shows two values (1.40kg / 1.75kg) merged across columns; exact per-model split is ambiguous in the source table - column position suggests 1.40kg for ASH004/006/010 and 1.75kg for ASH012-014/016, but this conflicts with the page 3 dimension grouping ({004,006} vs {010,012-014,016}). Verify against datasheet/nameplate. | Water connection (ambiguous): G1'' BSP / G5/4'' BSP - same merged-cell ambiguity as refrigerant charge (see note). | Cascade: Up to 6 units in a group with one controller | Fuse: 16A",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 2316.66,
+    "price_max": 2316.66,
+    "price_check_date": "2026-08-03",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0249/05",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ASH004FHP"
@@ -121859,9 +121859,9 @@
     "description": "Firebird Enviroair ASH006FHP is a 6.35kW air source heat pump, using R32 refrigerant.",
     "notes": "SCOP@55C: 3.52 | Refrigerant charge (ambiguous, merged-cell in source): Page 6 shows two values (1.40kg / 1.75kg) merged across columns; exact per-model split is ambiguous in the source table - column position suggests 1.40kg for ASH004/006/010 and 1.75kg for ASH012-014/016, but this conflicts with the page 3 dimension grouping ({004,006} vs {010,012-014,016}). Verify against datasheet/nameplate. | Water connection (ambiguous): G1'' BSP / G5/4'' BSP - same merged-cell ambiguity as refrigerant charge (see note). | Cascade: Up to 6 units in a group with one controller | Fuse: 16A",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 2391.66,
+    "price_max": 2391.66,
+    "price_check_date": "2026-08-03",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0249/06",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ASH006FHP"
@@ -121911,9 +121911,9 @@
     "description": "Firebird Enviroair ASH010FHP is a 10.0kW air source heat pump, using R32 refrigerant.",
     "notes": "SCOP@55C: 3.47 | Refrigerant charge (ambiguous, merged-cell in source): Page 6 shows two values (1.40kg / 1.75kg) merged across columns; exact per-model split is ambiguous in the source table - column position suggests 1.40kg for ASH004/006/010 and 1.75kg for ASH012-014/016, but this conflicts with the page 3 dimension grouping ({004,006} vs {010,012-014,016}). Verify against datasheet/nameplate. | Water connection (ambiguous): G1'' BSP / G5/4'' BSP - same merged-cell ambiguity as refrigerant charge (see note). | Cascade: Up to 6 units in a group with one controller | Fuse: 20A",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 2642.34,
+    "price_max": 2642.34,
+    "price_check_date": "2026-08-03",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0249/07",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ASH010FHP"
@@ -121963,9 +121963,9 @@
     "description": "Firebird Enviroair ASH012/014FHP is a 14.5kW air source heat pump, using R32 refrigerant.",
     "notes": "SCOP@55C: 3.47 | Refrigerant charge (ambiguous, merged-cell in source): Page 6 shows two values (1.40kg / 1.75kg) merged across columns; exact per-model split is ambiguous in the source table - column position suggests 1.40kg for ASH004/006/010 and 1.75kg for ASH012-014/016, but this conflicts with the page 3 dimension grouping ({004,006} vs {010,012-014,016}). Verify against datasheet/nameplate. | Water connection (ambiguous): G1'' BSP / G5/4'' BSP - same merged-cell ambiguity as refrigerant charge (see note). | Cascade: Up to 6 units in a group with one controller | Fuse: 32A | Model code discrepancy between brochure pages (ASH012 vs ASH014) - confirm correct SKU",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 3344.74,
+    "price_max": 3344.74,
+    "price_check_date": "2026-08-03",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0249/08",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ASH014FHP"
@@ -122015,9 +122015,9 @@
     "description": "Firebird Enviroair ASH016FHP is a 15.9kW air source heat pump, using R32 refrigerant.",
     "notes": "SCOP@55C: 3.41 | Refrigerant charge (ambiguous, merged-cell in source): Page 6 shows two values (1.40kg / 1.75kg) merged across columns; exact per-model split is ambiguous in the source table - column position suggests 1.40kg for ASH004/006/010 and 1.75kg for ASH012-014/016, but this conflicts with the page 3 dimension grouping ({004,006} vs {010,012-014,016}). Verify against datasheet/nameplate. | Water connection (ambiguous): G1'' BSP / G5/4'' BSP - same merged-cell ambiguity as refrigerant charge (see note). | Cascade: Up to 6 units in a group with one controller | Fuse: 32A",
     "verified": true,
-    "price_min": null,
-    "price_max": null,
-    "price_check_date": null,
+    "price_min": 3434.79,
+    "price_max": 3434.79,
+    "price_check_date": "2026-08-03",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0249/09",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ASH016FHP"
@@ -122929,7 +122929,7 @@
     "verified": true,
     "price_min": 3607.5,
     "price_max": 3607.5,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0345/01",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HR290-006-1PH"
@@ -122981,7 +122981,7 @@
     "verified": true,
     "price_min": 3765,
     "price_max": 3765,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0345/02",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HR290-008-1PH"
@@ -123085,7 +123085,7 @@
     "verified": true,
     "price_min": 5325,
     "price_max": 5325,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0345/03",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HR290-012-1PH"
@@ -123189,7 +123189,7 @@
     "verified": true,
     "price_min": 5697.5,
     "price_max": 5697.5,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "MCS HP0345/04",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=HR290-018-1PH"
@@ -124801,7 +124801,7 @@
     "verified": true,
     "price_min": 3022.78,
     "price_max": 3400.0,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "BSI KM 612798/9",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AS01-R290"
@@ -124853,7 +124853,7 @@
     "verified": true,
     "price_min": 4227.73,
     "price_max": 4227.73,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "BSI KM 612798/10",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AS02-R290"
@@ -124905,7 +124905,7 @@
     "verified": true,
     "price_min": 5650,
     "price_max": null,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "BSI KM 612798/11",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AS03-R290"
@@ -124957,7 +124957,7 @@
     "verified": true,
     "price_min": 10405.65,
     "price_max": 10624.69,
-    "price_check_date": "17/07/2026",
+    "price_check_date": "2026-07-17",
     "mcs_listed": true,
     "mcs_cert": "BSI KM 612798/12",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=GS03"
@@ -125012,7 +125012,7 @@
     "heatpumpmonitor_url": null,
     "price_min": 2540.8,
     "price_max": null,
-    "price_check_date": "07/07/2026",
+    "price_check_date": "2026-07-07",
     "id": 2723
   },
   {
@@ -125065,7 +125065,7 @@
     "heatpumpmonitor_url": null,
     "price_min": 2540.8,
     "price_max": null,
-    "price_check_date": "07/07/2026",
+    "price_check_date": "2026-07-07",
     "id": 2724
   },
   {
@@ -125224,7 +125224,7 @@
     "heatpumpmonitor_url": null,
     "price_min": 1759.2,
     "price_max": null,
-    "price_check_date": "07/07/2026",
+    "price_check_date": "2026-07-07",
     "id": 2727,
     "aliases": [
       "HP50-4-1-PHMB"
@@ -125280,7 +125280,7 @@
     "heatpumpmonitor_url": null,
     "price_min": 1855.2,
     "price_max": null,
-    "price_check_date": "08/07/2026",
+    "price_check_date": "2026-07-08",
     "id": 2728,
     "aliases": [
       "HP50-5-1-PHMB"
@@ -125336,7 +125336,7 @@
     "heatpumpmonitor_url": null,
     "price_min": 2079.2,
     "price_max": null,
-    "price_check_date": "10/07/2026",
+    "price_check_date": "2026-07-10",
     "id": 2729
   },
   {
@@ -125389,7 +125389,7 @@
     "heatpumpmonitor_url": null,
     "price_min": 2159.2,
     "price_max": null,
-    "price_check_date": "07/07/2026",
+    "price_check_date": "2026-07-07",
     "id": 2730
   },
   {

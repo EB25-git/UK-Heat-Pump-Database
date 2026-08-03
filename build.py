@@ -641,6 +641,44 @@ def render_product(p, by_mfr, by_type):
         product_ld["sku"] = p["product_code"]
     if url:
         product_ld["url"] = url
+    # Rich attributes: description, brand, image, category, and the key
+    # specifications as PropertyValue entries (still no offers/review — see above).
+    product_ld["brand"] = {"@type": "Brand", "name": mfr}
+    if p.get("description"):
+        product_ld["description"] = p["description"]
+    product_ld["image"] = get_logo_url(mfr)
+    if p.get("hp_type"):
+        product_ld["category"] = TYPE_LABEL.get(p["hp_type"], p["hp_type"])
+    props = []
+    def prop(name, value, unit=None):
+        if value is None or value == "":
+            return
+        pv = {"@type": "PropertyValue", "name": name, "value": value}
+        if unit:
+            pv["unitText"] = unit
+        props.append(pv)
+    prop("Heat pump type", TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type")))
+    prop("Refrigerant", p.get("refrigerant"))
+    cap = cap_str(p)
+    prop("Heating capacity", cap)
+    if p.get("cop") is not None:
+        prop("COP" + (f" ({p['cop_cond']})" if p.get("cop_cond") else ""), p["cop"])
+    if p.get("scop") is not None:
+        prop("SCOP" + (f" ({p['scop_cond']})" if p.get("scop_cond") else ""), p["scop"])
+    if p.get("seer") is not None:
+        prop("SEER", p["seer"])
+    if p.get("flow_temp_max") is not None:
+        prop("Max flow temperature", p["flow_temp_max"], "\u00b0C")
+    if p.get("noise") is not None:
+        prop("Sound power level", p["noise"], "dB(A)")
+    if p.get("refrigerant"):
+        pass
+    if p.get("mode"):
+        prop("Mode", p["mode"])
+    if p.get("electrical"):
+        prop("Electrical supply", p["electrical"])
+    if props:
+        product_ld["additionalProperty"] = props
 
     logo = get_logo_url(mfr)
     body = (crumbs(crumb_items) +
