@@ -14,11 +14,18 @@ Run:  python3 build.py
 Requires only the Python standard library.
 """
 
-import json, os, re, html, shutil, datetime
+import json, os, re, html, shutil, datetime, hashlib
 
 # ───────────────────────── Config ─────────────────────────
 BASE_URL  = "https://www.heatpumpdatabase.com"   # no trailing slash
 SITE_NAME = "Heat Pump Database"
+
+# Default social-share image (1200x630) used for og:image / twitter:image on any
+# page that doesn't have a more specific picture. OG_IMAGE_BY_MFR is the future
+# extension point for per-product-range photos: add {"Manufacturer": "images/...jpg"}
+# and rebuild - no other code change needed. See get_og_image() / get_logo_url().
+DEFAULT_OG_IMAGE = f"{BASE_URL}/images/og-default.jpg"
+OG_IMAGE_BY_MFR = {}
 GA_MEASUREMENT_ID = "G-3XMG9G84HQ"   # same GA4 property as the interactive app (index.html),
                                      # so static-page and app traffic land in one place
 ROOT      = os.path.dirname(os.path.abspath(__file__))
@@ -289,8 +296,15 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
         '<script type="application/ld+json">%s</script>' % json.dumps(j, ensure_ascii=False)
         for j in jsonld_list
     )
-    og_image_tag = f'<meta property="og:image" content="{og_image}">\n' if og_image else ""
-    twitter_card = "summary_large_image" if og_image else "summary"
+    if og_image:
+        og_image_tag = (f'<meta property="og:image" content="{og_image}">\n'
+                         f'<meta property="og:image:width" content="1200">\n'
+                         f'<meta property="og:image:height" content="630">\n'
+                         f'<meta name="twitter:image" content="{og_image}">\n')
+        twitter_card = "summary_large_image"
+    else:
+        og_image_tag = ""
+        twitter_card = "summary"
     return f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -419,6 +433,17 @@ def _badge_svg(name):
             f'font-weight="700" fill="#fff" text-anchor="middle">{label}</text></svg>')
 
 _LOGO_CACHE = {}
+
+def get_og_image(mfr=None):
+    """Return the social-share (og:image) URL for a page. Looks up a per-
+    manufacturer/product-range override in OG_IMAGE_BY_MFR first, falling back
+    to the site-wide default photo. Adding a real per-range image later requires
+    no code change - just add the file under images/ and register it in
+    OG_IMAGE_BY_MFR, mirroring get_logo_url() below.
+    """
+    if mfr and mfr in OG_IMAGE_BY_MFR:
+        return f"{BASE_URL}/{OG_IMAGE_BY_MFR[mfr]}"
+    return DEFAULT_OG_IMAGE
 
 def get_logo_url(mfr):
     """Return the site-relative URL for a manufacturer's logo, writing the file
@@ -699,7 +724,8 @@ def render_product(p, by_mfr, by_type):
 
     title = f"{display_name} \u2014 Specifications | {SITE_NAME}"
     return page(title, desc, url, body,
-                [breadcrumb_jsonld(crumb_items, url), product_ld], og_type="product", og_image=logo)
+                [breadcrumb_jsonld(crumb_items, url), product_ld], og_type="product",
+                og_image=get_og_image(mfr))
 
 def list_table(products):
     head = ("<tr><th>Model</th><th>Product code</th><th>Type</th><th>Capacity</th><th>COP</th>"
@@ -753,7 +779,7 @@ def render_manufacturer(mfr, products):
                    for i, p in enumerate(products)]}
     title = f"{mfr} Heat Pumps \u2014 Models & Specifications | {SITE_NAME}"
     return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)],
-                active="manufacturers", og_image=logo)
+                active="manufacturers", og_image=get_og_image(mfr))
 
 def render_manufacturers_index(by_mfr):
     url = f"{BASE_URL}/manufacturers/"
@@ -771,7 +797,7 @@ def render_manufacturers_index(by_mfr):
     return page(f"Heat Pump Manufacturers (A\u2013Z) | {SITE_NAME}",
                 f"Browse heat pumps by manufacturer. {len(by_mfr)} brands with full specifications, "
                 f"COP and SCOP data in the {SITE_NAME}.", url, body,
-                [breadcrumb_jsonld(crumb_items, url)], active="manufacturers")
+                [breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image())
 
 def render_type(slug, heading, desc, products):
     url = f"{BASE_URL}/types/{slug}/"
@@ -789,7 +815,8 @@ def render_type(slug, heading, desc, products):
             f'<p class="sub">{len(products)} products &middot; {len(by_m)} manufacturers</p>'
             f'{sections}'
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
-    return page(f"{heading} | {SITE_NAME}", desc, url, body, [breadcrumb_jsonld(crumb_items, url)])
+    return page(f"{heading} | {SITE_NAME}", desc, url, body, [breadcrumb_jsonld(crumb_items, url)],
+                og_image=get_og_image())
 
 
 # ───────────────────────── Best-of ranking pages ─────────────────────────
@@ -985,7 +1012,7 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
                     "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
                    for i, p in enumerate(ranked)]}
     return page(f"{cfg['title']} ({TODAY[:4]}) | {SITE_NAME}", desc, url, body,
-                [item_ld, breadcrumb_jsonld(crumb_items, url)], active="best")
+                [item_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
 def render_best_index(cfgs_with_counts):
     url = f"{BASE_URL}/best/"
@@ -1011,13 +1038,25 @@ def render_best_index(cfgs_with_counts):
     return page(f"Best Heat Pumps {TODAY[:4]} \u2014 Data-Driven Rankings | {SITE_NAME}",
                 f"The best heat pumps ranked by real specification data: SCOP, COP, noise and flow temperature. "
                 f"{len(cfgs_with_counts)} rankings updated automatically from the {SITE_NAME}.",
-                url, body, [breadcrumb_jsonld(crumb_items, url)], active="best")
+                url, body, [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
 # ───────────────────────── Build ─────────────────────────
 def write(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
+
+def _lastmod_hash(obj):
+    """Deterministic content fingerprint used to decide sitemap <lastmod> dates.
+    We hash the underlying data behind each page (not the rendered HTML, since
+    that can contain build-time-only text like "updated {TODAY}" on the best-of
+    pages) so a page's lastmod only advances when something a visitor would
+    actually see has changed - not on every rebuild. Google explicitly discounts
+    lastmod signals it can't trust, so a sitemap where every URL shares today's
+    date on every deploy is worse than no lastmod at all."""
+    return hashlib.sha256(
+        json.dumps(obj, sort_keys=True, ensure_ascii=False, default=str).encode("utf-8")
+    ).hexdigest()[:16]
 
 def extract_app_section(start_id, end_marker):
     """Pull a knowledge page's inner HTML out of the app (index.html) so the
@@ -1092,7 +1131,8 @@ def render_knowledge_page(cfg):
                   "publisher": {"@type": "Organization", "name": SITE_NAME},
                   "mainEntityOfPage": url}
     return page(cfg["title"], cfg["desc"], url, crumbs(crumb_items) + inner,
-                [article_ld, breadcrumb_jsonld(crumb_items, url)], og_type="article", active=cfg["active"])
+                [article_ld, breadcrumb_jsonld(crumb_items, url)], og_type="article", active=cfg["active"],
+                og_image=get_og_image())
 
 def main():
     with open(DATA, encoding="utf-8") as f:
@@ -1120,13 +1160,44 @@ def main():
         by_mfr.setdefault(p.get("manufacturer", ""), []).append(p)
         by_type.setdefault(p.get("hp_type"), []).append(p)
 
+    # --- Per-page content fingerprints, for sitemap.xml <lastmod> ---
+    # See _lastmod_hash() above. product_hash_by_id lets every page that lists
+    # or aggregates products (manufacturer/category/best-of pages) derive its
+    # own fingerprint from exactly the product data it displays, so it only
+    # gets a fresh lastmod when a product it actually shows has changed.
+    product_hash_by_id = {
+        p.get("id"): _lastmod_hash({k: v for k, v in p.items() if k != "_slug"})
+        for p in products
+    }
+    lastmod_path = os.path.join(ROOT, "lastmod.json")
+    try:
+        with open(lastmod_path, encoding="utf-8") as f:
+            prev_lastmod = json.load(f)   # read-only snapshot from the last build
+    except FileNotFoundError:
+        prev_lastmod = {}
+    lastmod_cache = {}   # freshly rebuilt this run, written out at the end
+
+    def _lastmod_for(url, page_hash):
+        """Return this URL's lastmod date: today's date if its content hash is
+        new or changed since the *last build* (never against updates made
+        earlier in this same run), otherwise the date already on record - so
+        the sitemap only claims a page changed when it really did."""
+        prev = prev_lastmod.get(url)
+        date = TODAY if (not prev or prev.get("hash") != page_hash) else prev["date"]
+        lastmod_cache[url] = {"hash": page_hash, "date": date}
+        return date
+
     urls = [f"{BASE_URL}/"]
+    with open(os.path.join(ROOT, "index.html"), "rb") as f:
+        _lastmod_for(f"{BASE_URL}/", hashlib.sha256(f.read()).hexdigest()[:16])
 
     # product pages
     for p in products:
         write(os.path.join(ROOT, "products", p["_slug"], "index.html"),
               render_product(p, by_mfr, by_type))
-        urls.append(f"{BASE_URL}/products/{p['_slug']}/")
+        url = f"{BASE_URL}/products/{p['_slug']}/"
+        urls.append(url)
+        _lastmod_for(url, product_hash_by_id[p.get("id")])
 
     # --- Slug history & redirect stubs ---
     # A product's URL slug is derived from its manufacturer+model text, so any time
@@ -1177,10 +1248,14 @@ def main():
     for m, ps in by_mfr.items():
         write(os.path.join(ROOT, "manufacturers", slugify(m), "index.html"),
               render_manufacturer(m, ps))
-        urls.append(f"{BASE_URL}/manufacturers/{slugify(m)}/")
+        url = f"{BASE_URL}/manufacturers/{slugify(m)}/"
+        urls.append(url)
+        _lastmod_for(url, _lastmod_hash(sorted(product_hash_by_id[p.get("id")] for p in ps)))
     write(os.path.join(ROOT, "manufacturers", "index.html"),
           render_manufacturers_index(by_mfr))
-    urls.append(f"{BASE_URL}/manufacturers/")
+    url = f"{BASE_URL}/manufacturers/"
+    urls.append(url)
+    _lastmod_for(url, _lastmod_hash(sorted(by_mfr.keys())))
 
     # category pages: source type
     type_pages = []
@@ -1211,10 +1286,16 @@ def main():
                            f"{app} heat pumps: {len(ps)} models with specifications, COP and SCOP "
                            f"data in the {SITE_NAME}.", ps))
 
+    seen_type_slugs = set()
     for slug, heading, desc, ps in type_pages:
+        if slug in seen_type_slugs:
+            continue   # same slug already produced by an earlier grouping pass
+        seen_type_slugs.add(slug)
         write(os.path.join(ROOT, "types", slug, "index.html"),
               render_type(slug, heading, desc, ps))
-        urls.append(f"{BASE_URL}/types/{slug}/")
+        url = f"{BASE_URL}/types/{slug}/"
+        urls.append(url)
+        _lastmod_for(url, _lastmod_hash(sorted(product_hash_by_id[p.get("id")] for p in ps)))
 
     # knowledge guides (static SEO pages generated from the app content)
     kg_count = 0
@@ -1222,7 +1303,9 @@ def main():
         html_ = render_knowledge_page(cfg)
         if html_:
             write(os.path.join(ROOT, "knowledge", cfg["dir"], "index.html"), html_)
-            urls.append(f'{BASE_URL}/knowledge/{cfg["dir"]}/')
+            url = f'{BASE_URL}/knowledge/{cfg["dir"]}/'
+            urls.append(url)
+            _lastmod_for(url, hashlib.sha256(html_.encode("utf-8")).hexdigest()[:16])
             kg_count += 1
 
     # best-of ranking pages
@@ -1235,16 +1318,26 @@ def main():
             continue
         write(os.path.join(ROOT, "best", cfg["slug"], "index.html"),
               render_best_page(cfg, ranked, len(pool), BEST_PAGES))
-        urls.append(f"{BASE_URL}/best/{cfg['slug']}/")
+        url = f"{BASE_URL}/best/{cfg['slug']}/"
+        urls.append(url)
+        # order matters for a ranking page - a reshuffle is a real content change
+        _lastmod_for(url, _lastmod_hash([(p.get("id"), product_hash_by_id[p.get("id")]) for p in ranked]))
         best_built.append((cfg, len(ranked), ranked[0]))
     write(os.path.join(ROOT, "best", "index.html"), render_best_index(best_built))
-    urls.append(f"{BASE_URL}/best/")
+    url = f"{BASE_URL}/best/"
+    urls.append(url)
+    _lastmod_for(url, _lastmod_hash([(cfg["slug"], winner.get("id")) for cfg, _, winner in best_built]))
 
-    # sitemap.xml
+    # sitemap.xml - lastmod comes from lastmod_cache (see _lastmod_for above),
+    # which only advances a URL's date when its content actually changed.
+    with open(lastmod_path, "w", encoding="utf-8") as f:
+        json.dump(lastmod_cache, f, indent=2, ensure_ascii=False, sort_keys=True)
+
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for u in urls:
-        sm.append(f"  <url><loc>{u}</loc><lastmod>{TODAY}</lastmod></url>")
+        date = lastmod_cache.get(u, {}).get("date", TODAY)
+        sm.append(f"  <url><loc>{u}</loc><lastmod>{date}</lastmod></url>")
     sm.append("</urlset>")
     write(os.path.join(ROOT, "sitemap.xml"), "\n".join(sm))
 

@@ -15,10 +15,14 @@
 <meta property="og:description" content="Compare 3,000+ air source, water source and ground source heat pumps from 77 brands. Full specifications, COP test conditions, and data-driven rankings.">
 <meta property="og:url" content="https://www.heatpumpdatabase.com/">
 <meta property="og:site_name" content="Heat Pump Database">
+<meta property="og:image" content="https://www.heatpumpdatabase.com/images/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <!-- Twitter -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Heat Pump Database">
 <meta name="twitter:description" content="Compare 3,000+ ASHP, WSHP & GSHP heat pumps with full UK specifications, COP data and rankings.">
+<meta name="twitter:image" content="https://www.heatpumpdatabase.com/images/og-default.jpg">
 <!-- Favicon (hosted files — crawlable by Google for search-results icon) -->
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -1909,9 +1913,10 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<script src="data.js?v=131"></script>
-<script src="logos.js?v=131"></script>
+<script src="data.js?v=131" defer></script>
+<script src="logos.js?v=131" defer></script>
 <script>
+document.addEventListener('DOMContentLoaded', function(){
 // ═══════════════ SEED DATA ═══════════════
 // cop_cond: the exact test conditions the quoted COP applies to
 // hp_type: ASHP | WSHP | GSHP
@@ -3841,6 +3846,90 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape')closeBrowseGuide();
   else if(e.key==='ArrowRight')guideNav(1);
   else if(e.key==='ArrowLeft'&&guideStep>0)guideNav(-1);
+});
+
+// Expose functions referenced by inline HTML event-handler attributes
+// (onclick=, onchange=, oninput=, onkeydown=, ondrop=) to the global scope,
+// since they now live inside a DOMContentLoaded closure rather than at
+// top level (needed so data.js/logos.js can be loaded with `defer`).
+window.acceptCookies = acceptCookies;
+window.addCompare = addCompare;
+window.addContactSection = addContactSection;
+window.addFaqItem = addFaqItem;
+window.addGuideSection = addGuideSection;
+window.addLinkItem = addLinkItem;
+window.addSource = addSource;
+window.adminNav = adminNav;
+window.anRangeToggle = anRangeToggle;
+window.anSetFilter = anSetFilter;
+window.applyFilters = applyFilters;
+window.changePw = changePw;
+window.clearAllFilters = clearAllFilters;
+window.closeBrowseGuide = closeBrowseGuide;
+window.closeBurger = closeBurger;
+window.closeModal = closeModal;
+window.declineCookies = declineCookies;
+window.deleteContactSection = deleteContactSection;
+window.deleteEditingEntry = deleteEditingEntry;
+window.deleteEntry = deleteEntry;
+window.deleteFaqItem = deleteFaqItem;
+window.deleteGuideSection = deleteGuideSection;
+window.deleteLinkItem = deleteLinkItem;
+window.deleteSource = deleteSource;
+window.doLogin = doLogin;
+window.doLogout = doLogout;
+window.downloadTemplate = downloadTemplate;
+window.editContactSection = editContactSection;
+window.editEntry = editEntry;
+window.editFaqItem = editFaqItem;
+window.editGuideSection = editGuideSection;
+window.editLinkItem = editLinkItem;
+window.exportAll = exportAll;
+window.exportClicks = exportClicks;
+window.exportCompareCSV = exportCompareCSV;
+window.exportComparePDF = exportComparePDF;
+window.exportWorklist = exportWorklist;
+window.filterAdminRows = filterAdminRows;
+window.guideNav = guideNav;
+window.handleCSV = handleCSV;
+window.handleDrop = handleDrop;
+window.handleMfrClick = handleMfrClick;
+window.jsAttrEsc = jsAttrEsc;
+window.moveContactSection = moveContactSection;
+window.moveFaqItem = moveFaqItem;
+window.moveGuideSection = moveGuideSection;
+window.moveLinkItem = moveLinkItem;
+window.onboardCancel = onboardCancel;
+window.onboardPick = onboardPick;
+window.onboardSkip = onboardSkip;
+window.openBrowseGuide = openBrowseGuide;
+window.openFaqItem = openFaqItem;
+window.openModal = openModal;
+window.removeCompare = removeCompare;
+window.renderClickAnalytics = renderClickAnalytics;
+window.renderFooter = renderFooter;
+window.resetContactContent = resetContactContent;
+window.resetDB = resetDB;
+window.resetFaqContent = resetFaqContent;
+window.resetGuideContent = resetGuideContent;
+window.resetLinksContent = resetLinksContent;
+window.saveCMS = saveCMS;
+window.saveClicks = saveClicks;
+window.saveContactSection = saveContactSection;
+window.saveFaqItem = saveFaqItem;
+window.saveGuideSection = saveGuideSection;
+window.saveLinkItem = saveLinkItem;
+window.setView = setView;
+window.showCmsAlert = showCmsAlert;
+window.showPage = showPage;
+window.sortBy = sortBy;
+window.submitForm = submitForm;
+window.toggleBurger = toggleBurger;
+window.toggleCompare = toggleCompare;
+window.toggleFilters = toggleFilters;
+window.toggleKnowledge = toggleKnowledge;
+window.trackClick = trackClick;
+window.updateHero = updateHero;
 });
 </script>
 </body>
