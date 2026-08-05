@@ -510,6 +510,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <a class="burger-item burger-subitem" href="/best/" onclick="closeBurger()">Best Of Rankings</a>
     </div>
     <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
+    <button class="burger-item" data-page="demand" onclick="showPage('demand');closeBurger()">Demand Estimates</button>
     <button class="burger-item burger-toggle" data-page="knowledge" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="k-group">
     <button class="burger-item burger-subitem" data-page="what-is-a-heat-pump" onclick="showPage('what-is-a-heat-pump');closeBurger()">What Is a Heat Pump?</button>
@@ -1459,6 +1460,121 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     </div>
   </div>
 </div>
+<!-- ═══ DEMAND ESTIMATES ═══ -->
+<div class="page" id="page-demand">
+  <div class="container" style="max-width:880px">
+    <div style="padding:8px 0 4px">
+      <h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 8px">Residential heat demand estimate</h1>
+      <p style="color:#5b6b6b;font-size:15.5px;line-height:1.65;margin:0 0 4px;max-width:680px">Get a ballpark design heat loss (for sizing) and annual heat demand (for running costs) for a home, then see which heat pumps in the database could cover it. Start with a quick estimate, or switch to the detailed version to refine it.</p>
+      <p class="dm-note" style="margin-top:10px">For residential properties only. This is an indicative planning tool, not a substitute for a full room-by-room heat loss survey — get one from an <a href="https://mcscertified.com/product-directory/" target="_blank" rel="noopener" style="color:var(--accent)">MCS-certified installer</a> before sizing or buying a system.</p>
+
+      <div class="dm-tabs">
+        <button class="dm-tab active" id="dm-tab-simple" onclick="demandSetMode('simple')">Simple estimate</button>
+        <button class="dm-tab" id="dm-tab-detailed" onclick="demandSetMode('detailed')">Detailed estimate</button>
+      </div>
+
+      <div id="dm-form-simple">
+        <div class="dm-grid">
+          <div class="dm-field">
+            <label for="dm-s-floorarea">Total floor area (m²)</label>
+            <input type="number" id="dm-s-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+          </div>
+          <div class="dm-field">
+            <label for="dm-s-ptype">Property type</label>
+            <select id="dm-s-ptype" onchange="demandRecalc()"></select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-s-ageband">Age of property</label>
+            <select id="dm-s-ageband" onchange="demandRecalc()"></select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-s-insulation">Insulation upgrades</label>
+            <select id="dm-s-insulation" onchange="demandRecalc()">
+              <option value="asbuilt">As built for its age</option>
+              <option value="upgraded">Some upgrades (loft + cavity wall insulated)</option>
+              <option value="high">Well insulated (external wall insulation / near current Building Regs)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="dm-form-detailed" style="display:none">
+        <div class="dm-grid">
+          <div class="dm-field">
+            <label for="dm-d-floorarea">Total floor area (m²)</label>
+            <input type="number" id="dm-d-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+          </div>
+          <div class="dm-field">
+            <label for="dm-d-ptype">Property type</label>
+            <select id="dm-d-ptype" onchange="demandRecalc()"></select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-d-storeys">Storeys</label>
+            <select id="dm-d-storeys" onchange="demandRecalc()">
+              <option value="1">1 (single storey)</option>
+              <option value="1.5">1.5 (dormer / chalet)</option>
+              <option value="2" selected>2</option>
+              <option value="3">3+</option>
+            </select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-d-ageband">Age of property</label>
+            <select id="dm-d-ageband" onchange="demandRecalc()"></select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-d-region">UK region</label>
+            <select id="dm-d-region" onchange="demandRecalc()"></select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-d-glazing">Glazing</label>
+            <select id="dm-d-glazing" onchange="demandRecalc()"></select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-d-ventilation">Ventilation</label>
+            <select id="dm-d-ventilation" onchange="demandRecalc()"></select>
+          </div>
+          <div class="dm-field">
+            <label for="dm-d-internaltemp">Target indoor temp (°C)</label>
+            <input type="number" id="dm-d-internaltemp" min="16" max="24" step="0.5" value="21" oninput="demandRecalc()">
+          </div>
+        </div>
+        <div class="dm-check-row">
+          <input type="checkbox" id="dm-d-wallupgrade" onchange="demandRecalc()"><label for="dm-d-wallupgrade">Walls insulated beyond original build (cavity fill / external wall insulation)</label>
+        </div>
+        <div class="dm-check-row">
+          <input type="checkbox" id="dm-d-roofupgrade" onchange="demandRecalc()"><label for="dm-d-roofupgrade">Loft/roof insulation topped up to modern standard (~270mm)</label>
+        </div>
+        <div class="dm-assumptions" id="dm-assumptions"></div>
+      </div>
+
+      <div class="dm-results">
+        <div class="dm-result-row">
+          <div class="dm-result-block">
+            <div class="dm-result-label">Design heat loss (peak)</div>
+            <div class="dm-result-value" id="dm-peak-value">—</div>
+            <div class="dm-result-sub" id="dm-peak-sub"></div>
+          </div>
+          <div class="dm-result-block">
+            <div class="dm-result-label">Estimated annual heat demand</div>
+            <div class="dm-result-value" id="dm-annual-value">—</div>
+            <div class="dm-result-sub" id="dm-annual-sub"></div>
+          </div>
+        </div>
+        <div class="dm-cost-row">
+          <span>Estimated annual running cost: <strong id="dm-cost-value">—</strong></span>
+          <span>&nbsp;assuming SCOP <input type="number" id="dm-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()"> and <input type="number" id="dm-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()"> p/kWh electricity</span>
+        </div>
+      </div>
+
+      <h2 style="font-size:19px;margin:30px 0 4px">Heat pumps that could cover this</h2>
+      <p style="color:#5b6b6b;font-size:13.5px;margin:0 0 4px">Residential models from the database whose rated heating capacity covers the estimated design heat loss above.</p>
+      <div class="dm-rec-grid" id="dm-rec-grid"></div>
+
+      <p class="dm-note">Method: whole-dwelling fabric and ventilation heat loss following the CIBSE Domestic Heating Design Guide approach, using indicative UK regional design temperatures and degree-day data. U-values are typical defaults for the age band selected, not measured values for your actual property, and envelope areas are estimated from floor area, storeys and property shape rather than measured room-by-room. Figures exclude solar and internal gains, which in practice reduce real-world running costs somewhat. Always confirm sizing with a full MCS heat-loss survey before purchase — see our <a href="#" onclick="showPage('install-costs');return false" style="color:var(--accent)">installation costs guide</a> for what that typically involves.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ FAQ ═══ -->
 <div class="page" id="page-faq">
   <div class="container" style="max-width:820px">
@@ -1912,6 +2028,25 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn{border:1px solid var(--border);background:var(--surface);color:var(--text2);padding:6px 13px;border-radius:7px;font-size:12.5px;font-weight:500;cursor:pointer}
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
+.dm-tabs{display:flex;gap:8px;margin:18px 0 22px;border-bottom:1px solid var(--border)}
+.dm-tab{background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14.5px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Inter',sans-serif}
+.dm-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.dm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:8px}
+.dm-field label{display:block;font-size:12.5px;font-weight:600;color:var(--text2);margin-bottom:6px}
+.dm-field input[type=number],.dm-field select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:13.5px;font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);box-sizing:border-box}
+.dm-check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--text2);margin-top:10px}
+.dm-check-row input{width:16px;height:16px;flex:none}
+.dm-results{background:var(--accent-dark);color:#fff;border-radius:var(--radius-lg);padding:26px 28px;margin:26px 0}
+.dm-result-row{display:flex;flex-wrap:wrap;gap:32px;margin-bottom:2px}
+.dm-result-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.6);margin-bottom:4px}
+.dm-result-value{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.dm-result-sub{font-size:12.5px;color:rgba(255,255,255,.65);margin-top:2px}
+.dm-cost-row{display:flex;gap:8px;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.9)}
+.dm-cost-row input{width:56px;padding:4px 6px;border-radius:6px;border:none;font-size:13px;font-family:'DM Mono',monospace}
+.dm-note{font-size:12.5px;color:var(--text3);line-height:1.6;margin:14px 0}
+.dm-assumptions{background:var(--surface2);border-radius:var(--radius);padding:14px 18px;font-size:12.5px;color:var(--text2);line-height:1.7;margin:18px 0}
+.dm-rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:14px}
+@media (max-width:640px){.dm-result-value{font-size:24px}.dm-results{padding:20px}}
 </style>
 <script src="data.js?v=131" defer></script>
 <script src="logos.js?v=131" defer></script>
@@ -3797,7 +3932,200 @@ function acceptCookies(){localStorage.setItem('cookie_consent','accepted');docum
 function declineCookies(){localStorage.setItem('cookie_consent','declined');document.getElementById('cookie-banner').classList.remove('show');}
 if(!localStorage.getItem('cookie_consent'))document.getElementById('cookie-banner').classList.add('show');
 // Quick start / how-to-use onboarding fires independently of cookie consent, whenever and however that gets resolved
+// ═══════════════ DEMAND ESTIMATES ═══════════════
+// Whole-dwelling heat loss / annual demand estimator (residential only).
+// Method: CIBSE Domestic Heating Design Guide approach — fabric heat loss
+// (Σ area×U-value) + ventilation heat loss (0.33 × ACH × volume), both ×
+// design temperature difference for peak kW; annual kWh via the standard
+// degree-day method (heat loss coefficient × HDD × 24). Envelope areas are
+// estimated from floor area/storeys/property shape, not measured room by
+// room — this is a whole-dwelling estimate, not a full BS EN 12831 survey.
+const DEMAND_AGE_BANDS=[
+  {id:'pre1930',label:'Before 1930',wallU:1.7,roofU:1.5,floorU:1.0,ach:1.0},
+  {id:'1930-1966',label:'1930–1966',wallU:1.5,roofU:0.9,floorU:1.0,ach:0.85},
+  {id:'1967-1990',label:'1967–1990',wallU:0.9,roofU:0.35,floorU:0.6,ach:0.7},
+  {id:'1991-2002',label:'1991–2002',wallU:0.45,roofU:0.25,floorU:0.4,ach:0.6},
+  {id:'2003-2011',label:'2003–2011',wallU:0.30,roofU:0.16,floorU:0.25,ach:0.5},
+  {id:'2012+',label:'2012 onwards',wallU:0.18,roofU:0.13,floorU:0.13,ach:0.45}
+];
+const DEMAND_PROPERTY_TYPES=[
+  {id:'detached',label:'Detached house',exposedFrac:1.0,shapeFactor:1.15,doors:2},
+  {id:'semi',label:'Semi-detached house',exposedFrac:0.75,shapeFactor:1.05,doors:2},
+  {id:'endterrace',label:'End-terrace house',exposedFrac:0.75,shapeFactor:1.0,doors:2},
+  {id:'midterrace',label:'Mid-terrace house',exposedFrac:0.5,shapeFactor:0.9,doors:1},
+  {id:'bungalow',label:'Bungalow',exposedFrac:1.0,shapeFactor:1.1,doors:2},
+  {id:'flat',label:'Flat / apartment',exposedFrac:0.35,shapeFactor:0.85,doors:1}
+];
+const DEMAND_GLAZING=[
+  {id:'single',label:'Single glazed',u:4.8},
+  {id:'double-old',label:'Double glazed (older)',u:2.8},
+  {id:'double-modern',label:'Double glazed (modern, low-E)',u:1.6},
+  {id:'triple',label:'Triple glazed',u:1.0}
+];
+const DEMAND_VENTILATION=[
+  {id:'natural',label:'Natural / extract fans only',achMult:1.0},
+  {id:'mvhr',label:'MVHR (mechanical heat recovery)',achMult:0.55}
+];
+// Indicative regional design temperature (°C) and annual heating degree
+// days (base 15.5°C), consistent with the range historically published by
+// CIBSE (roughly -2°C to -5°C across the UK) and MET Office-derived HDD
+// data (~1,900 in London to ~2,650 in the north of Scotland). These are
+// planning-level regional figures, not exact site-specific CIBSE Guide A
+// Table 2.5 values matched to a postcode — a full MCS survey uses those.
+const DEMAND_REGIONS=[
+  {id:'london',label:'Greater London',designTemp:-3,hdd:1900},
+  {id:'se',label:'South East England',designTemp:-3,hdd:2000},
+  {id:'sw',label:'South West England',designTemp:-2,hdd:1950},
+  {id:'east',label:'East of England',designTemp:-3,hdd:2050},
+  {id:'emid',label:'East Midlands',designTemp:-4,hdd:2200},
+  {id:'wmid',label:'West Midlands',designTemp:-4,hdd:2200},
+  {id:'yorks',label:'Yorkshire & the Humber',designTemp:-4,hdd:2300},
+  {id:'nw',label:'North West England',designTemp:-3.5,hdd:2250},
+  {id:'ne',label:'North East England',designTemp:-4,hdd:2400},
+  {id:'wales',label:'Wales',designTemp:-3.5,hdd:2200},
+  {id:'scotcentral',label:'Scotland (Central & South)',designTemp:-4.5,hdd:2450},
+  {id:'scotnorth',label:'Scotland (North & Highlands)',designTemp:-5,hdd:2650},
+  {id:'ni',label:'Northern Ireland',designTemp:-3.5,hdd:2300}
+];
+const DEMAND_UK_AVERAGE_REGION={label:'UK average',designTemp:-3,hdd:2050};
+let demandState={mode:'simple'};
+
+function demandEstimateGeometry(floorArea,storeys,ptype){
+  const pt=DEMAND_PROPERTY_TYPES.find(p=>p.id===ptype)||DEMAND_PROPERTY_TYPES[0];
+  const footprint=floorArea/storeys;
+  const side=Math.sqrt(Math.max(footprint,1));
+  const perimeter=4*side*pt.exposedFrac;
+  const storeyHeight=2.4;
+  const grossWallArea=perimeter*storeyHeight*storeys;
+  const windowArea=grossWallArea*0.15;
+  const doorArea=pt.doors*1.85;
+  const netWallArea=Math.max(grossWallArea-windowArea-doorArea,0);
+  const isFlat=ptype==='flat';
+  const roofArea=isFlat?0:footprint;
+  const groundFloorArea=isFlat?0:footprint;
+  const volume=floorArea*storeyHeight;
+  return {netWallArea,windowArea,doorArea,roofArea,groundFloorArea,volume,shapeFactor:pt.shapeFactor};
+}
+
+function demandCompute(inp){
+  const age=DEMAND_AGE_BANDS.find(a=>a.id===inp.ageband)||DEMAND_AGE_BANDS[2];
+  const geo=demandEstimateGeometry(inp.floorArea,inp.storeys,inp.ptype);
+  const glazing=DEMAND_GLAZING.find(g=>g.id===inp.glazing)||DEMAND_GLAZING[2];
+  const vent=DEMAND_VENTILATION.find(v=>v.id===inp.ventilation)||DEMAND_VENTILATION[0];
+  const region=inp.mode==='simple'?DEMAND_UK_AVERAGE_REGION:(DEMAND_REGIONS.find(r=>r.id===inp.region)||DEMAND_REGIONS[0]);
+  const wallU=inp.wallUpgrade?Math.min(age.wallU,0.30):age.wallU;
+  const roofU=inp.roofUpgrade?Math.min(age.roofU,0.16):age.roofU;
+  const floorU=age.floorU;
+  const doorU=3.0;
+  const fabricUA=geo.netWallArea*wallU+geo.windowArea*glazing.u+geo.doorArea*doorU+geo.roofArea*roofU+geo.groundFloorArea*floorU;
+  const ach=age.ach*vent.achMult;
+  const ventUA=0.33*ach*geo.volume;
+  let totalUA=(fabricUA+ventUA)*geo.shapeFactor;
+  if(inp.extraInsulationHigh)totalUA*=0.85;
+  const dT=inp.internalTemp-region.designTemp;
+  const marginMult=1+(inp.margin||0)/100;
+  const peakLossKW=Math.max(totalUA*dT*marginMult/1000,0);
+  const annualKWh=Math.max(totalUA*region.hdd*24/1000,0);
+  return {peakLossKW,annualKWh,totalUA,dT,region,geo,wallU,roofU,floorU,glazing,ach};
+}
+
+function demandGatherInputs(){
+  const g=id=>document.getElementById(id);
+  if(demandState.mode==='simple'){
+    const ptype=g('dm-s-ptype').value;
+    const insulation=g('dm-s-insulation').value;
+    return {
+      mode:'simple',
+      floorArea:parseFloat(g('dm-s-floorarea').value)||0,
+      ptype, ageband:g('dm-s-ageband').value,
+      storeys:(ptype==='bungalow'||ptype==='flat')?1:2,
+      region:null, glazing:'double-modern', ventilation:'natural',
+      wallUpgrade: insulation!=='asbuilt', roofUpgrade: insulation!=='asbuilt',
+      extraInsulationHigh: insulation==='high',
+      internalTemp:21, margin:10
+    };
+  }
+  return {
+    mode:'detailed',
+    floorArea:parseFloat(g('dm-d-floorarea').value)||0,
+    ptype:g('dm-d-ptype').value,
+    ageband:g('dm-d-ageband').value,
+    storeys:parseFloat(g('dm-d-storeys').value)||2,
+    region:g('dm-d-region').value,
+    glazing:g('dm-d-glazing').value,
+    ventilation:g('dm-d-ventilation').value,
+    wallUpgrade:g('dm-d-wallupgrade').checked,
+    roofUpgrade:g('dm-d-roofupgrade').checked,
+    extraInsulationHigh:false,
+    internalTemp:parseFloat(g('dm-d-internaltemp').value)||21,
+    margin:10
+  };
+}
+
+function demandRecommendProducts(peakLossKW){
+  if(!isFinite(peakLossKW)||peakLossKW<=0)return [];
+  let candidates=db.filter(d=>d.type==='Residential'&&d.cap_max!=null&&d.cap_max>=peakLossKW);
+  candidates.sort((a,b)=>a.cap_max-b.cap_max);
+  let picks=candidates.slice(0,6);
+  if(picks.length<3){
+    const all=db.filter(d=>d.type==='Residential'&&d.cap_max!=null);
+    all.sort((a,b)=>Math.abs(a.cap_max-peakLossKW)-Math.abs(b.cap_max-peakLossKW));
+    picks=all.slice(0,6);
+  }
+  return picks;
+}
+
+function demandSetMode(mode){
+  demandState.mode=mode;
+  document.getElementById('dm-tab-simple').classList.toggle('active',mode==='simple');
+  document.getElementById('dm-tab-detailed').classList.toggle('active',mode==='detailed');
+  document.getElementById('dm-form-simple').style.display=mode==='simple'?'':'none';
+  document.getElementById('dm-form-detailed').style.display=mode==='detailed'?'':'none';
+  demandRecalc();
+}
+
+function demandRecalc(){
+  const inp=demandGatherInputs();
+  if(!inp.floorArea||inp.floorArea<=0)return;
+  const res=demandCompute(inp);
+  document.getElementById('dm-peak-value').textContent=res.peakLossKW.toFixed(1)+' kW';
+  document.getElementById('dm-peak-sub').textContent='at '+res.region.designTemp+'°C outside / '+inp.internalTemp+'°C inside, incl. '+(inp.margin||0)+'% margin';
+  document.getElementById('dm-annual-value').textContent=Math.round(res.annualKWh).toLocaleString()+' kWh';
+  document.getElementById('dm-annual-sub').textContent='before solar/internal gains — '+res.region.label+', '+res.region.hdd+' degree days/yr';
+  const scop=parseFloat(document.getElementById('dm-scop').value)||3.5;
+  const price=parseFloat(document.getElementById('dm-price').value)||25.3;
+  const cost=(res.annualKWh/scop)*(price/100);
+  document.getElementById('dm-cost-value').textContent='£'+Math.round(cost).toLocaleString();
+  if(inp.mode==='detailed'){
+    document.getElementById('dm-assumptions').innerHTML=
+      'Estimated envelope from floor area &amp; storeys — wall '+Math.round(res.geo.netWallArea)+' m² (U='+res.wallU.toFixed(2)+'), glazing '+Math.round(res.geo.windowArea)+' m² (U='+res.glazing.u.toFixed(1)+'), roof '+Math.round(res.geo.roofArea)+' m² (U='+res.roofU.toFixed(2)+'), ground floor '+Math.round(res.geo.groundFloorArea)+' m² (U='+res.floorU.toFixed(2)+'), '+res.ach.toFixed(2)+' air changes/hour. Design external temperature for '+res.region.label+': '+res.region.designTemp+'°C.';
+  }
+  const recs=demandRecommendProducts(res.peakLossKW);
+  const grid=document.getElementById('dm-rec-grid');
+  grid.innerHTML=recs.length?recs.map(cardHTML).join(''):'<p style="color:var(--text3);font-size:13px;grid-column:1/-1">No matching residential products found in the database for this capacity — try adjusting your inputs.</p>';
+}
+
+function initDemandCalc(){
+  const ptypeOpts=DEMAND_PROPERTY_TYPES.map(t=>`<option value="${t.id}">${t.label}</option>`).join('');
+  const ageOpts=DEMAND_AGE_BANDS.map(a=>`<option value="${a.id}">${a.label}</option>`).join('');
+  const regionOpts=DEMAND_REGIONS.map(r=>`<option value="${r.id}">${r.label}</option>`).join('');
+  const glazingOpts=DEMAND_GLAZING.map(gl=>`<option value="${gl.id}">${gl.label}</option>`).join('');
+  const ventOpts=DEMAND_VENTILATION.map(v=>`<option value="${v.id}">${v.label}</option>`).join('');
+  document.getElementById('dm-s-ptype').innerHTML=ptypeOpts;
+  document.getElementById('dm-s-ageband').innerHTML=ageOpts;
+  document.getElementById('dm-s-ageband').value='1967-1990';
+  document.getElementById('dm-d-ptype').innerHTML=ptypeOpts;
+  document.getElementById('dm-d-ageband').innerHTML=ageOpts;
+  document.getElementById('dm-d-ageband').value='1967-1990';
+  document.getElementById('dm-d-region').innerHTML=regionOpts;
+  document.getElementById('dm-d-glazing').innerHTML=glazingOpts;
+  document.getElementById('dm-d-glazing').value='double-modern';
+  document.getElementById('dm-d-ventilation').innerHTML=ventOpts;
+  demandRecalc();
+}
+
 maybeOnboard();
+initDemandCalc();
 // Browse onboarding coach-marks (auto-once for newcomers, plus the "How to use" button)
 const GUIDE_STEPS=[
   {sel:'.toolbar-row',menu:false,title:'Search &amp; filter',body:'Start here. Use the <strong>search bar</strong> to find a model, manufacturer or refrigerant, then tap <strong>Filters</strong> to narrow by type, capacity, max flow temperature, refrigerant, sound power, verification status and MCS / Boiler Upgrade Scheme eligibility.'},
@@ -3869,6 +4197,8 @@ window.closeBrowseGuide = closeBrowseGuide;
 window.closeBurger = closeBurger;
 window.closeModal = closeModal;
 window.declineCookies = declineCookies;
+window.demandRecalc = demandRecalc;
+window.demandSetMode = demandSetMode;
 window.deleteContactSection = deleteContactSection;
 window.deleteEditingEntry = deleteEditingEntry;
 window.deleteEntry = deleteEntry;
