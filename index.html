@@ -1476,8 +1476,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <div id="dm-form-simple">
         <div class="dm-grid">
           <div class="dm-field">
-            <label for="dm-s-floorarea">Total floor area (m²)</label>
+            <label for="dm-s-floorarea">Total floor area, all storeys (m²)</label>
             <input type="number" id="dm-s-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+            <div class="dm-hint">Total internal floor area added up across every floor of the home — the same figure as on an EPC, not just the ground-floor footprint.</div>
           </div>
           <div class="dm-field">
             <label for="dm-s-ptype">Property type</label>
@@ -1501,21 +1502,23 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <div id="dm-form-detailed" style="display:none">
         <div class="dm-grid">
           <div class="dm-field">
-            <label for="dm-d-floorarea">Total floor area (m²)</label>
+            <label for="dm-d-floorarea">Total floor area, all storeys (m²)</label>
             <input type="number" id="dm-d-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+            <div class="dm-hint">Total internal floor area added up across every floor of the home — the same figure as on an EPC, not just the ground-floor footprint.</div>
           </div>
           <div class="dm-field">
             <label for="dm-d-ptype">Property type</label>
             <select id="dm-d-ptype" onchange="demandRecalc()"></select>
           </div>
           <div class="dm-field">
-            <label for="dm-d-storeys">Storeys</label>
+            <label for="dm-d-storeys">Number of storeys</label>
             <select id="dm-d-storeys" onchange="demandRecalc()">
               <option value="1">1 (single storey)</option>
               <option value="1.5">1.5 (dormer / chalet)</option>
               <option value="2" selected>2</option>
               <option value="3">3+</option>
             </select>
+            <div class="dm-hint">Only used to split your total floor area above into per-floor wall &amp; roof area — doesn't need to be exact.</div>
           </div>
           <div class="dm-field">
             <label for="dm-d-ageband">Age of property</label>
@@ -1559,16 +1562,17 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
             <div class="dm-result-value" id="dm-annual-value">—</div>
             <div class="dm-result-sub" id="dm-annual-sub"></div>
           </div>
-        </div>
-        <div class="dm-cost-row">
-          <span>Estimated annual running cost: <strong id="dm-cost-value">—</strong></span>
-          <span>&nbsp;assuming SCOP <input type="number" id="dm-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()"> and <input type="number" id="dm-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()"> p/kWh electricity</span>
+          <div class="dm-result-block">
+            <div class="dm-result-label">Estimated annual running cost</div>
+            <div class="dm-result-value" id="dm-cost-value">—</div>
+            <div class="dm-result-sub">SCOP <input type="number" id="dm-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()"> &middot; <input type="number" id="dm-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()"> p/kWh</div>
+          </div>
         </div>
       </div>
 
       <h2 style="font-size:19px;margin:30px 0 4px">Heat pumps that could cover this</h2>
-      <p style="color:#5b6b6b;font-size:13.5px;margin:0 0 4px">Residential models from the database whose rated heating capacity covers the estimated design heat loss above.</p>
-      <div class="dm-rec-grid" id="dm-rec-grid"></div>
+      <p style="color:#5b6b6b;font-size:13.5px;margin:0 0 4px">Residential models from the database whose rated heating capacity covers the estimated design heat loss above: up to 6 air source (ASHP) and 2 ground source (GSHP) options.</p>
+      <div id="dm-rec-groups"></div>
 
       <p class="dm-note">Method: whole-dwelling fabric and ventilation heat loss following the CIBSE Domestic Heating Design Guide approach, using indicative UK regional design temperatures and degree-day data. U-values are typical defaults for the age band selected, not measured values for your actual property, and envelope areas are estimated from floor area, storeys and property shape rather than measured room-by-room. Figures exclude solar and internal gains, which in practice reduce real-world running costs somewhat. Always confirm sizing with a full MCS heat-loss survey before purchase — see our <a href="#" onclick="showPage('install-costs');return false" style="color:var(--accent)">installation costs guide</a> for what that typically involves.</p>
     </div>
@@ -2033,19 +2037,22 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 .dm-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .dm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:8px}
 .dm-field label{display:block;font-size:12.5px;font-weight:600;color:var(--text2);margin-bottom:6px}
-.dm-field input[type=number],.dm-field select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:13.5px;font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);box-sizing:border-box}
+.dm-field input[type=number],.dm-field select{width:100%;height:40px;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:13.5px;font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);box-sizing:border-box;line-height:1.2;appearance:auto}
 .dm-check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--text2);margin-top:10px}
 .dm-check-row input{width:16px;height:16px;flex:none}
 .dm-results{background:var(--accent-dark);color:#fff;border-radius:var(--radius-lg);padding:26px 28px;margin:26px 0}
-.dm-result-row{display:flex;flex-wrap:wrap;gap:32px;margin-bottom:2px}
+.dm-result-row{display:flex;flex-wrap:wrap;gap:28px;margin-bottom:2px}
+.dm-result-block{flex:1 1 200px;min-width:170px}
 .dm-result-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.6);margin-bottom:4px}
 .dm-result-value{font-size:30px;font-weight:700;letter-spacing:-.02em}
-.dm-result-sub{font-size:12.5px;color:rgba(255,255,255,.65);margin-top:2px}
-.dm-cost-row{display:flex;gap:8px;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.9)}
-.dm-cost-row input{width:56px;padding:4px 6px;border-radius:6px;border:none;font-size:13px;font-family:'DM Mono',monospace}
+.dm-result-sub{font-size:12.5px;color:rgba(255,255,255,.65);margin-top:6px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dm-result-sub input{width:52px;height:28px;padding:3px 6px;border:1px solid var(--border);border-radius:6px;font-size:12.5px;font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);box-sizing:border-box}
+.dm-hint{font-size:11.5px;color:var(--text3);line-height:1.5;margin-top:5px}
 .dm-note{font-size:12.5px;color:var(--text3);line-height:1.6;margin:14px 0}
 .dm-assumptions{background:var(--surface2);border-radius:var(--radius);padding:14px 18px;font-size:12.5px;color:var(--text2);line-height:1.7;margin:18px 0}
-.dm-rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:14px}
+.dm-rec-group-label{font-size:13.5px;font-weight:600;color:var(--text2);margin:18px 0 10px}
+.dm-rec-group-label:first-child{margin-top:0}
+.dm-rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:6px}
 @media (max-width:640px){.dm-result-value{font-size:24px}.dm-results{padding:20px}}
 </style>
 <script src="data.js?v=131" defer></script>
@@ -4062,17 +4069,26 @@ function demandGatherInputs(){
   };
 }
 
-function demandRecommendProducts(peakLossKW){
-  if(!isFinite(peakLossKW)||peakLossKW<=0)return [];
-  let candidates=db.filter(d=>d.type==='Residential'&&d.cap_max!=null&&d.cap_max>=peakLossKW);
+function demandPickByHpType(peakLossKW,typeTest,count){
+  let candidates=db.filter(d=>d.type==='Residential'&&d.cap_max!=null&&typeTest(d.hp_type)&&d.cap_max>=peakLossKW);
   candidates.sort((a,b)=>a.cap_max-b.cap_max);
-  let picks=candidates.slice(0,6);
-  if(picks.length<3){
-    const all=db.filter(d=>d.type==='Residential'&&d.cap_max!=null);
+  let picks=candidates.slice(0,count);
+  if(picks.length<count){
+    const all=db.filter(d=>d.type==='Residential'&&d.cap_max!=null&&typeTest(d.hp_type));
     all.sort((a,b)=>Math.abs(a.cap_max-peakLossKW)-Math.abs(b.cap_max-peakLossKW));
-    picks=all.slice(0,6);
+    const pickedIds=new Set(picks.map(d=>d.id));
+    for(const d of all){
+      if(picks.length>=count)break;
+      if(!pickedIds.has(d.id)){picks.push(d);pickedIds.add(d.id);}
+    }
   }
   return picks;
+}
+function demandRecommendProducts(peakLossKW){
+  if(!isFinite(peakLossKW)||peakLossKW<=0)return {ashp:[],gshp:[]};
+  const ashp=demandPickByHpType(peakLossKW,t=>!!t&&t.startsWith('ASHP'),6);
+  const gshp=demandPickByHpType(peakLossKW,t=>!!t&&t.startsWith('GSHP'),2);
+  return {ashp,gshp};
 }
 
 function demandSetMode(mode){
@@ -4101,8 +4117,12 @@ function demandRecalc(){
       'Estimated envelope from floor area &amp; storeys — wall '+Math.round(res.geo.netWallArea)+' m² (U='+res.wallU.toFixed(2)+'), glazing '+Math.round(res.geo.windowArea)+' m² (U='+res.glazing.u.toFixed(1)+'), roof '+Math.round(res.geo.roofArea)+' m² (U='+res.roofU.toFixed(2)+'), ground floor '+Math.round(res.geo.groundFloorArea)+' m² (U='+res.floorU.toFixed(2)+'), '+res.ach.toFixed(2)+' air changes/hour. Design external temperature for '+res.region.label+': '+res.region.designTemp+'°C.';
   }
   const recs=demandRecommendProducts(res.peakLossKW);
-  const grid=document.getElementById('dm-rec-grid');
-  grid.innerHTML=recs.length?recs.map(cardHTML).join(''):'<p style="color:var(--text3);font-size:13px;grid-column:1/-1">No matching residential products found in the database for this capacity — try adjusting your inputs.</p>';
+  const groupsEl=document.getElementById('dm-rec-groups');
+  function groupHTML(title,items){
+    const cards=items.length?items.map(cardHTML).join(''):'<p style="color:var(--text3);font-size:13px;grid-column:1/-1">No matching residential '+title.toLowerCase()+' found in the database for this capacity.</p>';
+    return '<div class="dm-rec-group-label">'+title+'</div><div class="dm-rec-grid">'+cards+'</div>';
+  }
+  groupsEl.innerHTML=groupHTML('Air source (ASHP)',recs.ashp)+groupHTML('Ground source (GSHP)',recs.gshp);
 }
 
 function initDemandCalc(){
