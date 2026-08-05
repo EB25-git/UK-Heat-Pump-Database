@@ -176,6 +176,19 @@ function calcCardHTML(d){
 }
 
 function demandSetMode(mode){
+  const prevMode=demandState.mode;
+  if(prevMode!==mode){
+    // SCOP/price live inside each tab's own grid now (so they sit on the same
+    // row as the tab's other fields) rather than one shared pair below both
+    // forms — carry the value across so switching tabs doesn't reset it.
+    const fromPfx=prevMode==='simple'?'s':'d', toPfx=mode==='simple'?'s':'d';
+    const fromScop=document.getElementById('dm-'+fromPfx+'-scop');
+    const toScop=document.getElementById('dm-'+toPfx+'-scop');
+    const fromPrice=document.getElementById('dm-'+fromPfx+'-price');
+    const toPrice=document.getElementById('dm-'+toPfx+'-price');
+    if(fromScop&&toScop)toScop.value=fromScop.value;
+    if(fromPrice&&toPrice)toPrice.value=fromPrice.value;
+  }
   demandState.mode=mode;
   document.getElementById('dm-tab-simple').classList.toggle('active',mode==='simple');
   document.getElementById('dm-tab-detailed').classList.toggle('active',mode==='detailed');
@@ -192,8 +205,9 @@ function demandRecalc(){
   document.getElementById('dm-peak-sub').textContent='at '+res.region.designTemp+'°C outside / '+inp.internalTemp+'°C inside, incl. '+(inp.margin||0)+'% margin';
   document.getElementById('dm-annual-value').textContent=Math.round(res.annualKWh).toLocaleString()+' kWh';
   document.getElementById('dm-annual-sub').textContent='before solar/internal gains — '+res.region.label+', '+res.region.hdd+' degree days/yr';
-  const scop=parseFloat(document.getElementById('dm-scop').value)||3.5;
-  const price=parseFloat(document.getElementById('dm-price').value)||25.3;
+  const scopPfx=inp.mode==='simple'?'s':'d';
+  const scop=parseFloat(document.getElementById('dm-'+scopPfx+'-scop').value)||3.5;
+  const price=parseFloat(document.getElementById('dm-'+scopPfx+'-price').value)||25.3;
   const cost=(res.annualKWh/scop)*(price/100);
   document.getElementById('dm-cost-value').textContent='£'+Math.round(cost).toLocaleString();
   document.getElementById('dm-cost-sub').textContent='assuming SCOP '+scop+' · '+price+'p/kWh';

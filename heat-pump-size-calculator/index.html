@@ -209,6 +209,16 @@ function trackOut(){
         <option value="high">Well insulated (external wall insulation / near current Building Regs)</option>
       </select>
     </div>
+    <div class="dm-field">
+      <label for="dm-s-scop">Assumed SCOP</label>
+      <input type="number" id="dm-s-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()">
+      <div class="dm-hint">Seasonal efficiency of the heat pump you might install &mdash; check a model's SCOP on its product page.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-s-price">Electricity price (p/kWh)</label>
+      <input type="number" id="dm-s-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()">
+      <div class="dm-hint">Defaults to the current Ofgem price cap unit rate &mdash; edit for your own tariff.</div>
+    </div>
   </div>
 </div>
 
@@ -253,6 +263,16 @@ function trackOut(){
       <label for="dm-d-internaltemp">Target indoor temp (&deg;C)</label>
       <input type="number" id="dm-d-internaltemp" min="16" max="24" step="0.5" value="21" oninput="demandRecalc()">
     </div>
+    <div class="dm-field">
+      <label for="dm-d-scop">Assumed SCOP</label>
+      <input type="number" id="dm-d-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()">
+      <div class="dm-hint">Seasonal efficiency of the heat pump you might install &mdash; check a model's SCOP on its product page.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-price">Electricity price (p/kWh)</label>
+      <input type="number" id="dm-d-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()">
+      <div class="dm-hint">Defaults to the current Ofgem price cap unit rate &mdash; edit for your own tariff.</div>
+    </div>
   </div>
   <div class="dm-check-row">
     <input type="checkbox" id="dm-d-wallupgrade" onchange="demandRecalc()"><label for="dm-d-wallupgrade">Walls insulated beyond original build (cavity fill / external wall insulation)</label>
@@ -261,19 +281,6 @@ function trackOut(){
     <input type="checkbox" id="dm-d-roofupgrade" onchange="demandRecalc()"><label for="dm-d-roofupgrade">Loft/roof insulation topped up to modern standard (~270mm)</label>
   </div>
   <div class="dm-assumptions" id="dm-assumptions"></div>
-</div>
-
-<div class="dm-grid" style="margin-top:4px">
-  <div class="dm-field">
-    <label for="dm-scop">Assumed SCOP</label>
-    <input type="number" id="dm-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()">
-    <div class="dm-hint">Seasonal efficiency of the heat pump you might install &mdash; check a model's SCOP on its product page.</div>
-  </div>
-  <div class="dm-field">
-    <label for="dm-price">Electricity price (p/kWh)</label>
-    <input type="number" id="dm-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()">
-    <div class="dm-hint">Defaults to the current Ofgem price cap unit rate &mdash; edit for your own tariff.</div>
-  </div>
 </div>
 
 <div class="dm-results">
