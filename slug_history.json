@@ -715,10 +715,12 @@
     "baxi-hp40-monobloc-8kw"
   ],
   "378": [
-    "baxi-hp40-monobloc-11kw"
+    "baxi-hp40-monobloc-11kw",
+    "baxi-hp40-monobloc-11kw-380"
   ],
   "379": [
-    "baxi-hp40-monobloc-13kw"
+    "baxi-hp40-monobloc-13kw",
+    "baxi-hp40-monobloc-13kw-381"
   ],
   "380": [
     "baxi-hp40-monobloc-11kw-400v"
@@ -736,13 +738,15 @@
     "baxi-hp60-high-monobloc-8kw"
   ],
   "385": [
-    "baxi-hp60-high-monobloc-11kw"
+    "baxi-hp60-high-monobloc-11kw",
+    "baxi-hp60-high-monobloc-11kw-386"
   ],
   "386": [
     "baxi-hp60-high-monobloc-11kw-400v"
   ],
   "387": [
-    "baxi-hp60-high-monobloc-13kw"
+    "baxi-hp60-high-monobloc-13kw",
+    "baxi-hp60-high-monobloc-13kw-388"
   ],
   "388": [
     "baxi-hp60-high-monobloc-13kw-400v"
@@ -3388,7 +3392,8 @@
     "vaillant-geotherm-1361"
   ],
   "1362": [
-    "vaillant-geotherm-mini"
+    "vaillant-geotherm-mini",
+    "vaillant-geotherm-mini-3"
   ],
   "1363": [
     "vaillant-flexotherm"

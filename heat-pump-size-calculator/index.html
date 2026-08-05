@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Heat Pump Size Calculator — What kW Do You Need? | Heat Pump Database</title>
+<meta name="description" content="Free UK heat pump size calculator. Estimate the kW your home needs and your annual running cost in seconds, then see matching air and ground source heat pumps from the database.">
+<link rel="canonical" href="https://www.heatpumpdatabase.com/heat-pump-size-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Heat Pump Size Calculator — What kW Do You Need? | Heat Pump Database">
+<meta property="og:description" content="Free UK heat pump size calculator. Estimate the kW your home needs and your annual running cost in seconds, then see matching air and ground source heat pumps from the database.">
+<meta property="og:url" content="https://www.heatpumpdatabase.com/heat-pump-size-calculator/">
+<meta property="og:site_name" content="Heat Pump Database">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── Best-of ranking pages ── */
+.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
+.best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
+.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
+.best-winner .bw-name{font-size:19px;font-weight:600;letter-spacing:-.01em}.best-winner .bw-name a{color:#fff}
+.best-winner .bw-val{margin-left:auto;text-align:right;flex:none}
+.best-winner .bw-num{font-size:26px;font-weight:700;color:#3ECCC0;line-height:1.1}
+.best-winner .bw-lab{font-size:12px;color:rgba(255,255,255,.55)}
+.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #e2e8e7}
+.best-scroll table.list{border:none;margin:0;min-width:640px}
+table.best-table th{position:sticky;top:0;background:#fafcfb;z-index:1}
+table.best-table tr:nth-child(even) td{background:#fafcfb}
+table.best-table tr:hover td{background:#eef7f5}
+td.rank{width:44px;text-align:center}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#42514f;background:#eef2f1}
+.rank-1 .rank-badge{background:#f6d873;color:#5c4a00}
+.rank-2 .rank-badge{background:#dfe4e6;color:#454d50}
+.rank-3 .rank-badge{background:#e8c39e;color:#5e3c14}
+.best-model{display:flex;align-items:center;gap:10px}
+.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #eef2f1;flex:none}
+.metric-cell{min-width:120px}
+.metric-val{font-weight:600}
+.metric-bar{height:5px;border-radius:3px;background:#e7f0ee;margin-top:5px;overflow:hidden}
+.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#3ECCC0,#0f8a80)}
+.hub-leader{font-size:12.5px;color:#0c6f66;margin-top:4px}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
+header.site{background:#0F2B2B;height:60px;display:flex;align-items:center}
+header.site .wrap{display:flex;align-items:center;width:100%}
+header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
+header.site .brand:hover{text-decoration:none}
+.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
+.burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto}
+.burger-menu.open{transform:translateX(0)}
+.burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%;display:block;text-decoration:none;box-sizing:border-box}
+.burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
+.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-subitem{padding-left:50px;font-size:14px;position:relative}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease}.burger-subgroup.open{max-height:420px}
+.burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
+.burger-overlay.open{opacity:1;pointer-events:auto}
+@media(max-width:560px){.burger-menu{width:100%}}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+main{padding:28px 0 56px}
+nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
+nav.crumbs a{color:#5b6b6b}nav.crumbs span{color:#9aa}
+h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.sub{color:#5b6b6b;font-size:15px;margin-bottom:24px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
+.badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden}
+table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #eef2f1;font-size:14.5px;vertical-align:top}
+table.spec th{width:42%;color:#42514f;font-weight:500;background:#fafcfb}
+table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
+.notes{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#34433f}
+.notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
+h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
+.card .s{color:#5b6b6b;font-size:12.5px;margin-top:4px}
+.card.has-logo{display:flex;gap:12px;align-items:flex-start}
+.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:4px;flex-shrink:0}
+.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:6px;margin-bottom:14px}
+.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px;vertical-align:middle;margin-right:8px}
+.mfr-header{display:flex;align-items:center;gap:14px;margin-bottom:2px}
+.trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
+table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
+table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
+table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+table.list tr:last-child td{border-bottom:none}
+table.list tr:hover td{background:#fafdfc}
+table.list tr.grp-row td{background:#f3f7f6;font-weight:600;color:#0F2B2B;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
+table.list tr.grp-row:hover td{background:#f3f7f6}
+.cta{display:inline-block;margin-top:8px;background:#0F2B2B;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
+.cta:hover{background:#16413f;text-decoration:none}
+footer.site{border-top:1px solid #e2e8e7;padding:26px 0;color:#7a8a88;font-size:13px;margin-top:30px}
+footer.site a{color:#7a8a88}
+.disclaimer{background:#fff7ed;border:1px solid #fbe3c4;color:#92651f;border-radius:10px;padding:12px 16px;font-size:13px;margin:20px 0}
+@media(max-width:560px){table.spec th{width:48%}h1{font-size:23px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Heat Pump Size Calculator", "url": "https://www.heatpumpdatabase.com/heat-pump-size-calculator/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}, "description": "Free UK heat pump size calculator. Estimate the kW your home needs and your annual running cost in seconds, then see matching air and ground source heat pumps from the database.", "isPartOf": {"@type": "WebSite", "name": "Heat Pump Database", "url": "https://www.heatpumpdatabase.com/"}}</script>
+<script>
+window.dataLayer=window.dataLayer||[];
+window.gtag=function(){dataLayer.push(arguments);};
+function loadGA(){
+  if(document.getElementById('ga-script'))return;
+  var s=document.createElement('script');s.id='ga-script';s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id=G-3XMG9G84HQ';
+  document.head.appendChild(s);
+  gtag('js',new Date());
+  gtag('config','G-3XMG9G84HQ');
+}
+if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
+function acceptCookies(){localStorage.setItem('cookie_consent','accepted');var b=document.getElementById('cookie-banner');if(b)b.style.display='none';loadGA();}
+function declineCookies(){localStorage.setItem('cookie_consent','declined');var b=document.getElementById('cookie-banner');if(b)b.style.display='none';}
+function trackOut(){
+  if(typeof window.gtag!=='function'||localStorage.getItem('cookie_consent')!=='accepted')return;
+  var a=Array.prototype.slice.call(arguments);
+  window.gtag('event','outbound_click',{link_type:a[0]||'unknown',product_id:a[1],manufacturer:a[2],model:a[3],retailer_name:a[4]||null,source:'static_page'});
+}
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="brand" href="https://www.heatpumpdatabase.com/">
+<svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
+<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a>
+<button class="burger" id="bbtn" aria-label="Menu" onclick="tB()"><span></span><span></span><span></span></button>
+<nav class="burger-menu" id="bmenu"><a class="burger-item" href="https://www.heatpumpdatabase.com/">Browse</a><a class="burger-item" href="https://www.heatpumpdatabase.com/manufacturers/">Manufacturers</a><button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button><div class="burger-subgroup" id="c-group"><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#compare">Compare Selected</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/best/">Best Of Rankings</a></div><a class="burger-item" href="https://www.heatpumpdatabase.com/#analytics">Visualise</a><a class="burger-item active" href="https://www.heatpumpdatabase.com/heat-pump-size-calculator/">Size Calculator</a><button class="burger-item burger-toggle" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button><div class="burger-subgroup" id="k-group"><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What Is a Heat Pump?</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/installation-costs/">Installation Costs</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">Understanding COP &amp; SCOP</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow Temperature &amp; Efficiency</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant Guide</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#faq">FAQ</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#guide">Site Guide</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#links">Useful Links</a></div><a class="burger-item" href="https://www.heatpumpdatabase.com/#contact">Contact</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#terms" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</a></nav>
+</div></header>
+<div class="burger-overlay" id="bov" onclick="cB()"></div>
+<main><div class="wrap">
+
+<style>
+/* ── Heat pump size calculator ── */
+.dm-tabs{display:flex;gap:8px;margin:18px 0 22px;border-bottom:1px solid #e2e8e7}
+.dm-tab{background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14.5px;font-weight:600;color:#7a8a88;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Inter',sans-serif}
+.dm-tab.active{color:#0D7377;border-bottom-color:#0D7377}
+.dm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:8px}
+.dm-field label{display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px}
+.dm-field input[type=number],.dm-field select{width:100%;height:40px;padding:9px 12px;border:1px solid #e2e8e7;border-radius:10px;font-size:13.5px;font-family:'Inter',sans-serif;background:#fff;color:#0F2B2B;box-sizing:border-box;line-height:1.2;appearance:auto}
+.dm-check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#42514f;margin-top:10px}
+.dm-check-row input{width:16px;height:16px;flex:none}
+.dm-results{background:#064E50;color:#fff;border-radius:16px;padding:26px 28px;margin:26px 0}
+.dm-result-row{display:flex;flex-wrap:wrap;gap:28px;margin-bottom:2px}
+.dm-result-block{flex:1 1 200px;min-width:170px}
+.dm-result-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.6);margin-bottom:4px}
+.dm-result-value{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.dm-result-sub{font-size:12.5px;color:rgba(255,255,255,.65);margin-top:6px}
+.dm-hint{font-size:11.5px;color:#7a8a88;line-height:1.5;margin-top:5px}
+.dm-note{font-size:12.5px;color:#7a8a88;line-height:1.6;margin:14px 0}
+.dm-assumptions{background:#f3f7f6;border-radius:10px;padding:14px 18px;font-size:12.5px;color:#42514f;line-height:1.7;margin:18px 0}
+.dm-rec-group-label{font-size:13.5px;font-weight:600;color:#42514f;margin:18px 0 10px}
+.dm-rec-group-label:first-child{margin-top:0}
+.dm-rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:6px}
+.dm-rec-empty{color:#7a8a88;font-size:13px;margin-bottom:6px}
+.dm-rec-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+.dm-rec-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.08);text-decoration:none}
+.dm-rec-card-brand{font-size:12px;color:#7a8a88;text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+.dm-rec-card-name{font-size:15px;font-weight:600;color:#0F2B2B;margin-top:2px}
+.dm-rec-card-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.dm-badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:500}
+.dm-badge-ref{background:#f3f7f6;color:#42514f;border-color:#e2e8e7}
+.dm-rec-card-specs{display:flex;gap:14px;margin-top:10px;font-size:12.5px;color:#42514f;flex-wrap:wrap}
+.dm-rec-card-price{margin-top:8px;font-size:13px;color:#0D7377;font-weight:600}
+.dm-rec-card-link{margin-top:10px;font-size:12.5px;color:#0D7377;font-weight:600}
+@media (max-width:640px){.dm-result-value{font-size:24px}.dm-results{padding:20px}}
+</style>
+<nav class="crumbs"><a href="https://www.heatpumpdatabase.com/">Home</a> &rsaquo; <span>Heat Pump Size Calculator</span></nav>
+<h1>Heat Pump Size Calculator</h1>
+<p class="sub">Get a ballpark design heat loss (for sizing) and annual heat demand (for running costs) for a home, then see which heat pumps in the database could cover it. Start with a quick estimate, or switch to the detailed version to refine it.</p>
+<p class="dm-note">For residential properties only. This is an indicative planning tool, not a substitute for a full room-by-room heat loss survey &mdash; get one from an <a href="https://mcscertified.com/product-directory/" target="_blank" rel="noopener">MCS-certified installer</a> before sizing or buying a system.</p>
+
+<div class="dm-tabs">
+  <button class="dm-tab active" id="dm-tab-simple" onclick="demandSetMode('simple')">Simple estimate</button>
+  <button class="dm-tab" id="dm-tab-detailed" onclick="demandSetMode('detailed')">Detailed estimate</button>
+</div>
+
+<div id="dm-form-simple">
+  <div class="dm-grid">
+    <div class="dm-field">
+      <label for="dm-s-floorarea">Total floor area, all storeys (m&sup2;)</label>
+      <input type="number" id="dm-s-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+      <div class="dm-hint">Total internal floor area added up across every floor of the home &mdash; the same figure as on an EPC, not just the ground-floor footprint.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-s-ptype">Property type</label>
+      <select id="dm-s-ptype" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-s-ageband">Age of property</label>
+      <select id="dm-s-ageband" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-s-insulation">Insulation upgrades</label>
+      <select id="dm-s-insulation" onchange="demandRecalc()">
+        <option value="asbuilt">As built for its age</option>
+        <option value="upgraded">Some upgrades (loft + cavity wall insulated)</option>
+        <option value="high">Well insulated (external wall insulation / near current Building Regs)</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div id="dm-form-detailed" style="display:none">
+  <div class="dm-grid">
+    <div class="dm-field">
+      <label for="dm-d-floorarea">Total floor area, all storeys (m&sup2;)</label>
+      <input type="number" id="dm-d-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+      <div class="dm-hint">Total internal floor area added up across every floor of the home &mdash; the same figure as on an EPC, not just the ground-floor footprint.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-ptype">Property type</label>
+      <select id="dm-d-ptype" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-storeys">Number of storeys</label>
+      <select id="dm-d-storeys" onchange="demandRecalc()">
+        <option value="1">1 (single storey)</option>
+        <option value="1.5">1.5 (dormer / chalet)</option>
+        <option value="2" selected>2</option>
+        <option value="3">3+</option>
+      </select>
+      <div class="dm-hint">Only used to split your total floor area above into per-floor wall &amp; roof area &mdash; doesn't need to be exact.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-ageband">Age of property</label>
+      <select id="dm-d-ageband" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-region">UK region</label>
+      <select id="dm-d-region" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-glazing">Glazing</label>
+      <select id="dm-d-glazing" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-ventilation">Ventilation</label>
+      <select id="dm-d-ventilation" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-internaltemp">Target indoor temp (&deg;C)</label>
+      <input type="number" id="dm-d-internaltemp" min="16" max="24" step="0.5" value="21" oninput="demandRecalc()">
+    </div>
+  </div>
+  <div class="dm-check-row">
+    <input type="checkbox" id="dm-d-wallupgrade" onchange="demandRecalc()"><label for="dm-d-wallupgrade">Walls insulated beyond original build (cavity fill / external wall insulation)</label>
+  </div>
+  <div class="dm-check-row">
+    <input type="checkbox" id="dm-d-roofupgrade" onchange="demandRecalc()"><label for="dm-d-roofupgrade">Loft/roof insulation topped up to modern standard (~270mm)</label>
+  </div>
+  <div class="dm-assumptions" id="dm-assumptions"></div>
+</div>
+
+<div class="dm-grid" style="margin-top:4px">
+  <div class="dm-field">
+    <label for="dm-scop">Assumed SCOP</label>
+    <input type="number" id="dm-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()">
+    <div class="dm-hint">Seasonal efficiency of the heat pump you might install &mdash; check a model's SCOP on its product page.</div>
+  </div>
+  <div class="dm-field">
+    <label for="dm-price">Electricity price (p/kWh)</label>
+    <input type="number" id="dm-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()">
+    <div class="dm-hint">Defaults to the current Ofgem price cap unit rate &mdash; edit for your own tariff.</div>
+  </div>
+</div>
+
+<div class="dm-results">
+  <div class="dm-result-row">
+    <div class="dm-result-block">
+      <div class="dm-result-label">Design heat loss (peak)</div>
+      <div class="dm-result-value" id="dm-peak-value">&mdash;</div>
+      <div class="dm-result-sub" id="dm-peak-sub"></div>
+    </div>
+    <div class="dm-result-block">
+      <div class="dm-result-label">Estimated annual heat demand</div>
+      <div class="dm-result-value" id="dm-annual-value">&mdash;</div>
+      <div class="dm-result-sub" id="dm-annual-sub"></div>
+    </div>
+    <div class="dm-result-block">
+      <div class="dm-result-label">Estimated annual running cost</div>
+      <div class="dm-result-value" id="dm-cost-value">&mdash;</div>
+      <div class="dm-result-sub" id="dm-cost-sub"></div>
+    </div>
+  </div>
+</div>
+
+<h2 class="sec">Heat pumps that could cover this</h2>
+<p class="sub" style="margin-bottom:4px">Residential models from the database whose rated heating capacity covers the estimated design heat loss above: up to 6 air source (ASHP) and 2 ground source (GSHP) options.</p>
+<div id="dm-rec-groups"></div>
+
+<p class="dm-note">Method: whole-dwelling fabric and ventilation heat loss following the CIBSE Domestic Heating Design Guide approach, using indicative UK regional design temperatures and degree-day data. U-values are typical defaults for the age band selected, not measured values for your actual property, and envelope areas are estimated from floor area, storeys and property shape rather than measured room-by-room. Figures exclude solar and internal gains, which in practice reduce real-world running costs somewhat. Always confirm sizing with a full MCS heat-loss survey before purchase &mdash; see our <a href="https://www.heatpumpdatabase.com/knowledge/installation-costs/">installation costs guide</a> for what that typically involves.</p>
+
+<h2 class="sec">Related reading</h2>
+<div class="grid">
+  <a class="card" href="https://www.heatpumpdatabase.com/knowledge/installation-costs/"><div class="m">Installation costs</div><div class="s">What a UK ASHP install actually costs, broken down</div></a>
+  <a class="card" href="https://www.heatpumpdatabase.com/knowledge/cop-scop/"><div class="m">Understanding COP &amp; SCOP</div><div class="s">How to compare running-cost efficiency between models</div></a>
+  <a class="card" href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/"><div class="m">Flow temperature &amp; efficiency</div><div class="s">Why radiator sizing matters for running costs</div></a>
+  <a class="card" href="https://www.heatpumpdatabase.com/"><div class="m">Browse the full database</div><div class="s">3,000+ heat pumps with full specifications</div></a>
+</div>
+<script src="/demand-calc.js" defer></script>
+
+</div></main>
+<footer class="site"><div class="wrap">
+<p>Heat Pump Database &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
+<p style="margin-top:6px"><a href="https://www.heatpumpdatabase.com/">Search the full database</a> &middot; <a href="https://www.heatpumpdatabase.com/manufacturers/">All manufacturers</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/installation-costs/">Installation costs</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow temperature</a></p>
+</div></footer>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
+<div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+<span>This site uses cookies to help us understand how visitors use the site. No personal data is shared with third parties.</span>
+<span style="display:flex;gap:8px;flex-shrink:0">
+<button onclick="acceptCookies()" style="background:#3ECCC0;color:#0F2B2B;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
+<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3a5757;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
+</span>
+</div>
+</div>
+<script>function tB(){['bbtn','bmenu','bov'].forEach(function(i){document.getElementById(i).classList.toggle('open')})}function cB(){['bbtn','bmenu','bov'].forEach(function(i){document.getElementById(i).classList.remove('open')})}function toggleKnowledge(){var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}function toggleCompare(){var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}if(!localStorage.getItem('cookie_consent')){var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}</script>
+</body>
+</html>

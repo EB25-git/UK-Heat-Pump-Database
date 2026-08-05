@@ -32,10 +32,27 @@ ROOT      = os.path.dirname(os.path.abspath(__file__))
 DATA      = os.path.join(ROOT, "products.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best"]
+GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "heat-pump-size-calculator"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
+
+# Legacy category-page slugs from an earlier version of the site's refrigerant
+# grouping (compound "X/Y option" categories, before it settled on one page
+# per single refrigerant value). Google still has some of these indexed from
+# years back; rather than let them hard-404, redirect each to today's closest
+# equivalent single-refrigerant category page. Checked against GSC's 404
+# coverage report (2026-08-05) — every target here is confirmed to still be
+# generated. If a target ever stops being generated, main() silently skips
+# writing that one redirect rather than pointing at nothing.
+LEGACY_TYPE_REDIRECTS = {
+    "r1234ze-e-r515b-option-heat-pumps": "r1234ze-heat-pumps",
+    "r1234ze-r515b-option-heat-pumps": "r1234ze-heat-pumps",
+    "r32-low-gwp-heat-pumps": "r32-heat-pumps",
+    "r1233zd-e-heat-pumps": "r1233zd-heat-pumps",
+    "r513a-r134a-option-heat-pumps": "r513a-heat-pumps",
+    "r134a-r1234ze-option-heat-pumps": "r134a-heat-pumps",
+}
 
 # ───────────────────────── Helpers ─────────────────────────
 def slugify(s):
@@ -153,6 +170,42 @@ def spec_rows(p):
     return rows
 
 # ───────────────────────── HTML shell ─────────────────────────
+CALC_CSS = """
+/* ── Heat pump size calculator ── */
+.dm-tabs{display:flex;gap:8px;margin:18px 0 22px;border-bottom:1px solid #e2e8e7}
+.dm-tab{background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14.5px;font-weight:600;color:#7a8a88;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Inter',sans-serif}
+.dm-tab.active{color:#0D7377;border-bottom-color:#0D7377}
+.dm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:8px}
+.dm-field label{display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px}
+.dm-field input[type=number],.dm-field select{width:100%;height:40px;padding:9px 12px;border:1px solid #e2e8e7;border-radius:10px;font-size:13.5px;font-family:'Inter',sans-serif;background:#fff;color:#0F2B2B;box-sizing:border-box;line-height:1.2;appearance:auto}
+.dm-check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#42514f;margin-top:10px}
+.dm-check-row input{width:16px;height:16px;flex:none}
+.dm-results{background:#064E50;color:#fff;border-radius:16px;padding:26px 28px;margin:26px 0}
+.dm-result-row{display:flex;flex-wrap:wrap;gap:28px;margin-bottom:2px}
+.dm-result-block{flex:1 1 200px;min-width:170px}
+.dm-result-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.6);margin-bottom:4px}
+.dm-result-value{font-size:30px;font-weight:700;letter-spacing:-.02em}
+.dm-result-sub{font-size:12.5px;color:rgba(255,255,255,.65);margin-top:6px}
+.dm-hint{font-size:11.5px;color:#7a8a88;line-height:1.5;margin-top:5px}
+.dm-note{font-size:12.5px;color:#7a8a88;line-height:1.6;margin:14px 0}
+.dm-assumptions{background:#f3f7f6;border-radius:10px;padding:14px 18px;font-size:12.5px;color:#42514f;line-height:1.7;margin:18px 0}
+.dm-rec-group-label{font-size:13.5px;font-weight:600;color:#42514f;margin:18px 0 10px}
+.dm-rec-group-label:first-child{margin-top:0}
+.dm-rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:6px}
+.dm-rec-empty{color:#7a8a88;font-size:13px;margin-bottom:6px}
+.dm-rec-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+.dm-rec-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.08);text-decoration:none}
+.dm-rec-card-brand{font-size:12px;color:#7a8a88;text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+.dm-rec-card-name{font-size:15px;font-weight:600;color:#0F2B2B;margin-top:2px}
+.dm-rec-card-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.dm-badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:500}
+.dm-badge-ref{background:#f3f7f6;color:#42514f;border-color:#e2e8e7}
+.dm-rec-card-specs{display:flex;gap:14px;margin-top:10px;font-size:12.5px;color:#42514f;flex-wrap:wrap}
+.dm-rec-card-price{margin-top:8px;font-size:13px;color:#0D7377;font-weight:600}
+.dm-rec-card-link{margin-top:10px;font-size:12.5px;color:#0D7377;font-weight:600}
+@media (max-width:640px){.dm-result-value{font-size:24px}.dm-results{padding:20px}}
+"""
+
 CSS = """
 /* ── Best-of ranking pages ── */
 .best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
@@ -285,6 +338,7 @@ def burger_menu(active=None):
         + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
         + compare_block
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
+        + it("Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc")
         + knowledge_block
         + it("Contact", f"{BASE_URL}/#contact", "contact")
         + it("Terms of Use", f"{BASE_URL}/#terms", "terms",
@@ -1134,6 +1188,161 @@ def render_knowledge_page(cfg):
                 [article_ld, breadcrumb_jsonld(crumb_items, url)], og_type="article", active=cfg["active"],
                 og_image=get_og_image())
 
+def render_size_calculator_page():
+    title = f"Heat Pump Size Calculator — What kW Do You Need? | {SITE_NAME}"
+    desc = ("Free UK heat pump size calculator. Estimate the kW your home needs and your annual "
+            "running cost in seconds, then see matching air and ground source heat pumps from the database.")
+    canonical = f"{BASE_URL}/heat-pump-size-calculator/"
+    jsonld = [{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Heat Pump Size Calculator",
+        "url": canonical,
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+        "description": desc,
+        "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": f"{BASE_URL}/"}
+    }]
+    body = f"""
+<style>{CALC_CSS}</style>
+<nav class="crumbs"><a href="{BASE_URL}/">Home</a> &rsaquo; <span>Heat Pump Size Calculator</span></nav>
+<h1>Heat Pump Size Calculator</h1>
+<p class="sub">Get a ballpark design heat loss (for sizing) and annual heat demand (for running costs) for a home, then see which heat pumps in the database could cover it. Start with a quick estimate, or switch to the detailed version to refine it.</p>
+<p class="dm-note">For residential properties only. This is an indicative planning tool, not a substitute for a full room-by-room heat loss survey &mdash; get one from an <a href="https://mcscertified.com/product-directory/" target="_blank" rel="noopener">MCS-certified installer</a> before sizing or buying a system.</p>
+
+<div class="dm-tabs">
+  <button class="dm-tab active" id="dm-tab-simple" onclick="demandSetMode('simple')">Simple estimate</button>
+  <button class="dm-tab" id="dm-tab-detailed" onclick="demandSetMode('detailed')">Detailed estimate</button>
+</div>
+
+<div id="dm-form-simple">
+  <div class="dm-grid">
+    <div class="dm-field">
+      <label for="dm-s-floorarea">Total floor area, all storeys (m&sup2;)</label>
+      <input type="number" id="dm-s-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+      <div class="dm-hint">Total internal floor area added up across every floor of the home &mdash; the same figure as on an EPC, not just the ground-floor footprint.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-s-ptype">Property type</label>
+      <select id="dm-s-ptype" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-s-ageband">Age of property</label>
+      <select id="dm-s-ageband" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-s-insulation">Insulation upgrades</label>
+      <select id="dm-s-insulation" onchange="demandRecalc()">
+        <option value="asbuilt">As built for its age</option>
+        <option value="upgraded">Some upgrades (loft + cavity wall insulated)</option>
+        <option value="high">Well insulated (external wall insulation / near current Building Regs)</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div id="dm-form-detailed" style="display:none">
+  <div class="dm-grid">
+    <div class="dm-field">
+      <label for="dm-d-floorarea">Total floor area, all storeys (m&sup2;)</label>
+      <input type="number" id="dm-d-floorarea" min="20" max="1000" step="1" value="90" oninput="demandRecalc()">
+      <div class="dm-hint">Total internal floor area added up across every floor of the home &mdash; the same figure as on an EPC, not just the ground-floor footprint.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-ptype">Property type</label>
+      <select id="dm-d-ptype" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-storeys">Number of storeys</label>
+      <select id="dm-d-storeys" onchange="demandRecalc()">
+        <option value="1">1 (single storey)</option>
+        <option value="1.5">1.5 (dormer / chalet)</option>
+        <option value="2" selected>2</option>
+        <option value="3">3+</option>
+      </select>
+      <div class="dm-hint">Only used to split your total floor area above into per-floor wall &amp; roof area &mdash; doesn't need to be exact.</div>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-ageband">Age of property</label>
+      <select id="dm-d-ageband" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-region">UK region</label>
+      <select id="dm-d-region" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-glazing">Glazing</label>
+      <select id="dm-d-glazing" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-ventilation">Ventilation</label>
+      <select id="dm-d-ventilation" onchange="demandRecalc()"></select>
+    </div>
+    <div class="dm-field">
+      <label for="dm-d-internaltemp">Target indoor temp (&deg;C)</label>
+      <input type="number" id="dm-d-internaltemp" min="16" max="24" step="0.5" value="21" oninput="demandRecalc()">
+    </div>
+  </div>
+  <div class="dm-check-row">
+    <input type="checkbox" id="dm-d-wallupgrade" onchange="demandRecalc()"><label for="dm-d-wallupgrade">Walls insulated beyond original build (cavity fill / external wall insulation)</label>
+  </div>
+  <div class="dm-check-row">
+    <input type="checkbox" id="dm-d-roofupgrade" onchange="demandRecalc()"><label for="dm-d-roofupgrade">Loft/roof insulation topped up to modern standard (~270mm)</label>
+  </div>
+  <div class="dm-assumptions" id="dm-assumptions"></div>
+</div>
+
+<div class="dm-grid" style="margin-top:4px">
+  <div class="dm-field">
+    <label for="dm-scop">Assumed SCOP</label>
+    <input type="number" id="dm-scop" value="3.5" min="2" max="6" step="0.1" oninput="demandRecalc()">
+    <div class="dm-hint">Seasonal efficiency of the heat pump you might install &mdash; check a model's SCOP on its product page.</div>
+  </div>
+  <div class="dm-field">
+    <label for="dm-price">Electricity price (p/kWh)</label>
+    <input type="number" id="dm-price" value="25.3" min="5" max="60" step="0.1" oninput="demandRecalc()">
+    <div class="dm-hint">Defaults to the current Ofgem price cap unit rate &mdash; edit for your own tariff.</div>
+  </div>
+</div>
+
+<div class="dm-results">
+  <div class="dm-result-row">
+    <div class="dm-result-block">
+      <div class="dm-result-label">Design heat loss (peak)</div>
+      <div class="dm-result-value" id="dm-peak-value">&mdash;</div>
+      <div class="dm-result-sub" id="dm-peak-sub"></div>
+    </div>
+    <div class="dm-result-block">
+      <div class="dm-result-label">Estimated annual heat demand</div>
+      <div class="dm-result-value" id="dm-annual-value">&mdash;</div>
+      <div class="dm-result-sub" id="dm-annual-sub"></div>
+    </div>
+    <div class="dm-result-block">
+      <div class="dm-result-label">Estimated annual running cost</div>
+      <div class="dm-result-value" id="dm-cost-value">&mdash;</div>
+      <div class="dm-result-sub" id="dm-cost-sub"></div>
+    </div>
+  </div>
+</div>
+
+<h2 class="sec">Heat pumps that could cover this</h2>
+<p class="sub" style="margin-bottom:4px">Residential models from the database whose rated heating capacity covers the estimated design heat loss above: up to 6 air source (ASHP) and 2 ground source (GSHP) options.</p>
+<div id="dm-rec-groups"></div>
+
+<p class="dm-note">Method: whole-dwelling fabric and ventilation heat loss following the CIBSE Domestic Heating Design Guide approach, using indicative UK regional design temperatures and degree-day data. U-values are typical defaults for the age band selected, not measured values for your actual property, and envelope areas are estimated from floor area, storeys and property shape rather than measured room-by-room. Figures exclude solar and internal gains, which in practice reduce real-world running costs somewhat. Always confirm sizing with a full MCS heat-loss survey before purchase &mdash; see our <a href="{BASE_URL}/knowledge/installation-costs/">installation costs guide</a> for what that typically involves.</p>
+
+<h2 class="sec">Related reading</h2>
+<div class="grid">
+  <a class="card" href="{BASE_URL}/knowledge/installation-costs/"><div class="m">Installation costs</div><div class="s">What a UK ASHP install actually costs, broken down</div></a>
+  <a class="card" href="{BASE_URL}/knowledge/cop-scop/"><div class="m">Understanding COP &amp; SCOP</div><div class="s">How to compare running-cost efficiency between models</div></a>
+  <a class="card" href="{BASE_URL}/knowledge/flow-temperature/"><div class="m">Flow temperature &amp; efficiency</div><div class="s">Why radiator sizing matters for running costs</div></a>
+  <a class="card" href="{BASE_URL}/"><div class="m">Browse the full database</div><div class="s">3,000+ heat pumps with full specifications</div></a>
+</div>
+<script src="/demand-calc.js" defer></script>
+"""
+    return page(title, desc, canonical, body, jsonld, active="size-calc")
+
 def main():
     with open(DATA, encoding="utf-8") as f:
         products = json.load(f)
@@ -1297,6 +1506,23 @@ def main():
         urls.append(url)
         _lastmod_for(url, _lastmod_hash(sorted(product_hash_by_id[p.get("id")] for p in ps)))
 
+    # redirect stubs for legacy category-page slugs (see LEGACY_TYPE_REDIRECTS)
+    # - not added to `urls`/sitemap, same as product slug redirects: these
+    # exist only so an old indexed/bookmarked URL doesn't hard-404.
+    legacy_type_redirects_written = 0
+    for old_slug, target_slug in LEGACY_TYPE_REDIRECTS.items():
+        if target_slug not in seen_type_slugs or old_slug in seen_type_slugs:
+            continue  # target no longer exists, or old_slug is itself a live page now
+        target_url = f"{BASE_URL}/types/{target_slug}/"
+        stub = (f"<!DOCTYPE html><html lang=\"en-GB\"><head><meta charset=\"utf-8\">"
+                f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
+                f"<link rel=\"canonical\" href=\"{target_url}\">"
+                f"<meta http-equiv=\"refresh\" content=\"0; url={target_url}\">"
+                f"</head><body><p>This page has moved. "
+                f"<a href=\"{target_url}\">Continue to the updated page</a>.</p></body></html>")
+        write(os.path.join(ROOT, "types", old_slug, "index.html"), stub)
+        legacy_type_redirects_written += 1
+
     # knowledge guides (static SEO pages generated from the app content)
     kg_count = 0
     for cfg in KNOWLEDGE_PAGES:
@@ -1327,6 +1553,41 @@ def main():
     url = f"{BASE_URL}/best/"
     urls.append(url)
     _lastmod_for(url, _lastmod_hash([(cfg["slug"], winner.get("id")) for cfg, _, winner in best_built]))
+
+    # heat pump size calculator: standalone interactive page (not extracted
+    # from the app, unlike the knowledge guides) so it gets its own indexable
+    # URL, title and meta description instead of living only inside the SPA.
+    calc_html = render_size_calculator_page()
+    write(os.path.join(ROOT, "heat-pump-size-calculator", "index.html"), calc_html)
+    url = f"{BASE_URL}/heat-pump-size-calculator/"
+    urls.append(url)
+    _lastmod_for(url, hashlib.sha256(calc_html.encode("utf-8")).hexdigest()[:16])
+
+    # calc-products.json: trimmed residential-only dataset (id, capacity,
+    # efficiency, price, product URL) that the calculator page's demand-calc.js
+    # fetches client-side for its "heat pumps that could cover this"
+    # recommendations. Kept separate and far smaller than the full data.js so
+    # the calculator page doesn't need to load the whole app's dataset.
+    calc_products = [
+        {
+            "id": p.get("id"),
+            "manufacturer": p.get("manufacturer"),
+            "model": p.get("model"),
+            "hp_type": p.get("hp_type"),
+            "type": p.get("type"),
+            "cap_min": p.get("cap_min"),
+            "cap_max": p.get("cap_max"),
+            "refrigerant": p.get("refrigerant"),
+            "cop": p.get("cop"),
+            "scop": p.get("scop"),
+            "price_min": p.get("price_min"),
+            "price_max": p.get("price_max"),
+            "url": f"{BASE_URL}/products/{p['_slug']}/",
+        }
+        for p in products
+        if p.get("type") == "Residential" and p.get("cap_max") is not None
+    ]
+    write(os.path.join(ROOT, "calc-products.json"), json.dumps(calc_products, ensure_ascii=False))
 
     # sitemap.xml - lastmod comes from lastmod_cache (see _lastmod_for above),
     # which only advances a URL's date when its content actually changed.

@@ -11,6 +11,9 @@ robots.txt              ← points search engines at the sitemap
 products/<slug>/        ← 1,411 individual product pages  (generated)
 manufacturers/<slug>/   ← 40 manufacturer pages + an A–Z index  (generated)
 types/<slug>/           ← category pages: source type, refrigerant, application  (generated)
+heat-pump-size-calculator/ ← standalone Heat Pump Size Calculator tool page  (generated)
+demand-calc.js           ← the size calculator's engine (hand-maintained, not generated)
+calc-products.json      ← trimmed residential dataset the calculator fetches  (generated)
 .nojekyll               ← tells GitHub Pages to serve folders as-is
 CNAME                   ← your custom domain (keep your existing one)
 ```
