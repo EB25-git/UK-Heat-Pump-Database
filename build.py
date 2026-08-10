@@ -299,7 +299,7 @@ footer.site a{color:#7a8a88}
 """
 
 def burger_menu(active=None):
-    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "install-costs", "faq", "guide", "links", "knowledge")
+    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "install-costs", "bus", "faq", "guide", "links", "knowledge")
     def it(label, href, key=None, sub=False, extra=""):
         cls = "burger-item" + (" burger-subitem" if sub else "")
         if key == active or (key == "knowledge" and knowledge_active):
@@ -314,6 +314,7 @@ def burger_menu(active=None):
         f'<div class="burger-subgroup{k_open}" id="k-group">'
         + it("What Is a Heat Pump?", f"{BASE_URL}/knowledge/what-is-a-heat-pump/", "what-is-a-heat-pump", sub=True)
         + it("Installation Costs", f"{BASE_URL}/knowledge/installation-costs/", "install-costs", sub=True)
+        + it("Boiler Upgrade Scheme", f"{BASE_URL}/knowledge/boiler-upgrade-scheme/", "bus", sub=True)
         + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
         + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
         + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
@@ -1165,13 +1166,20 @@ KNOWLEDGE_PAGES = [
      "title": f"Heat Pump Flow Temperature & Efficiency Explained | {SITE_NAME}",
      "desc": ("Why a lower flow temperature makes a heat pump more efficient, the trade-off with radiator "
               "and underfloor sizing, weather compensation, and how flow temperature relates to COP and SCOP.")},
-    {"page_id": "page-install-costs", "end_marker": "<!-- ═══ FAQ ═══ -->",
+    {"page_id": "page-install-costs", "end_marker": "<!-- ═══ BOILER UPGRADE SCHEME GUIDE ═══ -->",
      "dir": "installation-costs", "active": "install-costs", "crumb": "Installation Costs",
      "headline": "ASHP Installation Costs Explained",
      "title": f"Air Source Heat Pump Installation Costs UK 2026 | {SITE_NAME}",
      "desc": ("A breakdown of what a UK air source heat pump installation costs: the unit itself, hot water "
               "cylinder, controls, and radiator upgrades, plus typical totals before and after the Boiler "
               "Upgrade Scheme grant.")},
+    {"page_id": "page-bus", "end_marker": "<!-- ═══ FAQ ═══ -->",
+     "dir": "boiler-upgrade-scheme", "active": "bus", "crumb": "Boiler Upgrade Scheme",
+     "headline": "The Boiler Upgrade Scheme (BUS) Explained",
+     "title": f"Boiler Upgrade Scheme (BUS) 2026 — Grants, Eligibility & How to Apply | {SITE_NAME}",
+     "desc": ("How the UK Boiler Upgrade Scheme works in 2026: grant amounts for ASHP, GSHP, biomass and "
+              "air-to-air heat pumps, who's eligible, property requirements, how payment works, and how "
+              "to apply.")},
 ]
 
 def render_knowledge_page(cfg):
