@@ -836,18 +836,174 @@ def render_manufacturer(mfr, products):
     return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)],
                 active="manufacturers", og_image=get_og_image(mfr))
 
+MANUFACTURER_COUNTRY = {
+    "Acond": "Czech Republic",
+    "Adlar": "United Kingdom",
+    "Aira": "Sweden",
+    "Airwell": "France",
+    "Alpha Innotec": "Germany",
+    "Ariston": "Italy",
+    "Atlantic": "France",
+    "Baxi": "United Kingdom",
+    "Beretta": "Italy",
+    "Bosch": "Germany",
+    "CIAT": "France",
+    "CTC": "Sweden",
+    "Carrier": "United States",
+    "Clade": "United Kingdom",
+    "Clivet": "Italy",
+    "Cool Energy": "United Kingdom",
+    "Daikin": "Japan",
+    "Dimplex": "Ireland",
+    "Ebac": "United Kingdom",
+    "EcoFlow": "China",
+    "Ecoforest": "Spain",
+    "Fenagy": "Denmark",
+    "Firebird": "Ireland",
+    "Fujitsu": "Japan",
+    "GEA": "Germany",
+    "Global Energy Systems": "United Kingdom",
+    "Glow-worm": "United Kingdom",
+    "Grant": "United Kingdom",
+    "Haier": "China",
+    "Harnitek": "China",
+    "Heliotherm": "Austria",
+    "Hisa": "United Kingdom",
+    "Hisense": "China",
+    "Hitachi": "Japan",
+    "Hoval": "Liechtenstein",
+    "Ideal Heating": "United Kingdom",
+    "InstaGen": "United Kingdom",
+    "Intergas": "Netherlands",
+    "Kensa": "United Kingdom",
+    "Keyter": "Spain",
+    "Kronoterm": "Slovenia",
+    "LG": "South Korea",
+    "Lailey and Coates": "United Kingdom",
+    "M-Tec": "Austria",
+    "MasterTherm": "Czech Republic",
+    "Midea": "China",
+    "Mitsubishi Electric": "Japan",
+    "Modutherm": "United Kingdom",
+    "Navien": "South Korea",
+    "Nibe": "Sweden",
+    "Ochsner": "Austria",
+    "Ochsner Energietechnik": "Austria",
+    "Octopus Energy": "United Kingdom",
+    "Oilon": "Finland",
+    "Panasonic": "Japan",
+    "Peak": "United Kingdom",
+    "Qvantum": "Sweden",
+    "Rank": "Spain",
+    "Rhoss": "Italy",
+    "Riello": "Italy",
+    "Sabroe": "Denmark",
+    "Samsung": "South Korea",
+    "Sime": "Italy",
+    "Solid Energy": "Denmark",
+    "Star Renewable Energy": "United Kingdom",
+    "Stiebel Eltron": "Germany",
+    "Swegon": "Sweden",
+    "Thermia": "Sweden",
+    "Thermonova": "Denmark",
+    "Toshiba": "Japan",
+    "Trane": "United States",
+    "Trianco": "United Kingdom",
+    "Vaillant": "Germany",
+    "Viessmann": "Germany",
+    "Warmflow": "United Kingdom",
+    "Wondrwall": "United Kingdom",
+    "York": "United States",
+}
+
 def render_manufacturers_index(by_mfr):
     url = f"{BASE_URL}/manufacturers/"
+
+    # ── data-driven stats, computed straight from the product data so they
+    # never drift out of date on rebuild ──
+    all_products = [p for ps in by_mfr.values() for p in ps]
+    total_products = len(all_products)
+
+    mcs_products = [p for p in all_products if p.get("mcs_listed") is True]
+    mcs_mfr_count = len({p.get("manufacturer") for p in mcs_products})
+
+    def _type_count(prefix):
+        return sum(1 for p in all_products if str(p.get("hp_type") or "").upper().startswith(prefix))
+    ashp_n, gshp_n, wshp_n = _type_count("ASHP"), _type_count("GSHP"), _type_count("WSHP")
+
+    cap_best = temp_best = None  # (span, manufacturer, lo, hi, model_count)
+    for m, ps in by_mfr.items():
+        cap_los = [p["cap_min"] for p in ps if p.get("cap_min") is not None]
+        cap_his = [p["cap_max"] for p in ps if p.get("cap_max") is not None]
+        if cap_los and cap_his:
+            lo, hi = min(cap_los), max(cap_his)
+            if cap_best is None or (hi - lo) > cap_best[0]:
+                cap_best = (hi - lo, m, lo, hi, len(ps))
+        temp_los = [p["op_temp_min"] for p in ps if p.get("op_temp_min") is not None]
+        temp_his = [p["op_temp_max"] for p in ps if p.get("op_temp_max") is not None]
+        if temp_los and temp_his:
+            lo, hi = min(temp_los), max(temp_his)
+            if temp_best is None or (hi - lo) > temp_best[0]:
+                temp_best = (hi - lo, m, lo, hi, len(ps))
+
+    n_countries = len({MANUFACTURER_COUNTRY[m] for m in by_mfr if m in MANUFACTURER_COUNTRY})
+
+    def _stat_card(label, value_html, sub_html):
+        return (f'<div style="border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;background:#fff">'
+                f'<div style="font-size:11.5px;color:#7a8a88;text-transform:uppercase;letter-spacing:.04em;'
+                f'font-weight:600;margin-bottom:6px">{label}</div>'
+                f'<div style="font-size:21px;font-weight:700;color:#0F2B2B;letter-spacing:-.01em">{value_html}</div>'
+                f'<div style="font-size:12.5px;color:#5b6b6b;margin-top:5px;line-height:1.5">{sub_html}</div></div>')
+
+    stats_html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:4px 0 28px">'
+    stats_html += _stat_card(
+        "MCS-certified manufacturers",
+        f'{mcs_mfr_count} <span style="font-size:13px;font-weight:500;color:#5b6b6b">of {len(by_mfr)}</span>',
+        f'{len(mcs_products):,} MCS-listed products in the database \u2014 needed for '
+        f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">'
+        f'Boiler Upgrade Scheme</a> eligibility.')
+    if cap_best:
+        stats_html += _stat_card(
+            "Widest capacity range",
+            f'<a href="{BASE_URL}/manufacturers/{slugify(cap_best[1])}/" style="color:#0F2B2B">{esc(cap_best[1])}</a>',
+            f'{num(cap_best[2])}\u2013{num(cap_best[3])} kW across {cap_best[4]} models')
+    if temp_best:
+        stats_html += _stat_card(
+            "Widest operating temperature range",
+            f'<a href="{BASE_URL}/manufacturers/{slugify(temp_best[1])}/" style="color:#0F2B2B">{esc(temp_best[1])}</a>',
+            f'{num(temp_best[2])}\u00b0C to {num(temp_best[3])}\u00b0C across their range')
+    stats_html += _stat_card(
+        "Products by type",
+        f'{ashp_n:,} ASHP \u00b7 {gshp_n:,} GSHP \u00b7 {wshp_n:,} WSHP',
+        f'{total_products:,} products from {len(by_mfr)} manufacturers in {n_countries} countries')
+    stats_html += '</div>'
+
+    intro = (
+        '<p style="color:#42514f;font-size:14.5px;line-height:1.7;margin:0 0 20px;max-width:720px">'
+        f'The {len(by_mfr)} manufacturers in this database range from dedicated heat pump specialists to '
+        'established boiler and HVAC brands that have added heat pumps to their line-up, alongside larger '
+        'industrial refrigeration engineering firms. Capacities span from a few kW for a single room to '
+        'several megawatts for district heating, so the same brand name can mean a small domestic unit or '
+        'a large industrial plant depending on the specific model \u2014 check the individual product '
+        'page rather than assuming from the brand alone. If you\'re planning to claim the Boiler Upgrade '
+        f'Scheme grant, it\'s the specific product that needs to be '
+        f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">MCS-listed</a>, '
+        'not just the manufacturer.</p>'
+    )
+
     cards = "".join(
         f'<a class="card has-logo" href="{BASE_URL}/manufacturers/{slugify(m)}/">'
         f'<img class="logo-thumb" src="{get_logo_url(m)}" alt="{esc(m)} logo" loading="lazy" width="40" height="40">'
         f'<span><div class="m">{esc(m)}</div>'
-        f'<div class="s">{len(by_mfr[m])} model{"s" if len(by_mfr[m])!=1 else ""}</div></span></a>'
+        f'<div class="s">{len(by_mfr[m])} model{"s" if len(by_mfr[m])!=1 else ""}'
+        + (f' \u00b7 {esc(MANUFACTURER_COUNTRY[m])}' if m in MANUFACTURER_COUNTRY else '')
+        + '</div></span></a>'
         for m in sorted(by_mfr))
     crumb_items = [("Home", f"{BASE_URL}/"), ("Manufacturers", None)]
     body = (crumbs(crumb_items) +
             "<h1>Heat Pump Manufacturers</h1>"
             f'<p class="sub">{len(by_mfr)} brands in the database</p>'
+            f'{intro}{stats_html}'
             f'<div class="grid">{cards}</div>')
     return page(f"Heat Pump Manufacturers (A\u2013Z) | {SITE_NAME}",
                 f"Browse heat pumps by manufacturer. {len(by_mfr)} brands with full specifications, "
