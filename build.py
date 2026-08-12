@@ -836,6 +836,18 @@ def render_manufacturer(mfr, products):
     return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)],
                 active="manufacturers", og_image=get_og_image(mfr))
 
+COUNTRY_FLAG = {
+    "United Kingdom": "\U0001F1EC\U0001F1E7", "Ireland": "\U0001F1EE\U0001F1EA",
+    "Germany": "\U0001F1E9\U0001F1EA", "France": "\U0001F1EB\U0001F1F7",
+    "Italy": "\U0001F1EE\U0001F1F9", "Spain": "\U0001F1EA\U0001F1F8",
+    "Netherlands": "\U0001F1F3\U0001F1F1", "Sweden": "\U0001F1F8\U0001F1EA",
+    "Denmark": "\U0001F1E9\U0001F1F0", "Finland": "\U0001F1EB\U0001F1EE",
+    "Austria": "\U0001F1E6\U0001F1F9", "Liechtenstein": "\U0001F1F1\U0001F1EE",
+    "Slovenia": "\U0001F1F8\U0001F1EE", "Czech Republic": "\U0001F1E8\U0001F1FF",
+    "Japan": "\U0001F1EF\U0001F1F5", "South Korea": "\U0001F1F0\U0001F1F7",
+    "China": "\U0001F1E8\U0001F1F3", "United States": "\U0001F1FA\U0001F1F8",
+}
+
 MANUFACTURER_COUNTRY = {
     "Acond": "Czech Republic",
     "Adlar": "United Kingdom",
@@ -919,19 +931,12 @@ MANUFACTURER_COUNTRY = {
 def render_manufacturers_index(by_mfr):
     url = f"{BASE_URL}/manufacturers/"
 
-    # ── data-driven stats, computed straight from the product data so they
-    # never drift out of date on rebuild ──
+    # ── per-manufacturer stats, computed straight from the product data so
+    # they never drift out of date on rebuild ──
     all_products = [p for ps in by_mfr.values() for p in ps]
-    total_products = len(all_products)
+    n_countries = len({MANUFACTURER_COUNTRY[m] for m in by_mfr if m in MANUFACTURER_COUNTRY})
 
-    mcs_products = [p for p in all_products if p.get("mcs_listed") is True]
-    mcs_mfr_count = len({p.get("manufacturer") for p in mcs_products})
-
-    def _type_count(prefix):
-        return sum(1 for p in all_products if str(p.get("hp_type") or "").upper().startswith(prefix))
-    ashp_n, gshp_n, wshp_n = _type_count("ASHP"), _type_count("GSHP"), _type_count("WSHP")
-
-    cap_best = temp_best = None  # (span, manufacturer, lo, hi, model_count)
+    cap_best = None  # (span, manufacturer, lo, hi, model_count) — widest capacity range, for the intro
     for m, ps in by_mfr.items():
         cap_los = [p["cap_min"] for p in ps if p.get("cap_min") is not None]
         cap_his = [p["cap_max"] for p in ps if p.get("cap_max") is not None]
@@ -939,77 +944,73 @@ def render_manufacturers_index(by_mfr):
             lo, hi = min(cap_los), max(cap_his)
             if cap_best is None or (hi - lo) > cap_best[0]:
                 cap_best = (hi - lo, m, lo, hi, len(ps))
-        temp_los = [p["op_temp_min"] for p in ps if p.get("op_temp_min") is not None]
-        temp_his = [p["op_temp_max"] for p in ps if p.get("op_temp_max") is not None]
-        if temp_los and temp_his:
-            lo, hi = min(temp_los), max(temp_his)
-            if temp_best is None or (hi - lo) > temp_best[0]:
-                temp_best = (hi - lo, m, lo, hi, len(ps))
-
-    n_countries = len({MANUFACTURER_COUNTRY[m] for m in by_mfr if m in MANUFACTURER_COUNTRY})
-
-    def _stat_card(label, value_html, sub_html):
-        return (f'<div style="border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;background:#fff">'
-                f'<div style="font-size:11.5px;color:#7a8a88;text-transform:uppercase;letter-spacing:.04em;'
-                f'font-weight:600;margin-bottom:6px">{label}</div>'
-                f'<div style="font-size:21px;font-weight:700;color:#0F2B2B;letter-spacing:-.01em">{value_html}</div>'
-                f'<div style="font-size:12.5px;color:#5b6b6b;margin-top:5px;line-height:1.5">{sub_html}</div></div>')
-
-    stats_html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:4px 0 28px">'
-    stats_html += _stat_card(
-        "MCS-certified manufacturers",
-        f'{mcs_mfr_count} <span style="font-size:13px;font-weight:500;color:#5b6b6b">of {len(by_mfr)}</span>',
-        f'{len(mcs_products):,} MCS-listed products in the database \u2014 needed for '
-        f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">'
-        f'Boiler Upgrade Scheme</a> eligibility.')
-    if cap_best:
-        stats_html += _stat_card(
-            "Widest capacity range",
-            f'<a href="{BASE_URL}/manufacturers/{slugify(cap_best[1])}/" style="color:#0F2B2B">{esc(cap_best[1])}</a>',
-            f'{num(cap_best[2])}\u2013{num(cap_best[3])} kW across {cap_best[4]} models')
-    if temp_best:
-        stats_html += _stat_card(
-            "Widest operating temperature range",
-            f'<a href="{BASE_URL}/manufacturers/{slugify(temp_best[1])}/" style="color:#0F2B2B">{esc(temp_best[1])}</a>',
-            f'{num(temp_best[2])}\u00b0C to {num(temp_best[3])}\u00b0C across their range')
-    stats_html += _stat_card(
-        "Products by type",
-        f'{ashp_n:,} ASHP \u00b7 {gshp_n:,} GSHP \u00b7 {wshp_n:,} WSHP',
-        f'{total_products:,} products from {len(by_mfr)} manufacturers in {n_countries} countries')
-    stats_html += '</div>'
 
     intro = (
-        '<p style="color:#42514f;font-size:14.5px;line-height:1.7;margin:0 0 20px;max-width:720px">'
-        f'The {len(by_mfr)} manufacturers in this database range from dedicated heat pump specialists to '
-        'established boiler and HVAC brands that have added heat pumps to their line-up, alongside larger '
-        'industrial refrigeration engineering firms. Capacities span from a few kW for a single room to '
-        'several megawatts for district heating, so the same brand name can mean a small domestic unit or '
-        'a large industrial plant depending on the specific model \u2014 check the individual product '
-        'page rather than assuming from the brand alone. If you\'re planning to claim the Boiler Upgrade '
-        f'Scheme grant, it\'s the specific product that needs to be '
-        f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">MCS-listed</a>, '
-        'not just the manufacturer.</p>'
+        '<p style="color:#42514f;font-size:14.5px;line-height:1.7;margin:0 0 24px;max-width:720px">'
+        f'The {len(by_mfr)} manufacturers in this database ({len(all_products):,} products across '
+        f'{n_countries} countries) range from dedicated heat pump specialists to established boiler and '
+        'HVAC brands that have added heat pumps to their line-up, alongside larger industrial refrigeration '
+        'engineering firms. Capacities span from a few kW for a single room to several megawatts for '
+        + (f'district heating \u2014 {esc(cap_best[1])}\'s range alone covers {num(cap_best[2])}\u2013{num(cap_best[3])} kW '
+           if cap_best else 'district heating ')
+        + '\u2014 so the same brand name can mean a small domestic unit or a large industrial plant '
+        'depending on the specific model. Each entry below shows that manufacturer\'s country, how many of '
+        'its products are '
+        f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">MCS-listed</a> '
+        '(needed for Boiler Upgrade Scheme eligibility), its operating temperature range, and its product '
+        'mix by heat pump type.</p>'
     )
 
-    cards = "".join(
-        f'<a class="card has-logo" href="{BASE_URL}/manufacturers/{slugify(m)}/">'
-        f'<img class="logo-thumb" src="{get_logo_url(m)}" alt="{esc(m)} logo" loading="lazy" width="40" height="40">'
-        f'<span><div class="m">{esc(m)}</div>'
-        f'<div class="s">{len(by_mfr[m])} model{"s" if len(by_mfr[m])!=1 else ""}'
-        + (f' \u00b7 {esc(MANUFACTURER_COUNTRY[m])}' if m in MANUFACTURER_COUNTRY else '')
-        + '</div></span></a>'
-        for m in sorted(by_mfr))
+    def _mfr_card(m):
+        ps = by_mfr[m]
+        n = len(ps)
+        mcs_n = sum(1 for p in ps if p.get("mcs_listed") is True)
+        temp_los = [p["op_temp_min"] for p in ps if p.get("op_temp_min") is not None]
+        temp_his = [p["op_temp_max"] for p in ps if p.get("op_temp_max") is not None]
+        temp_range = f'{num(min(temp_los))}\u00b0C to {num(max(temp_his))}\u00b0C' if temp_los and temp_his else None
+
+        def _type_count(prefix):
+            return sum(1 for p in ps if str(p.get("hp_type") or "").upper().startswith(prefix))
+        type_parts = [f'{c} {label}' for c, label in
+                      ((_type_count("ASHP"), "ASHP"), (_type_count("GSHP"), "GSHP"), (_type_count("WSHP"), "WSHP"))
+                      if c > 0]
+
+        country = MANUFACTURER_COUNTRY.get(m)
+        flag = COUNTRY_FLAG.get(country, "")
+        line1 = f'{n} model{"s" if n != 1 else ""}'
+        if country:
+            line1 += f' \u00b7 {flag} {esc(country)}'
+
+        line2_parts = []
+        if mcs_n:
+            line2_parts.append(f'{mcs_n} MCS-listed')
+        if temp_range:
+            line2_parts.append(temp_range)
+        line2 = ' \u00b7 '.join(line2_parts)
+
+        line3 = ' \u00b7 '.join(type_parts)
+
+        lines = f'<div class="s">{line1}</div>'
+        if line2:
+            lines += f'<div class="s">{line2}</div>'
+        if line3:
+            lines += f'<div class="s">{line3}</div>'
+
+        return (f'<a class="card has-logo" href="{BASE_URL}/manufacturers/{slugify(m)}/">'
+                f'<img class="logo-thumb" src="{get_logo_url(m)}" alt="{esc(m)} logo" loading="lazy" width="40" height="40">'
+                f'<span><div class="m">{esc(m)}</div>{lines}</span></a>')
+
+    cards = "".join(_mfr_card(m) for m in sorted(by_mfr))
     crumb_items = [("Home", f"{BASE_URL}/"), ("Manufacturers", None)]
     body = (crumbs(crumb_items) +
             "<h1>Heat Pump Manufacturers</h1>"
             f'<p class="sub">{len(by_mfr)} brands in the database</p>'
-            f'{intro}{stats_html}'
+            f'{intro}'
             f'<div class="grid">{cards}</div>')
     return page(f"Heat Pump Manufacturers (A\u2013Z) | {SITE_NAME}",
                 f"Browse heat pumps by manufacturer. {len(by_mfr)} brands with full specifications, "
                 f"COP and SCOP data in the {SITE_NAME}.", url, body,
                 [breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image())
-
 def render_type(slug, heading, desc, products):
     url = f"{BASE_URL}/types/{slug}/"
     # group by manufacturer for readability
