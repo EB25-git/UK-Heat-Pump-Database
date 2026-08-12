@@ -170,6 +170,112 @@ def spec_rows(p):
     return rows
 
 # ───────────────────────── HTML shell ─────────────────────────
+MFR_FILTER_CSS = """
+/* ── Manufacturers page filters ── */
+.mfr-filter-bar{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;margin-bottom:20px}
+.mfr-filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mfr-filter-col label.filter-label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#5b6b6b;font-weight:600;margin-bottom:5px}
+.mfr-filter-col select.filt{width:100%;padding:9px 12px;border:1px solid #e2e8e7;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;color:#16302f;cursor:pointer;appearance:auto}
+.mfr-filter-col select.filt:focus{border-color:#3ECCC0;outline:none}
+.f-slider-val{font-size:11px;color:#0D7377;font-weight:600;float:right;text-transform:none;letter-spacing:0}
+.range-wrap{position:relative;height:30px;margin-top:2px}
+.range-wrap.focus .range-thumb{box-shadow:0 0 0 4px rgba(62,204,192,.35)}
+.range-track{position:absolute;top:13px;left:5%;right:5%;height:4px;background:#eef2f1;border-radius:3px}
+.range-fill{position:absolute;top:13px;height:4px;background:#3ECCC0;border-radius:3px}
+.range-thumb{position:absolute;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:2.5px solid #0D7377;box-shadow:0 1px 3px rgba(0,0,0,.18);transform:translateX(-50%);pointer-events:none;box-sizing:border-box}
+.range-wrap input[type=range]{position:absolute;top:0;left:0;width:100%;height:30px;margin:0;opacity:0;pointer-events:none;-webkit-appearance:none;appearance:none}
+.range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:30px;pointer-events:auto;cursor:pointer}
+.range-wrap input[type=range]::-moz-range-thumb{width:24px;height:30px;pointer-events:auto;cursor:pointer;border:none;background:transparent}
+.mfr-filter-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid #eef2f1}
+#mf-count{font-size:12.5px;color:#5b6b6b}
+.mf-clear-btn{background:none;border:1px solid #e2e8e7;color:#42514f;font-size:12.5px;padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Inter',sans-serif}
+.mf-clear-btn:hover{border-color:#3ECCC0;color:#0D7377}
+.mfr-empty{display:none;color:#5b6b6b;font-size:14px;padding:32px 0;text-align:center}
+@media(max-width:720px){.mfr-filter-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.mfr-filter-grid{grid-template-columns:1fr}}
+"""
+
+MFR_FILTER_JS = """
+(function(){
+  var CAP_STOPS=[0,1,2,3,4,5,6,8,10,12,15,20,25,30,40,50,60,80,100,150,200,300,400,500,700,1000];
+  var SF={capLo:0,capHi:1000};
+  function capFromIdx(i){return CAP_STOPS[Math.max(0,Math.min(CAP_STOPS.length-1,i))];}
+  function mkDual(el,vEl){
+    var n=CAP_STOPS.length-1;
+    el.innerHTML='<div class="range-track"></div><div class="range-fill"></div><div class="range-thumb"></div><div class="range-thumb"></div>'+
+      '<input type="range" min="0" max="'+n+'" step="1" value="0" aria-label="Minimum heating capacity">'+
+      '<input type="range" min="0" max="'+n+'" step="1" value="'+n+'" aria-label="Maximum heating capacity">';
+    var inputs=el.querySelectorAll('input'),lo=inputs[0],hi=inputs[1],fill=el.querySelector('.range-fill'),thumbs=el.querySelectorAll('.range-thumb'),t1=thumbs[0],t2=thumbs[1];
+    function upd(fire){
+      var a=Math.min(+lo.value,+hi.value),b=Math.max(+lo.value,+hi.value);
+      var pa=5+a/n*90,pb=5+b/n*90;fill.style.left=pa+'%';fill.style.width=(pb-pa)+'%';
+      t1.style.left=pa+'%';t2.style.left=pb+'%';
+      SF.capLo=capFromIdx(a);SF.capHi=capFromIdx(b);
+      vEl.textContent=(a===0&&b===n)?'Any':SF.capLo+'–'+(b===n?'1000+':SF.capHi)+' kW';
+      if(fire)mfApplyFilters();
+    }
+    [lo,hi].forEach(function(i){
+      i.addEventListener('input',function(){upd(true);});
+      i.addEventListener('focus',function(){el.classList.add('focus');});
+      i.addEventListener('blur',function(){el.classList.remove('focus');});
+    });
+    el._reset=function(){lo.value=0;hi.value=n;upd(false);};
+    upd(false);
+  }
+  window.mfApplyFilters=function(){
+    var typeSel=document.getElementById('mf-type'),mcsSel=document.getElementById('mf-mcs'),countrySel=document.getElementById('mf-country');
+    if(!typeSel||!mcsSel||!countrySel)return;
+    var type=typeSel.value,mcs=mcsSel.value,country=countrySel.value;
+    var capActive=(SF.capLo>0||SF.capHi<1000);
+    var cards=document.querySelectorAll('#mfr-grid .card');
+    var shown=0;
+    cards.forEach(function(c){
+      var ok=true;
+      if(type){
+        var types=(c.getAttribute('data-types')||'').split(',');
+        if(types.indexOf(type)===-1)ok=false;
+      }
+      if(ok&&mcs==='mcs'&&c.getAttribute('data-mcs')!=='1')ok=false;
+      if(ok&&country&&c.getAttribute('data-country')!==country)ok=false;
+      if(ok&&capActive){
+        var loA=c.getAttribute('data-cap-lo'),hiA=c.getAttribute('data-cap-hi');
+        if(loA===''||hiA===''||loA===null||hiA===null){
+          ok=false;
+        }else{
+          var lo=+loA,hi=+hiA;
+          if(hi<SF.capLo)ok=false;
+          if(SF.capHi<1000&&lo>SF.capHi)ok=false;
+        }
+      }
+      c.style.display=ok?'':'none';
+      if(ok)shown++;
+    });
+    var countEl=document.getElementById('mf-count');
+    if(countEl)countEl.textContent=shown+' manufacturer'+(shown!==1?'s':'')+(shown!==cards.length?' of '+cards.length:'');
+    var emptyEl=document.getElementById('mfr-empty');
+    if(emptyEl)emptyEl.style.display=shown===0?'block':'none';
+  };
+  window.mfClearFilters=function(){
+    var typeSel=document.getElementById('mf-type'),mcsSel=document.getElementById('mf-mcs'),countrySel=document.getElementById('mf-country');
+    if(typeSel)typeSel.value='';
+    if(mcsSel)mcsSel.value='';
+    if(countrySel)countrySel.value='';
+    var sl=document.getElementById('mf-sl-cap');
+    if(sl&&sl._reset)sl._reset();
+    mfApplyFilters();
+  };
+  function init(){
+    var sl=document.getElementById('mf-sl-cap');
+    if(!sl||sl._init)return;
+    sl._init=true;
+    mkDual(sl,document.getElementById('mf-sv-cap'));
+    mfApplyFilters();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+"""
+
 CALC_CSS = """
 /* ── Heat pump size calculator ── */
 .dm-tabs{display:flex;gap:8px;margin:18px 0 22px;border-bottom:1px solid #e2e8e7}
@@ -876,7 +982,7 @@ MANUFACTURER_COUNTRY = {
     "GEA": "Germany",
     "Global Energy Systems": "United Kingdom",
     "Glow-worm": "United Kingdom",
-    "Grant": "United Kingdom",
+    "Grant": "Ireland",
     "Haier": "China",
     "Harnitek": "China",
     "Heliotherm": "Austria",
@@ -951,15 +1057,18 @@ def render_manufacturers_index(by_mfr):
         f'{n_countries} countries) range from dedicated heat pump specialists to established boiler and '
         'HVAC brands that have added heat pumps to their line-up, alongside larger industrial refrigeration '
         'engineering firms. Capacities span from a few kW for a single room to several megawatts for '
-        + (f'district heating \u2014 {esc(cap_best[1])}\'s range alone covers {num(cap_best[2])}\u2013{num(cap_best[3])} kW '
+        + (f'district heating — {esc(cap_best[1])}\'s range alone covers {num(cap_best[2])}–{num(cap_best[3])} kW '
            if cap_best else 'district heating ')
-        + '\u2014 so the same brand name can mean a small domestic unit or a large industrial plant '
+        + '— so the same brand name can mean a small domestic unit or a large industrial plant '
         'depending on the specific model. Each entry below shows that manufacturer\'s country, how many of '
         'its products are '
         f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">MCS-listed</a> '
         '(needed for Boiler Upgrade Scheme eligibility), its operating temperature range, and its product '
-        'mix by heat pump type.</p>'
+        'mix by heat pump type. Use the filters below to narrow the list.</p>'
     )
+
+    country_set = set()
+    card_data = []  # (name, html, country) — built once so we can also derive the filter dropdown options
 
     def _mfr_card(m):
         ps = by_mfr[m]
@@ -967,28 +1076,35 @@ def render_manufacturers_index(by_mfr):
         mcs_n = sum(1 for p in ps if p.get("mcs_listed") is True)
         temp_los = [p["op_temp_min"] for p in ps if p.get("op_temp_min") is not None]
         temp_his = [p["op_temp_max"] for p in ps if p.get("op_temp_max") is not None]
-        temp_range = f'{num(min(temp_los))}\u00b0C to {num(max(temp_his))}\u00b0C' if temp_los and temp_his else None
+        temp_range = f'{num(min(temp_los))}°C to {num(max(temp_his))}°C' if temp_los and temp_his else None
+
+        cap_los = [p["cap_min"] for p in ps if p.get("cap_min") is not None]
+        cap_his = [p["cap_max"] for p in ps if p.get("cap_max") is not None]
+        cap_lo = min(cap_los) if cap_los else None
+        cap_hi = max(cap_his) if cap_his else None
 
         def _type_count(prefix):
             return sum(1 for p in ps if str(p.get("hp_type") or "").upper().startswith(prefix))
-        type_parts = [f'{c} {label}' for c, label in
-                      ((_type_count("ASHP"), "ASHP"), (_type_count("GSHP"), "GSHP"), (_type_count("WSHP"), "WSHP"))
-                      if c > 0]
+        type_counts = ((_type_count("ASHP"), "ASHP"), (_type_count("GSHP"), "GSHP"), (_type_count("WSHP"), "WSHP"))
+        type_parts = [f'{c} {label}' for c, label in type_counts if c > 0]
+        types_attr = ",".join(label for c, label in type_counts if c > 0)
 
         country = MANUFACTURER_COUNTRY.get(m)
         flag = COUNTRY_FLAG.get(country, "")
+        if country:
+            country_set.add(country)
         line1 = f'{n} model{"s" if n != 1 else ""}'
         if country:
-            line1 += f' \u00b7 {flag} {esc(country)}'
+            line1 += f' · {flag} {esc(country)}'
 
         line2_parts = []
         if mcs_n:
             line2_parts.append(f'{mcs_n} MCS-listed')
         if temp_range:
             line2_parts.append(temp_range)
-        line2 = ' \u00b7 '.join(line2_parts)
+        line2 = ' · '.join(line2_parts)
 
-        line3 = ' \u00b7 '.join(type_parts)
+        line3 = ' · '.join(type_parts)
 
         lines = f'<div class="s">{line1}</div>'
         if line2:
@@ -996,21 +1112,78 @@ def render_manufacturers_index(by_mfr):
         if line3:
             lines += f'<div class="s">{line3}</div>'
 
-        return (f'<a class="card has-logo" href="{BASE_URL}/manufacturers/{slugify(m)}/">'
+        data_attrs = (
+            f'data-mcs="{1 if mcs_n else 0}" '
+            f'data-types="{esc(types_attr)}" '
+            f'data-country="{esc(country or "")}" '
+            f'data-cap-lo="{cap_lo if cap_lo is not None else ""}" '
+            f'data-cap-hi="{cap_hi if cap_hi is not None else ""}"'
+        )
+
+        return (f'<a class="card has-logo" {data_attrs} href="{BASE_URL}/manufacturers/{slugify(m)}/">'
                 f'<img class="logo-thumb" src="{get_logo_url(m)}" alt="{esc(m)} logo" loading="lazy" width="40" height="40">'
                 f'<span><div class="m">{esc(m)}</div>{lines}</span></a>')
 
     cards = "".join(_mfr_card(m) for m in sorted(by_mfr))
+
+    country_options = "".join(
+        f'<option value="{esc(c)}">{COUNTRY_FLAG.get(c, "")} {esc(c)}</option>'
+        for c in sorted(country_set)
+    )
+
+    filter_bar = f'''
+<style>{MFR_FILTER_CSS}</style>
+<div class="mfr-filter-bar">
+  <div class="mfr-filter-grid">
+    <div class="mfr-filter-col">
+      <label class="filter-label" for="mf-type">Heat pump type</label>
+      <select class="filt" id="mf-type" onchange="mfApplyFilters()">
+        <option value="">Any type</option>
+        <option value="ASHP">Air source (ASHP)</option>
+        <option value="GSHP">Ground source (GSHP)</option>
+        <option value="WSHP">Water source (WSHP)</option>
+      </select>
+    </div>
+    <div class="mfr-filter-col">
+      <label class="filter-label" for="mf-mcs">MCS certification</label>
+      <select class="filt" id="mf-mcs" onchange="mfApplyFilters()">
+        <option value="">Any</option>
+        <option value="mcs">Has MCS-listed products</option>
+      </select>
+    </div>
+    <div class="mfr-filter-col">
+      <label class="filter-label" for="mf-country">Country</label>
+      <select class="filt" id="mf-country" onchange="mfApplyFilters()">
+        <option value="">Any country</option>
+        {country_options}
+      </select>
+    </div>
+    <div class="mfr-filter-col">
+      <label class="filter-label">Heating capacity <span class="f-slider-val" id="mf-sv-cap">Any</span></label>
+      <div class="range-wrap" id="mf-sl-cap"></div>
+    </div>
+  </div>
+  <div class="mfr-filter-footer">
+    <span id="mf-count"></span>
+    <button type="button" class="mf-clear-btn" onclick="mfClearFilters()">Clear filters</button>
+  </div>
+</div>
+<p class="mfr-empty" id="mfr-empty">No manufacturers match those filters.</p>
+'''
+
     crumb_items = [("Home", f"{BASE_URL}/"), ("Manufacturers", None)]
     body = (crumbs(crumb_items) +
             "<h1>Heat Pump Manufacturers</h1>"
             f'<p class="sub">{len(by_mfr)} brands in the database</p>'
             f'{intro}'
-            f'<div class="grid">{cards}</div>')
-    return page(f"Heat Pump Manufacturers (A\u2013Z) | {SITE_NAME}",
+            f'{filter_bar}'
+            f'<div class="grid" id="mfr-grid">{cards}</div>'
+            f'<script>{MFR_FILTER_JS}</script>')
+    return page(f"Heat Pump Manufacturers (A–Z) | {SITE_NAME}",
                 f"Browse heat pumps by manufacturer. {len(by_mfr)} brands with full specifications, "
                 f"COP and SCOP data in the {SITE_NAME}.", url, body,
                 [breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image())
+
 def render_type(slug, heading, desc, products):
     url = f"{BASE_URL}/types/{slug}/"
     # group by manufacturer for readability
