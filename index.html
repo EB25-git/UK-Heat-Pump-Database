@@ -759,6 +759,14 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       </div>
       <div class="an-card">
         <div class="an-card-h">
+          <h3>SCOP vs Maximum capacity</h3>
+          <p>Seasonal efficiency against heat output — a more realistic year-round figure than a single COP test point. Note that SCOP is measured at differing test conditions — colour shows heat-pump type.</p>
+        </div>
+        <div class="an-chart-wrap"><div id="chart-scop-cap" class="an-chart"></div></div>
+        <div class="an-xlabel">Maximum heating capacity (kW, log scale)</div>
+      </div>
+      <div class="an-card">
+        <div class="an-card-h">
           <h3>Maximum heating flow temperature</h3>
           <p>Heat pumps grouped by the hottest water they can deliver for heating, with bars coloured by type. Click any band to list the models in it and open full specs.</p>
         </div>
@@ -2733,12 +2741,28 @@ function renderTableView(){
 // ═══════════════ MODAL ═══════════════
 // ═══ ANALYTICS ═══
 const AN_COLORS={ASHP:'#9AA7A7',WSHP:'#4DA3E0',GSHP:'#5BC47E'};
-let anFilters={hp_type:'all',type:'all',refrigerant:'all',cop_cond:'all',electrical:'all'};
+let anFilters={hp_type:'all',type:'all',refrigerant:'all',cop_cond:'all',scop_cond:'all',electrical:'all'};
+// Build a (sorted, common-first) list of distinct test-condition strings from raw values, plus
+// the subset judged "most common" (top n by actual frequency in the data, excluding placeholder
+// text like "Not stated"). Shared by the COP and SCOP filters on the Visualise page.
+function anCondList(rawValues,n){
+  const counts={};
+  rawValues.forEach(v=>{if(v&&!/^not stated$/i.test(v))counts[v]=(counts[v]||0)+1;});
+  const conds=[...new Set(rawValues)];
+  const common=Object.keys(counts).sort((a,b)=>counts[b]-counts[a]).slice(0,n);
+  conds.sort((a,b)=>{
+    const ia=common.indexOf(a),ib=common.indexOf(b);
+    if(ia!==-1||ib!==-1){if(ia===-1)return 1;if(ib===-1)return -1;return ia-ib;}
+    const ra=/^[0-9]/.test(a),rb=/^[0-9]/.test(b);if(ra!==rb)return ra?1:-1;return a.localeCompare(b);
+  });
+  return [conds,common];
+}
 function renderAnalytics(){
   // Build filter controls once
   const fp=document.getElementById('an-filters');
   const refs=[...new Set(db.flatMap(d=>parseRefrigerants(d.refrigerant)))].sort();
-  const copConds=[...new Set(db.filter(d=>d.cop!=null&&d.cop_cond).map(d=>d.cop_cond))].sort((a,b)=>{const ra=/^[0-9]/.test(a),rb=/^[0-9]/.test(b);if(ra!==rb)return ra?1:-1;return a.localeCompare(b);});
+  const [copConds,commonCopConds]=anCondList(db.filter(d=>d.cop!=null&&d.cop_cond).map(d=>d.cop_cond),5);
+  const [scopConds,commonScopConds]=anCondList(db.filter(d=>d.scop!=null&&d.scop_cond).map(d=>d.scop_cond),2);
   const elecs=[...new Set(db.filter(d=>d.electrical).map(d=>d.electrical))].sort();
   fp.innerHTML=`
     <div class="an-fg"><label>Heat pump type</label>
@@ -2752,12 +2776,16 @@ function renderAnalytics(){
         <option value="all">All electrical supplies</option>${elecs.map(e=>`<option value="${e}">${e}</option>`).join('')}</select></div>
     <div class="an-fg"><label>COP test condition</label>
       <select id="anf-cop" onchange="anSetFilter('cop_cond',this.value)">
-        <option value="all">All COP conditions</option>${copConds.map(c=>`<option value="${c}">${c}</option>`).join('')}</select></div>
+        <option value="all">All COP conditions</option>${copConds.map(c=>`<option value="${c}">${c}${commonCopConds.includes(c)?' (most common)':''}</option>`).join('')}</select></div>
+    <div class="an-fg"><label>SCOP test condition</label>
+      <select id="anf-scop" onchange="anSetFilter('scop_cond',this.value)">
+        <option value="all">All SCOP conditions</option>${scopConds.map(c=>`<option value="${c}">${c}${commonScopConds.includes(c)?' (most common)':''}</option>`).join('')}</select></div>
     <div class="an-stat" id="an-stat"></div>`;
   document.getElementById('anf-hp').value=anFilters.hp_type;
   document.getElementById('anf-ref').value=anFilters.refrigerant;
   document.getElementById('anf-electrical').value=anFilters.electrical;
   document.getElementById('anf-cop').value=anFilters.cop_cond;
+  document.getElementById('anf-scop').value=anFilters.scop_cond;
   // Legend
   document.getElementById('an-legend').innerHTML=Object.entries(AN_COLORS).map(([k,v])=>
     `<div class="an-legend-item"><span class="an-legend-dot" style="background:${v}"></span>${k==='ASHP'?'Air source (ASHP)':k==='WSHP'?'Water source (WSHP)':'Ground source (GSHP)'}</div>`).join('');
@@ -2774,12 +2802,17 @@ function anData(){
 function anDraw(){
   const data=anData();
   const copData=data.filter(d=>anFilters.cop_cond==='all'||d.cop_cond===anFilters.cop_cond);
+  const scopData=data.filter(d=>anFilters.scop_cond==='all'||d.scop_cond===anFilters.scop_cond);
   const st=document.getElementById('an-stat');
   if(st)st.innerHTML=`<strong>${data.length}</strong> products shown`;
   // Scatter: COP vs capacity (log x)
   anScatter('chart-cop-cap',copData.filter(d=>d.cop!=null&&d.cap_max!=null),
     d=>d.cap_max,d=>d.cop,{xLog:true,yLabel:'COP',xMinTick:1,fmtX:v=>v>=1000?(v/1000)+'MW':v+'kW',fmtY:v=>v.toFixed(1),
     spec:d=>`${d.cap_max} kW · COP ${d.cop} @ ${d.cop_cond||'?'}`});
+  // Scatter: SCOP vs capacity (log x)
+  anScatter('chart-scop-cap',scopData.filter(d=>d.scop!=null&&d.cap_max!=null),
+    d=>d.cap_max,d=>d.scop,{xLog:true,yLabel:'SCOP',xMinTick:1,fmtX:v=>v>=1000?(v/1000)+'MW':v+'kW',fmtY:v=>v.toFixed(1),
+    spec:d=>`${d.cap_max} kW · SCOP ${d.scop} @ ${d.scop_cond||'?'}`});
   // Range chart: operating temp min->max
   anRangeChart('chart-temp-range',data.filter(d=>d.op_temp_min!=null&&d.op_temp_max!=null&&d.op_temp_min<d.op_temp_max));
   // Scatter: Cost vs capacity (log x), using average of price_min/price_max

@@ -172,6 +172,7 @@ def spec_rows(p):
 # ───────────────────────── HTML shell ─────────────────────────
 MFR_FILTER_CSS = """
 /* ── Manufacturers page filters ── */
+.flag-icon{width:16px;height:12px;vertical-align:-1.5px;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
 .mfr-filter-bar{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;margin-bottom:20px}
 .mfr-filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .mfr-filter-col label.filter-label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#5b6b6b;font-weight:600;margin-bottom:5px}
@@ -942,17 +943,28 @@ def render_manufacturer(mfr, products):
     return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)],
                 active="manufacturers", og_image=get_og_image(mfr))
 
-COUNTRY_FLAG = {
-    "United Kingdom": "\U0001F1EC\U0001F1E7", "Ireland": "\U0001F1EE\U0001F1EA",
-    "Germany": "\U0001F1E9\U0001F1EA", "France": "\U0001F1EB\U0001F1F7",
-    "Italy": "\U0001F1EE\U0001F1F9", "Spain": "\U0001F1EA\U0001F1F8",
-    "Netherlands": "\U0001F1F3\U0001F1F1", "Sweden": "\U0001F1F8\U0001F1EA",
-    "Denmark": "\U0001F1E9\U0001F1F0", "Finland": "\U0001F1EB\U0001F1EE",
-    "Austria": "\U0001F1E6\U0001F1F9", "Liechtenstein": "\U0001F1F1\U0001F1EE",
-    "Slovenia": "\U0001F1F8\U0001F1EE", "Czech Republic": "\U0001F1E8\U0001F1FF",
-    "Japan": "\U0001F1EF\U0001F1F5", "South Korea": "\U0001F1F0\U0001F1F7",
-    "China": "\U0001F1E8\U0001F1F3", "United States": "\U0001F1FA\U0001F1F8",
+# ISO 3166-1 alpha-2 codes, used to render actual flag images (flagcdn.com) instead of
+# Unicode flag emoji — Windows' default emoji font has no flag glyphs, so emoji flags render
+# as plain letters/boxes there even though they work fine on macOS/iOS.
+COUNTRY_CODE = {
+    "United Kingdom": "gb", "Ireland": "ie",
+    "Germany": "de", "France": "fr",
+    "Italy": "it", "Spain": "es",
+    "Netherlands": "nl", "Sweden": "se",
+    "Denmark": "dk", "Finland": "fi",
+    "Austria": "at", "Liechtenstein": "li",
+    "Slovenia": "si", "Czech Republic": "cz",
+    "Japan": "jp", "South Korea": "kr",
+    "China": "cn", "United States": "us",
 }
+
+def flag_img(country, css_class="flag-icon"):
+    """Return an <img> tag for a country's flag, or '' if the country/code is unknown."""
+    code = COUNTRY_CODE.get(country)
+    if not code:
+        return ""
+    return (f'<img class="{css_class}" src="https://flagcdn.com/{code}.svg" '
+            f'width="16" height="12" alt="" loading="lazy">')
 
 MANUFACTURER_COUNTRY = {
     "Acond": "Czech Republic",
@@ -1063,7 +1075,7 @@ def render_manufacturers_index(by_mfr):
         'depending on the specific model. Each entry below shows that manufacturer\'s country, how many of '
         'its products are '
         f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">MCS-listed</a> '
-        '(needed for Boiler Upgrade Scheme eligibility), its operating temperature range, and its product '
+        '(needed for Boiler Upgrade Scheme eligibility), its heating flow temperature range, and its product '
         'mix by heat pump type. Use the filters below to narrow the list.</p>'
     )
 
@@ -1074,9 +1086,11 @@ def render_manufacturers_index(by_mfr):
         ps = by_mfr[m]
         n = len(ps)
         mcs_n = sum(1 for p in ps if p.get("mcs_listed") is True)
-        temp_los = [p["op_temp_min"] for p in ps if p.get("op_temp_min") is not None]
-        temp_his = [p["op_temp_max"] for p in ps if p.get("op_temp_max") is not None]
-        temp_range = f'{num(min(temp_los))}°C to {num(max(temp_his))}°C' if temp_los and temp_his else None
+        # heating flow (flow/return loop) temperature range — NOT the ambient/environmental
+        # operating range — so this reflects what water temperature the units can deliver
+        flow_los = [p["flow_temp_min"] for p in ps if p.get("flow_temp_min") is not None]
+        flow_his = [p["flow_temp_max"] for p in ps if p.get("flow_temp_max") is not None]
+        flow_range = f'{num(min(flow_los))}°C to {num(max(flow_his))}°C' if flow_los and flow_his else None
 
         cap_los = [p["cap_min"] for p in ps if p.get("cap_min") is not None]
         cap_his = [p["cap_max"] for p in ps if p.get("cap_max") is not None]
@@ -1090,27 +1104,21 @@ def render_manufacturers_index(by_mfr):
         types_attr = ",".join(label for c, label in type_counts if c > 0)
 
         country = MANUFACTURER_COUNTRY.get(m)
-        flag = COUNTRY_FLAG.get(country, "")
+        flag = flag_img(country)
         if country:
             country_set.add(country)
-        line1 = f'{n} model{"s" if n != 1 else ""}'
+
+        row_lines = [f'{n} model{"s" if n != 1 else ""}']
         if country:
-            line1 += f' · {flag} {esc(country)}'
-
-        line2_parts = []
+            row_lines.append(f'{flag} {esc(country)}')
         if mcs_n:
-            line2_parts.append(f'{mcs_n} MCS-listed')
-        if temp_range:
-            line2_parts.append(temp_range)
-        line2 = ' · '.join(line2_parts)
+            row_lines.append(f'{mcs_n} MCS-listed')
+        if flow_range:
+            row_lines.append(f'Flow temp {flow_range}')
+        if type_parts:
+            row_lines.append(' · '.join(type_parts))
 
-        line3 = ' · '.join(type_parts)
-
-        lines = f'<div class="s">{line1}</div>'
-        if line2:
-            lines += f'<div class="s">{line2}</div>'
-        if line3:
-            lines += f'<div class="s">{line3}</div>'
+        lines = "".join(f'<div class="s">{row}</div>' for row in row_lines)
 
         data_attrs = (
             f'data-mcs="{1 if mcs_n else 0}" '
@@ -1127,7 +1135,7 @@ def render_manufacturers_index(by_mfr):
     cards = "".join(_mfr_card(m) for m in sorted(by_mfr))
 
     country_options = "".join(
-        f'<option value="{esc(c)}">{COUNTRY_FLAG.get(c, "")} {esc(c)}</option>'
+        f'<option value="{esc(c)}">{esc(c)}</option>'
         for c in sorted(country_set)
     )
 
