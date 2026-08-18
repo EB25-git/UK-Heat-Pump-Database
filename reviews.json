@@ -318,5 +318,565 @@
     "url": "https://www.youtube.com/watch?v=GM2PvwdSTSE",
     "date": null,
     "note": "Independent installer walkthrough of an Altherma 3 M installation."
+  },
+  {
+    "manufacturer": "Ecoforest",
+    "range": "ecoAIR+ PRO",
+    "type": "youtube",
+    "title": "Air-Source Heat Pump - ecoAIR EVI (Ecoforest)",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=7BXGZ-P3aFw",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Ecoforest",
+    "range": "ecoGEO+ B/C",
+    "type": "review_article",
+    "title": "Ecoforest ecoGEO+ ground source heat pump review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/ecoforest-ecogeo-ground-source-heat-pump-review/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Toshiba",
+    "range": "ESTIA BiBloc Hydrobox",
+    "type": "review_article",
+    "title": "Toshiba Estia Review - Japanese Heat Pump for UK Homes",
+    "source": "HeatPumpCompared",
+    "url": "https://www.heatpumpcompared.co.uk/brands/toshiba",
+    "date": null,
+    "note": "Covers the Toshiba Estia range generally, not this specific variant only."
+  },
+  {
+    "manufacturer": "LG",
+    "range": "Therma V R290 Monobloc",
+    "type": "youtube",
+    "title": "Everything you need to know about LG THERMA V : R290 | review",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=2o9rubDkNC0",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Panasonic",
+    "range": "Aquarea All in One K Series",
+    "type": "youtube",
+    "title": "Panasonic Aquarea All-in-One with K Series Heat Pump",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=F211K3-wObc",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Ideal Heating",
+    "range": "Logic Air",
+    "type": "review_article",
+    "title": "Products Heat Pump Review: Ideal Logic Air",
+    "source": "Wise Hive",
+    "url": "https://wisehive.co.uk/knowledge/ideal-logic-air-heat-pump-review",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Trianco",
+    "range": "Activair HT",
+    "type": "review_article",
+    "title": "Trianco's Activair Indoor Heat Pump \u2013 What installers need to know",
+    "source": "Installer Online",
+    "url": "https://www.installeronline.co.uk/low-carbon/triancos-activair-indoor-heat-pump-what-installers-need-to-know/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Trianco",
+    "range": "Activair HT",
+    "type": "youtube",
+    "title": "Trianco Activair Typical Installation Part 1",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=ZQvqh4qRTCQ",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Navien",
+    "range": "PEM750",
+    "type": "youtube",
+    "title": "The New Navien Heat Pump System is a Game Changer",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=lLyZELOxduU",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Bosch",
+    "range": "Compress 2000 AWF",
+    "type": "review_article",
+    "title": "Bosch Heat Pump Review - Compress 3400i Costs & Specs",
+    "source": "HeatPumpCompared",
+    "url": "https://www.heatpumpcompared.co.uk/brands/bosch",
+    "date": null,
+    "note": "Covers the Bosch Compress range generally, not this specific model only."
+  },
+  {
+    "manufacturer": "Atlantic",
+    "range": "Ixtra M",
+    "type": "youtube",
+    "title": "Atlantic IXTRA M monoblock air to water heat pumps",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=in4M3N8tWMU",
+    "date": null,
+    "note": "Manufacturer-produced product overview; no independent UK review found for this range yet."
+  },
+  {
+    "manufacturer": "Daikin",
+    "range": "Altherma 3 R ECH2O",
+    "type": "review_article",
+    "title": "Daikin Altherma 3 Air Source Heat Pump Review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/daikin-altherma-3-air-source-heat-pump-review/",
+    "date": null,
+    "note": "Covers the Altherma 3 range generally, including the R ECH2O integrated cylinder variant."
+  },
+  {
+    "manufacturer": "Octopus Energy",
+    "range": "Cosy 6",
+    "type": "review_article",
+    "title": "Octopus Cosy Heat Pump Review 2026: Is It Worth It?",
+    "source": "Heatable",
+    "url": "https://heatable.co.uk/heat-pumps/advice/octopus-cosy-heat-pump-review",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Octopus Energy",
+    "range": "Cosy 6",
+    "type": "youtube",
+    "title": "Does Octopus' Cosy Heat Pump work in the cold winter?",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=wXyLCpYczqE",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Stiebel Eltron",
+    "range": "WPL-A 07 HK Premium 230V",
+    "type": "review_article",
+    "title": "Stiebel Eltron Heat Pump Review: The Quietest Heat Pump You Can Buy",
+    "source": "Home Heat Pump Guide",
+    "url": "https://homeheatpumpguide.co.uk/blog/stiebel-eltron-heat-pump-review",
+    "date": null,
+    "note": "Covers the Stiebel Eltron WPL-A range generally."
+  },
+  {
+    "manufacturer": "Qvantum",
+    "range": "QA",
+    "type": "news_article",
+    "title": "Qvantum heat pumps enter the UK market",
+    "source": "Cooling Post",
+    "url": "https://www.coolingpost.com/uk-news/qvantum-heat-pumps-enter-the-uk-market/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "CTC",
+    "range": "EcoAir C100 C108",
+    "type": "news_article",
+    "title": "High-performance CTC EcoAir C100 air source heat pump range launches in the UK",
+    "source": "Installer Online",
+    "url": "https://www.installeronline.co.uk/heating/high-performance-ctc-ecoair-c100-air-source-heat-pump-range-launches-in-the-uk/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Ebac",
+    "range": "EbacWhite + Grey",
+    "type": "review_article",
+    "title": "Ebac Heat Pump Review | British-Made Air Source Heat Pumps",
+    "source": "Enerush Home",
+    "url": "https://www.enerushome.co.uk/ebac-heat-pump-review/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Kensa",
+    "range": "Evo 7",
+    "type": "review_article",
+    "title": "Kensa Evo ground source heat pump review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/kensa-evo-ground-source-heat-pump-review/",
+    "date": null,
+    "note": "Covers the Kensa Evo range generally (7-17kW)."
+  },
+  {
+    "manufacturer": "Nibe",
+    "range": "S1256",
+    "type": "review_article",
+    "title": "NIBE S1256 ground source heat pump review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/nibe-s1256-ground-source-heat-pump-review/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Nibe",
+    "range": "S1156",
+    "type": "news_article",
+    "title": "Introducing the new NIBE S1256 and S1156 Ground Source Heat Pumps",
+    "source": "The ADE",
+    "url": "https://www.theade.co.uk/news/introducing-the-new-nibe-s1256-and-s1156-ground-source-heat-pumps",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Kensa",
+    "range": "Shoebox NX",
+    "type": "news_article",
+    "title": "Kensa Shoebox NX heat pump wins international award",
+    "source": "The Eco Experts",
+    "url": "https://www.theecoexperts.co.uk/news/kensa-shoebox-nx-heat-pump-wins-award",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Adlar",
+    "range": "Aurora II Pro",
+    "type": "news_article",
+    "title": "This award-winning Swedish heating technology could help UK residents save on their energy bills",
+    "source": "Surrey Live",
+    "url": "https://www.getsurrey.co.uk/special-features/award-winning-swedish-heating-technology-27266649",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Panasonic",
+    "range": "Aquarea Hydraulic M Series",
+    "type": "news_article",
+    "title": "Panasonic unveils Aquarea M Series range of air source heat pumps",
+    "source": "Modern Building Services",
+    "url": "https://modbs.co.uk/news/fullstory.php/aid/20396/Panasonic_unveils_Aquarea_M_Series_range_of_air_source_heat_pumps.html",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Bosch",
+    "range": "Compress 5800i AW 4",
+    "type": "review_article",
+    "title": "Bosch Heat Pump Review UK: Compress Range, Costs & Performance",
+    "source": "Home Heat Pump Guide",
+    "url": "https://homeheatpumpguide.co.uk/blog/bosch-heat-pump-review-uk",
+    "date": null,
+    "note": "Covers the Bosch Compress range generally, not this specific model only."
+  },
+  {
+    "manufacturer": "Samsung",
+    "range": "EHS Split Outdoor R410A",
+    "type": "review_article",
+    "title": "Samsung Heat Pump UK Review: Budget Option or False Economy?",
+    "source": "UK Heat Pump Guide",
+    "url": "https://ukheatpumpguide.co.uk/blog/samsung-heat-pump-uk-review-budget-option/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Thermia",
+    "range": "Calibra RXT",
+    "type": "youtube",
+    "title": "Thermia Calibra RXT - ground source heat pump with natural refrigerant",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=FGWh2eTlSfg",
+    "date": null,
+    "note": "Manufacturer-produced product overview; no independent UK review found for this range yet."
+  },
+  {
+    "manufacturer": "Aira",
+    "range": "8kW",
+    "type": "review_article",
+    "title": "Aira Review: Heat Pump Costs, Performance & Customer Feedback",
+    "source": "Heatable",
+    "url": "https://heatable.co.uk/heat-pumps/advice/aira-review",
+    "date": null,
+    "note": "Covers Aira's heat pump and installation service generally, not this specific output size only."
+  },
+  {
+    "manufacturer": "Aira",
+    "range": "8kW",
+    "type": "youtube",
+    "title": "Aira Heat Pump Install In Stoke-on-Trent \u2013 Customer Review",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=qNW9md53eIg",
+    "date": null,
+    "note": "UK homeowner customer testimonial."
+  },
+  {
+    "manufacturer": "Riello",
+    "range": "NXHM 008",
+    "type": "youtube",
+    "title": "Case Study Video - Riello NXHM Air Source Heat Pump",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=-nPfxaLqFzY",
+    "date": null,
+    "note": "On-location interviews with a UK homeowner and installer."
+  },
+  {
+    "manufacturer": "Dimplex",
+    "range": "A-Class",
+    "type": "news_article",
+    "title": "Dimplex A-Class heat pump field tests prove it's not just hot air",
+    "source": "Voltimum",
+    "url": "https://www.voltimum.co.uk/articles/dimplex-class-heat-pump-field-tests-prove",
+    "date": null,
+    "note": "Independent trade coverage of real-world field test performance data across 12 UK installations."
+  },
+  {
+    "manufacturer": "Viessmann",
+    "range": "Vitocal 200-A",
+    "type": "review_article",
+    "title": "Viessmann Vitocal 200-A Air Source Heat Pump Review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/viessmann-vitocal-200-a-air-source-heat-pump-review/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Panasonic",
+    "range": "Aquarea M Series",
+    "type": "news_article",
+    "title": "Scottish family Installs UK's first Panasonic M Series Heat Pump",
+    "source": "Building & Facilities News",
+    "url": "https://buildingandfacilitiesnews.co.uk/scottish-family-installs-uks-first-panasonic-m-series-heat-pump/",
+    "date": null,
+    "note": "Real UK homeowner installation case study."
+  },
+  {
+    "manufacturer": "Hitachi",
+    "range": "Yutaki S",
+    "type": "youtube",
+    "title": "My experience with a HEAT PUMP after a complete cold season",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=tayjJuy7Tvc",
+    "date": null,
+    "note": "Homeowner feedback on a Yutaki S Combi 16kW after a full winter."
+  },
+  {
+    "manufacturer": "Daikin",
+    "range": "Altherma 3 R F",
+    "type": "review_article",
+    "title": "Daikin Altherma 3 Review: High Efficiency Heat Pump UK",
+    "source": "UK Home Energy",
+    "url": "https://www.ukhomeenergy.co.uk/reviews/daikin-altherma-3/",
+    "date": null,
+    "note": "Covers the Altherma 3 range generally, including the R F variant."
+  },
+  {
+    "manufacturer": "Panasonic",
+    "range": "Aquarea J Series",
+    "type": "review_article",
+    "title": "The Aquarea air source heat pump - Panasonic's quiet revolution in providing heating",
+    "source": "Installer Online",
+    "url": "https://www.installeronline.co.uk/news/the-aquarea-air-source-heat-pump-panasonics-quiet-revolution-in-providing-heating/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Panasonic",
+    "range": "Aquarea T-CAP J Series",
+    "type": "review_article",
+    "title": "Panasonic Aquarea - Air Source Heat Pump - Installer Perspectives",
+    "source": "Air2Heat",
+    "url": "https://www.air2heat.co.uk/panasonic-aquarea-air-source-heat-pump-installation-perspectives-2024",
+    "date": "2024-09-01",
+    "note": "UK installer's hands-on perspective across the J and L Series T-CAP range."
+  },
+  {
+    "manufacturer": "Panasonic",
+    "range": "Aquarea All in One K Series",
+    "type": "review_article",
+    "title": "Panasonic Heat Pumps UK | Air Source Review & Price Guide",
+    "source": "Heat Pumps UK",
+    "url": "https://heat-pumps.org.uk/panasonic-heat-pump-review/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Viessmann",
+    "range": "Vitocal 150",
+    "type": "review_article",
+    "title": "Viessmann Heat Pump Review 2026: Pricing, Pros & Cons",
+    "source": "Guscott Heating Services",
+    "url": "https://guscottheating.co.uk/heat-pump-guides/viessmann-heat-pump-review/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Kensa",
+    "range": "Shoebox",
+    "type": "youtube",
+    "title": "The Small But Mighty Kensa Shoebox",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=Y2up_nigAX0",
+    "date": "2022-05-01",
+    "note": null
+  },
+  {
+    "manufacturer": "Mitsubishi Electric",
+    "range": "Ecodan R32 Monobloc",
+    "type": "review_article",
+    "title": "Mitsubishi Ecodan 11.2kw R410a monobloc heat pump review",
+    "source": "Homebuilding & Renovating",
+    "url": "https://www.homebuilding.co.uk/reviews/mitsubishi-ecodan-11-2kw-heat-pump-review",
+    "date": null,
+    "note": "Long-term homeowner review (5 years on) of an earlier R410A Ecodan monobloc from the same range; written by Homebuilding's renewables expert David Hilton."
+  },
+  {
+    "manufacturer": "Toshiba",
+    "range": "ESTIA BiBloc All-in-One",
+    "type": "news_article",
+    "title": "Toshiba combines heat pumps, rooftop PV, storage in residential home",
+    "source": "PV Magazine",
+    "url": "https://www.pv-magazine.com/2023/04/12/toshiba-combines-heat-pumps-rooftop-pv-storage-in-residential-home/",
+    "date": "2023-04-12",
+    "note": "Independent case study of a UK (Chester) homeowner installation."
+  },
+  {
+    "manufacturer": "Grant",
+    "range": "Aerona 290",
+    "type": "news_article",
+    "title": "Case Study | Living with a Grant Aerona 290 heat pump",
+    "source": "Grant UK",
+    "url": "https://www.grantuk.com/about/news/living-with-a-grant-aerona-290-heat-pump/",
+    "date": null,
+    "note": "Manufacturer-hosted case study featuring a real UK homeowner's experience."
+  },
+  {
+    "manufacturer": "Ideal Heating",
+    "range": "Logic Air",
+    "type": "review_article",
+    "title": "Ideal Heating's Logic Air heat pump - What installers need to know",
+    "source": "Installer Online",
+    "url": "https://www.installeronline.co.uk/how-to/ideal-heatings-logic-air-heat-pump-what-installers-need-to-know/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Nibe",
+    "range": "S1256",
+    "type": "review_article",
+    "title": "Nibe S ground source heat pump review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/nibe-s-ground-source-heat-pump-review/",
+    "date": null,
+    "note": "Covers the Nibe S ground source range generally, including the S1256."
+  },
+  {
+    "manufacturer": "Baxi",
+    "range": "HP60 High Monobloc",
+    "type": "review_article",
+    "title": "Q&A | Baxi HP60 ASHP",
+    "source": "PHPI Online",
+    "url": "https://phpionline.co.uk/feature-articles/qa-baxi-hp60-ashp/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Ebac",
+    "range": "EbacWhite + Grey",
+    "type": "youtube",
+    "title": "Could this company in the North East be making the highest efficiency heat pump?",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=xHd3vO_xaPY",
+    "date": "2023-11-01",
+    "note": null
+  },
+  {
+    "manufacturer": "Adlar",
+    "range": "Aurora II Pro",
+    "type": "youtube",
+    "title": "Adl\u00e5r Castra Heat Pump Review | Aurora II Pro Customer Testimonial",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=KRy3r4zKfH0",
+    "date": null,
+    "note": "UK homeowner testimonial."
+  },
+  {
+    "manufacturer": "Stiebel Eltron",
+    "range": "WPL-A 07 HK Premium 230V",
+    "type": "review_article",
+    "title": "A Review of Stiebel Eltron's Air-to-Water Heat Pump",
+    "source": "Fine Homebuilding",
+    "url": "https://www.finehomebuilding.com/2025/06/05/one-system-wonder",
+    "date": "2025-06-05",
+    "note": "US-focused independent review of the same WPL product line."
+  },
+  {
+    "manufacturer": "Aira",
+    "range": "8kW",
+    "type": "review_article",
+    "title": "Aira review: Making heat pump and solar installations easier for all",
+    "source": "The Eco Experts",
+    "url": "https://www.theecoexperts.co.uk/heat-pumps/aira-review-best-heat-pump-installer",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Octopus Energy",
+    "range": "Cosy 6",
+    "type": "review_article",
+    "title": "Octopus Energy Cosy 6 Review",
+    "source": "EV Nick",
+    "url": "https://evnick.com/cosy-6-octopus-heat-pump/",
+    "date": null,
+    "note": "Independent UK homeowner blog review."
+  },
+  {
+    "manufacturer": "Samsung",
+    "range": "EHS Mono HT Quiet",
+    "type": "review_article",
+    "title": "Samsung EHS Mono Review",
+    "source": "UK Home Energy",
+    "url": "https://www.ukhomeenergy.co.uk/reviews/samsung-ehs-mono/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Nibe",
+    "range": "F2050",
+    "type": "news_article",
+    "title": "Low-Carbon Heating with the NIBE F2050",
+    "source": "NIBE",
+    "url": "https://www.nibe.eu/en-gb/homeowners/start-your-heat-pump-journey/homeowner-case-studies/low-carbon-heating-with-the-nibe-f2050",
+    "date": null,
+    "note": "Manufacturer-hosted homeowner case study."
+  },
+  {
+    "manufacturer": "Kensa",
+    "range": "Evo 7",
+    "type": "youtube",
+    "title": "The Smart and Efficient Kensa Evo",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=TsxKsiwMlzs",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Bosch",
+    "range": "Compress 2000 AWF",
+    "type": "review_article",
+    "title": "Worcester Bosch Air Source Heat Pump Review",
+    "source": "Dwellow",
+    "url": "https://www.dwellow.co.uk/guides/worcester-bosch-heat-pump-review",
+    "date": "2026-02-01",
+    "note": null
+  },
+  {
+    "manufacturer": "Mitsubishi Electric",
+    "range": "Hydrodan",
+    "type": "youtube",
+    "title": "Introducing the Ecodan Hydrodan",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=JPbqXxvCMUc",
+    "date": "2022-09-20",
+    "note": "Official Mitsubishi Electric product introduction."
   }
 ]
