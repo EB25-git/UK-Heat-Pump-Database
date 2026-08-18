@@ -1,0 +1,82 @@
+[
+  {
+    "manufacturer": "Vaillant",
+    "range": "aroTHERM plus",
+    "type": "review_article",
+    "title": "Vaillant aroTHERM plus Heat Pump: Full Guide",
+    "source": "Heat Geek",
+    "url": "https://www.heatgeek.com/vaillant-arotherm-plus-heat-pump",
+    "date": null,
+    "note": "Independent UK installer network's in-depth guide covering real-world performance, sizing and common issues."
+  },
+  {
+    "manufacturer": "Vaillant",
+    "range": "aroTHERM plus",
+    "type": "youtube",
+    "title": "Air Source Heat Pumps - After Install - Vaillant Arotherm Plus Review",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=lpRNEcK3fGA",
+    "date": "2022-08-01",
+    "note": "Homeowner's post-install review and running-cost experience."
+  },
+  {
+    "manufacturer": "Mitsubishi Electric",
+    "range": "Ecodan R32 Monobloc",
+    "type": "review_article",
+    "title": "Mitsubishi Ecodan air source heat pump review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/mitsubishi-ecodan-air-source-heat-pumps-review/",
+    "date": null,
+    "note": "Covers the Ecodan range generally, not this specific R32 monobloc variant only."
+  },
+  {
+    "manufacturer": "Daikin",
+    "range": "Altherma 3 M",
+    "type": "review_article",
+    "title": "Daikin Altherma 3 Review: Is It the Right Heat Pump for Your Home?",
+    "source": "Green Reach Energy",
+    "url": "https://www.greenreachenergy.co.uk/daikin-altherma-3-review-uk/",
+    "date": null,
+    "note": "Covers the Altherma 3 range generally, including the monobloc (M) variant."
+  },
+  {
+    "manufacturer": "Grant",
+    "range": "Aerona3 R32",
+    "type": "review_article",
+    "title": "Grant Aerona3 Review: Irish-Made Heat Pump Taking On the Big Brands",
+    "source": "Green Reach Energy",
+    "url": "https://www.greenreachenergy.co.uk/grant-aerona3-review-uk/",
+    "date": null,
+    "note": null
+  },
+  {
+    "manufacturer": "Grant",
+    "range": "Aerona3 R32",
+    "type": "news_article",
+    "title": "Grant Aerona³ R32 13kW and 17kW heat pumps awarded Quiet Mark",
+    "source": "Grant UK",
+    "url": "https://www.grantuk.com/about/news/aerona-r32-13kw-and-17kw-heat-pumps-awarded-quiet-mark/",
+    "date": null,
+    "note": "Manufacturer's own news post, included for reference alongside independent coverage above."
+  },
+  {
+    "manufacturer": "Panasonic",
+    "range": "Aquarea T-CAP J Series",
+    "type": "youtube",
+    "title": "Panasonic AQUAREA T-CAP - Dual Piped Heat Exchanger Technology",
+    "source": "YouTube",
+    "url": "https://www.youtube.com/watch?v=K3ohdO2OgL0",
+    "date": "2020-02-01",
+    "note": "Explains the T-CAP dual-piped heat exchanger technology used across T-CAP generations, including the J Series."
+  },
+  {
+    "manufacturer": "Samsung",
+    "range": "EHS Mono HT Quiet",
+    "type": "review_article",
+    "title": "Samsung EHS Mono Outdoor Air Source Heat Pump Review",
+    "source": "Federation of Master Builders",
+    "url": "https://www.fmb.org.uk/homepicks/heat-pumps/samsung-ehs-monobloc-air-source-heat-pump-review/",
+    "date": null,
+    "note": null
+  }
+]

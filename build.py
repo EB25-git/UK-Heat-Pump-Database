@@ -105,6 +105,102 @@ def range_str(lo, hi, unit, joiner="\u2013"):
     v = hi if hi is not None else lo
     return f"{'up to ' if hi is not None else 'from '}{num(v)} {unit}"
 
+def derive_range(model):
+    """Normalise a product's model string down to its model range/series name,
+    by stripping a trailing capacity token (e.g. ', 13kW' or ' 13kW') and/or a
+    trailing voltage parenthetical (e.g. ' (400V)'). Many manufacturers embed
+    the capacity variant directly in the model string (Baxi 'HP60 High Monobloc,
+    13kW', Bosch 'Compress 2000 AWF 10kW (230V)'), so without this, otherwise-
+    identical ranges would be treated as distinct products for review-matching
+    purposes. Used only to key into REVIEWS_BY_RANGE below - not stored or shown
+    anywhere else, so it's safe to be a best-effort heuristic rather than a
+    curated field.
+    """
+    s = model or ""
+    s = re.sub(r'\s*\(\d{2,3}V\)\s*$', '', s)
+    s = re.sub(r'[,]?\s*\d+(\.\d+)?\s*kW\s*$', '', s)
+    s = re.sub(r'\s*\(\d{2,3}V\)\s*$', '', s)
+    s = s.strip().rstrip(',').strip()
+    return s if s else (model or "")
+
+def load_reviews():
+    """Load the manually-curated reviews.json (list of {manufacturer, range,
+    type, title, source, url, date, note}) and index it by (manufacturer,
+    derived range). type is one of 'review_article', 'news_article', 'youtube'.
+    Missing/unreadable file -> no reviews shown anywhere, site still builds fine.
+    """
+    path = os.path.join(ROOT, "reviews.json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        entries = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        return {}
+    idx = {}
+    for e in entries:
+        key = (e.get("manufacturer", "").strip(), e.get("range", "").strip())
+        idx.setdefault(key, []).append(e)
+    return idx
+
+REVIEWS_BY_RANGE = load_reviews()
+
+_YT_ID_RE = re.compile(
+    r'(?:youtube\.com/(?:watch\?v=|shorts/|embed/)|youtu\.be/)([A-Za-z0-9_-]{6,})'
+)
+
+def youtube_thumb(url):
+    m = _YT_ID_RE.search(url or "")
+    if not m:
+        return None
+    return f"https://i.ytimg.com/vi/{m.group(1)}/hqdefault.jpg"
+
+def render_reviews(p):
+    key = (p.get("manufacturer", "").strip(), derive_range(p.get("model")).strip())
+    entries = REVIEWS_BY_RANGE.get(key)
+    if not entries:
+        return ""
+    pid, mfr, model = p.get("id"), p.get("manufacturer"), p.get("model")
+
+    articles = [e for e in entries if e.get("type") in ("review_article", "news_article")]
+    videos = [e for e in entries if e.get("type") == "youtube"]
+
+    out = ['<h2 class="sec">Reviews &amp; further reading</h2>']
+
+    if articles:
+        rows = []
+        for e in articles:
+            tag = "Review" if e.get("type") == "review_article" else "News"
+            onclick = track_attr("review", pid, mfr, model, e.get("source"))
+            date_bit = f' <span class="rv-date">{esc(e["date"][:7])}</span>' if e.get("date") else ""
+            note_bit = f'<div class="rv-note">{esc(e["note"])}</div>' if e.get("note") else ""
+            rows.append(
+                f'<li class="rv-item"><span class="rv-tag rv-tag-{esc(e.get("type"))}">{tag}</span> '
+                f'<a href="{esc(e["url"])}" target="_blank" rel="nofollow noopener" onclick="{onclick}">'
+                f'{esc(e.get("title") or e.get("source") or "Read more")}</a>'
+                f' <span class="rv-source">&mdash; {esc(e.get("source",""))}</span>{date_bit}{note_bit}</li>'
+            )
+        out.append(f'<ul class="rv-list">{"".join(rows)}</ul>')
+
+    if videos:
+        cards = []
+        for e in videos:
+            thumb = youtube_thumb(e.get("url"))
+            if not thumb:
+                continue
+            onclick = track_attr("youtube", pid, mfr, model, e.get("source"))
+            date_bit = f'<div class="yt-date">{esc(e["date"][:7])}</div>' if e.get("date") else ""
+            cards.append(
+                f'<a class="yt-card" href="{esc(e["url"])}" target="_blank" rel="nofollow noopener" onclick="{onclick}">'
+                f'<span class="yt-thumb-wrap"><img class="yt-thumb" src="{esc(thumb)}" alt="" loading="lazy" width="320" height="180">'
+                f'<span class="yt-play">&#9658;</span></span>'
+                f'<span class="yt-title">{esc(e.get("title") or e.get("source") or "Watch on YouTube")}</span>'
+                f'<span class="yt-source">{esc(e.get("source",""))}</span>{date_bit}</a>'
+            )
+        if cards:
+            out.append(f'<div class="yt-grid">{"".join(cards)}</div>')
+
+    return "".join(out)
+
 def spec_rows(p):
     """Ordered (label, value) pairs for the spec table — only populated fields."""
     rows = []
@@ -194,6 +290,26 @@ MFR_FILTER_CSS = """
 .mfr-empty{display:none;color:#5b6b6b;font-size:14px;padding:32px 0;text-align:center}
 @media(max-width:720px){.mfr-filter-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.mfr-filter-grid{grid-template-columns:1fr}}
+
+/* ── Reviews & further reading (product pages) ── */
+.rv-list{list-style:none;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:4px 0;margin:0}
+.rv-item{padding:12px 18px;border-bottom:1px solid #eef2f1;font-size:14.5px;line-height:1.5}
+.rv-item:last-child{border-bottom:none}
+.rv-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:6px;vertical-align:middle}
+.rv-tag-review_article{background:#e7f4f2;color:#0c6f66}
+.rv-tag-news_article{background:#eef2fb;color:#3b4fa3}
+.rv-source{color:#5b6b6b;font-size:13px}
+.rv-date{color:#9aa8a6;font-size:12.5px}
+.rv-note{color:#5b6b6b;font-size:13px;margin-top:3px}
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.yt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.yt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.yt-thumb-wrap{position:relative;display:block;background:#0F2B2B}
+.yt-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(15,43,43,.75);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
+.yt-title{display:block;padding:10px 14px 2px;font-weight:600;color:#0F2B2B;font-size:13.5px;line-height:1.35}
+.yt-source{display:block;padding:0 14px;color:#5b6b6b;font-size:12.5px}
+.yt-date{display:block;padding:2px 14px 12px;color:#9aa8a6;font-size:12px}
 """
 
 MFR_FILTER_JS = """
@@ -878,6 +994,7 @@ def render_product(p, by_mfr, by_type):
             f'{mfr_link}{notes_html}{render_suppliers(p)}{render_verified(p)}{render_correction(p)}'
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
+            f'{render_reviews(p)}'
             f'{rel}'
             f'<h2 class="sec">Compare with other products</h2>'
             f'<p><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>'
