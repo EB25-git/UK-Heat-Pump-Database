@@ -382,8 +382,9 @@ td.acc{color:var(--accent);font-weight:500}
 .modal-hd p{font-size:13px;color:rgba(255,255,255,.5)}
 .modal-hd-left{display:flex;gap:14px;align-items:flex-start}
 .modal-logo{width:44px;height:44px;border-radius:9px;object-fit:contain;background:#fff;padding:5px;flex-shrink:0;margin-top:2px}
-.modal-photo-wrap{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:1rem;text-align:center}
-.modal-photo{max-width:280px;width:100%;height:auto;max-height:280px;object-fit:contain}
+.modal-photo-block{margin-bottom:1rem;text-align:center}
+.modal-photo{max-width:320px;width:100%;height:auto;max-height:320px;object-fit:contain}
+.modal-photo-credit{font-size:11px;color:var(--text3);margin-top:6px}
 .modal-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:22px;cursor:pointer;line-height:1;flex-shrink:0;margin-left:14px;transition:color .15s}
 .modal-close:hover{color:#fff}
 .modal-body{padding:1.5rem 1.75rem;max-height:80vh;overflow-y:auto}
@@ -3083,7 +3084,7 @@ function openModal(id){
   const copNote=d.cop!=null?`<div class="cop-explain">COP <strong>${d.cop}</strong> quoted at <strong>${d.cop_cond||'unspecified conditions'}</strong>. ${d.cop_cond==='A7/W35'?'This is the standard ASHP test condition (EN 14511): +7°C outdoor air, 35°C leaving water.':d.cop_cond&&d.cop_cond.startsWith('W')?'This is a water-source test condition. Water-source COPs are typically higher than ASHP figures and are not directly comparable.':d.cop_cond&&d.cop_cond.startsWith('B')?'This is the standard brine-water (GSHP) test condition: 0°C brine in, 35°C leaving water.':'Non-standard test point — compare with caution against products tested at different conditions.'}</div>`:'';
   const descBlock=d.description?`<div style="padding:12px 16px;background:var(--surface2);border-radius:var(--radius);margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7">${d.description}</div>`:'';
   const photoSrc=(typeof PRODUCT_IMAGES!=='undefined'&&d.product_code&&PRODUCT_IMAGES[d.product_code])||'';
-  const photoHTML=photoSrc?`<div class="modal-photo-wrap"><img class="modal-photo" src="${photoSrc}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)}" loading="eager"></div>`:'';
+  const photoHTML=photoSrc?`<div class="modal-photo-block"><img class="modal-photo" src="${photoSrc}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)}" loading="eager"><div class="modal-photo-credit">Image courtesy of ${jsAttrEsc(d.manufacturer)}</div></div>`:'';
   document.getElementById('modal-body').innerHTML=`
     ${photoHTML}
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem">
@@ -3304,7 +3305,7 @@ function cmpPhotosSection(items){
   const cells=items.map(d=>{
     const src=(typeof PRODUCT_IMAGES!=='undefined'&&d.product_code&&PRODUCT_IMAGES[d.product_code])||'';
     if(!src)return '';
-    return `<div class="cmp-photo-cell"><img src="${src}" alt="${cmpAttr(d.manufacturer+' '+d.model)}"><div class="cmp-photo-cap">${cmpEsc(d.manufacturer)} ${cmpEsc(d.model)}</div></div>`;
+    return `<div class="cmp-photo-cell"><img src="${src}" alt="${cmpAttr(d.manufacturer+' '+d.model)}"><div class="cmp-photo-cap">${cmpEsc(d.manufacturer)} ${cmpEsc(d.model)}</div><div class="cmp-photo-credit">Image courtesy of ${cmpEsc(d.manufacturer)}</div></div>`;
   });
   if(!cells.some(c=>c))return '';
   return `<div class="photos-wrap"><div class="photos-grid">${cells.map(c=>c||'<div class="cmp-photo-cell cmp-photo-empty">No photo available</div>').join('')}</div></div>`;
@@ -3350,10 +3351,11 @@ td:first-child{font-weight:500;color:#555;width:200px}
 .chart-empty{font-size:12px;color:#999;padding:24px 0;text-align:center}
 .charts-note{font-size:11px;color:#888;margin-top:12px;line-height:1.5}
 .photos-wrap{margin:0 0 1.5rem}
-.photos-grid{display:flex;flex-wrap:wrap;gap:14px}
-.cmp-photo-cell{flex:1 1 220px;min-width:180px;border:1px solid #e2e8e8;border-radius:8px;padding:12px;text-align:center;background:#f7fafa;page-break-inside:avoid;break-inside:avoid}
-.cmp-photo-cell img{max-width:100%;max-height:180px;object-fit:contain}
-.cmp-photo-cap{font-size:11px;color:#555;margin-top:8px;font-weight:600}
+.photos-grid{display:flex;flex-wrap:wrap;gap:24px}
+.cmp-photo-cell{flex:1 1 220px;min-width:180px;text-align:center;page-break-inside:avoid;break-inside:avoid}
+.cmp-photo-cell img{max-width:100%;max-height:190px;object-fit:contain}
+.cmp-photo-cap{font-size:11px;color:#333;margin-top:8px;font-weight:600}
+.cmp-photo-credit{font-size:10px;color:#999;margin-top:2px}
 .cmp-photo-empty{color:#999;font-size:11px;display:flex;align-items:center;justify-content:center;min-height:100px}
 .articles-wrap{margin:1.75rem 0 0}
 .articles-grid{display:flex;flex-wrap:wrap;gap:18px}

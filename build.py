@@ -486,8 +486,9 @@ h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:6px;margin-bottom:14px}
 .mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px;vertical-align:middle;margin-right:8px}
 .mfr-header{display:flex;align-items:center;gap:14px;margin-bottom:2px}
-.product-photo-wrap{background:#f3f7f6;border:1px solid #e2e8e7;border-radius:14px;padding:20px;margin-bottom:18px;text-align:center}
-.product-photo{max-width:320px;width:100%;height:auto;max-height:320px;object-fit:contain}
+.product-photo-block{margin-bottom:20px;text-align:center}
+.product-photo{max-width:360px;width:100%;height:auto;max-height:360px;object-fit:contain}
+.photo-credit{font-size:11.5px;color:#8a9694;margin-top:8px}
 .trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
 table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
 table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
@@ -1028,8 +1029,9 @@ def render_product(p, by_mfr, by_type):
 
     logo = get_logo_url(mfr)
     photo = get_product_image(p)
-    photo_html = (f'<div class="product-photo-wrap"><img class="product-photo" src="{photo}" '
-                  f'alt="{esc(display_name)}" width="320" height="320" loading="eager"></div>') if photo else ""
+    photo_html = (f'<div class="product-photo-block"><img class="product-photo" src="{photo}" '
+                  f'alt="{esc(display_name)}" width="320" height="320" loading="eager">'
+                  f'<div class="photo-credit">Image courtesy of {esc(mfr)}</div></div>') if photo else ""
     body = (crumbs(crumb_items) +
             photo_html +
             f'<div class="mfr-header"><img class="mfr-logo-sm" src="{logo}" alt="{esc(mfr)} logo" width="32" height="32">'
