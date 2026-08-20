@@ -382,6 +382,8 @@ td.acc{color:var(--accent);font-weight:500}
 .modal-hd p{font-size:13px;color:rgba(255,255,255,.5)}
 .modal-hd-left{display:flex;gap:14px;align-items:flex-start}
 .modal-logo{width:44px;height:44px;border-radius:9px;object-fit:contain;background:#fff;padding:5px;flex-shrink:0;margin-top:2px}
+.modal-photo-wrap{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:1rem;text-align:center}
+.modal-photo{max-width:280px;width:100%;height:auto;max-height:280px;object-fit:contain}
 .modal-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:22px;cursor:pointer;line-height:1;flex-shrink:0;margin-left:14px;transition:color .15s}
 .modal-close:hover{color:#fff}
 .modal-body{padding:1.5rem 1.75rem;max-height:80vh;overflow-y:auto}
@@ -627,6 +629,26 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <div class="range-wrap" id="sl-sound"></div>
         </div>
         <div class="filter-col">
+          <label class="filter-label">Min operating temp</label>
+          <select class="filt" id="filt-optemp" onchange="applyFilters()">
+            <option value="">Any operating temp</option>
+            <option value="-35--30">-35°C to -30°C</option>
+            <option value="-30--25">-30°C to -25°C</option>
+            <option value="-25--20">-25°C to -20°C</option>
+            <option value="-20--15">-20°C to -15°C</option>
+            <option value="-15--10">-15°C to -10°C</option>
+            <option value="-10--5">-10°C to -5°C</option>
+            <option value="-5-0">-5°C to 0°C</option>
+            <option value="0-5">0°C to 5°C</option>
+            <option value="5-10">5°C to 10°C</option>
+            <option value="10-15">10°C to 15°C</option>
+            <option value="15-20">15°C to 20°C</option>
+            <option value="30-35">30°C to 35°C</option>
+            <option value="35-40">35°C to 40°C</option>
+            <option value="40-45">40°C to 45°C</option>
+          </select>
+        </div>
+        <div class="filter-col">
           <label class="filter-label">Segment</label>
           <select class="filt" id="filt-type" onchange="applyFilters()">
             <option value="">Residential & Commercial</option>
@@ -749,11 +771,15 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         <p style="color:var(--text3);margin-bottom:1.25rem;font-size:13px">Select units from Browse, then review side-by-side here.</p>
       </div>
       <div id="cmp-export-btns" style="display:none;margin-top:1rem">
+        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:8px;font-size:12px;color:var(--text2)">
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="cmp-inc-photos" checked> Include product photo</label>
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" id="cmp-inc-articles" checked> Include article &amp; review links</label>
+        </div>
         <div style="display:flex;gap:8px;align-items:center">
           <button class="btn btn-sm btn-primary" onclick="exportComparePDF()">⬇ Export PDF</button>
           <button class="btn btn-sm" onclick="exportCompareCSV()">⬇ Export Excel</button>
         </div>
-        <p style="font-size:11px;color:var(--text3);margin-top:6px">Export limited to 3 products</p>
+        <p style="font-size:11px;color:var(--text3);margin-top:6px">Export limited to 3 products &middot; photo/article options apply to the PDF export</p>
       </div>
     </div>
     <div id="cmp-slots"></div>
@@ -2143,6 +2169,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 </style>
 <script src="data.js?v=131" defer></script>
 <script src="logos.js?v=131" defer></script>
+<script src="product-images.js?v=1" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
 // ═══════════════ SEED DATA ═══════════════
@@ -2549,6 +2576,7 @@ function getFiltered(){
   const mcs=document.getElementById('filt-mcs').value;
   const hpm=document.getElementById('filt-hpm').value;
   const price=document.getElementById('filt-price').value;
+  const optemp=document.getElementById('filt-optemp').value;
   const electrical=document.getElementById('filt-electrical').value;
   return db.filter(d=>{
     if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''}`.toLowerCase().includes(q))return false;
@@ -2565,6 +2593,13 @@ function getFiltered(){
         if(d.price_min==null)return false;
         const [lo,hi]=price.split('-').map(Number);
         if(d.price_min<lo||d.price_min>hi)return false;
+      }
+    }
+    if(optemp){
+      const m=optemp.match(/^(-?\d+)-(-?\d+)$/);
+      if(m){
+        const lo=Number(m[1]),hi=Number(m[2]);
+        if(d.op_temp_min==null||d.op_temp_min<lo||d.op_temp_min>hi)return false;
       }
     }
     if(SF.capLo>0&&(d.cap_max==null||d.cap_max<SF.capLo))return false;
@@ -2646,7 +2681,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
+  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price','filt-optemp'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -2655,7 +2690,7 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price','filt-optemp'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   resetSliderFilters();
   applyFilters();
 }
@@ -3047,7 +3082,10 @@ function openModal(id){
   const isWater=d.hp_type==='WSHP'||d.hp_type==='GSHP';
   const copNote=d.cop!=null?`<div class="cop-explain">COP <strong>${d.cop}</strong> quoted at <strong>${d.cop_cond||'unspecified conditions'}</strong>. ${d.cop_cond==='A7/W35'?'This is the standard ASHP test condition (EN 14511): +7°C outdoor air, 35°C leaving water.':d.cop_cond&&d.cop_cond.startsWith('W')?'This is a water-source test condition. Water-source COPs are typically higher than ASHP figures and are not directly comparable.':d.cop_cond&&d.cop_cond.startsWith('B')?'This is the standard brine-water (GSHP) test condition: 0°C brine in, 35°C leaving water.':'Non-standard test point — compare with caution against products tested at different conditions.'}</div>`:'';
   const descBlock=d.description?`<div style="padding:12px 16px;background:var(--surface2);border-radius:var(--radius);margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7">${d.description}</div>`:'';
+  const photoSrc=(typeof PRODUCT_IMAGES!=='undefined'&&d.product_code&&PRODUCT_IMAGES[d.product_code])||'';
+  const photoHTML=photoSrc?`<div class="modal-photo-wrap"><img class="modal-photo" src="${photoSrc}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)}" loading="eager"></div>`:'';
   document.getElementById('modal-body').innerHTML=`
+    ${photoHTML}
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem">
       <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
       <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
@@ -3262,8 +3300,37 @@ function cmpChartsSection(items){
   return `<div class="charts-wrap"><h2 class="charts-h">Visual comparison</h2>${legend}<div class="charts-grid">${charts}</div>`+
     `<p class="charts-note">Bars show manufacturer-published figures. COP and SCOP are measured at the test conditions shown beneath each bar — compare like-for-like only. Missing values are marked “n/a”.</p></div>`;
 }
+function cmpPhotosSection(items){
+  const cells=items.map(d=>{
+    const src=(typeof PRODUCT_IMAGES!=='undefined'&&d.product_code&&PRODUCT_IMAGES[d.product_code])||'';
+    if(!src)return '';
+    return `<div class="cmp-photo-cell"><img src="${src}" alt="${cmpAttr(d.manufacturer+' '+d.model)}"><div class="cmp-photo-cap">${cmpEsc(d.manufacturer)} ${cmpEsc(d.model)}</div></div>`;
+  });
+  if(!cells.some(c=>c))return '';
+  return `<div class="photos-wrap"><div class="photos-grid">${cells.map(c=>c||'<div class="cmp-photo-cell cmp-photo-empty">No photo available</div>').join('')}</div></div>`;
+}
+function cmpReviewsForPrint(d){
+  const byRange=(typeof REVIEWS_BY_RANGE!=='undefined')?REVIEWS_BY_RANGE[d.manufacturer]:null;
+  if(!byRange)return '';
+  const entries=byRange[deriveRange(d.model)];
+  if(!entries||!entries.length)return '';
+  const items=entries.map(e=>{
+    const tag=e.type==='review_article'?'Review':e.type==='news_article'?'News':'Video';
+    return `<li><span class="art-tag">${tag}</span> <a href="${e.url}" target="_blank" rel="noopener">${cmpEsc(e.title||e.source||'Read more')}</a>${e.source?' &mdash; '+cmpEsc(e.source):''}</li>`;
+  }).join('');
+  return `<div class="cmp-article-col"><h4>${cmpEsc(d.manufacturer)} ${cmpEsc(d.model)}</h4><ul>${items}</ul></div>`;
+}
+function cmpArticlesSection(items){
+  const cols=items.map(cmpReviewsForPrint);
+  if(!cols.some(c=>c))return '';
+  return `<div class="articles-wrap"><h2 class="charts-h">Reviews &amp; further reading</h2><div class="articles-grid">${cols.map(c=>c||'<div class="cmp-article-col"><p class="none">No reviews found.</p></div>').join('')}</div></div>`;
+}
 function exportComparePDF(){
   const items=getCompareExportItems();if(!items)return;
+  const incPhotos=document.getElementById('cmp-inc-photos')?document.getElementById('cmp-inc-photos').checked:true;
+  const incArticles=document.getElementById('cmp-inc-articles')?document.getElementById('cmp-inc-articles').checked:true;
+  const photosSection=incPhotos?cmpPhotosSection(items):'';
+  const articlesSection=incArticles?cmpArticlesSection(items):'';
   const chartsSection=cmpChartsSection(items);
   const specs=[['HP Type','hp_type'],['Segment','type'],['Mode','mode'],['Refrigerant','refrigerant'],['Min Operating Temp','op_temp_min','°C'],['Heating Min Flow Temp','flow_temp_min','°C'],['Heating Max Flow Temp','flow_temp_max','°C'],['Heating Min Capacity','cap_min',' kW'],['Heating Max Capacity','cap_max',' kW'],['Max Heating Output, Low Temp','max_heat_capacity',' kW'],['...at Outdoor Temp','max_heat_capacity_temp','°C'],['Peak Elec Input','peak_elec',' kW'],['Electrical Supply','electrical'],['COP (heating)','cop'],['COP Test Conditions','cop_cond'],['SCOP (heating)','scop'],['SCOP Test Conditions','scop_cond'],['Cooling Min Capacity','cool_cap_min',' kW'],['Cooling Max Capacity','cool_cap_max',' kW'],['Max Cooling Output, High Temp','max_cool_capacity',' kW'],['...at Outdoor Temp','max_cool_capacity_temp','°C'],['Cooling Min Flow Temp','cool_flow_temp_min','°C'],['Cooling Max Flow Temp','cool_flow_temp_max','°C'],['EER (cooling)','eer'],['EER Test Conditions','eer_cond'],['SEER (cooling)','seer'],['SEER Test Conditions','seer_cond'],['Noise','_noise'],['Height','height',' mm'],['Width','width',' mm'],['Depth','depth',' mm'],['Operational Weight','weight',' kg']];
   const htmlContent=`<!DOCTYPE html><html><head><title>Heat Pump Comparison — heatpumpdatabase.com</title>
@@ -3282,9 +3349,25 @@ td:first-child{font-weight:500;color:#555;width:200px}
 .chart-ttl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px}
 .chart-empty{font-size:12px;color:#999;padding:24px 0;text-align:center}
 .charts-note{font-size:11px;color:#888;margin-top:12px;line-height:1.5}
+.photos-wrap{margin:0 0 1.5rem}
+.photos-grid{display:flex;flex-wrap:wrap;gap:14px}
+.cmp-photo-cell{flex:1 1 220px;min-width:180px;border:1px solid #e2e8e8;border-radius:8px;padding:12px;text-align:center;background:#f7fafa;page-break-inside:avoid;break-inside:avoid}
+.cmp-photo-cell img{max-width:100%;max-height:180px;object-fit:contain}
+.cmp-photo-cap{font-size:11px;color:#555;margin-top:8px;font-weight:600}
+.cmp-photo-empty{color:#999;font-size:11px;display:flex;align-items:center;justify-content:center;min-height:100px}
+.articles-wrap{margin:1.75rem 0 0}
+.articles-grid{display:flex;flex-wrap:wrap;gap:18px}
+.cmp-article-col{flex:1 1 260px;min-width:220px;border:1px solid #e2e8e8;border-radius:8px;padding:12px 14px;page-break-inside:avoid;break-inside:avoid}
+.cmp-article-col h4{font-size:12px;color:#0D7377;margin-bottom:6px}
+.cmp-article-col ul{list-style:none;margin:0;padding:0}
+.cmp-article-col li{font-size:11px;margin-bottom:6px;line-height:1.5}
+.cmp-article-col a{color:#1a1a1a}
+.art-tag{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:#0D7377;background:#e6f4f3;border-radius:3px;padding:1px 5px;margin-right:4px}
+.cmp-article-col p.none{font-size:11px;color:#999}
 @media print{body{padding:1.5rem}.chart-block{flex-basis:46%}}</style></head><body>
 <h1>Heat Pump Comparison</h1>
 <p class="sub">Generated from heatpumpdatabase.com · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
+${photosSection}
 ${chartsSection}
 <table><thead><tr><th>Specification</th>${items.map(d=>'<th>'+d.manufacturer+'<br>'+d.model+'</th>').join('')}</tr></thead><tbody>
 ${specs.map(([label,key,unit])=>{
@@ -3302,6 +3385,7 @@ ${specs.map(([label,key,unit])=>{
   }).join('')+'</tr>';
 }).join('')}
 </tbody></table>
+${articlesSection}
 <div class="footer">Data sourced from manufacturer datasheets. Specifications may vary — always verify with the manufacturer before purchasing.<br>heatpumpdatabase.com</div>
 </body></html>`;
   const blob=new Blob([htmlContent],{type:'text/html'});

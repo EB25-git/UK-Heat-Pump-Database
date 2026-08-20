@@ -486,6 +486,8 @@ h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:6px;margin-bottom:14px}
 .mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px;vertical-align:middle;margin-right:8px}
 .mfr-header{display:flex;align-items:center;gap:14px;margin-bottom:2px}
+.product-photo-wrap{background:#f3f7f6;border:1px solid #e2e8e7;border-radius:14px;padding:20px;margin-bottom:18px;text-align:center}
+.product-photo{max-width:320px;width:100%;height:auto;max-height:320px;object-fit:contain}
 .trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
 table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
 table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
@@ -751,6 +753,47 @@ def get_logo_url(mfr):
     _LOGO_CACHE[mfr] = url
     return url
 
+# ─── Per-product photos (real SKU photography, opt-in per manufacturer) ───
+# Mirrors get_logo_url() above: drop a file under ./product-images/ and register
+# it here (keyed by product_code) - no other code change needed. Several SKUs
+# that are cosmetically identical (e.g. different capacity variants sharing one
+# physical casing) can point at the same source file.
+PRODUCT_IMAGE_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "product-images")
+PRODUCT_IMAGE_OUT_DIR = "images/products"
+PRODUCT_IMAGE_BY_CODE = {
+    "HPID6R32": "grant-aerona3-r32-6kw.jpg",
+    "HPID10R32": "grant-aerona3-r32-10kw.jpg",
+    "HPID13R32": "grant-aerona3-r32-13-17kw.jpg",
+    "HPID17R32": "grant-aerona3-r32-13-17kw.jpg",
+    "HPR2904": "grant-aerona-290-4kw.jpg",
+    "HPR29065": "grant-aerona-290-4kw.jpg",
+    "HPR2909": "grant-aerona-290-4kw.jpg",
+    "HPR29012": "grant-aerona-290-12-155kw.jpg",
+    "HPR290155": "grant-aerona-290-12-155kw.jpg",
+}
+_PRODUCT_IMAGE_CACHE = {}
+
+def get_product_image(p):
+    """Return the site-relative URL for a real product photo, or None if this
+    SKU has no photo registered. Writes the file into the build output the
+    first time it's needed (same copy-on-build approach as get_logo_url)."""
+    code = p.get("product_code")
+    fname = PRODUCT_IMAGE_BY_CODE.get(code) if code else None
+    if not fname:
+        return None
+    if fname in _PRODUCT_IMAGE_CACHE:
+        return _PRODUCT_IMAGE_CACHE[fname]
+    src = os.path.join(PRODUCT_IMAGE_SRC_DIR, fname)
+    if not os.path.isfile(src):
+        return None
+    out_rel = f"{PRODUCT_IMAGE_OUT_DIR}/{fname}"
+    dest = os.path.join(ROOT, out_rel)
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    shutil.copyfile(src, dest)
+    url = f"{BASE_URL}/{out_rel}"
+    _PRODUCT_IMAGE_CACHE[fname] = url
+    return url
+
 def product_card(p):
     bits = [t for t in (p.get("hp_type"), cap_str(p),
             (f"SCOP {num(p['scop'])}" if p.get("scop") is not None else None)) if t]
@@ -949,7 +992,7 @@ def render_product(p, by_mfr, by_type):
     product_ld["brand"] = {"@type": "Brand", "name": mfr}
     if p.get("description"):
         product_ld["description"] = p["description"]
-    product_ld["image"] = get_logo_url(mfr)
+    product_ld["image"] = get_product_image(p) or get_logo_url(mfr)
     if p.get("hp_type"):
         product_ld["category"] = TYPE_LABEL.get(p["hp_type"], p["hp_type"])
     props = []
@@ -984,7 +1027,11 @@ def render_product(p, by_mfr, by_type):
         product_ld["additionalProperty"] = props
 
     logo = get_logo_url(mfr)
+    photo = get_product_image(p)
+    photo_html = (f'<div class="product-photo-wrap"><img class="product-photo" src="{photo}" '
+                  f'alt="{esc(display_name)}" width="320" height="320" loading="eager"></div>') if photo else ""
     body = (crumbs(crumb_items) +
+            photo_html +
             f'<div class="mfr-header"><img class="mfr-logo-sm" src="{logo}" alt="{esc(mfr)} logo" width="32" height="32">'
             f"<h1>{esc(display_name)}</h1></div>"
             f'<p class="sub">Specifications and technical data</p>'
@@ -2091,6 +2138,20 @@ def main():
     logo_map = {m: get_logo_url(m) for m in by_mfr}
     write(os.path.join(ROOT, "logos.js"),
           "const MFR_LOGOS = " + json.dumps(logo_map, ensure_ascii=False) + ";\n")
+
+    # product-images.js: product_code -> real photo URL map, same idea as
+    # logos.js but for per-SKU product photography (currently Grant only -
+    # see PRODUCT_IMAGE_BY_CODE). Consumed by the interactive app so its
+    # product detail modal can show the same photo used on the static pages.
+    photo_map = {}
+    for p in products:
+        code = p.get("product_code")
+        if code and code in PRODUCT_IMAGE_BY_CODE:
+            url = get_product_image(p)
+            if url:
+                photo_map[code] = url
+    write(os.path.join(ROOT, "product-images.js"),
+          "const PRODUCT_IMAGES = " + json.dumps(photo_map, ensure_ascii=False) + ";\n")
 
     # robots.txt
     write(os.path.join(ROOT, "robots.txt"),
