@@ -771,6 +771,19 @@ PRODUCT_IMAGE_BY_CODE = {
     "HPR2909": "grant-aerona-290-4kw.jpg",
     "HPR29012": "grant-aerona-290-12-155kw.jpg",
     "HPR290155": "grant-aerona-290-12-155kw.jpg",
+    # Cool Energy: ProInverter iH+ range photographed per SKU; GroundTec GTi
+    # range shares one photo across all capacities (same casing/product shot).
+    "CE-iH6+": "cool-energy-ih6.webp",
+    "CE-iH12+": "cool-energy-ih12.png",
+    "CE-iH12+ 3PH": "cool-energy-ih12-3ph.webp",
+    "CE-iH24+": "cool-energy-ih24.png",
+    "CE-iH24+ 3PH": "cool-energy-ih24-3ph.webp",
+    "CE-iH80+ 3PH": "cool-energy-ih80-3ph.png",
+    "CE-iH100+ 3PH": "cool-energy-ih100-3ph.webp",
+    "CE-iH240+ 3PH": "cool-energy-ih240-3ph.webp",
+    "CE-GTI6": "cool-energy-groundtec.webp",
+    "CE-GTI12": "cool-energy-groundtec.webp",
+    "CE-GTI24": "cool-energy-groundtec.webp",
 }
 _PRODUCT_IMAGE_CACHE = {}
 
