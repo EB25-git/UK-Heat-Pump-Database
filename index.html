@@ -385,6 +385,11 @@ td.acc{color:var(--accent);font-weight:500}
 .modal-photo-block{margin-bottom:1rem;text-align:center}
 .modal-photo{max-width:320px;width:100%;height:auto;max-height:320px;object-fit:contain}
 .modal-photo-credit{font-size:11px;color:var(--text3);margin-top:6px}
+.modal-photo{cursor:zoom-in}
+.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(15,43,43,.92);z-index:300;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
+.photo-lightbox.open{display:flex}
+.photo-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:6px;cursor:default}
+.photo-lightbox-close{position:fixed;top:18px;right:22px;background:rgba(255,255,255,.14);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
 .modal-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:22px;cursor:pointer;line-height:1;flex-shrink:0;margin-left:14px;transition:color .15s}
 .modal-close:hover{color:#fff}
 .modal-body{padding:1.5rem 1.75rem;max-height:80vh;overflow-y:auto}
@@ -2126,6 +2131,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
+<div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">✕</button><img id="photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
 <footer class="site-footer" id="site-footer"></footer>
 <div id="onboard-modal" style="display:none;position:fixed;inset:0;z-index:99993;background:rgba(15,43,43,.55);align-items:center;justify-content:center;padding:16px">
   <div style="background:var(--surface);border-radius:16px;max-width:420px;width:100%;padding:24px 22px;box-shadow:0 20px 60px rgba(0,0,0,.3)">
@@ -3084,7 +3090,7 @@ function openModal(id){
   const copNote=d.cop!=null?`<div class="cop-explain">COP <strong>${d.cop}</strong> quoted at <strong>${d.cop_cond||'unspecified conditions'}</strong>. ${d.cop_cond==='A7/W35'?'This is the standard ASHP test condition (EN 14511): +7°C outdoor air, 35°C leaving water.':d.cop_cond&&d.cop_cond.startsWith('W')?'This is a water-source test condition. Water-source COPs are typically higher than ASHP figures and are not directly comparable.':d.cop_cond&&d.cop_cond.startsWith('B')?'This is the standard brine-water (GSHP) test condition: 0°C brine in, 35°C leaving water.':'Non-standard test point — compare with caution against products tested at different conditions.'}</div>`:'';
   const descBlock=d.description?`<div style="padding:12px 16px;background:var(--surface2);border-radius:var(--radius);margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7">${d.description}</div>`:'';
   const photoSrc=(typeof PRODUCT_IMAGES!=='undefined'&&d.product_code&&PRODUCT_IMAGES[d.product_code])||'';
-  const photoHTML=photoSrc?`<div class="modal-photo-block"><img class="modal-photo" src="${photoSrc}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)}" loading="eager"><div class="modal-photo-credit">Image courtesy of ${jsAttrEsc(d.manufacturer)}</div></div>`:'';
+  const photoHTML=photoSrc?`<div class="modal-photo-block"><img class="modal-photo" src="${photoSrc}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)}" loading="eager" onclick="openPhotoLightbox(this.src,this.alt)"><div class="modal-photo-credit">Image courtesy of ${jsAttrEsc(d.manufacturer)} &middot; click to enlarge</div></div>`:'';
   document.getElementById('modal-body').innerHTML=`
     ${photoHTML}
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem">
@@ -3151,6 +3157,19 @@ function openModal(id){
   document.getElementById('detail-modal').classList.add('show');
   const _mc=document.querySelector('#detail-modal .modal-close');if(_mc)_mc.focus();
 }
+function openPhotoLightbox(src,alt){
+  const lb=document.getElementById('photo-lightbox');
+  const img=document.getElementById('photo-lightbox-img');
+  img.src=src;img.alt=alt||'';
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePhotoLightbox(){
+  const lb=document.getElementById('photo-lightbox');
+  lb.classList.remove('open');
+  document.getElementById('photo-lightbox-img').src='';
+  document.body.style.overflow='';
+}
 function closeModal(){
   document.getElementById('detail-modal').classList.remove('show');
   if(window.__modalLastFocus&&window.__modalLastFocus.focus){window.__modalLastFocus.focus();window.__modalLastFocus=null;}
@@ -3158,6 +3177,8 @@ function closeModal(){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     const m=document.getElementById('detail-modal');
+    const lb=document.getElementById('photo-lightbox');
+    if(lb&&lb.classList.contains('open')){closePhotoLightbox();return;}
     if(m&&m.classList.contains('show')){closeModal();return;}
     const bm=document.getElementById('burger-menu');
     if(bm&&bm.classList.contains('open'))closeBurger();
@@ -4317,6 +4338,8 @@ window.onboardSkip = onboardSkip;
 window.openBrowseGuide = openBrowseGuide;
 window.openFaqItem = openFaqItem;
 window.openModal = openModal;
+window.openPhotoLightbox = openPhotoLightbox;
+window.closePhotoLightbox = closePhotoLightbox;
 window.removeCompare = removeCompare;
 window.renderClickAnalytics = renderClickAnalytics;
 window.renderFooter = renderFooter;

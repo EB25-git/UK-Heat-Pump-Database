@@ -489,6 +489,11 @@ h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .product-photo-block{margin-bottom:20px;text-align:center}
 .product-photo{max-width:360px;width:100%;height:auto;max-height:360px;object-fit:contain}
 .photo-credit{font-size:11.5px;color:#8a9694;margin-top:8px}
+.product-photo{cursor:zoom-in}
+.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(15,43,43,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
+.photo-lightbox.open{display:flex}
+.photo-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:6px;cursor:default}
+.photo-lightbox-close{position:fixed;top:18px;right:22px;background:rgba(255,255,255,.12);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
 .trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
 table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
 table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
@@ -637,6 +642,7 @@ function trackOut(){{
 <nav class="burger-menu" id="bmenu">{burger_menu(active)}</nav>
 </div></header>
 <div class="burger-overlay" id="bov" onclick="cB()"></div>
+<div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">&#10005;</button><img id="photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
 <main><div class="wrap">
 {body}
 </div></main>
@@ -653,7 +659,7 @@ function trackOut(){{
 </span>
 </div>
 </div>
-<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}</script>
+<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').src='';document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
 </body>
 </html>
 """
@@ -1043,8 +1049,9 @@ def render_product(p, by_mfr, by_type):
     logo = get_logo_url(mfr)
     photo = get_product_image(p)
     photo_html = (f'<div class="product-photo-block"><img class="product-photo" src="{photo}" '
-                  f'alt="{esc(display_name)}" width="320" height="320" loading="eager">'
-                  f'<div class="photo-credit">Image courtesy of {esc(mfr)}</div></div>') if photo else ""
+                  f'alt="{esc(display_name)}" width="320" height="320" loading="eager" '
+                  f'onclick="openPhotoLightbox(this.src,this.alt)">'
+                  f'<div class="photo-credit">Image courtesy of {esc(mfr)} &middot; click photo to enlarge</div></div>') if photo else ""
     body = (crumbs(crumb_items) +
             photo_html +
             f'<div class="mfr-header"><img class="mfr-logo-sm" src="{logo}" alt="{esc(mfr)} logo" width="32" height="32">'
