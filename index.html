@@ -800,7 +800,6 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <p style="color:var(--text3);margin-bottom:1.25rem;font-size:13px;max-width:760px">Explore the whole database visually. Hover or tap any point to see the product; click it to open full specifications. Use the filters to narrow the dataset across every chart.</p>
     <div class="an-legend" id="an-legend" style="position:sticky;top:64px;z-index:30;background:var(--surface);border-bottom:1px solid var(--border);margin:0 -2.5rem 1.25rem;padding:10px 2.5rem;border-radius:0"></div>
     <div class="an-filters" id="an-filters"></div>
-<div class="an-fg" id="an-cap-fg" style="max-width:260px;margin:-.5rem 0 1.25rem"><label>Heating capacity <span class="f-slider-val" id="an-sv-cap">Any</span></label><div class="range-wrap" id="an-sl-cap"></div></div>
     <div class="an-grid">
       <div class="an-card">
         <div class="an-card-h">
@@ -2529,10 +2528,13 @@ function parseRefrigerants(ref){
 const SF={capLo:0,capHi:1000,coolLo:0,coolHi:1000,flow:0,sound:85,anCapLo:0,anCapHi:1000};   // capHi/coolHi>=1000 & sound>=85 => unbounded; flow 0 => any
 const CAP_STOPS=[0,1,2,3,4,5,6,8,10,12,15,20,25,30,40,50,60,80,100,150,200,300,400,500,700,1000]; // log-ish detents
 function capFromIdx(i){return CAP_STOPS[Math.max(0,Math.min(CAP_STOPS.length-1,i))];}
-function mkDual(el,vEl,loKey,hiKey,label,onchg){
+function idxForCap(v){const i=CAP_STOPS.indexOf(v);return i===-1?0:i;}
+function mkDual(el,vEl,loKey,hiKey,label,onchg,loInit,hiInit){
+  const n0=CAP_STOPS.length-1;
+  if(loInit==null)loInit=0; if(hiInit==null)hiInit=n0;
   el.innerHTML='<div class="range-track"></div><div class="range-fill"></div><div class="range-thumb"></div><div class="range-thumb"></div>'+
-    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="0" aria-label="Minimum ${label}">`+
-    `<input type="range" min="0" max="${CAP_STOPS.length-1}" step="1" value="${CAP_STOPS.length-1}" aria-label="Maximum ${label}">`;
+    `<input type="range" min="0" max="${n0}" step="1" value="${loInit}" aria-label="Minimum ${label}">`+
+    `<input type="range" min="0" max="${n0}" step="1" value="${hiInit}" aria-label="Maximum ${label}">`;
   const[lo,hi]=el.querySelectorAll('input'),fill=el.querySelector('.range-fill'),[t1,t2]=el.querySelectorAll('.range-thumb'),n=CAP_STOPS.length-1;
   function upd(fire){
     let a=Math.min(+lo.value,+hi.value),b=Math.max(+lo.value,+hi.value);
@@ -2834,6 +2836,8 @@ function renderAnalytics(){
   const [scopConds,commonScopConds]=anCondList(db.filter(d=>d.scop!=null&&d.scop_cond).map(d=>d.scop_cond),2);
   const elecs=[...new Set(db.filter(d=>d.electrical).map(d=>d.electrical))].sort();
   fp.innerHTML=`
+    <div class="an-fg" style="min-width:200px"><label>Heating capacity <span class="f-slider-val" id="an-sv-cap">Any</span></label>
+      <div class="range-wrap" id="an-sl-cap"></div></div>
     <div class="an-fg"><label>Heat pump type</label>
       <select id="anf-hp" onchange="anSetFilter('hp_type',this.value)">
         <option value="all">All types</option><option value="ASHP">Air source</option><option value="WSHP">Water source</option><option value="GSHP">Ground source</option></select></div>
@@ -2858,13 +2862,8 @@ function renderAnalytics(){
   // Legend
   document.getElementById('an-legend').innerHTML=Object.entries(AN_COLORS).map(([k,v])=>
     `<div class="an-legend-item"><span class="an-legend-dot" style="background:${v}"></span>${k==='ASHP'?'Air source (ASHP)':k==='WSHP'?'Water source (WSHP)':'Ground source (GSHP)'}</div>`).join('');
-  initAnSliderFilter();
+  mkDual(document.getElementById('an-sl-cap'),document.getElementById('an-sv-cap'),'anCapLo','anCapHi','heating capacity',anDraw,idxForCap(SF.anCapLo),idxForCap(SF.anCapHi));
   anDraw();
-}
-function initAnSliderFilter(){
-  const c=document.getElementById('an-sl-cap');
-  if(!c||c._init)return; c._init=true;
-  mkDual(c,document.getElementById('an-sv-cap'),'anCapLo','anCapHi','heating capacity',anDraw);
 }
 function anSetFilter(k,v){anFilters[k]=v;anDraw();}
 function anData(){
