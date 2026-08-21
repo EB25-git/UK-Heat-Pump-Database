@@ -96,6 +96,7 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
 .article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
 .article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .article-cat-insight{background:#e6f4f3;color:#0D7377}
 .article-cat-product{background:#fdf1e0;color:#a3660a}
@@ -105,6 +106,16 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .news-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
 .news-card h3{font-size:16px;margin:8px 0 6px;color:#0F2B2B}
 .news-card p{font-size:13.5px;color:#5b6b6b;line-height:1.6;margin:0}
+.news-list{display:flex;flex-direction:column;gap:18px}
+.news-row{display:flex;gap:22px;background:#fff;border:1px solid #e2e8e7;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.news-row:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
+.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#eef3f2;display:flex;align-items:center;justify-content:center}
+.news-row-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.news-row-thumb.placeholder{color:#9fb0af;font-size:13px;text-align:center;padding:0 16px}
+.news-row-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.news-row h3{font-size:20px;margin:8px 0 8px;color:#0F2B2B;letter-spacing:-.01em}
+.news-row p{font-size:14.5px;color:#5b6b6b;line-height:1.65;margin:0}
+@media (max-width:640px){.news-row{flex-direction:column}.news-row-thumb{width:100%;flex-basis:auto;height:180px}}
 .notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
 h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}

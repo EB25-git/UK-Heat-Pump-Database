@@ -485,6 +485,7 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
 .article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
 .article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .article-cat-insight{background:#e6f4f3;color:#0D7377}
 .article-cat-product{background:#fdf1e0;color:#a3660a}
@@ -494,6 +495,16 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .news-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
 .news-card h3{font-size:16px;margin:8px 0 6px;color:#0F2B2B}
 .news-card p{font-size:13.5px;color:#5b6b6b;line-height:1.6;margin:0}
+.news-list{display:flex;flex-direction:column;gap:18px}
+.news-row{display:flex;gap:22px;background:#fff;border:1px solid #e2e8e7;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.news-row:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
+.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#eef3f2;display:flex;align-items:center;justify-content:center}
+.news-row-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.news-row-thumb.placeholder{color:#9fb0af;font-size:13px;text-align:center;padding:0 16px}
+.news-row-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.news-row h3{font-size:20px;margin:8px 0 8px;color:#0F2B2B;letter-spacing:-.01em}
+.news-row p{font-size:14.5px;color:#5b6b6b;line-height:1.65;margin:0}
+@media (max-width:640px){.news-row{flex-direction:column}.news-row-thumb{width:100%;flex-basis:auto;height:180px}}
 .notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
 h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
@@ -1741,6 +1752,30 @@ def render_knowledge_page(cfg):
                 [article_ld, breadcrumb_jsonld(crumb_items, url)], og_type="article", active=cfg["active"],
                 og_image=get_og_image())
 
+# News article images: drop a file under ./news-images/ and reference its
+# filename via the "image" field on the article entry in news.json - mirrors
+# get_product_image()/get_logo_url() above (copy-on-build, cached).
+NEWS_IMAGE_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "news-images")
+NEWS_IMAGE_OUT_DIR = "images/news"
+_NEWS_IMAGE_CACHE = {}
+
+def get_news_image(article):
+    fname = article.get("image")
+    if not fname:
+        return None
+    if fname in _NEWS_IMAGE_CACHE:
+        return _NEWS_IMAGE_CACHE[fname]
+    src = os.path.join(NEWS_IMAGE_SRC_DIR, fname)
+    if not os.path.isfile(src):
+        return None
+    out_rel = f"{NEWS_IMAGE_OUT_DIR}/{fname}"
+    dest = os.path.join(ROOT, out_rel)
+    os.makedirs(os.path.dirname(dest), exist_ok=True)
+    shutil.copyfile(src, dest)
+    url = f"{BASE_URL}/{out_rel}"
+    _NEWS_IMAGE_CACHE[fname] = url
+    return url
+
 # ─── News (product press releases, site updates, insights) ───
 # Source of truth is news.json - a plain list of articles, newest-first isn't
 # required in the file (we sort on load). Add a new article by appending an
@@ -1777,6 +1812,24 @@ def _news_card(article):
             f'<div class="article-meta" style="margin-top:10px">{esc(_news_date_str(article.get("date")))}</div>'
             f'</a>')
 
+def _news_row(article):
+    """Full-width preview row with an image thumbnail, used on the news index."""
+    url = f'{BASE_URL}/news/{article["slug"]}/'
+    img_url = get_news_image(article)
+    if img_url:
+        thumb = f'<div class="news-row-thumb"><img src="{img_url}" alt="{esc(article["title"])}" loading="lazy"></div>'
+    else:
+        thumb = '<div class="news-row-thumb placeholder">Heat Pump Database</div>'
+    return (f'<a class="news-row" href="{url}">'
+            f'{thumb}'
+            f'<div class="news-row-body">'
+            f'{_news_cat_badge(article)}'
+            f'<h3>{esc(article["title"])}</h3>'
+            f'<p>{esc(article.get("summary", ""))}</p>'
+            f'<div class="article-meta" style="margin-top:10px">{esc(_news_date_str(article.get("date")))}</div>'
+            f'</div>'
+            f'</a>')
+
 def render_news_index(articles):
     url = f"{BASE_URL}/news/"
     title = f"News & Insights | {SITE_NAME}"
@@ -1784,8 +1837,8 @@ def render_news_index(articles):
             "including deep dives into the specification data behind every product in the database.")
     crumb_items = [("Home", f"{BASE_URL}/"), ("News", None)]
     if articles:
-        cards = "".join(_news_card(a) for a in articles)
-        body_inner = f'<div class="news-grid">{cards}</div>'
+        rows = "".join(_news_row(a) for a in articles)
+        body_inner = f'<div class="news-list">{rows}</div>'
     else:
         body_inner = '<p style="color:#5b6b6b">No articles published yet - check back soon.</p>'
     body = (crumbs(crumb_items) +
@@ -1807,6 +1860,12 @@ def render_news_article(article, all_articles):
     author = article.get("author")
     author_bit = f'<span> &middot; by {esc(author)}</span>' if author else ""
     header = f'<div class="article-meta">{_news_cat_badge(article)}<span>{esc(date_str)}</span>{author_bit}</div>'
+    img_url = get_news_image(article)
+    hero = ""
+    if img_url:
+        img_credit = article.get("image_credit", SITE_NAME)
+        hero = (f'<div class="article-hero"><img src="{img_url}" alt="{esc(article["title"])}">'
+                f'<div class="article-hero-credit">{esc(img_credit)}</div></div>')
     others = [a for a in all_articles if a["slug"] != article["slug"]][:3]
     related = ""
     if others:
@@ -1814,8 +1873,8 @@ def render_news_article(article, all_articles):
                     f'<div class="news-grid">{"".join(_news_card(a) for a in others)}</div>')
     body = (crumbs(crumb_items) +
             f'<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 10px;max-width:760px">{esc(article["title"])}</h1>'
-            + header +
-            f'<div class="article-body" style="margin-top:20px">{article.get("body_html", "")}</div>'
+            + header + hero +
+            f'<div class="article-body">{article.get("body_html", "")}</div>'
             + related)
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": article["title"],
           "description": desc, "url": url, "datePublished": article.get("date"),
@@ -1823,8 +1882,10 @@ def render_news_article(article, all_articles):
           "mainEntityOfPage": url}
     if author:
         ld["author"] = {"@type": "Organization", "name": author}
+    if img_url:
+        ld["image"] = img_url
     return page(title, desc, url, body, [ld, breadcrumb_jsonld(crumb_items, url)], og_type="article",
-                active="news", og_image=get_og_image())
+                active="news", og_image=img_url or get_og_image())
 
 def render_size_calculator_page():
     title = f"Heat Pump Size Calculator — What kW Do You Need? | {SITE_NAME}"
