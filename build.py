@@ -30,9 +30,10 @@ GA_MEASUREMENT_ID = "G-3XMG9G84HQ"   # same GA4 property as the interactive app 
                                      # so static-page and app traffic land in one place
 ROOT      = os.path.dirname(os.path.abspath(__file__))
 DATA      = os.path.join(ROOT, "products.json")
+NEWS_DATA = os.path.join(ROOT, "news.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "heat-pump-size-calculator"]
+GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "heat-pump-size-calculator", "news"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -474,6 +475,25 @@ table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px 
 table.spec th{width:42%;color:#42514f;font-weight:500;background:#fafcfb}
 table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .notes{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#34433f}
+.article-body{max-width:720px}
+.article-body h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 12px;color:#0F2B2B}
+.article-body h3{font-size:16px;margin:22px 0 10px;color:#0F2B2B}
+.article-body p{color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px}
+.article-body strong{color:#16302f}
+.article-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 18px}
+.article-body th{text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;background:#fafcfb;color:#42514f;font-weight:600}
+.article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
+.article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
+.article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
+.article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.article-cat-insight{background:#e6f4f3;color:#0D7377}
+.article-cat-product{background:#fdf1e0;color:#a3660a}
+.article-cat-update{background:#e8eef5;color:#2b5a8a}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.news-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
+.news-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
+.news-card h3{font-size:16px;margin:8px 0 6px;color:#0F2B2B}
+.news-card p{font-size:13.5px;color:#5b6b6b;line-height:1.6;margin:0}
 .notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
 h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
@@ -572,6 +592,7 @@ def burger_menu(active=None):
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
         + it("Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc")
         + knowledge_block
+        + it("News", f"{BASE_URL}/news/", "news")
         + it("Contact", f"{BASE_URL}/#contact", "contact")
         + it("Terms of Use", f"{BASE_URL}/#terms", "terms",
              extra=' style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)"')
@@ -648,7 +669,7 @@ function trackOut(){{
 </div></main>
 <footer class="site"><div class="wrap">
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
-<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a></p>
+<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="{BASE_URL}/news/">News</a></p>
 </div></footer>
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
 <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
@@ -1720,6 +1741,91 @@ def render_knowledge_page(cfg):
                 [article_ld, breadcrumb_jsonld(crumb_items, url)], og_type="article", active=cfg["active"],
                 og_image=get_og_image())
 
+# ─── News (product press releases, site updates, insights) ───
+# Source of truth is news.json - a plain list of articles, newest-first isn't
+# required in the file (we sort on load). Add a new article by appending an
+# entry there and rebuilding; no other code change needed.
+NEWS_CATEGORY_LABEL = {"insight": "Insight", "product": "Product News", "update": "Site Update"}
+NEWS_CATEGORY_CLASS = {"insight": "article-cat-insight", "product": "article-cat-product", "update": "article-cat-update"}
+
+def load_news():
+    if not os.path.isfile(NEWS_DATA):
+        return []
+    with open(NEWS_DATA, encoding="utf-8") as f:
+        articles = json.load(f)
+    articles.sort(key=lambda a: a.get("date", ""), reverse=True)
+    return articles
+
+def _news_date_str(iso_date):
+    try:
+        return datetime.date.fromisoformat(iso_date).strftime("%-d %B %Y")
+    except Exception:
+        return iso_date or ""
+
+def _news_cat_badge(article):
+    cat = article.get("category", "update")
+    label = NEWS_CATEGORY_LABEL.get(cat, cat.title())
+    cls = NEWS_CATEGORY_CLASS.get(cat, "article-cat-update")
+    return f'<span class="article-cat {cls}">{esc(label)}</span>'
+
+def _news_card(article):
+    url = f'{BASE_URL}/news/{article["slug"]}/'
+    return (f'<a class="news-card" href="{url}">'
+            f'{_news_cat_badge(article)}'
+            f'<h3>{esc(article["title"])}</h3>'
+            f'<p>{esc(article.get("summary", ""))}</p>'
+            f'<div class="article-meta" style="margin-top:10px">{esc(_news_date_str(article.get("date")))}</div>'
+            f'</a>')
+
+def render_news_index(articles):
+    url = f"{BASE_URL}/news/"
+    title = f"News & Insights | {SITE_NAME}"
+    desc = ("Product press releases, site updates and data-driven insights from Heat Pump Database - "
+            "including deep dives into the specification data behind every product in the database.")
+    crumb_items = [("Home", f"{BASE_URL}/"), ("News", None)]
+    if articles:
+        cards = "".join(_news_card(a) for a in articles)
+        body_inner = f'<div class="news-grid">{cards}</div>'
+    else:
+        body_inner = '<p style="color:#5b6b6b">No articles published yet - check back soon.</p>'
+    body = (crumbs(crumb_items) +
+            '<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 8px">News &amp; Insights</h1>'
+            '<p style="color:#5b6b6b;font-size:15px;line-height:1.6;margin:0 0 24px;max-width:680px">'
+            'New product press releases, site updates, and insights drawn directly from the specification '
+            'data in this database.</p>' + body_inner)
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "News & Insights",
+          "description": desc, "url": url, "publisher": {"@type": "Organization", "name": SITE_NAME}}
+    return page(title, desc, url, body, [ld, breadcrumb_jsonld(crumb_items, url)], og_type="website",
+                active="news", og_image=get_og_image())
+
+def render_news_article(article, all_articles):
+    url = f'{BASE_URL}/news/{article["slug"]}/'
+    title = f'{article["title"]} | {SITE_NAME} News'
+    desc = article.get("summary", article["title"])
+    crumb_items = [("Home", f"{BASE_URL}/"), ("News", f"{BASE_URL}/news/"), (article["title"], None)]
+    date_str = _news_date_str(article.get("date"))
+    author = article.get("author")
+    author_bit = f'<span> &middot; by {esc(author)}</span>' if author else ""
+    header = f'<div class="article-meta">{_news_cat_badge(article)}<span>{esc(date_str)}</span>{author_bit}</div>'
+    others = [a for a in all_articles if a["slug"] != article["slug"]][:3]
+    related = ""
+    if others:
+        related = ('<h2 style="font-size:18px;margin:34px 0 12px">More from News</h2>'
+                    f'<div class="news-grid">{"".join(_news_card(a) for a in others)}</div>')
+    body = (crumbs(crumb_items) +
+            f'<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 10px;max-width:760px">{esc(article["title"])}</h1>'
+            + header +
+            f'<div class="article-body" style="margin-top:20px">{article.get("body_html", "")}</div>'
+            + related)
+    ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": article["title"],
+          "description": desc, "url": url, "datePublished": article.get("date"),
+          "publisher": {"@type": "Organization", "name": SITE_NAME},
+          "mainEntityOfPage": url}
+    if author:
+        ld["author"] = {"@type": "Organization", "name": author}
+    return page(title, desc, url, body, [ld, breadcrumb_jsonld(crumb_items, url)], og_type="article",
+                active="news", og_image=get_og_image())
+
 def render_size_calculator_page():
     title = f"Heat Pump Size Calculator — What kW Do You Need? | {SITE_NAME}"
     desc = ("Free UK heat pump size calculator. Estimate the kW your home needs and your annual "
@@ -2073,6 +2179,20 @@ def main():
             _lastmod_for(url, hashlib.sha256(html_.encode("utf-8")).hexdigest()[:16])
             kg_count += 1
 
+    # news (product press releases, site updates, insights)
+    news_articles = load_news()
+    for article in news_articles:
+        html_ = render_news_article(article, news_articles)
+        write(os.path.join(ROOT, "news", article["slug"], "index.html"), html_)
+        url = f'{BASE_URL}/news/{article["slug"]}/'
+        urls.append(url)
+        _lastmod_for(url, hashlib.sha256(html_.encode("utf-8")).hexdigest()[:16])
+    news_index_html = render_news_index(news_articles)
+    write(os.path.join(ROOT, "news", "index.html"), news_index_html)
+    news_index_url = f"{BASE_URL}/news/"
+    urls.append(news_index_url)
+    _lastmod_for(news_index_url, hashlib.sha256(news_index_html.encode("utf-8")).hexdigest()[:16])
+
     # redirect stub: /knowledge/boiler-upgrade-scheme/ was the URL for this guide
     # before it was renamed and expanded into the broader "funding" hub page.
     # It was live (indexed) briefly, so redirect rather than 404 it. Not added
@@ -2181,7 +2301,7 @@ def main():
 
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
           f"{len(type_pages)} category pages, {kg_count} knowledge pages, "
-          f"{len(best_built)} best-of ranking pages.")
+          f"{len(best_built)} best-of ranking pages, {len(news_articles)} news articles.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
     print(f"Wrote {redirect_count} redirect stub(s) for retired product slugs.")
 
