@@ -822,6 +822,17 @@ PRODUCT_IMAGE_BY_CODE = {
     "CE-GTI6": "cool-energy-groundtec.webp",
     "CE-GTI12": "cool-energy-groundtec.webp",
     "CE-GTI24": "cool-energy-groundtec.webp",
+    # Global Energy Systems: GRS-CQ range (Cartmel/Castletown/Rothesay) is one
+    # casing across capacities, photographed once; Leeds Single/Quattro share
+    # a photo since Quattro is a 4-unit cascade of the same physical module.
+    "GRS-CQ10Pd/NhG3-E": "global-energy-castletown.png",
+    "GRS-CQ6.0Pd/NhG3-E": "global-energy-castletown.png",
+    "GRS-CQ8.0Pd/NhG3-E": "global-energy-castletown.png",
+    "CAER410MOD1": "global-energy-caernarfon.png",
+    "WIN410MOD1": "global-energy-winchester.png",
+    "LCNR410MOD1": "global-energy-lincoln.png",
+    "GE40501-001-00": "global-energy-leeds.png",
+    "GE40501-004-00": "global-energy-leeds.png",
 }
 _PRODUCT_IMAGE_CACHE = {}
 
