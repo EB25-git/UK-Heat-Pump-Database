@@ -485,7 +485,7 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
 .article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
 .article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
-.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1}.article-tldr{max-width:760px;margin:0 0 24px;background:#f2fbfa;border:1px solid #cdeae6;border-left:4px solid #0D7377;border-radius:10px;padding:16px 20px}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0D7377;margin:0 0 8px}.article-tldr ul{margin:0;padding-left:18px;color:#34433f;font-size:14px;line-height:1.7}.article-tldr li{margin:0 0 4px}.article-tldr li:last-child{margin-bottom:0}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .article-cat-insight{background:#e6f4f3;color:#0D7377}
 .article-cat-product{background:#fdf1e0;color:#a3660a}
@@ -1895,6 +1895,17 @@ def render_news_article(article, all_articles):
         img_credit = article.get("image_credit", SITE_NAME)
         hero = (f'<div class="article-hero"><img src="{img_url}" alt="{esc(article["title"])}">'
                 f'<div class="article-hero-credit">{esc(img_credit)}</div></div>')
+    # Optional "TL;DR" summary box - a short list of the article's key points,
+    # rendered right after the hero image and before the full body. Set via
+    # the "tldr" field on the article entry in news.json (a list of plain-text
+    # strings, one per bullet). Purely optional - articles without one render
+    # exactly as before.
+    tldr_points = article.get("tldr") or []
+    tldr_block = ""
+    if tldr_points:
+        items = "".join(f"<li>{esc(pt)}</li>" for pt in tldr_points)
+        tldr_block = (f'<div class="article-tldr"><p class="article-tldr-label">TL;DR</p>'
+                       f'<ul>{items}</ul></div>')
     others = [a for a in all_articles if a["slug"] != article["slug"]][:3]
     related = ""
     if others:
@@ -1902,7 +1913,7 @@ def render_news_article(article, all_articles):
                     f'<div class="news-grid">{"".join(_news_card(a) for a in others)}</div>')
     body = (crumbs(crumb_items) +
             f'<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 10px;max-width:760px">{esc(article["title"])}</h1>'
-            + header + hero +
+            + header + hero + tldr_block +
             f'<div class="article-body">{article.get("body_html", "")}</div>'
             + related)
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": article["title"],
