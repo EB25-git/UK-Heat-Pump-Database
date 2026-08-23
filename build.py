@@ -834,6 +834,14 @@ PRODUCT_IMAGE_BY_CODE = {
     "GE40501-001-00": "global-energy-leeds.png",
     "GE40501-004-00": "global-energy-leeds.png",
 }
+# Fallback for products with no product_code (Baxi, Clade, Fenagy, Intergas,
+# Octopus Energy, Rhoss, Sabroe all have null product_code in the source
+# data) - keyed on the unique row "id" instead, same file-drop workflow.
+PRODUCT_IMAGE_BY_ID = {
+    1444: "octopus-cosy-6.jpg",
+    1445: "octopus-cosy-9.jpg",
+    1446: "octopus-cosy-12.jpg",
+}
 _PRODUCT_IMAGE_CACHE = {}
 
 def get_product_image(p):
@@ -842,6 +850,8 @@ def get_product_image(p):
     first time it's needed (same copy-on-build approach as get_logo_url)."""
     code = p.get("product_code")
     fname = PRODUCT_IMAGE_BY_CODE.get(code) if code else None
+    if not fname:
+        fname = PRODUCT_IMAGE_BY_ID.get(p.get("id"))
     if not fname:
         return None
     if fname in _PRODUCT_IMAGE_CACHE:
@@ -1029,17 +1039,25 @@ def render_product(p, by_mfr, by_type):
         aliases_html = (f'<p class="sub">Also known as: '
                          f'{esc(", ".join(aliases))}</p>')
 
-    # Minimal schema.org/Product identity block: name/alternateName/sku/manufacturer
-    # only. We deliberately still omit offers/review/aggregateRating (see below) —
-    # this block exists purely to give search engines the alternate names/codes a
-    # product is known by, not to seek Product rich-result eligibility.
-    # NOTE: No offers/review/aggregateRating are emitted. Google's Product rich
-    # result requires one of those — none apply to an informational spec database.
-    # We deliberately omit them rather than fabricate commerce data. (If real
-    # pricing/reviews are ever added, a valid offers block can be added here.)
+    # Minimal schema.org identity block: name/alternateName/sku/manufacturer.
+    # We deliberately omit offers/review/aggregateRating rather than fabricate
+    # commerce or ratings data this site doesn't have. Google's "Product"
+    # rich-result type requires one of those three properties, and flags pages
+    # typed as Product without them as a Search Console structured-data error
+    # (seen 2026-08-21: "Either offers, review, or aggregateRating should be
+    # specified"). Since we're not seeking Product rich results, we use
+    # schema.org's ProductModel type instead - "a datasheet or vendor
+    # specification of a product", which is exactly what this page is - a
+    # spec sheet, not a commerce listing. Google's Product-snippet validator
+    # only checks items typed exactly "Product", so ProductModel isn't
+    # subject to the offers/review/aggregateRating requirement, and every
+    # other property below (brand, sku, image, category, additionalProperty
+    # specs) remains valid since ProductModel inherits from Product. (If real
+    # pricing/reviews are ever added, switch back to "Product" and add a
+    # valid offers/aggregateRating block.)
     product_ld = {
         "@context": "https://schema.org",
-        "@type": "Product",
+        "@type": "ProductModel",
         "name": display_name,
         "manufacturer": {"@type": "Organization", "name": mfr},
     }
@@ -2353,17 +2371,22 @@ def main():
     write(os.path.join(ROOT, "logos.js"),
           "const MFR_LOGOS = " + json.dumps(logo_map, ensure_ascii=False) + ";\n")
 
-    # product-images.js: product_code -> real photo URL map, same idea as
-    # logos.js but for per-SKU product photography (currently Grant only -
-    # see PRODUCT_IMAGE_BY_CODE). Consumed by the interactive app so its
-    # product detail modal can show the same photo used on the static pages.
+    # product-images.js: lookup key -> real photo URL map, same idea as
+    # logos.js but for per-SKU product photography (see PRODUCT_IMAGE_BY_CODE
+    # / PRODUCT_IMAGE_BY_ID). Keyed by product_code where available, falling
+    # back to the numeric row id for products with no product_code (Octopus
+    # Energy etc) - the client checks product_code first, then id. Consumed
+    # by the interactive app so its product detail modal can show the same
+    # photo used on the static pages.
     photo_map = {}
     for p in products:
         code = p.get("product_code")
-        if code and code in PRODUCT_IMAGE_BY_CODE:
+        pid = p.get("id")
+        key = code if (code and code in PRODUCT_IMAGE_BY_CODE) else (pid if pid in PRODUCT_IMAGE_BY_ID else None)
+        if key is not None:
             url = get_product_image(p)
             if url:
-                photo_map[code] = url
+                photo_map[key] = url
     write(os.path.join(ROOT, "product-images.js"),
           "const PRODUCT_IMAGES = " + json.dumps(photo_map, ensure_ascii=False) + ";\n")
 
