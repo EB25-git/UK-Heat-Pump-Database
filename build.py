@@ -33,7 +33,7 @@ DATA      = os.path.join(ROOT, "products.json")
 NEWS_DATA = os.path.join(ROOT, "news.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "top-10", "heat-pump-size-calculator", "news"]
+GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "heat-pump-size-calculator", "news"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -591,7 +591,7 @@ def burger_menu(active=None):
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + '</div>'
     )
-    c_active = active in ("compare", "best")
+    c_active = active == "compare"
     c_open = " open" if c_active else ""
     c_cls = "burger-item burger-toggle" + (" active" if c_active else "")
     compare_block = (
@@ -599,14 +599,13 @@ def burger_menu(active=None):
         f'Compare<span class="burger-chevron" aria-hidden="true"></span></button>'
         f'<div class="burger-subgroup{c_open}" id="c-group">'
         + it("Compare Selected", f"{BASE_URL}/#compare", "compare", sub=True)
-        + it("Best Of Rankings", f"{BASE_URL}/best/", "best", sub=True)
         + '</div>'
     )
     return (
         it("Browse", f"{BASE_URL}/", "browse")
         + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
         + compare_block
-        + it("Top 10", f"{BASE_URL}/top-10/", "top-10")
+        + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
         + it("Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc")
         + knowledge_block
@@ -1533,104 +1532,9 @@ BEST_PAGES = [
      "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("scop") and p.get("cap_max") and 12 < p["cap_max"] <= 25,
      "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP"},
 
-    # "Top 10" rankings, split by heat-pump type, scoped to residential-sized
-    # units only (peak heating capacity under 20kW - the definition is stated
-    # once on the /top-10/ hub and on each page, rather than repeated in every
-    # title). Four separate single-metric rankings per type (SCOP, price per
-    # kW, noise, SEER) rather than one blended score, so each list is
-    # transparent about exactly what it ranks on. Commercial-scale units are
-    # excluded for now - the same pattern can extend to a commercial set
-    # later. Two combinations (WSHP price per kW, GSHP SEER) aren't published
-    # because too few qualifying products currently have both figures
-    # published for that pairing.
-    {"slug": "ashp-scop", "section": "top10",
-     "title": "Top 10 ASHP by SCOP",
-     "h1": "Top 10 Air Source Heat Pumps by SCOP (W35)",
-     "desc": "The most efficient air source heat pumps ranked by SCOP at 35\u00b0C flow. Top {n} of {pool} compared.",
-     "intro": "Air source heat pumps ranked by SCOP (seasonal coefficient of performance) at the standard 35\u00b0C flow condition. Only products with a published SCOP at W35 are included.",
-     "filter": lambda p: p.get("hp_type") == "ASHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("scop") and _cond_is(p, "scop_cond", "W35"),
-     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)", "top_n": 10},
-
-    {"slug": "ashp-price-per-kw", "section": "top10",
-     "title": "Top 10 ASHP by Price per kW",
-     "h1": "Top 10 Air Source Heat Pumps by Price per kW",
-     "desc": "The best-value air source heat pumps by price per kW of peak heating capacity. Top {n} of {pool} compared.",
-     "intro": "Ranked by list price divided by peak heating capacity (cap_max) - the cheapest price per kW first. Only products with both a published price and a peak capacity are included; price is a snapshot from the source noted on each product page, not a live quote.",
-     "filter": lambda p: p.get("hp_type") == "ASHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("gbp_per_kw") is not None,
-     "sort": lambda p: (p.get("gbp_per_kw") or 10**9), "metric": "gbp_per_kw", "metric_label": "\u00a3/kW (peak capacity)",
-     "top_n": 10, "show_price": True},
-
-    {"slug": "ashp-quietest", "section": "top10",
-     "title": "Top 10 Quietest ASHP",
-     "h1": "Top 10 Quietest Air Source Heat Pumps",
-     "desc": "The quietest air source heat pumps ranked by sound power level. Top {n} of {pool} compared.",
-     "intro": "Ranked by published sound power level (dB(A)) - lowest first - the measure used for UK permitted-development noise assessments (MCS 020).",
-     "filter": lambda p: p.get("hp_type") == "ASHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("noise") is not None,
-     "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)", "top_n": 10},
-
-    {"slug": "ashp-seer", "section": "top10",
-     "title": "Top 10 ASHP by SEER",
-     "h1": "Top 10 Air Source Heat Pumps by SEER (W7)",
-     "desc": "Air source heat pumps with the highest cooling-mode SEER at W7. Top {n} of {pool} compared.",
-     "intro": "Ranked by SEER (seasonal energy efficiency ratio, the cooling-mode equivalent of SCOP) at the W7 test condition. Only reversible models that publish a cooling SEER at this condition are included.",
-     "filter": lambda p: p.get("hp_type") == "ASHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("seer") and _cond_is(p, "seer_cond", "W7"),
-     "sort": lambda p: -(p.get("seer") or 0), "metric": "seer", "metric_label": "SEER (W7)", "top_n": 10},
-
-    {"slug": "wshp-scop", "section": "top10",
-     "title": "Top 10 WSHP by SCOP",
-     "h1": "Top 10 Water Source Heat Pumps by SCOP (W35)",
-     "desc": "The most efficient water source heat pumps ranked by SCOP at 35\u00b0C flow. Top {n} of {pool} compared.",
-     "intro": "Water source heat pumps ranked by SCOP at the standard 35\u00b0C flow condition. Only products with a published SCOP at W35 are included.",
-     "filter": lambda p: p.get("hp_type") == "WSHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("scop") and _cond_is(p, "scop_cond", "W35"),
-     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)", "top_n": 10},
-
-    {"slug": "wshp-quietest", "section": "top10",
-     "title": "Top 10 Quietest WSHP",
-     "h1": "Top 10 Quietest Water Source Heat Pumps",
-     "desc": "The quietest water source heat pumps ranked by sound power level. Top {n} of {pool} compared.",
-     "intro": "Ranked by published sound power level (dB(A)) - lowest first.",
-     "filter": lambda p: p.get("hp_type") == "WSHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("noise") is not None,
-     "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)", "top_n": 10},
-
-    {"slug": "wshp-seer", "section": "top10",
-     "title": "Top 10 WSHP by SEER",
-     "h1": "Top 10 Water Source Heat Pumps by SEER (W7)",
-     "desc": "Water source heat pumps with the highest cooling-mode SEER at W7. Top {n} of {pool} compared.",
-     "intro": "Ranked by SEER (seasonal energy efficiency ratio, the cooling-mode equivalent of SCOP) at the W7 test condition. Only reversible models that publish a cooling SEER at this condition are included - a small pool for water source units.",
-     "filter": lambda p: p.get("hp_type") == "WSHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("seer") and _cond_is(p, "seer_cond", "W7"),
-     "sort": lambda p: -(p.get("seer") or 0), "metric": "seer", "metric_label": "SEER (W7)", "top_n": 10},
-
-    {"slug": "gshp-scop", "section": "top10",
-     "title": "Top 10 GSHP by SCOP",
-     "h1": "Top 10 Ground Source Heat Pumps by SCOP (W35)",
-     "desc": "The most efficient ground source heat pumps ranked by SCOP at 35\u00b0C flow. Top {n} of {pool} compared.",
-     "intro": "Ground source heat pumps ranked by SCOP at the standard 35\u00b0C flow condition. Only products with a published SCOP at W35 are included.",
-     "filter": lambda p: p.get("hp_type") == "GSHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("scop") and _cond_is(p, "scop_cond", "W35"),
-     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)", "top_n": 10},
-
-    {"slug": "gshp-price-per-kw", "section": "top10",
-     "title": "Top 10 GSHP by Price per kW",
-     "h1": "Top 10 Ground Source Heat Pumps by Price per kW",
-     "desc": "The best-value ground source heat pumps by price per kW of peak heating capacity. Top {n} of {pool} compared.",
-     "intro": "Ranked by list price divided by peak heating capacity (cap_max) - the cheapest price per kW first. Only products with both a published price and a peak capacity are included; price is a snapshot from the source noted on each product page, not a live quote, and excludes ground loop/borehole installation cost.",
-     "filter": lambda p: p.get("hp_type") == "GSHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("gbp_per_kw") is not None,
-     "sort": lambda p: (p.get("gbp_per_kw") or 10**9), "metric": "gbp_per_kw", "metric_label": "\u00a3/kW (peak capacity)",
-     "top_n": 10, "show_price": True},
-
-    {"slug": "gshp-quietest", "section": "top10",
-     "title": "Top 10 Quietest GSHP",
-     "h1": "Top 10 Quietest Ground Source Heat Pumps",
-     "desc": "The quietest ground source heat pumps ranked by sound power level. Top {n} of {pool} compared.",
-     "intro": "Ranked by published sound power level (dB(A)) - lowest first.",
-     "filter": lambda p: p.get("hp_type") == "GSHP" and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20 and p.get("noise") is not None,
-     "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)", "top_n": 10},
 ]
 
 BEST_TOP_N = 10
-
-TOP10_DEFINITION = ("These rankings are based on residential-sized heat pumps (under 20kW peak heating "
-                    "capacity), using whatever information manufacturers have published \u2014 products without "
-                    "the relevant published figure are excluded.")
 
 COMPOSITE_SCORING_EXPLANATION = (
     "Each qualifying air source heat pump is scored 0\u201310 on three measures - SCOP at "
@@ -1735,10 +1639,8 @@ def _render_composite_section(ranked, pool_size):
 
 def _best_table_and_winner(cfg, ranked):
     """Build the ranking <table> and the #1 winner-card HTML for one
-    BEST_PAGES config's already-filtered/sorted product list. Shared by the
-    individual Top 10 pages (render_best_page) and the single consolidated
-    Best Of page (render_best_single_page) so the two surfaces render rows
-    identically."""
+    BEST_PAGES config's already-filtered/sorted product list, used by
+    render_best_single_page() to render each stacked section."""
     show_cond = cfg.get("show_cond")
     show_flow = cfg.get("show_flow")
     show_type = cfg.get("show_type")
@@ -1817,58 +1719,16 @@ def _best_table_and_winner(cfg, ranked):
     table_html = f'<div class="best-scroll"><table class="list best-table">{"<tr>" + head_cells + "</tr>"}{rows}</table></div>'
     return winner_html, table_html
 
-def render_best_page(cfg, ranked, pool_size, all_cfgs):
-    """Renders one individual Top 10 page (/top-10/<slug>/). The general
-    Best Of categories no longer get individual pages - they're all stacked
-    onto the single consolidated /best/ page by render_best_single_page()."""
-    section_url = f"{BASE_URL}/top-10/"
-    url = f"{section_url}{cfg['slug']}/"
-    n = len(ranked)
-    desc = cfg["desc"].format(n=n, pool=pool_size)
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Top 10", section_url), (cfg["title"], None)]
-
-    winner_html, table_html = _best_table_and_winner(cfg, ranked)
-
-    sibling_cfgs = [c for c in all_cfgs if c.get("section") == "top10"]
-    others = "".join(
-        f'<a class="card" href="{section_url}{c["slug"]}/"><span><div class="m">{c["title"]}</div></span></a>'
-        for c in sibling_cfgs if c["slug"] != cfg["slug"])
-
-    definition_html = ('<div class="article-tldr"><span class="article-tldr-label">Scope</span>'
-                        '<p>' + TOP10_DEFINITION + '</p></div>')
-
-    body = (crumbs(crumb_items) +
-            f"<h1>{cfg['h1']}</h1>"
-            f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
-            + definition_html +
-            f'<p>{cfg["intro"]}</p>'
-            + winner_html + table_html +
-            f'<p style="margin-top:14px;font-size:13px;color:#5b6b6b">Rankings are generated automatically from '
-            f'manufacturer-published data in the {SITE_NAME} and refresh as new products are added. '
-            f'Figures come from different manufacturers\u2019 datasheets and certification documents; always '
-            f'confirm specifications with the manufacturer. Products without the relevant published figure are excluded.</p>'
-            f'<h2 class="sec">More Top 10s</h2><div class="grid">{others}</div>'
-            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
-
-    item_ld = {"@context": "https://schema.org", "@type": "ItemList",
-               "name": cfg["title"], "numberOfItems": n,
-               "itemListElement": [
-                   {"@type": "ListItem", "position": i + 1,
-                    "url": f"{BASE_URL}/products/{p['_slug']}/",
-                    "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
-                   for i, p in enumerate(ranked)]}
-    return page(f"{cfg['title']} ({TODAY[:4]}) | {SITE_NAME}", desc, url, body,
-                [item_ld, breadcrumb_jsonld(crumb_items, url)], active="top-10", og_image=get_og_image())
-
 def render_best_single_page(composite, sections):
-    """The consolidated /best/ page: the blended 'Best Overall ASHP' ranking
-    at the top, followed by every general (non top-10) single-metric ranking
-    category stacked as its own list section, rather than an index of cards
-    linking out to separate per-category pages. `composite` is
-    (ranked, pool_size) from _composite_ashp_ranking(); `sections` is a list
-    of (cfg, ranked, pool_size) tuples in BEST_PAGES order."""
+    """The site's one ranking destination: the blended 'Best Overall ASHP'
+    score at the top, followed by every single-metric ranking category
+    stacked as its own list section on the same page, rather than an index
+    of cards linking out to separate per-category pages (this replaced the
+    old /top-10/ multi-page section). `composite` is (ranked, pool_size)
+    from _composite_ashp_ranking(); `sections` is a list of
+    (cfg, ranked, pool_size) tuples in BEST_PAGES order."""
     url = f"{BASE_URL}/best/"
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Best Of", None)]
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Best Heat Pumps", None)]
 
     composite_ranked, composite_pool = composite
     toc = ""
@@ -1908,9 +1768,7 @@ def render_best_single_page(composite, sections):
             "<h1>Best Heat Pumps \u2014 Rankings</h1>"
             f'<p class="sub">{total_rankings} data-driven rankings \u00b7 updated {TODAY}</p>'
             f'<p>Every ranking below is generated automatically from the specifications in the {SITE_NAME}, '
-            f'compared at matching test conditions wherever possible, and updates as new products are added. '
-            f'Looking for single-metric rankings split by heat pump type instead? See the '
-            f'<a href="{BASE_URL}/top-10/">Top 10 rankings</a>.</p>'
+            f'compared at matching test conditions wherever possible, and updates as new products are added.</p>'
             f'<div class="best-toc">{toc}</div>'
             + section_html +
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
@@ -1919,37 +1777,6 @@ def render_best_single_page(composite, sections):
                 f"The best heat pumps ranked by real specification data: SCOP, noise, refrigerant and capacity band. "
                 f"{total_rankings} rankings on one page, updated automatically from the {SITE_NAME}.",
                 url, body, item_lds + [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
-
-def render_top10_index(cfgs_with_counts):
-    url = f"{BASE_URL}/top-10/"
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Top 10", None)]
-    cards = ""
-    for c, n, leader in cfgs_with_counts:
-        lv = leader.get(c["metric"])
-        lv_s = num(lv) if isinstance(lv, (int, float)) else str(lv or "")
-        if c["metric"] == "gbp_per_kw" and isinstance(lv, (int, float)):
-            lv_s = f"\u00a3{lv_s}"
-        cards += (
-            f'<a class="card has-logo" href="{BASE_URL}/top-10/{c["slug"]}/">'
-            f'<img class="logo-thumb" src="{get_logo_url(leader.get("manufacturer",""))}" alt="" loading="lazy" width="40" height="40">'
-            f'<span><div class="m">{c["title"]}</div>'
-            f'<div class="s">Top {n} ranked</div>'
-            f'<div class="hub-leader">\U0001F3C6 {esc(leader.get("manufacturer",""))} {esc(leader.get("model",""))} \u00b7 {c["metric_label"]} {lv_s}</div>'
-            f'</span></a>')
-    definition_html = (f'<div class="article-tldr"><span class="article-tldr-label">Scope</span>'
-                        f'<p>{TOP10_DEFINITION}</p></div>')
-    body = (crumbs(crumb_items) +
-            "<h1>Top 10 Heat Pumps</h1>"
-            f'<p class="sub">{len(cfgs_with_counts)} data-driven rankings \u00b7 updated {TODAY}</p>'
-            + definition_html +
-            f'<p>Each ranking below is generated automatically from the specifications in the {SITE_NAME}, '
-            f'compared at matching test conditions wherever possible. They update as new products are added.</p>'
-            f'<div class="grid">{cards}</div>'
-            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
-    return page(f"Top 10 Heat Pumps {TODAY[:4]} | {SITE_NAME}",
-                f"The top 10 residential-sized heat pumps by SCOP, price per kW and noise, split by type. "
-                f"{len(cfgs_with_counts)} rankings updated automatically from the {SITE_NAME}.",
-                url, body, [breadcrumb_jsonld(crumb_items, url)], active="top-10", og_image=get_og_image())
 
 # ───────────────────────── Build ─────────────────────────
 def write(path, content):
@@ -2594,33 +2421,23 @@ def main():
             f"<a href=\"{_bus_redirect_target}\">Continue to the updated page</a>.</p></body></html>")
     write(os.path.join(ROOT, "knowledge", "boiler-upgrade-scheme", "index.html"), _bus_redirect_stub)
 
-    # Top 10 pages: individual /top-10/<slug>/ pages (residential-sized
-    # units only, cfg["section"] == "top10"), same as before.
-    #
-    # General Best Of categories: no longer get individual /best/<slug>/
-    # pages. Every ranked list is computed here and handed to
-    # render_best_single_page(), which stacks them as sections on one
-    # consolidated /best/ page. Old individual URLs get a redirect stub to
-    # /best/#<slug> below, in case any were indexed or bookmarked.
+    # The site's ranking destination is now the single consolidated /best/
+    # page ("Best Heat Pumps"): the blended composite score at the top,
+    # followed by every single-metric BEST_PAGES category as its own
+    # stacked section. This replaced the earlier /top-10/ multi-page
+    # section (a separate hub plus 9 individual per-metric pages) - the two
+    # were showing overlapping rankings on separate URLs, so /top-10/ has
+    # been retired in favour of this one page. Old /best/<slug>/ and
+    # /top-10/(...)/ URLs get redirect stubs below in case any were
+    # indexed or bookmarked.
     best_sections = []
-    top10_built = []
     for cfg in BEST_PAGES:
         pool = [p for p in products if cfg["filter"](p)]
         ranked = sorted(pool, key=cfg["sort"])
         ranked = _dedupe_variants(ranked, cfg["metric"])[:cfg.get("top_n", BEST_TOP_N)]
         if len(ranked) < 5:
             continue
-        is_top10 = cfg.get("section") == "top10"
-        if is_top10:
-            write(os.path.join(ROOT, "top-10", cfg["slug"], "index.html"),
-                  render_best_page(cfg, ranked, len(pool), BEST_PAGES))
-            url = f"{BASE_URL}/top-10/{cfg['slug']}/"
-            urls.append(url)
-            # order matters for a ranking page - a reshuffle is a real content change
-            _lastmod_for(url, _lastmod_hash([(p.get("id"), product_hash_by_id[p.get("id")]) for p in ranked]))
-            top10_built.append((cfg, len(ranked), ranked[0]))
-        else:
-            best_sections.append((cfg, ranked, len(pool)))
+        best_sections.append((cfg, ranked, len(pool)))
 
     composite_ranked, composite_pool = _composite_ashp_ranking(products)
     write(os.path.join(ROOT, "best", "index.html"),
@@ -2646,10 +2463,21 @@ def main():
                  f"<a href=\"{_target}\">Continue to the updated page</a>.</p></body></html>")
         write(os.path.join(ROOT, "best", _old_slug, "index.html"), _stub)
 
-    write(os.path.join(ROOT, "top-10", "index.html"), render_top10_index(top10_built))
-    url = f"{BASE_URL}/top-10/"
-    urls.append(url)
-    _lastmod_for(url, _lastmod_hash([(cfg["slug"], winner.get("id")) for cfg, _, winner in top10_built]))
+    # redirect stubs: /top-10/ (hub + all individual per-metric pages) has
+    # been retired in favour of the single /best/ page above.
+    for _old_slug in (None, "ashp-scop", "ashp-price-per-kw", "ashp-quietest", "ashp-seer",
+                       "wshp-scop", "wshp-quietest", "wshp-seer", "gshp-scop",
+                       "gshp-price-per-kw", "gshp-quietest"):
+        _target = f"{BASE_URL}/best/"
+        _stub = (f"<!DOCTYPE html><html lang=\"en-GB\"><head><meta charset=\"utf-8\">"
+                 f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
+                 f"<link rel=\"canonical\" href=\"{_target}\">"
+                 f"<meta http-equiv=\"refresh\" content=\"0; url={_target}\">"
+                 f"</head><body><p>Top 10 rankings are now part of the combined Best Heat Pumps page. "
+                 f"<a href=\"{_target}\">Continue to the updated page</a>.</p></body></html>")
+        _out_path = (os.path.join(ROOT, "top-10", "index.html") if _old_slug is None
+                     else os.path.join(ROOT, "top-10", _old_slug, "index.html"))
+        write(_out_path, _stub)
 
     # heat pump size calculator: standalone interactive page (not extracted
     # from the app, unlike the knowledge guides) so it gets its own indexable
@@ -2731,7 +2559,7 @@ def main():
 
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
           f"{len(type_pages)} category pages, {kg_count} knowledge pages, "
-          f"{len(best_sections)} best-of ranking sections (1 page), {len(top10_built)} top-10 ranking pages, "
+          f"{len(best_sections)} best-of ranking sections (1 page), "
           f"{len(news_articles)} news articles.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
     print(f"Wrote {redirect_count} redirect stub(s) for retired product slugs.")
