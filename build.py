@@ -418,6 +418,7 @@ CSS = """
 .best-toc a:hover{background:#d4ece7}
 .best-section{margin-bottom:44px;padding-top:8px;scroll-margin-top:80px}
 .best-section:not(:last-of-type){border-bottom:1px solid #e2e8e7;padding-bottom:36px}
+.composite-sub{font-size:11.5px;color:#8a9694;font-weight:400}
 .best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
 .best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
 .best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
@@ -1625,11 +1626,112 @@ BEST_PAGES = [
      "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)", "top_n": 10},
 ]
 
-BEST_TOP_N = 20
+BEST_TOP_N = 10
 
 TOP10_DEFINITION = ("These rankings are based on residential-sized heat pumps (under 20kW peak heating "
                     "capacity), using whatever information manufacturers have published \u2014 products without "
                     "the relevant published figure are excluded.")
+
+COMPOSITE_SCORING_EXPLANATION = (
+    "Each qualifying air source heat pump is scored 0\u201310 on three measures - SCOP at "
+    "35\u00b0C flow, published sound power level, and price per kW of peak heating capacity - "
+    "scaled between the best and worst product in the qualifying pool, with lower noise and "
+    "lower price per kW scoring higher. The three 0\u201310 scores are added for a total out of "
+    "30. Unlike the single-metric rankings elsewhere on this site, a blended score like this can "
+    "place a product highly even if it doesn\u2019t lead on any one measure, and a product with "
+    "the single highest SCOP can be overtaken by one that\u2019s merely good across all three. "
+    "Limited to residential-sized (under 20kW) air source heat pumps with a published SCOP at "
+    "W35, sound power level and price all available.")
+
+def _composite_ashp_ranking(products):
+    """'Best Overall' ASHP ranking: SCOP (W35), noise and price-per-kW each
+    normalised to a 0-10 score across the qualifying pool, then summed for an
+    overall score out of 30. Returns (top_10_ranked, qualifying_pool_size)."""
+    pool = [p for p in products
+            if p.get("hp_type") == "ASHP"
+            and (p.get("cap_max") or 0) > 0 and p.get("cap_max") < 20
+            and p.get("scop") and _cond_is(p, "scop_cond", "W35")
+            and p.get("noise") is not None
+            and p.get("gbp_per_kw") is not None]
+    if not pool:
+        return [], 0
+
+    scops = [p["scop"] for p in pool]
+    noises = [p["noise"] for p in pool]
+    gbps = [p["gbp_per_kw"] for p in pool]
+    smin, smax = min(scops), max(scops)
+    nmin, nmax = min(noises), max(noises)
+    gmin, gmax = min(gbps), max(gbps)
+
+    def norm(v, vmin, vmax, invert=False):
+        if vmax == vmin:
+            return 10.0
+        frac = (v - vmin) / (vmax - vmin)
+        if invert: frac = 1 - frac
+        return round(frac * 10, 2)
+
+    scored = []
+    for p in pool:
+        q = dict(p)
+        q["_scop_score"] = norm(p["scop"], smin, smax)
+        q["_noise_score"] = norm(p["noise"], nmin, nmax, invert=True)
+        q["_gbp_score"] = norm(p["gbp_per_kw"], gmin, gmax, invert=True)
+        q["_total"] = round(q["_scop_score"] + q["_noise_score"] + q["_gbp_score"], 2)
+        scored.append(q)
+    scored.sort(key=lambda p: -p["_total"])
+
+    # dedupe exact same manufacturer+model (keep the best-scoring listing per model)
+    out, seen = [], set()
+    for p in scored:
+        key = (p.get("manufacturer"), p.get("model"))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(p)
+
+    return out[:10], len(pool)
+
+def _render_composite_section(ranked, pool_size):
+    n = len(ranked)
+    rows = ""
+    for i, p in enumerate(ranked, 1):
+        rank_cls = f' class="rank-{i}"' if i <= 3 else ""
+        logo = get_logo_url(p.get("manufacturer", ""))
+        rows += (f'<tr{rank_cls}><td class="rank"><span class="rank-badge">{i}</span></td>'
+                 f'<td><span class="best-model"><img src="{logo}" alt="" loading="lazy" width="26" height="26">'
+                 f'<a href="{BASE_URL}/products/{p["_slug"]}/">{esc(p.get("manufacturer",""))} {esc(p.get("model",""))}</a></span></td>'
+                 f'<td>{esc(cap_str(p) or "")}</td>'
+                 f'<td>{num(p["scop"])}<span class="composite-sub"> ({p["_scop_score"]:.1f}/10)</span></td>'
+                 f'<td>{num(p["noise"])} dB(A)<span class="composite-sub"> ({p["_noise_score"]:.1f}/10)</span></td>'
+                 f'<td>\u00a3{num(p["gbp_per_kw"])}<span class="composite-sub"> ({p["_gbp_score"]:.1f}/10)</span></td>'
+                 f'<td class="metric-cell"><span class="metric-val">{p["_total"]:.1f}</span>'
+                 f'<span class="metric-bar"><i style="width:{round(p["_total"]/30*100)}%"></i></span></td>'
+                 f'</tr>')
+
+    w = ranked[0]
+    winner_html = (
+        f'<div class="best-winner">'
+        f'<img src="{get_logo_url(w.get("manufacturer",""))}" alt="{esc(w.get("manufacturer",""))} logo" width="56" height="56">'
+        f'<div><div class="bw-crown">#1 \u00b7 Best Overall Air Source Heat Pump</div>'
+        f'<div class="bw-name"><a href="{BASE_URL}/products/{w["_slug"]}/">{esc(w.get("manufacturer",""))} {esc(w.get("model",""))}</a></div></div>'
+        f'<div class="bw-val"><div class="bw-num">{w["_total"]:.1f}</div><div class="bw-lab">Score / 30</div></div>'
+        f'</div>')
+
+    explanation_html = ('<div class="article-tldr"><span class="article-tldr-label">Scoring</span>'
+                         '<p>' + COMPOSITE_SCORING_EXPLANATION + '</p></div>')
+
+    table_html = (f'<div class="best-scroll"><table class="list best-table">'
+                  f'<tr><th>#</th><th>Model</th><th>Capacity</th><th>SCOP (W35)</th><th>Noise</th>'
+                  f'<th>\u00a3/kW</th><th>Score</th></tr>{rows}</table></div>')
+
+    return (f'<section id="best-overall-ashp" class="best-section">'
+            f'<h2 class="sec">Best Overall Air Source Heat Pumps</h2>'
+            f'<p class="sub">Top {n} of {pool_size} qualifying ASHPs \u00b7 updated {TODAY}</p>'
+            + explanation_html +
+            f'<p>A single blended ranking across efficiency, noise and price, rather than one metric at a time '
+            f'like the rankings below.</p>'
+            + winner_html + table_html +
+            f'</section>')
 
 def _best_table_and_winner(cfg, ranked):
     """Build the ranking <table> and the #1 winner-card HTML for one
@@ -1758,18 +1860,31 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
     return page(f"{cfg['title']} ({TODAY[:4]}) | {SITE_NAME}", desc, url, body,
                 [item_ld, breadcrumb_jsonld(crumb_items, url)], active="top-10", og_image=get_og_image())
 
-def render_best_single_page(sections):
-    """The consolidated /best/ page: every general (non top-10) ranking
-    category stacked as its own list section on one page, rather than an
-    index of cards linking out to separate per-category pages. `sections`
-    is a list of (cfg, ranked, pool_size) tuples in BEST_PAGES order."""
+def render_best_single_page(composite, sections):
+    """The consolidated /best/ page: the blended 'Best Overall ASHP' ranking
+    at the top, followed by every general (non top-10) single-metric ranking
+    category stacked as its own list section, rather than an index of cards
+    linking out to separate per-category pages. `composite` is
+    (ranked, pool_size) from _composite_ashp_ranking(); `sections` is a list
+    of (cfg, ranked, pool_size) tuples in BEST_PAGES order."""
     url = f"{BASE_URL}/best/"
     crumb_items = [("Home", f"{BASE_URL}/"), ("Best Of", None)]
 
-    toc = "".join(f'<a href="#{cfg["slug"]}">{cfg["title"]}</a>' for cfg, _, _ in sections)
-
-    section_html = ""
+    composite_ranked, composite_pool = composite
+    toc = ""
     item_lds = []
+    if composite_ranked:
+        toc += '<a href="#best-overall-ashp">Best Overall Air Source Heat Pumps</a>'
+        item_lds.append({"@context": "https://schema.org", "@type": "ItemList",
+                          "name": "Best Overall Air Source Heat Pumps", "numberOfItems": len(composite_ranked),
+                          "itemListElement": [
+                              {"@type": "ListItem", "position": i + 1,
+                               "url": f"{BASE_URL}/products/{p['_slug']}/",
+                               "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
+                              for i, p in enumerate(composite_ranked)]})
+    toc += "".join(f'<a href="#{cfg["slug"]}">{cfg["title"]}</a>' for cfg, _, _ in sections)
+
+    section_html = _render_composite_section(composite_ranked, composite_pool) if composite_ranked else ""
     for cfg, ranked, pool_size in sections:
         n = len(ranked)
         winner_html, table_html = _best_table_and_winner(cfg, ranked)
@@ -1788,9 +1903,10 @@ def render_best_single_page(sections):
                                "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
                               for i, p in enumerate(ranked)]})
 
+    total_rankings = len(sections) + (1 if composite_ranked else 0)
     body = (crumbs(crumb_items) +
             "<h1>Best Heat Pumps \u2014 Rankings</h1>"
-            f'<p class="sub">{len(sections)} data-driven rankings \u00b7 updated {TODAY}</p>'
+            f'<p class="sub">{total_rankings} data-driven rankings \u00b7 updated {TODAY}</p>'
             f'<p>Every ranking below is generated automatically from the specifications in the {SITE_NAME}, '
             f'compared at matching test conditions wherever possible, and updates as new products are added. '
             f'Looking for single-metric rankings split by heat pump type instead? See the '
@@ -1801,7 +1917,7 @@ def render_best_single_page(sections):
 
     return page(f"Best Heat Pumps {TODAY[:4]} \u2014 Data-Driven Rankings | {SITE_NAME}",
                 f"The best heat pumps ranked by real specification data: SCOP, noise, refrigerant and capacity band. "
-                f"{len(sections)} rankings on one page, updated automatically from the {SITE_NAME}.",
+                f"{total_rankings} rankings on one page, updated automatically from the {SITE_NAME}.",
                 url, body, item_lds + [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
 def render_top10_index(cfgs_with_counts):
@@ -2506,11 +2622,14 @@ def main():
         else:
             best_sections.append((cfg, ranked, len(pool)))
 
-    write(os.path.join(ROOT, "best", "index.html"), render_best_single_page(best_sections))
+    composite_ranked, composite_pool = _composite_ashp_ranking(products)
+    write(os.path.join(ROOT, "best", "index.html"),
+          render_best_single_page((composite_ranked, composite_pool), best_sections))
     url = f"{BASE_URL}/best/"
     urls.append(url)
-    _lastmod_for(url, _lastmod_hash([(cfg["slug"], [p.get("id") for p in ranked])
-                                      for cfg, ranked, _ in best_sections]))
+    _lastmod_for(url, _lastmod_hash(
+        [("__composite_ashp__", [p.get("id") for p in composite_ranked])] +
+        [(cfg["slug"], [p.get("id") for p in ranked]) for cfg, ranked, _ in best_sections]))
 
     # redirect stubs: general Best Of categories used to each have their own
     # /best/<slug>/ page; they're now sections on the single /best/ page.
