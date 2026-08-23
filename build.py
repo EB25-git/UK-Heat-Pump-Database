@@ -413,6 +413,11 @@ CALC_CSS = """
 
 CSS = """
 /* ── Best-of ranking pages ── */
+.best-toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 28px}
+.best-toc a{display:inline-block;background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}
+.best-toc a:hover{background:#d4ece7}
+.best-section{margin-bottom:44px;padding-top:8px;scroll-margin-top:80px}
+.best-section:not(:last-of-type){border-bottom:1px solid #e2e8e7;padding-bottom:36px}
 .best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
 .best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
 .best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
@@ -1527,14 +1532,6 @@ BEST_PAGES = [
      "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("scop") and p.get("cap_max") and 12 < p["cap_max"] <= 25,
      "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP"},
 
-    {"slug": "best-high-temperature-heat-pumps",
-     "title": "Best High-Temperature Heat Pumps",
-     "h1": "Best High-Temperature Heat Pumps (70\u00b0C+ flow)",
-     "desc": "Heat pumps capable of 70\u00b0C+ flow temperatures \u2014 ideal radiator retrofits \u2014 ranked by SCOP. Top {n} of {pool} compared.",
-     "intro": "High-temperature heat pumps reach 70\u00b0C+ flow, letting them replace a boiler without changing radiators. Ranked by SCOP among models with a maximum flow temperature of 70\u00b0C or higher.",
-     "filter": lambda p: (p.get("flow_temp_max") or 0) >= 70 and p.get("scop"),
-     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP", "show_flow": True, "show_type": True},
-
     # "Top 10" rankings, split by heat-pump type, scoped to residential-sized
     # units only (peak heating capacity under 20kW - the definition is stated
     # once on the /top-10/ hub and on each page, rather than repeated in every
@@ -1634,21 +1631,18 @@ TOP10_DEFINITION = ("These rankings are based on residential-sized heat pumps (u
                     "capacity), using whatever information manufacturers have published \u2014 products without "
                     "the relevant published figure are excluded.")
 
-def render_best_page(cfg, ranked, pool_size, all_cfgs):
-    is_top10 = cfg.get("section") == "top10"
-    section_url = f"{BASE_URL}/top-10/" if is_top10 else f"{BASE_URL}/best/"
-    section_label = "Top 10" if is_top10 else "Best Of"
-    section_active = "top-10" if is_top10 else "best"
-    url = f"{section_url}{cfg['slug']}/"
-    n = len(ranked)
-    desc = cfg["desc"].format(n=n, pool=pool_size)
-    crumb_items = [("Home", f"{BASE_URL}/"), (section_label, section_url), (cfg["title"], None)]
+def _best_table_and_winner(cfg, ranked):
+    """Build the ranking <table> and the #1 winner-card HTML for one
+    BEST_PAGES config's already-filtered/sorted product list. Shared by the
+    individual Top 10 pages (render_best_page) and the single consolidated
+    Best Of page (render_best_single_page) so the two surfaces render rows
+    identically."""
     show_cond = cfg.get("show_cond")
     show_flow = cfg.get("show_flow")
-    metric = cfg["metric"]
-
     show_type = cfg.get("show_type")
     show_price = cfg.get("show_price")
+    metric = cfg["metric"]
+
     head_cells = "<th>#</th><th>Model</th>"
     if show_type: head_cells += "<th>Type</th>"
     head_cells += "<th>Capacity</th><th>" + cfg["metric_label"] + "</th>"
@@ -1707,7 +1701,6 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
         row += '</tr>'
         rows += row
 
-    # winner hero card
     w = ranked[0]
     wv = w.get(metric)
     wv_s = num(wv) if isinstance(wv, (int, float)) else esc(str(wv or ""))
@@ -1719,29 +1712,40 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
         f'<div class="bw-val"><div class="bw-num">{wv_s}</div><div class="bw-lab">{cfg["metric_label"]}</div></div>'
         f'</div>')
 
-    sibling_cfgs = [c for c in all_cfgs if c.get("section") == cfg.get("section")]
+    table_html = f'<div class="best-scroll"><table class="list best-table">{"<tr>" + head_cells + "</tr>"}{rows}</table></div>'
+    return winner_html, table_html
+
+def render_best_page(cfg, ranked, pool_size, all_cfgs):
+    """Renders one individual Top 10 page (/top-10/<slug>/). The general
+    Best Of categories no longer get individual pages - they're all stacked
+    onto the single consolidated /best/ page by render_best_single_page()."""
+    section_url = f"{BASE_URL}/top-10/"
+    url = f"{section_url}{cfg['slug']}/"
+    n = len(ranked)
+    desc = cfg["desc"].format(n=n, pool=pool_size)
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Top 10", section_url), (cfg["title"], None)]
+
+    winner_html, table_html = _best_table_and_winner(cfg, ranked)
+
+    sibling_cfgs = [c for c in all_cfgs if c.get("section") == "top10"]
     others = "".join(
         f'<a class="card" href="{section_url}{c["slug"]}/"><span><div class="m">{c["title"]}</div></span></a>'
         for c in sibling_cfgs if c["slug"] != cfg["slug"])
-    more_heading = "More Top 10s" if is_top10 else "More rankings"
 
-    definition_html = ""
-    if is_top10:
-        definition_html = ('<div class="article-tldr"><span class="article-tldr-label">Scope</span>'
-                            '<p>' + TOP10_DEFINITION + '</p></div>')
+    definition_html = ('<div class="article-tldr"><span class="article-tldr-label">Scope</span>'
+                        '<p>' + TOP10_DEFINITION + '</p></div>')
 
     body = (crumbs(crumb_items) +
             f"<h1>{cfg['h1']}</h1>"
             f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
             + definition_html +
             f'<p>{cfg["intro"]}</p>'
-            + winner_html +
-            f'<div class="best-scroll"><table class="list best-table">{"<tr>" + head_cells + "</tr>"}{rows}</table></div>'
+            + winner_html + table_html +
             f'<p style="margin-top:14px;font-size:13px;color:#5b6b6b">Rankings are generated automatically from '
             f'manufacturer-published data in the {SITE_NAME} and refresh as new products are added. '
             f'Figures come from different manufacturers\u2019 datasheets and certification documents; always '
             f'confirm specifications with the manufacturer. Products without the relevant published figure are excluded.</p>'
-            f'<h2 class="sec">{more_heading}</h2><div class="grid">{others}</div>'
+            f'<h2 class="sec">More Top 10s</h2><div class="grid">{others}</div>'
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>')
 
     item_ld = {"@context": "https://schema.org", "@type": "ItemList",
@@ -1752,33 +1756,53 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
                     "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
                    for i, p in enumerate(ranked)]}
     return page(f"{cfg['title']} ({TODAY[:4]}) | {SITE_NAME}", desc, url, body,
-                [item_ld, breadcrumb_jsonld(crumb_items, url)], active=section_active, og_image=get_og_image())
+                [item_ld, breadcrumb_jsonld(crumb_items, url)], active="top-10", og_image=get_og_image())
 
-def render_best_index(cfgs_with_counts):
+def render_best_single_page(sections):
+    """The consolidated /best/ page: every general (non top-10) ranking
+    category stacked as its own list section on one page, rather than an
+    index of cards linking out to separate per-category pages. `sections`
+    is a list of (cfg, ranked, pool_size) tuples in BEST_PAGES order."""
     url = f"{BASE_URL}/best/"
     crumb_items = [("Home", f"{BASE_URL}/"), ("Best Of", None)]
-    cards = ""
-    for c, n, leader in cfgs_with_counts:
-        lv = leader.get(c["metric"])
-        lv_s = num(lv) if isinstance(lv, (int, float)) else str(lv or "")
-        cards += (
-            f'<a class="card has-logo" href="{BASE_URL}/best/{c["slug"]}/">'
-            f'<img class="logo-thumb" src="{get_logo_url(leader.get("manufacturer",""))}" alt="" loading="lazy" width="40" height="40">'
-            f'<span><div class="m">{c["title"]}</div>'
-            f'<div class="s">Top {n} ranked</div>'
-            f'<div class="hub-leader">\U0001F3C6 {esc(leader.get("manufacturer",""))} {esc(leader.get("model",""))} \u00b7 {c["metric_label"]} {lv_s}</div>'
-            f'</span></a>')
+
+    toc = "".join(f'<a href="#{cfg["slug"]}">{cfg["title"]}</a>' for cfg, _, _ in sections)
+
+    section_html = ""
+    item_lds = []
+    for cfg, ranked, pool_size in sections:
+        n = len(ranked)
+        winner_html, table_html = _best_table_and_winner(cfg, ranked)
+        section_html += (
+            f'<section id="{cfg["slug"]}" class="best-section">'
+            f'<h2 class="sec">{cfg["title"]}</h2>'
+            f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
+            f'<p>{cfg["intro"]}</p>'
+            + winner_html + table_html +
+            f'</section>')
+        item_lds.append({"@context": "https://schema.org", "@type": "ItemList",
+                          "name": cfg["title"], "numberOfItems": n,
+                          "itemListElement": [
+                              {"@type": "ListItem", "position": i + 1,
+                               "url": f"{BASE_URL}/products/{p['_slug']}/",
+                               "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
+                              for i, p in enumerate(ranked)]})
+
     body = (crumbs(crumb_items) +
             "<h1>Best Heat Pumps \u2014 Rankings</h1>"
-            f'<p class="sub">{len(cfgs_with_counts)} data-driven rankings \u00b7 updated {TODAY}</p>'
+            f'<p class="sub">{len(sections)} data-driven rankings \u00b7 updated {TODAY}</p>'
             f'<p>Every ranking below is generated automatically from the specifications in the {SITE_NAME}, '
-            f'compared at matching test conditions wherever possible. They update as new products are added.</p>'
-            f'<div class="grid">{cards}</div>'
+            f'compared at matching test conditions wherever possible, and updates as new products are added. '
+            f'Looking for single-metric rankings split by heat pump type instead? See the '
+            f'<a href="{BASE_URL}/top-10/">Top 10 rankings</a>.</p>'
+            f'<div class="best-toc">{toc}</div>'
+            + section_html +
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
+
     return page(f"Best Heat Pumps {TODAY[:4]} \u2014 Data-Driven Rankings | {SITE_NAME}",
-                f"The best heat pumps ranked by real specification data: SCOP, COP, noise and flow temperature. "
-                f"{len(cfgs_with_counts)} rankings updated automatically from the {SITE_NAME}.",
-                url, body, [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
+                f"The best heat pumps ranked by real specification data: SCOP, noise, refrigerant and capacity band. "
+                f"{len(sections)} rankings on one page, updated automatically from the {SITE_NAME}.",
+                url, body, item_lds + [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
 def render_top10_index(cfgs_with_counts):
     url = f"{BASE_URL}/top-10/"
@@ -2454,10 +2478,15 @@ def main():
             f"<a href=\"{_bus_redirect_target}\">Continue to the updated page</a>.</p></body></html>")
     write(os.path.join(ROOT, "knowledge", "boiler-upgrade-scheme", "index.html"), _bus_redirect_stub)
 
-    # best-of ranking pages, and the separate "Top 10" section (residential-
-    # sized units only, section == "top10") - same underlying render function
-    # and BEST_PAGES list, split into two hubs/nav entries by cfg["section"].
-    best_built = []
+    # Top 10 pages: individual /top-10/<slug>/ pages (residential-sized
+    # units only, cfg["section"] == "top10"), same as before.
+    #
+    # General Best Of categories: no longer get individual /best/<slug>/
+    # pages. Every ranked list is computed here and handed to
+    # render_best_single_page(), which stacks them as sections on one
+    # consolidated /best/ page. Old individual URLs get a redirect stub to
+    # /best/#<slug> below, in case any were indexed or bookmarked.
+    best_sections = []
     top10_built = []
     for cfg in BEST_PAGES:
         pool = [p for p in products if cfg["filter"](p)]
@@ -2466,18 +2495,38 @@ def main():
         if len(ranked) < 5:
             continue
         is_top10 = cfg.get("section") == "top10"
-        out_dir = "top-10" if is_top10 else "best"
-        write(os.path.join(ROOT, out_dir, cfg["slug"], "index.html"),
-              render_best_page(cfg, ranked, len(pool), BEST_PAGES))
-        url = f"{BASE_URL}/{out_dir}/{cfg['slug']}/"
-        urls.append(url)
-        # order matters for a ranking page - a reshuffle is a real content change
-        _lastmod_for(url, _lastmod_hash([(p.get("id"), product_hash_by_id[p.get("id")]) for p in ranked]))
-        (top10_built if is_top10 else best_built).append((cfg, len(ranked), ranked[0]))
-    write(os.path.join(ROOT, "best", "index.html"), render_best_index(best_built))
+        if is_top10:
+            write(os.path.join(ROOT, "top-10", cfg["slug"], "index.html"),
+                  render_best_page(cfg, ranked, len(pool), BEST_PAGES))
+            url = f"{BASE_URL}/top-10/{cfg['slug']}/"
+            urls.append(url)
+            # order matters for a ranking page - a reshuffle is a real content change
+            _lastmod_for(url, _lastmod_hash([(p.get("id"), product_hash_by_id[p.get("id")]) for p in ranked]))
+            top10_built.append((cfg, len(ranked), ranked[0]))
+        else:
+            best_sections.append((cfg, ranked, len(pool)))
+
+    write(os.path.join(ROOT, "best", "index.html"), render_best_single_page(best_sections))
     url = f"{BASE_URL}/best/"
     urls.append(url)
-    _lastmod_for(url, _lastmod_hash([(cfg["slug"], winner.get("id")) for cfg, _, winner in best_built]))
+    _lastmod_for(url, _lastmod_hash([(cfg["slug"], [p.get("id") for p in ranked])
+                                      for cfg, ranked, _ in best_sections]))
+
+    # redirect stubs: general Best Of categories used to each have their own
+    # /best/<slug>/ page; they're now sections on the single /best/ page.
+    for _old_slug in ("best-air-source-heat-pumps-by-scop", "quietest-air-source-heat-pumps",
+                       "best-r290-heat-pumps", "best-small-heat-pumps-3-6kw",
+                       "best-medium-heat-pumps-7-12kw", "best-large-heat-pumps-13-25kw",
+                       "best-high-temperature-heat-pumps"):
+        _target = f"{BASE_URL}/best/#{_old_slug}"
+        _stub = (f"<!DOCTYPE html><html lang=\"en-GB\"><head><meta charset=\"utf-8\">"
+                 f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
+                 f"<link rel=\"canonical\" href=\"{BASE_URL}/best/\">"
+                 f"<meta http-equiv=\"refresh\" content=\"0; url={_target}\">"
+                 f"</head><body><p>This ranking now lives on the combined Best Of page. "
+                 f"<a href=\"{_target}\">Continue to the updated page</a>.</p></body></html>")
+        write(os.path.join(ROOT, "best", _old_slug, "index.html"), _stub)
+
     write(os.path.join(ROOT, "top-10", "index.html"), render_top10_index(top10_built))
     url = f"{BASE_URL}/top-10/"
     urls.append(url)
@@ -2563,7 +2612,7 @@ def main():
 
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
           f"{len(type_pages)} category pages, {kg_count} knowledge pages, "
-          f"{len(best_built)} best-of ranking pages, {len(top10_built)} top-10 ranking pages, "
+          f"{len(best_sections)} best-of ranking sections (1 page), {len(top10_built)} top-10 ranking pages, "
           f"{len(news_articles)} news articles.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
     print(f"Wrote {redirect_count} redirect stub(s) for retired product slugs.")
