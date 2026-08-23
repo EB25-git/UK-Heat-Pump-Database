@@ -1,23 +1,15 @@
 {
   "https://www.heatpumpdatabase.com/": {
-    "date": "2026-08-21",
-    "hash": "2e5e4a531a387427"
+    "date": "2026-08-23",
+    "hash": "f8491e06715241c9"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-08-23",
-    "hash": "3b56811f78680135"
-  },
-  "https://www.heatpumpdatabase.com/best/best-air-source-heat-pumps-by-cop/": {
-    "date": "2026-08-23",
-    "hash": "f7f4e7ea7855b688"
+    "hash": "e464727ef45c0255"
   },
   "https://www.heatpumpdatabase.com/best/best-air-source-heat-pumps-by-scop/": {
     "date": "2026-08-23",
     "hash": "feb2194280621c45"
-  },
-  "https://www.heatpumpdatabase.com/best/best-ground-source-heat-pumps/": {
-    "date": "2026-08-23",
-    "hash": "97aeb06658d2429b"
   },
   "https://www.heatpumpdatabase.com/best/best-high-temperature-heat-pumps/": {
     "date": "2026-08-04",
@@ -35,53 +27,9 @@
     "date": "2026-08-04",
     "hash": "1ce46a39db43ef8a"
   },
-  "https://www.heatpumpdatabase.com/best/best-residential-ashp-price-per-kw/": {
-    "date": "2026-08-23",
-    "hash": "649fd484ecb2ed42"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-ashp-quietest/": {
-    "date": "2026-08-23",
-    "hash": "702e8a604e37b470"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-ashp-scop/": {
-    "date": "2026-08-23",
-    "hash": "162e04a3383ef421"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-ashp-seer/": {
-    "date": "2026-08-23",
-    "hash": "f922e05babbce051"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-gshp-price-per-kw/": {
-    "date": "2026-08-23",
-    "hash": "c63d79d2c2614955"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-gshp-quietest/": {
-    "date": "2026-08-23",
-    "hash": "c4c5b5e0ab53b551"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-gshp-scop/": {
-    "date": "2026-08-23",
-    "hash": "4615ca0b59ce064a"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-wshp-quietest/": {
-    "date": "2026-08-23",
-    "hash": "0f813e1ee11b4fb5"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-wshp-scop/": {
-    "date": "2026-08-23",
-    "hash": "de142b5a7ed0d5bd"
-  },
-  "https://www.heatpumpdatabase.com/best/best-residential-wshp-seer/": {
-    "date": "2026-08-23",
-    "hash": "bf9609bc5c374927"
-  },
   "https://www.heatpumpdatabase.com/best/best-small-heat-pumps-3-6kw/": {
     "date": "2026-08-23",
     "hash": "c66c0947d35173e6"
-  },
-  "https://www.heatpumpdatabase.com/best/best-water-source-heat-pumps/": {
-    "date": "2026-08-04",
-    "hash": "556a5852bad323d2"
   },
   "https://www.heatpumpdatabase.com/best/quietest-air-source-heat-pumps/": {
     "date": "2026-08-23",
@@ -89,31 +37,31 @@
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
     "date": "2026-08-23",
-    "hash": "e0f877ca19feb2b5"
+    "hash": "4bcbbeda95632af5"
   },
   "https://www.heatpumpdatabase.com/knowledge/cop-scop/": {
     "date": "2026-08-23",
-    "hash": "9957cf4ecea9e53c"
+    "hash": "d2115e2f86da82ab"
   },
   "https://www.heatpumpdatabase.com/knowledge/flow-temperature/": {
     "date": "2026-08-23",
-    "hash": "6b9ba429e2814d41"
+    "hash": "f42b1c83de713dcc"
   },
   "https://www.heatpumpdatabase.com/knowledge/funding/": {
     "date": "2026-08-23",
-    "hash": "50c4c86f9aa65907"
+    "hash": "e2e803b23550e550"
   },
   "https://www.heatpumpdatabase.com/knowledge/installation-costs/": {
     "date": "2026-08-23",
-    "hash": "f4bb7254eb926cb4"
+    "hash": "c8b26a702c416633"
   },
   "https://www.heatpumpdatabase.com/knowledge/refrigerants/": {
     "date": "2026-08-23",
-    "hash": "20f14ec660091b75"
+    "hash": "2de3ff2975346799"
   },
   "https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/": {
     "date": "2026-08-23",
-    "hash": "5a1e65ab893d4b3f"
+    "hash": "4e60d19c6dd66d9e"
   },
   "https://www.heatpumpdatabase.com/manufacturers/": {
     "date": "2026-08-04",
@@ -429,11 +377,11 @@
   },
   "https://www.heatpumpdatabase.com/news/": {
     "date": "2026-08-23",
-    "hash": "a435042ef308dbaf"
+    "hash": "1200895f4f487d69"
   },
   "https://www.heatpumpdatabase.com/news/why-small-heat-pumps-beat-large-ones-on-scop/": {
     "date": "2026-08-23",
-    "hash": "bdb4020b25b5a38c"
+    "hash": "521dfcbd285f2839"
   },
   "https://www.heatpumpdatabase.com/products/acond-aconomis-2294/": {
     "date": "2026-08-04",
@@ -13934,6 +13882,46 @@
   "https://www.heatpumpdatabase.com/products/york-ymwa-hp/": {
     "date": "2026-08-04",
     "hash": "6e38f809a89473f9"
+  },
+  "https://www.heatpumpdatabase.com/top-10/": {
+    "date": "2026-08-23",
+    "hash": "c041056ee0bf83d7"
+  },
+  "https://www.heatpumpdatabase.com/top-10/ashp-price-per-kw/": {
+    "date": "2026-08-23",
+    "hash": "c34a1dfcbf6651bb"
+  },
+  "https://www.heatpumpdatabase.com/top-10/ashp-quietest/": {
+    "date": "2026-08-23",
+    "hash": "702e8a604e37b470"
+  },
+  "https://www.heatpumpdatabase.com/top-10/ashp-scop/": {
+    "date": "2026-08-23",
+    "hash": "181289777c9d308a"
+  },
+  "https://www.heatpumpdatabase.com/top-10/ashp-seer/": {
+    "date": "2026-08-23",
+    "hash": "e8799667d6912927"
+  },
+  "https://www.heatpumpdatabase.com/top-10/gshp-price-per-kw/": {
+    "date": "2026-08-23",
+    "hash": "3c4ada559a2baa0f"
+  },
+  "https://www.heatpumpdatabase.com/top-10/gshp-quietest/": {
+    "date": "2026-08-23",
+    "hash": "c4c5b5e0ab53b551"
+  },
+  "https://www.heatpumpdatabase.com/top-10/gshp-scop/": {
+    "date": "2026-08-23",
+    "hash": "6e2bd4997cf6ff61"
+  },
+  "https://www.heatpumpdatabase.com/top-10/wshp-quietest/": {
+    "date": "2026-08-23",
+    "hash": "6c96614ab5c11593"
+  },
+  "https://www.heatpumpdatabase.com/top-10/wshp-scop/": {
+    "date": "2026-08-23",
+    "hash": "ad139c862dc5c081"
   },
   "https://www.heatpumpdatabase.com/types/air-source-heat-pumps/": {
     "date": "2026-08-23",
