@@ -1557,6 +1557,95 @@ BEST_PAGES = [
      "intro": "High-temperature heat pumps reach 70\u00b0C+ flow, letting them replace a boiler without changing radiators. Ranked by SCOP among models with a maximum flow temperature of 70\u00b0C or higher.",
      "filter": lambda p: (p.get("flow_temp_max") or 0) >= 70 and p.get("scop"),
      "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP", "show_flow": True, "show_type": True},
+
+    # Residential top-10s, split by heat-pump type. Four separate single-metric
+    # rankings per type (SCOP, price-per-kW, noise, SEER) rather than one
+    # blended score, so each list is transparent about exactly what it ranks
+    # on. Commercial units are excluded for now - the same pattern can be
+    # extended to a commercial set later. Two combinations (WSHP price-per-kW,
+    # GSHP SEER) aren't published because zero residential products in the
+    # database currently have both figures published for that pairing.
+    {"slug": "best-residential-ashp-scop",
+     "title": "Top 10 Residential ASHP by SCOP",
+     "h1": "Top 10 Residential Air Source Heat Pumps by SCOP (W35)",
+     "desc": "The most efficient residential air source heat pumps ranked by SCOP at 35°C flow. Top {n} of {pool} compared.",
+     "intro": "Residential-market air source heat pumps ranked by SCOP (seasonal coefficient of performance) at the standard 35°C flow condition. Only products with a published SCOP at W35 are included.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "ASHP" and p.get("scop") and _cond_is(p, "scop_cond", "W35"),
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)", "top_n": 10},
+
+    {"slug": "best-residential-ashp-price-per-kw",
+     "title": "Top 10 Residential ASHP by Price per kW",
+     "h1": "Top 10 Residential Air Source Heat Pumps by Price per kW",
+     "desc": "The best-value residential air source heat pumps by price per kW of peak heating capacity. Top {n} of {pool} compared.",
+     "intro": "Ranked by list price divided by peak heating capacity (cap_max) - the cheapest price per kW first. Only products with both a published price and a peak capacity are included; price is a snapshot from the source noted on each product page, not a live quote.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "ASHP" and p.get("gbp_per_kw") is not None,
+     "sort": lambda p: (p.get("gbp_per_kw") or 10**9), "metric": "gbp_per_kw", "metric_label": "£/kW (peak capacity)",
+     "top_n": 10, "show_price": True},
+
+    {"slug": "best-residential-ashp-quietest",
+     "title": "Top 10 Quietest Residential ASHP",
+     "h1": "Top 10 Quietest Residential Air Source Heat Pumps",
+     "desc": "The quietest residential air source heat pumps ranked by sound power level. Top {n} of {pool} compared.",
+     "intro": "Ranked by published sound power level (dB(A)) - lowest first - the measure used for UK permitted-development noise assessments (MCS 020).",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "ASHP" and p.get("noise") is not None,
+     "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)", "top_n": 10},
+
+    {"slug": "best-residential-ashp-seer",
+     "title": "Top 10 Residential ASHP by SEER",
+     "h1": "Top 10 Residential Air Source Heat Pumps by SEER (W7)",
+     "desc": "Residential air source heat pumps with the highest cooling-mode SEER at W7. Top {n} of {pool} compared.",
+     "intro": "Ranked by SEER (seasonal energy efficiency ratio, the cooling-mode equivalent of SCOP) at the W7 test condition. Only reversible models that publish a cooling SEER at this condition are included.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "ASHP" and p.get("seer") and _cond_is(p, "seer_cond", "W7"),
+     "sort": lambda p: -(p.get("seer") or 0), "metric": "seer", "metric_label": "SEER (W7)", "top_n": 10},
+
+    {"slug": "best-residential-wshp-scop",
+     "title": "Top 10 Residential WSHP by SCOP",
+     "h1": "Top 10 Residential Water Source Heat Pumps by SCOP (W35)",
+     "desc": "The most efficient residential water source heat pumps ranked by SCOP at 35°C flow. Top {n} of {pool} compared.",
+     "intro": "Residential-market water source heat pumps ranked by SCOP at the standard 35°C flow condition. Only products with a published SCOP at W35 are included.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "WSHP" and p.get("scop") and _cond_is(p, "scop_cond", "W35"),
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)", "top_n": 10},
+
+    {"slug": "best-residential-wshp-quietest",
+     "title": "Top 10 Quietest Residential WSHP",
+     "h1": "Top 10 Quietest Residential Water Source Heat Pumps",
+     "desc": "The quietest residential water source heat pumps ranked by sound power level. Top {n} of {pool} compared.",
+     "intro": "Ranked by published sound power level (dB(A)) - lowest first.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "WSHP" and p.get("noise") is not None,
+     "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)", "top_n": 10},
+
+    {"slug": "best-residential-wshp-seer",
+     "title": "Top 10 Residential WSHP by SEER",
+     "h1": "Top 10 Residential Water Source Heat Pumps by SEER (W7)",
+     "desc": "Residential water source heat pumps with the highest cooling-mode SEER at W7. Top {n} of {pool} compared.",
+     "intro": "Ranked by SEER (seasonal energy efficiency ratio, the cooling-mode equivalent of SCOP) at the W7 test condition. Only reversible models that publish a cooling SEER at this condition are included - a small pool for water source units.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "WSHP" and p.get("seer") and _cond_is(p, "seer_cond", "W7"),
+     "sort": lambda p: -(p.get("seer") or 0), "metric": "seer", "metric_label": "SEER (W7)", "top_n": 10},
+
+    {"slug": "best-residential-gshp-scop",
+     "title": "Top 10 Residential GSHP by SCOP",
+     "h1": "Top 10 Residential Ground Source Heat Pumps by SCOP (W35)",
+     "desc": "The most efficient residential ground source heat pumps ranked by SCOP at 35°C flow. Top {n} of {pool} compared.",
+     "intro": "Residential-market ground source heat pumps ranked by SCOP at the standard 35°C flow condition. Only products with a published SCOP at W35 are included.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "GSHP" and p.get("scop") and _cond_is(p, "scop_cond", "W35"),
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)", "top_n": 10},
+
+    {"slug": "best-residential-gshp-price-per-kw",
+     "title": "Top 10 Residential GSHP by Price per kW",
+     "h1": "Top 10 Residential Ground Source Heat Pumps by Price per kW",
+     "desc": "The best-value residential ground source heat pumps by price per kW of peak heating capacity. Top {n} of {pool} compared.",
+     "intro": "Ranked by list price divided by peak heating capacity (cap_max) - the cheapest price per kW first. Only products with both a published price and a peak capacity are included; price is a snapshot from the source noted on each product page, not a live quote, and excludes ground loop/borehole installation cost.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "GSHP" and p.get("gbp_per_kw") is not None,
+     "sort": lambda p: (p.get("gbp_per_kw") or 10**9), "metric": "gbp_per_kw", "metric_label": "£/kW (peak capacity)",
+     "top_n": 10, "show_price": True},
+
+    {"slug": "best-residential-gshp-quietest",
+     "title": "Top 10 Quietest Residential GSHP",
+     "h1": "Top 10 Quietest Residential Ground Source Heat Pumps",
+     "desc": "The quietest residential ground source heat pumps ranked by sound power level. Top {n} of {pool} compared.",
+     "intro": "Ranked by published sound power level (dB(A)) - lowest first.",
+     "filter": lambda p: p.get("type") == "Residential" and p.get("hp_type") == "GSHP" and p.get("noise") is not None,
+     "sort": lambda p: (p.get("noise") or 999), "metric": "noise", "metric_label": "Sound power dB(A)", "top_n": 10},
 ]
 
 BEST_TOP_N = 20
@@ -1571,9 +1660,11 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
     metric = cfg["metric"]
 
     show_type = cfg.get("show_type")
+    show_price = cfg.get("show_price")
     head_cells = "<th>#</th><th>Model</th>"
     if show_type: head_cells += "<th>Type</th>"
     head_cells += "<th>Capacity</th><th>" + cfg["metric_label"] + "</th>"
+    if show_price: head_cells += "<th>Price (RRP)</th>"
     if show_cond: head_cells += "<th>Test condition</th>"
     if show_flow: head_cells += "<th>Max flow</th>"
     head_cells += "<th>Refrigerant</th>"
@@ -1585,7 +1676,7 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
     def bar_pct(v):
         if not isinstance(v, (int, float)) or vmax == vmin:
             return 100
-        if metric == "noise":
+        if metric in ("noise", "gbp_per_kw"):  # lower is better for both
             return round(30 + 70 * (vmax - v) / (vmax - vmin))
         return round(30 + 70 * (v - vmin) / (vmax - vmin))
 
@@ -1593,7 +1684,18 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
     for i, p in enumerate(ranked, 1):
         mv = p.get(metric)
         mv_s = num(mv) if isinstance(mv, (int, float)) else esc(str(mv or ""))
+        if metric == "gbp_per_kw" and isinstance(mv, (int, float)):
+            mv_s = f"£{mv_s}"
         noise_s = f"{num(p['noise'])} dB(A)" if p.get("noise") is not None else ""
+        price_s = ""
+        if show_price:
+            pmin, pmax = p.get("price_min"), p.get("price_max")
+            if pmin is not None and pmax is not None and pmin != pmax:
+                price_s = f"£{num(pmin)}–£{num(pmax)}"
+            elif pmin is not None:
+                price_s = f"£{num(pmin)}"
+            elif pmax is not None:
+                price_s = f"£{num(pmax)}"
         rank_cls = f" class=\"rank-{i}\"" if i <= 3 else ""
         logo = get_logo_url(p.get("manufacturer", ""))
         row = (f'<tr{rank_cls}><td class="rank"><span class="rank-badge">{i}</span></td>'
@@ -1604,6 +1706,8 @@ def render_best_page(cfg, ranked, pool_size, all_cfgs):
         row += (f'<td>{esc(cap_str(p) or "")}</td>'
                 f'<td class="metric-cell"><span class="metric-val">{mv_s}</span>'
                 f'<span class="metric-bar"><i style="width:{bar_pct(mv)}%"></i></span></td>')
+        if show_price:
+            row += f'<td>{esc(price_s)}</td>'
         if show_cond:
             cond_field = "cop_cond" if metric == "cop" else "scop_cond"
             row += f'<td>{esc(str(p.get(cond_field) or ""))}</td>'
@@ -2110,6 +2214,22 @@ def main():
         seen[slug] = True
         p["_slug"] = slug
 
+    # Derived £/kW (peak heating capacity) figure, used by the residential
+    # best-of "value" rankings below. Uses the midpoint of price_min/price_max
+    # where both are known, otherwise whichever one is available. Only set
+    # when both a price and a peak capacity (cap_max) exist.
+    for p in products:
+        pmin, pmax, cap = p.get("price_min"), p.get("price_max"), p.get("cap_max")
+        price = None
+        if pmin is not None and pmax is not None:
+            price = (pmin + pmax) / 2
+        elif pmin is not None:
+            price = pmin
+        elif pmax is not None:
+            price = pmax
+        if price is not None and cap:
+            p["gbp_per_kw"] = round(price / cap)
+
     by_mfr, by_type = {}, {}
     for p in products:
         by_mfr.setdefault(p.get("manufacturer", ""), []).append(p)
@@ -2312,7 +2432,7 @@ def main():
     for cfg in BEST_PAGES:
         pool = [p for p in products if cfg["filter"](p)]
         ranked = sorted(pool, key=cfg["sort"])
-        ranked = _dedupe_variants(ranked, cfg["metric"])[:BEST_TOP_N]
+        ranked = _dedupe_variants(ranked, cfg["metric"])[:cfg.get("top_n", BEST_TOP_N)]
         if len(ranked) < 5:
             continue
         write(os.path.join(ROOT, "best", cfg["slug"], "index.html"),
