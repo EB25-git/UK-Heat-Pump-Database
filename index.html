@@ -94,7 +94,7 @@ h1,h2,h3,h4{font-family:'Inter',sans-serif;font-weight:600;letter-spacing:-.03em
 .burger-item.active{color:#3ECCC0;font-weight:500}
 a.burger-item{display:block;text-decoration:none;box-sizing:border-box}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
-.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease}.burger-subgroup.open{max-height:420px}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease}.burger-subgroup.open{max-height:1000px}
 /* ANALYTICS */
 .an-filters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:1.25rem}
 .an-fg{display:flex;flex-direction:column;gap:3px}
@@ -3285,7 +3285,7 @@ function openModal(id){
       ${row('COP (heating)',d.cop!=null?`${d.cop} at ${d.cop_cond||'?'}`:null,true)}
       ${row('SCOP (heating)',d.scop!=null?`${d.scop} at ${d.scop_cond||'not stated'}`:null,true)}
       ${row('Noise level',d.noise!=null?fmtNoise(d):null)}
-      ${row('Price (unit only)',d.price_min!=null?(d.price_min===d.price_max?`~£${d.price_min.toLocaleString()} (checked ${d.price_check_date})`:`£${d.price_min.toLocaleString()}–£${d.price_max.toLocaleString()} (checked ${d.price_check_date})`):null)}
+      ${row('Price (unit only)',d.price_min!=null?((d.price_max==null||d.price_min===d.price_max)?`~£${d.price_min.toLocaleString()}${d.price_check_date?' (checked '+d.price_check_date+')':''}`:`£${d.price_min.toLocaleString()}–£${d.price_max.toLocaleString()}${d.price_check_date?' (checked '+d.price_check_date+')':''}`):null)}
       ${row('Website',getProductUrl(d)?`<a href="${getProductUrl(d)}" onclick="event.stopPropagation();handleMfrClick(event,${d.id})" target="_blank" rel="noopener">${d.manufacturer} ↗</a>`:null)}
     </div>
     ${(d.eer!=null||d.seer!=null||d.cool_cap_max!=null||d.cool_flow_temp_max!=null||d.max_cool_capacity!=null)?`<div class="spec-section">

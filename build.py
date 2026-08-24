@@ -251,10 +251,11 @@ def spec_rows(p):
         ref = f" ({esc(p['noise_ref'])})" if p.get("noise_ref") else ""
         add("Sound power level", f"{num(p['noise'])} dB(A){ref}")
     if p.get("price_min") is not None:
-        if p["price_min"] == p["price_max"]:
-            add("Price (unit only)", f"~£{num(p['price_min'])} (checked {esc(p.get('price_check_date'))})")
+        checked = f" (checked {esc(p['price_check_date'])})" if p.get("price_check_date") else ""
+        if p.get("price_max") is None or p["price_min"] == p["price_max"]:
+            add("Price (unit only)", f"~£{num(p['price_min'])}{checked}")
         else:
-            add("Price (unit only)", f"£{num(p['price_min'])}&ndash;£{num(p['price_max'])} (checked {esc(p.get('price_check_date'))})")
+            add("Price (unit only)", f"£{num(p['price_min'])}&ndash;£{num(p['price_max'])}{checked}")
     add("Data added", esc(p.get("date_added")))
     add("Data source", esc(p.get("source")))
     if p.get("mcs_listed"):
@@ -464,7 +465,7 @@ header.site .brand:hover{text-decoration:none}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
 .burger-item.active{color:#3ECCC0;font-weight:500}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
-.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease}.burger-subgroup.open{max-height:420px}
+.burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease}.burger-subgroup.open{max-height:1000px}
 .burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
 .burger-overlay.open{opacity:1;pointer-events:auto}
 @media(max-width:560px){.burger-menu{width:100%}}
