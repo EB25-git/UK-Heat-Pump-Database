@@ -1,39 +1,43 @@
 {
   "https://www.heatpumpdatabase.com/": {
     "date": "2026-08-24",
-    "hash": "e8cfbd198e69cd01"
+    "hash": "cd2088cc16fb263b"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-08-23",
     "hash": "eb2b4857aa139e77"
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
-    "date": "2026-08-23",
-    "hash": "1e4360dc0c11f8be"
+    "date": "2026-08-24",
+    "hash": "b247e2071f398821"
   },
   "https://www.heatpumpdatabase.com/knowledge/cop-scop/": {
     "date": "2026-08-24",
-    "hash": "c3e69a303fa4fab3"
+    "hash": "0accd49c319a25fa"
   },
   "https://www.heatpumpdatabase.com/knowledge/flow-temperature/": {
     "date": "2026-08-24",
-    "hash": "454eee3b585fd22a"
+    "hash": "0186b02bbbaff505"
   },
   "https://www.heatpumpdatabase.com/knowledge/funding/": {
     "date": "2026-08-24",
-    "hash": "c1202a40c0cc6927"
+    "hash": "dcf72fbf3324b272"
   },
   "https://www.heatpumpdatabase.com/knowledge/installation-costs/": {
     "date": "2026-08-24",
-    "hash": "c881d9b1477d3600"
+    "hash": "49deba9f3a7972d9"
+  },
+  "https://www.heatpumpdatabase.com/knowledge/planning-permission/": {
+    "date": "2026-08-24",
+    "hash": "eb913a68dcaeb8c3"
   },
   "https://www.heatpumpdatabase.com/knowledge/refrigerants/": {
     "date": "2026-08-24",
-    "hash": "9f7bf80fd82b97eb"
+    "hash": "3dcd32a2f173c552"
   },
   "https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/": {
     "date": "2026-08-24",
-    "hash": "24b3d1e34473ca0c"
+    "hash": "cbfa0e6137192638"
   },
   "https://www.heatpumpdatabase.com/manufacturers/": {
     "date": "2026-08-04",
@@ -348,12 +352,12 @@
     "hash": "ad67ac1f19c7a753"
   },
   "https://www.heatpumpdatabase.com/news/": {
-    "date": "2026-08-23",
-    "hash": "c662f57e3d36a613"
+    "date": "2026-08-24",
+    "hash": "97c530000cd00472"
   },
   "https://www.heatpumpdatabase.com/news/why-small-heat-pumps-beat-large-ones-on-scop/": {
-    "date": "2026-08-23",
-    "hash": "d9f531d7398c7585"
+    "date": "2026-08-24",
+    "hash": "0cd9e0c34d258a08"
   },
   "https://www.heatpumpdatabase.com/products/acond-aconomis-2294/": {
     "date": "2026-08-04",

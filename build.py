@@ -527,6 +527,10 @@ h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .product-photo{max-width:360px;width:100%;height:auto;max-height:360px;object-fit:contain}
 .photo-credit{font-size:11.5px;color:#8a9694;margin-top:8px}
 .product-photo{cursor:zoom-in}
+.product-photo-thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.product-photo-thumb{width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid #e2e8e7;cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
+.product-photo-thumb:hover{opacity:1}
+.product-photo-thumb.active{opacity:1;border-color:#0D7377}
 .photo-lightbox{display:none;position:fixed;inset:0;background:rgba(15,43,43,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
 .photo-lightbox.open{display:flex}
 .photo-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:6px;cursor:default}
@@ -567,7 +571,7 @@ footer.site a{color:#7a8a88}
 """
 
 def burger_menu(active=None):
-    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "install-costs", "funding", "faq", "guide", "links", "knowledge")
+    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "install-costs", "funding", "planning", "faq", "guide", "links", "knowledge")
     def it(label, href, key=None, sub=False, extra=""):
         cls = "burger-item" + (" burger-subitem" if sub else "")
         if key == active or (key == "knowledge" and knowledge_active):
@@ -583,6 +587,7 @@ def burger_menu(active=None):
         + it("What Is a Heat Pump?", f"{BASE_URL}/knowledge/what-is-a-heat-pump/", "what-is-a-heat-pump", sub=True)
         + it("Installation Costs", f"{BASE_URL}/knowledge/installation-costs/", "install-costs", sub=True)
         + it("Funding &amp; Grants", f"{BASE_URL}/knowledge/funding/", "funding", sub=True)
+        + it("Planning Permission", f"{BASE_URL}/knowledge/planning-permission/", "planning", sub=True)
         + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
         + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
         + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
@@ -839,6 +844,34 @@ PRODUCT_IMAGE_BY_CODE = {
     "LCNR410MOD1": "global-energy-lincoln.png",
     "GE40501-001-00": "global-energy-leeds.png",
     "GE40501-004-00": "global-energy-leeds.png",
+    # Kronoterm: ADAPT MAX commercial cascade (one casing photographed per
+    # module count - 1/2/3/4 modules); ADAPT MAX 10070 also has a real-world
+    # installation shot alongside the studio render. ADAPT 2 shares one
+    # casing per size (S/M/L) with colour options for the M size (Corten and
+    # Olio finishes) - first entry in each list is the primary/hero photo.
+    "ADAPTMAX10035": "kronoterm-adaptmax-10035.jpg",
+    "ADAPTMAX10070": ["kronoterm-adaptmax-10070.jpg", "kronoterm-adaptmax-install.jpg"],
+    "ADAPTMAX10105": "kronoterm-adaptmax-10105.jpg",
+    "ADAPTMAX10140": "kronoterm-adaptmax-10140.jpg",
+    "ADAPT-S-2": "kronoterm-adapt-2-s.jpg",
+    "ADAPT-2-M-1F": ["kronoterm-adapt-2-m-corten.jpg", "kronoterm-adapt-2-m-olio.jpg"],
+    "ADAPT-2-M-3F": ["kronoterm-adapt-2-m-corten.jpg", "kronoterm-adapt-2-m-olio.jpg"],
+    "ADAPT-2-L": "kronoterm-adapt-2-l.jpg",
+    # Etera (GSHP): identical casing across S/M/L UF and L 3F variants. Hero
+    # studio shot, plus a real-world showroom photo and the manufacturer's
+    # pipe-connection configuration diagrams as gallery extras.
+    "2222000142599": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
+                       "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
+                       "kronoterm-etera-connections-3.jpg"],
+    "ETERA-M-UF": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
+                   "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
+                   "kronoterm-etera-connections-3.jpg"],
+    "2222000142612": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
+                       "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
+                       "kronoterm-etera-connections-3.jpg"],
+    "2222000142629": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
+                       "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
+                       "kronoterm-etera-connections-3.jpg"],
 }
 # Fallback for products with no product_code (Baxi, Clade, Fenagy, Intergas,
 # Octopus Energy, Rhoss, Sabroe all have null product_code in the source
@@ -850,16 +883,9 @@ PRODUCT_IMAGE_BY_ID = {
 }
 _PRODUCT_IMAGE_CACHE = {}
 
-def get_product_image(p):
-    """Return the site-relative URL for a real product photo, or None if this
-    SKU has no photo registered. Writes the file into the build output the
-    first time it's needed (same copy-on-build approach as get_logo_url)."""
-    code = p.get("product_code")
-    fname = PRODUCT_IMAGE_BY_CODE.get(code) if code else None
-    if not fname:
-        fname = PRODUCT_IMAGE_BY_ID.get(p.get("id"))
-    if not fname:
-        return None
+def _copy_product_image(fname):
+    """Copy one registered image file into the build output (cached), return
+    its site-relative URL, or None if the source file is missing."""
     if fname in _PRODUCT_IMAGE_CACHE:
         return _PRODUCT_IMAGE_CACHE[fname]
     src = os.path.join(PRODUCT_IMAGE_SRC_DIR, fname)
@@ -872,6 +898,34 @@ def get_product_image(p):
     url = f"{BASE_URL}/{out_rel}"
     _PRODUCT_IMAGE_CACHE[fname] = url
     return url
+
+def _product_image_entry(p):
+    """Look up the raw PRODUCT_IMAGE_BY_CODE/BY_ID entry for a product: a
+    single filename, a list of filenames (gallery, first = primary), or
+    None."""
+    code = p.get("product_code")
+    entry = PRODUCT_IMAGE_BY_CODE.get(code) if code else None
+    if not entry:
+        entry = PRODUCT_IMAGE_BY_ID.get(p.get("id"))
+    return entry
+
+def get_product_images(p):
+    """Return the full list of site-relative photo URLs for a product (may
+    be empty). First item is always the primary/hero photo."""
+    entry = _product_image_entry(p)
+    if not entry:
+        return []
+    fnames = entry if isinstance(entry, list) else [entry]
+    urls = [_copy_product_image(f) for f in fnames]
+    return [u for u in urls if u]
+
+def get_product_image(p):
+    """Return the site-relative URL for a product's primary photo, or None
+    if this SKU has no photo registered. Writes the file into the build
+    output the first time it's needed (same copy-on-build approach as
+    get_logo_url)."""
+    urls = get_product_images(p)
+    return urls[0] if urls else None
 
 def product_card(p):
     bits = [t for t in (p.get("hp_type"), cap_str(p),
@@ -1114,11 +1168,26 @@ def render_product(p, by_mfr, by_type):
         product_ld["additionalProperty"] = props
 
     logo = get_logo_url(mfr)
-    photo = get_product_image(p)
-    photo_html = (f'<div class="product-photo-block"><img class="product-photo" src="{photo}" '
-                  f'alt="{esc(display_name)}" width="320" height="320" loading="eager" '
-                  f'onclick="openPhotoLightbox(this.src,this.alt)">'
-                  f'<div class="photo-credit">Image courtesy of {esc(mfr)} &middot; click photo to enlarge</div></div>') if photo else ""
+    photos = get_product_images(p)
+    photo = photos[0] if photos else None
+    if photo:
+        thumbs_html = ""
+        if len(photos) > 1:
+            thumb_items = "".join(
+                f'<img class="product-photo-thumb{" active" if i == 0 else ""}" src="{u}" '
+                f'alt="{esc(display_name)} photo {i+1}" loading="lazy" '
+                f'onclick="event.stopPropagation();document.querySelector(\'.product-photo\').src=this.src;'
+                f'document.querySelectorAll(\'.product-photo-thumb\').forEach(t=>t.classList.remove(\'active\'));'
+                f'this.classList.add(\'active\')">'
+                for i, u in enumerate(photos))
+            thumbs_html = f'<div class="product-photo-thumbs">{thumb_items}</div>'
+        photo_html = (f'<div class="product-photo-block"><img class="product-photo" src="{photo}" '
+                      f'alt="{esc(display_name)}" width="320" height="320" loading="eager" '
+                      f'onclick="openPhotoLightbox(this.src,this.alt)">'
+                      f'{thumbs_html}'
+                      f'<div class="photo-credit">Image courtesy of {esc(mfr)} &middot; click photo to enlarge</div></div>')
+    else:
+        photo_html = ""
     body = (crumbs(crumb_items) +
             photo_html +
             f'<div class="mfr-header"><img class="mfr-logo-sm" src="{logo}" alt="{esc(mfr)} logo" width="32" height="32">'
@@ -1856,13 +1925,19 @@ KNOWLEDGE_PAGES = [
      "desc": ("A breakdown of what a UK air source heat pump installation costs: the unit itself, hot water "
               "cylinder, controls, and radiator upgrades, plus typical totals before and after the Boiler "
               "Upgrade Scheme grant.")},
-    {"page_id": "page-funding", "end_marker": "<!-- ═══ FAQ ═══ -->",
+    {"page_id": "page-funding", "end_marker": "<!-- ═══ PLANNING PERMISSION GUIDE ═══ -->",
      "dir": "funding", "active": "funding", "crumb": "Funding & Grants",
      "headline": "Heat Pump Funding & Grants in the UK",
      "title": f"Heat Pump Funding & Grants UK 2026: BUS, VAT, Scotland & More | {SITE_NAME}",
      "desc": ("Every UK funding route for a heat pump in one place: the Boiler Upgrade Scheme, 0% VAT, "
               "Home Energy Scotland, Warm Homes: Local Grant, ECO4 and Northern Ireland support: amounts, "
               "eligibility and how to apply.")},
+    {"page_id": "page-planning", "end_marker": "<!-- ═══ FAQ ═══ -->",
+     "dir": "planning-permission", "active": "planning", "crumb": "Planning Permission",
+     "headline": "UK Planning Permission for Heat Pumps",
+     "title": f"UK Planning Permission for Heat Pumps 2026: England, Wales, Scotland & NI | {SITE_NAME}",
+     "desc": ("Do you need planning permission for a heat pump? Permitted development rules, the "
+              "application process, and typical costs for England, Wales, Scotland and Northern Ireland.")},
 ]
 
 def render_knowledge_page(cfg):
@@ -2556,15 +2631,18 @@ def main():
     # Energy etc) - the client checks product_code first, then id. Consumed
     # by the interactive app so its product detail modal can show the same
     # photo used on the static pages.
+    # Values are a single URL string for products with one photo, or a list
+    # of URLs (first = primary/hero) for products with a gallery - the
+    # client's PRODUCT_IMAGES consumers handle both shapes.
     photo_map = {}
     for p in products:
         code = p.get("product_code")
         pid = p.get("id")
         key = code if (code and code in PRODUCT_IMAGE_BY_CODE) else (pid if pid in PRODUCT_IMAGE_BY_ID else None)
         if key is not None:
-            url = get_product_image(p)
-            if url:
-                photo_map[key] = url
+            urls = get_product_images(p)
+            if urls:
+                photo_map[key] = urls[0] if len(urls) == 1 else urls
     write(os.path.join(ROOT, "product-images.js"),
           "const PRODUCT_IMAGES = " + json.dumps(photo_map, ensure_ascii=False) + ";\n")
 

@@ -387,6 +387,10 @@ td.acc{color:var(--accent);font-weight:500}
 .modal-photo{max-width:320px;width:100%;height:auto;max-height:320px;object-fit:contain}
 .modal-photo-credit{font-size:11px;color:var(--text3);margin-top:6px}
 .modal-photo{cursor:zoom-in}
+.modal-photo-thumbs{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:9px}
+.modal-photo-thumb{width:46px;height:46px;object-fit:cover;border-radius:7px;border:2px solid var(--border);cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
+.modal-photo-thumb:hover{opacity:1}
+.modal-photo-thumb.active{opacity:1;border-color:#0D7377}
 .photo-lightbox{display:none;position:fixed;inset:0;background:rgba(15,43,43,.92);z-index:300;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
 .photo-lightbox.open{display:flex}
 .photo-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:6px;cursor:default}
@@ -545,6 +549,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item burger-subitem" data-page="what-is-a-heat-pump" onclick="showPage('what-is-a-heat-pump');closeBurger()">What Is a Heat Pump?</button>
     <button class="burger-item burger-subitem" data-page="install-costs" onclick="showPage('install-costs');closeBurger()">Installation Costs</button>
     <button class="burger-item burger-subitem" data-page="funding" onclick="showPage('funding');closeBurger()">Funding &amp; Grants</button>
+    <button class="burger-item burger-subitem" data-page="planning" onclick="showPage('planning');closeBurger()">Planning Permission</button>
     <button class="burger-item burger-subitem" data-page="cop-scop" onclick="showPage('cop-scop');closeBurger()">Understanding COP &amp; SCOP</button>
     <button class="burger-item burger-subitem" data-page="flow-temp" onclick="showPage('flow-temp');closeBurger()">Flow Temperature &amp; Efficiency</button>
     <button class="burger-item burger-subitem" data-page="refrigerants" onclick="showPage('refrigerants');closeBurger()">Refrigerant Guide</button>
@@ -886,6 +891,18 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <div style="font-size:24px;margin-bottom:10px">💷</div>
           <div style="font-size:18px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Funding &amp; Grants</div>
           <div style="font-size:14px;color:#5b6b6b;line-height:1.55">Every UK funding route for a heat pump in one place: the Boiler Upgrade Scheme, 0% VAT, Home Energy Scotland, Warm Homes: Local Grant, ECO4 and Northern Ireland support.</div>
+          <div style="margin-top:14px;font-size:13px;font-weight:600;color:#3ECCC0">Read the guide →</div>
+        </a>
+        <a href="#" onclick="showPage('install-costs');return false" style="display:block;text-decoration:none;border:1px solid #e2e8e7;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#3ECCC0';this.style.boxShadow='0 6px 24px rgba(15,43,43,.08)'" onmouseout="this.style.borderColor='#e2e8e7';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:10px">🔧</div>
+          <div style="font-size:18px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Installation Costs</div>
+          <div style="font-size:14px;color:#5b6b6b;line-height:1.55">What a UK ASHP installation actually costs, broken into the unit, hot water cylinder, controls and radiator upgrades.</div>
+          <div style="margin-top:14px;font-size:13px;font-weight:600;color:#3ECCC0">Read the guide →</div>
+        </a>
+        <a href="#" onclick="showPage('planning');return false" style="display:block;text-decoration:none;border:1px solid #e2e8e7;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#3ECCC0';this.style.boxShadow='0 6px 24px rgba(15,43,43,.08)'" onmouseout="this.style.borderColor='#e2e8e7';this.style.boxShadow='none'">
+          <div style="font-size:24px;margin-bottom:10px">📋</div>
+          <div style="font-size:18px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Planning Permission</div>
+          <div style="font-size:14px;color:#5b6b6b;line-height:1.55">Do you need planning permission? Permitted development rules, the application process and costs for England, Wales, Scotland and Northern Ireland.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#3ECCC0">Read the guide →</div>
         </a>
       </div>
@@ -1520,6 +1537,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Related reading</h2>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.9;max-width:680px">
         <li><a href="/knowledge/funding/" onclick="showPage('funding');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Heat pump funding &amp; grants explained</a>: the Boiler Upgrade Scheme, 0% VAT, and other UK support</li>
+        <li><a href="/knowledge/planning-permission/" onclick="showPage('planning');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">UK planning permission for heat pumps</a>: permitted development rules, process and costs by nation</li>
         <li><a href="/#faq" onclick="openFaqItem('f6');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">How do I size a heat pump for my property?</a>: why sizing drives both performance and cost</li>
         <li><a href="/#faq" onclick="openFaqItem('f3');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">ASHP vs GSHP vs WSHP: which is right for my project?</a>: how installed costs compare across heat pump types</li>
         <li><a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Flow temperature &amp; efficiency</a>: why radiator sizing matters so much for running costs</li>
@@ -1713,11 +1731,129 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Related reading</h2>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.9;max-width:680px">
         <li><a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">ASHP installation costs explained</a>: typical totals before and after grant funding</li>
+        <li><a href="/knowledge/planning-permission/" onclick="showPage('planning');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">UK planning permission for heat pumps</a>: permitted development rules, process and costs by nation</li>
         <li><a href="/heat-pump-size-calculator/" style="color:#3ECCC0;font-weight:600;text-decoration:none">Heat Pump Size Calculator</a>: estimate the kW your home needs before getting quotes</li>
         <li><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">What is a heat pump?</a>: a plain-English introduction</li>
         <li><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a>: how to compare running-cost efficiency between models</li>
       </ul>
       <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed August 2026 against GOV.UK, Home Energy Scotland and nidirect guidance. This is general information, not financial or professional advice; funding rules, amounts and deadlines change and vary by circumstance, so always confirm current eligibility with the relevant scheme, your council, or an MCS-certified installer before budgeting or buying.</p>
+    </div>
+  </div>
+</div>
+<!-- ═══ PLANNING PERMISSION GUIDE ═══ -->
+<div class="page" id="page-planning">
+  <div class="container" style="max-width:880px">
+    <div style="padding:8px 0 4px">
+      <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>Planning Permission</span></nav>
+      <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">UK planning permission for heat pumps</h1>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">Most residential heat pumps in the UK can be installed without a planning application, under what's called <strong>permitted development</strong>. But the exact size, siting and noise conditions differ by nation, and enough properties fall outside them, flats, listed buildings, conservation areas, tight boundaries, that it's worth checking before you commit to a quote. This guide covers the rules, process and costs for England, Wales, Scotland and Northern Ireland.</p>
+
+      <div style="background:#fafcfb;border:1px solid #e2e8e7;border-radius:14px;padding:22px 24px;margin:20px 0 28px">
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B;margin-bottom:8px">You'll likely need a full application if&hellip;</div>
+        <ul style="margin:0;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
+          <li>Your home is a <strong>listed building</strong>, or within its curtilage</li>
+          <li>You already have another microgeneration installation (such as a wind turbine) at the property</li>
+          <li>It's a <strong>flat or maisonette</strong> and the block-of-flats conditions for your nation aren't met</li>
+          <li>You want more heat pump units than permitted development allows</li>
+          <li>The unit can't meet the size, siting or noise conditions that apply where you live</li>
+          <li>Permitted development rights have been removed for your property by an <strong>Article 4 direction</strong> or a planning condition, common in some conservation areas</li>
+        </ul>
+      </div>
+
+      <h2 id="england-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">England</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Since 1 December 2011, installing an air source heat pump on a house or block of flats has normally been permitted development, provided all of the following are met.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li>The installation must comply with the <strong>MCS Planning Standards (MCS 020a)</strong> sound calculation. From 28 May 2026, MCS 020a is the only certification scheme permitted development will accept.</li>
+        <li>The outdoor unit's volume, including any housing, must not exceed <strong>1.5m&sup3;</strong> on a house or <strong>0.6m&sup3;</strong> on a block of flats.</li>
+        <li>Only the first air source heat pump is permitted development on a house that isn't detached, or on a block of flats. <strong>Detached houses</strong> can have the first two units under permitted development.</li>
+        <li>Not permitted if there's already a wind turbine on the building or within its curtilage.</li>
+        <li>Can't be installed on a pitched roof; on a flat roof, it must sit at least 1 metre from the roof's edge.</li>
+        <li>Not permitted within the curtilage of a <strong>Listed Building</strong> or a Scheduled Monument.</li>
+        <li>In a <strong>Conservation Area</strong> or World Heritage Site: can't go on a wall or roof fronting a highway, or nearer a highway than the building itself.</li>
+        <li>Elsewhere: can't go above ground-floor level on a wall that fronts a highway.</li>
+      </ul>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The old rule requiring 1 metre of clearance from a neighbouring boundary was removed in May 2025: siting is now governed purely by the MCS 020a noise calculation, not a fixed distance. Ground source and water source heat pumps are usually permitted development too; see below for when an environmental permit is also needed. Full detail: <a href="https://www.planningportal.co.uk/permission/common-projects/heat-pumps/planning-permission-air-source-heat-pump/" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">Planning Portal: air source heat pumps</a>.</p>
+
+      <h2 id="wales-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Wales</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Wales updated its permitted development rules from <strong>1 June 2026</strong>, bringing them much closer to England's. Before that date the older, stricter rules (one unit, 1m&sup3; limit, 3 metre boundary clearance) applied, so if you're reading older advice, check the date.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li>Detached houses can now have <strong>two</strong> air source heat pumps under permitted development, up from one; the combined noise of both units must still meet MCS 020(a).</li>
+        <li>The outdoor unit size limit rose from 1m&sup3; to <strong>1.5m&sup3;</strong>.</li>
+        <li>The previous <strong>3 metre minimum boundary distance has been removed</strong>: siting is governed by the MCS 020(a) noise calculation instead.</li>
+        <li>Units can now be installed on a wall or roof that fronts a highway, which wasn't previously allowed.</li>
+        <li>Still can't go on a pitched roof; on a flat roof, it must sit at least 1 metre from the edge.</li>
+        <li>Air-to-air heat pumps have also been brought into permitted development.</li>
+        <li>Every installation covered by permitted development must meet MCS 020(a), whether or not the installer is MCS-certified.</li>
+      </ul>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Listed buildings and conservation areas are handled separately by your council, as in England. Source: <a href="https://mcscertified.com/changes-to-permitted-development-rights-pdr-in-wales-from-1-june-2026/" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">MCS: PDR changes in Wales from 1 June 2026</a>.</p>
+
+      <h2 id="scotland-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Scotland</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Scotland runs a separate planning system with its own permitted development classes: <strong>Class 6H</strong> covers air source heat pumps, <strong>Classes 6D and 6E</strong> cover ground and water source. Scotland hasn't adopted England and Wales's two-unit allowance for detached houses.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li>Only <strong>one</strong> air source heat pump is permitted development per building or curtilage.</li>
+        <li>The unit can't protrude more than <strong>1 metre</strong> from the wall, roof plane, roof ridge or chimney it's fixed to.</li>
+        <li>In a <strong>Conservation Area</strong>: must be at ground-floor level and on the rear elevation of the dwelling.</li>
+        <li>Elsewhere: can't sit forward of a principal or side elevation that fronts a road, and the resulting structure can't exceed 3 metres in height.</li>
+        <li>Not permitted in a World Heritage Site or within the curtilage of a listed building.</li>
+        <li>Must comply with <strong>MCS Planning Standards</strong> (MCS 020) or an equivalent.</li>
+      </ul>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Ground and water source heat pumps (Classes 6D/6E) are permitted development within the curtilage of a dwelling or flat building with no additional size or siting limits beyond that. Source: <a href="https://www.gov.scot/publications/circular-1-2024-householder-permitted-development-rights/pages/6/" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">gov.scot: Planning circular 1/2024</a>.</p>
+
+      <h2 id="ni-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Northern Ireland</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Since a July 2023 amendment, air source heat pumps are generally permitted development in Northern Ireland too, but the conditions sit closer to England and Wales's older, stricter rules than their current position.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li>The unit typically needs to be sited at least <strong>1 metre</strong> from a neighbouring boundary; Northern Ireland hasn't removed this requirement the way England and Wales have.</li>
+        <li>Installations must meet the <strong>MCS Planning Standards</strong> noise requirements.</li>
+        <li>Not permitted development within the curtilage of a listed building, a conservation area, or a scheduled monument.</li>
+      </ul>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Northern Ireland's rules have changed less publicly than the rest of the UK's recently, so always confirm the current conditions with your council or <a href="https://www.nidirect.gov.uk/campaigns/planning-portal" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">nidirect's planning guidance</a> before installing.</p>
+
+      <h2 id="gshp-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Ground and water source: a second permission to check</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Planning permission is only half the picture for ground and water source systems. Because they exchange heat with groundwater or a watercourse, they're also regulated environmentally, separately from planning. In England, closed-loop systems installed after 1 October 2023 are usually covered by the Environment Agency's regulatory position statement for single residential systems, while open-loop systems generally need a registered exemption or a full permit. The equivalent regulator handles this in the other nations: Natural Resources Wales, the Scottish Environment Protection Agency (SEPA), or NIEA in Northern Ireland. Check with your installer and the relevant regulator before finalising a ground or water source design; this is on top of, not instead of, the planning steps above.</p>
+
+      <h2 id="process-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">The process, if you do need a full application</h2>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.9;max-width:680px">
+        <li><strong>Pre-application advice (optional).</strong> Most councils offer this for a fee; worth it on a tight boundary or noise-sensitive site.</li>
+        <li><strong>Get your paperwork ready.</strong> A site/block plan, elevation drawings showing the unit's position, and your installer's MCS 020(a) noise calculation.</li>
+        <li><strong>Submit the application</strong> via the Planning Portal (England and Wales) or your local council's planning system (Scotland and Northern Ireland), with the fee.</li>
+        <li><strong>Wait for a decision.</strong> The standard target for a householder application is 8 weeks; listed building or conservation area cases often take longer.</li>
+        <li><strong>Outcome.</strong> The council can approve, refuse, or approve with conditions, commonly a fixed position, an acoustic barrier, or a maximum operating noise level.</li>
+        <li><strong>If refused,</strong> you can revise the proposal and resubmit, or appeal to the relevant appeals body (the Planning Inspectorate in England, and equivalent bodies in Wales, Scotland and Northern Ireland).</li>
+      </ul>
+
+      <h2 id="costs-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">What it costs</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Because most installations qualify as permitted development, most homeowners never pay a planning fee at all, this is separate from the cost of the heat pump itself (see our <a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#0D7377;font-weight:600;text-decoration:none">installation costs guide</a>). Where a full householder application is needed, indicative 2026 fees for alterations to a single dwelling are:</p>
+      <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:420px;margin:0 0 8px">
+        <thead><tr style="background:#fafcfb"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Nation</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Householder application fee</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">England</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">&pound;548</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Wales</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">&pound;585</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Scotland</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">&pound;300</td></tr>
+          <tr><td style="padding:9px 14px">Northern Ireland</td><td style="padding:9px 14px">&pound;327</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#9aa;font-size:12.5px;margin:0 0 14px">Figures are the standard fee for a householder application to alter or extend a single dwelling, the closest published category to a heat pump application, and change periodically. On top of the fee, budget for pre-application advice if you use it, and for an independent acoustic assessment if your installer's MCS 020(a) calculation alone isn't accepted by your council. Always confirm the current fee with your local planning authority before applying.</p>
+
+      <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
+        <div style="font-size:17px;font-weight:600;margin-bottom:10px">Which route applies to me?</div>
+        <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.8;color:rgba(255,255,255,.92)">
+          <li><strong>Detached house, no listed/conservation constraints:</strong> permitted development in all four nations, but the size, siting and unit-count conditions differ, check them against your installer's proposal before ordering.</li>
+          <li><strong>Semi-detached or terraced house:</strong> usually permitted development too, but only the first unit counts (England and Wales allow two only on detached houses).</li>
+          <li><strong>Flat or maisonette:</strong> often still covered, but check the curtilage and unit-count conditions for a block of flats with your council.</li>
+          <li><strong>Listed building, conservation area, Article 4 area, or scheduled monument:</strong> budget for a full application and talk to your council first.</li>
+          <li><strong>Ground or water source:</strong> the heat pump itself is normally permitted development, but check separately whether your loop or borehole needs an environmental permit.</li>
+        </ul>
+      </div>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Related reading</h2>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.9;max-width:680px">
+        <li><a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">ASHP installation costs explained</a>: what the unit, cylinder, controls and radiators typically add up to</li>
+        <li><a href="/knowledge/funding/" onclick="showPage('funding');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Heat pump funding &amp; grants</a>: the Boiler Upgrade Scheme, 0% VAT and other UK support</li>
+        <li><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">What is a heat pump?</a>: a plain-English introduction</li>
+      </ul>
+      <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed August 2026 against Planning Portal, gov.wales, gov.scot and MCS guidance. Planning rules, fees and noise standards change and can also vary by local authority; this is general information, not professional planning advice, so always confirm current requirements with your council or a qualified installer before starting work.</p>
     </div>
   </div>
 </div>
@@ -2406,8 +2542,8 @@ function copLabel(cop, cond) {
 function showPage(p) {
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
   document.getElementById('page-'+p).classList.add('show');
-  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='install-costs'||p==='funding'||p==='faq'||p==='guide'||p==='links'))));
-  const kOnPage=(p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='install-costs'||p==='funding'||p==='faq'||p==='guide'||p==='links'||p==='knowledge');
+  document.querySelectorAll('.burger-item:not(.burger-admin)').forEach(t=>t.classList.toggle('active', t.dataset.page===p || (t.dataset.page==='knowledge' && (p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='install-costs'||p==='funding'||p==='planning'||p==='faq'||p==='guide'||p==='links'))));
+  const kOnPage=(p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='install-costs'||p==='funding'||p==='planning'||p==='faq'||p==='guide'||p==='links'||p==='knowledge');
   const kT=document.getElementById('k-toggle'),kG=document.getElementById('k-group');
   if(kT&&kG){kT.classList.toggle('open',kOnPage);kG.classList.toggle('open',kOnPage);kT.setAttribute('aria-expanded',kOnPage);}
   const anb=document.getElementById('admin-nav-btn');
@@ -3116,8 +3252,11 @@ function openModal(id){
   const isWater=d.hp_type==='WSHP'||d.hp_type==='GSHP';
   const copNote=d.cop!=null?`<div class="cop-explain">COP <strong>${d.cop}</strong> quoted at <strong>${d.cop_cond||'unspecified conditions'}</strong>. ${d.cop_cond==='A7/W35'?'This is the standard ASHP test condition (EN 14511): +7°C outdoor air, 35°C leaving water.':d.cop_cond&&d.cop_cond.startsWith('W')?'This is a water-source test condition. Water-source COPs are typically higher than ASHP figures and are not directly comparable.':d.cop_cond&&d.cop_cond.startsWith('B')?'This is the standard brine-water (GSHP) test condition: 0°C brine in, 35°C leaving water.':'Non-standard test point — compare with caution against products tested at different conditions.'}</div>`:'';
   const descBlock=d.description?`<div style="padding:12px 16px;background:var(--surface2);border-radius:var(--radius);margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7">${d.description}</div>`:'';
-  const photoSrc=(typeof PRODUCT_IMAGES!=='undefined'&&(PRODUCT_IMAGES[d.product_code]||PRODUCT_IMAGES[d.id]))||'';
-  const photoHTML=photoSrc?`<div class="modal-photo-block"><img class="modal-photo" src="${photoSrc}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)}" loading="eager" onclick="openPhotoLightbox(this.src,this.alt)"><div class="modal-photo-credit">Image courtesy of ${jsAttrEsc(d.manufacturer)} &middot; click to enlarge</div></div>`:'';
+  const photoEntry=(typeof PRODUCT_IMAGES!=='undefined'&&(PRODUCT_IMAGES[d.product_code]||PRODUCT_IMAGES[d.id]))||'';
+  const photoList=Array.isArray(photoEntry)?photoEntry:(photoEntry?[photoEntry]:[]);
+  const photoSrc=photoList[0]||'';
+  const photoThumbsHTML=photoList.length>1?`<div class="modal-photo-thumbs">${photoList.map((u,i)=>`<img class="modal-photo-thumb${i===0?' active':''}" src="${u}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)} photo ${i+1}" loading="lazy" onclick="event.stopPropagation();this.closest('.modal-photo-block').querySelector('.modal-photo').src=this.src;this.closest('.modal-photo-block').querySelectorAll('.modal-photo-thumb').forEach(t=>t.classList.remove('active'));this.classList.add('active')">`).join('')}</div>`:'';
+  const photoHTML=photoSrc?`<div class="modal-photo-block"><img class="modal-photo" src="${photoSrc}" alt="${jsAttrEsc(d.manufacturer+' '+d.model)}" loading="eager" onclick="openPhotoLightbox(this.src,this.alt)">${photoThumbsHTML}<div class="modal-photo-credit">Image courtesy of ${jsAttrEsc(d.manufacturer)} &middot; click to enlarge</div></div>`:'';
   document.getElementById('modal-body').innerHTML=`
     ${photoHTML}
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem">
@@ -3352,7 +3491,8 @@ function cmpChartsSection(items){
 }
 function cmpPhotosSection(items){
   const cells=items.map(d=>{
-    const src=(typeof PRODUCT_IMAGES!=='undefined'&&(PRODUCT_IMAGES[d.product_code]||PRODUCT_IMAGES[d.id]))||'';
+    const entry=(typeof PRODUCT_IMAGES!=='undefined'&&(PRODUCT_IMAGES[d.product_code]||PRODUCT_IMAGES[d.id]))||'';
+    const src=Array.isArray(entry)?entry[0]:entry;
     if(!src)return '';
     return `<div class="cmp-photo-cell"><img src="${src}" alt="${cmpAttr(d.manufacturer+' '+d.model)}"><div class="cmp-photo-cap">${cmpEsc(d.manufacturer)} ${cmpEsc(d.model)}</div><div class="cmp-photo-credit">Image courtesy of ${cmpEsc(d.manufacturer)}</div></div>`;
   });
