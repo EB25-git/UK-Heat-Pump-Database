@@ -492,7 +492,7 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
 .article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
 .article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
-.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1}.article-tldr{max-width:760px;margin:0 0 24px;background:#f2fbfa;border:1px solid #cdeae6;border-left:4px solid #0D7377;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0D7377;flex-shrink:0}.article-tldr p{margin:0;color:#34433f;font-size:14px;line-height:1.6;flex:1;min-width:200px}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0D7377;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#f2fbfa;border:1px solid #cdeae6;border-left:4px solid #0D7377;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0D7377;flex-shrink:0}.article-tldr p{margin:0;color:#34433f;font-size:14px;line-height:1.6;flex:1;min-width:200px}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .article-cat-insight{background:#e6f4f3;color:#0D7377}
 .article-cat-product{background:#fdf1e0;color:#a3660a}
@@ -1419,29 +1419,10 @@ def render_manufacturers_index(by_mfr):
     all_products = [p for ps in by_mfr.values() for p in ps]
     n_countries = len({MANUFACTURER_COUNTRY[m] for m in by_mfr if m in MANUFACTURER_COUNTRY})
 
-    cap_best = None  # (span, manufacturer, lo, hi, model_count) — widest capacity range, for the intro
-    for m, ps in by_mfr.items():
-        cap_los = [p["cap_min"] for p in ps if p.get("cap_min") is not None]
-        cap_his = [p["cap_max"] for p in ps if p.get("cap_max") is not None]
-        if cap_los and cap_his:
-            lo, hi = min(cap_los), max(cap_his)
-            if cap_best is None or (hi - lo) > cap_best[0]:
-                cap_best = (hi - lo, m, lo, hi, len(ps))
-
     intro = (
         '<p style="color:#42514f;font-size:14.5px;line-height:1.7;margin:0 0 24px;max-width:720px">'
-        f'The {len(by_mfr)} manufacturers in this database ({len(all_products):,} products across '
-        f'{n_countries} countries) range from dedicated heat pump specialists to established boiler and '
-        'HVAC brands that have added heat pumps to their line-up, alongside larger industrial refrigeration '
-        'engineering firms. Capacities span from a few kW for a single room to several megawatts for '
-        + (f'district heating — {esc(cap_best[1])}\'s range alone covers {num(cap_best[2])}–{num(cap_best[3])} kW '
-           if cap_best else 'district heating ')
-        + '— so the same brand name can mean a small domestic unit or a large industrial plant '
-        'depending on the specific model. Each entry below shows that manufacturer\'s country, how many of '
-        'its products are '
-        f'<a href="{BASE_URL}/knowledge/funding/#bus-section" style="color:#0D7377;font-weight:600">MCS-listed</a> '
-        '(needed for Boiler Upgrade Scheme eligibility), its heating flow temperature range, and its product '
-        'mix by heat pump type. Use the filters below to narrow the list.</p>'
+        f'{len(by_mfr)} manufacturers, {len(all_products):,} products across {n_countries} countries. '
+        'Each card shows country, product mix and MCS-listed models &mdash; use the filters below to narrow the list.</p>'
     )
 
     country_set = set()
@@ -2109,8 +2090,10 @@ def render_news_article(article, all_articles):
     hero = ""
     if img_url:
         img_credit = article.get("image_credit", SITE_NAME)
-        hero = (f'<div class="article-hero"><img src="{img_url}" alt="{esc(article["title"])}">'
-                f'<div class="article-hero-credit">{esc(img_credit)}</div></div>')
+        hero = (f'<div class="article-hero"><img src="{img_url}" alt="{esc(article["title"])}" '
+                f'onclick="openPhotoLightbox(this.src,this.alt)">'
+                f'<div class="article-hero-credit">{esc(img_credit)}'
+                f'<span class="article-hero-zoom">Click to enlarge</span></div></div>')
     # Optional "TL;DR" summary strip - one or two sentences, rendered right
     # after the hero image and before the full body. Set via the "tldr" field
     # on the article entry in news.json (a plain string). Purely optional -
