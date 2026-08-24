@@ -872,6 +872,48 @@ PRODUCT_IMAGE_BY_CODE = {
     "2222000142629": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
                        "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
                        "kronoterm-etera-connections-3.jpg"],
+    # Navien PEM750: one casing across the whole 4/6/8/10/17kW range - same
+    # photo for every capacity variant (confirmed, unit doesn't change look).
+    "PEM750V004PGKC": "navien-pem750.jpg",
+    "PEM750V006PGKC": "navien-pem750.jpg",
+    "PEM750V008PGKC": "navien-pem750.jpg",
+    "PEM750V010PGKC": "navien-pem750.jpg",
+    "PEM750V017PGKC": "navien-pem750.jpg",
+    # InstaGen IG range: each capacity has its own distinct photo set
+    # (single-fan cabinet for IG4-IG10, twin-fan cabinet for IG12/IG16) -
+    # source files were pre-named per model, first angle used as hero.
+    "IG4-MP1-A1": ["instagen-ig4-1.jpg", "instagen-ig4-2.jpg", "instagen-ig4-3.jpg",
+                   "instagen-ig4-4.jpg", "instagen-ig4-5.jpg", "instagen-ig4-6.jpg"],
+    "IG6-MP1-A1": ["instagen-ig6-1.jpg", "instagen-ig6-2.jpg", "instagen-ig6-3.jpg",
+                   "instagen-ig6-4.jpg", "instagen-ig6-5.jpg", "instagen-ig6-6.jpg"],
+    "IG8-MP1-A1": ["instagen-ig8-1.jpg", "instagen-ig8-2.jpg", "instagen-ig8-3.jpg",
+                   "instagen-ig8-4.jpg", "instagen-ig8-5.jpg", "instagen-ig8-6.jpg"],
+    "IG10-MP1-A1": ["instagen-ig10-1.jpg", "instagen-ig10-2.jpg", "instagen-ig10-3.jpg",
+                    "instagen-ig10-4.jpg", "instagen-ig10-5.jpg", "instagen-ig10-6.jpg"],
+    "IG12-MP1-A1": ["instagen-ig12-1.jpg", "instagen-ig12-2.jpg", "instagen-ig12-3.jpg",
+                    "instagen-ig12-4.jpg", "instagen-ig12-5.jpg", "instagen-ig12-6.jpg",
+                    "instagen-ig12-7.jpg", "instagen-ig12-8.jpg"],
+    "IG16-MP1-A1": ["instagen-ig16-1.jpg", "instagen-ig16-2.jpg", "instagen-ig16-3.jpg",
+                    "instagen-ig16-4.jpg", "instagen-ig16-5.jpg", "instagen-ig16-6.jpg"],
+    # Samsung EHS range: one photo set per model family, shared across every
+    # capacity within that family (source folder was organised by family
+    # name, not per-kW code). The "-2"/"-3" files are the full-resolution
+    # studio shots for the two R290 mono families, so they're used as the
+    # hero with the smaller front-view thumbnail kept as a third gallery
+    # image; HT Quiet and the split R410A unit only have thumbnail-res source
+    # photography available.
+    "AE050CXYDEK/EU": ["samsung-ehs-mono-r290-2.jpg", "samsung-ehs-mono-r290-3.jpg", "samsung-ehs-mono-r290-1.jpg"],
+    "AE080CXYDEK/EU": ["samsung-ehs-mono-r290-2.jpg", "samsung-ehs-mono-r290-3.jpg", "samsung-ehs-mono-r290-1.jpg"],
+    "AE120CXYDEK/EU": ["samsung-ehs-mono-r290-2.jpg", "samsung-ehs-mono-r290-3.jpg", "samsung-ehs-mono-r290-1.jpg"],
+    "AE160CXYDEK/EU": ["samsung-ehs-mono-r290-2.jpg", "samsung-ehs-mono-r290-3.jpg", "samsung-ehs-mono-r290-1.jpg"],
+    "AE050CXYBEK/EU": ["samsung-ehs-mono-r290-pump-2.jpg", "samsung-ehs-mono-r290-pump-3.jpg", "samsung-ehs-mono-r290-pump-1.jpg"],
+    "AE080CXYBEK/EU": ["samsung-ehs-mono-r290-pump-2.jpg", "samsung-ehs-mono-r290-pump-3.jpg", "samsung-ehs-mono-r290-pump-1.jpg"],
+    "AE120CXYBEK/EU": ["samsung-ehs-mono-r290-pump-2.jpg", "samsung-ehs-mono-r290-pump-3.jpg", "samsung-ehs-mono-r290-pump-1.jpg"],
+    "AE160CXYBEK/EU": ["samsung-ehs-mono-r290-pump-2.jpg", "samsung-ehs-mono-r290-pump-3.jpg", "samsung-ehs-mono-r290-pump-1.jpg"],
+    "AE160AXEDEH/EU": "samsung-ehs-split-r410a-1.jpg",
+    "AE080BXYDEG/EU": ["samsung-ehs-mono-ht-quiet-1.jpg", "samsung-ehs-mono-ht-quiet-2.jpg", "samsung-ehs-mono-ht-quiet-3.jpg"],
+    "AE120BXYDEG/EU": ["samsung-ehs-mono-ht-quiet-1.jpg", "samsung-ehs-mono-ht-quiet-2.jpg", "samsung-ehs-mono-ht-quiet-3.jpg"],
+    "AE140BXYDEG/EU": ["samsung-ehs-mono-ht-quiet-1.jpg", "samsung-ehs-mono-ht-quiet-2.jpg", "samsung-ehs-mono-ht-quiet-3.jpg"],
 }
 # Fallback for products with no product_code (Baxi, Clade, Fenagy, Intergas,
 # Octopus Energy, Rhoss, Sabroe all have null product_code in the source
