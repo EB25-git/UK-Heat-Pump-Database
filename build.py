@@ -1834,13 +1834,13 @@ KNOWLEDGE_PAGES = [
     {"page_id": "page-refrigerants", "end_marker": "<!-- ═══ COP & SCOP GUIDE ═══ -->",
      "dir": "refrigerants", "active": "refrigerants", "crumb": "Refrigerant Guide",
      "headline": "Heat Pump Refrigerants Compared",
-     "title": f"Heat Pump Refrigerants Compared \u2014 GWP, Safety & F-Gas Rules | {SITE_NAME}",
+     "title": f"Heat Pump Refrigerants Compared: GWP, Safety & F-Gas Rules | {SITE_NAME}",
      "desc": ("Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the "
               "EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.")},
     {"page_id": "page-cop-scop", "end_marker": "<!-- ═══ FLOW TEMPERATURE GUIDE ═══ -->",
      "dir": "cop-scop", "active": "cop-scop", "crumb": "Understanding COP & SCOP",
      "headline": "Understanding COP & SCOP",
-     "title": f"Understanding Heat Pump COP & SCOP \u2014 Test Conditions Explained | {SITE_NAME}",
+     "title": f"Understanding Heat Pump COP & SCOP: Test Conditions Explained | {SITE_NAME}",
      "desc": ("What COP and SCOP mean for heat pumps, why test conditions like A7/W35 and W35 vs W55 "
               "matter, how seasonal SCOP differs from COP, and how to compare efficiency figures fairly.")},
     {"page_id": "page-flow-temp", "end_marker": "<!-- ═══ INSTALLATION COSTS GUIDE ═══ -->",
@@ -1859,9 +1859,9 @@ KNOWLEDGE_PAGES = [
     {"page_id": "page-funding", "end_marker": "<!-- ═══ FAQ ═══ -->",
      "dir": "funding", "active": "funding", "crumb": "Funding & Grants",
      "headline": "Heat Pump Funding & Grants in the UK",
-     "title": f"Heat Pump Funding & Grants UK 2026 — BUS, VAT, Scotland & More | {SITE_NAME}",
+     "title": f"Heat Pump Funding & Grants UK 2026: BUS, VAT, Scotland & More | {SITE_NAME}",
      "desc": ("Every UK funding route for a heat pump in one place: the Boiler Upgrade Scheme, 0% VAT, "
-              "Home Energy Scotland, Warm Homes: Local Grant, ECO4 and Northern Ireland support — amounts, "
+              "Home Energy Scotland, Warm Homes: Local Grant, ECO4 and Northern Ireland support: amounts, "
               "eligibility and how to apply.")},
 ]
 
@@ -2448,6 +2448,21 @@ def main():
         [("__composite_ashp__", [p.get("id") for p in composite_ranked])] +
         [(cfg["slug"], [p.get("id") for p in ranked]) for cfg, ranked, _ in best_sections]))
 
+    # best_winners: product id -> list of {title, url} for every ranking on
+    # /best/ where that product is the #1 result. Consumed by the interactive
+    # app (index.html) to show a small trophy badge on the product's card and
+    # in its detail modal, so a #1 result is visible without leaving the app.
+    best_winners = {}
+    if composite_ranked:
+        _pid = composite_ranked[0].get("id")
+        best_winners.setdefault(_pid, []).append(
+            {"title": "Best Overall Air Source Heat Pumps", "url": f"{BASE_URL}/best/#best-overall-ashp"})
+    for cfg, ranked, _pool in best_sections:
+        if ranked:
+            _pid = ranked[0].get("id")
+            best_winners.setdefault(_pid, []).append(
+                {"title": cfg["title"], "url": f"{BASE_URL}/best/#{cfg['slug']}"})
+
     # redirect stubs: general Best Of categories used to each have their own
     # /best/<slug>/ page; they're now sections on the single /best/ page.
     for _old_slug in ("best-air-source-heat-pumps-by-scop", "quietest-air-source-heat-pumps",
@@ -2552,6 +2567,12 @@ def main():
                 photo_map[key] = url
     write(os.path.join(ROOT, "product-images.js"),
           "const PRODUCT_IMAGES = " + json.dumps(photo_map, ensure_ascii=False) + ";\n")
+
+    # best-winners.js: product id -> [{title,url}] for #1 results on /best/,
+    # computed above during the best-of build. Same delivery pattern as
+    # logos.js/product-images.js.
+    write(os.path.join(ROOT, "best-winners.js"),
+          "const BEST_WINNERS = " + json.dumps(best_winners, ensure_ascii=False) + ";\n")
 
     # robots.txt
     write(os.path.join(ROOT, "robots.txt"),

@@ -304,6 +304,7 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .badge-ashp{background:#EAEDED;color:#4A5A5A}
 .badge-wshp{background:#E3EFFB;color:#0C447C}
 .badge-gshp{background:#E4F3E7;color:#1E6B3A}
+.badge-trophy{background:#f6d873;color:#5c4a00;font-weight:700;cursor:default}
 /* ── COP LABELS ── */
 .cop-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;padding:2px 7px;border-radius:6px;margin-left:4px;vertical-align:middle;white-space:nowrap;font-weight:500}
 .info-i{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:5px;padding:0;border:1px solid var(--border);border-radius:50%;background:var(--surface);color:var(--text3);font:italic 600 10px/1 Georgia,'Times New Roman',serif;cursor:pointer;vertical-align:middle;transition:border-color .12s,color .12s;flex:none}
@@ -577,7 +578,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   <div class="faq-callout">
     <div class="faq-callout-inner">
       <span class="faq-callout-icon">💡</span>
-      <span class="faq-callout-text">New to heat pumps? Learn about COP, refrigerants, sizing, and UK grants on our <a href="#" onclick="showPage('faq');return false">Frequently Asked Questions</a> page.</span>
+      <span class="faq-callout-text">New to heat pumps? Learn about COP, refrigerants, sizing, and UK grants on our <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false">What Is a Heat Pump?</a> page.</span>
     </div>
   </div>
   <div class="toolbar">
@@ -897,11 +898,11 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div style="padding:8px 0 4px">
       <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>What Is a Heat Pump?</span></nav>
       <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">What Is a Heat Pump?</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 12px;max-width:680px">A heat pump is an electric appliance that heats your home (and often your hot water) by <strong>moving</strong> heat that already exists outside &mdash; in the air, the ground, or a body of water &mdash; rather than burning fuel to <strong>create</strong> heat. It's the same technology as a fridge, just running in reverse.</p>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 26px;max-width:680px">A fridge pulls heat out of the cold inside of the box and dumps it into your warm kitchen &mdash; that's why the back of a fridge feels warm. A heat pump does exactly the same thing, but on a much bigger scale: it pulls heat out of the cold outdoors, however chilly, and pumps it into your warm home. It can do this even when it's close to freezing outside, because there is still usable heat energy in the air down to well below 0&nbsp;&deg;C.</p>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 12px;max-width:680px">A heat pump is an electric appliance that heats your home (and often your hot water) by <strong>moving</strong> heat that already exists outside (in the air, the ground, or a body of water) rather than burning fuel to <strong>create</strong> heat. It's the same technology as a fridge, just running in reverse.</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 26px;max-width:680px">A fridge pulls heat out of the cold inside of the box and dumps it into your warm kitchen, which is why the back of a fridge feels warm. A heat pump does exactly the same thing, but on a much bigger scale: it pulls heat out of the cold outdoors, however chilly, and pumps it into your warm home. It can do this even when it's close to freezing outside, because there is still usable heat energy in the air down to well below 0&nbsp;&deg;C.</p>
 
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:28px 0 12px">How it works</h2>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 14px;max-width:680px">A small amount of electricity runs a compressor, which is used to concentrate and move heat rather than generate it directly. That's why a heat pump can deliver several times more heat energy than the electrical energy it consumes &mdash; typically 3&ndash;4&nbsp;units of heat for every 1&nbsp;unit of electricity.</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 14px;max-width:680px">A small amount of electricity runs a compressor, which is used to concentrate and move heat rather than generate it directly. That's why a heat pump can deliver several times more heat energy than the electrical energy it consumes: typically 3&ndash;4&nbsp;units of heat for every 1&nbsp;unit of electricity.</p>
       <div style="margin:1.25rem 0;background:#f5f7f7;border:1px solid #d9e2e2;border-radius:10px;padding:1rem;overflow-x:auto">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 250" style="width:100%;max-width:810px;height:auto;display:block;margin:0 auto" font-family="Inter,Arial,sans-serif">
           <rect x="0" y="0" width="810" height="250" fill="#f5f7f7" rx="8"/>
@@ -936,7 +937,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <text x="720" y="126" text-anchor="middle" font-size="10.5" fill="#5b6b6b">heating &amp; hot water</text>
         </svg>
       </div>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:14px 0 0;max-width:680px">Behind that simple picture is a repeating loop: a cold <a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">refrigerant</a> gas <strong>absorbs</strong> heat from outside (the evaporator), a <strong>compressor</strong> squeezes it to raise its temperature further, the hot gas gives up its heat to your home's water or air (the condenser), and an <strong>expansion valve</strong> drops the pressure so the cycle can start again. You don't need to understand this to use the database &mdash; it just explains why figures like <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">COP and SCOP</a> and <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature</a> matter so much.</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:14px 0 0;max-width:680px">Behind that simple picture is a repeating loop: a cold <a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">refrigerant</a> gas <strong>absorbs</strong> heat from outside (the evaporator), a <strong>compressor</strong> squeezes it to raise its temperature further, the hot gas gives up its heat to your home's water or air (the condenser), and an <strong>expansion valve</strong> drops the pressure so the cycle can start again. You don't need to understand this to use the database; it just explains why figures like <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">COP and SCOP</a> and <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature</a> matter so much.</p>
 
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">The three main types</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:8px">
@@ -968,9 +969,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">How it makes heat</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Moves existing heat from outside air/ground/water</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Burns natural gas on-site</td></tr>
           <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Typical efficiency</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">300&ndash;400% (COP/SCOP of 3&ndash;4)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">~90% (some heat lost up the flue)</td></tr>
           <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Running cost driver</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Electricity price &divide; efficiency</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Gas price &divide; efficiency</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Typical running cost</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Often on par with or cheaper than gas, but it depends on your electricity-to-gas price ratio and the system's real-world COP &mdash; see <a href="#" onclick="openFaqItem('f1');return false" style="color:#0f8a80">What is COP and why does it matter?</a></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Tracks the gas price directly; electricity has historically cost several times more than gas per kWh, which is why a heat pump's efficiency matters so much</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Typical running cost</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Often on par with or cheaper than gas, but it depends on your electricity-to-gas price ratio and the system's real-world COP. See <a href="#" onclick="openFaqItem('f1');return false" style="color:#0f8a80">What is COP and why does it matter?</a></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Tracks the gas price directly; electricity has historically cost several times more than gas per kWh, which is why a heat pump's efficiency matters so much</td></tr>
           <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Emissions (running)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">None on-site; depends on the electricity grid mix, which keeps getting cleaner</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Direct CO&#8322; emissions every time it fires, for the boiler's whole life</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Output temperature</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Most efficient at 35&ndash;55&nbsp;&deg;C &mdash; suits underfloor heating and larger radiators</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Can run hot, 60&ndash;80&nbsp;&deg;C &mdash; copes with small/older radiators</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Output temperature</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Most efficient at 35&ndash;55&nbsp;&deg;C, suiting underfloor heating and larger radiators</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Can run hot, 60&ndash;80&nbsp;&deg;C, coping with small/older radiators</td></tr>
           <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Upfront cost</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Higher, though UK grants can offset a significant chunk</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Lower</td></tr>
           <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Space needed</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Outdoor unit (or ground loop/borehole), often a larger hot water cylinder</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Compact; usually wall-mounted</td></tr>
           <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600;color:#0F2B2B">Noise</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Outdoor unit makes a low hum, similar to an air conditioner</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Near-silent</td></tr>
@@ -978,10 +979,10 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </tbody>
       </table>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:10px 0 0">Figures are typical UK ranges for guidance only &mdash; actual performance depends on the specific product, installation and property. See our <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#0f8a80">COP &amp; SCOP guide</a> for how efficiency is measured.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:10px 0 0">Figures are typical UK ranges for guidance only; actual performance depends on the specific product, installation and property. See our <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#0f8a80">COP &amp; SCOP guide</a> for how efficiency is measured.</p>
 
       <h3 style="font-size:16px;margin:26px 0 10px;color:#0F2B2B">Why "300&ndash;400% efficient" sounds strange</h3>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 14px;max-width:680px">A gas boiler can never be more than 100% efficient &mdash; it can only release the energy locked in the gas it burns, and some is always lost. A heat pump isn't creating extra energy; it's <strong>moving</strong> free heat from outside, so the "output" can be several times the electricity "input". The diagram below shows roughly what happens to one unit of input energy in each case.</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:0 0 14px;max-width:680px">A gas boiler can never be more than 100% efficient: it can only release the energy locked in the gas it burns, and some is always lost. A heat pump isn't creating extra energy; it's <strong>moving</strong> free heat from outside, so the "output" can be several times the electricity "input". The diagram below shows roughly what happens to one unit of input energy in each case.</p>
       <div style="margin:1.25rem 0;background:#f5f7f7;border:1px solid #d9e2e2;border-radius:10px;padding:1rem;overflow-x:auto">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 200" style="width:100%;max-width:620px;height:auto;display:block;margin:0 auto" font-family="Inter,Arial,sans-serif">
           <rect x="0" y="0" width="620" height="200" fill="#f5f7f7" rx="8"/>
@@ -1009,7 +1010,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </svg>
       </div>
 
-      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Key considerations &mdash; is a heat pump right for your home?</h2>
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Key considerations: is a heat pump right for your home?</h2>
       <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 16px;max-width:680px">Heat pumps can heat pretty much any UK home, but a good result depends on getting a few things right beforehand. These are the main factors worth thinking through before you commit:</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:8px">
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
@@ -1022,7 +1023,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </div>
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
           <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Siting &amp; placement</div>
-          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Outdoor units typically need more space than a boiler cupboard &mdash; a firm, level base, clearance from walls, boundaries and windows, airflow on at least one side, and a route for condensate drainage. Ground source needs room for a buried loop or a borehole, plus rig access during installation.</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Outdoor units typically need more space than a boiler cupboard: a firm, level base, clearance from walls, boundaries and windows, airflow on at least one side, and a route for condensate drainage. Ground source needs room for a buried loop or a borehole, plus rig access during installation.</div>
         </div>
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
           <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Noise</div>
@@ -1030,7 +1031,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </div>
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
           <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Hot water cylinder</div>
-          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Most heat pump systems need a hot water cylinder &mdash; if you currently have a combi boiler with no cylinder, you'll need to find space for one.</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Most heat pump systems need a hot water cylinder. If you currently have a combi boiler with no cylinder, you'll need to find space for one.</div>
         </div>
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
           <div style="font-size:14.5px;font-weight:600;color:#0F2B2B;margin-bottom:6px">Upfront cost &amp; grants</div>
@@ -1047,28 +1048,28 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:8px">
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
           <div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">1. Capacity</div>
-          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">The heat pump's output (kW) needs to match your home's actual heat loss at the coldest design temperature &mdash; not just the size of the boiler it replaces. Too small and it can't keep the home warm on the coldest days; too large and it cycles on and off, hurting efficiency and adding cost. A proper heat loss survey is the only reliable way to get this right.</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">The heat pump's output (kW) needs to match your home's actual heat loss at the coldest design temperature, not just the size of the boiler it replaces. Too small and it can't keep the home warm on the coldest days; too large and it cycles on and off, hurting efficiency and adding cost. A proper heat loss survey is the only reliable way to get this right.</div>
         </div>
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
           <div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">2. Heating flow temperature</div>
-          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">The lower the flow temperature a unit needs to run at to meet your rooms' heat demand, the higher its efficiency &mdash; see our <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature guide</a>. Check a model's flow range against what your radiators or underfloor heating actually need.</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">The lower the flow temperature a unit needs to run at to meet your rooms' heat demand, the higher its efficiency. See our <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature guide</a>. Check a model's flow range against what your radiators or underfloor heating actually need.</div>
         </div>
         <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:16px 18px">
           <div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">3. Noise</div>
-          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Outdoor units are rated by sound power level (dB(A)) &mdash; check this against the distance to your own windows and your neighbours' boundary, especially in a terraced house or a tight garden. A few decibels makes a noticeable difference at night.</div>
+          <div style="font-size:13px;color:#5b6b6b;line-height:1.55">Outdoor units are rated by sound power level (dB(A)); check this against the distance to your own windows and your neighbours' boundary, especially in a terraced house or a tight garden. A few decibels makes a noticeable difference at night.</div>
         </div>
       </div>
 
       <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
         <div style="font-size:17px;font-weight:600;margin-bottom:10px">Getting started</div>
         <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
-          <li>Start with a <strong style="color:#3ECCC0">room-by-room heat loss survey</strong> from an MCS-certified installer &mdash; it tells you the size of heat pump you need and whether your radiators or pipework need upgrading.</li>
+          <li>Start with a <strong style="color:#3ECCC0">room-by-room heat loss survey</strong> from an MCS-certified installer, which tells you the size of heat pump you need and whether your radiators or pipework need upgrading.</li>
           <li>Get quotes from more than one installer, and ask what flow temperature the system is designed around.</li>
-          <li>Check current UK grant schemes (such as the Boiler Upgrade Scheme) &mdash; support and eligibility rules change, so confirm the latest position before budgeting.</li>
+          <li>Check current UK grant schemes (such as the Boiler Upgrade Scheme): support and eligibility rules change, so confirm the latest position before budgeting.</li>
           <li>Once you know roughly what capacity and type you need, use the database to <a href="#" onclick="showPage('browse');return false" style="color:#3ECCC0">browse and compare products</a>.</li>
         </ul>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed July 2026. This guide is general information, not professional or installation advice &mdash; always get a proper heat loss survey and installer quote for your specific property.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed July 2026. This guide is general information, not professional or installation advice; always get a proper heat loss survey and installer quote for your specific property.</p>
     </div>
   </div>
 </div>
@@ -1078,8 +1079,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div style="padding:8px 0 4px">
       <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>Refrigerant Guide</span></nav>
       <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Refrigerants Compared</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 8px;max-width:680px">The refrigerant is the working fluid that lets a <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">heat pump</a> move heat from outside to inside. Which one a unit uses affects its environmental impact, its efficiency and achievable flow temperature, how it must be installed, and — increasingly — whether it can still be sold in the years ahead. This guide compares the refrigerants you will find across the database.</p>
-      <p style="color:#5b6b6b;font-size:14px;line-height:1.6;margin:0 0 26px;max-width:680px"><strong>GWP</strong> (Global Warming Potential) measures how strongly one kilogram of the gas warms the planet over 100 years compared with one kilogram of CO₂ — so CO₂ is 1, and a refrigerant with a GWP of 2,000 is 2,000 times worse if it leaks. The <strong>safety class</strong> (ASHRAE) flags flammability and toxicity: <strong>A1</strong> non-flammable and low toxicity, <strong>A2L</strong> mildly flammable, <strong>A3</strong> highly flammable, <strong>B2L</strong> mildly flammable but toxic.</p>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 8px;max-width:680px">The refrigerant is the working fluid that lets a <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">heat pump</a> move heat from outside to inside. Which one a unit uses affects its environmental impact, its efficiency and achievable flow temperature, how it must be installed, and (increasingly) whether it can still be sold in the years ahead. This guide compares the refrigerants you will find across the database.</p>
+      <p style="color:#5b6b6b;font-size:14px;line-height:1.6;margin:0 0 26px;max-width:680px"><strong>GWP</strong> (Global Warming Potential) measures how strongly one kilogram of the gas warms the planet over 100 years compared with one kilogram of CO₂, so CO₂ is 1, and a refrigerant with a GWP of 2,000 is 2,000 times worse if it leaks. The <strong>safety class</strong> (ASHRAE) flags flammability and toxicity: <strong>A1</strong> non-flammable and low toxicity, <strong>A2L</strong> mildly flammable, <strong>A3</strong> highly flammable, <strong>B2L</strong> mildly flammable but toxic.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:28px 0 12px">At a glance</h2>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
       <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:620px">
@@ -1110,51 +1111,51 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </tbody>
       </table>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:10px 0 0">GWP figures are 100-year values, rounded. They vary slightly between IPCC assessment reports — the EU moved from AR4 to AR5 values in 2025 — but the relative picture is unchanged.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:10px 0 0">GWP figures are 100-year values, rounded. They vary slightly between IPCC assessment reports (the EU moved from AR4 to AR5 values in 2025), but the relative picture is unchanged.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 6px">The families, with pros and cons</h2>
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Hydrocarbons — R290 (propane), R600a (isobutane)</div>
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Hydrocarbons: R290 (propane), R600a (isobutane)</div>
         <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Natural refrigerants with negligible GWP. R290 has become the default for new residential air source heat pumps, while R600a appears in large industrial high-temperature machines.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈3) — no meaningful climate impact if it leaks</li><li>Excellent efficiency; high COP and SCOP</li><li>Reaches high flow temperatures (up to ~75&nbsp;°C), good for radiators and retrofit</li><li>Not subject to the F-Gas phase-down — future-proof</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>A3 — highly flammable, so charge limits, siting rules and a competent installer are essential</li><li>Generally confined to outdoor monobloc units</li><li>Charge-size limits can constrain very large indoor systems</li></ul></div>
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈3), so no meaningful climate impact if it leaks</li><li>Excellent efficiency; high COP and SCOP</li><li>Reaches high flow temperatures (up to ~75&nbsp;°C), good for radiators and retrofit</li><li>Not subject to the F-Gas phase-down, making it future-proof</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>A3, highly flammable, so charge limits, siting rules and a competent installer are essential</li><li>Generally confined to outdoor monobloc units</li><li>Charge-size limits can constrain very large indoor systems</li></ul></div>
         </div>
       </div>
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">CO₂ — R744</div>
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">CO₂ (R744)</div>
         <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">A natural refrigerant that excels at producing very hot water and works well in cold weather. Common in commercial hot-water and high-temperature applications.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>GWP of 1 — the benchmark</li><li>Non-flammable (A1)</li><li>Excellent at high temperatures (70–90&nbsp;°C) and in cold ambient air</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Very high operating pressures need specialised components</li><li>Efficiency falls if the return-water temperature is high — best with a large temperature lift</li><li>Mainly commercial and hot-water duties</li></ul></div>
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>GWP of 1 (the benchmark)</li><li>Non-flammable (A1)</li><li>Excellent at high temperatures (70–90&nbsp;°C) and in cold ambient air</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Very high operating pressures need specialised components</li><li>Efficiency falls if the return-water temperature is high; best with a large temperature lift</li><li>Mainly commercial and hot-water duties</li></ul></div>
         </div>
       </div>
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Ammonia — R717</div>
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Ammonia (R717)</div>
         <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The workhorse of large industrial refrigeration, also used for big water-source and district-heating heat pumps.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
           <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Zero GWP and zero ozone impact</li><li>Outstanding efficiency, especially at scale</li><li>Decades of proven industrial use; inexpensive</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Toxic and mildly flammable (B2L) — not for domestic use</li><li>Needs a plant room, leak detection and specialist design</li><li>Incompatible with copper pipework</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Toxic and mildly flammable (B2L), not for domestic use</li><li>Needs a plant room, leak detection and specialist design</li><li>Incompatible with copper pipework</li></ul></div>
         </div>
       </div>
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFOs — R1234ze, R1233zd</div>
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFOs: R1234ze, R1233zd</div>
         <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Synthetic but ultra-low-GWP fluids, mostly used in large commercial and high-temperature centrifugal machines.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈1 or below)</li><li>R1233zd is A1 (non-flammable) and low-pressure — ideal for large high-temperature systems</li><li>Not meaningfully affected by the phase-down</li></ul></div>
+          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈1 or below)</li><li>R1233zd is A1 (non-flammable) and low-pressure, ideal for large high-temperature systems</li><li>Not meaningfully affected by the phase-down</li></ul></div>
           <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Lower capacity per unit volume means larger equipment</li><li>Higher cost; mainly commercial/industrial</li><li>R1234ze is rated A2L (mildly flammable)</li></ul></div>
         </div>
       </div>
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFCs — R32, R410A, R407C, R134a</div>
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFCs: R32, R410A, R407C, R134a</div>
         <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The fluorinated gases that dominated the last two decades. R32 is the current mainstream choice and far cleaner than the older R410A it replaced, but all are subject to the phase-down.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
           <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Mature, widely available and well understood</li><li>R32 has roughly a third of R410A's GWP and is a single compound (simple to recharge)</li><li>R410A, R407C and R134a are non-flammable (A1)</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Mid-to-high GWP (675 up to ~2,088) — supply shrinks and prices rise under the phase-down</li><li>R32's 675 GWP exceeds the EU's 150 limit for small monobloc heat pumps from 2027</li><li>R410A/R407C/R134a are legacy choices being replaced</li><li>R32 is A2L (mildly flammable)</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Mid-to-high GWP (675 up to ~2,088): supply shrinks and prices rise under the phase-down</li><li>R32's 675 GWP exceeds the EU's 150 limit for small monobloc heat pumps from 2027</li><li>R410A/R407C/R134a are legacy choices being replaced</li><li>R32 is A2L (mildly flammable)</li></ul></div>
         </div>
       </div>
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Lower-GWP blends — R454B, R454C, R452B, R513A, R515B, R448A</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Engineered mixtures that cut GWP while staying close to the equipment design of the gases they replace — R454B/R452B for R410A, R513A/R515B for R134a.</p>
+        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Lower-GWP blends: R454B, R454C, R452B, R513A, R515B, R448A</div>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Engineered mixtures that cut GWP while staying close to the equipment design of the gases they replace: R454B/R452B for R410A, R513A/R515B for R134a.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
           <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Much lower GWP than the HFCs they replace (148–700)</li><li>Near drop-in for manufacturers, easing the transition</li><li>R513A, R515B and R448A are A1 (non-flammable)</li><li>R454C sits below the key 150 GWP threshold</li></ul></div>
           <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Still contain fluorinated components, so still caught by the phase-down</li><li>R454B, R454C and R452B are A2L (mildly flammable)</li><li>Being blends, they have temperature "glide" and must be recharged carefully</li></ul></div>
@@ -1162,7 +1163,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       </div>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">The regulations</h2>
       <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Fluorinated refrigerants are controlled by <strong>F-Gas regulations</strong>, which shrink the supply of high-GWP gases over time and ban them in new equipment where cleaner alternatives exist. Natural refrigerants (R290, CO₂, ammonia) and HFOs largely sit outside these limits. The picture differs across the UK.</p>
-      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 8px">European Union — Regulation (EU) 2024/573 (also applies in Northern Ireland)</p>
+      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 8px">European Union: Regulation (EU) 2024/573 (also applies in Northern Ireland)</p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:8px">
       <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:560px">
         <thead><tr style="background:#fafcfb"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600;width:80px">From</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">What changes for air conditioning &amp; heat pumps</th></tr></thead>
@@ -1178,16 +1179,16 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </tbody>
       </table>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:0 0 16px">Thresholds and category definitions are simplified here; some categories have safety-related exemptions. Existing installed equipment is unaffected — the bans apply to new products placed on the market.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:0 0 16px">Thresholds and category definitions are simplified here; some categories have safety-related exemptions. Existing installed equipment is unaffected; the bans apply to new products placed on the market.</p>
       <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 6px">Great Britain (England, Scotland, Wales)</p>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Great Britain did <strong>not</strong> adopt the EU's 2024 regulation. It keeps the retained Regulation (EU) 517/2014 — the earlier HFC quota phase-down plus existing rules such as the GWP ≥ 2,500 servicing ban — so the EU's new product bans above do not currently apply in GB. Defra reviewed the rules and launched a consultation on a tighter GB HFC phase-down in November 2025; in May 2026 it confirmed it would not change the phase-down steps for the 2027 period yet, with a fuller response due later in 2026. The direction of travel mirrors the EU — tighter HFC limits and a shift to low-GWP and natural refrigerants — but the precise GB timeline is still being decided.</p>
+      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Great Britain did <strong>not</strong> adopt the EU's 2024 regulation. It keeps the retained Regulation (EU) 517/2014 (the earlier HFC quota phase-down plus existing rules such as the GWP ≥ 2,500 servicing ban), so the EU's new product bans above do not currently apply in GB. Defra reviewed the rules and launched a consultation on a tighter GB HFC phase-down in November 2025; in May 2026 it confirmed it would not change the phase-down steps for the 2027 period yet, with a fuller response due later in 2026. The direction of travel mirrors the EU: tighter HFC limits and a shift to low-GWP and natural refrigerants, but the precise GB timeline is still being decided.</p>
       <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 6px">Northern Ireland</p>
       <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Under the Windsor Framework, Northern Ireland continues to follow the EU F-Gas Regulation, so the EU timeline above applies there.</p>
       <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">All of this sits under the global <strong>Kigali Amendment</strong> to the Montreal Protocol, which commits developed countries to cutting HFC use to a small fraction of historic levels over the coming decades.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Where it's heading</h2>
       <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 10px">The shrinking quota makes high-GWP gases such as R410A and R134a steadily scarcer and more expensive, pushing the whole market toward low-GWP and natural refrigerants. In practice:</p>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.7">
-        <li><strong>Residential heat pumps are converging on R290 (propane).</strong> It already dominates new monobloc ranges, has a GWP of 3, sits outside the phase-down and supports the higher flow temperatures UK retrofits often need — the most future-proof choice.</li>
+        <li><strong>Residential heat pumps are converging on R290 (propane).</strong> It already dominates new monobloc ranges, has a GWP of 3, sits outside the phase-down and supports the higher flow temperatures UK retrofits often need, making it the most future-proof choice.</li>
         <li><strong>R32 remains common today</strong> but its 675 GWP exceeds the EU's 150 limit for small monoblocs from 2027, so EU and Northern Ireland units are moving to R290. R32 is likely to persist longer in GB and in larger or split systems.</li>
         <li><strong>Commercial and industrial systems</strong> are shifting to R290, CO₂, ammonia and HFOs (R1234ze, R1233zd, R515B) for large and high-temperature duties.</li>
       </ul>
@@ -1195,14 +1196,14 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         <div style="font-size:17px;font-weight:600;margin-bottom:10px">If you're choosing a heat pump</div>
         <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
           <li>For a new home system, <strong style="color:#3ECCC0">R290</strong> is the most future-proof option and often the strongest performer at higher flow temperatures.</li>
-          <li>Already have an R410A or R32 unit? It's fine to keep running and servicing — the rules target new equipment, not existing installations — though servicing the highest-GWP gases will get costlier.</li>
+          <li>Already have an R410A or R32 unit? It's fine to keep running and servicing (the rules target new equipment, not existing installations), though servicing the highest-GWP gases will get costlier.</li>
           <li>Flammable refrigerants (A3, A2L) simply need a competent installer and correct siting; this is routine for modern units.</li>
-          <li>Check the refrigerant when comparing models here — it shapes environmental impact, long-term serviceability and sometimes <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">efficiency</a> and <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature</a>.</li>
+          <li>Check the refrigerant when comparing models here: it shapes environmental impact, long-term serviceability and sometimes <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">efficiency</a> and <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature</a>.</li>
         </ul>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed June 2026. Regulations change and the GB rules are under review — always confirm the current position before making decisions. This guide is general information, not regulatory or professional advice.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed June 2026. Regulations change and the GB rules are under review; always confirm the current position before making decisions. This guide is general information, not regulatory or professional advice.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">GWP impact calculator</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 16px;max-width:680px">GWP in the table above is a multiplier, not a real-world quantity &mdash; on its own, "675" or "2,088" doesn't say much about actual climate impact. This calculator turns it into a concrete figure: enter the <strong>refrigerant charge</strong> (the amount of gas sealed inside a heat pump's circuit, usually stated on its data plate or datasheet) and it converts that into the CO&#8322;e it represents. Because a sealed system doesn't lose its whole charge at once, the calculator also shows how that impact builds up gradually over time through ordinary annual leakage, rather than assuming a one-off release.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 16px;max-width:680px">GWP in the table above is a multiplier, not a real-world quantity: on its own, "675" or "2,088" doesn't say much about actual climate impact. This calculator turns it into a concrete figure: enter the <strong>refrigerant charge</strong> (the amount of gas sealed inside a heat pump's circuit, usually stated on its data plate or datasheet) and it converts that into the CO&#8322;e it represents. Because a sealed system doesn't lose its whole charge at once, the calculator also shows how that impact builds up gradually over time through ordinary annual leakage, rather than assuming a one-off release.</p>
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:20px 22px;margin:14px 0 8px" id="gwp-calc">
         <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:20px">
           <div style="flex:1;min-width:180px">
@@ -1220,7 +1221,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </div>
         <div style="font-size:11px;color:#9aa;margin:-12px 0 20px;line-height:1.4">Default 4%/yr is CIBSE TM65's typical rate for a heat pump with some on-site pipework (their range: 2% factory-sealed monobloc &ndash; 6% VRF). Edit to match your own system.</div>
         <div id="gwp-result"></div>
-        <p style="color:#9aa;font-size:12px;margin:16px 0 0">Illustrative estimate only. GWP values are the 100-year AR5 figures from the table above (charge in kg &times; GWP = kg CO&#8322;e). Annual leak rate is user-adjustable &mdash; the 4% default follows <a href="https://www.cibse.org/knowledge-research/knowledge-portal/embodied-carbon-in-building-services-a-calculation-methodology-tm65" target="_blank" rel="noopener" style="color:#0D7377">CIBSE TM65: Embodied Carbon in Building Services &mdash; A Methodology</a>, which gives typical annual refrigerant leakage rates of roughly 2% for factory-sealed monobloc units with no on-site refrigerant work, 4% for systems with some on-site pipework, and 6% for VRF systems with large on-site-filled charges; well-installed heat pumps can leak far less, and any leak of this size should be found and repaired by a qualified installer, not budgeted for. This tool is not a substitute for a proper F-Gas leak check or emissions audit.</p>
+        <p style="color:#9aa;font-size:12px;margin:16px 0 0">Illustrative estimate only. GWP values are the 100-year AR5 figures from the table above (charge in kg &times; GWP = kg CO&#8322;e). Annual leak rate is user-adjustable; the 4% default follows <a href="https://www.cibse.org/knowledge-research/knowledge-portal/embodied-carbon-in-building-services-a-calculation-methodology-tm65" target="_blank" rel="noopener" style="color:#0D7377">CIBSE TM65: Embodied Carbon in Building Services &mdash; A Methodology</a>, which gives typical annual refrigerant leakage rates of roughly 2% for factory-sealed monobloc units with no on-site refrigerant work, 4% for systems with some on-site pipework, and 6% for VRF systems with large on-site-filled charges; well-installed heat pumps can leak far less, and any leak of this size should be found and repaired by a qualified installer, not budgeted for. This tool is not a substitute for a proper F-Gas leak check or emissions audit.</p>
       </div>
       <script>
       (function(){
@@ -1287,11 +1288,11 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div style="padding:8px 0 4px">
       <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>Understanding COP &amp; SCOP</span></nav>
       <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Understanding COP &amp; SCOP</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">COP and SCOP both describe how efficiently a <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">heat pump</a> turns electricity into heat — but they answer different questions, and neither figure means anything without the conditions it was measured at. This guide explains what each one is, how to read the test conditions shown throughout this database, and how to compare models fairly.</p>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">COP and SCOP both describe how efficiently a <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">heat pump</a> turns electricity into heat, but they answer different questions, and neither figure means anything without the conditions it was measured at. This guide explains what each one is, how to read the test conditions shown throughout this database, and how to compare models fairly.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">What COP measures</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px"><strong>COP (Coefficient of Performance)</strong> is the heat delivered divided by the electricity consumed at one specific operating point. A COP of 4 means the unit produces 4&nbsp;kW of heat for every 1&nbsp;kW of electricity it draws — in other words, 400% efficient. It is an instantaneous snapshot, taken with the source and output temperatures held fixed.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px"><strong>COP (Coefficient of Performance)</strong> is the heat delivered divided by the electricity consumed at one specific operating point. A COP of 4 means the unit produces 4&nbsp;kW of heat for every 1&nbsp;kW of electricity it draws: in other words, 400% efficient. It is an instantaneous snapshot, taken with the source and output temperatures held fixed.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Why the conditions are everything</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">A COP only has meaning alongside the two temperatures it was measured at, written as <em>source/output</em>. For an air source heat pump, <strong>A7/W35</strong> means 7°C outdoor air going in and 35°C water leaving to the heating system. Change either temperature and the COP changes — often dramatically. The same machine might post a COP of 5.0 at A7/W35 and 2.7 at A7/W55; both are true. The <a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">refrigerant</a> a unit uses also affects how efficiency behaves across conditions.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">A COP only has meaning alongside the two temperatures it was measured at, written as <em>source/output</em>. For an air source heat pump, <strong>A7/W35</strong> means 7°C outdoor air going in and 35°C water leaving to the heating system. Change either temperature and the COP changes, often dramatically. The same machine might post a COP of 5.0 at A7/W35 and 2.7 at A7/W55; both are true. The <a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">refrigerant</a> a unit uses also affects how efficiency behaves across conditions.</p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
       <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:520px;margin:0 0 16px">
         <thead><tr style="background:#fafcfb">
@@ -1307,7 +1308,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       </table>
       </div>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">How COP changes with conditions</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Two levers move the number: a <strong>colder source</strong> lowers COP (the unit has to work harder to gather heat), and a <strong>higher flow temperature</strong> lowers it (it has to lift the heat further). The figures below are illustrative ranges for a typical modern air source unit, not a specification — they show the <em>shape</em> of the effect.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Two levers move the number: a <strong>colder source</strong> lowers COP (the unit has to work harder to gather heat), and a <strong>higher flow temperature</strong> lowers it (it has to lift the heat further). The figures below are illustrative ranges for a typical modern air source unit, not a specification; they show the <em>shape</em> of the effect.</p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
       <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:520px;margin:0 0 16px">
         <thead><tr style="background:#fafcfb"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Condition</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Typical COP (illustrative)</th></tr></thead>
@@ -1319,7 +1320,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </tbody>
       </table>
       </div>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The flow-temperature effect is the one you have most control over once a system is installed — see the <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Flow temperature &amp; efficiency</a> guide.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The flow-temperature effect is the one you have most control over once a system is installed. See the <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Flow temperature &amp; efficiency</a> guide.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">What SCOP measures</h2>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px"><strong>SCOP (Seasonal Coefficient of Performance)</strong> averages efficiency across a whole heating season. The EN&nbsp;14825 standard, often used by manufacturers, sets very specific test procedures for estimating SCOP. Rather than a single operating point, it weights many points across a full year of outdoor temperatures and part-load conditions for a reference climate. That makes it a far better predictor of real annual running cost than any single COP.</p>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">SCOP carries conditions too. The two that matter are the <strong>application flow temperature</strong> and the <strong>climate</strong>. A complete figure therefore reads something like "SCOP&nbsp;4.6 (W35, average climate)". The familiar <strong>ErP energy label</strong> (A+++ to G) is derived directly from SCOP.</p>
@@ -1341,18 +1342,18 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Within the chosen climate, the rest of the framework is:</p>
       <ul style="margin:0 0 16px;padding-left:20px;color:#5b6b6b;font-size:14.5px;line-height:1.75;max-width:680px">
         <li><strong>A spread of temperatures, not one.</strong> The season is divided into temperature "bins", each with a number of hours and a matching heating demand that rises as it gets colder. COP is tested at part-load points of <strong>+12, +7, +2 and &minus;7°C</strong> plus the design temperature (&minus;10°C for Average; a &minus;15°C point is added for Colder), then averaged by how many hours fall in each bin.</li>
-        <li><strong>Mostly part-load running.</strong> Most of the season is mild, so the unit spends most hours well below full output. The method therefore rewards good part-load and modulating efficiency — where inverter-driven units do well.</li>
-        <li><strong>A backup heater below the bivalent point.</strong> Below a declared outdoor temperature the heat pump can't meet demand alone, and a supplementary (usually electric) heater covers the shortfall at lower efficiency — and that penalty is counted in.</li>
-        <li><strong>A defined flow-temperature application.</strong> The test is run for a low-temperature (<strong>35°C</strong>) and/or medium-temperature (<strong>55°C</strong>) application — which is why a SCOP only means something alongside its W35 or W55 basis.</li>
+        <li><strong>Mostly part-load running.</strong> Most of the season is mild, so the unit spends most hours well below full output. The method therefore rewards good part-load and modulating efficiency, where inverter-driven units do well.</li>
+        <li><strong>A backup heater below the bivalent point.</strong> Below a declared outdoor temperature the heat pump can't meet demand alone, and a supplementary (usually electric) heater covers the shortfall at lower efficiency, and that penalty is counted in.</li>
+        <li><strong>A defined flow-temperature application.</strong> The test is run for a low-temperature (<strong>35°C</strong>) and/or medium-temperature (<strong>55°C</strong>) application, which is why a SCOP only means something alongside its W35 or W55 basis.</li>
         <li><strong>Auxiliary electricity counts.</strong> The headline SCOP also includes power drawn in thermostat-off, standby, off and crankcase-heater modes. You may also see <em>SCOP<sub>on</sub></em> (active mode only) and <em>SCOP<sub>net</sub></em> (excluding auxiliary modes and any backup heater).</li>
       </ul>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">What it deliberately leaves out is your building. EN&nbsp;14825 assumes a standardised climate and load, not your home's heat loss, controls or installation quality. A figure measured in a real installation is called the <strong>Seasonal Performance Factor (SPF)</strong>, and it can sit either side of the rated SCOP.</p>
-      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">COP or SCOP — which should you use?</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">COP is a snapshot at one condition; SCOP looks at the whole year. To judge how a unit will perform — and cost to run — over a year, <strong>SCOP at the flow temperature you intend to use</strong> is the more useful number. COP is best for understanding behaviour at a particular point, such as a cold snap (A-7/W35) or heating domestic hot water at a high flow temperature.</p>
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">COP or SCOP: which should you use?</h2>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">COP is a snapshot at one condition; SCOP looks at the whole year. To judge how a unit will perform (and cost to run) over a year, <strong>SCOP at the flow temperature you intend to use</strong> is the more useful number. COP is best for understanding behaviour at a particular point, such as a cold snap (A-7/W35) or heating domestic hot water at a high flow temperature.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Comparing fairly</h2>
       <ul style="margin:0 0 16px;padding-left:20px;color:#5b6b6b;font-size:14.5px;line-height:1.75;max-width:680px">
-        <li><strong>Match the conditions.</strong> Compare A7/W35 with A7/W35, or SCOP W35 with SCOP W35 — never across different tests.</li>
-        <li><strong>Don't compare across source types.</strong> A ground- or water-source COP (B0/W35, W10/W35) looks higher than an air-source one because the source is warmer and steadier — it isn't directly comparable.</li>
+        <li><strong>Match the conditions.</strong> Compare A7/W35 with A7/W35, or SCOP W35 with SCOP W35, never across different tests.</li>
+        <li><strong>Don't compare across source types.</strong> A ground- or water-source COP (B0/W35, W10/W35) looks higher than an air-source one because the source is warmer and steadier; it isn't directly comparable.</li>
         <li><strong>Be wary of an easy headline.</strong> A high COP quoted at an unusually mild condition flatters the unit.</li>
         <li><strong>Read the spread.</strong> A strong A7/W35 figure with a much weaker W55 one tells you the unit is happiest at low flow temperatures.</li>
         <li><strong>"Not stated" means caution.</strong> If the test basis isn't recorded, you can't reliably compare it.</li>
@@ -1376,12 +1377,12 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div style="padding:8px 0 4px">
       <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>Flow temperature &amp; efficiency</span></nav>
       <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Flow temperature &amp; efficiency</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">Flow temperature — how hot the water is that a <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">heat pump</a> sends to your radiators or underfloor heating — is the single biggest factor you control that affects efficiency. This guide explains why lower is better, the trade-off with your heat emitters, and how to read the flow-temperature data in this database.</p>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">Flow temperature (how hot the water is that a <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">heat pump</a> sends to your radiators or underfloor heating) is the single biggest factor you control that affects efficiency. This guide explains why lower is better, the trade-off with your heat emitters, and how to read the flow-temperature data in this database.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">What "flow temperature" means</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The <strong>flow temperature</strong> (or <em>leaving water temperature</em>) is how hot the heat pump heats the water it sends out to the heating system. It is the "W" number in a rating such as A7/W35, where 35 is a 35°C flow. The water gives up its heat to the rooms and returns cooler — the <em>return temperature</em>.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The <strong>flow temperature</strong> (or <em>leaving water temperature</em>) is how hot the heat pump heats the water it sends out to the heating system. It is the "W" number in a rating such as A7/W35, where 35 is a 35°C flow. The water gives up its heat to the rooms and returns cooler: the <em>return temperature</em>.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Why lower flow temperature means higher efficiency</h2>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">A heat pump's efficiency is governed by the <strong>"lift"</strong>: the gap between the source temperature and the flow temperature. The smaller that gap, the less work the compressor does, and the higher the COP and SCOP. This is fundamental thermodynamics, not a quirk of any one model.</p>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">As a rule of thumb, every 1°C you can shave off the flow temperature improves efficiency by roughly <strong>2–2.5%</strong>. Dropping from a boiler-style 55°C to 35°C can lift seasonal efficiency substantially — often taking a SCOP from around 3 to comfortably above 4. The numbers below are indicative, to show the shape of the relationship.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">As a rule of thumb, every 1°C you can shave off the flow temperature improves efficiency by roughly <strong>2–2.5%</strong>. Dropping from a boiler-style 55°C to 35°C can lift seasonal efficiency substantially, often taking a SCOP from around 3 to comfortably above 4. The numbers below are indicative, to show the shape of the relationship.</p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
       <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:520px;margin:0 0 16px">
         <thead><tr style="background:#fafcfb">
@@ -1396,26 +1397,26 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       </table>
       </div>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">The trade-off: your heat emitters</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The catch is that a lower flow temperature means each radiator gives out less heat, so you need more emitting surface to warm the room. <strong>Underfloor heating</strong> is ideal — a huge surface area running happily at 30–40°C. Existing radiators sized for a 70–80°C gas boiler are often undersized for 35–45°C operation and may need upsizing. Matching emitters to a low flow temperature is the central design task of a heat pump installation, and the main reason a proper heat-loss survey matters.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">The catch is that a lower flow temperature means each radiator gives out less heat, so you need more emitting surface to warm the room. <strong>Underfloor heating</strong> is ideal, a huge surface area running happily at 30–40°C. Existing radiators sized for a 70–80°C gas boiler are often undersized for 35–45°C operation and may need upsizing. Matching emitters to a low flow temperature is the central design task of a heat pump installation, and the main reason a proper heat-loss survey matters.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Weather compensation</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Modern heat pumps use <strong>weather compensation</strong>: they raise the flow temperature only as the weather gets colder, and keep it as low as possible the rest of the time. Leaving this enabled — rather than fixing a high flow temperature year-round — is one of the easiest ways to protect efficiency, and it is how the low seasonal figures are actually achieved in practice.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Modern heat pumps use <strong>weather compensation</strong>: they raise the flow temperature only as the weather gets colder, and keep it as low as possible the rest of the time. Leaving this enabled, rather than fixing a high flow temperature year-round, is one of the easiest ways to protect efficiency, and it is how the low seasonal figures are actually achieved in practice.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Hot water is the exception</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Domestic hot water has to be stored hotter — typically around 50–60°C, partly to manage legionella — so the heat pump briefly runs at a high flow temperature to reheat the cylinder, at lower efficiency. That is normal and unavoidable; what matters is that <em>space heating</em> stays at a low flow temperature the rest of the time. High-temperature R290 units can reach the hot-water temperatures directly without an electric backup heater.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Domestic hot water has to be stored hotter, typically around 50–60°C, partly to manage legionella, so the heat pump briefly runs at a high flow temperature to reheat the cylinder, at lower efficiency. That is normal and unavoidable; what matters is that <em>space heating</em> stays at a low flow temperature the rest of the time. High-temperature R290 units can reach the hot-water temperatures directly without an electric backup heater.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Maximum flow temperature &amp; high-temperature heat pumps</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Every model has a <strong>maximum flow temperature</strong> (shown here as the upper end of its flow range). <strong>High-temperature heat pumps</strong> — usually running <a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">R290 (propane)</a> — reach 70–75°C, which lets them replace a boiler on existing radiators with little or no upgrading. That is genuinely useful for difficult retrofits, but running permanently hot sacrifices efficiency. Treat a high ceiling as headroom for the coldest days, not an everyday target.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Every model has a <strong>maximum flow temperature</strong> (shown here as the upper end of its flow range). <strong>High-temperature heat pumps</strong> (usually running <a href="/knowledge/refrigerants/" onclick="showPage('refrigerants');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">R290 (propane)</a>) reach 70–75°C, which lets them replace a boiler on existing radiators with little or no upgrading. That is genuinely useful for difficult retrofits, but running permanently hot sacrifices efficiency. Treat a high ceiling as headroom for the coldest days, not an everyday target.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:30px 0 12px">Reading the data here</h2>
       <ul style="margin:0 0 16px;padding-left:20px;color:#5b6b6b;font-size:14.5px;line-height:1.75;max-width:680px">
         <li>The <strong>flow temperature range</strong> is listed for each model; the upper figure is the hottest it can deliver.</li>
-        <li>The <strong>COP/SCOP conditions</strong> tell you the flow temperature each efficiency figure was measured at — an A7/W35 COP and an A7/W55 COP describe very different operation.</li>
+        <li>The <strong>COP/SCOP conditions</strong> tell you the flow temperature each efficiency figure was measured at: an A7/W35 COP and an A7/W55 COP describe very different operation.</li>
         <li>Design for the lowest flow temperature your emitters allow, then pick units that are efficient <em>at that temperature</em>.</li>
       </ul>
       <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:26px 0 8px">
         <div style="font-size:17px;font-weight:600;margin-bottom:10px">Practical takeaways</div>
         <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
-          <li>Aim for the lowest flow temperature your home's emitters allow — <strong style="color:#3ECCC0">35°C is ideal, 45°C is good</strong>.</li>
+          <li>Aim for the lowest flow temperature your home's emitters allow: <strong style="color:#3ECCC0">35°C is ideal, 45°C is good</strong>.</li>
           <li>Size radiators or underfloor heating for low-temperature operation; it is the key to a high SCOP.</li>
           <li>Keep weather compensation switched on.</li>
-          <li>Only high-temperature (R290) models run efficiently near 65–75°C — and even then, lower is better.</li>
+          <li>Only high-temperature (R290) models run efficiently near 65–75°C, and even then, lower is better.</li>
           <li>See the <a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a> guide for how flow temperature shows up in the efficiency figures.</li>
         </ul>
       </div>
@@ -1429,9 +1430,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div style="padding:8px 0 4px">
       <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>Installation costs</span></nav>
       <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">ASHP installation costs explained</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">An <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">air source heat pump</a> installation is a package of several separate costs, not just the price of the outdoor unit. This guide breaks the total down into its parts &mdash; the heat pump itself, the hot water cylinder, controls, and radiator upgrades &mdash; using typical figures reported by UK installer cost guides, so you know roughly what to expect before getting quotes.</p>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">An <a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">air source heat pump</a> installation is a package of several separate costs, not just the price of the outdoor unit. This guide breaks the total down into its parts: the heat pump itself, the hot water cylinder, controls, and radiator upgrades, using typical figures reported by UK installer cost guides, so you know roughly what to expect before getting quotes.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:28px 0 12px">Typical total cost, by property size</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">These are supply-and-install totals for a straightforward air-to-water ASHP replacing a fossil-fuel boiler, before and after the current <strong>&pound;7,500 Boiler Upgrade Scheme (BUS)</strong> grant in England and Wales. Actual costs depend heavily on your property's insulation, existing pipework, and how many radiators need upgrading &mdash; treat these as a starting point, not a quote.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">These are supply-and-install totals for a straightforward air-to-water ASHP replacing a fossil-fuel boiler, before and after the current <strong>&pound;7,500 Boiler Upgrade Scheme (BUS)</strong> grant in England and Wales. Actual costs depend heavily on your property's insulation, existing pipework, and how many radiators need upgrading; treat these as a starting point, not a quote.</p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
       <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:560px;margin:0 0 8px">
         <thead><tr style="background:#fafcfb">
@@ -1448,7 +1449,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         </tbody>
       </table>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:0 0 8px">Figures are indicative UK averages compiled from installer cost guides (Checkatrade, The Eco Experts, MyJobQuote), current as of 2026. Individual quotes commonly range &pound;7,000&ndash;&pound;16,000 depending on the factors below &mdash; always get several quotes from <a href="https://mcscertified.com/product-directory/" target="_blank" rel="noopener" style="color:#0D7377">MCS-certified</a> installers.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:0 0 8px">Figures are indicative UK averages compiled from installer cost guides (Checkatrade, The Eco Experts, MyJobQuote), current as of 2026. Individual quotes commonly range &pound;7,000&ndash;&pound;16,000 depending on the factors below; always get several quotes from <a href="https://mcscertified.com/product-directory/" target="_blank" rel="noopener" style="color:#0D7377">MCS-certified</a> installers.</p>
 
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">What makes up the cost</h2>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">A quote is really several line items bundled together. Here is roughly what each one costs on its own.</p>
@@ -1475,29 +1476,29 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
         <div style="font-size:17px;font-weight:600;color:#0F2B2B">Hot water cylinder</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">Most ASHP installs need a new (or first-time) unvented hot water cylinder, since heat pumps heat water more gradually than a combi boiler. A heat-pump-ready cylinder &mdash; with a larger heat-exchanger coil to transfer heat efficiently at a lower flow temperature &mdash; supplied and fitted typically costs <strong>&pound;900&ndash;&pound;2,000</strong>, depending on size (commonly 150&ndash;300 litres for a household) and coil specification. It must be fitted by a G3-registered installer and serviced annually.</p>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">Most ASHP installs need a new (or first-time) unvented hot water cylinder, since heat pumps heat water more gradually than a combi boiler. A heat-pump-ready cylinder (with a larger heat-exchanger coil to transfer heat efficiently at a lower flow temperature) supplied and fitted typically costs <strong>&pound;900&ndash;&pound;2,000</strong>, depending on size (commonly 150&ndash;300 litres for a household) and coil specification. It must be fitted by a G3-registered installer and serviced annually.</p>
       </div>
 
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
         <div style="font-size:17px;font-weight:600;color:#0F2B2B">Controls</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">A basic room thermostat and outdoor sensor for <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">weather compensation</a> is usually bundled with the unit. Extra controls &mdash; additional zone thermostats, smart thermostatic radiator valves, or a multi-zone control setup &mdash; typically add <strong>&pound;300&ndash;&pound;1,200</strong> depending on how many zones and rooms are covered.</p>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">A basic room thermostat and outdoor sensor for <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">weather compensation</a> is usually bundled with the unit. Extra controls (additional zone thermostats, smart thermostatic radiator valves, or a multi-zone control setup) typically add <strong>&pound;300&ndash;&pound;1,200</strong> depending on how many zones and rooms are covered.</p>
       </div>
 
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
         <div style="font-size:17px;font-weight:600;color:#0F2B2B">Radiator upgrades (per radiator)</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">Because a heat pump runs at a lower <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature</a> than a gas boiler, each radiator gives out less heat for the same size, so some radiators sized for a 70&ndash;80&deg;C boiler need replacing with larger ones to keep rooms warm at 35&ndash;45&deg;C. Installers typically charge <strong>&pound;300&ndash;&pound;500 per radiator</strong> supplied and fitted &mdash; for example, upgrading 10 radiators is commonly quoted around &pound;3,000 in total. Not every radiator needs replacing; a heat-loss survey identifies which ones are undersized for low-temperature operation.</p>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">Because a heat pump runs at a lower <a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature</a> than a gas boiler, each radiator gives out less heat for the same size, so some radiators sized for a 70&ndash;80&deg;C boiler need replacing with larger ones to keep rooms warm at 35&ndash;45&deg;C. Installers typically charge <strong>&pound;300&ndash;&pound;500 per radiator</strong> supplied and fitted: for example, upgrading 10 radiators is commonly quoted around &pound;3,000 in total. Not every radiator needs replacing; a heat-loss survey identifies which ones are undersized for low-temperature operation.</p>
       </div>
 
       <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
         <div style="font-size:17px;font-weight:600;color:#0F2B2B">Electrical work</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">Many properties need a consumer unit upgrade or a new dedicated circuit to the outdoor unit, typically <strong>&pound;500&ndash;&pound;800</strong>. Whether this is needed depends on your existing electrics and the unit's power draw &mdash; your installer will confirm this during the survey.</p>
+        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 0">Many properties need a consumer unit upgrade or a new dedicated circuit to the outdoor unit, typically <strong>&pound;500&ndash;&pound;800</strong>. Whether this is needed depends on your existing electrics and the unit's power draw; your installer will confirm this during the survey.</p>
       </div>
 
-      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Ongoing running costs are separate from installation &mdash; budget roughly &pound;150&ndash;&pound;300 for an annual service. Figures above are indicative UK 2026 averages from <a href="https://www.checkatrade.com/blog/cost-guides/air-source-heat-pump-cost/" target="_blank" rel="noopener" style="color:#0D7377">Checkatrade</a>, <a href="https://www.theecoexperts.co.uk/heat-pumps/cost-guide" target="_blank" rel="noopener" style="color:#0D7377">The Eco Experts</a> and similar installer cost guides, not fixed prices &mdash; always get itemised quotes from at least three installers.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Ongoing running costs are separate from installation: budget roughly &pound;150&ndash;&pound;300 for an annual service. Figures above are indicative UK 2026 averages from <a href="https://www.checkatrade.com/blog/cost-guides/air-source-heat-pump-cost/" target="_blank" rel="noopener" style="color:#0D7377">Checkatrade</a>, <a href="https://www.theecoexperts.co.uk/heat-pumps/cost-guide" target="_blank" rel="noopener" style="color:#0D7377">The Eco Experts</a> and similar installer cost guides, not fixed prices; always get itemised quotes from at least three installers.</p>
 
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">What affects your price</h2>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.7;max-width:680px">
-        <li><strong>Property size and heat loss.</strong> A bigger or less-insulated home needs a larger, costlier unit &mdash; and a properly sized system depends on a room-by-room heat-loss calculation, not a rule of thumb.</li>
+        <li><strong>Property size and heat loss.</strong> A bigger or less-insulated home needs a larger, costlier unit, and a properly sized system depends on a room-by-room heat-loss calculation, not a rule of thumb.</li>
         <li><strong>How many radiators need upgrading.</strong> A well-insulated home with already-generous radiators may need none; an older, poorly insulated one may need most of them replaced.</li>
         <li><strong>Underfloor heating vs radiators.</strong> Underfloor heating suits low flow temperatures perfectly but is expensive to retrofit; sticking with upgraded radiators is usually cheaper for an existing home.</li>
         <li><strong>Existing pipework and cylinder.</strong> Reusing existing pipe runs and pipework diameter keeps labour down; microbore pipework or no existing cylinder adds cost.</li>
@@ -1507,22 +1508,22 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 
       <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
         <div style="font-size:17px;font-weight:600;margin-bottom:10px">The Boiler Upgrade Scheme (BUS)</div>
-        <p style="margin:0 0 10px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">The government's Boiler Upgrade Scheme currently provides <strong style="color:#3ECCC0">&pound;7,500</strong> towards an air source or ground source heat pump in England and Wales (&pound;2,500 for air-to-air, &pound;5,000 for biomass boilers). It is applied as an upfront discount by your MCS-certified installer &mdash; you do not pay the full amount and claim it back.</p>
+        <p style="margin:0 0 10px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">The government's Boiler Upgrade Scheme currently provides <strong style="color:#3ECCC0">&pound;7,500</strong> towards an air source or ground source heat pump in England and Wales (&pound;2,500 for air-to-air, &pound;5,000 for biomass boilers). It is applied as an upfront discount by your MCS-certified installer: you do not pay the full amount and claim it back.</p>
         <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
           <li>Requires an <strong>MCS-certified installer and product</strong>. An EPC is no longer required as of April 2026.</li>
           <li>Covers replacements of an existing fossil-fuel heating system, not most new-build properties.</li>
-          <li>Scotland and Northern Ireland have separate schemes &mdash; see Home Energy Scotland or your local grants.</li>
+          <li>Scotland and Northern Ireland have separate schemes: see Home Energy Scotland or your local grants.</li>
           <li>Read our <a href="/knowledge/funding/" onclick="showPage('funding');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">full funding &amp; grants guide</a> or the official <a href="https://www.gov.uk/apply-boiler-upgrade-scheme" target="_blank" rel="noopener" style="color:#3ECCC0;font-weight:600;text-decoration:none">GOV.UK guidance</a> for the current eligibility rules and how to apply.</li>
         </ul>
       </div>
 
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Related reading</h2>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.9;max-width:680px">
-        <li><a href="/knowledge/funding/" onclick="showPage('funding');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Heat pump funding &amp; grants explained</a> &mdash; the Boiler Upgrade Scheme, 0% VAT, and other UK support</li>
-        <li><a href="/#faq" onclick="openFaqItem('f6');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">How do I size a heat pump for my property?</a> &mdash; why sizing drives both performance and cost</li>
-        <li><a href="/#faq" onclick="openFaqItem('f3');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">ASHP vs GSHP vs WSHP &mdash; which is right for my project?</a> &mdash; how installed costs compare across heat pump types</li>
-        <li><a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Flow temperature &amp; efficiency</a> &mdash; why radiator sizing matters so much for running costs</li>
-        <li><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a> &mdash; how to compare running-cost efficiency between models</li>
+        <li><a href="/knowledge/funding/" onclick="showPage('funding');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Heat pump funding &amp; grants explained</a>: the Boiler Upgrade Scheme, 0% VAT, and other UK support</li>
+        <li><a href="/#faq" onclick="openFaqItem('f6');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">How do I size a heat pump for my property?</a>: why sizing drives both performance and cost</li>
+        <li><a href="/#faq" onclick="openFaqItem('f3');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">ASHP vs GSHP vs WSHP: which is right for my project?</a>: how installed costs compare across heat pump types</li>
+        <li><a href="/knowledge/flow-temperature/" onclick="showPage('flow-temp');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Flow temperature &amp; efficiency</a>: why radiator sizing matters so much for running costs</li>
+        <li><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a>: how to compare running-cost efficiency between models</li>
       </ul>
       <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed July 2026. Costs are general UK guide prices, not quotes, and change over time; always confirm current grant eligibility and get itemised quotes from MCS-certified installers before budgeting. This guide is general information, not financial or professional advice.</p>
     </div>
@@ -1534,7 +1535,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div style="padding:8px 0 4px">
       <nav style="font-size:13px;color:#9aa;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5b6b6b;text-decoration:none">Knowledge</a> &rsaquo; <span>Funding &amp; Grants</span></nav>
       <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Heat pump funding &amp; grants in the UK</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">There isn't one single UK heat pump grant &mdash; there are several, and which ones apply to you depends on where you live, your income, and what you're replacing. This guide covers every current route: the Boiler Upgrade Scheme, 0% VAT, Home Energy Scotland, Warm Homes: Local Grant, ECO4, and support in Northern Ireland &mdash; what each gives you, who qualifies, and how to apply.</p>
+      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">There isn't one single UK heat pump grant: there are several, and which ones apply to you depends on where you live, your income, and what you're replacing. This guide covers every current route: the Boiler Upgrade Scheme, 0% VAT, Home Energy Scotland, Warm Homes: Local Grant, ECO4, and support in Northern Ireland: what each gives you, who qualifies, and how to apply.</p>
 
       <div style="background:#fafcfb;border:1px solid #e2e8e7;border-radius:14px;padding:22px 24px;margin:20px 0 28px">
         <div style="font-size:17px;font-weight:600;color:#0F2B2B;margin-bottom:4px">Find your funding in 10 seconds</div>
@@ -1559,7 +1560,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           </div>
         </div>
         <div id="fw-result" style="margin-top:16px"></div>
-        <p style="color:#9aa;font-size:12px;margin:10px 0 0">A quick pointer, not a formal eligibility check &mdash; confirm details with the scheme directly before applying.</p>
+        <p style="color:#9aa;font-size:12px;margin:10px 0 0">A quick pointer, not a formal eligibility check; confirm details with the scheme directly before applying.</p>
       </div>
       <script>
       var FW_SCHEMES={
@@ -1573,21 +1574,21 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       var FW_MATRIX={
         england:{
           any:[['bus',"Up to £7,500 off an ASHP/GSHP, open to any homeowner."],['vat','0% VAT on top, applied automatically by your installer.']],
-          low:[['bus','Still worth applying for regardless of income.'],['whlg','Could fully fund the work if your council has funding available — check before paying for anything.'],['vat','0% VAT applies either way.']],
-          benefits:[['eco4','Can fund a heat pump in full as part of a wider retrofit — check this first.'],['whlg','Also worth checking alongside ECO4.'],['bus',"Still available if ECO4 doesn't cover the whole job."],['vat','0% VAT applies either way.']]
+          low:[['bus','Still worth applying for regardless of income.'],['whlg','Could fully fund the work if your council has funding available: check before paying for anything.'],['vat','0% VAT applies either way.']],
+          benefits:[['eco4','Can fund a heat pump in full as part of a wider retrofit: check this first.'],['whlg','Also worth checking alongside ECO4.'],['bus',"Still available if ECO4 doesn't cover the whole job."],['vat','0% VAT applies either way.']]
         },
         wales:{
-          any:[['bus','Up to £7,500 off an ASHP/GSHP — BUS covers Wales as well as England.'],['vat','0% VAT on top.']],
-          low:[['eco4','Can fund a heat pump in full — worth checking if you receive a qualifying benefit.'],['bus',"Still available even if you don't qualify for ECO4."],['vat','0% VAT applies either way.']],
-          benefits:[['eco4','Can fund a heat pump in full as part of a wider retrofit — check this first.'],['bus',"Still available if ECO4 doesn't cover the whole job."],['vat','0% VAT applies either way.']]
+          any:[['bus','Up to £7,500 off an ASHP/GSHP; BUS covers Wales as well as England.'],['vat','0% VAT on top.']],
+          low:[['eco4','Can fund a heat pump in full: worth checking if you receive a qualifying benefit.'],['bus',"Still available even if you don't qualify for ECO4."],['vat','0% VAT applies either way.']],
+          benefits:[['eco4','Can fund a heat pump in full as part of a wider retrofit: check this first.'],['bus',"Still available if ECO4 doesn't cover the whole job."],['vat','0% VAT applies either way.']]
         },
         scotland:{
           any:[['hes','Up to £7,500 grant plus an optional £7,500 interest-free loan.'],['vat','0% VAT on top.']],
-          low:[['hes',"Still the main route — grant funding isn't income-tested."],['eco4','Worth checking alongside HES if you receive a qualifying benefit.'],['vat','0% VAT applies either way.']],
-          benefits:[['eco4','Can fund a heat pump in full — check this first.'],['hes','Still worth applying to for the grant/loan on top.'],['vat','0% VAT applies either way.']]
+          low:[['hes',"Still the main route: grant funding isn't income-tested."],['eco4','Worth checking alongside HES if you receive a qualifying benefit.'],['vat','0% VAT applies either way.']],
+          benefits:[['eco4','Can fund a heat pump in full: check this first.'],['hes','Still worth applying to for the grant/loan on top.'],['vat','0% VAT applies either way.']]
         },
         ni:{
-          any:[['ni',"No direct heat pump grant yet — see current options and what's coming."],['vat','0% VAT still applies in Northern Ireland.']],
+          any:[['ni',"No direct heat pump grant yet; see current options and what's coming."],['vat','0% VAT still applies in Northern Ireland.']],
           low:[['ni','Check the Affordable Warmth Scheme (income under £23k) and NISEP.'],['vat','0% VAT still applies in Northern Ireland.']],
           benefits:[['ni','Check the Affordable Warmth Scheme (income under £23k) and NISEP.'],['vat','0% VAT still applies in Northern Ireland.']]
         }
@@ -1645,9 +1646,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <p style="color:#9aa;font-size:12.5px;margin:0 0 10px">Plus an extra &pound;1,500 (&pound;9,000 total) for ASHP/GSHP on oil or LPG properties with no mains gas connection, between 21 July 2026 and 31 March 2027. One grant per property; hybrid systems don't qualify.</p>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
         <li><strong>Eligibility:</strong> you own the property (including rentals, second homes and businesses), you're replacing a fossil fuel system, and it's in England or Wales. Your installer must commission the system within 120 days of applying.</li>
-        <li><strong>Requirements:</strong> an MCS-certified installer and product &mdash; this is now a statutory requirement. No EPC is needed as of 28 April 2026 (the old insulation-recommendation rule was scrapped).</li>
+        <li><strong>Requirements:</strong> an MCS-certified installer and product: this is now a statutory requirement. No EPC is needed as of 28 April 2026 (the old insulation-recommendation rule was scrapped).</li>
         <li><strong>Payment:</strong> deducted upfront from your quote by the installer, who applies to Ofgem on your behalf. Not means-tested, doesn't need repaying.</li>
-        <li><strong>How to apply:</strong> get quotes from MCS-certified installers, confirm eligibility, agree a quote &mdash; your installer applies for you.</li>
+        <li><strong>How to apply:</strong> get quotes from MCS-certified installers, confirm eligibility, agree a quote; your installer applies for you.</li>
       </ul>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Funded through to 31 March 2030, with &pound;400 million budgeted for 2026&ndash;27. Full detail: eligibility edge cases (self-build, new build), what doesn't qualify (social housing, previously-funded properties), and biomass-specific rules, are in our <a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#0D7377;font-weight:600;text-decoration:none">installation costs guide</a> and the <a href="https://www.gov.uk/apply-boiler-upgrade-scheme" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">official GOV.UK guidance</a>.</p>
 
@@ -1655,68 +1656,68 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Separate from any grant, and stackable with one: installing a qualifying heat pump in a UK home currently attracts <strong>0% VAT</strong> instead of the usual 20%, covering both the equipment and installation labour.</p>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
         <li><strong>What's covered:</strong> air, ground and water source heat pumps, plus the installation labour, controls and other qualifying energy-saving materials fitted at the same time.</li>
-        <li><strong>Who's eligible:</strong> any residential property in the UK &mdash; there's no income test and no application. Your installer simply doesn't charge VAT (or charges 0%) on the qualifying elements of the invoice.</li>
+        <li><strong>Who's eligible:</strong> any residential property in the UK: there's no income test and no application. Your installer simply doesn't charge VAT (or charges 0%) on the qualifying elements of the invoice.</li>
         <li><strong>Typical saving:</strong> around &pound;1,800&ndash;&pound;2,500 on a typical residential ASHP installation, since it applies to the full pre-grant invoice total.</li>
-        <li><strong>Timeline:</strong> in force since April 2022, currently scheduled to run until 31 March 2027, after which it's due to revert to 5% unless extended again &mdash; it has been extended more than once already.</li>
+        <li><strong>Timeline:</strong> in force since April 2022, currently scheduled to run until 31 March 2027, after which it's due to revert to 5% unless extended again (it has been extended more than once already).</li>
       </ul>
 
       <h2 id="hes-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Home Energy Scotland Grant and Loan (Scotland)</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Scotland's equivalent to the Boiler Upgrade Scheme, run by Home Energy Scotland on behalf of the Scottish Government &mdash; a grant that can be topped up with an optional interest-free loan.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Scotland's equivalent to the Boiler Upgrade Scheme, run by Home Energy Scotland on behalf of the Scottish Government: a grant that can be topped up with an optional interest-free loan.</p>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
-        <li><strong>Funding:</strong> up to <strong>&pound;7,500 grant</strong> for a heat pump (air, ground or water source), plus an optional <strong>&pound;7,500 interest-free loan</strong> on top &mdash; up to &pound;15,000 combined. A &pound;1,500 rural/island uplift applies to both, taking the maximum to &pound;18,000.</li>
-        <li><strong>Eligibility:</strong> you own and live in the property as your only or main residence, in Scotland. Only heat pumps providing 100% of heating and hot water qualify &mdash; hybrids don't. Replacement heat pumps can't get the grant, but can use the loan.</li>
+        <li><strong>Funding:</strong> up to <strong>&pound;7,500 grant</strong> for a heat pump (air, ground or water source), plus an optional <strong>&pound;7,500 interest-free loan</strong> on top, up to &pound;15,000 combined. A &pound;1,500 rural/island uplift applies to both, taking the maximum to &pound;18,000.</li>
+        <li><strong>Eligibility:</strong> you own and live in the property as your only or main residence, in Scotland. Only heat pumps providing 100% of heating and hot water qualify; hybrids don't. Replacement heat pumps can't get the grant, but can use the loan.</li>
         <li><strong>Requirements:</strong> MCS-certified installer and product. No EPC is needed to apply for the heat pump funding itself (only for separate energy-efficiency measures like insulation).</li>
-        <li><strong>How to apply:</strong> call or email Home Energy Scotland for a free advice session first &mdash; you're referred to the online application only after that. Applications are processed in around 10 working days once submitted, and funding offers are valid for 9 months.</li>
+        <li><strong>How to apply:</strong> call or email Home Energy Scotland for a free advice session first; you're referred to the online application only after that. Applications are processed in around 10 working days once submitted, and funding offers are valid for 9 months.</li>
         <li><strong>Payment:</strong> unlike BUS, funding is claimed back after work is done (with an optional deposit drawdown of up to 60% of material costs upfront) rather than deducted from the quote in advance.</li>
       </ul>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Funding is allocated first-come, first-served and subject to availability, so apply early in the financial year. Full detail: <a href="https://www.homeenergyscotland.org/home-energy-scotland-grant-loan" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">Home Energy Scotland official guidance</a>.</p>
 
       <h2 id="whlg-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Warm Homes: Local Grant (England, low income)</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">A fully-funded scheme for lower-income households in England, delivered through local councils. It's a whole-home energy efficiency programme rather than a heat-pump-specific grant &mdash; a heat pump is only installed where a survey finds it suitable.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">A fully-funded scheme for lower-income households in England, delivered through local councils. It's a whole-home energy efficiency programme rather than a heat-pump-specific grant; a heat pump is only installed where a survey finds it suitable.</p>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
-        <li><strong>What it covers:</strong> wall, loft and underfloor insulation, air source heat pumps, smart heating controls and solar panels &mdash; whatever a home survey recommends. Your council arranges and pays for the work; you pay nothing (though a landlord may need to contribute for a rented property).</li>
-        <li><strong>Eligibility:</strong> home privately owned (by you or your landlord) with an EPC of D&ndash;G, in England. Household income usually &pound;36,000/year or less &mdash; though you may still qualify above that if you're in a targeted postcode area or receive certain benefits.</li>
+        <li><strong>What it covers:</strong> wall, loft and underfloor insulation, air source heat pumps, smart heating controls and solar panels, whatever a home survey recommends. Your council arranges and pays for the work; you pay nothing (though a landlord may need to contribute for a rented property).</li>
+        <li><strong>Eligibility:</strong> home privately owned (by you or your landlord) with an EPC of D&ndash;G, in England. Household income usually &pound;36,000/year or less, though you may still qualify above that if you're in a targeted postcode area or receive certain benefits.</li>
         <li><strong>How to apply:</strong> apply online at gov.uk/apply-warm-homes-local-grant; your council should be in touch within 10 working days to arrange a survey. Availability depends on your council having funding allocated, so it isn't guaranteed everywhere.</li>
       </ul>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Runs April 2025 to March 2028. Equivalent support in Wales is arranged through the Welsh Government's Warm Homes Programme, and in Scotland through Home Energy Scotland (above).</p>
 
       <h2 id="eco4-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">ECO4 (England, Wales &amp; Scotland, benefit claimants)</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">The Energy Company Obligation is funded by energy suppliers rather than general taxation &mdash; they're required to fund efficiency upgrades, including heat pumps, for low-income and vulnerable households as part of a "whole-house" retrofit.</p>
+      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">The Energy Company Obligation is funded by energy suppliers rather than general taxation: they're required to fund efficiency upgrades, including heat pumps, for low-income and vulnerable households as part of a "whole-house" retrofit.</p>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
         <li><strong>What it covers:</strong> can fund a heat pump installation in full as part of a wider package of measures aimed at bringing the home up to around EPC Band C, rather than a fixed voucher amount like BUS.</li>
-        <li><strong>Eligibility:</strong> broadly, you (or your landlord, with permission) must be claiming a qualifying benefit &mdash; Universal Credit, Pension Credit, Income Support, income-based JSA/ESA, Child Benefit or Housing Benefit &mdash; and the property needs an EPC of D, E, F or G (E, F or G if you're a private tenant). Social housing tenants in an E, F or G rated property may also qualify.</li>
-        <li><strong>How to apply:</strong> contact your local council to check if they're participating, or contact a participating energy supplier directly (Ofgem publishes the current list). Be cautious of cold callers claiming to represent the scheme &mdash; verify independently before agreeing to anything.</li>
+        <li><strong>Eligibility:</strong> broadly, you (or your landlord, with permission) must be claiming a qualifying benefit (Universal Credit, Pension Credit, Income Support, income-based JSA/ESA, Child Benefit or Housing Benefit) and the property needs an EPC of D, E, F or G (E, F or G if you're a private tenant). Social housing tenants in an E, F or G rated property may also qualify.</li>
+        <li><strong>How to apply:</strong> contact your local council to check if they're participating, or contact a participating energy supplier directly (Ofgem publishes the current list). Be cautious of cold callers claiming to represent the scheme; verify independently before agreeing to anything.</li>
       </ul>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Currently running to 31 December 2026. More tightly targeted than BUS, but can cover a much larger share (or all) of the cost for those who qualify.</p>
 
       <h2 id="ni-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Northern Ireland</h2>
       <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Northern Ireland isn't covered by the Boiler Upgrade Scheme, and its own Boiler Replacement Scheme has closed with no direct £7,500-style heat pump grant currently in its place. Support is more limited for now:</p>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.8;max-width:680px">
-        <li><strong>0% VAT</strong> applies in Northern Ireland the same as the rest of the UK (see above) &mdash; no application needed.</li>
+        <li><strong>0% VAT</strong> applies in Northern Ireland the same as the rest of the UK (see above); no application needed.</li>
         <li><strong>Affordable Warmth Scheme</strong>, run by the NI Housing Executive, offers up to &pound;7,500 of heating and insulation work for private owner-occupiers with household income under &pound;23,000.</li>
         <li><strong>NISEP</strong> (Northern Ireland Sustainable Energy Programme) offers a limited number of air source heat pump installations as part of heating upgrades for off-gas-grid households, funded by electricity suppliers.</li>
-        <li>The Department for the Economy has committed to a NI-specific heat pump grant broadly matching BUS, expected to follow a consultation completed in early 2026 &mdash; check <a href="https://www.nidirect.gov.uk/information-and-services/energy-advice/energy-saving-grants" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">nidirect.gov.uk</a> for the latest before assuming any of the above still reflects the current position.</li>
+        <li>The Department for the Economy has committed to a NI-specific heat pump grant broadly matching BUS, expected to follow a consultation completed in early 2026. Check <a href="https://www.nidirect.gov.uk/information-and-services/energy-advice/energy-saving-grants" target="_blank" rel="noopener" style="color:#0D7377;font-weight:600;text-decoration:none">nidirect.gov.uk</a> for the latest before assuming any of the above still reflects the current position.</li>
       </ul>
 
       <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
         <div style="font-size:17px;font-weight:600;margin-bottom:10px">Which funding applies to me?</div>
         <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.8;color:rgba(255,255,255,.92)">
           <li><strong>England or Wales, any income:</strong> Boiler Upgrade Scheme + 0% VAT.</li>
-          <li><strong>England, lower income:</strong> check Warm Homes: Local Grant and ECO4 first &mdash; they can fully fund the work rather than just discount it.</li>
+          <li><strong>England, lower income:</strong> check Warm Homes: Local Grant and ECO4 first; they can fully fund the work rather than just discount it.</li>
           <li><strong>Scotland, any income:</strong> Home Energy Scotland Grant and Loan + 0% VAT.</li>
           <li><strong>Wales or Scotland, lower income:</strong> ECO4, alongside Home Energy Scotland or the Welsh Government's Warm Homes Programme.</li>
-          <li><strong>Northern Ireland:</strong> 0% VAT, plus Affordable Warmth or NISEP if you meet their criteria &mdash; and watch for the NI-specific grant currently in development.</li>
+          <li><strong>Northern Ireland:</strong> 0% VAT, plus Affordable Warmth or NISEP if you meet their criteria, and watch for the NI-specific grant currently in development.</li>
         </ul>
       </div>
 
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Related reading</h2>
       <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.9;max-width:680px">
-        <li><a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">ASHP installation costs explained</a> &mdash; typical totals before and after grant funding</li>
-        <li><a href="/heat-pump-size-calculator/" style="color:#3ECCC0;font-weight:600;text-decoration:none">Heat Pump Size Calculator</a> &mdash; estimate the kW your home needs before getting quotes</li>
-        <li><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">What is a heat pump?</a> &mdash; a plain-English introduction</li>
-        <li><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a> &mdash; how to compare running-cost efficiency between models</li>
+        <li><a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">ASHP installation costs explained</a>: typical totals before and after grant funding</li>
+        <li><a href="/heat-pump-size-calculator/" style="color:#3ECCC0;font-weight:600;text-decoration:none">Heat Pump Size Calculator</a>: estimate the kW your home needs before getting quotes</li>
+        <li><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">What is a heat pump?</a>: a plain-English introduction</li>
+        <li><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#3ECCC0;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a>: how to compare running-cost efficiency between models</li>
       </ul>
-      <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed August 2026 against GOV.UK, Home Energy Scotland and nidirect guidance. This is general information, not financial or professional advice &mdash; funding rules, amounts and deadlines change and vary by circumstance, so always confirm current eligibility with the relevant scheme, your council, or an MCS-certified installer before budgeting or buying.</p>
+      <p style="color:#9aa;font-size:12.5px;margin:16px 0 0">Reviewed August 2026 against GOV.UK, Home Energy Scotland and nidirect guidance. This is general information, not financial or professional advice; funding rules, amounts and deadlines change and vary by circumstance, so always confirm current eligibility with the relevant scheme, your council, or an MCS-certified installer before budgeting or buying.</p>
     </div>
   </div>
 </div>
@@ -2178,6 +2179,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 <script src="data.js?v=131" defer></script>
 <script src="logos.js?v=131" defer></script>
 <script src="product-images.js?v=1" defer></script>
+<script src="best-winners.js?v=1" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
 // ═══════════════ SEED DATA ═══════════════
@@ -2719,6 +2721,21 @@ function sortBy(k){
   const el=document.getElementById('sa-'+k);if(el){el.classList.add('on');el.textContent=sortDir===1?'↑':'↓';}
   applyFilters();
 }
+function trophyBadge(id){
+  if(typeof BEST_WINNERS==='undefined')return '';
+  const wins=BEST_WINNERS[id];
+  if(!wins||!wins.length)return '';
+  const label=wins.length>1?`🏆 #1 in ${wins.length} rankings`:`🏆 #1 · ${wins[0].title}`;
+  const tip=jsAttrEsc(wins.map(w=>w.title).join(' · '));
+  return `<span class="badge badge-trophy" title="${tip}">${label}</span>`;
+}
+function trophyModalHTML(id){
+  if(typeof BEST_WINNERS==='undefined')return '';
+  const wins=BEST_WINNERS[id];
+  if(!wins||!wins.length)return '';
+  const pills=wins.map(w=>`<a href="${w.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;background:#f6d873;color:#5c4a00;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;text-decoration:none">🏆 #1 &middot; ${jsAttrEsc(w.title)}</a>`).join('');
+  return `<div style="margin-bottom:1rem;display:flex;gap:6px;flex-wrap:wrap">${pills}</div>`;
+}
 function bc(t){return t==='Residential'?'badge-res':'badge-comm';}
 function hptc(h){return h==='ASHP'?'badge-ashp':h==='WSHP'?'badge-wshp':'badge-gshp';}
 function sc(s){return 'src-'+(s||'manual').replace(/[^a-z-]/g,'');}
@@ -2752,6 +2769,7 @@ function cardHTML(d){
         <div class="hp-card-name">${d.model}</div>
         ${d.product_code?'<div style="font-size:11px;color:var(--text3);font-family:DM Mono,monospace;margin-top:2px">'+d.product_code+'</div>':''}
         <div class="hp-card-badges">
+          ${trophyBadge(d.id)}
           <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
           <span class="badge badge-ref">${d.refrigerant}</span>
           <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
@@ -3108,6 +3126,7 @@ function openModal(id){
       <span class="badge badge-ref">${d.refrigerant}</span>
       <span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span>
     </div>
+    ${trophyModalHTML(d.id)}
     ${descBlock}
     ${copNote}
     <div class="spec-section">
