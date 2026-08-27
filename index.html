@@ -557,8 +557,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item burger-subitem" data-page="guide" onclick="showPage('guide');closeBurger()">Site Guide</button>
     <button class="burger-item burger-subitem" data-page="links" onclick="showPage('links');closeBurger()">Useful Links</button>
     </div>
-    <a class="burger-item" href="/news/" onclick="closeBurger()">News</a>
-    <button class="burger-item" data-page="contact" onclick="showPage('contact');closeBurger()">Contact</button>
+    <a class="burger-item" href="/news/" onclick="closeBurger()">News &amp; Insight</a>
+    <button class="burger-item" data-page="contact" onclick="showPage('contact');closeBurger()">About &amp; Contact us</button>
     <button class="burger-item" data-page="terms" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
   </div>
 </nav>
@@ -712,12 +712,6 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <label class="filter-label">Electrical supply</label>
           <select class="filt" id="filt-electrical" onchange="applyFilters()">
             <option value="">All electrical supplies</option>
-          </select>
-        </div>
-        <div class="filter-col">
-          <label class="filter-label">Verification</label>
-          <select class="filt" id="filt-verif" onchange="applyFilters()">
-            <option value="">Any status</option>
           </select>
         </div>
         <div class="filter-col">
@@ -2405,11 +2399,12 @@ const DEFAULT_GUIDE = {
   ]
 };
 const DEFAULT_CONTACT = {
-  title: 'Contact us',
+  title: 'About & Contact us',
   intro: 'Heat Pump Database is an independent resource for the UK heat pump market. Whether you are a homeowner researching your first installation, an installer looking for specification data, or a manufacturer who wants to ensure your products are accurately represented — we want to hear from you.',
   email: 'info@heatpumpdatabase.com',
   sections: [
     {id:'c0',title:'👤 About',body:'Heat Pump Database is built and maintained by Euan Brownlie, who works in the energy engineering industry with a particular focus on the design of district heating and cooling systems. Please note this site is operated in a personal capacity and does not represent the views of, or have the endorsement of, the individual\'s employer or any affiliated organisation.'},
+    {id:'c5',title:'🔍 How the data is verified',body:'Specifications are extracted from manufacturer datasheets and published technical documentation, and then <strong>every data point is checked by a human</strong> before it goes live. Capacities, COP and SCOP figures, test conditions, flow temperatures, refrigerants and noise levels are all read back against the source document rather than trusted to an automated import.<br><br>Every listing records the source it came from, and shows whether it has been through that manual check. Entries still awaiting verification are flagged as such rather than quietly presented as confirmed. Where a manufacturer publishes performance figures at non-standard test conditions, the conditions are stored alongside the value so you can compare like with like.<br><br>None of this makes the database infallible. Datasheets get revised, occasionally contradict themselves, and we do make mistakes. Every product page carries a &ldquo;Suggest a correction&rdquo; link, and corrections are genuinely welcome.'},
     {id:'c1',title:'📊 Data submissions & manufacturer partnerships',body:'If you are a heat pump manufacturer or distributor and would like your products included in the database, or would like to verify and update existing listings, please get in touch. We welcome official datasheets, technical specifications, and product catalogues. Accurate data helps the whole industry.'},
     {id:'c2',title:'✏️ Corrections & updates',body:'Spotted an error in a product listing? Have updated specifications or a discontinued model that should be flagged? Let us know the product, the field that needs correcting, and your source — we will review and update promptly.'},
     {id:'c3',title:'💬 General enquiries',body:'For questions about how to use the database, partnership opportunities, API access, or anything else, drop us a line at the email address above. We aim to respond within two working days.'},
@@ -2417,7 +2412,7 @@ const DEFAULT_CONTACT = {
   ]
 };
 let guideContent = JSON.parse(localStorage.getItem('hp_guide') || 'null') || JSON.parse(JSON.stringify(DEFAULT_GUIDE));
-let contactContent = JSON.parse(localStorage.getItem('hp_contact') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CONTACT));
+let contactContent = JSON.parse(localStorage.getItem('hp_contact_v2') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CONTACT));
 const DEFAULT_LINKS = {
   title: 'Useful Links',
   subtitle: 'Helpful resources for heat pump research, installation, and UK regulations.',
@@ -2633,10 +2628,6 @@ function populateFilters(){
   const es=document.getElementById('filt-electrical');
   es.innerHTML='<option value="">All electrical supplies</option>';
   [...new Set(db.filter(d=>d.electrical).map(d=>d.electrical))].sort().forEach(e=>{const o=document.createElement('option');o.value=e;o.textContent=e;es.appendChild(o);});
-  const vs=document.getElementById('filt-verif');
-  vs.innerHTML='<option value="">Any status</option>';
-  [...new Set(db.filter(d=>d.verified).map(d=>d.verified))].sort().forEach(src=>{const o=document.createElement('option');o.value=src;o.textContent=src;vs.appendChild(o);});
-  const oa=document.createElement('option');oa.value='__awaiting__';oa.textContent='Awaiting verification';vs.appendChild(oa);
 }
 function getRefCategory(ref){
   if(!ref)return 'unknown';
@@ -2721,7 +2712,6 @@ function getFiltered(){
   const mfr=document.getElementById('filt-mfr').value;
   const ref=document.getElementById('filt-ref').value;
   const refcat=document.getElementById('filt-refcat').value;
-  const verif=document.getElementById('filt-verif').value;
   const mcs=document.getElementById('filt-mcs').value;
   const hpm=document.getElementById('filt-hpm').value;
   const price=document.getElementById('filt-price').value;
@@ -2756,7 +2746,6 @@ function getFiltered(){
     if(SF.coolLo>0&&(d.cool_cap_max==null||d.cool_cap_max<SF.coolLo))return false;
     if(SF.coolHi<1000&&(d.cool_cap_max==null||d.cool_cap_max>SF.coolHi))return false;
     if(SF.flow>0&&(d.flow_temp_max==null||d.flow_temp_max<SF.flow))return false;
-    if(verif){if(verif==='__awaiting__'){if(d.verified)return false;}else if(d.verified!==verif)return false;}
     if(SF.sound<85){if(!isSoundPower(d)||d.noise>SF.sound)return false;}
     if(mcs==='mcs'&&!d.mcs_listed)return false;
     if(hpm==='hpm'&&!d.heatpumpmonitor_url)return false;
@@ -2830,7 +2819,7 @@ function applyFilters(){
   // Show/hide manufacturer profile card
   renderMfrProfile();
   // Show/hide clear button and filter badge
-  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price','filt-optemp'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
+  const activeCount=['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-mcs','filt-hpm','filt-price','filt-optemp'].filter(id=>{const e=document.getElementById(id);return e&&e.value;}).length+slidersActive();
   const hasFilters=document.getElementById('search-input').value||activeCount>0;
   document.getElementById('clear-filters-btn').style.display=hasFilters?'block':'none';
   const badge=document.getElementById('filter-badge');
@@ -2839,7 +2828,7 @@ function applyFilters(){
 }
 function clearAllFilters(){
   document.getElementById('search-input').value='';
-  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-verif','filt-mcs','filt-hpm','filt-price','filt-optemp'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  ['filt-hptype','filt-type','filt-mode','filt-mfr','filt-ref','filt-refcat','filt-electrical','filt-mcs','filt-hpm','filt-price','filt-optemp'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   resetSliderFilters();
   applyFilters();
 }
@@ -3263,7 +3252,6 @@ function openModal(id){
       <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
       <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
       <span class="badge badge-ref">${d.refrigerant}</span>
-      <span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span>
     </div>
     ${trophyModalHTML(d.id)}
     ${descBlock}
@@ -3828,7 +3816,7 @@ function exportClicks(){
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heatpumpdb_clicks.csv';a.click();
 }
 // ═══════════════ CMS: GUIDE & CONTACT ═══════════════
-function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact',JSON.stringify(contactContent));localStorage.setItem('hp_links_v6',JSON.stringify(linksContent));localStorage.setItem('hp_faq_v2',JSON.stringify(faqContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);if(typeof buildFaqJsonLd==='function')buildFaqJsonLd();}
+function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact_v2',JSON.stringify(contactContent));localStorage.setItem('hp_links_v6',JSON.stringify(linksContent));localStorage.setItem('hp_faq_v2',JSON.stringify(faqContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);if(typeof buildFaqJsonLd==='function')buildFaqJsonLd();}
 function renderGuidePage(){
   const g=guideContent;
   document.getElementById('guide-content').innerHTML=`

@@ -290,6 +290,13 @@ MFR_FILTER_CSS = """
 .mf-clear-btn{background:none;border:1px solid #e2e8e7;color:#42514f;font-size:12.5px;padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Inter',sans-serif}
 .mf-clear-btn:hover{border-color:#3ECCC0;color:#0D7377}
 .mfr-empty{display:none;color:#5b6b6b;font-size:14px;padding:32px 0;text-align:center}
+.news-filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.news-chip{background:#fff;border:1px solid #e2e8e7;color:#42514f;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;padding:7px 15px;border-radius:20px;cursor:pointer;transition:all .15s}
+.news-chip:hover{border-color:#3ECCC0;color:#0D7377}
+.news-chip.active{background:#0D7377;border-color:#0D7377;color:#fff}
+.news-chip .nf-n{font-weight:500;opacity:.65;margin-left:6px}
+.news-chip.is-empty{opacity:.5}
+.news-empty{display:none;color:#5b6b6b;font-size:14px;padding:34px 0;text-align:center}
 @media(max-width:720px){.mfr-filter-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.mfr-filter-grid{grid-template-columns:1fr}}
 
@@ -615,8 +622,8 @@ def burger_menu(active=None):
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
         + it("Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc")
         + knowledge_block
-        + it("News", f"{BASE_URL}/news/", "news")
-        + it("Contact", f"{BASE_URL}/#contact", "contact")
+        + it("News &amp; Insight", f"{BASE_URL}/news/", "news")
+        + it("About &amp; Contact us", f"{BASE_URL}/#contact", "contact")
         + it("Terms of Use", f"{BASE_URL}/#terms", "terms",
              extra=' style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)"')
     )
@@ -692,7 +699,7 @@ function trackOut(){{
 </div></main>
 <footer class="site"><div class="wrap">
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
-<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="{BASE_URL}/news/">News</a></p>
+<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="{BASE_URL}/news/">News &amp; Insight</a></p>
 </div></footer>
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
 <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
@@ -915,6 +922,33 @@ PRODUCT_IMAGE_BY_CODE = {
     "AE080BXYDEG/EU": ["samsung-ehs-mono-ht-quiet-1.jpg", "samsung-ehs-mono-ht-quiet-2.jpg", "samsung-ehs-mono-ht-quiet-3.jpg"],
     "AE120BXYDEG/EU": ["samsung-ehs-mono-ht-quiet-1.jpg", "samsung-ehs-mono-ht-quiet-2.jpg", "samsung-ehs-mono-ht-quiet-3.jpg"],
     "AE140BXYDEG/EU": ["samsung-ehs-mono-ht-quiet-1.jpg", "samsung-ehs-mono-ht-quiet-2.jpg", "samsung-ehs-mono-ht-quiet-3.jpg"],
+    # Ideal Heating: one photo set per range, used across every capacity in it.
+    # Ideal publishes range-level product photography rather than per-SKU shots,
+    # so this mirrors the manufacturer's own approach. Note that each range does
+    # span two cabinet sizes (HP290 4.5/6kW are 717x1299x426 vs 865x1385x523 for
+    # 8-14kW; Logic Air 4/5kW are 798x1095x518 vs 1008x1095x518 for 8/10kW), and
+    # the supplied renders show the larger one - exact dimensions for the specific
+    # SKU are always in the spec table on the page.
+    "241486": ["ideal-hp290-8-14kw-1-front.jpg", "ideal-hp290-8-14kw-2-left.jpg",
+               "ideal-hp290-8-14kw-3-right.jpg", "ideal-hp290-8-14kw-4-back.jpg"],
+    "241487": ["ideal-hp290-8-14kw-1-front.jpg", "ideal-hp290-8-14kw-2-left.jpg",
+               "ideal-hp290-8-14kw-3-right.jpg", "ideal-hp290-8-14kw-4-back.jpg"],
+    "241488": ["ideal-hp290-8-14kw-1-front.jpg", "ideal-hp290-8-14kw-2-left.jpg",
+               "ideal-hp290-8-14kw-3-right.jpg", "ideal-hp290-8-14kw-4-back.jpg"],
+    "241489": ["ideal-hp290-8-14kw-1-front.jpg", "ideal-hp290-8-14kw-2-left.jpg",
+               "ideal-hp290-8-14kw-3-right.jpg", "ideal-hp290-8-14kw-4-back.jpg"],
+    "241490": ["ideal-hp290-8-14kw-1-front.jpg", "ideal-hp290-8-14kw-2-left.jpg",
+               "ideal-hp290-8-14kw-3-right.jpg", "ideal-hp290-8-14kw-4-back.jpg"],
+    "241491": ["ideal-hp290-8-14kw-1-front.jpg", "ideal-hp290-8-14kw-2-left.jpg",
+               "ideal-hp290-8-14kw-3-right.jpg", "ideal-hp290-8-14kw-4-back.jpg"],
+    "AH750664": ["ideal-logic-air-1-front.jpg", "ideal-logic-air-2-left.jpg",
+                 "ideal-logic-air-3-right.jpg"],
+    "AH750665": ["ideal-logic-air-1-front.jpg", "ideal-logic-air-2-left.jpg",
+                 "ideal-logic-air-3-right.jpg"],
+    "AH750666": ["ideal-logic-air-1-front.jpg", "ideal-logic-air-2-left.jpg",
+                 "ideal-logic-air-3-right.jpg"],
+    "AH750667": ["ideal-logic-air-1-front.jpg", "ideal-logic-air-2-left.jpg",
+                 "ideal-logic-air-3-right.jpg"],
 }
 # Fallback for products with no product_code (Baxi, Clade, Fenagy, Intergas,
 # Octopus Energy, Rhoss, Sabroe all have null product_code in the source
@@ -2046,7 +2080,8 @@ def _news_row(article):
         thumb = f'<div class="news-row-thumb"><img src="{img_url}" alt="{esc(article["title"])}" loading="lazy"></div>'
     else:
         thumb = '<div class="news-row-thumb placeholder">Heat Pump Database</div>'
-    return (f'<a class="news-row" href="{url}">'
+    cat = article.get("category", "update")
+    return (f'<a class="news-row" data-cat="{esc(cat)}" href="{url}">'
             f'{thumb}'
             f'<div class="news-row-body">'
             f'{_news_cat_badge(article)}'
@@ -2056,23 +2091,56 @@ def _news_row(article):
             f'</div>'
             f'</a>')
 
+NEWS_FILTER_JS = """
+function newsFilter(btn){
+  var cat=btn.getAttribute('data-cat');
+  var chips=document.querySelectorAll('#news-filter .news-chip');
+  for(var i=0;i<chips.length;i++){chips[i].classList.toggle('active',chips[i]===btn);}
+  var rows=document.querySelectorAll('#news-list .news-row'),shown=0;
+  for(var j=0;j<rows.length;j++){
+    var match=(cat==='all'||rows[j].getAttribute('data-cat')===cat);
+    rows[j].style.display=match?'':'none';
+    if(match)shown++;
+  }
+  document.getElementById('news-empty').style.display=shown?'none':'block';
+}
+"""
+
 def render_news_index(articles):
     url = f"{BASE_URL}/news/"
-    title = f"News & Insights | {SITE_NAME}"
+    title = f"News & Insight | {SITE_NAME}"
     desc = ("Product press releases, site updates and data-driven insights from Heat Pump Database - "
             "including deep dives into the specification data behind every product in the database.")
-    crumb_items = [("Home", f"{BASE_URL}/"), ("News", None)]
+    crumb_items = [("Home", f"{BASE_URL}/"), ("News & Insight", None)]
     if articles:
         rows = "".join(_news_row(a) for a in articles)
-        body_inner = f'<div class="news-list">{rows}</div>'
+        # Category filter. Every category in NEWS_CATEGORY_LABEL gets a chip
+        # (not just the ones currently populated) so the taxonomy stays visible
+        # as new articles land; empty ones are dimmed but still selectable.
+        counts = {}
+        for a in articles:
+            c = a.get("category", "update")
+            counts[c] = counts.get(c, 0) + 1
+        chips = [f'<button type="button" class="news-chip active" data-cat="all" '
+                 f'onclick="newsFilter(this)">All<span class="nf-n">{len(articles)}</span></button>']
+        for key, label in NEWS_CATEGORY_LABEL.items():
+            n = counts.get(key, 0)
+            empty = " is-empty" if n == 0 else ""
+            chips.append(f'<button type="button" class="news-chip{empty}" data-cat="{esc(key)}" '
+                         f'onclick="newsFilter(this)">{esc(label)}<span class="nf-n">{n}</span></button>')
+        filter_bar = f'<div class="news-filter" id="news-filter">{"".join(chips)}</div>'
+        body_inner = (filter_bar
+                      + f'<div class="news-list" id="news-list">{rows}</div>'
+                      + '<p class="news-empty" id="news-empty">No articles in this category yet.</p>'
+                      + f'<script>{NEWS_FILTER_JS}</script>')
     else:
         body_inner = '<p style="color:#5b6b6b">No articles published yet - check back soon.</p>'
     body = (crumbs(crumb_items) +
-            '<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 8px">News &amp; Insights</h1>'
+            '<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 8px">News &amp; Insight</h1>'
             '<p style="color:#5b6b6b;font-size:15px;line-height:1.6;margin:0 0 24px;max-width:680px">'
             'New product press releases, site updates, and insights drawn directly from the specification '
             'data in this database.</p>' + body_inner)
-    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "News & Insights",
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "News & Insight",
           "description": desc, "url": url, "publisher": {"@type": "Organization", "name": SITE_NAME}}
     return page(title, desc, url, body, [ld, breadcrumb_jsonld(crumb_items, url)], og_type="website",
                 active="news", og_image=get_og_image())
@@ -2081,7 +2149,7 @@ def render_news_article(article, all_articles):
     url = f'{BASE_URL}/news/{article["slug"]}/'
     title = f'{article["title"]} | {SITE_NAME} News'
     desc = article.get("summary", article["title"])
-    crumb_items = [("Home", f"{BASE_URL}/"), ("News", f"{BASE_URL}/news/"), (article["title"], None)]
+    crumb_items = [("Home", f"{BASE_URL}/"), ("News & Insight", f"{BASE_URL}/news/"), (article["title"], None)]
     date_str = _news_date_str(article.get("date"))
     author = article.get("author")
     author_bit = f'<span> &middot; by {esc(author)}</span>' if author else ""
@@ -2108,7 +2176,7 @@ def render_news_article(article, all_articles):
     others = [a for a in all_articles if a["slug"] != article["slug"]][:3]
     related = ""
     if others:
-        related = ('<h2 style="font-size:18px;margin:34px 0 12px">More from News</h2>'
+        related = ('<h2 style="font-size:18px;margin:34px 0 12px">More from News &amp; Insight</h2>'
                     f'<div class="news-grid">{"".join(_news_card(a) for a in others)}</div>')
     body = (crumbs(crumb_items) +
             f'<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 10px;max-width:760px">{esc(article["title"])}</h1>'
