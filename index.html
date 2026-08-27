@@ -2400,11 +2400,12 @@ const DEFAULT_GUIDE = {
 };
 const DEFAULT_CONTACT = {
   title: 'About & Contact us',
-  intro: 'Heat Pump Database is an independent resource for the UK heat pump market. Whether you are a homeowner researching your first installation, an installer looking for specification data, or a manufacturer who wants to ensure your products are accurately represented — we want to hear from you.',
+  intro: '',
   email: 'info@heatpumpdatabase.com',
   sections: [
-    {id:'c0',title:'👤 About',body:'Heat Pump Database is built and maintained by Euan Brownlie, who works in the energy engineering industry with a particular focus on the design of district heating and cooling systems. Please note this site is operated in a personal capacity and does not represent the views of, or have the endorsement of, the individual\'s employer or any affiliated organisation.'},
-    {id:'c5',title:'🔍 How the data is verified',body:'Specifications are extracted from manufacturer datasheets and published technical documentation, and then <strong>every data point is checked by a human</strong> before it goes live. Capacities, COP and SCOP figures, test conditions, flow temperatures, refrigerants and noise levels are all read back against the source document rather than trusted to an automated import.<br><br>Every listing records the source it came from, and shows whether it has been through that manual check. Entries still awaiting verification are flagged as such rather than quietly presented as confirmed. Where a manufacturer publishes performance figures at non-standard test conditions, the conditions are stored alongside the value so you can compare like with like.<br><br>None of this makes the database infallible. Datasheets get revised, occasionally contradict themselves, and we do make mistakes. Every product page carries a &ldquo;Suggest a correction&rdquo; link, and corrections are genuinely welcome.'},
+    {id:'c0',title:'👤 About',body:'Heat Pump Database is built and maintained by Euan Brownlie, a chartered engineer who works in the energy decarbonisation industry with a particular focus on the design of district heating and cooling systems. Please note this site is operated in a personal capacity and does not represent the views of, or have the endorsement of, the individual\'s employer or any affiliated organisation.'},
+    {id:'c6',title:'🧭 Why?',body:'Heating is one of the hardest parts of decarbonisation to get right, and the choices put in front of homeowners and specifiers are rarely presented fairly. Comparisons are shaped by whoever is paying for the placement, and the figures that matter most are buried in a datasheet or left out altogether.<br><br>This site puts the same specifications, presented the same way, for every manufacturer. It is free to use and will stay that way, because information meant to make the market fairer has no business sitting behind a paywall.'},
+    {id:'c5',title:'🔍 How the data is verified',body:'Specifications are extracted from manufacturer datasheets and published technical documentation, and <strong>every data point is then checked by a human</strong> before it goes live. Each listing records the source it came from, and where a manufacturer quotes performance at non-standard test conditions, those conditions are stored alongside the figure so you can compare like with like.<br><br>Datasheets get revised and we do make mistakes, so every product page carries a &ldquo;Suggest a correction&rdquo; link. Corrections are genuinely welcome.'},
     {id:'c1',title:'📊 Data submissions & manufacturer partnerships',body:'If you are a heat pump manufacturer or distributor and would like your products included in the database, or would like to verify and update existing listings, please get in touch. We welcome official datasheets, technical specifications, and product catalogues. Accurate data helps the whole industry.'},
     {id:'c2',title:'✏️ Corrections & updates',body:'Spotted an error in a product listing? Have updated specifications or a discontinued model that should be flagged? Let us know the product, the field that needs correcting, and your source — we will review and update promptly.'},
     {id:'c3',title:'💬 General enquiries',body:'For questions about how to use the database, partnership opportunities, API access, or anything else, drop us a line at the email address above. We aim to respond within two working days.'},
@@ -2412,7 +2413,7 @@ const DEFAULT_CONTACT = {
   ]
 };
 let guideContent = JSON.parse(localStorage.getItem('hp_guide') || 'null') || JSON.parse(JSON.stringify(DEFAULT_GUIDE));
-let contactContent = JSON.parse(localStorage.getItem('hp_contact_v2') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CONTACT));
+let contactContent = JSON.parse(localStorage.getItem('hp_contact_v7') || 'null') || JSON.parse(JSON.stringify(DEFAULT_CONTACT));
 const DEFAULT_LINKS = {
   title: 'Useful Links',
   subtitle: 'Helpful resources for heat pump research, installation, and UK regulations.',
@@ -3816,7 +3817,7 @@ function exportClicks(){
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heatpumpdb_clicks.csv';a.click();
 }
 // ═══════════════ CMS: GUIDE & CONTACT ═══════════════
-function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact_v2',JSON.stringify(contactContent));localStorage.setItem('hp_links_v6',JSON.stringify(linksContent));localStorage.setItem('hp_faq_v2',JSON.stringify(faqContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);if(typeof buildFaqJsonLd==='function')buildFaqJsonLd();}
+function saveCMS(){localStorage.setItem('hp_guide',JSON.stringify(guideContent));localStorage.setItem('hp_contact_v7',JSON.stringify(contactContent));localStorage.setItem('hp_links_v6',JSON.stringify(linksContent));localStorage.setItem('hp_faq_v2',JSON.stringify(faqContent));localStorage.setItem('hp_hero_sub',heroSubtitle);localStorage.setItem('hp_copyright',copyrightText);if(typeof buildFaqJsonLd==='function')buildFaqJsonLd();}
 function renderGuidePage(){
   const g=guideContent;
   document.getElementById('guide-content').innerHTML=`
@@ -3829,7 +3830,7 @@ function renderContactPage(){
   document.getElementById('contact-content').innerHTML=`
     <div style="background:linear-gradient(135deg,#0F2B2B,#0D5555);border-radius:14px;padding:2rem 2.25rem;margin:1rem 0 1.5rem;color:#fff">
       <h1 style="font-size:26px;margin:0 0 .5rem">${c.title}</h1>
-      <p style="font-size:14px;line-height:1.7;opacity:.85;max-width:640px;margin:0 0 1.1rem">${c.intro}</p>
+      ${c.intro?`<p style="font-size:14px;line-height:1.7;opacity:.85;max-width:640px;margin:0 0 1.1rem">${c.intro}</p>`:''}
       <a href="mailto:${c.email}" style="display:inline-flex;align-items:center;gap:8px;background:#3ECCC0;color:#0F2B2B;font-weight:600;font-size:14px;padding:9px 18px;border-radius:24px;text-decoration:none">📧 ${c.email}</a>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
