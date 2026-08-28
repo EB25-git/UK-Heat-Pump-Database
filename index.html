@@ -785,6 +785,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         <div style="display:flex;gap:8px;align-items:center">
           <button class="btn btn-sm btn-primary" onclick="exportComparePDF()">⬇ Export PDF</button>
           <button class="btn btn-sm" onclick="exportCompareCSV()">⬇ Export Excel</button>
+          <button class="btn btn-sm" onclick="copyCompareLink()" title="Copy a link that reopens this comparison">🔗 Copy link</button>
         </div>
         <p style="font-size:11px;color:var(--text3);margin-top:6px">Export limited to 3 products &middot; photo/article options apply to the PDF export</p>
       </div>
@@ -2317,7 +2318,688 @@ document.addEventListener('DOMContentLoaded', function(){
 // hp_type: ASHP | WSHP | GSHP
 // UK suppliers / distributors per manufacturer (brand-level). Strict JSON so build.py can parse it.
 // Each: {"direct": <url|null>, "suppliers": [{"name","url"}, ... up to 5]}
-const MFR_SUPPLIERS = {"Baxi": {"direct": null, "suppliers": [{"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]}, "Bosch": {"direct": null, "suppliers": [{"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}, {"name": "BHL", "url": "https://bhl.co.uk/heating-plumbing/renewable.html"}]}, "CTC": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/product-category/heat-pumps/air-source-heat-pumps/ctc/"}]}, "Daikin": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/"}, {"name": "Space Air", "url": "https://www.spaceair.co.uk/"}, {"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]}, "Ebac": {"direct": null, "suppliers": [{"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}]}, "Fenagy": {"direct": null, "suppliers": [{"name": "Pure Renewables", "url": "https://purerenewables.com/commercial-renewables-solutions/fenagy/"}]}, "Grant": {"direct": null, "suppliers": [{"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}, {"name": "BHL", "url": "https://bhl.co.uk/heating-plumbing/renewable.html"}, {"name": "Pirate Heating Supplies", "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/grant-uk-heat-pumps-air-to-water-heat-pumps/"}]}, "Hitachi": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/"}, {"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}]}, "Ideal Heating": {"direct": null, "suppliers": [{"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}]}, "Kensa": {"direct": "https://www.kensaheatpumps.com/", "suppliers": []}, "LG": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/"}]}, "Midea": {"direct": null, "suppliers": [{"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]}, "Mitsubishi Electric": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/"}, {"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}, {"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}, {"name": "BHL", "url": "https://bhl.co.uk/heating-plumbing/renewable.html"}]}, "Octopus Energy": {"direct": "https://octopus.energy/", "suppliers": []}, "Panasonic": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/"}, {"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}]}, "Samsung": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/"}, {"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}, {"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}]}, "Solid Energy": {"direct": null, "suppliers": [{"name": "Pure Renewables", "url": "https://purerenewables.com/commercial-renewables-solutions/solid-energy/"}]}, "Thermonova": {"direct": null, "suppliers": [{"name": "Pure Renewables", "url": "https://purerenewables.com/commercial-renewables-solutions/thermonova/"}]}, "Vaillant": {"direct": null, "suppliers": [{"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/"}, {"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}, {"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"}, {"name": "Pirate Heating Supplies", "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/vaillant-arotherm-plus-heat-pumps/"}]}, "Viessmann": {"direct": null, "suppliers": [{"name": "Secon Renewables", "url": "https://www.seconrenewables.com/"}, {"name": "Pirate Heating Supplies", "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/viessmann-vitocal-heat-pumps/"}]}, "Riello": {"direct": null, "suppliers": [{"name": "Midsummer Wholesale", "url": "https://midsummerwholesale.co.uk/buy/riello-heat-pumps"}, {"name": "UK Renewable Supplies", "url": "https://www.ukrenewablesupplies.co.uk/collections/riello"}]}, "Stiebel Eltron": {"direct": null, "suppliers": [{"name": "Midsummer Wholesale", "url": "https://midsummerwholesale.co.uk/buy/stiebel-eltron"}, {"name": "Heat Pump Central", "url": "https://www.heatpumpcentral.co.uk/products/ground-source-heat-pumps/stiebel-eltron-ground-source-heat-pumps"}]}, "Trianco": {"direct": null, "suppliers": [{"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/content/brands/trianco"}, {"name": "Cool Energy", "url": "https://coolenergyshop.com/collections/trinaco-air-source-heat-pumps"}]}, "Nibe": {"direct": null, "suppliers": [{"name": "Baxter Heat Pumps", "url": "https://www.baxterheatpumps.co.uk/"}, {"name": "IMS Heat Pumps", "url": "https://www.imsheatpumps.co.uk/nibe/"}]}, "Hisa": {"direct": null, "suppliers": [{"name": "VPS Underfloor Heating", "url": "https://www.vpsunderfloorheating.co.uk/?s=hisa&post_type=product"}]}, "InstaGen": {"direct": "https://www.instagroup.co.uk/instagen-home/renewables/air-source-heat-pumps/", "suppliers": []}, "Kronoterm": {"direct": null, "suppliers": [{"name": "Krono Heat Pumps (UK distributor)", "url": "https://kronohp.co.uk/products"}, {"name": "Simply Renewables", "url": "https://simplyrenewables.uk/kronoterm-heat-pumps/"}, {"name": "Smith Brothers Stores", "url": "https://sbs.co.uk"}]}, "Warmflow": {"direct": null, "suppliers": [{"name": "Plumbnation", "url": "https://www.plumbnation.co.uk/warmflow-air-source-heat-pumps-1935-0000"}, {"name": "Inspired Heating", "url": "https://www.inspiredheating.co.uk/warmflow-zeno-air-source-heat-pumps"}, {"name": "Wolseley", "url": "https://www.wolseley.co.uk/renewables/ground-source-heat-pumps/"}, {"name": "City Plumbing", "url": "https://www.cityplumbing.co.uk/p/warmflow-gshp-modulating-4-5-18kw/p/933298"}]}, "Intergas": {"direct": null, "suppliers": [{"name": "Pirate Heating Supplies", "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/intergas-heat-pumps/"}, {"name": "The Heat Pump Warehouse", "url": "https://www.theheatpumpwarehouse.co.uk/product-category/heat-pumps/air-source-heat-pumps/intergas/"}]}, "M-Tec": {"direct": "https://mtec-systems.co.uk/", "suppliers": []}, "Wondrwall": {"direct": "https://wondrwall.com/products/air-source-heat-pump/", "suppliers": []}, "Adlar": {"direct": "https://adlar.co.uk/", "suppliers": []}, "Sabroe": {"direct": "https://www.sabroe.com/", "suppliers": []}, "Rhoss": {"direct": "https://www.rhoss.com/", "suppliers": [{"name": "Klima-Therm (UK distributor)", "url": "https://klima-therm.co.uk/partners/rhoss/"}]}
+const MFR_SUPPLIERS = {
+  "Baxi": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"
+      },
+      {
+        "name": "Eco Wizard",
+        "url": "https://www.ecowizard.co.uk/heat-pumps/?brand=baxi"
+      },
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      },
+      {
+        "name": "Spares Direct",
+        "url": "https://spares-direct.com/collections/air-source-heat-pumps"
+      }
+    ]
+  },
+  "Bosch": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"
+      },
+      {
+        "name": "BHL",
+        "url": "https://bhl.co.uk/heating-plumbing/renewable.html"
+      },
+      {
+        "name": "Eco Wizard",
+        "url": "https://www.ecowizard.co.uk/heat-pumps/?brand=bosch"
+      },
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      },
+      {
+        "name": "Boilers n Bits",
+        "url": "https://boilersnbits.co.uk/"
+      },
+      {
+        "name": "Spares Direct",
+        "url": "https://spares-direct.com/collections/air-source-heat-pumps"
+      }
+    ]
+  },
+  "CTC": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/product-category/heat-pumps/air-source-heat-pumps/ctc/"
+      }
+    ]
+  },
+  "Daikin": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/"
+      },
+      {
+        "name": "Space Air",
+        "url": "https://www.spaceair.co.uk/"
+      },
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"
+      },
+      {
+        "name": "The Underfloor Heating Store",
+        "url": "https://www.theunderfloorheatingstore.com/collections/air-source-heat-pumps"
+      }
+    ]
+  },
+  "Ebac": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      }
+    ]
+  },
+  "Fenagy": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Pure Renewables",
+        "url": "https://purerenewables.com/commercial-renewables-solutions/fenagy/"
+      }
+    ]
+  },
+  "Grant": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      },
+      {
+        "name": "BHL",
+        "url": "https://bhl.co.uk/heating-plumbing/renewable.html"
+      },
+      {
+        "name": "Pirate Heating Supplies",
+        "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/grant-uk-heat-pumps-air-to-water-heat-pumps/"
+      },
+      {
+        "name": "The Underfloor Heating Store",
+        "url": "https://www.theunderfloorheatingstore.com/collections/air-source-heat-pumps"
+      },
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      },
+      {
+        "name": "HVAC-Sanitary",
+        "url": "https://www.hvac-sanitary.co.uk/"
+      },
+      {
+        "name": "OceanAir",
+        "url": "https://www.oceanairuk.com/collections/panasonic-air-source-heat-pump"
+      },
+      {
+        "name": "PlumbXtra",
+        "url": "https://plumbxtra.com/air-source-heat-pumps.html"
+      },
+      {
+        "name": "Spares Direct",
+        "url": "https://spares-direct.com/collections/air-source-heat-pumps"
+      },
+      {
+        "name": "Wickes",
+        "url": "https://www.wickes.co.uk/Products/Renewable-Energy/Heat-Pumps/Air-Source-Heat-Pumps/c/1001027"
+      }
+    ]
+  },
+  "Hitachi": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/"
+      },
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      }
+    ]
+  },
+  "Ideal Heating": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      },
+      {
+        "name": "Eco Wizard",
+        "url": "https://www.ecowizard.co.uk/heat-pumps/?brand=ideal"
+      },
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      },
+      {
+        "name": "Boilers n Bits",
+        "url": "https://boilersnbits.co.uk/"
+      },
+      {
+        "name": "OceanAir",
+        "url": "https://www.oceanairuk.com/collections/panasonic-air-source-heat-pump"
+      },
+      {
+        "name": "Spares Direct",
+        "url": "https://spares-direct.com/collections/air-source-heat-pumps"
+      }
+    ]
+  },
+  "Kensa": {
+    "direct": "https://www.kensaheatpumps.com/",
+    "suppliers": []
+  },
+  "LG": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/"
+      },
+      {
+        "name": "CoolEasy",
+        "url": "https://cooleasy.co.uk/collections/fitted-heating-systems"
+      }
+    ]
+  },
+  "Midea": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      }
+    ]
+  },
+  "Mitsubishi Electric": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/"
+      },
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      },
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"
+      },
+      {
+        "name": "BHL",
+        "url": "https://bhl.co.uk/heating-plumbing/renewable.html"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      }
+    ]
+  },
+  "Octopus Energy": {
+    "direct": "https://octopus.energy/",
+    "suppliers": []
+  },
+  "Panasonic": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/"
+      },
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      },
+      {
+        "name": "OceanAir",
+        "url": "https://www.oceanairuk.com/collections/panasonic-air-source-heat-pump"
+      }
+    ]
+  },
+  "Samsung": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/"
+      },
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      },
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"
+      },
+      {
+        "name": "Eco Wizard",
+        "url": "https://www.ecowizard.co.uk/heat-pumps/?brand=samsung"
+      },
+      {
+        "name": "The Underfloor Heating Store",
+        "url": "https://www.theunderfloorheatingstore.com/collections/air-source-heat-pumps"
+      },
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      },
+      {
+        "name": "Beet BG",
+        "url": "https://beetbg.com/collections/clivet"
+      },
+      {
+        "name": "Boilers n Bits",
+        "url": "https://boilersnbits.co.uk/"
+      },
+      {
+        "name": "CoolEasy",
+        "url": "https://cooleasy.co.uk/collections/fitted-heating-systems"
+      },
+      {
+        "name": "ElementShop",
+        "url": "https://www.elementshop.co.uk/air-source-heat-pump-kits/heat-pumps"
+      },
+      {
+        "name": "Wickes",
+        "url": "https://www.wickes.co.uk/Products/Renewable-Energy/Heat-Pumps/Air-Source-Heat-Pumps/c/1001027"
+      }
+    ]
+  },
+  "Solid Energy": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Pure Renewables",
+        "url": "https://purerenewables.com/commercial-renewables-solutions/solid-energy/"
+      }
+    ]
+  },
+  "Thermonova": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Pure Renewables",
+        "url": "https://purerenewables.com/commercial-renewables-solutions/thermonova/"
+      }
+    ]
+  },
+  "Vaillant": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/"
+      },
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      },
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/c/product/renewables/heat-pumps/air-source-heat-pumps/c/1800139/"
+      },
+      {
+        "name": "Pirate Heating Supplies",
+        "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/vaillant-arotherm-plus-heat-pumps/"
+      },
+      {
+        "name": "Eco Wizard",
+        "url": "https://www.ecowizard.co.uk/heat-pumps/?brand=vaillant"
+      },
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      },
+      {
+        "name": "Beet BG",
+        "url": "https://beetbg.com/collections/clivet"
+      },
+      {
+        "name": "Boilers n Bits",
+        "url": "https://boilersnbits.co.uk/"
+      },
+      {
+        "name": "GetPlumb",
+        "url": "https://getplumb.co.uk/collections/all"
+      },
+      {
+        "name": "Wickes",
+        "url": "https://www.wickes.co.uk/Products/Renewable-Energy/Heat-Pumps/Air-Source-Heat-Pumps/c/1001027"
+      }
+    ]
+  },
+  "Viessmann": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Secon Renewables",
+        "url": "https://www.seconrenewables.com/"
+      },
+      {
+        "name": "Pirate Heating Supplies",
+        "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/viessmann-vitocal-heat-pumps/"
+      },
+      {
+        "name": "Beet BG",
+        "url": "https://beetbg.com/collections/clivet"
+      },
+      {
+        "name": "GetPlumb",
+        "url": "https://getplumb.co.uk/collections/all"
+      },
+      {
+        "name": "Solar Trading",
+        "url": "https://solartradinguk.co.uk/product-category/heat-pumps/"
+      }
+    ]
+  },
+  "Riello": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Midsummer Wholesale",
+        "url": "https://midsummerwholesale.co.uk/buy/riello-heat-pumps"
+      },
+      {
+        "name": "UK Renewable Supplies",
+        "url": "https://www.ukrenewablesupplies.co.uk/collections/riello"
+      },
+      {
+        "name": "Eco Wizard",
+        "url": "https://www.ecowizard.co.uk/heat-pumps/?brand=riello"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      }
+    ]
+  },
+  "Stiebel Eltron": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Midsummer Wholesale",
+        "url": "https://midsummerwholesale.co.uk/buy/stiebel-eltron"
+      },
+      {
+        "name": "Heat Pump Central",
+        "url": "https://www.heatpumpcentral.co.uk/products/ground-source-heat-pumps/stiebel-eltron-ground-source-heat-pumps"
+      }
+    ]
+  },
+  "Trianco": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/content/brands/trianco"
+      },
+      {
+        "name": "Cool Energy",
+        "url": "https://coolenergyshop.com/collections/trinaco-air-source-heat-pumps"
+      },
+      {
+        "name": "SNH Trade Centre",
+        "url": "https://snhtradecentre.co.uk/product-category/heating-cooling/"
+      }
+    ]
+  },
+  "Nibe": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Baxter Heat Pumps",
+        "url": "https://www.baxterheatpumps.co.uk/"
+      },
+      {
+        "name": "IMS Heat Pumps",
+        "url": "https://www.imsheatpumps.co.uk/nibe/"
+      }
+    ]
+  },
+  "Hisa": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "VPS Underfloor Heating",
+        "url": "https://www.vpsunderfloorheating.co.uk/?s=hisa&post_type=product"
+      }
+    ]
+  },
+  "InstaGen": {
+    "direct": "https://www.instagroup.co.uk/instagen-home/renewables/air-source-heat-pumps/",
+    "suppliers": []
+  },
+  "Kronoterm": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Krono Heat Pumps (UK distributor)",
+        "url": "https://kronohp.co.uk/products"
+      },
+      {
+        "name": "Simply Renewables",
+        "url": "https://simplyrenewables.uk/kronoterm-heat-pumps/"
+      },
+      {
+        "name": "Smith Brothers Stores",
+        "url": "https://sbs.co.uk"
+      }
+    ]
+  },
+  "Warmflow": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Plumbnation",
+        "url": "https://www.plumbnation.co.uk/warmflow-air-source-heat-pumps-1935-0000"
+      },
+      {
+        "name": "Inspired Heating",
+        "url": "https://www.inspiredheating.co.uk/warmflow-zeno-air-source-heat-pumps"
+      },
+      {
+        "name": "Wolseley",
+        "url": "https://www.wolseley.co.uk/renewables/ground-source-heat-pumps/"
+      },
+      {
+        "name": "City Plumbing",
+        "url": "https://www.cityplumbing.co.uk/p/warmflow-gshp-modulating-4-5-18kw/p/933298"
+      },
+      {
+        "name": "HVAC-Sanitary",
+        "url": "https://www.hvac-sanitary.co.uk/"
+      },
+      {
+        "name": "Spares Direct",
+        "url": "https://spares-direct.com/collections/air-source-heat-pumps"
+      }
+    ]
+  },
+  "Intergas": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Pirate Heating Supplies",
+        "url": "https://pirateheatingsupplies.com/product-category/heat-pumps-mwphs/heat-pumps/air-to-water-heat-pumps/intergas-heat-pumps/"
+      },
+      {
+        "name": "The Heat Pump Warehouse",
+        "url": "https://www.theheatpumpwarehouse.co.uk/product-category/heat-pumps/air-source-heat-pumps/intergas/"
+      }
+    ]
+  },
+  "M-Tec": {
+    "direct": "https://mtec-systems.co.uk/",
+    "suppliers": []
+  },
+  "Wondrwall": {
+    "direct": "https://wondrwall.com/products/air-source-heat-pump/",
+    "suppliers": []
+  },
+  "Adlar": {
+    "direct": "https://adlar.co.uk/",
+    "suppliers": []
+  },
+  "Sabroe": {
+    "direct": "https://www.sabroe.com/",
+    "suppliers": []
+  },
+  "Rhoss": {
+    "direct": "https://www.rhoss.com/",
+    "suppliers": [
+      {
+        "name": "Klima-Therm (UK distributor)",
+        "url": "https://klima-therm.co.uk/partners/rhoss/"
+      }
+    ]
+  },
+  "EcoFlow": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Eco Wizard",
+        "url": "https://www.ecowizard.co.uk/heat-pumps/?brand=ecoflow"
+      }
+    ]
+  },
+  "Clivet": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Beet BG",
+        "url": "https://beetbg.com/collections/clivet"
+      }
+    ]
+  },
+  "Navien": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Plumbing Superstore",
+        "url": "https://www.plumbingsuperstore.co.uk/browse/heating-ventilation/heat-pumps.html"
+      },
+      {
+        "name": "Mr Central Heating",
+        "url": "https://www.mrcentralheating.co.uk/heat-pumps/air-to-water-heat-pumps"
+      },
+      {
+        "name": "Quality Heating",
+        "url": "https://qualityheating.co.uk/collections/air-source-heat-pump"
+      },
+      {
+        "name": "HVAC-Sanitary",
+        "url": "https://www.hvac-sanitary.co.uk/"
+      }
+    ]
+  },
+  "Cool Energy": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "SNH Trade Centre",
+        "url": "https://snhtradecentre.co.uk/product-category/heating-cooling/"
+      }
+    ]
+  },
+  "Haier": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "HVAC-Sanitary",
+        "url": "https://www.hvac-sanitary.co.uk/"
+      }
+    ]
+  },
+  "Hisense": {
+    "direct": null,
+    "suppliers": [
+      {
+        "name": "Solar Trading",
+        "url": "https://solartradinguk.co.uk/product-category/heat-pumps/"
+      }
+    ]
+  }
 };
 // ═══════════════ MANUFACTURER URLs ═══════════════
 // Manufacturer/model-range -> [{type,title,source,url,date,note}]. Source of truth is
@@ -3356,6 +4038,7 @@ function addCompare(id){
   // Update the button on the card
   const btn=document.getElementById('cmp-btn-'+id);
   if(btn){btn.textContent='✓ Added';btn.classList.add('added');}
+  syncCompareHash();
   showToast(`<strong>${name}</strong> added to compare (${compareIds.length}/3). Visit the <strong>Compare</strong> tab to review.`);
 }
 function showToast(html){
@@ -3367,6 +4050,54 @@ function showToast(html){
   setTimeout(()=>{t.style.animation='toastOut .3s ease forwards';setTimeout(()=>t.remove(),300);},4000);
 }
 function removeCompare(id){compareIds=compareIds.filter(x=>x!==id);renderCompare();}
+// ── Shareable compare links ──────────────────────────────────────────
+// The selection lives in the URL hash (#compare=id,id,id) so a comparison
+// can be sent to someone else and opened exactly as it was left.
+function compareShareUrl(){
+  return location.origin+location.pathname+(compareIds.length?'#compare='+compareIds.join(','):'#compare');
+}
+function syncCompareHash(){
+  // Only rewrite the address bar while the compare page is actually showing,
+  // and use replaceState so we don't push a history entry per add/remove.
+  const pc=document.getElementById('page-compare');
+  if(!pc||!pc.classList.contains('show'))return;
+  try{history.replaceState(null,'',compareShareUrl());}catch(e){}
+}
+function copyCompareLink(){
+  if(!compareIds.length){showToast('Add some units to compare first.');return;}
+  const url=compareShareUrl();
+  const ok=()=>showToast('Link copied. Whoever opens it will see this same comparison.');
+  const fallback=()=>{
+    const ta=document.createElement('textarea');
+    ta.value=url;ta.setAttribute('readonly','');
+    ta.style.position='fixed';ta.style.top='-1000px';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    let copied=false;
+    try{copied=document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    copied?ok():showToast('Could not copy automatically &mdash; the link is in your address bar.');
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(ok).catch(fallback);
+  }else{fallback();}
+}
+function applyCompareFromHash(raw){
+  const wanted=String(raw||'').split(',')
+    .map(v=>parseInt(v,10)).filter(v=>Number.isFinite(v));
+  if(!wanted.length)return false;
+  const found=[],missing=[];
+  wanted.forEach(id=>{
+    if(found.length>=3)return;
+    (db.find(d=>d.id===id)?found:missing).push(id);
+  });
+  compareIds=found;
+  if(missing.length){
+    showToast(missing.length+' product'+(missing.length>1?'s':'')+' in that link '+
+              (missing.length>1?'are':'is')+' no longer in the database and '+
+              (missing.length>1?'were':'was')+' skipped.');
+  }
+  return true;
+}
 function getCompareExportItems(){
   const items=compareIds.map(id=>db.find(d=>d.id===id)).filter(Boolean);
   if(!items.length){showToast('No units selected to export.');return null;}
@@ -3598,6 +4329,7 @@ function renderCompare(){
       return `<tr><td style="color:var(--text3);font-size:12px">${l}${cmpInfo(k,l)}</td>${items.map(d=>{const v=d[rk];const isNum=typeof v==='number';const isBest=isNum&&numVals.length>1&&v===best;return `<td class="mv${isBest?' acc':''}">${k==='_noise'?fmtNoise(d):(v!=null?v:'—')}</td>`;}).join('')}</tr>`;
     }).join('')}
   </tbody></table></div>`;
+  syncCompareHash();
 }
 // ═══════════════ ADMIN OVERVIEW ═══════════════
 function renderOverview(){
@@ -4271,7 +5003,17 @@ renderFooter();
 // Hash routing: lets links from the static SEO pages deep-link into in-app sections (e.g. /#compare)
 (function(){
   var valid=['browse','compare','analytics','knowledge','faq','links','refrigerants','cop-scop','flow-temp','install-costs','funding','guide','contact','terms'];
-  function route(){var h=(location.hash||'').replace(/^#/,'');if(valid.indexOf(h)>-1)showPage(h);}
+  function route(){
+    var h=(location.hash||'').replace(/^#/,'');
+    var eq=h.indexOf('='), page=eq>-1?h.slice(0,eq):h, payload=eq>-1?h.slice(eq+1):'';
+    if(valid.indexOf(page)===-1)return;
+    if(page==='compare'&&payload){
+      if(applyCompareFromHash(decodeURIComponent(payload))){
+        if(typeof renderGrid==='function')renderGrid();   // refresh the "+ Compare" button states
+      }
+    }
+    showPage(page);
+  }
   window.addEventListener('hashchange',route);
   route();
 })();
@@ -4458,6 +5200,7 @@ window.clearAllFilters = clearAllFilters;
 window.closeBrowseGuide = closeBrowseGuide;
 window.closeBurger = closeBurger;
 window.closeModal = closeModal;
+window.copyCompareLink = copyCompareLink;
 window.declineCookies = declineCookies;
 window.deleteContactSection = deleteContactSection;
 window.deleteEditingEntry = deleteEditingEntry;
