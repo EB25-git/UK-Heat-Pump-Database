@@ -620,6 +620,7 @@ def burger_menu(active=None):
         + compare_block
         + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
         + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
+        + it("Gallery", f"{BASE_URL}/#gallery", "gallery")
         + it("Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc")
         + knowledge_block
         + it("News &amp; Insight", f"{BASE_URL}/news/", "news")
@@ -819,6 +820,56 @@ def get_logo_url(mfr):
 PRODUCT_IMAGE_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "product-images")
 PRODUCT_IMAGE_OUT_DIR = "images/products"
 PRODUCT_IMAGE_BY_CODE = {
+    # Viessmann ground-source families: one product shot per range, applied to
+    # every capacity in that range (the cabinet is identical across outputs).
+    "Vitocal 300-G BWC 301.C06": "viessmann-vitocal-300g.png",
+    "Vitocal 300-G BWC 301.C12": "viessmann-vitocal-300g.png",
+    "Vitocal 300-G BWC 301.C16": "viessmann-vitocal-300g.png",
+    "Vitocal 300-G Pro BW 301.B090": ["viessmann-vitocal-300g-pro-1.png", "viessmann-vitocal-300g-pro-2.jpg"],
+    "Vitocal 300-G Pro BW 301.B120": ["viessmann-vitocal-300g-pro-1.png", "viessmann-vitocal-300g-pro-2.jpg"],
+    "Vitocal 300-G Pro BW 302.B090": ["viessmann-vitocal-300g-pro-1.png", "viessmann-vitocal-300g-pro-2.jpg"],
+    "Vitocal 300-G Pro BW 302.B120": ["viessmann-vitocal-300g-pro-1.png", "viessmann-vitocal-300g-pro-2.jpg"],
+    "Vitocal 300-G Pro BW 302.B150": ["viessmann-vitocal-300g-pro-1.png", "viessmann-vitocal-300g-pro-2.jpg"],
+    "Vitocal 300-G Pro BW 302.B180": ["viessmann-vitocal-300g-pro-1.png", "viessmann-vitocal-300g-pro-2.jpg"],
+    "Vitocal 300-G Pro BW 302.B250": ["viessmann-vitocal-300g-pro-1.png", "viessmann-vitocal-300g-pro-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A027": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A034": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A056": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A076": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A097": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A114": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A132": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A155": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A170": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    "Vitocal 350-G Pro BW 352.A197": ["viessmann-vitocal-350g-1.png", "viessmann-vitocal-350g-2.jpg"],
+    # Viessmann (supplied Aug 2026). Vitocal 150-A and 200-A each use two
+    # cabinets: a single-fan low unit for 4/6/8 kW and a taller twin-fan unit
+    # on a floor stand from 10 kW up - confirmed from the photos, not the
+    # filenames. Viessmann ships the same photo for the standard, compact and
+    # hybrid variants (the three supplied files are byte-identical), so one
+    # image serves all of them. 400V models share their 230V sibling's photo.
+    "Vitocal 150-A04": ["viessmann-vitocal-150a-small-1.jpg", "viessmann-vitocal-150a-small-2.jpg"],
+    "Vitocal 150-A06": ["viessmann-vitocal-150a-small-1.jpg", "viessmann-vitocal-150a-small-2.jpg"],
+    "Vitocal 150-A08": ["viessmann-vitocal-150a-small-1.jpg", "viessmann-vitocal-150a-small-2.jpg"],
+    "Vitocal 150-A10 230V": ["viessmann-vitocal-150a-large-1.png", "viessmann-vitocal-150a-large-2.jpg", "viessmann-vitocal-150a-large-3.jpg"],
+    "Vitocal 150-A13 230V": ["viessmann-vitocal-150a-large-1.png", "viessmann-vitocal-150a-large-2.jpg", "viessmann-vitocal-150a-large-3.jpg"],
+    "Vitocal 150-A16 230V": ["viessmann-vitocal-150a-large-1.png", "viessmann-vitocal-150a-large-2.jpg", "viessmann-vitocal-150a-large-3.jpg"],
+    "Vitocal 150-A10 400V": ["viessmann-vitocal-150a-large-1.png", "viessmann-vitocal-150a-large-2.jpg", "viessmann-vitocal-150a-large-3.jpg"],
+    "Vitocal 150-A13 400V": ["viessmann-vitocal-150a-large-1.png", "viessmann-vitocal-150a-large-2.jpg", "viessmann-vitocal-150a-large-3.jpg"],
+    "Vitocal 150-A16 400V": ["viessmann-vitocal-150a-large-1.png", "viessmann-vitocal-150a-large-2.jpg", "viessmann-vitocal-150a-large-3.jpg"],
+    "Vitocal 200-A 201.A04": "viessmann-vitocal-200a-small.jpg",
+    "Vitocal 200-A 201.A06": "viessmann-vitocal-200a-small.jpg",
+    "Vitocal 200-A 201.A08": "viessmann-vitocal-200a-small.jpg",
+    "Vitocal 200-A 201.A010": "viessmann-vitocal-200a-large.jpg",
+    "Vitocal 200-A 201.A13": "viessmann-vitocal-200a-large.jpg",
+    "Vitocal 200-A 201.A16": "viessmann-vitocal-200a-large.jpg",
+    "Vitocal 222-A 221.A04": "viessmann-vitocal-222a.png",
+    "Vitocal 222-A 221.A06": "viessmann-vitocal-222a.png",
+    "Vitocal 222-A 221.A08": "viessmann-vitocal-222a.png",
+    "Vitocal 222-A 221.A010": "viessmann-vitocal-222a.png",
+    "Vitocal 222-A 221.A13": "viessmann-vitocal-222a.png",
+    "Vitocal 222-A 221.A16": "viessmann-vitocal-222a.png",
+    "AWO-AC-AF 251.A40": ["viessmann-vitocal-250a-pro-1.jpg", "viessmann-vitocal-250a-pro-2.jpg"],
     "HPID6R32": "grant-aerona3-r32-6kw.jpg",
     "HPID10R32": "grant-aerona3-r32-10kw.jpg",
     "HPID13R32": "grant-aerona3-r32-13-17kw.jpg",
