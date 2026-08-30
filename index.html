@@ -2352,9 +2352,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<script src="data.js?v=133" defer></script>
+<script src="data.js?v=134" defer></script>
 <script src="logos.js?v=131" defer></script>
-<script src="product-images.js?v=3" defer></script>
+<script src="product-images.js?v=5" defer></script>
 <script src="best-winners.js?v=1" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
@@ -3447,7 +3447,9 @@ function getFiltered(){
   const optemp=document.getElementById('filt-optemp').value;
   const electrical=document.getElementById('filt-electrical').value;
   return db.filter(d=>{
-    if(q&&!`${d.manufacturer} ${d.model} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''}`.toLowerCase().includes(q))return false;
+    // Aliases carry the Ofgem PEL / MCS names and retailer part numbers, so a
+    // search for the name printed on a certificate or invoice finds the product.
+    if(q&&!`${d.manufacturer} ${d.model} ${d.product_code||''} ${(d.aliases||[]).join(' ')} ${d.refrigerant} ${d.type} ${d.hp_type} ${d.cop_cond||''}`.toLowerCase().includes(q))return false;
     if(hpt&&d.hp_type!==hpt)return false;
     if(seg&&d.type!==seg)return false;
         if(mod&&(d.mode||'Heating only')!==mod)return false;
@@ -3970,6 +3972,10 @@ function openModal(id){
   const isWater=d.hp_type==='WSHP'||d.hp_type==='GSHP';
   const copNote=d.cop!=null?`<div class="cop-explain">COP <strong>${d.cop}</strong> quoted at <strong>${d.cop_cond||'unspecified conditions'}</strong>. ${d.cop_cond==='A7/W35'?'This is the standard ASHP test condition (EN 14511): +7°C outdoor air, 35°C leaving water.':d.cop_cond&&d.cop_cond.startsWith('W')?'This is a water-source test condition. Water-source COPs are typically higher than ASHP figures and are not directly comparable.':d.cop_cond&&d.cop_cond.startsWith('B')?'This is the standard brine-water (GSHP) test condition: 0°C brine in, 35°C leaving water.':'Non-standard test point — compare with caution against products tested at different conditions.'}</div>`:'';
   const descBlock=d.description?`<div style="padding:12px 16px;background:var(--surface2);border-radius:var(--radius);margin-bottom:1rem;font-size:13px;color:var(--text2);line-height:1.7">${d.description}</div>`:'';
+  // Same 'Also known as' line the static product pages carry: alternate names
+  // from the Ofgem PEL, MCS certificates and retailer catalogues.
+  const akaList=(d.aliases||[]).filter(a=>a&&String(a).trim()&&String(a).trim()!==d.model);
+  const akaBlock=akaList.length?`<div style="font-size:12.5px;color:var(--text3);margin:-4px 0 12px">Also known as: <span style="color:var(--text)">${akaList.map(a=>jsAttrEsc(a)).join(', ')}</span></div>`:'';
   const photoEntry=(typeof PRODUCT_IMAGES!=='undefined'&&(PRODUCT_IMAGES[d.product_code]||PRODUCT_IMAGES[d.id]))||'';
   const photoList=Array.isArray(photoEntry)?photoEntry:(photoEntry?[photoEntry]:[]);
   const photoSrc=photoList[0]||'';
@@ -3982,6 +3988,7 @@ function openModal(id){
       <span class="badge ${d.mode==='Heating & cooling'?'badge-cool':'badge-heat'}">${d.mode||'Heating only'}</span>
       <span class="badge badge-ref">${d.refrigerant}</span>
     </div>
+    ${akaBlock}
     ${trophyModalHTML(d.id)}
     ${descBlock}
     ${copNote}

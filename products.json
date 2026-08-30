@@ -7683,7 +7683,11 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZS%2060%2C80%2C100",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "mcs_cert": "041-K001-50 a",
+  "aliases": [
+   "WZSV 42K3M"
+  ]
  },
  {
   "id": 310,
@@ -7836,7 +7840,11 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=WZS%2060%2C80%2C100",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "mcs_cert": "041-K001-13 c",
+  "aliases": [
+   "WZSV 122(H)(K)3M"
+  ]
  },
  {
   "id": 313,
@@ -9366,7 +9374,11 @@
   "price_check_date": "2026-07-10",
   "mcs_listed": true,
   "mcs_cert": "ICIM-PDC-000111 / 01-01",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NIMBUS%20PLUS%2035%20M%20NET%20R32"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NIMBUS%20PLUS%2035%20M%20NET%20R32",
+  "aliases": [
+   "NIMBUS PLUS 35 M NET R32",
+   "NIMBUS 35/50 M - PLUS/LB"
+  ]
  },
  {
   "id": 343,
@@ -9418,7 +9430,11 @@
   "price_check_date": "2026-07-10",
   "mcs_listed": true,
   "mcs_cert": "ICIM-PDC-000111 / 01-02",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NIMBUS%20PLUS%2050%20M%20NET%20R32"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NIMBUS%20PLUS%2050%20M%20NET%20R32",
+  "aliases": [
+   "NIMBUS PLUS 50 M NET R32",
+   "NIMBUS 35/50 M - PLUS/LB"
+  ]
  },
  {
   "id": 344,
@@ -12167,7 +12183,8 @@
   "price_max": 4022.48,
   "price_check_date": "28/08/2026",
   "aliases": [
-   "Worcester Bosch Compress 2000 AWF 10kW (230V)"
+   "Worcester Bosch Compress 2000 AWF 10kW (230V)",
+   "CS2000AWF 10 R-S"
   ],
   "mcs_listed": true,
   "mcs_cert": "041-K044-02 b",
@@ -22639,7 +22656,10 @@
   "mcs_cert": "BBA 0055/46",
   "price_min": 5295.0,
   "price_max": 5295.0,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "Shoebox NX 3"
+  ]
  },
  {
   "id": 602,
@@ -22743,7 +22763,11 @@
   "mcs_cert": "BBA 0055/31",
   "price_min": 4625.0,
   "price_max": 4625.0,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "Type 3kW Shoebox Single Compressor Single Phase – S3-P0K",
+   "Type 3kW Shoebox Single Compressor Single Phase"
+  ]
  },
  {
   "id": 604,
@@ -23109,7 +23133,12 @@
   "price_max": 2962.32,
   "price_check_date": "28/08/2026",
   "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=378",
-  "price_source": "UK retailer survey (26 retailers)"
+  "price_source": "UK retailer survey (26 retailers)",
+  "mcs_cert": "KIWA 00027/024 HP",
+  "aliases": [
+   "Ideal Logic Air 4kW",
+   "Ideal Logic Air"
+  ]
  },
  {
   "id": 611,
@@ -23162,7 +23191,12 @@
   "price_max": 3133.22,
   "price_check_date": "28/08/2026",
   "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=66",
-  "price_source": "UK retailer survey (26 retailers)"
+  "price_source": "UK retailer survey (26 retailers)",
+  "mcs_cert": "KIWA 00027/023 HP",
+  "aliases": [
+   "Ideal Logic Air 5kW",
+   "Ideal Logic Air"
+  ]
  },
  {
   "id": 612,
@@ -23215,7 +23249,12 @@
   "price_max": 3485.83,
   "price_check_date": "28/08/2026",
   "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=68",
-  "price_source": "UK retailer survey (26 retailers)"
+  "price_source": "UK retailer survey (26 retailers)",
+  "mcs_cert": "KIWA 00027/021 HP",
+  "aliases": [
+   "Ideal Logic Air 8kW",
+   "Ideal Logic Air"
+  ]
  },
  {
   "id": 613,
@@ -23267,7 +23306,12 @@
   "price_min": 3170,
   "price_max": 4050.7,
   "price_check_date": "28/08/2026",
-  "price_source": "UK retailer survey (26 retailers)"
+  "price_source": "UK retailer survey (26 retailers)",
+  "mcs_cert": "KIWA 00027/022 HP",
+  "aliases": [
+   "Ideal Logic Air 10kW",
+   "Ideal Logic Air"
+  ]
  },
  {
   "id": 614,
@@ -23472,7 +23516,12 @@
   "price_min": 3328,
   "price_max": 3967.37,
   "price_check_date": "28/08/2026",
-  "price_source": "UK retailer survey (26 retailers)"
+  "price_source": "UK retailer survey (26 retailers)",
+  "mcs_cert": "24.04.001 HP290 Monobloc 10kW",
+  "aliases": [
+   "HP290 Monobloc 10kW",
+   "HP290"
+  ]
  },
  {
   "id": 618,
@@ -60863,7 +60912,8 @@
   "price_min": null,
   "price_max": null,
   "price_check_date": null,
-  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=17"
+  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=17",
+  "mcs_cert": "MCS HP0255/03"
  },
  {
   "id": 1445,
@@ -60915,7 +60965,8 @@
   "price_min": null,
   "price_max": null,
   "price_check_date": null,
-  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=685"
+  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=685",
+  "mcs_cert": "MCS HP0255/04"
  },
  {
   "id": 1446,
@@ -61235,7 +61286,10 @@
   "mcs_cert": "011-1W0981_01",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 05.2 Trend HC 230"
+  ]
  },
  {
   "id": 1458,
@@ -61287,7 +61341,10 @@
   "mcs_cert": "011-1W0981_02",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 07.2 Trend HC 230"
+  ]
  },
  {
   "id": 1459,
@@ -61339,7 +61396,10 @@
   "mcs_cert": "011-1W0981",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 10.2 Trend HC 230"
+  ]
  },
  {
   "id": 1460,
@@ -61391,7 +61451,10 @@
   "mcs_cert": "011-1W0982_01",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 13.2 Trend HC 230"
+  ]
  },
  {
   "id": 1461,
@@ -61443,7 +61506,10 @@
   "mcs_cert": "011-1W0982",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 13.2 Trend HC 400"
+  ]
  },
  {
   "id": 1462,
@@ -61495,7 +61561,10 @@
   "mcs_cert": "011-1W1166_01",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 17.2 Trend HC 400"
+  ]
  },
  {
   "id": 1463,
@@ -61548,7 +61617,10 @@
   "price_min": null,
   "price_max": null,
   "price_check_date": null,
-  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=965"
+  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=965",
+  "aliases": [
+   "HPA-O 07.2 Plus HC 230"
+  ]
  },
  {
   "id": 1464,
@@ -61600,7 +61672,10 @@
   "mcs_cert": "011-1W0979_01",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 10.2 Plus HC 230"
+  ]
  },
  {
   "id": 1465,
@@ -61652,7 +61727,10 @@
   "mcs_cert": "011-1W0979",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 10.2 Plus HC 400"
+  ]
  },
  {
   "id": 1466,
@@ -61704,7 +61782,10 @@
   "mcs_cert": "011-1W0980",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 13.2 Plus HC 400"
+  ]
  },
  {
   "id": 1467,
@@ -61756,7 +61837,10 @@
   "mcs_cert": "011-1W0978_01",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 07.2 W Plus HC 230"
+  ]
  },
  {
   "id": 1468,
@@ -61808,7 +61892,10 @@
   "mcs_cert": "011-1W0979_02",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 10.2 W Plus HC 230"
+  ]
  },
  {
   "id": 1469,
@@ -61860,7 +61947,10 @@
   "mcs_cert": "011-1W0979_03",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 10.2 W Plus HC 400"
+  ]
  },
  {
   "id": 1470,
@@ -61912,7 +62002,10 @@
   "mcs_cert": "011-1W0980_01",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "HPA-O 13.2 W Plus HC 400"
+  ]
  },
  {
   "id": 1471,
@@ -61964,7 +62057,10 @@
   "mcs_cert": "011-1W0393_02",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "WPL-A 07 HK 230 Premium"
+  ]
  },
  {
   "id": 1472,
@@ -62016,7 +62112,11 @@
   "mcs_cert": "012-C700369",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "WPE-I 07.1 Plus H 230",
+   "WPE-I 07.1 Plus H(W)"
+  ]
  },
  {
   "id": 1473,
@@ -62068,7 +62168,11 @@
   "mcs_cert": "012-C700370",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "WPE-I 12.1 Plus H 230",
+   "WPE-I 12.1 Plus H(W)"
+  ]
  },
  {
   "id": 1474,
@@ -62224,7 +62328,10 @@
   "mcs_cert": "011-1W0332",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "WPE-I 33 H 400 Premium"
+  ]
  },
  {
   "id": 1477,
@@ -62276,7 +62383,10 @@
   "mcs_cert": "011-1W0333",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "aliases": [
+   "WPE-I 44 H 400 Premium"
+  ]
  },
  {
   "id": 1478,
@@ -66542,7 +66652,8 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=LA%206%20MI",
   "price_min": null,
   "price_max": null,
-  "price_check_date": null
+  "price_check_date": null,
+  "mcs_cert": "MCS HP0017/39"
  },
  {
   "id": 1565,
@@ -66593,7 +66704,7 @@
   "price_max": null,
   "price_check_date": null,
   "mcs_listed": true,
-  "mcs_cert": "A8M",
+  "mcs_cert": "MCS HP0017/37",
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=A8M"
  },
  {
@@ -67484,7 +67595,10 @@
   "price_check_date": "2026-07-07",
   "mcs_listed": true,
   "mcs_cert": "MCS HP0369/01",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=H1A05%2A%2A-GB"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=H1A05%2A%2A-GB",
+  "aliases": [
+   "H1A05**-GB"
+  ]
  },
  {
   "id": 1589,
@@ -67587,7 +67701,10 @@
   "price_check_date": "2026-07-07",
   "mcs_listed": true,
   "mcs_cert": "MCS HP0369/02",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=H1D09%2A%2A-GB"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=H1D09%2A%2A-GB",
+  "aliases": [
+   "H1D09**-GB"
+  ]
  },
  {
   "id": 1591,
@@ -67690,7 +67807,10 @@
   "price_check_date": "2026-07-15",
   "mcs_listed": true,
   "mcs_cert": "MCS HP0289/03",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Activair%20High%20Temp%205kw"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Activair%20High%20Temp%205kw",
+  "aliases": [
+   "Activair High Temp 5kw"
+  ]
  },
  {
   "id": 1593,
@@ -69054,7 +69174,11 @@
   "price_check_date": null,
   "mcs_listed": true,
   "mcs_cert": "047-A1001",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CTC%20EcoAir%20C106%201x230V"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CTC%20EcoAir%20C106%201x230V",
+  "aliases": [
+   "CTC EcoAir C106 1x230V",
+   "CTC EcoAir C106"
+  ]
  },
  {
   "id": 1620,
@@ -69262,7 +69386,11 @@
   "price_check_date": "2026-07-15",
   "mcs_listed": true,
   "mcs_cert": "047-A1008_1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CTC%20EcoAir%20C108%203x400V"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CTC%20EcoAir%20C108%203x400V",
+  "aliases": [
+   "CTC EcoAir C108 3x400V",
+   "CTC EcoAir C108"
+  ]
  },
  {
   "id": 1624,
@@ -69314,7 +69442,11 @@
   "price_check_date": "2026-07-15",
   "mcs_listed": true,
   "mcs_cert": "047-A1009_1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CTC%20EcoAir%20C112%203x400V"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CTC%20EcoAir%20C112%203x400V",
+  "aliases": [
+   "CTC EcoAir C112 3x400V",
+   "CTC EcoAir C112"
+  ]
  },
  {
   "id": 1625,
@@ -96342,7 +96474,10 @@
   "price_min": 5110.33,
   "price_max": 5110.33,
   "price_check_date": "2026-08-03",
-  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1096"
+  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1096",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96395,7 +96530,10 @@
   "price_min": 5459.44,
   "price_max": 5459.44,
   "price_check_date": "2026-08-03",
-  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=193"
+  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=193",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96447,7 +96585,10 @@
   "id": 2173,
   "price_min": 5905.75,
   "price_max": 5905.75,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96499,7 +96640,10 @@
   "id": 2174,
   "price_min": 5380.93,
   "price_max": 5380.93,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96551,7 +96695,10 @@
   "id": 2175,
   "price_min": 5730.04,
   "price_max": 5730.04,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96603,7 +96750,10 @@
   "id": 2176,
   "price_min": 6176.35,
   "price_max": 6176.35,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96655,7 +96805,10 @@
   "id": 2177,
   "price_min": 6227.28,
   "price_max": 6227.28,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96707,7 +96860,10 @@
   "id": 2178,
   "price_min": 6576.39,
   "price_max": 6576.39,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -96759,7 +96915,10 @@
   "id": 2179,
   "price_min": 7022.7,
   "price_max": 7022.7,
-  "price_check_date": "2026-08-03"
+  "price_check_date": "2026-08-03",
+  "aliases": [
+   "EPRA14DV - ETB(H/X)16D6V"
+  ]
  },
  {
   "manufacturer": "Daikin",
@@ -102387,7 +102546,10 @@
   "price_check_date": "2026-07-18 00:00:00",
   "mcs_listed": true,
   "mcs_cert": "037-0102-22-1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Grandis-N"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Grandis-N",
+  "aliases": [
+   "Acond Grandis-N"
+  ]
  },
  {
   "id": 2288,
@@ -102489,7 +102651,10 @@
   "price_check_date": "2026-07-18 00:00:00",
   "mcs_listed": true,
   "mcs_cert": "037-0103-22-1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Grandis-R"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Grandis-R",
+  "aliases": [
+   "Acond Grandis-R"
+  ]
  },
  {
   "id": 2290,
@@ -102540,8 +102705,11 @@
   "price_max": null,
   "price_check_date": "2026-07-18 00:00:00",
   "mcs_listed": true,
-  "mcs_cert": "037-0103-22-2",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Grandis-R%20SP"
+  "mcs_cert": "037-0103-22-1",
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Grandis-R%20SP",
+  "aliases": [
+   "Acond Grandis-R"
+  ]
  },
  {
   "id": 2291,
@@ -102593,7 +102761,11 @@
   "price_check_date": "2026-07-10",
   "mcs_listed": true,
   "mcs_cert": "037-0075-22",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20PRO-N"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20PRO-N",
+  "aliases": [
+   "Acond PRO-N",
+   "Acond Pro-N"
+  ]
  },
  {
   "id": 2292,
@@ -102645,7 +102817,11 @@
   "price_check_date": "2026-07-10",
   "mcs_listed": true,
   "mcs_cert": "037-0076-22-1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20PRO-R"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20PRO-R",
+  "aliases": [
+   "Acond PRO-R",
+   "Acond Pro-R"
+  ]
  },
  {
   "id": 2293,
@@ -102697,7 +102873,10 @@
   "price_check_date": null,
   "mcs_listed": true,
   "mcs_cert": "037-0183-24",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Aconomis%20S"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Aconomis%20S",
+  "aliases": [
+   "Acond Aconomis S"
+  ]
  },
  {
   "id": 2294,
@@ -102748,8 +102927,11 @@
   "price_max": null,
   "price_check_date": null,
   "mcs_listed": true,
-  "mcs_cert": "037-0184-24",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Aconomis%20N"
+  "mcs_cert": "037-0183-24",
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=Acond%20Aconomis%20N",
+  "aliases": [
+   "Acond Aconomis S"
+  ]
  },
  {
   "manufacturer": "Panasonic",
@@ -105649,7 +105831,11 @@
   "noise": 56,
   "noise_ref": "Sound Power LW(A)",
   "description": "Airwell Wellea Split is a 4.25 kW air source heat pump, providing heating and cooling, using R32 refrigerant.",
-  "id": 2349
+  "id": 2349,
+  "aliases": [
+   "AW-YHPSA04-H91 + AW-WHPSA0406-N91",
+   "Wellea"
+  ]
  },
  {
   "manufacturer": "Airwell",
@@ -106868,7 +107054,10 @@
   "noise_ref": null,
   "description": "Lailey and Coates Monobloc Inverter Heat Pump (R290 EVI) is a 6.15 kW air source heat pump, providing heating and cooling, using R290 refrigerant.",
   "notes": "Keymark certified. Cap/power/COP at A7/W35 given as a range (1.68-6.15 kW, COP 2.76-7.65) spanning the unit's full -25–+43°C ambient operating range (capacity and COP fall at colder ambient) rather than a single test point - cap_max/cop here use the top (warmest-ambient) end of that range. Rated power input 2.6kW, rated current 11.3A. Marketing bullet points say ambient range is -10–+43°C, but the datasheet's own test conditions specify -25–+43°C - used the more precise datasheet figure. No separate cooling capacity/EER were published for this R290 range (unlike the R32 line, which has them) despite 'heating and cooling functions available' being listed as a feature - cooling fields left blank rather than guessed.",
-  "id": 2372
+  "id": 2372,
+  "aliases": [
+   "LCM-60R / LCM-R"
+  ]
  },
  {
   "manufacturer": "Lailey and Coates",
@@ -106921,7 +107110,10 @@
   "noise_ref": null,
   "description": "Lailey and Coates Monobloc Inverter Heat Pump (R290 EVI) is a 9.55 kW air source heat pump, providing heating and cooling, using R290 refrigerant.",
   "notes": "Keymark certified. Cap/power/COP at A7/W35 given as a range (2.52-9.55 kW, COP 2.93-7.45) spanning the unit's full -25–+43°C ambient operating range (capacity and COP fall at colder ambient) rather than a single test point - cap_max/cop here use the top (warmest-ambient) end of that range. Rated power input 4.1kW, rated current 18A. Marketing bullet points say ambient range is -10–+43°C, but the datasheet's own test conditions specify -25–+43°C - used the more precise datasheet figure. No separate cooling capacity/EER were published for this R290 range (unlike the R32 line, which has them) despite 'heating and cooling functions available' being listed as a feature - cooling fields left blank rather than guessed.",
-  "id": 2373
+  "id": 2373,
+  "aliases": [
+   "LCM-100R / LCM-R"
+  ]
  },
  {
   "manufacturer": "Lailey and Coates",
@@ -106974,7 +107166,10 @@
   "noise_ref": null,
   "description": "Lailey and Coates Monobloc Inverter Heat Pump (R290 EVI) is a 12.95 kW air source heat pump, providing heating and cooling, using R290 refrigerant.",
   "notes": "Keymark certified. Cap/power/COP at A7/W35 given as a range (3.43-12.95 kW, COP 2.95-7.69) spanning the unit's full -25–+43°C ambient operating range (capacity and COP fall at colder ambient) rather than a single test point - cap_max/cop here use the top (warmest-ambient) end of that range. Rated power input 5.75kW, rated current 25A. Marketing bullet points say ambient range is -10–+43°C, but the datasheet's own test conditions specify -25–+43°C - used the more precise datasheet figure. No separate cooling capacity/EER were published for this R290 range (unlike the R32 line, which has them) despite 'heating and cooling functions available' being listed as a feature - cooling fields left blank rather than guessed.",
-  "id": 2374
+  "id": 2374,
+  "aliases": [
+   "LCM-150R / LCM-R"
+  ]
  },
  {
   "manufacturer": "Lailey and Coates",
@@ -107027,7 +107222,10 @@
   "noise_ref": null,
   "description": "Lailey and Coates Monobloc Inverter Heat Pump (R290 EVI) is a 17.25 kW air source heat pump, providing heating and cooling, using R290 refrigerant.",
   "notes": "Keymark certified. Cap/power/COP at A7/W35 given as a range (4.55-17.25 kW, COP 2.99-7.57) spanning the unit's full -25–+43°C ambient operating range (capacity and COP fall at colder ambient) rather than a single test point - cap_max/cop here use the top (warmest-ambient) end of that range. Rated power input 7.15kW, rated current 31A. Marketing bullet points say ambient range is -10–+43°C, but the datasheet's own test conditions specify -25–+43°C - used the more precise datasheet figure. No separate cooling capacity/EER were published for this R290 range (unlike the R32 line, which has them) despite 'heating and cooling functions available' being listed as a feature - cooling fields left blank rather than guessed.",
-  "id": 2375
+  "id": 2375,
+  "aliases": [
+   "LCM-180R / LCM-R"
+  ]
  },
  {
   "manufacturer": "Atlantic",
@@ -118236,7 +118434,10 @@
   "price_min": null,
   "price_max": null,
   "price_check_date": null,
-  "heatpumpmonitor_url": null
+  "heatpumpmonitor_url": null,
+  "aliases": [
+   "V-Therm S-MIDI"
+  ]
  },
  {
   "id": 2590,
@@ -124038,7 +124239,10 @@
   "price_check_date": null,
   "mcs_listed": true,
   "mcs_cert": "011-1W0885_1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=2222000142599"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=2222000142599",
+  "aliases": [
+   "ETERA S-1 HT / HK UF E"
+  ]
  },
  {
   "id": 2702,
@@ -124090,7 +124294,10 @@
   "price_check_date": null,
   "mcs_listed": true,
   "mcs_cert": "011-1W0886_1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETERA-M-UF"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ETERA-M-UF",
+  "aliases": [
+   "ETERA M-1 HT / HK UF E"
+  ]
  },
  {
   "id": 2703,
@@ -124142,7 +124349,10 @@
   "price_check_date": null,
   "mcs_listed": true,
   "mcs_cert": "011-1W0886_2",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=2222000142612"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=2222000142612",
+  "aliases": [
+   "ETERA M-1 HT / HK 3F E"
+  ]
  },
  {
   "id": 2704,
@@ -124194,7 +124404,10 @@
   "price_check_date": null,
   "mcs_listed": true,
   "mcs_cert": "011-1W0887_1",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=2222000142629"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=2222000142629",
+  "aliases": [
+   "ETERA L-1 HT / HK 3F E"
+  ]
  },
  {
   "id": 2705,
@@ -124247,7 +124460,10 @@
   "mcs_listed": true,
   "mcs_cert": "011-1W0519_01",
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=VERSI-O%201F",
-  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=881"
+  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=881",
+  "aliases": [
+   "VERSI-O 0209-K1 HT / HK 1F"
+  ]
  },
  {
   "id": 2706,
@@ -124403,7 +124619,10 @@
   "price_check_date": null,
   "mcs_listed": true,
   "mcs_cert": "011-1W0519_02",
-  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=VERSI-X%201F"
+  "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=VERSI-X%201F",
+  "aliases": [
+   "VERSI-X 0209-K1 HT / HK 1F"
+  ]
  },
  {
   "id": 2709,
@@ -125134,7 +125353,7 @@
   "price_max": 10624.69,
   "price_check_date": "2026-07-17",
   "mcs_listed": true,
-  "mcs_cert": "BSI KM 612798/12",
+  "mcs_cert": "KM 612798/12",
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=GS03"
  },
  {
@@ -125623,7 +125842,10 @@
   "price_min": 2892.24,
   "price_max": 3199.06,
   "price_check_date": "2026-07-20",
-  "heatpumpmonitor_url": null
+  "heatpumpmonitor_url": null,
+  "aliases": [
+   "Xtend 5 mono FT"
+  ]
  },
  {
   "id": 2732,
@@ -125676,7 +125898,10 @@
   "price_min": 2892.24,
   "price_max": 3199.06,
   "price_check_date": "2026-07-20",
-  "heatpumpmonitor_url": null
+  "heatpumpmonitor_url": null,
+  "aliases": [
+   "Xtend 5"
+  ]
  },
  {
   "id": 2733,
@@ -127590,7 +127815,10 @@
   "price_min": null,
   "price_max": null,
   "price_check_date": null,
-  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1173"
+  "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1173",
+  "aliases": [
+   "Aurora II - 6kW"
+  ]
  },
  {
   "id": 2769,
@@ -127643,7 +127871,10 @@
   "price_min": null,
   "price_max": null,
   "price_check_date": null,
-  "heatpumpmonitor_url": null
+  "heatpumpmonitor_url": null,
+  "aliases": [
+   "Aurora II - 10kW"
+  ]
  },
  {
   "id": 2770,
@@ -127696,7 +127927,10 @@
   "price_min": null,
   "price_max": null,
   "price_check_date": null,
-  "heatpumpmonitor_url": null
+  "heatpumpmonitor_url": null,
+  "aliases": [
+   "Aurora II - 14kW"
+  ]
  },
  {
   "id": 2771,
@@ -173105,7 +173339,9 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AIR%2018%20C11B",
   "mcs_cert": "BBA 0037/31",
   "heatpumpmonitor_url": null,
-  "aliases": null
+  "aliases": [
+   "OCHSNER AIR 18 C11B"
+  ]
  },
  {
   "id": 3618,
@@ -173213,7 +173449,9 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AIR%2029%20C12A",
   "mcs_cert": "BBA 0037/32",
   "heatpumpmonitor_url": null,
-  "aliases": null
+  "aliases": [
+   "OCHSNER AIR 29 C12A"
+  ]
  },
  {
   "id": 3620,
@@ -173483,7 +173721,9 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AIR%20HAWK%20518%20C11A",
   "mcs_cert": "BBA 0037/30",
   "heatpumpmonitor_url": null,
-  "aliases": null
+  "aliases": [
+   "OCHSNER AIR HAWK 518 C11A"
+  ]
  },
  {
   "id": 3625,
@@ -173591,7 +173831,9 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AIR%20HAWK%20726%20C12A",
   "mcs_cert": "BBA 0037/33",
   "heatpumpmonitor_url": null,
-  "aliases": null
+  "aliases": [
+   "OCHSNER HAWK 726 C12A"
+  ]
  },
  {
   "id": 3627,
@@ -173645,7 +173887,9 @@
   "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=AIR%20HAWK%201850%20C12A",
   "mcs_cert": "BBA 0037/34",
   "heatpumpmonitor_url": null,
-  "aliases": null
+  "aliases": [
+   "OCHSNER HAWK 1850 C12A"
+  ]
  },
  {
   "id": 3628,

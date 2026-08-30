@@ -912,25 +912,20 @@ PRODUCT_IMAGE_BY_CODE = {
     "ADAPTMAX10070": ["kronoterm-adaptmax-10070.jpg", "kronoterm-adaptmax-install.jpg"],
     "ADAPTMAX10105": "kronoterm-adaptmax-10105.jpg",
     "ADAPTMAX10140": "kronoterm-adaptmax-10140.jpg",
-    "ADAPT-S-2": "kronoterm-adapt-2-s.jpg",
-    "ADAPT-2-M-1F": ["kronoterm-adapt-2-m-corten.jpg", "kronoterm-adapt-2-m-olio.jpg"],
-    "ADAPT-2-M-3F": ["kronoterm-adapt-2-m-corten.jpg", "kronoterm-adapt-2-m-olio.jpg"],
-    "ADAPT-2-L": "kronoterm-adapt-2-l.jpg",
+    # Adapt 2: per-size hero shot first, then the two range-wide images
+    # (an installed detail shot and Kronoterm's six-finish colour chart),
+    # which apply to every size in the range.
+    "ADAPT-S-2": ["kronoterm-adapt-2-s.jpg", "kronoterm-adapt-2-detail.jpg", "kronoterm-adapt-2-finishes.png"],
+    "ADAPT-2-M-1F": ["kronoterm-adapt-2-m-corten.jpg", "kronoterm-adapt-2-m-olio.jpg", "kronoterm-adapt-2-detail.jpg", "kronoterm-adapt-2-finishes.png"],
+    "ADAPT-2-M-3F": ["kronoterm-adapt-2-m-corten.jpg", "kronoterm-adapt-2-m-olio.jpg", "kronoterm-adapt-2-detail.jpg", "kronoterm-adapt-2-finishes.png"],
+    "ADAPT-2-L": ["kronoterm-adapt-2-l.jpg", "kronoterm-adapt-2-detail.jpg", "kronoterm-adapt-2-finishes.png"],
     # Etera (GSHP): identical casing across S/M/L UF and L 3F variants. Hero
     # studio shot, plus a real-world showroom photo and the manufacturer's
     # pipe-connection configuration diagrams as gallery extras.
-    "2222000142599": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
-                       "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
-                       "kronoterm-etera-connections-3.jpg"],
-    "ETERA-M-UF": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
-                   "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
-                   "kronoterm-etera-connections-3.jpg"],
-    "2222000142612": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
-                       "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
-                       "kronoterm-etera-connections-3.jpg"],
-    "2222000142629": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg",
-                       "kronoterm-etera-connections-1.jpg", "kronoterm-etera-connections-2.jpg",
-                       "kronoterm-etera-connections-3.jpg"],
+    "2222000142599": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg"],
+    "ETERA-M-UF": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg"],
+    "2222000142612": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg"],
+    "2222000142629": ["kronoterm-etera.jpg", "kronoterm-etera-showroom.jpg"],
     # Navien PEM750: one casing across the whole 4/6/8/10/17kW range - same
     # photo for every capacity variant (confirmed, unit doesn't change look).
     "PEM750V004PGKC": "navien-pem750.jpg",
