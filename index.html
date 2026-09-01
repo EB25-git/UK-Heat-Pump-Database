@@ -573,6 +573,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="c-group">
     <button class="burger-item burger-subitem" data-page="compare" onclick="showPage('compare');closeBurger()">Compare Selected</button>
+    <a class="burger-item burger-subitem" href="/heat-pump-comparison/" onclick="closeBurger()">Heat Pump Comparison</a>
     </div>
     <a class="burger-item" href="/best/" onclick="closeBurger()">Best Heat Pumps</a>
     <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
@@ -2968,6 +2969,10 @@ const MFR_SUPPLIERS = {
       {
         "name": "Klima-Therm (UK distributor)",
         "url": "https://klima-therm.co.uk/partners/rhoss/"
+      },
+      {
+        "name": "Alternative Heat (UK & Ireland distributor)",
+        "url": "https://www.alternativeheat.co.uk/"
       }
     ]
   },

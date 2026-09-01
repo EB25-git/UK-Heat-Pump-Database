@@ -33,7 +33,7 @@ DATA      = os.path.join(ROOT, "products.json")
 NEWS_DATA = os.path.join(ROOT, "news.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "heat-pump-size-calculator", "news"]
+GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "heat-pump-comparison", "heat-pump-size-calculator", "news"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -604,13 +604,14 @@ def burger_menu(active=None):
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + '</div>'
     )
-    c_active = active == "compare"
+    c_active = active in ("compare", "comparison")
     c_open = " open" if c_active else ""
     c_cls = "burger-item burger-toggle" + (" active" if c_active else "")
     compare_block = (
         f'<button class="{c_cls}{c_open}" id="c-toggle" aria-expanded="{"true" if c_active else "false"}" aria-controls="c-group" onclick="toggleCompare()">'
         f'Compare<span class="burger-chevron" aria-hidden="true"></span></button>'
         f'<div class="burger-subgroup{c_open}" id="c-group">'
+        + it("Heat Pump Comparison", f"{BASE_URL}/heat-pump-comparison/", "comparison", sub=True)
         + it("Compare Selected", f"{BASE_URL}/#compare", "compare", sub=True)
         + '</div>'
     )
@@ -1951,6 +1952,216 @@ def render_best_single_page(composite, sections):
                 f"{total_rankings} rankings on one page, updated automatically from the {SITE_NAME}.",
                 url, body, item_lds + [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
+
+
+# ───────────────────── Heat pump comparison hub ─────────────────────
+# /heat-pump-comparison/ is the site's landing page for comparison intent.
+# The interactive side-by-side tool lives at /#compare, which is a hash route
+# inside the app and therefore not separately indexable - this page is the
+# crawlable destination that explains what the comparison covers, summarises
+# the dataset along the axes people actually compare on, and hands off to the
+# tool. Every figure below is computed from products.json at build time, so it
+# cannot drift away from the data.
+
+CMP_BANDS = [("3–6 kW", 3, 6.5, "best-small-heat-pumps-3-6kw"),
+             ("7–12 kW", 6.5, 12, "best-medium-heat-pumps-7-12kw"),
+             ("13–25 kW", 12, 25, "best-large-heat-pumps-13-25kw"),
+             ("Over 25 kW", 25, 10**6, None)]
+
+def _cmp_median(vals):
+    return _cmp_pct(vals, 0.5)
+
+def _cmp_pct(vals, q):
+    """Percentile of the numeric values, rounded to 2dp. Rounding matters:
+    an unrounded median of two floats renders as 5.029999999999999."""
+    v = sorted(x for x in vals if isinstance(x, (int, float)))
+    if not v:
+        return None
+    if q == 0.5:
+        n = len(v)
+        m = v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2
+        return round(m, 2)
+    i = min(len(v) - 1, max(0, int(round(q * (len(v) - 1)))))
+    return round(v[i], 2)
+
+def _cmp_stat_table(head, rows):
+    body = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
+    return ('<div class="best-scroll"><table class="list best-table"><tr>'
+            + "".join(f"<th>{h}</th>" for h in head) + "</tr>" + body + "</table></div>")
+
+def render_comparison_page(products):
+    url = f"{BASE_URL}/heat-pump-comparison/"
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Heat Pump Comparison", None)]
+    total = len(products)
+    mfr_count = len({p.get("manufacturer") for p in products if p.get("manufacturer")})
+
+    # ---- compare by heat pump type ----
+    type_rows = []
+    for code in ("ASHP", "GSHP", "WSHP"):
+        pool = [p for p in products if p.get("hp_type") == code]
+        if not pool:
+            continue
+        caps = [p.get("cap_max") for p in pool if isinstance(p.get("cap_max"), (int, float))]
+        scops = [p.get("scop") for p in pool if isinstance(p.get("scop"), (int, float))]
+        noises = [p.get("noise") for p in pool if isinstance(p.get("noise"), (int, float))]
+        flows = [p.get("flow_temp_max") for p in pool if isinstance(p.get("flow_temp_max"), (int, float))]
+        mcs = sum(1 for p in pool if p.get("mcs_listed"))
+        slug = {"ASHP": "air-source-heat-pumps", "GSHP": "ground-source-heat-pumps",
+                "WSHP": "water-source-heat-pumps"}[code]
+        type_rows.append([
+            f'<a href="{BASE_URL}/types/{slug}/">{esc(TYPE_LABEL.get(code, code))}</a>',
+            f"{len(pool):,}",
+            (f"{num(_cmp_pct(caps, 0.25))}–{num(_cmp_pct(caps, 0.75))} kW" if caps else "—"),
+            num(_cmp_median(scops)) if scops else "—",
+            f"{num(_cmp_median(noises))} dB(A)" if noises else "—",
+            f"{num(max(flows))}°C" if flows else "—",
+            f"{mcs:,}",
+        ])
+    type_table = _cmp_stat_table(
+        ["Type", "Products", "Typical capacity", "Median SCOP", "Median noise", "Highest flow temp", "MCS listed"],
+        type_rows)
+
+    # ---- compare by capacity band ----
+    band_rows = []
+    for label, lo, hi, best_slug in CMP_BANDS:
+        pool = [p for p in products if p.get("hp_type") == "ASHP"
+                and isinstance(p.get("cap_max"), (int, float)) and lo <= p["cap_max"] <= hi]
+        if not pool:
+            continue
+        scops = [p for p in pool if isinstance(p.get("scop"), (int, float))]
+        top = max(scops, key=lambda p: p["scop"]) if scops else None
+        band_rows.append([
+            esc(label),
+            f"{len(pool):,}",
+            num(_cmp_median([p['scop'] for p in scops])) if scops else "—",
+            (f'<a href="{BASE_URL}/products/{top["_slug"]}/">{esc(top.get("manufacturer",""))} '
+             f'{esc(top.get("model",""))}</a> ({num(top["scop"])})') if top else "—",
+            (f'<a href="{BASE_URL}/best/#{best_slug}">See the ranking</a>' if best_slug else "—"),
+        ])
+    band_table = _cmp_stat_table(
+        ["Capacity band", "Air source products", "Median SCOP", "Highest SCOP in band", "Full ranking"], band_rows)
+
+    # ---- compare by refrigerant ----
+    ref_rows = []
+    refs = {}
+    for p in products:
+        r = p.get("refrigerant")
+        if r:
+            refs.setdefault(r, []).append(p)
+    for r, pool in sorted(refs.items(), key=lambda kv: -len(kv[1]))[:8]:
+        flows = [p.get("flow_temp_max") for p in pool if isinstance(p.get("flow_temp_max"), (int, float))]
+        scops = [p.get("scop") for p in pool if isinstance(p.get("scop"), (int, float))]
+        ref_rows.append([
+            esc(r), f"{len(pool):,}",
+            num(_cmp_median(scops)) if scops else "—",
+            f"{num(_cmp_median(flows))}°C" if flows else "—",
+            f"{num(max(flows))}°C" if flows else "—",
+        ])
+    ref_table = _cmp_stat_table(
+        ["Refrigerant", "Products", "Median SCOP", "Median max flow temp", "Highest max flow temp"], ref_rows)
+
+    guide = (
+        '<section id="how-to-compare" class="best-section">'
+        '<h2 class="sec">How to compare heat pumps fairly</h2>'
+        '<p>Most published heat pump figures are only comparable if you check the conditions they were '
+        'measured at. These are the traps worth knowing before you put two products side by side.</p>'
+        '<table class="spec">'
+        '<tr><th>SCOP, not COP</th><td>COP is efficiency at one instant under one test condition. SCOP is a '
+        'seasonal average across a heating season and is the fairer single number. Always check the flow '
+        f'temperature it was measured at — a SCOP at 35°C and one at 55°C are not comparable. '
+        f'<a href="{BASE_URL}/knowledge/cop-scop/">Full explanation</a>.</td></tr>'
+        '<tr><th>Test conditions</th><td>A COP quoted at A7/W35 (7°C outside air, 35°C flow) will always '
+        'look better than the same unit at A-7/W55. This database records the stated condition alongside every '
+        'figure so you can see when two numbers are not measuring the same thing.</td></tr>'
+        '<tr><th>Sound power vs sound pressure</th><td>Sound power is an absolute figure; sound pressure depends on '
+        'distance and is typically 8–12 dB lower for the same unit. UK permitted development noise assessments '
+        'under MCS 020 use sound power. Comparing one manufacturer’s pressure figure with another’s power '
+        'figure will mislead you.</td></tr>'
+        '<tr><th>Capacity at what temperature</th><td>A “12 kW” heat pump is usually 12 kW at a mild '
+        'outdoor temperature. What matters for sizing is its output at your design outdoor temperature, which can be '
+        f'much lower. <a href="{BASE_URL}/heat-pump-size-calculator/">Size calculator</a>.</td></tr>'
+        '<tr><th>Flow temperature</th><td>The maximum flow temperature decides whether a unit can work with existing '
+        'radiators or needs underfloor heating. Higher flow temperatures cost efficiency. '
+        f'<a href="{BASE_URL}/knowledge/flow-temperature/">More on flow temperature</a>.</td></tr>'
+        '<tr><th>Grant eligibility</th><td>Only MCS-certified products on the Ofgem Product Eligibility List '
+        'qualify for the Boiler Upgrade Scheme. This database records the certificate number where one exists. '
+        f'<a href="{BASE_URL}/knowledge/boiler-upgrade-scheme/">Boiler Upgrade Scheme guide</a>.</td></tr>'
+        '</table></section>')
+
+    body = (
+        crumbs(crumb_items) +
+        "<h1>Heat Pump Comparison</h1>"
+        f'<p class="sub">{total:,} heat pumps from {mfr_count} manufacturers · updated {TODAY}</p>'
+        f'<p>This is a heat pump comparison built on published manufacturer specifications rather than sales copy. '
+        f'Every product in the {SITE_NAME} carries its capacity, COP and SCOP with the test conditions they were '
+        f'measured at, sound level with its measurement basis, flow temperature limits, refrigerant, dimensions and '
+        f'MCS certification, so two products can be compared on the same terms.</p>'
+        f'<p style="margin:14px 0"><a class="cta" href="{BASE_URL}/#compare">Open the side-by-side comparison tool '
+        f'&rarr;</a></p>'
+        '<p>Pick any products while browsing and the tool puts their full specifications in adjacent columns. '
+        'The summaries below give you the shape of the data first.</p>'
+
+        '<section id="compare-by-type" class="best-section">'
+        '<h2 class="sec">Comparison by heat pump type</h2>'
+        '<p>Air, ground and water source machines are not interchangeable: they differ in installation cost, '
+        'achievable efficiency and how they behave in cold weather. Typical capacity is the middle half of each group — this database covers commercial and industrial plant as well as domestic units, so the full span runs far wider at both ends. Medians are across every product of that type:</p>'
+        + type_table + '</section>'
+
+        '<section id="compare-by-size" class="best-section">'
+        '<h2 class="sec">Comparison by capacity</h2>'
+        '<p>Comparing a 5 kW unit against a 20 kW one tells you little. These are the air source bands most UK '
+        'homes fall into, with the most efficient product in each:</p>'
+        + band_table + '</section>'
+
+        '<section id="compare-by-refrigerant" class="best-section">'
+        '<h2 class="sec">Comparison by refrigerant</h2>'
+        '<p>Refrigerant choice drives both environmental impact and the flow temperature a unit can reach, which in '
+        'turn decides whether it suits existing radiators. '
+        f'<a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a>.</p>'
+        + ref_table + '</section>'
+
+        + guide +
+
+        '<section class="best-section">'
+        '<h2 class="sec">Other ways to compare</h2>'
+        '<table class="spec">'
+        f'<tr><th>Side-by-side tool</th><td><a href="{BASE_URL}/#compare">Compare selected heat pumps</a> — '
+        f'put any products’ full specifications in adjacent columns.</td></tr>'
+        f'<tr><th>Rankings</th><td><a href="{BASE_URL}/best/">Best heat pumps</a> — ranked by SCOP, sound '
+        f'power and price per kW.</td></tr>'
+        f'<tr><th>By manufacturer</th><td><a href="{BASE_URL}/manufacturers/">All {mfr_count} manufacturers</a> '
+        f'— compare a brand’s full range on one page.</td></tr>'
+        f'<tr><th>By type</th><td><a href="{BASE_URL}/types/air-source-heat-pumps/">Air source</a>, '
+        f'<a href="{BASE_URL}/types/ground-source-heat-pumps/">ground source</a> and '
+        f'<a href="{BASE_URL}/types/water-source-heat-pumps/">water source</a> category pages.</td></tr>'
+        '</table></section>'
+    )
+
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": "What should you compare when choosing a heat pump?",
+         "acceptedAnswer": {"@type": "Answer", "text":
+            "Compare SCOP at a stated flow temperature rather than COP, check that quoted capacities are at the "
+            "same outdoor temperature, make sure sound figures are both sound power or both sound pressure, and "
+            "confirm the maximum flow temperature suits your emitters. For a UK grant, check the product is "
+            "MCS certified."}},
+        {"@type": "Question", "name": "Is a higher COP always better?",
+         "acceptedAnswer": {"@type": "Answer", "text":
+            "Not on its own. COP is measured at a single test condition, so a high COP quoted at a low flow "
+            "temperature can look better than a more capable unit measured at a harder condition. SCOP at a stated "
+            "flow temperature is the fairer comparison."}},
+        {"@type": "Question", "name": "How many heat pumps can you compare here?",
+         "acceptedAnswer": {"@type": "Answer", "text":
+            f"The database holds {total:,} heat pumps from {mfr_count} manufacturers, each with full published "
+            f"specifications, and any of them can be placed side by side in the comparison tool."}},
+    ]}
+
+    return page(
+        f"Heat Pump Comparison — Compare {total:,} Heat Pumps Side by Side | {SITE_NAME}",
+        f"Independent heat pump comparison across {total:,} models from {mfr_count} manufacturers. Compare SCOP, "
+        f"COP, capacity, noise, flow temperature, refrigerant and MCS status on matched test conditions.",
+        url, body, [breadcrumb_jsonld(crumb_items, url), faq_ld],
+        active="comparison", og_image=get_og_image())
+
 # ───────────────────────── Build ─────────────────────────
 def write(path, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -2662,6 +2873,19 @@ def main():
     _lastmod_for(url, _lastmod_hash(
         [("__composite_ashp__", [p.get("id") for p in composite_ranked])] +
         [(cfg["slug"], [p.get("id") for p in ranked]) for cfg, ranked, _ in best_sections]))
+
+    # /heat-pump-comparison/ - the crawlable landing page for comparison
+    # intent. The interactive tool at /#compare is a hash route and cannot be
+    # indexed separately, so this page carries the comparison content and
+    # links into it.
+    write(os.path.join(ROOT, "heat-pump-comparison", "index.html"),
+          render_comparison_page(products))
+    _cmp_url = f"{BASE_URL}/heat-pump-comparison/"
+    urls.append(_cmp_url)
+    _lastmod_for(_cmp_url, _lastmod_hash(
+        [(p.get("id"), p.get("hp_type"), p.get("cap_max"), p.get("scop"),
+          p.get("noise"), p.get("refrigerant"), p.get("flow_temp_max"), p.get("mcs_listed"))
+         for p in products]))
 
     # best_winners: product id -> list of {title, url} for every ranking on
     # /best/ where that product is the #1 result. Consumed by the interactive
