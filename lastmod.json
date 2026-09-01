@@ -44,8 +44,8 @@
     "hash": "5af8488a1f61af98"
   },
   "https://www.heatpumpdatabase.com/manufacturers/acond/": {
-    "date": "2026-08-30",
-    "hash": "a34aabacbc8621b3"
+    "date": "2026-09-01",
+    "hash": "a857ab12a2f202ad"
   },
   "https://www.heatpumpdatabase.com/manufacturers/adlar/": {
     "date": "2026-08-30",
@@ -372,20 +372,36 @@
     "hash": "097beeab63488a8f"
   },
   "https://www.heatpumpdatabase.com/products/acond-grandis-n-2288/": {
-    "date": "2026-08-27",
-    "hash": "41698b3e7bac7426"
+    "date": "2026-09-01",
+    "hash": "b35b48351dff234e"
+  },
+  "https://www.heatpumpdatabase.com/products/acond-grandis-n-3651/": {
+    "date": "2026-09-01",
+    "hash": "e17a6ca29efe20ab"
+  },
+  "https://www.heatpumpdatabase.com/products/acond-grandis-n-3652/": {
+    "date": "2026-09-01",
+    "hash": "bf51854c22f780f6"
   },
   "https://www.heatpumpdatabase.com/products/acond-grandis-n/": {
-    "date": "2026-08-30",
-    "hash": "5501761471b9521c"
+    "date": "2026-09-01",
+    "hash": "bde70c52bea5e36f"
   },
   "https://www.heatpumpdatabase.com/products/acond-grandis-r-2290/": {
-    "date": "2026-08-30",
-    "hash": "3428b5d1b92e8b7b"
+    "date": "2026-09-01",
+    "hash": "430b920da624573a"
+  },
+  "https://www.heatpumpdatabase.com/products/acond-grandis-r-3653/": {
+    "date": "2026-09-01",
+    "hash": "f5b4a934805277aa"
+  },
+  "https://www.heatpumpdatabase.com/products/acond-grandis-r-3654/": {
+    "date": "2026-09-01",
+    "hash": "39aae8eb89bc3e56"
   },
   "https://www.heatpumpdatabase.com/products/acond-grandis-r/": {
-    "date": "2026-08-30",
-    "hash": "1793eaa3c7fe2677"
+    "date": "2026-09-01",
+    "hash": "099b13dd39e6dbf1"
   },
   "https://www.heatpumpdatabase.com/products/acond-pro-2292/": {
     "date": "2026-08-30",
@@ -13864,8 +13880,8 @@
     "hash": "618e33970ab404a3"
   },
   "https://www.heatpumpdatabase.com/types/air-source-heat-pumps/": {
-    "date": "2026-08-30",
-    "hash": "0a6b8b7c015368f5"
+    "date": "2026-09-01",
+    "hash": "5ec5e076328c587d"
   },
   "https://www.heatpumpdatabase.com/types/commercial-heat-pumps/": {
     "date": "2026-08-30",
@@ -13900,8 +13916,8 @@
     "hash": "88796963cf82bfe5"
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
-    "date": "2026-08-30",
-    "hash": "dfec4dab3a7b54e1"
+    "date": "2026-09-01",
+    "hash": "4395a70e55dbc2c1"
   },
   "https://www.heatpumpdatabase.com/types/r32-heat-pumps/": {
     "date": "2026-08-30",
@@ -13944,8 +13960,8 @@
     "hash": "a5e6cc98b8edcdba"
   },
   "https://www.heatpumpdatabase.com/types/residential-heat-pumps/": {
-    "date": "2026-08-30",
-    "hash": "5fa53208847c50b4"
+    "date": "2026-09-01",
+    "hash": "563b4f013f554800"
   },
   "https://www.heatpumpdatabase.com/types/water-source-heat-pumps/": {
     "date": "2026-08-28",
