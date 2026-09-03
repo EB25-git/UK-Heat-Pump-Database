@@ -2305,7 +2305,10 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
         <img id="modal-logo" class="modal-logo" src="" alt="" style="display:none">
         <div><h2 id="modal-ttl"></h2><p id="modal-sub"></p></div>
       </div>
-      <button class="modal-close" onclick="closeModal()" aria-label="Close details">✕</button>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn btn-sm" id="modal-share" onclick="copyProductLink(window.__modalId)" aria-label="Copy a link to this product page" title="Copy a link to this product page">⇗ Share</button>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close details">✕</button>
+      </div>
     </div>
     <div class="modal-body" id="modal-body"></div>
   </div>
@@ -2357,6 +2360,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 <script src="logos.js?v=131" defer></script>
 <script src="product-images.js?v=5" defer></script>
 <script src="best-winners.js?v=1" defer></script>
+<script src="slugs.js?v=1" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
 // ═══════════════ SEED DATA ═══════════════
@@ -4049,7 +4053,17 @@ function openModal(id){
     <div style="margin-top:.5rem;font-size:11.5px"><a href="${correctionMailto(d)}" style="color:var(--text3)">✎ Suggest a correction to this data</a></div>
     ${isAdmin?`<div style="margin-top:.75rem;text-align:right"><button class="btn btn-sm" onclick="editEntry(${d.id})">✎ Edit in admin</button></div>`:''}
   `;
+  window.__modalId=id;
   window.__modalLastFocus=document.activeElement;
+  // Deep-link the open modal. pushState (not replaceState) so the browser Back
+  // button closes the sheet instead of leaving the site - the behaviour people
+  // expect on a phone.
+  try{
+    if((location.hash||'')!=='#product='+id){
+      window.__modalPrevHash=location.hash||'';
+      history.pushState({modal:id},'',location.pathname+location.search+'#product='+id);
+    }
+  }catch(e){}
   document.getElementById('detail-modal').classList.add('show');
   const _mc=document.querySelector('#detail-modal .modal-close');if(_mc)_mc.focus();
 }
@@ -4068,6 +4082,13 @@ function closePhotoLightbox(){
 }
 function closeModal(){
   document.getElementById('detail-modal').classList.remove('show');
+  window.__modalId=null;
+  try{
+    if((location.hash||'').indexOf('#product=')===0){
+      history.replaceState(null,'',location.pathname+location.search+(window.__modalPrevHash||''));
+      window.__modalPrevHash='';
+    }
+  }catch(e){}
   if(window.__modalLastFocus&&window.__modalLastFocus.focus){window.__modalLastFocus.focus();window.__modalLastFocus=null;}
 }
 document.addEventListener('keydown',function(e){
@@ -4138,6 +4159,45 @@ function copyCompareLink(){
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(url).then(ok).catch(fallback);
   }else{fallback();}
+}
+function productPageUrl(id){
+  // The canonical static page for a product. Slugs come from slugs.js, written
+  // by build.py, because ~60% of them carry an -id suffix and cannot be derived
+  // from manufacturer + model in the browser.
+  const slug=(typeof PRODUCT_SLUGS!=='undefined')?PRODUCT_SLUGS[id]:null;
+  return slug?location.origin+'/products/'+slug+'/':null;
+}
+function copyProductLink(id){
+  const url=productPageUrl(id);
+  if(!url){
+    // No slug means no static page was built for this product; fall back to the
+    // in-app deep link so the button still does something useful.
+    const fb=location.origin+location.pathname+'#product='+id;
+    showToast('Sharing an in-app link for this one.');
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(fb);
+    return;
+  }
+  const ok=()=>showToast('Link copied. It opens the full product page.');
+  const fallback=()=>{
+    const ta=document.createElement('textarea');
+    ta.value=url;ta.setAttribute('readonly','');
+    ta.style.position='fixed';ta.style.top='-1000px';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    let copied=false;
+    try{copied=document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    copied?ok():showToast('Could not copy automatically \u2014 open the product page and copy from the address bar.');
+  };
+  if(navigator.share){
+    const d=db.find(x=>x.id===id);
+    navigator.share({title:(d?d.manufacturer+' '+d.model:'Heat Pump Database'),url:url}).catch(function(){
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(url).then(ok).catch(fallback);
+      else fallback();
+    });
+    return;
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(url).then(ok).catch(fallback);
+  else fallback();
 }
 function applyCompareFromHash(raw){
   const wanted=String(raw||'').split(',')
@@ -5060,11 +5120,19 @@ renderContactPage();
 renderFooter();
 // Hash routing: lets links from the static SEO pages deep-link into in-app sections (e.g. /#compare)
 (function(){
-  var valid=['browse','compare','analytics','gallery','knowledge','faq','links','refrigerants','cop-scop','flow-temp','install-costs','funding','guide','contact','terms'];
+  var valid=['browse','compare','analytics','gallery','knowledge','faq','links','refrigerants','cop-scop','flow-temp','install-costs','funding','guide','contact','terms','product'];
   function route(){
     var h=(location.hash||'').replace(/^#/,'');
     var eq=h.indexOf('='), page=eq>-1?h.slice(0,eq):h, payload=eq>-1?h.slice(eq+1):'';
     if(valid.indexOf(page)===-1)return;
+    if(page==='product'){
+      // A shared #product= link, or Back/Forward across an open modal.
+      var pid=parseInt(decodeURIComponent(payload),10);
+      showPage('browse');
+      if(Number.isFinite(pid)&&db.some(function(d){return d.id===pid;}))openModal(pid);
+      else showToast('That product is no longer in the database.');
+      return;
+    }
     if(page==='compare'&&payload){
       if(applyCompareFromHash(decodeURIComponent(payload))){
         if(typeof renderGrid==='function')renderGrid();   // refresh the "+ Compare" button states
@@ -5072,7 +5140,13 @@ renderFooter();
     }
     showPage(page);
   }
-  window.addEventListener('hashchange',route);
+  window.addEventListener('hashchange',function(){
+    if((location.hash||'').indexOf('#product=')!==0){
+      var m=document.getElementById('detail-modal');
+      if(m&&m.classList.contains('show')){m.classList.remove('show');window.__modalId=null;}
+    }
+    route();
+  });
   route();
 })();
 // Generate FAQPage JSON-LD dynamically from FAQ content

@@ -3010,6 +3010,17 @@ def main():
     write(os.path.join(ROOT, "product-images.js"),
           "const PRODUCT_IMAGES = " + json.dumps(photo_map, ensure_ascii=False) + ";\n")
 
+    # slugs.js: product id -> static page slug. The app needs this because a
+    # slug cannot be derived from manufacturer + model in the browser: about
+    # 60% of products share a naive slug with a sibling and so carry an -id
+    # suffix (acond-grandis-n, acond-grandis-n-2288, acond-grandis-n-3651 are
+    # three different products). Emitted here so the map can never drift from
+    # the pages actually written. Consumed by the product modal's share button.
+    write(os.path.join(ROOT, "slugs.js"),
+          "const PRODUCT_SLUGS = " +
+          json.dumps({p["id"]: p["_slug"] for p in products if p.get("id")},
+                     ensure_ascii=False, separators=(",", ":")) + ";\n")
+
     # best-winners.js: product id -> [{title,url}] for #1 results on /best/,
     # computed above during the best-of build. Same delivery pattern as
     # logos.js/product-images.js.
