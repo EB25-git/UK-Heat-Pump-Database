@@ -281,14 +281,6 @@ select.filt:focus{border-color:var(--accent);outline:none}
 .site-footer{background:#0F2B2B;padding:2rem 2.5rem;text-align:center;color:rgba(255,255,255,.4);font-size:13px;line-height:1.7;font-family:'Inter',sans-serif;flex-shrink:0;margin-top:auto}
 .site-footer a{color:#3ECCC0;text-decoration:none}
 .site-footer a:hover{text-decoration:underline}
-.hub{margin:3.5rem 0 1rem;padding-top:2.25rem;border-top:1px solid var(--border,#d9e2e2)}
-.hub h2{font-size:19px;font-weight:600;color:#0F2B2B;margin:0 0 1.25rem;letter-spacing:-.01em}
-.hub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.9rem}
-.hub-card{display:flex;flex-direction:column;gap:.35rem;padding:1.05rem 1.15rem;background:var(--surface,#fff);border:1px solid var(--border,#d9e2e2);border-radius:10px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .2s}
-.hub-card:hover{border-color:#0D7377;box-shadow:0 4px 16px rgba(15,43,43,.08);transform:translateY(-1px)}
-.hub-title{font-size:14.5px;font-weight:600;color:#0D7377}
-.hub-desc{font-size:13px;line-height:1.6;color:#3D5C5C}
-@media(max-width:640px){.hub{margin-top:2.5rem}.hub-grid{grid-template-columns:1fr}}
 .footer-nav{display:flex;flex-wrap:wrap;gap:2.5rem 4rem;justify-content:center;text-align:left;max-width:1000px;margin:0 auto 2rem;padding-bottom:1.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
 .footer-col{display:flex;flex-direction:column;gap:.55rem;min-width:180px}
 .footer-col h2{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 .35rem}
@@ -816,37 +808,6 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div id="empty-browse" class="empty-state" style="display:none">
       <h3>No results</h3><p>Try adjusting your search or filters.</p>
     </div>
-    <!-- Section hub: sits below the results so it never gets in the way of the
-         search, but gives the homepage real links into every other section. -->
-    <section class="hub" aria-labelledby="hub-heading">
-      <h2 id="hub-heading">Explore the rest of the database</h2>
-      <div class="hub-grid">
-        <a class="hub-card" href="/manufacturers/">
-          <span class="hub-title">Manufacturers</span>
-          <span class="hub-desc">Every brand in the database, with its full product range and specifications.</span>
-        </a>
-        <a class="hub-card" href="/best/">
-          <span class="hub-title">Best heat pumps</span>
-          <span class="hub-desc">Rankings by SCOP, noise and price per kW, plus a combined overall score.</span>
-        </a>
-        <a class="hub-card" href="/heat-pump-comparison/">
-          <span class="hub-title">Heat pump comparison</span>
-          <span class="hub-desc">How to compare models fairly, and what the headline figures actually mean.</span>
-        </a>
-        <a class="hub-card" href="/types/air-source-heat-pumps/">
-          <span class="hub-title">Browse by type</span>
-          <span class="hub-desc">Air, ground and water source products, split out by category.</span>
-        </a>
-        <a class="hub-card" href="/knowledge/what-is-a-heat-pump/">
-          <span class="hub-title">Knowledge guides</span>
-          <span class="hub-desc">COP and SCOP, flow temperature, refrigerants, costs, grants and planning.</span>
-        </a>
-        <a class="hub-card" href="/heat-pump-size-calculator/">
-          <span class="hub-title">Size calculator</span>
-          <span class="hub-desc">Estimate the heat pump output a property needs before you shortlist models.</span>
-        </a>
-      </div>
-    </section>
   </div>
 </div>
 <!-- ═══ COMPARE ═══ -->
