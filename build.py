@@ -78,6 +78,20 @@ def num(x):
         return str(int(x))
     return str(x)
 
+def money(x):
+    """Format a GBP amount for display: thousands separators, and pence only
+    when the amount actually has them (so 3400.0 -> '3,400' but 1918.8 ->
+    '1,918.80'). Matches the toLocaleString() formatting the SPA already uses."""
+    if x is None:
+        return ""
+    try:
+        v = float(x)
+    except (TypeError, ValueError):
+        return str(x)
+    if round(v, 2) == int(round(v)):
+        return f"{int(round(v)):,}"
+    return f"{v:,.2f}"
+
 def cap_str(p):
     lo, hi = p.get("cap_min"), p.get("cap_max")
     if hi is None and lo is None: return None
@@ -253,9 +267,9 @@ def spec_rows(p):
     if p.get("price_min") is not None:
         checked = f" (checked {esc(p['price_check_date'])})" if p.get("price_check_date") else ""
         if p.get("price_max") is None or p["price_min"] == p["price_max"]:
-            add("Price (unit only)", f"~£{num(p['price_min'])}{checked}")
+            add("Price (unit only)", f"~£{money(p['price_min'])}{checked}")
         else:
-            add("Price (unit only)", f"£{num(p['price_min'])}&ndash;£{num(p['price_max'])}{checked}")
+            add("Price (unit only)", f"£{money(p['price_min'])}&ndash;£{money(p['price_max'])}{checked}")
     add("Data added", esc(p.get("date_added")))
     add("Data source", esc(p.get("source")))
     if p.get("mcs_listed"):
