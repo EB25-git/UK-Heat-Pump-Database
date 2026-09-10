@@ -8,8 +8,8 @@
     "hash": "c1c1efc441464a0d"
   },
   "https://www.heatpumpdatabase.com/heat-pump-comparison/": {
-    "date": "2026-09-08",
-    "hash": "f214a6f82cdf5e99"
+    "date": "2026-09-10",
+    "hash": "74a5860232d4b6ba"
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
     "date": "2026-09-01",
@@ -416,8 +416,8 @@
     "hash": "f23a8cb1271104a8"
   },
   "https://www.heatpumpdatabase.com/manufacturers/viessmann/": {
-    "date": "2026-08-28",
-    "hash": "ec851b3a0c39b2f1"
+    "date": "2026-09-10",
+    "hash": "78c99c6a44449353"
   },
   "https://www.heatpumpdatabase.com/manufacturers/warmflow/": {
     "date": "2026-08-30",
@@ -15691,6 +15691,22 @@
     "date": "2026-08-28",
     "hash": "2dec04f4219fef86"
   },
+  "https://www.heatpumpdatabase.com/products/viessmann-vitocal-200-a-ie-10kw/": {
+    "date": "2026-09-10",
+    "hash": "7f074d8f358399bf"
+  },
+  "https://www.heatpumpdatabase.com/products/viessmann-vitocal-200-a-ie-12kw/": {
+    "date": "2026-09-10",
+    "hash": "10d1c3f719cef092"
+  },
+  "https://www.heatpumpdatabase.com/products/viessmann-vitocal-200-a-ie-6kw/": {
+    "date": "2026-09-10",
+    "hash": "6b55eb3ef6fb6511"
+  },
+  "https://www.heatpumpdatabase.com/products/viessmann-vitocal-200-a-ie-8kw/": {
+    "date": "2026-09-10",
+    "hash": "855f2dc83d0c888b"
+  },
   "https://www.heatpumpdatabase.com/products/viessmann-vitocal-200-a/": {
     "date": "2026-08-28",
     "hash": "86529f0557713428"
@@ -16184,8 +16200,8 @@
     "hash": "497edd756a64a02d"
   },
   "https://www.heatpumpdatabase.com/types/air-source-heat-pumps/": {
-    "date": "2026-09-09",
-    "hash": "3cfc4080a35080c2"
+    "date": "2026-09-10",
+    "hash": "38b08762300792cf"
   },
   "https://www.heatpumpdatabase.com/types/commercial-heat-pumps/": {
     "date": "2026-09-08",
@@ -16224,8 +16240,8 @@
     "hash": "2555e05a7bf59948"
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
-    "date": "2026-09-09",
-    "hash": "4bdd09c952bdb081"
+    "date": "2026-09-10",
+    "hash": "ae51c9af2dc5b963"
   },
   "https://www.heatpumpdatabase.com/types/r32-heat-pumps/": {
     "date": "2026-09-09",
@@ -16268,8 +16284,8 @@
     "hash": "a5e6cc98b8edcdba"
   },
   "https://www.heatpumpdatabase.com/types/residential-heat-pumps/": {
-    "date": "2026-09-09",
-    "hash": "f4d1bec9d6c86f70"
+    "date": "2026-09-10",
+    "hash": "41237e004fba938d"
   },
   "https://www.heatpumpdatabase.com/types/water-source-heat-pumps/": {
     "date": "2026-08-28",
