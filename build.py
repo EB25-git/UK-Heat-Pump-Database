@@ -15,6 +15,7 @@ Requires only the Python standard library.
 """
 
 import json, os, re, html, shutil, datetime, hashlib
+from collections import Counter
 
 # ───────────────────────── Config ─────────────────────────
 BASE_URL  = "https://www.heatpumpdatabase.com"   # no trailing slash
@@ -53,6 +54,12 @@ LEGACY_TYPE_REDIRECTS = {
     "r1233zd-e-heat-pumps": "r1233zd-heat-pumps",
     "r513a-r134a-option-heat-pumps": "r513a-heat-pumps",
     "r134a-r1234ze-option-heat-pumps": "r134a-heat-pumps",
+    # Hyphenated spellings of a refrigerant used to get their own page
+    # alongside the unhyphenated one (R-410A and R410A both indexed, 23 Sep
+    # 2026 GSC). Refrigerant pages are now grouped by ref_key(), so these
+    # slugs are no longer generated; redirect them to the surviving page.
+    "r-410a-heat-pumps": "r410a-heat-pumps",
+    "r-454c-heat-pumps": "r454c-heat-pumps",
 }
 
 # ───────────────────────── Helpers ─────────────────────────
@@ -753,6 +760,10 @@ def breadcrumb_jsonld(items, self_url=None):
             "itemListElement": out}
 
 # ───────────────────────── Page renderers ─────────────────────────
+# Total number of products in the current build; set in main() and used in the
+# product meta description. Module-level so render_product() can see it.
+TOTAL_PRODUCTS = 0
+
 LOGO_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logos")
 LOGO_OUT_DIR = "images/manufacturers"
 LOGO_EXT_PRIORITY = [".svg", ".png", ".webp", ".avif", ".jpg", ".jpeg", ".gif"]
@@ -1340,18 +1351,53 @@ def render_product(p, by_mfr, by_type):
         codes = set(str(q.get("product_code")) for q in siblings)
         if len(caps) > 1 and cap_str(p):
             disambig = f" ({cap_str(p)})"
+            # Capacity alone is not always enough: several SKUs can share a model
+            # name *and* a capacity, differing only by product code. Where that
+            # happens, fall back to the code so no two pages end up with an
+            # identical name (and therefore an identical title and description).
+            same = [q for q in siblings if cap_str(q) == cap_str(p)]
+            if len(same) > 1 and len(codes) > 1 and p.get("product_code"):
+                disambig = f" ({p['product_code']})"
         elif len(codes) > 1 and p.get("product_code"):
             disambig = f" ({p['product_code']})"
     display_name = f"{mfr} {model}{disambig}"
 
-    # meta description from the most useful specs
-    d_bits = [TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type") or "").split(" (")[0] + " heat pump"]
-    if cap_str(p): d_bits.append(cap_str(p))
-    if p.get("cop") is not None: d_bits.append(f"COP {num(p['cop'])}")
-    if p.get("scop") is not None: d_bits.append(f"SCOP {num(p['scop'])}")
-    if p.get("refrigerant"): d_bits.append(f"{p['refrigerant']} refrigerant")
-    desc = f"{display_name}: " + ", ".join([b for b in d_bits if b]).rstrip(", ") + \
-           ". Full specifications and data."
+    # Meta description. Deliberately names *which* figures the page carries
+    # without printing the values themselves. The previous version listed
+    # capacity, COP, SCOP and refrigerant outright, which answered the whole
+    # query inside the search result - pages ranking in the top five were
+    # taking thousands of impressions and almost no clicks. Keep the searched
+    # terms (so they still match and embolden), withhold the answers.
+    hp_word = TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type") or "").split(" (")[0].lower()
+    has_cop, has_scop = p.get("cop") is not None, p.get("scop") is not None
+    if has_cop and has_scop:   eff = "COP and SCOP with test conditions"
+    elif has_scop:             eff = "SCOP with its test basis"
+    elif has_cop:              eff = "COP with test conditions"
+    else:                      eff = "published efficiency data"
+    # Ordered by how much each item is worth as a reason to click, because the
+    # trim below drops from the end. MCS status and a price are things the
+    # manufacturer's own page will not give you, so they rank above the
+    # generic dimension/refrigerant items.
+    d_bits = ["rated output", eff]
+    if p.get("mcs_listed"): d_bits.append("MCS certificate")
+    if p.get("price_min") is not None: d_bits.append("UK price")
+    if p.get("noise") is not None: d_bits.append("sound power")
+    if p.get("height") and p.get("weight"): d_bits.append("dimensions and weight")
+    elif p.get("height"): d_bits.append("dimensions")
+    if p.get("refrigerant"): d_bits.append("refrigerant")
+    tail = f" Compare with {TOTAL_PRODUCTS:,} heat pumps."
+    head = f"{display_name} {hp_word} heat pump \u2014 full specification: "
+    # Fit a search snippet (~158 chars). Google truncates anything longer, which
+    # would cut the closing hook off the end, so shed spec items first and only
+    # drop the hook itself if a very long product name leaves no room.
+    def _fits(bits, with_tail):
+        return len(head + ", ".join(bits) + "." + (tail if with_tail else "")) <= 158
+    while not _fits(d_bits, True) and len(d_bits) > 1:
+        d_bits.pop()
+    if _fits(d_bits, True):
+        desc = head + ", ".join(d_bits) + "." + tail
+    else:
+        desc = head + ", ".join(d_bits) + "."
 
     rows = "".join(f"<tr><th>{l}</th><td>{v}</td></tr>" for l, v in spec_rows(p))
     badges = "".join(f'<span class="badge">{esc(b)}</span>' for b in [
@@ -2397,9 +2443,14 @@ KNOWLEDGE_PAGES = [
     {"page_id": "page-cop-scop", "end_marker": "<!-- ═══ FLOW TEMPERATURE GUIDE ═══ -->",
      "dir": "cop-scop", "active": "cop-scop", "crumb": "Understanding COP & SCOP",
      "headline": "Understanding COP & SCOP",
-     "title": f"Understanding Heat Pump COP & SCOP: Test Conditions Explained | {SITE_NAME}",
-     "desc": ("What COP and SCOP mean for heat pumps, why test conditions like A7/W35 and W35 vs W55 "
-              "matter, how seasonal SCOP differs from COP, and how to compare efficiency figures fairly.")},
+     # Rewritten 23 Sep 2026: the old title ranked 8th for 1,519 impressions at
+     # 0.4% CTR. Searchers were asking "cop vs scop", "what is a good scop",
+     # "scop test" and "a7/w35" - the title now answers those in their words,
+     # and the description leads with a concrete benchmark from our own data
+     # (the "What is a good SCOP?" section in index.html; refresh both together).
+     "title": f"Heat Pump COP vs SCOP: What Is a Good SCOP? A7/W35 Explained | {SITE_NAME}",
+     "desc": ("What is a good SCOP? The median home air source heat pump in our database scores 4.73 "
+              "at W35. COP vs SCOP, A7/W35 test conditions and how to compare fairly.")},
     {"page_id": "page-flow-temp", "end_marker": "<!-- ═══ INSTALLATION COSTS GUIDE ═══ -->",
      "dir": "flow-temperature", "active": "flow-temp", "crumb": "Flow Temperature & Efficiency",
      "headline": "Flow Temperature & Efficiency",
@@ -2791,6 +2842,9 @@ def main():
         products = json.load(f)
 
     # clean previously generated output
+    global TOTAL_PRODUCTS
+    TOTAL_PRODUCTS = len(products)
+
     for d in GENERATED_DIRS:
         shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)
 
@@ -2935,10 +2989,27 @@ def main():
                                f"Browse {label.split(' (')[0].lower()} heat pumps in the {SITE_NAME}: "
                                f"{len(ps)} models with full specifications, COP and SCOP data.", ps))
     # refrigerant pages
-    by_ref = {}
+    # Grouped by a normalised key, not the raw string. The data holds the same
+    # refrigerant spelled several ways ("R410A" / "R-410A", "R134a" / "R134A",
+    # "R454C" / "R-454C"). Grouping on the raw string gave each spelling its own
+    # page - two indexed URLs for one refrigerant - and where two spellings
+    # slugified to the SAME slug (R134a / R134A), the slug de-dup below kept the
+    # first group and silently dropped the other's products from the page.
+    # The label shown is the unhyphenated spelling if one exists (the site's
+    # convention: R32, R290, R410A), otherwise the most common spelling.
+    def ref_key(r):
+        return re.sub(r"[^a-z0-9]", "", str(r).lower())
+    by_ref, spellings = {}, {}
     for p in products:
         if p.get("refrigerant"):
-            by_ref.setdefault(p["refrigerant"], []).append(p)
+            k = ref_key(p["refrigerant"])
+            by_ref.setdefault(k, []).append(p)
+            spellings.setdefault(k, Counter())[p["refrigerant"]] += 1
+    for k, ps in list(by_ref.items()):
+        sp = spellings[k]
+        plain = [s for s in sp if "-" not in s]
+        label = max(plain or sp, key=lambda s: (sp[s], s))
+        by_ref[label] = by_ref.pop(k)
     for ref, ps in by_ref.items():
         if len(ps) >= 5:
             type_pages.append((slugify(f"{ref} heat pumps"), f"{ref} Heat Pumps",

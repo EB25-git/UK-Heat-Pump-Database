@@ -1,7 +1,7 @@
 {
   "https://www.heatpumpdatabase.com/": {
-    "date": "2026-09-10",
-    "hash": "1db640da8456f6b3"
+    "date": "2026-09-23",
+    "hash": "58888caf97a6ce9a"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-09-08",
@@ -16,8 +16,8 @@
     "hash": "fd62d324a1967dfc"
   },
   "https://www.heatpumpdatabase.com/knowledge/cop-scop/": {
-    "date": "2026-09-01",
-    "hash": "dcb3e70628fd2988"
+    "date": "2026-09-23",
+    "hash": "1c9c7edb0013c609"
   },
   "https://www.heatpumpdatabase.com/knowledge/flow-temperature/": {
     "date": "2026-09-01",
@@ -16219,14 +16219,6 @@
     "date": "2026-08-27",
     "hash": "e8467c191d1cf646"
   },
-  "https://www.heatpumpdatabase.com/types/r-410a-heat-pumps/": {
-    "date": "2026-08-27",
-    "hash": "7560b740cc7167bf"
-  },
-  "https://www.heatpumpdatabase.com/types/r-454c-heat-pumps/": {
-    "date": "2026-08-27",
-    "hash": "03aba57eb7f50015"
-  },
   "https://www.heatpumpdatabase.com/types/r1233zd-heat-pumps/": {
     "date": "2026-08-27",
     "hash": "0d5afcb9ef96cb23"
@@ -16236,8 +16228,8 @@
     "hash": "4c78ed7b4e340900"
   },
   "https://www.heatpumpdatabase.com/types/r134a-heat-pumps/": {
-    "date": "2026-09-11",
-    "hash": "7083b4a74d333b34"
+    "date": "2026-09-23",
+    "hash": "e49bf42c070cafe8"
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
     "date": "2026-09-11",
@@ -16252,8 +16244,8 @@
     "hash": "7475e1f1983db1cd"
   },
   "https://www.heatpumpdatabase.com/types/r410a-heat-pumps/": {
-    "date": "2026-09-11",
-    "hash": "deb8c7cfb3070d12"
+    "date": "2026-09-23",
+    "hash": "3b29983531d9a2ad"
   },
   "https://www.heatpumpdatabase.com/types/r452b-heat-pumps/": {
     "date": "2026-08-30",
@@ -16262,6 +16254,10 @@
   "https://www.heatpumpdatabase.com/types/r454b-heat-pumps/": {
     "date": "2026-09-11",
     "hash": "f4298ab2c9ecd714"
+  },
+  "https://www.heatpumpdatabase.com/types/r454c-heat-pumps/": {
+    "date": "2026-09-23",
+    "hash": "ead186c63ca4f5a8"
   },
   "https://www.heatpumpdatabase.com/types/r513a-heat-pumps/": {
     "date": "2026-08-27",
