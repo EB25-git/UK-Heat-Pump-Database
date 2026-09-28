@@ -179,11 +179,15 @@ def youtube_thumb(url):
 def render_reviews(p):
     key = (p.get("manufacturer", "").strip(), derive_range(p.get("model")).strip())
     entries = REVIEWS_BY_RANGE.get(key)
+    # Entries may be pinned to specific product IDs (e.g. a HeatpumpMonitor page for one size)
+    entries = [e for e in (entries or []) if not e.get("product_ids") or p.get("id") in e["product_ids"]]
     if not entries:
         return ""
     pid, mfr, model = p.get("id"), p.get("manufacturer"), p.get("model")
 
-    articles = [e for e in entries if e.get("type") in ("review_article", "news_article")]
+    articles = [e for e in entries if e.get("type") in ("review_article", "news_article", "manufacturer_page", "performance_data")]
+    _ord = {"manufacturer_page": 0, "review_article": 1, "news_article": 2, "performance_data": 3}
+    articles.sort(key=lambda e: _ord.get(e.get("type"), 9))
     videos = [e for e in entries if e.get("type") == "youtube"]
 
     out = ['<h2 class="sec">Reviews &amp; further reading</h2>']
@@ -191,7 +195,7 @@ def render_reviews(p):
     if articles:
         rows = []
         for e in articles:
-            tag = "Review" if e.get("type") == "review_article" else "News"
+            tag = {"review_article": "Review", "news_article": "News", "manufacturer_page": "Manufacturer", "performance_data": "Real-world data"}.get(e.get("type"), "Link")
             onclick = track_attr("review", pid, mfr, model, e.get("source"))
             date_bit = f' <span class="rv-date">{esc(e["date"][:7])}</span>' if e.get("date") else ""
             note_bit = f'<div class="rv-note">{esc(e["note"])}</div>' if e.get("note") else ""
@@ -585,6 +589,8 @@ footer.site a{color:#7a8a88}
 .rv-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:6px;vertical-align:middle}
 .rv-tag-review_article{background:#e7f4f2;color:#0c6f66}
 .rv-tag-news_article{background:#eef2fb;color:#3b4fa3}
+.rv-tag-manufacturer_page{background:#f3eefb;color:#5b3fa3}
+.rv-tag-performance_data{background:#fdf3e1;color:#8a5a00}
 .rv-source{color:#5b6b6b;font-size:13px}
 .rv-date{color:#9aa8a6;font-size:12.5px}
 .rv-note{color:#5b6b6b;font-size:13px;margin-top:3px}
@@ -2387,6 +2393,17 @@ def write(path, content):
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
 
+def _with_reviews(p, d):
+    """Fold a product's visible review/video links into its lastmod fingerprint, so
+    adding links refreshes that page's lastmod. Products with no links hash exactly
+    as before."""
+    ents = REVIEWS_BY_RANGE.get((p.get("manufacturer", "").strip(), derive_range(p.get("model")).strip()))
+    if ents:
+        urls = sorted(e.get("url", "") for e in ents if not e.get("product_ids") or p.get("id") in e["product_ids"])
+        if urls:
+            d = dict(d, _reviews=urls)
+    return d
+
 def _lastmod_hash(obj):
     """Deterministic content fingerprint used to decide sitemap <lastmod> dates.
     We hash the underlying data behind each page (not the rendered HTML, since
@@ -2888,7 +2905,7 @@ def main():
     # own fingerprint from exactly the product data it displays, so it only
     # gets a fresh lastmod when a product it actually shows has changed.
     product_hash_by_id = {
-        p.get("id"): _lastmod_hash({k: v for k, v in p.items() if k != "_slug"})
+        p.get("id"): _lastmod_hash(_with_reviews(p, {k: v for k, v in p.items() if k != "_slug"}))
         for p in products
     }
     lastmod_path = os.path.join(ROOT, "lastmod.json")
