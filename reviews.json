@@ -11784,7 +11784,15 @@
   "type": "performance_data",
   "product_ids": [
    2180,
-   2184
+   2184,
+   4316,
+   4320,
+   4324,
+   4328,
+   4332,
+   4336,
+   4340,
+   4344
   ],
   "title": "Real-world performance: Daikin Altherma 3 9kW",
   "source": "HeatpumpMonitor.org",
@@ -11798,7 +11806,15 @@
   "type": "performance_data",
   "product_ids": [
    2181,
-   2185
+   2185,
+   4317,
+   4321,
+   4325,
+   4329,
+   4333,
+   4337,
+   4341,
+   4345
   ],
   "title": "Real-world performance: Daikin Altherma 3 11kW",
   "source": "HeatpumpMonitor.org",
@@ -21524,6 +21540,66 @@
   "title": "Viessmann Climate Solutions launches Vitocal 200-A ie air-to-water heat pump",
   "source": "Renewable Energy Magazine",
   "url": "https://renewableenergymagazine.com/miscellaneous/viessmann-climate-solutions-launches-new-vitocal-200a-20260624",
+  "date": null,
+  "note": null
+ },
+ {
+  "manufacturer": "Vaillant",
+  "range": "flexoTHERM exclusive",
+  "type": "review_article",
+  "title": "Vaillant flexoTHERM 400V + aroCOLLECT Air Source Heat Pump Review",
+  "source": "Federation of Master Builders",
+  "url": "https://www.fmb.org.uk/homepicks/heat-pumps/vaillant-flexotherm-400v-arocollect-air-source-heat-pump-review/",
+  "date": null,
+  "note": null
+ },
+ {
+  "manufacturer": "Vaillant",
+  "range": "flexoTHERM exclusive",
+  "type": "youtube",
+  "title": "Vaillant flexoTHERM heat pump - Heat pump installation",
+  "source": "ŠK",
+  "url": "https://www.youtube.com/watch?v=1Dmk8n3CKpo",
+  "date": null,
+  "note": null
+ },
+ {
+  "manufacturer": "Vaillant",
+  "range": "flexoTHERM exclusive",
+  "type": "manufacturer_page",
+  "title": "flexoTHERM",
+  "source": "Vaillant",
+  "url": "https://vaillant.co.uk/product-systems/heat-pumps/flexotherm/",
+  "date": null,
+  "note": null
+ },
+ {
+  "manufacturer": "LG",
+  "range": "THERMA V Hydrosplit",
+  "type": "youtube",
+  "title": "Comparing LG Heat Pumps: Split Type vs Hydrosplit Type - A Quick Explanation",
+  "source": "Instarom Instalaţii Româ",
+  "url": "https://www.youtube.com/watch?v=SuJE3n7f0PY",
+  "date": null,
+  "note": null
+ },
+ {
+  "manufacturer": "LG",
+  "range": "THERMA V Hydrosplit",
+  "type": "manufacturer_page",
+  "title": "THERMA V Hydrosplit",
+  "source": "LG",
+  "url": "https://lg.com/uk/air-to-water-heat-pumps/hydrosplit/",
+  "date": null,
+  "note": null
+ },
+ {
+  "manufacturer": "LG",
+  "range": "THERMA V Hydrosplit",
+  "type": "manufacturer_page",
+  "title": "THERMA V Hydrosplit Heat Pump",
+  "source": "LG",
+  "url": "https://lg.com/uk/business/hvac/residential-solutions/air-to-water-heat-pump/hydrosplit/",
   "date": null,
   "note": null
  }

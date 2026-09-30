@@ -852,6 +852,9 @@ def get_logo_url(mfr):
 PRODUCT_IMAGE_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "product-images")
 PRODUCT_IMAGE_OUT_DIR = "images/products"
 PRODUCT_IMAGE_BY_CODE = {
+    # ── Exinda ──────────────────────────────────────────────────────────
+    # 4 ton R32 EVI unit; tonnage and refrigerant match the FBMBHFT3B1 submittal sheet.
+    "FBMBHFT3B1": "exinda-4ton-r32-evi-air-to-water.webp",
     # ── Amitime ─────────────────────────────────────────────────────────
     # Three views per range, keyed by product_code (first entry is the hero
     # shot). Every size within a range shares one outdoor unit, which the
