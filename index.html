@@ -3185,7 +3185,7 @@ const DEFAULT_GUIDE = {
     {id:'g3',title:'🌡 Operating temperatures',body:'<p>For ASHPs, the <strong>minimum ambient operating temperature</strong> (modern units: −20 to −30°C) determines cold-weather performance. The <strong>maximum flow temperature</strong> governs compatibility with your heating system — older radiators need 60–70°C+, underfloor heating works at 35–45°C. For WSHPs, the key spec is the <strong>entering water temperature (EWT)</strong> range the unit can accept.</p>'},
     {id:'g4',title:'❄ Refrigerants & F-Gas',body:'<p><strong>R290 (propane)</strong> — GWP 3, natural refrigerant, dominant in new residential ASHPs. <strong>R32</strong> — GWP 675, most widespread residential ASHP refrigerant. <strong>R134a</strong> — GWP 1430, used in some WSHP and commercial units, under phase-down. <strong>R410A</strong> — GWP 2088, being phased out under UK F-Gas regulations. <strong>R744 (CO₂)</strong> — GWP 1, used in high-temperature and transcritical applications. <strong>R1234ze/R513A</strong> — low-GWP HFO options appearing in newer WSHP ranges.</p>'},
     {id:'g5',title:'📐 Sizing & electrical supply',body:'<p>UK residential homes typically need <strong>5–16 kW</strong>. Always commission an MCS-certified heat loss calculation (BS EN 12831). WSHP and larger commercial units require hydraulic and hydrogeological assessments. Units above <strong>3.68 kW single-phase</strong> need DNO notification; larger commercial units require three-phase supply. Peak electrical input (kW) determines fuse board requirements.</p>'},
-    {id:'g6',title:'✓ How our data is sourced & verified',body:'<p>Every product page shows where its data comes from and whether it has been checked. We think being honest about what we have and have not confirmed is more useful than presenting every number with false confidence.</p><p style="margin-top:.75rem"><strong>Where the data comes from.</strong> Specifications are compiled from manufacturer datasheets, ErP product information sheets, and official brochures, reproduced at the test conditions stated by the manufacturer.</p><p style="margin-top:.75rem"><strong>Manual verification.</strong> Wherever possible we cross-check the figures against independent sources — certification schemes such as Heat Pump KEYMARK, Eurovent, and MCS, or other manufacturer documentation — and review the record by hand before marking it verified.</p><p style="margin-top:.75rem"><strong>Awaiting verification.</strong> Many products — particularly commercial and industrial units that no residential scheme certifies — carry manufacturer-stated figures we have not yet independently checked. These are clearly marked <em>Awaiting verification</em>. That does not mean the data is wrong, only that we have not yet confirmed it against another source. Where a SCOP is published without its test basis (W35 or W55), we say so rather than guess.</p><p style="margin-top:.75rem"><strong>Spotted something off?</strong> Every product has a <em>Suggest a correction</em> link. If you can point us to a datasheet or certificate number, we will check it and update the record.</p>'}
+    {id:'g6',title:'✓ How our data is sourced & verified',body:'<p>Every product page shows where its data comes from and whether it has been checked. We think being honest about what we have and have not confirmed is more useful than presenting every number with false confidence.</p><p style="margin-top:.75rem"><strong>Where the data comes from.</strong> Specifications are compiled from manufacturer datasheets, ErP product information sheets, and official brochures, reproduced at the test conditions stated by the manufacturer.</p><p style="margin-top:.75rem"><strong>Verified by a human.</strong> Wherever possible we cross-check the figures against independent sources — certification schemes such as Heat Pump KEYMARK, Eurovent, and MCS, or other manufacturer documentation — and review the record by hand before marking it verified.</p><p style="margin-top:.75rem"><strong>Awaiting verification.</strong> Many products — particularly commercial and industrial units that no residential scheme certifies — carry manufacturer-stated figures we have not yet independently checked. These are clearly marked <em>Awaiting verification</em>. That does not mean the data is wrong, only that we have not yet confirmed it against another source. Where a SCOP is published without its test basis (W35 or W55), we say so rather than guess.</p><p style="margin-top:.75rem"><strong>Spotted something off?</strong> Every product has a <em>Suggest a correction</em> link. If you can point us to a datasheet or certificate number, we will check it and update the record.</p>'}
   ]
 };
 const DEFAULT_CONTACT = {
@@ -4023,6 +4023,50 @@ function suppliersHTML(d){
   });
   return rows?`<div class="spec-section"><h4>Where to buy (UK)</h4>${rows}</div>`:'';
 }
+
+// ── Verification block + alternatives (mirrors build.py render_verified / find_alternatives) ──
+function hEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function niceDate(v){if(!v)return null;const s=String(v).trim().slice(0,10);const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let m=s.match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return (+m[3])+' '+M[+m[2]-1]+' '+m[1];
+  m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})/);if(m)return (+m[1])+' '+M[+m[2]-1]+' '+m[3];return s;}
+function verifiedHTML(d){
+  return `<div style="margin-top:.9rem;padding:10px 12px;border:1px solid rgba(15,128,116,.25);background:rgba(15,128,116,.06);border-radius:10px"><div style="font-size:13px;color:#0F8074;font-weight:700">✓ Verified by a human</div></div>`;
+}
+function _seg(p){return p.type==='Commercial'?'C':'R';}
+function _cools(p){return /cool/i.test(p.mode||'');}
+function altsFor(d,n=3){
+  const cap=d.cap_max;if(typeof cap!=='number'||cap<=0)return [];
+  const sc=[];
+  for(const q of db){
+    if(q.id===d.id||q.manufacturer===d.manufacturer||q.hp_type!==d.hp_type||_seg(q)!==_seg(d))continue;
+    const qc=q.cap_max;if(typeof qc!=='number'||qc<=0)continue;
+    let s=Math.abs(Math.log(qc/cap));if(_cools(d)!==_cools(q))s+=0.15;if(q.scop==null)s+=0.05;
+    if(s>0.7)continue;sc.push([Math.round(s*1e6)/1e6,q.id||0,q]);
+  }
+  sc.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const out=[],seen=new Set();
+  for(const [,,q] of sc){if(seen.has(q.manufacturer))continue;seen.add(q.manufacturer);out.push(q);if(out.length===n)break;}
+  return out;
+}
+function altsHTML(d){
+  const alts=altsFor(d);if(!alts.length)return '';
+  const fmt=x=>'£'+Math.round(x).toLocaleString();
+  const card=q=>{
+    const logo=(typeof MFR_LOGOS!=='undefined'&&MFR_LOGOS[q.manufacturer])||'';
+    const cap=q.cap_min!=null&&q.cap_max!=null&&q.cap_min!==q.cap_max?`${q.cap_min}–${q.cap_max} kW`:`${q.cap_max} kW`;
+    const eff=q.scop!=null?`SCOP ${q.scop}`:(q.cop!=null?`COP ${q.cop}`:'');
+    const price=q.price_min!=null?(q.price_max==null||q.price_max===q.price_min?'~'+fmt(q.price_min):fmt(q.price_min)+'–'+fmt(q.price_max)):'';
+    const line=[cap,eff,q.noise!=null?q.noise+' dB(A)':'',price].filter(Boolean).join(' · ');
+    return `<div style="border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;background:var(--surface)" onclick="openModal(${q.id})">
+      <div style="display:flex;gap:8px;align-items:center">${logo?`<img src="${logo}" alt="" style="width:26px;height:26px;object-fit:contain;border-radius:6px;background:var(--surface2);padding:2px">`:''}
+      <div style="min-width:0"><div style="font-weight:600;font-size:13px;line-height:1.3">${hEsc(q.model)}</div><div style="font-size:11.5px;color:var(--text3)">${hEsc(q.manufacturer)}${q.product_code?' · '+hEsc(q.product_code):''}</div></div></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:6px">${line}</div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="event.stopPropagation();addCompare(${q.id})">+ Compare</button></div>`;
+  };
+  return `<div style="margin-top:1.1rem"><div style="font-size:14px;font-weight:700;margin-bottom:2px">Alternatives to consider</div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:8px">Closest in capacity from other manufacturers (same source type and market segment).</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">${alts.map(card).join('')}</div></div>`;
+}
 function openModal(id){
   const d=db.find(x=>x.id===id);if(!d)return;
   document.getElementById('modal-ttl').textContent=d.model;
@@ -4100,7 +4144,7 @@ function openModal(id){
     </div>`:''}
     ${suppliersHTML(d)}
     ${reviewsHTML(d)}
-    ${d.verified?`<div style="margin-top:.75rem;font-size:12.5px;color:#0F8074;font-weight:600">✓ ${d.verified==='Manual verification'?'Manually verified by Heat Pump Database':'Verified via '+d.verified+' data'}</div>`:`<div style="margin-top:.75rem;font-size:12.5px;color:#9a7b1f;font-weight:600">○ Awaiting verification</div>`}
+    ${verifiedHTML(d)}${altsHTML(d)}
     <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--text3)">
       <span>Data added: ${d.date_added||'—'}</span>
       <span class="source-tag ${sc(d.source)}">${srcLabel(d.source)}</span>

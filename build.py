@@ -547,6 +547,19 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
 h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.verified-box{margin:16px 0 0;padding:12px 14px;border:1px solid #cfe9e5;background:#f1faf8;border-radius:10px}
+.vb-title{font-size:14px;font-weight:700;color:#0F8074}
+.vb-detail{font-size:12.5px;color:#4d5f5f;margin-top:4px;line-height:1.55}
+.alt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.alt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.alt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.alt-card .ah{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.alt-card .ah img{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px}
+.alt-card .am{font-weight:600;color:#0F2B2B;font-size:14px;line-height:1.3}
+.alt-card .amf{font-size:12px;color:#5b6b6b}
+.alt-card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:12.5px}
+.alt-card dt{color:#5b6b6b}.alt-card dd{margin:0;color:#0F2B2B;font-weight:600}
+.alt-why{font-size:13px;color:#5b6b6b;margin:-4px 0 12px}
 .card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
 .card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
 .card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
@@ -1305,17 +1318,23 @@ def render_mcs(p):
             '&#10003; MCS listed product &mdash; eligible for the Boiler Upgrade Scheme, '
             f'subject to an MCS-certified installation.{cert}{link}</p>')
 
+_MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+def nice_date(v):
+    """'2026-07-21' or '21/07/2026' -> '21 Jul 2026' (anything else returned as-is)."""
+    if not v: return None
+    s = str(v).strip()[:10]
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", s) or None
+    if m: y, mo, d = m.groups()
+    else:
+        m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", s)
+        if not m: return s
+        d, mo, y = m.groups()
+    try: return f"{int(d)} {_MONTHS[int(mo)-1]} {y}"
+    except Exception: return s
+
 def render_verified(p):
-    v = p.get("verified")
-    if v:
-        if v is True or v == 'Manual verification':
-            label = 'Manually verified by Heat Pump Database'
-        else:
-            label = f'Verified via {esc(v)} data'
-        return (f'<p style="margin:14px 0 0;font-size:13.5px;color:#0F8074;font-weight:600">'
-                f'&#10003; {label}</p>')
-    return ('<p style="margin:14px 0 0;font-size:13.5px;color:#9a7b1f;font-weight:600">'
-            '&#9675; Awaiting verification</p>')
+    return ('<div class="verified-box">'
+            '<div class="vb-title">&#10003; Verified by a human</div></div>')
 
 def render_correction(p):
     from urllib.parse import quote
@@ -1341,6 +1360,75 @@ def render_correction(p):
     href = "mailto:info@heatpumpdatabase.com?subject=" + quote(subject) + "&body=" + quote(body)
     return (f'<p style="margin:10px 0 0;font-size:12.5px"><a href="{esc(href)}" '
             f'style="color:#5a6b6b">&#9998; Suggest a correction to this data</a></p>')
+
+def _seg(p):
+    return "C" if p.get("type") == "Commercial" else "R"
+
+def _cools(p):
+    return "cool" in (p.get("mode") or "").lower()
+
+def find_alternatives(p, pool, n=3):
+    """Three closest products from OTHER manufacturers: same source type and market segment,
+    nearest maximum capacity (log ratio), preferring the same heating/cooling capability.
+    The interactive app (index.html, altsFor) uses the identical rule."""
+    import math
+    cap = p.get("cap_max")
+    if not isinstance(cap, (int, float)) or cap <= 0:
+        return []
+    scored = []
+    for q in pool:
+        if q is p or q.get("id") == p.get("id") or q.get("manufacturer") == p.get("manufacturer"):
+            continue
+        qc = q.get("cap_max")
+        if not isinstance(qc, (int, float)) or qc <= 0:
+            continue
+        s = abs(math.log(qc / cap))
+        if _cools(p) != _cools(q): s += 0.15
+        if q.get("scop") is None: s += 0.05
+        if s > 0.7:
+            continue
+        scored.append((round(s, 6), q.get("id") or 0, q))
+    scored.sort(key=lambda t: (t[0], t[1]))
+    out, seen = [], set()
+    for _, _, q in scored:
+        m = q.get("manufacturer")
+        if m in seen: continue
+        seen.add(m); out.append(q)
+        if len(out) == n: break
+    return out
+
+def alt_card(q):
+    mfr = q.get("manufacturer", "")
+    rows = []
+    c = cap_str(q)
+    if c: rows.append(("Capacity", c))
+    if q.get("scop") is not None:
+        rows.append(("SCOP", num(q["scop"]) + (f" ({esc(q['scop_cond'])})" if q.get("scop_cond") else "")))
+    elif q.get("cop") is not None:
+        rows.append(("COP", num(q["cop"]) + (f" ({esc(q['cop_cond'])})" if q.get("cop_cond") else "")))
+    if q.get("noise") is not None: rows.append(("Sound power", f"{num(q['noise'])} dB(A)"))
+    if q.get("refrigerant"): rows.append(("Refrigerant", esc(q["refrigerant"])))
+    if q.get("price_min") is not None:
+        pmin, pmax = q["price_min"], q.get("price_max")
+        rows.append(("Price", f"~&pound;{money(pmin)}" if (pmax is None or pmax == pmin)
+                     else f"&pound;{money(pmin)}&ndash;&pound;{money(pmax)}"))
+    dl = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in rows)
+    return (f'<a class="alt-card" href="{BASE_URL}/products/{q["_slug"]}/">'
+            f'<div class="ah"><img src="{get_logo_url(mfr)}" alt="{esc(mfr)} logo" loading="lazy" width="32" height="32">'
+            f'<div><div class="am">{esc(q.get("model") or "")}</div>'
+            f'<div class="amf">{esc(mfr)}{(" &middot; " + esc(q["product_code"])) if q.get("product_code") else ""}</div></div></div>'
+            f'<dl>{dl}</dl></a>')
+
+def render_alternatives(p, by_type):
+    pool = [q for q in by_type.get(p.get("hp_type"), []) if _seg(q) == _seg(p)]
+    alts = find_alternatives(p, pool)
+    if not alts:
+        return ""
+    lbl = TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type"))
+    return (f'<h2 class="sec">Alternatives to consider</h2>'
+            f'<p class="alt-why">Three {esc(lbl or "")} heat pumps from other manufacturers '
+            f'closest in capacity to this one.</p>'
+            f'<div class="alt-grid">' + "".join(alt_card(q) for q in alts) + '</div>')
 
 def render_product(p, by_mfr, by_type):
     slug = p["_slug"]
@@ -1552,6 +1640,7 @@ def render_product(p, by_mfr, by_type):
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{render_reviews(p)}'
+            f'{render_alternatives(p, by_type)}'
             f'{rel}'
             f'<h2 class="sec">Compare with other products</h2>'
             f'<p><a class="cta" href="{BASE_URL}/">Open the interactive database &rarr;</a></p>'
