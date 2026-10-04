@@ -283,6 +283,7 @@ def spec_rows(p):
             add("Price (unit only)", f"£{money(p['price_min'])}&ndash;£{money(p['price_max'])}{checked}")
     add("Data added", esc(p.get("date_added")))
     add("Data source", esc(p.get("source")))
+    add("Verification", "Verified by a human")
     if p.get("mcs_listed"):
         add("MCS certification", "&#10003; MCS listed &mdash; eligible for Boiler Upgrade Scheme (MCS-certified install required)")
         if p.get("mcs_cert"): add("MCS certificate no.", esc(p["mcs_cert"]))
@@ -1333,8 +1334,7 @@ def nice_date(v):
     except Exception: return s
 
 def render_verified(p):
-    return ('<div class="verified-box">'
-            '<div class="vb-title">&#10003; Verified by a human</div></div>')
+    return ""
 
 def render_correction(p):
     from urllib.parse import quote
@@ -1772,11 +1772,13 @@ MANUFACTURER_COUNTRY = {
     "Keyter": "Spain",
     "Kronoterm": "Slovenia",
     "LG": "South Korea",
+    "Lochinvar": "United States",
     "Lailey and Coates": "United Kingdom",
     "M-Tec": "Austria",
     "MasterTherm": "Czech Republic",
     "Midea": "China",
     "Mitsubishi Electric": "Japan",
+    "Mitsubishi Heavy Industries": "Japan",
     "Modutherm": "United Kingdom",
     "Navien": "South Korea",
     "Nibe": "Sweden",
