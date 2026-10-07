@@ -1,0 +1,192 @@
+<div class="page" id="page-funding">
+  <div class="container" style="max-width:880px">
+    <div style="padding:8px 0 4px">
+      <nav style="font-size:13px;color:#5A6A65;margin-bottom:14px"><a href="#" onclick="showPage('knowledge');return false" style="color:#5A6A65;text-decoration:none">Knowledge</a> &rsaquo; <span>Funding &amp; Grants</span></nav>
+      <h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Heat pump funding &amp; grants in the UK</h1>
+      <p style="color:#5A6A65;font-size:16px;line-height:1.65;margin:0 0 16px;max-width:680px">There isn't one single UK heat pump grant: there are several, and which ones apply to you depends on where you live, your income, and what you're replacing. This guide covers every current route: the Boiler Upgrade Scheme, 0% VAT, Home Energy Scotland, Warm Homes: Local Grant, ECO4, and support in Northern Ireland: what each gives you, who qualifies, and how to apply.</p>
+
+      <div style="background:#F6FAF8;border:1px solid #E3EDE8;border-radius:14px;padding:22px 24px;margin:20px 0 28px">
+        <div style="font-size:17px;font-weight:600;color:#083F35;margin-bottom:4px">Find your funding in 10 seconds</div>
+        <p style="color:#5A6A65;font-size:13.5px;line-height:1.6;margin:0 0 14px">Answer two questions and we'll point you to the schemes worth applying for, in order.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:4px">
+          <div>
+            <label for="fw-nation" style="display:block;font-size:12.5px;font-weight:600;color:#3B4D47;margin-bottom:6px">Where's the property?</label>
+            <select id="fw-nation" onchange="fwCompute()" style="width:100%;height:40px;padding:9px 12px;border:1px solid #E3EDE8;border-radius:10px;font-size:13.5px;font-family:'Inter',sans-serif;background:#fff;color:#083F35;box-sizing:border-box">
+              <option value="england">England</option>
+              <option value="wales">Wales</option>
+              <option value="scotland">Scotland</option>
+              <option value="ni">Northern Ireland</option>
+            </select>
+          </div>
+          <div>
+            <label for="fw-income" style="display:block;font-size:12.5px;font-weight:600;color:#3B4D47;margin-bottom:6px">Household circumstances</label>
+            <select id="fw-income" onchange="fwCompute()" style="width:100%;height:40px;padding:9px 12px;border:1px solid #E3EDE8;border-radius:10px;font-size:13.5px;font-family:'Inter',sans-serif;background:#fff;color:#083F35;box-sizing:border-box">
+              <option value="any">No qualifying benefits, any income</option>
+              <option value="low">Lower income (roughly &pound;36k/year or less), no benefits</option>
+              <option value="benefits">Receiving a qualifying benefit (Universal Credit, Pension Credit, etc.)</option>
+            </select>
+          </div>
+        </div>
+        <div id="fw-result" style="margin-top:16px"></div>
+        <p style="color:#5A6A65;font-size:12px;margin:10px 0 0">A quick pointer, not a formal eligibility check; confirm details with the scheme directly before applying.</p>
+      </div>
+      <script>
+      var FW_SCHEMES={
+        bus:{label:'Boiler Upgrade Scheme',anchor:'bus-section'},
+        vat:{label:'0% VAT on heat pumps',anchor:'vat-section'},
+        hes:{label:'Home Energy Scotland Grant and Loan',anchor:'hes-section'},
+        whlg:{label:'Warm Homes: Local Grant',anchor:'whlg-section'},
+        eco4:{label:'ECO4',anchor:'eco4-section'},
+        ni:{label:'Northern Ireland support',anchor:'ni-section'}
+      };
+      var FW_MATRIX={
+        england:{
+          any:[['bus',"Up to £7,500 off an ASHP/GSHP, open to any homeowner."],['vat','0% VAT on top, applied automatically by your installer.']],
+          low:[['bus','Still worth applying for regardless of income.'],['whlg','Could fully fund the work if your council has funding available: check before paying for anything.'],['vat','0% VAT applies either way.']],
+          benefits:[['eco4','Can fund a heat pump in full as part of a wider retrofit: check this first.'],['whlg','Also worth checking alongside ECO4.'],['bus',"Still available if ECO4 doesn't cover the whole job."],['vat','0% VAT applies either way.']]
+        },
+        wales:{
+          any:[['bus','Up to £7,500 off an ASHP/GSHP; BUS covers Wales as well as England.'],['vat','0% VAT on top.']],
+          low:[['eco4','Can fund a heat pump in full: worth checking if you receive a qualifying benefit.'],['bus',"Still available even if you don't qualify for ECO4."],['vat','0% VAT applies either way.']],
+          benefits:[['eco4','Can fund a heat pump in full as part of a wider retrofit: check this first.'],['bus',"Still available if ECO4 doesn't cover the whole job."],['vat','0% VAT applies either way.']]
+        },
+        scotland:{
+          any:[['hes','Up to £7,500 grant plus an optional £7,500 interest-free loan.'],['vat','0% VAT on top.']],
+          low:[['hes',"Still the main route: grant funding isn't income-tested."],['eco4','Worth checking alongside HES if you receive a qualifying benefit.'],['vat','0% VAT applies either way.']],
+          benefits:[['eco4','Can fund a heat pump in full: check this first.'],['hes','Still worth applying to for the grant/loan on top.'],['vat','0% VAT applies either way.']]
+        },
+        ni:{
+          any:[['ni',"No direct heat pump grant yet; see current options and what's coming."],['vat','0% VAT still applies in Northern Ireland.']],
+          low:[['ni','Check the Affordable Warmth Scheme (income under £23k) and NISEP.'],['vat','0% VAT still applies in Northern Ireland.']],
+          benefits:[['ni','Check the Affordable Warmth Scheme (income under £23k) and NISEP.'],['vat','0% VAT still applies in Northern Ireland.']]
+        }
+      };
+      function fwCompute(){
+        var nEl=document.getElementById('fw-nation'),iEl=document.getElementById('fw-income');
+        if(!nEl||!iEl)return;
+        var list=(FW_MATRIX[nEl.value]&&FW_MATRIX[nEl.value][iEl.value])||[];
+        var out='';
+        for(var idx=0;idx<list.length;idx++){
+          var key=list[idx][0],note=list[idx][1],s=FW_SCHEMES[key];
+          out+='<a href="#'+s.anchor+'" onclick="var t=document.getElementById(\''+s.anchor+'\');if(t)t.scrollIntoView({behavior:\'smooth\'});return false" '
+             +'style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:10px;padding:14px 16px;margin-bottom:8px;background:#fff">'
+             +'<div style="font-size:14.5px;font-weight:600;color:#083F35">'+(idx+1)+'. '+s.label+' <span style="color:#22C79A;font-weight:600;font-size:12.5px">Jump to section &rarr;</span></div>'
+             +'<div style="font-size:13px;color:#5A6A65;margin-top:3px">'+note+'</div></a>';
+        }
+        document.getElementById('fw-result').innerHTML=out;
+      }
+      fwCompute();
+      </script>
+
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:620px;margin:0 0 8px">
+        <thead><tr style="background:#F6FAF8">
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Scheme</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Where</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Who it's for</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Typical support</th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><a href="#bus-section" onclick="document.getElementById('bus-section').scrollIntoView({behavior:'smooth'});return false" style="color:#22C79A;font-weight:600;text-decoration:none">Boiler Upgrade Scheme</a></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">England &amp; Wales</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Any homeowner</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">&pound;7,500 ASHP/GSHP</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><a href="#vat-section" onclick="document.getElementById('vat-section').scrollIntoView({behavior:'smooth'});return false" style="color:#22C79A;font-weight:600;text-decoration:none">0% VAT</a></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">UK-wide</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Any homeowner</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">~17% off, automatic</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><a href="#hes-section" onclick="document.getElementById('hes-section').scrollIntoView({behavior:'smooth'});return false" style="color:#22C79A;font-weight:600;text-decoration:none">Home Energy Scotland</a></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Scotland</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Any homeowner</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">&pound;7,500 grant + &pound;7,500 loan</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><a href="#whlg-section" onclick="document.getElementById('whlg-section').scrollIntoView({behavior:'smooth'});return false" style="color:#22C79A;font-weight:600;text-decoration:none">Warm Homes: Local Grant</a></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">England</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Low income</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Fully funded</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><a href="#eco4-section" onclick="document.getElementById('eco4-section').scrollIntoView({behavior:'smooth'});return false" style="color:#22C79A;font-weight:600;text-decoration:none">ECO4</a></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">England, Wales, Scotland</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Benefit claimants</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Fully funded</td></tr>
+          <tr><td style="padding:9px 14px"><a href="#ni-section" onclick="document.getElementById('ni-section').scrollIntoView({behavior:'smooth'});return false" style="color:#22C79A;font-weight:600;text-decoration:none">Northern Ireland support</a></td><td style="padding:9px 14px">Northern Ireland</td><td style="padding:9px 14px">Varies</td><td style="padding:9px 14px">See below</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#5A6A65;font-size:12.5px;margin:0 0 8px">You often can't combine two capital grants for the same measure, but 0% VAT applies alongside any of the others. Always confirm combinability with your installer or scheme adviser before applying.</p>
+
+      <h2 id="bus-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Boiler Upgrade Scheme (England &amp; Wales)</h2>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">The government's main heat pump grant, open to any homeowner regardless of income. Paid as an upfront discount off your installer's quote, not claimed back after the fact.</p>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:480px;margin:0 0 8px">
+        <thead><tr style="background:#F6FAF8"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">System</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Grant</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Air source heat pump (ASHP)</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">&pound;7,500</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Ground source heat pump (GSHP, incl. water source &amp; shared loops)</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">&pound;7,500</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Biomass boiler (off-gas-grid, rural only)</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">&pound;5,000</td></tr>
+          <tr><td style="padding:9px 14px">Air-to-air heat pump</td><td style="padding:9px 14px">&pound;2,500</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color:#5A6A65;font-size:12.5px;margin:0 0 10px">Plus an extra &pound;1,500 (&pound;9,000 total) for ASHP/GSHP on oil or LPG properties with no mains gas connection, between 21 July 2026 and 31 March 2027. One grant per property; hybrid systems don't qualify.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li><strong>Eligibility:</strong> you own the property (including rentals, second homes and businesses), you're replacing a fossil fuel system, and it's in England or Wales. Your installer must commission the system within 120 days of applying.</li>
+        <li><strong>Requirements:</strong> an MCS-certified installer and product: this is now a statutory requirement. No EPC is needed as of 28 April 2026 (the old insulation-recommendation rule was scrapped).</li>
+        <li><strong>Payment:</strong> deducted upfront from your quote by the installer, who applies to Ofgem on your behalf. Not means-tested, doesn't need repaying.</li>
+        <li><strong>How to apply:</strong> get quotes from MCS-certified installers, confirm eligibility, agree a quote; your installer applies for you.</li>
+      </ul>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Funded through to 31 March 2030, with &pound;400 million budgeted for 2026&ndash;27. Full detail: eligibility edge cases (self-build, new build), what doesn't qualify (social housing, previously-funded properties), and biomass-specific rules, are in our <a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#0B6656;font-weight:600;text-decoration:none">installation costs guide</a> and the <a href="https://www.gov.uk/apply-boiler-upgrade-scheme" target="_blank" rel="noopener" style="color:#0B6656;font-weight:600;text-decoration:none">official GOV.UK guidance</a>.</p>
+
+      <h2 id="vat-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">0% VAT on heat pumps (UK-wide)</h2>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Separate from any grant, and stackable with one: installing a qualifying heat pump in a UK home currently attracts <strong>0% VAT</strong> instead of the usual 20%, covering both the equipment and installation labour.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li><strong>What's covered:</strong> air, ground and water source heat pumps, plus the installation labour, controls and other qualifying energy-saving materials fitted at the same time.</li>
+        <li><strong>Who's eligible:</strong> any residential property in the UK: there's no income test and no application. Your installer simply doesn't charge VAT (or charges 0%) on the qualifying elements of the invoice.</li>
+        <li><strong>Typical saving:</strong> around &pound;1,800&ndash;&pound;2,500 on a typical residential ASHP installation, since it applies to the full pre-grant invoice total.</li>
+        <li><strong>Timeline:</strong> in force since April 2022, currently scheduled to run until 31 March 2027, after which it's due to revert to 5% unless extended again (it has been extended more than once already).</li>
+      </ul>
+
+      <h2 id="hes-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Home Energy Scotland Grant and Loan (Scotland)</h2>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Scotland's equivalent to the Boiler Upgrade Scheme, run by Home Energy Scotland on behalf of the Scottish Government: a grant that can be topped up with an optional interest-free loan.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li><strong>Funding:</strong> up to <strong>&pound;7,500 grant</strong> for a heat pump (air, ground or water source), plus an optional <strong>&pound;7,500 interest-free loan</strong> on top, up to &pound;15,000 combined. A &pound;1,500 rural/island uplift applies to both, taking the maximum to &pound;18,000.</li>
+        <li><strong>Eligibility:</strong> you own and live in the property as your only or main residence, in Scotland. Only heat pumps providing 100% of heating and hot water qualify; hybrids don't. Replacement heat pumps can't get the grant, but can use the loan.</li>
+        <li><strong>Requirements:</strong> MCS-certified installer and product. No EPC is needed to apply for the heat pump funding itself (only for separate energy-efficiency measures like insulation).</li>
+        <li><strong>How to apply:</strong> call or email Home Energy Scotland for a free advice session first; you're referred to the online application only after that. Applications are processed in around 10 working days once submitted, and funding offers are valid for 9 months.</li>
+        <li><strong>Payment:</strong> unlike BUS, funding is claimed back after work is done (with an optional deposit drawdown of up to 60% of material costs upfront) rather than deducted from the quote in advance.</li>
+      </ul>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Funding is allocated first-come, first-served and subject to availability, so apply early in the financial year. Full detail: <a href="https://www.homeenergyscotland.org/home-energy-scotland-grant-loan" target="_blank" rel="noopener" style="color:#0B6656;font-weight:600;text-decoration:none">Home Energy Scotland official guidance</a>.</p>
+
+      <h2 id="whlg-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Warm Homes: Local Grant (England, low income)</h2>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">A fully-funded scheme for lower-income households in England, delivered through local councils. It's a whole-home energy efficiency programme rather than a heat-pump-specific grant; a heat pump is only installed where a survey finds it suitable.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li><strong>What it covers:</strong> wall, loft and underfloor insulation, air source heat pumps, smart heating controls and solar panels, whatever a home survey recommends. Your council arranges and pays for the work; you pay nothing (though a landlord may need to contribute for a rented property).</li>
+        <li><strong>Eligibility:</strong> home privately owned (by you or your landlord) with an EPC of D&ndash;G, in England. Household income usually &pound;36,000/year or less, though you may still qualify above that if you're in a targeted postcode area or receive certain benefits.</li>
+        <li><strong>How to apply:</strong> apply online at gov.uk/apply-warm-homes-local-grant; your council should be in touch within 10 working days to arrange a survey. Availability depends on your council having funding allocated, so it isn't guaranteed everywhere.</li>
+      </ul>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Runs April 2025 to March 2028. Equivalent support in Wales is arranged through the Welsh Government's Warm Homes Programme, and in Scotland through Home Energy Scotland (above).</p>
+
+      <h2 id="eco4-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">ECO4 (England, Wales &amp; Scotland, benefit claimants)</h2>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">The Energy Company Obligation is funded by energy suppliers rather than general taxation: they're required to fund efficiency upgrades, including heat pumps, for low-income and vulnerable households as part of a "whole-house" retrofit.</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li><strong>What it covers:</strong> can fund a heat pump installation in full as part of a wider package of measures aimed at bringing the home up to around EPC Band C, rather than a fixed voucher amount like BUS.</li>
+        <li><strong>Eligibility:</strong> broadly, you (or your landlord, with permission) must be claiming a qualifying benefit (Universal Credit, Pension Credit, Income Support, income-based JSA/ESA, Child Benefit or Housing Benefit) and the property needs an EPC of D, E, F or G (E, F or G if you're a private tenant). Social housing tenants in an E, F or G rated property may also qualify.</li>
+        <li><strong>How to apply:</strong> contact your local council to check if they're participating, or contact a participating energy supplier directly (Ofgem publishes the current list). Be cautious of cold callers claiming to represent the scheme; verify independently before agreeing to anything.</li>
+      </ul>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 14px;max-width:680px">Currently running to 31 December 2026. More tightly targeted than BUS, but can cover a much larger share (or all) of the cost for those who qualify.</p>
+
+      <h2 id="ni-section" style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Northern Ireland</h2>
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 10px;max-width:680px">Northern Ireland isn't covered by the Boiler Upgrade Scheme, and its own Boiler Replacement Scheme has closed with no direct £7,500-style heat pump grant currently in its place. Support is more limited for now:</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.8;max-width:680px">
+        <li><strong>0% VAT</strong> applies in Northern Ireland the same as the rest of the UK (see above); no application needed.</li>
+        <li><strong>Affordable Warmth Scheme</strong>, run by the NI Housing Executive, offers up to &pound;7,500 of heating and insulation work for private owner-occupiers with household income under &pound;23,000.</li>
+        <li><strong>NISEP</strong> (Northern Ireland Sustainable Energy Programme) offers a limited number of air source heat pump installations as part of heating upgrades for off-gas-grid households, funded by electricity suppliers.</li>
+        <li>The Department for the Economy has committed to a NI-specific heat pump grant broadly matching BUS, expected to follow a consultation completed in early 2026. Check <a href="https://www.nidirect.gov.uk/information-and-services/energy-advice/energy-saving-grants" target="_blank" rel="noopener" style="color:#0B6656;font-weight:600;text-decoration:none">nidirect.gov.uk</a> for the latest before assuming any of the above still reflects the current position.</li>
+      </ul>
+
+      <div style="background:#083F35;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
+        <div style="font-size:17px;font-weight:600;margin-bottom:10px">Which funding applies to me?</div>
+        <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.8;color:rgba(255,255,255,.92)">
+          <li><strong>England or Wales, any income:</strong> Boiler Upgrade Scheme + 0% VAT.</li>
+          <li><strong>England, lower income:</strong> check Warm Homes: Local Grant and ECO4 first; they can fully fund the work rather than just discount it.</li>
+          <li><strong>Scotland, any income:</strong> Home Energy Scotland Grant and Loan + 0% VAT.</li>
+          <li><strong>Wales or Scotland, lower income:</strong> ECO4, alongside Home Energy Scotland or the Welsh Government's Warm Homes Programme.</li>
+          <li><strong>Northern Ireland:</strong> 0% VAT, plus Affordable Warmth or NISEP if you meet their criteria, and watch for the NI-specific grant currently in development.</li>
+        </ul>
+      </div>
+
+      <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Related reading</h2>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.9;max-width:680px">
+        <li><a href="/knowledge/installation-costs/" onclick="showPage('install-costs');return false" style="color:#22C79A;font-weight:600;text-decoration:none">ASHP installation costs explained</a>: typical totals before and after grant funding</li>
+        <li><a href="/knowledge/planning-permission/" onclick="showPage('planning');return false" style="color:#22C79A;font-weight:600;text-decoration:none">UK planning permission for heat pumps</a>: permitted development rules, process and costs by nation</li>
+        <li><a href="/heat-pump-size-calculator/" style="color:#22C79A;font-weight:600;text-decoration:none">Heat Pump Size Calculator</a>: estimate the kW your home needs before getting quotes</li>
+        <li><a href="/knowledge/what-is-a-heat-pump/" onclick="showPage('what-is-a-heat-pump');return false" style="color:#22C79A;font-weight:600;text-decoration:none">What is a heat pump?</a>: a plain-English introduction</li>
+        <li><a href="/knowledge/cop-scop/" onclick="showPage('cop-scop');return false" style="color:#22C79A;font-weight:600;text-decoration:none">Understanding COP &amp; SCOP</a>: how to compare running-cost efficiency between models</li>
+      </ul>
+      <p style="color:#5A6A65;font-size:12.5px;margin:16px 0 0">Reviewed August 2026 against GOV.UK, Home Energy Scotland and nidirect guidance. This is general information, not financial or professional advice; funding rules, amounts and deadlines change and vary by circumstance, so always confirm current eligibility with the relevant scheme, your council, or an MCS-certified installer before budgeting or buying.</p>
+    </div>
+  </div>
+</div>

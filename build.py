@@ -357,6 +357,52 @@ def render_reviews(p):
 
     return "".join(out)
 
+# Category (type) page links shown on product pages, the manufacturers index and
+# the home page. Filled by compute_type_links() before any page is rendered, using
+# the same grouping rules as the category pages themselves in main().
+TYPE_LINKS = {"hp": {}, "ref": {}, "app": {}}
+
+def _ref_key(r):
+    return re.sub(r"[^a-z0-9]", "", str(r).lower())
+
+def compute_type_links(products):
+    by_type, by_ref, spellings, by_app = {}, {}, {}, {}
+    for p in products:
+        by_type.setdefault(p.get("hp_type"), []).append(p)
+        if p.get("refrigerant"):
+            k = _ref_key(p["refrigerant"])
+            by_ref.setdefault(k, []).append(p)
+            spellings.setdefault(k, Counter())[p["refrigerant"]] += 1
+        if p.get("type"):
+            by_app.setdefault(p["type"], []).append(p)
+    for code, label in TYPE_LABEL.items():
+        if by_type.get(code):
+            base = label.split(" (")[0]
+            TYPE_LINKS["hp"][code] = (f"{BASE_URL}/types/{slugify(base + ' heat pumps')}/", f"{base} Heat Pumps", len(by_type[code]))
+    for k, ps in by_ref.items():
+        if len(ps) >= 5:
+            sp = spellings[k]
+            plain = [x for x in sp if "-" not in x]
+            label = max(plain or sp, key=lambda x: (sp[x], x))
+            TYPE_LINKS["ref"][k] = (f"{BASE_URL}/types/{slugify(label + ' heat pumps')}/", f"{label} Heat Pumps", len(ps))
+    for app, ps in by_app.items():
+        TYPE_LINKS["app"][app] = (f"{BASE_URL}/types/{slugify(app + ' heat pumps')}/", f"{app} Heat Pumps", len(ps))
+
+def _type_link(kind, key, text):
+    t = TYPE_LINKS[kind].get(key)
+    if not t:
+        return esc(text)
+    return f'{esc(text)} <a class="type-link" href="{t[0]}">All {esc(t[1].replace(" Heat Pumps", ""))} heat pumps &rarr;</a>'
+
+def type_links_html():
+    """Pill lists of every category page, for the manufacturers index and the home page."""
+    def pills(items):
+        return "".join(f'<a href="{u}">{esc(l)} <span>({n:,})</span></a>' for u, l, n in items)
+    hp = sorted(TYPE_LINKS["hp"].values(), key=lambda t: -t[2])
+    app = sorted(TYPE_LINKS["app"].values(), key=lambda t: -t[2])
+    ref = sorted(TYPE_LINKS["ref"].values(), key=lambda t: -t[2])
+    return hp, app, ref, pills
+
 def spec_rows(p):
     """Ordered (label, value) pairs for the spec table — only populated fields."""
     rows = []
@@ -364,9 +410,9 @@ def spec_rows(p):
     add("Manufacturer", esc(p.get("manufacturer")))
     add("Model", esc(p.get("model")))
     add("Model code", esc(p.get("product_code")))
-    if p.get("hp_type"): add("Heat pump type", esc(TYPE_LABEL.get(p["hp_type"], p["hp_type"])))
-    add("Application", esc(p.get("type")))
-    add("Refrigerant", esc(p.get("refrigerant")))
+    if p.get("hp_type"): add("Heat pump type", _type_link("hp", p["hp_type"], TYPE_LABEL.get(p["hp_type"], p["hp_type"])))
+    if p.get("type"): add("Application", _type_link("app", p["type"], p["type"]))
+    if p.get("refrigerant"): add("Refrigerant", _type_link("ref", _ref_key(p["refrigerant"]), p["refrigerant"]))
     add("Mode", esc(p.get("mode")))
     add("Heating capacity", cap_str(p))
     if p.get("max_heat_capacity") is not None:
@@ -427,32 +473,32 @@ def spec_rows(p):
 MFR_FILTER_CSS = """
 /* ── Manufacturers page filters ── */
 .flag-icon{width:16px;height:12px;vertical-align:-1.5px;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
-.mfr-filter-bar{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;margin-bottom:20px}
+.mfr-filter-bar{background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:16px 18px;margin-bottom:20px}
 .mfr-filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.mfr-filter-col label.filter-label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#5b6b6b;font-weight:600;margin-bottom:5px}
-.mfr-filter-col select.filt{width:100%;padding:9px 12px;border:1px solid #e2e8e7;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;color:#16302f;cursor:pointer;appearance:auto}
-.mfr-filter-col select.filt:focus{border-color:#3ECCC0;outline:none}
-.f-slider-val{font-size:11px;color:#0D7377;font-weight:600;float:right;text-transform:none;letter-spacing:0}
+.mfr-filter-col label.filter-label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#5A6A65;font-weight:600;margin-bottom:5px}
+.mfr-filter-col select.filt{width:100%;padding:9px 12px;border:1px solid #E3EDE8;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;color:#083F35;cursor:pointer;appearance:auto}
+.mfr-filter-col select.filt:focus{border-color:#22C79A;outline:none}
+.f-slider-val{font-size:11px;color:#0B6656;font-weight:600;float:right;text-transform:none;letter-spacing:0}
 .range-wrap{position:relative;height:30px;margin-top:2px}
-.range-wrap.focus .range-thumb{box-shadow:0 0 0 4px rgba(62,204,192,.35)}
-.range-track{position:absolute;top:13px;left:5%;right:5%;height:4px;background:#eef2f1;border-radius:3px}
-.range-fill{position:absolute;top:13px;height:4px;background:#3ECCC0;border-radius:3px}
-.range-thumb{position:absolute;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:2.5px solid #0D7377;box-shadow:0 1px 3px rgba(0,0,0,.18);transform:translateX(-50%);pointer-events:none;box-sizing:border-box}
+.range-wrap.focus .range-thumb{box-shadow:0 0 0 4px rgba(34,199,154,.35)}
+.range-track{position:absolute;top:13px;left:5%;right:5%;height:4px;background:#EEF4F1;border-radius:3px}
+.range-fill{position:absolute;top:13px;height:4px;background:#22C79A;border-radius:3px}
+.range-thumb{position:absolute;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:2.5px solid #0B6656;box-shadow:0 1px 3px rgba(0,0,0,.18);transform:translateX(-50%);pointer-events:none;box-sizing:border-box}
 .range-wrap input[type=range]{position:absolute;top:0;left:0;width:100%;height:30px;margin:0;opacity:0;pointer-events:none;-webkit-appearance:none;appearance:none}
 .range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:30px;pointer-events:auto;cursor:pointer}
 .range-wrap input[type=range]::-moz-range-thumb{width:24px;height:30px;pointer-events:auto;cursor:pointer;border:none;background:transparent}
-.mfr-filter-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid #eef2f1}
-#mf-count{font-size:12.5px;color:#5b6b6b}
-.mf-clear-btn{background:none;border:1px solid #e2e8e7;color:#42514f;font-size:12.5px;padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Inter',sans-serif}
-.mf-clear-btn:hover{border-color:#3ECCC0;color:#0D7377}
-.mfr-empty{display:none;color:#5b6b6b;font-size:14px;padding:32px 0;text-align:center}
+.mfr-filter-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid #EEF4F1}
+#mf-count{font-size:12.5px;color:#5A6A65}
+.mf-clear-btn{background:none;border:1px solid #E3EDE8;color:#3B4D47;font-size:12.5px;padding:6px 12px;border-radius:7px;cursor:pointer;font-family:'Inter',sans-serif}
+.mf-clear-btn:hover{border-color:#22C79A;color:#0B6656}
+.mfr-empty{display:none;color:#5A6A65;font-size:14px;padding:32px 0;text-align:center}
 .news-filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
-.news-chip{background:#fff;border:1px solid #e2e8e7;color:#42514f;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;padding:7px 15px;border-radius:20px;cursor:pointer;transition:all .15s}
-.news-chip:hover{border-color:#3ECCC0;color:#0D7377}
-.news-chip.active{background:#0D7377;border-color:#0D7377;color:#fff}
+.news-chip{background:#fff;border:1px solid #E3EDE8;color:#3B4D47;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;padding:7px 15px;border-radius:20px;cursor:pointer;transition:all .15s}
+.news-chip:hover{border-color:#22C79A;color:#0B6656}
+.news-chip.active{background:#0B6656;border-color:#0B6656;color:#fff}
 .news-chip .nf-n{font-weight:500;opacity:.65;margin-left:6px}
 .news-chip.is-empty{opacity:.5}
-.news-empty{display:none;color:#5b6b6b;font-size:14px;padding:34px 0;text-align:center}
+.news-empty{display:none;color:#5A6A65;font-size:14px;padding:34px 0;text-align:center}
 @media(max-width:720px){.mfr-filter-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.mfr-filter-grid{grid-template-columns:1fr}}
 
@@ -541,92 +587,95 @@ MFR_FILTER_JS = """
 
 CALC_CSS = """
 /* ── Heat pump size calculator ── */
-.dm-tabs{display:flex;gap:8px;margin:18px 0 22px;border-bottom:1px solid #e2e8e7}
-.dm-tab{background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14.5px;font-weight:600;color:#7a8a88;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Inter',sans-serif}
-.dm-tab.active{color:#0D7377;border-bottom-color:#0D7377}
+.dm-tabs{display:flex;gap:8px;margin:18px 0 22px;border-bottom:1px solid #E3EDE8}
+.dm-tab{background:none;border:none;padding:10px 4px;margin-right:22px;font-size:14.5px;font-weight:600;color:#5A6A65;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:'Inter',sans-serif}
+.dm-tab.active{color:#0B6656;border-bottom-color:#0B6656}
 .dm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:8px}
-.dm-field label{display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px}
-.dm-field input[type=number],.dm-field select{width:100%;height:40px;padding:9px 12px;border:1px solid #e2e8e7;border-radius:10px;font-size:13.5px;font-family:'Inter',sans-serif;background:#fff;color:#0F2B2B;box-sizing:border-box;line-height:1.2;appearance:auto}
-.dm-check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#42514f;margin-top:10px}
+.dm-field label{display:block;font-size:12.5px;font-weight:600;color:#3B4D47;margin-bottom:6px}
+.dm-field input[type=number],.dm-field select{width:100%;height:40px;padding:9px 12px;border:1px solid #E3EDE8;border-radius:10px;font-size:13.5px;font-family:'Inter',sans-serif;background:#fff;color:#083F35;box-sizing:border-box;line-height:1.2;appearance:auto}
+.dm-check-row{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#3B4D47;margin-top:10px}
 .dm-check-row input{width:16px;height:16px;flex:none}
-.dm-results{background:#064E50;color:#fff;border-radius:16px;padding:26px 28px;margin:26px 0}
+.dm-results{background:#083F35;color:#fff;border-radius:16px;padding:26px 28px;margin:26px 0}
 .dm-result-row{display:flex;flex-wrap:wrap;gap:28px;margin-bottom:2px}
 .dm-result-block{flex:1 1 200px;min-width:170px}
 .dm-result-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.6);margin-bottom:4px}
 .dm-result-value{font-size:30px;font-weight:700;letter-spacing:-.02em}
 .dm-result-sub{font-size:12.5px;color:rgba(255,255,255,.65);margin-top:6px}
-.dm-hint{font-size:11.5px;color:#7a8a88;line-height:1.5;margin-top:5px}
-.dm-note{font-size:12.5px;color:#7a8a88;line-height:1.6;margin:14px 0}
-.dm-assumptions{background:#f3f7f6;border-radius:10px;padding:14px 18px;font-size:12.5px;color:#42514f;line-height:1.7;margin:18px 0}
-.dm-rec-group-label{font-size:13.5px;font-weight:600;color:#42514f;margin:18px 0 10px}
+.dm-hint{font-size:11.5px;color:#5A6A65;line-height:1.5;margin-top:5px}
+.dm-note{font-size:12.5px;color:#5A6A65;line-height:1.6;margin:14px 0}
+.dm-assumptions{background:#F6FAF8;border-radius:10px;padding:14px 18px;font-size:12.5px;color:#3B4D47;line-height:1.7;margin:18px 0}
+.dm-rec-group-label{font-size:13.5px;font-weight:600;color:#3B4D47;margin:18px 0 10px}
 .dm-rec-group-label:first-child{margin-top:0}
 .dm-rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:6px}
-.dm-rec-empty{color:#7a8a88;font-size:13px;margin-bottom:6px}
-.dm-rec-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:16px 18px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
-.dm-rec-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.08);text-decoration:none}
-.dm-rec-card-brand{font-size:12px;color:#7a8a88;text-transform:uppercase;letter-spacing:.03em;font-weight:600}
-.dm-rec-card-name{font-size:15px;font-weight:600;color:#0F2B2B;margin-top:2px}
+.dm-rec-empty{color:#5A6A65;font-size:13px;margin-bottom:6px}
+.dm-rec-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:16px 18px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+.dm-rec-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.08);text-decoration:none}
+.dm-rec-card-brand{font-size:12px;color:#5A6A65;text-transform:uppercase;letter-spacing:.03em;font-weight:600}
+.dm-rec-card-name{font-size:15px;font-weight:600;color:#083F35;margin-top:2px}
 .dm-rec-card-badges{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.dm-badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:500}
-.dm-badge-ref{background:#f3f7f6;color:#42514f;border-color:#e2e8e7}
-.dm-rec-card-specs{display:flex;gap:14px;margin-top:10px;font-size:12.5px;color:#42514f;flex-wrap:wrap}
-.dm-rec-card-price{margin-top:8px;font-size:13px;color:#0D7377;font-weight:600}
-.dm-rec-card-link{margin-top:10px;font-size:12.5px;color:#0D7377;font-weight:600}
+.dm-badge{background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:3px 10px;font-size:11.5px;font-weight:500}
+.dm-badge-ref{background:#F6FAF8;color:#3B4D47;border-color:#E3EDE8}
+.dm-rec-card-specs{display:flex;gap:14px;margin-top:10px;font-size:12.5px;color:#3B4D47;flex-wrap:wrap}
+.dm-rec-card-price{margin-top:8px;font-size:13px;color:#0B6656;font-weight:600}
+.dm-rec-card-link{margin-top:10px;font-size:12.5px;color:#0B6656;font-weight:600}
 @media (max-width:640px){.dm-result-value{font-size:24px}.dm-results{padding:20px}}
 """
 
 CSS = """
 /* ── Best-of ranking pages ── */
 .best-toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 28px}
-.best-toc a{display:inline-block;background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}
-.best-toc a:hover{background:#d4ece7}
+.best-toc a{display:inline-block;background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}
+.best-toc a:hover{background:#BFE3D2}
+.best-toc a span{color:#5A6A65;font-weight:400}
+.type-link{margin-left:8px;font-size:13px;white-space:nowrap}
+.type-browse{margin:0 0 28px}
 .best-section{margin-bottom:44px;padding-top:8px;scroll-margin-top:80px}
-.best-section:not(:last-of-type){border-bottom:1px solid #e2e8e7;padding-bottom:36px}
-.composite-sub{font-size:11.5px;color:#8a9694;font-weight:400}
-.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
+.best-section:not(:last-of-type){border-bottom:1px solid #E3EDE8;padding-bottom:36px}
+.composite-sub{font-size:11.5px;color:#5A6A65;font-weight:400}
+.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#083F35,#083F35);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
 .best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
-.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
+.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#22C79A;font-weight:600;margin-bottom:2px}
 .best-winner .bw-name{font-size:19px;font-weight:600;letter-spacing:-.01em}.best-winner .bw-name a{color:#fff}
 .best-winner .bw-val{margin-left:auto;text-align:right;flex:none}
-.best-winner .bw-num{font-size:26px;font-weight:700;color:#3ECCC0;line-height:1.1}
+.best-winner .bw-num{font-size:26px;font-weight:700;color:#22C79A;line-height:1.1}
 .best-winner .bw-lab{font-size:12px;color:rgba(255,255,255,.55)}
-.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #e2e8e7}
+.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #E3EDE8}
 .best-scroll table.list{border:none;margin:0;min-width:640px}
-table.best-table th{position:sticky;top:0;background:#fafcfb;z-index:1}
-table.best-table tr:nth-child(even) td{background:#fafcfb}
-table.best-table tr:hover td{background:#eef7f5}
+table.best-table th{position:sticky;top:0;background:#F6FAF8;z-index:1}
+table.best-table tr:nth-child(even) td{background:#F6FAF8}
+table.best-table tr:hover td{background:#F6FAF8}
 td.rank{width:44px;text-align:center}
-.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#42514f;background:#eef2f1}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#3B4D47;background:#EEF4F1}
 .rank-1 .rank-badge{background:#f6d873;color:#5c4a00}
 .rank-2 .rank-badge{background:#dfe4e6;color:#454d50}
 .rank-3 .rank-badge{background:#e8c39e;color:#5e3c14}
 .best-model{display:flex;align-items:center;gap:10px}
-.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #eef2f1;flex:none}
+.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #EEF4F1;flex:none}
 .metric-cell{min-width:120px}
 .metric-val{font-weight:600}
-.metric-bar{height:5px;border-radius:3px;background:#e7f0ee;margin-top:5px;overflow:hidden}
-.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#3ECCC0,#0f8a80)}
-.hub-leader{font-size:12.5px;color:#0c6f66;margin-top:4px}
+.metric-bar{height:5px;border-radius:3px;background:#EEF4F1;margin-top:5px;overflow:hidden}
+.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#22C79A,#0B6656)}
+.hub-leader{font-size:12.5px;color:#0B6656;margin-top:4px}
 
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
-header.site{background:#0F2B2B;height:60px;display:flex;align-items:center}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#083F35;background:#F6FAF8;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#0B6656;text-decoration:none}a:hover{text-decoration:underline}
+header.site{background:#083F35;height:60px;display:flex;align-items:center}
 header.site .wrap{display:flex;align-items:center;width:100%}
 header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
 header.site .brand:hover{text-decoration:none}
-.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-bold{color:#22C79A;font-weight:700}
 .wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
 .burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
 .burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
 .burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#083F35;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .burger-menu.open{transform:translateX(0)}
 .burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%;display:block;text-decoration:none;box-sizing:border-box}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
-.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-item.active{color:#22C79A;font-weight:500}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
 .burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease;flex-shrink:0}.burger-subgroup.open{max-height:1000px}.burger-menu>.burger-item,.burger-menu>.burger-subgroup{flex-shrink:0}
 .burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -634,119 +683,119 @@ header.site .brand:hover{text-decoration:none}
 @media(max-width:560px){.burger-menu{width:100%}}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
 main{padding:28px 0 56px}
-nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
-nav.crumbs a{color:#5b6b6b}nav.crumbs span{color:#9aa}
+nav.crumbs{font-size:13px;color:#5A6A65;margin-bottom:18px}
+nav.crumbs a{color:#5A6A65}nav.crumbs span{color:#5A6A65}
 h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
-.sub{color:#5b6b6b;font-size:15px;margin-bottom:24px}
+.sub{color:#5A6A65;font-size:15px;margin-bottom:24px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
-.badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
-table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden}
-table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #eef2f1;font-size:14.5px;vertical-align:top}
-table.spec th{width:42%;color:#42514f;font-weight:500;background:#fafcfb}
+.badge{background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden}
+table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #EEF4F1;font-size:14.5px;vertical-align:top}
+table.spec th{width:42%;color:#3B4D47;font-weight:500;background:#F6FAF8}
 table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
-.notes{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#34433f}
+.notes{background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#3B4D47}
 .article-body{max-width:720px}
-.article-body h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 12px;color:#0F2B2B}
-.article-body h3{font-size:16px;margin:22px 0 10px;color:#0F2B2B}
-.article-body p{color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px}
-.article-body strong{color:#16302f}
-.article-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 18px}
-.article-body th{text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;background:#fafcfb;color:#42514f;font-weight:600}
-.article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
-.article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
-.article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
-.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0D7377;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#f2fbfa;border:1px solid #cdeae6;border-left:4px solid #0D7377;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0D7377;flex-shrink:0}.article-tldr p{margin:0;color:#34433f;font-size:14px;line-height:1.6;flex:1;min-width:200px}
+.article-body h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 12px;color:#083F35}
+.article-body h3{font-size:16px;margin:22px 0 10px;color:#083F35}
+.article-body p{color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 14px}
+.article-body strong{color:#083F35}
+.article-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 18px}
+.article-body th{text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;background:#F6FAF8;color:#3B4D47;font-weight:600}
+.article-body td{padding:9px 14px;border-bottom:1px solid #EEF4F1}
+.article-body .callout{background:#fff;border:1px solid #E3EDE8;border-left:4px solid #22C79A;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#3B4D47}
+.article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#5A6A65;flex-wrap:wrap}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #E3EDE8;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#5A6A65;background:#F6FAF8;border-top:1px solid #EEF4F1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0B6656;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#F6FAF8;border:1px solid #BFE3D2;border-left:4px solid #0B6656;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0B6656;flex-shrink:0}.article-tldr p{margin:0;color:#3B4D47;font-size:14px;line-height:1.6;flex:1;min-width:200px}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.article-cat-insight{background:#e6f4f3;color:#0D7377}
-.article-cat-product{background:#fdf1e0;color:#a3660a}
-.article-cat-update{background:#e8eef5;color:#2b5a8a}
+.article-cat-insight{background:#E4F6EC;color:#0B6656}
+.article-cat-product{background:#BFE3D2;color:#083F35}
+.article-cat-update{background:#E4F6EC;color:#0B6656}
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.news-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
-.news-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
-.news-card h3{font-size:16px;margin:8px 0 6px;color:#0F2B2B}
-.news-card p{font-size:13.5px;color:#5b6b6b;line-height:1.6;margin:0}
+.news-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
+.news-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07)}
+.news-card h3{font-size:16px;margin:8px 0 6px;color:#083F35}
+.news-card p{font-size:13.5px;color:#5A6A65;line-height:1.6;margin:0}
 .news-list{display:flex;flex-direction:column;gap:18px}
-.news-row{display:flex;gap:22px;background:#fff;border:1px solid #e2e8e7;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
-.news-row:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
-.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#eef3f2;display:flex;align-items:center;justify-content:center}
+.news-row{display:flex;gap:22px;background:#fff;border:1px solid #E3EDE8;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.news-row:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07)}
+.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#EEF4F1;display:flex;align-items:center;justify-content:center}
 .news-row-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.news-row-thumb.placeholder{color:#9fb0af;font-size:13px;text-align:center;padding:0 16px}
+.news-row-thumb.placeholder{color:#5A6A65;font-size:13px;text-align:center;padding:0 16px}
 .news-row-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
-.news-row h3{font-size:20px;margin:8px 0 8px;color:#0F2B2B;letter-spacing:-.01em}
-.news-row p{font-size:14.5px;color:#5b6b6b;line-height:1.65;margin:0}
+.news-row h3{font-size:20px;margin:8px 0 8px;color:#083F35;letter-spacing:-.01em}
+.news-row p{font-size:14.5px;color:#5A6A65;line-height:1.65;margin:0}
 @media (max-width:640px){.news-row{flex-direction:column}.news-row-thumb{width:100%;flex-basis:auto;height:180px}}
-.notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
+.notes h2{font-size:15px;margin-bottom:6px;color:#083F35}
 h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.verified-box{margin:16px 0 0;padding:12px 14px;border:1px solid #cfe9e5;background:#f1faf8;border-radius:10px}
-.vb-title{font-size:14px;font-weight:700;color:#0F8074}
-.vb-detail{font-size:12.5px;color:#4d5f5f;margin-top:4px;line-height:1.55}
+.verified-box{margin:16px 0 0;padding:12px 14px;border:1px solid #BFE3D2;background:#F6FAF8;border-radius:10px}
+.vb-title{font-size:14px;font-weight:700;color:#0B6656}
+.vb-detail{font-size:12.5px;color:#3B4D47;margin-top:4px;line-height:1.55}
 .alt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.alt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
-.alt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.alt-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.alt-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
 .alt-card .ah{display:flex;gap:10px;align-items:center;margin-bottom:8px}
-.alt-card .ah img{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px}
-.alt-card .am{font-weight:600;color:#0F2B2B;font-size:14px;line-height:1.3}
-.alt-card .amf{font-size:12px;color:#5b6b6b}
+.alt-card .ah img{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:3px}
+.alt-card .am{font-weight:600;color:#083F35;font-size:14px;line-height:1.3}
+.alt-card .amf{font-size:12px;color:#5A6A65}
 .alt-card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:12.5px}
-.alt-card dt{color:#5b6b6b}.alt-card dd{margin:0;color:#0F2B2B;font-weight:600}
-.alt-why{font-size:13px;color:#5b6b6b;margin:-4px 0 12px}
-.card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
-.card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
-.card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
-.card .s{color:#5b6b6b;font-size:12.5px;margin-top:4px}
+.alt-card dt{color:#5A6A65}.alt-card dd{margin:0;color:#083F35;font-weight:600}
+.alt-why{font-size:13px;color:#5A6A65;margin:-4px 0 12px}
+.card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
+.card .m{font-weight:600;color:#083F35;font-size:14.5px;line-height:1.35}
+.card .s{color:#5A6A65;font-size:12.5px;margin-top:4px}
 .card.has-logo{display:flex;gap:12px;align-items:flex-start}
-.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:4px;flex-shrink:0}
-.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:6px;margin-bottom:14px}
-.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px;vertical-align:middle;margin-right:8px}
+.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:4px;flex-shrink:0}
+.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:6px;margin-bottom:14px}
+.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:3px;vertical-align:middle;margin-right:8px}
 .mfr-header{display:flex;align-items:center;gap:14px;margin-bottom:2px}
 .product-photo-block{margin-bottom:20px;text-align:center}
 .product-photo{max-width:360px;width:100%;height:auto;max-height:360px;object-fit:contain}
-.photo-credit{font-size:11.5px;color:#8a9694;margin-top:8px}
+.photo-credit{font-size:11.5px;color:#5A6A65;margin-top:8px}
 .product-photo{cursor:zoom-in}
 .product-photo-thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-.product-photo-thumb{width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid #e2e8e7;cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
+.product-photo-thumb{width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid #E3EDE8;cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
 .product-photo-thumb:hover{opacity:1}
-.product-photo-thumb.active{opacity:1;border-color:#0D7377}
-.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(15,43,43,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
+.product-photo-thumb.active{opacity:1;border-color:#0B6656}
+.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(8,63,53,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
 .photo-lightbox.open{display:flex}
 .photo-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:6px;cursor:default}
 .photo-lightbox-close{position:fixed;top:18px;right:22px;background:rgba(255,255,255,.12);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
-.trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
-table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
-table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
-table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+.trademark-note{font-size:11.5px;color:#5A6A65;margin-top:26px;line-height:1.5}
+table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:14px}
+table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #EEF4F1}
+table.list th{background:#F6FAF8;color:#3B4D47;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
 table.list tr:last-child td{border-bottom:none}
-table.list tr:hover td{background:#fafdfc}
-table.list tr.grp-row td{background:#f3f7f6;font-weight:600;color:#0F2B2B;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
-table.list tr.grp-row:hover td{background:#f3f7f6}
-.cta{display:inline-block;margin-top:8px;background:#0F2B2B;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
-.cta:hover{background:#16413f;text-decoration:none}
-footer.site{border-top:1px solid #e2e8e7;padding:26px 0;color:#7a8a88;font-size:13px;margin-top:30px}
-footer.site a{color:#7a8a88}
+table.list tr:hover td{background:#F6FAF8}
+table.list tr.grp-row td{background:#F6FAF8;font-weight:600;color:#083F35;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
+table.list tr.grp-row:hover td{background:#F6FAF8}
+.cta{display:inline-block;margin-top:8px;background:#083F35;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
+.cta:hover{background:#083F35;text-decoration:none}
+footer.site{border-top:1px solid #E3EDE8;padding:26px 0;color:#5A6A65;font-size:13px;margin-top:30px}
+footer.site a{color:#5A6A65}
 .disclaimer{background:#fff7ed;border:1px solid #fbe3c4;color:#92651f;border-radius:10px;padding:12px 16px;font-size:13px;margin:20px 0}
 @media(max-width:560px){table.spec th{width:48%}h1{font-size:23px}}
 /* ── Reviews & further reading (product pages) ── */
-.rv-list{list-style:none;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:4px 0;margin:0}
-.rv-item{padding:12px 18px;border-bottom:1px solid #eef2f1;font-size:14.5px;line-height:1.5}
+.rv-list{list-style:none;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:4px 0;margin:0}
+.rv-item{padding:12px 18px;border-bottom:1px solid #EEF4F1;font-size:14.5px;line-height:1.5}
 .rv-item:last-child{border-bottom:none}
 .rv-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:6px;vertical-align:middle}
-.rv-tag-review_article{background:#e7f4f2;color:#0c6f66}
-.rv-tag-news_article{background:#eef2fb;color:#3b4fa3}
-.rv-tag-manufacturer_page{background:#f3eefb;color:#5b3fa3}
-.rv-tag-performance_data{background:#fdf3e1;color:#8a5a00}
-.rv-source{color:#5b6b6b;font-size:13px}
-.rv-date{color:#9aa8a6;font-size:12.5px}
-.rv-note{color:#5b6b6b;font-size:13px;margin-top:3px}
+.rv-tag-review_article{background:#E4F6EC;color:#0B6656}
+.rv-tag-news_article{background:#E4F6EC;color:#0B6656}
+.rv-tag-manufacturer_page{background:#EEF4F1;color:#083F35}
+.rv-tag-performance_data{background:#BFE3D2;color:#083F35}
+.rv-source{color:#5A6A65;font-size:13px}
+.rv-date{color:#5A6A65;font-size:12.5px}
+.rv-note{color:#5A6A65;font-size:13px;margin-top:3px}
 .yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,300px));gap:14px;margin-top:12px}
-.yt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
-.yt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
-.yt-thumb-wrap{position:relative;display:block;background:#0F2B2B}
+.yt-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.yt-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
+.yt-thumb-wrap{position:relative;display:block;background:#083F35}
 .yt-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(15,43,43,.75);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
-.yt-title{display:block;padding:10px 14px 2px;font-weight:600;color:#0F2B2B;font-size:13.5px;line-height:1.35}
-.yt-source{display:block;padding:0 14px;color:#5b6b6b;font-size:12.5px}
-.yt-date{display:block;padding:2px 14px 12px;color:#9aa8a6;font-size:12px}
+.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(8,63,53,.75);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
+.yt-title{display:block;padding:10px 14px 2px;font-weight:600;color:#083F35;font-size:13.5px;line-height:1.35}
+.yt-source{display:block;padding:0 14px;color:#5A6A65;font-size:12.5px}
+.yt-date{display:block;padding:2px 14px 12px;color:#5A6A65;font-size:12px}
 """
 
 def burger_menu(active=None):
@@ -829,14 +878,17 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <meta property="og:url" content="{canonical}">
 <meta property="og:site_name" content="{SITE_NAME}">
 {og_image_tag}<meta name="twitter:card" content="{twitter_card}">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="theme-color" content="#083F35">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
-<link rel="stylesheet" href="/theme-pages.css?v=1">
+<link rel="stylesheet" href="/theme-pages.css?v=2">
 {blocks}
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -860,9 +912,8 @@ function trackOut(){{
 </script>
 </head>
 <body>
-<header class="site"><div class="wrap"><a class="brand" href="{BASE_URL}/">
-<svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
-<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a>
+<header class="site"><div class="wrap"><a class="brand" href="{BASE_URL}/" aria-label="Heat Pump Database - home">
+<svg class="brand-mark" viewBox="-100 -100 200 200" width="32" height="32" aria-hidden="true" focusable="false"><circle cx="0" cy="0" r="88" fill="none" stroke="#109680" stroke-width="7"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(60)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(120)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(180)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(240)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(300)"/><circle cx="0" cy="0" r="16" fill="#0B6656"/><circle cx="0" cy="0" r="5.5" fill="#FFFFFF"/></svg><span class="wm" aria-hidden="true"><span class="wm-bold">heatpump</span><span class="wm-light">database</span></span></a>
 <button class="burger" id="bbtn" aria-label="Menu" onclick="tB()"><span></span><span></span><span></span></button>
 <nav class="burger-menu" id="bmenu">{burger_menu(active)}</nav>
 </div></header>
@@ -875,12 +926,12 @@ function trackOut(){{
 <p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
 <p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="{BASE_URL}/news/">News &amp; Insight</a></p>
 </div></footer>
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#083F35;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
 <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
 <span>This site uses cookies to help us understand how visitors use the site. No personal data is shared with third parties.</span>
 <span style="display:flex;gap:8px;flex-shrink:0">
-<button onclick="acceptCookies()" style="background:#3ECCC0;color:#0F2B2B;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
-<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3a5757;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
+<button onclick="acceptCookies()" style="background:#22C79A;color:#083F35;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
+<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3B4D47;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
 </span>
 </div>
 </div>
@@ -1667,11 +1718,11 @@ def render_mcs(p):
     if not p.get("mcs_listed"):
         return ""
     link = (f' <a href="{esc(p["mcs_url"])}" target="_blank" rel="noopener nofollow" '
-            f'style="display:inline-flex;align-items:center;gap:4px;background:#0a6b3b;color:#fff;'
+            f'style="display:inline-flex;align-items:center;gap:4px;background:#0B6656;color:#fff;'
             f'font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none;'
             f'vertical-align:middle">View on MCS &#8599;</a>') if p.get("mcs_url") else ""
-    cert = (f' <span style="font-weight:500;color:#5F7E7E">Cert no. {esc(p["mcs_cert"])}</span>') if p.get("mcs_cert") else ""
-    return ('<p style="margin:14px 0 0;font-size:13.5px;color:#0a6b3b;font-weight:600">'
+    cert = (f' <span style="font-weight:500;color:#5A6A65">Cert no. {esc(p["mcs_cert"])}</span>') if p.get("mcs_cert") else ""
+    return ('<p style="margin:14px 0 0;font-size:13.5px;color:#0B6656;font-weight:600">'
             '&#10003; MCS listed product &mdash; eligible for the Boiler Upgrade Scheme, '
             f'subject to an MCS-certified installation.{cert}{link}</p>')
 
@@ -1715,7 +1766,7 @@ def render_correction(p):
     )
     href = "mailto:info@heatpumpdatabase.com?subject=" + quote(subject) + "&body=" + quote(body)
     return (f'<p style="margin:10px 0 0;font-size:12.5px"><a href="{esc(href)}" '
-            f'style="color:#5a6b6b">&#9998; Suggest a correction to this data</a></p>')
+            f'style="color:#5A6A65">&#9998; Suggest a correction to this data</a></p>')
 
 def _seg(p):
     return "C" if p.get("type") == "Commercial" else "R"
@@ -2176,10 +2227,14 @@ def render_manufacturers_index(by_mfr):
     n_countries = len({MANUFACTURER_COUNTRY[m] for m in by_mfr if m in MANUFACTURER_COUNTRY})
 
     intro = (
-        '<p style="color:#42514f;font-size:14.5px;line-height:1.7;margin:0 0 24px;max-width:720px">'
+        '<p style="color:#3B4D47;font-size:14.5px;line-height:1.7;margin:0 0 24px;max-width:720px">'
         f'{len(by_mfr)} manufacturers, {len(all_products):,} products across {n_countries} countries. '
         'Each card shows country, product mix and MCS-listed models &mdash; use the filters below to narrow the list.</p>'
     )
+    _hp, _app, _ref, _pills = type_links_html()
+    intro += ('<div class="type-browse"><h2 class="sec">Browse by type and refrigerant</h2>'
+              f'<div class="best-toc">{_pills(_hp + _app)}</div>'
+              f'<div class="best-toc">{_pills(_ref)}</div></div>')
 
     country_set = set()
     card_data = []  # (name, html, country) — built once so we can also derive the filter dropdown options
@@ -2931,13 +2986,24 @@ def _lastmod_hash(obj):
         json.dumps(obj, sort_keys=True, ensure_ascii=False, default=str).encode("utf-8")
     ).hexdigest()[:16]
 
+def _app_html_with_sections():
+    """index.html with every on-demand section stub (<div class="page" id=".."
+    data-src="app-sections/x.html">) replaced by that file's content. The app
+    fetches these sections when they are first opened; build.py treats them as
+    if they were still inline, so the static /knowledge/ pages are unchanged."""
+    app = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+    def _sub(m):
+        fp = os.path.join(ROOT, m.group(2).split("?")[0])
+        return open(fp, encoding="utf-8").read() if os.path.exists(fp) else m.group(0)
+    return re.sub(r'<div class="page" id="([^"]+)" data-src="([^"]+)"></div>', _sub, app)
+
 def extract_app_section(start_id, end_marker):
     """Pull a knowledge page's inner HTML out of the app (index.html) so the
     static SEO page and the in-app page never drift apart."""
     app_path = os.path.join(ROOT, "index.html")
     if not os.path.exists(app_path):
         return None
-    app = open(app_path, encoding="utf-8").read()
+    app = _app_html_with_sections()
     start = app.find(f'<div class="page" id="{start_id}">')
     if start == -1:
         return None
@@ -2973,16 +3039,20 @@ KNOWLEDGE_PAGES = [
      "desc": ("Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the "
               "EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.")},
     {"page_id": "page-cop-scop", "end_marker": "<!-- ═══ FLOW TEMPERATURE GUIDE ═══ -->",
-     "dir": "cop-scop", "active": "cop-scop", "crumb": "Understanding COP & SCOP",
-     "headline": "Understanding COP & SCOP",
+     "dir": "cop-scop", "active": "cop-scop", "crumb": "What Is a Good SCOP?",
+     "headline": "What Is a Good SCOP? COP vs SCOP Explained",
      # Rewritten 23 Sep 2026: the old title ranked 8th for 1,519 impressions at
      # 0.4% CTR. Searchers were asking "cop vs scop", "what is a good scop",
      # "scop test" and "a7/w35" - the title now answers those in their words,
      # and the description leads with a concrete benchmark from our own data
      # (the "What is a good SCOP?" section in index.html; refresh both together).
-     "title": f"Heat Pump COP vs SCOP: What Is a Good SCOP? A7/W35 Explained | {SITE_NAME}",
-     "desc": ("What is a good SCOP? The median home air source heat pump in our database scores 4.73 "
-              "at W35. COP vs SCOP, A7/W35 test conditions and how to compare fairly.")},
+     # Rewritten again 7 Oct 2026 (GSC: 3,547 impressions, pos 9.4, 0.56% CTR): the
+     # 81-char title was being truncated. Now 51 chars, question-first, and the
+     # description answers it in the first sentence with our own benchmark.
+     "title": "What Is a Good SCOP? Heat Pump COP vs SCOP Explained",
+     "desc": ("A good SCOP for a home air source heat pump is 4.7+ at W35; the top quarter score 4.9+. "
+              "COP vs SCOP, A7/W35 test conditions and how to compare fairly.")
+    },
     {"page_id": "page-flow-temp", "end_marker": "<!-- ═══ INSTALLATION COSTS GUIDE ═══ -->",
      "dir": "flow-temperature", "active": "flow-temp", "crumb": "Flow Temperature & Efficiency",
      "headline": "Flow Temperature & Efficiency",
@@ -3019,7 +3089,7 @@ def render_knowledge_page(cfg):
     crumb_items = [("Home", f"{BASE_URL}/"), (cfg["crumb"], None)]
     article_ld = {"@context": "https://schema.org", "@type": "Article",
                   "headline": cfg["headline"], "description": cfg["desc"], "url": url,
-                  "publisher": {"@type": "Organization", "name": SITE_NAME},
+                  "publisher": {"@type": "Organization", "name": SITE_NAME, "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/images/brand/logo-512.png"}},
                   "mainEntityOfPage": url}
     return page(cfg["title"], cfg["desc"], url, crumbs(crumb_items) + inner,
                 [article_ld, breadcrumb_jsonld(crumb_items, url)], og_type="article", active=cfg["active"],
@@ -3147,14 +3217,14 @@ def render_news_index(articles):
                       + '<p class="news-empty" id="news-empty">No articles in this category yet.</p>'
                       + f'<script>{NEWS_FILTER_JS}</script>')
     else:
-        body_inner = '<p style="color:#5b6b6b">No articles published yet - check back soon.</p>'
+        body_inner = '<p style="color:#5A6A65">No articles published yet - check back soon.</p>'
     body = (crumbs(crumb_items) +
             '<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 8px">News &amp; Insight</h1>'
-            '<p style="color:#5b6b6b;font-size:15px;line-height:1.6;margin:0 0 24px;max-width:680px">'
+            '<p style="color:#5A6A65;font-size:15px;line-height:1.6;margin:0 0 24px;max-width:680px">'
             'New product press releases, site updates, and insights drawn directly from the specification '
             'data in this database.</p>' + body_inner)
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "News & Insight",
-          "description": desc, "url": url, "publisher": {"@type": "Organization", "name": SITE_NAME}}
+          "description": desc, "url": url, "publisher": {"@type": "Organization", "name": SITE_NAME, "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/images/brand/logo-512.png"}}}
     return page(title, desc, url, body, [ld, breadcrumb_jsonld(crumb_items, url)], og_type="website",
                 active="news", og_image=get_og_image())
 
@@ -3198,7 +3268,7 @@ def render_news_article(article, all_articles):
             + related)
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": article["title"],
           "description": desc, "url": url, "datePublished": article.get("date"),
-          "publisher": {"@type": "Organization", "name": SITE_NAME},
+          "publisher": {"@type": "Organization", "name": SITE_NAME, "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/images/brand/logo-512.png"}},
           "mainEntityOfPage": url}
     if author:
         ld["author"] = {"@type": "Organization", "name": author}
@@ -3369,6 +3439,55 @@ def render_size_calculator_page():
 """
     return page(title, desc, canonical, body, jsonld, active="size-calc")
 
+def refresh_home_page(products, by_mfr):
+    """Keep the app's <head> counts and the crawlable 'Browse the database' link
+    block in index.html in step with the data. Counts are rounded down to the
+    nearest 100 so the title doesn't change on every small import."""
+    path = os.path.join(ROOT, "index.html")
+    app = open(path, encoding="utf-8").read()
+    n = len(products)
+    n_r = f"{(n // 100) * 100:,}+"
+    n_m = len([m for m in by_mfr if m])
+    title = f"Heat Pump Database \u2014 Compare {n_r} Heat Pumps Side by Side"
+    desc = (f"Compare {n_r} air, ground and water source heat pumps from {n_m} brands: "
+            f"full specs, COP and SCOP test data, noise, UK prices and rankings.")
+    og_desc = desc
+    tw_desc = f"Compare {n_r} heat pumps from {n_m} brands: specs, COP/SCOP, noise and rankings."
+    app = re.sub(r"<title>[^<]*</title>", f"<title>{esc(title)}</title>", app, count=1)
+    app = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(desc)}">', app, count=1)
+    app = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{esc(title)}">', app, count=1)
+    app = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{esc(og_desc)}">', app, count=1)
+    app = re.sub(r'<meta name="twitter:title" content="[^"]*">', f'<meta name="twitter:title" content="{esc(title)}">', app, count=1)
+    app = re.sub(r'<meta name="twitter:description" content="[^"]*">', f'<meta name="twitter:description" content="{esc(tw_desc)}">', app, count=1)
+    app = re.sub(r'("@type": "WebSite",[^{}]*?"description": )"[^"]*"', lambda m: m.group(1) + json.dumps(desc, ensure_ascii=False), app, count=1, flags=re.S)
+
+    # crawlable link block at the foot of the Browse page
+    hp, appl, ref, pills = type_links_html()
+    top_m = sorted(((m, len(ps)) for m, ps in by_mfr.items() if m), key=lambda t: -t[1])[:24]
+    mfr_items = [(f"{BASE_URL}/manufacturers/{slugify(m)}/", m, c) for m, c in top_m]
+    best = "".join(f'<a href="{BASE_URL}/best/{c["slug"]}/">{esc(c["title"])}</a>' for c in BEST_PAGES)
+    block = ('<section class="home-links" aria-labelledby="home-links-h">'
+             '<style>.home-links{max-width:1200px;margin:8px auto 40px;padding:0 24px}'
+             '.home-links h2{font-size:20px;margin:0 0 6px}.home-links h3{font-size:14px;margin:18px 0 8px;color:#3B4D47;text-transform:uppercase;letter-spacing:.04em}'
+             '.hl-pills{display:flex;flex-wrap:wrap;gap:8px}.hl-pills a{display:inline-block;background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;'
+             'border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}.hl-pills a:hover{background:#BFE3D2}'
+             '.hl-pills a span{color:#5A6A65;font-weight:400}</style>'
+             '<h2 id="home-links-h">Browse the database</h2>'
+             f'<h3>By heat pump type</h3><div class="hl-pills">{pills(hp + appl)}</div>'
+             f'<h3>By refrigerant</h3><div class="hl-pills">{pills(ref)}</div>'
+             f'<h3>Rankings</h3><div class="hl-pills"><a href="{BASE_URL}/best/">All rankings</a>{best}</div>'
+             f'<h3>Manufacturers</h3><div class="hl-pills">{pills(mfr_items)}<a href="{BASE_URL}/manufacturers/">All {n_m} manufacturers &rarr;</a></div>'
+             '</section>')
+    app = re.sub(r"(<!-- BUILD:home-links[^>]*-->).*?(<!-- /BUILD:home-links -->)",
+                 lambda m: m.group(1) + "\n" + block + "\n" + m.group(2), app, count=1, flags=re.S)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(app)
+
+    # product notes for the admin tools (kept out of data.js)
+    notes = {str(p["id"]): p["notes"] for p in products if p.get("notes")}
+    with open(os.path.join(ROOT, "data-notes.js"), "w", encoding="utf-8") as f:
+        f.write("window._HPN=" + json.dumps(notes, ensure_ascii=False, separators=(",", ":")) + ";\n")
+
 def main():
     with open(DATA, encoding="utf-8") as f:
         products = json.load(f)
@@ -3413,6 +3532,7 @@ def main():
     for p in products:
         by_mfr.setdefault(p.get("manufacturer", ""), []).append(p)
         by_type.setdefault(p.get("hp_type"), []).append(p)
+    compute_type_links(products)
 
     # --- Per-page content fingerprints, for sitemap.xml <lastmod> ---
     # See _lastmod_hash() above. product_hash_by_id lets every page that lists
@@ -3441,6 +3561,7 @@ def main():
         lastmod_cache[url] = {"hash": page_hash, "date": date}
         return date
 
+    refresh_home_page(products, by_mfr)
     urls = [f"{BASE_URL}/"]
     with open(os.path.join(ROOT, "index.html"), "rb") as f:
         _lastmod_for(f"{BASE_URL}/", hashlib.sha256(f.read()).hexdigest()[:16])

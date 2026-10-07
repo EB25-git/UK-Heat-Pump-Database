@@ -16,64 +16,70 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://www.heatpumpdatabase.com/images/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="theme-color" content="#083F35">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>
 /* ── Best-of ranking pages ── */
 .best-toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 28px}
-.best-toc a{display:inline-block;background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}
-.best-toc a:hover{background:#d4ece7}
+.best-toc a{display:inline-block;background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}
+.best-toc a:hover{background:#BFE3D2}
+.best-toc a span{color:#5A6A65;font-weight:400}
+.type-link{margin-left:8px;font-size:13px;white-space:nowrap}
+.type-browse{margin:0 0 28px}
 .best-section{margin-bottom:44px;padding-top:8px;scroll-margin-top:80px}
-.best-section:not(:last-of-type){border-bottom:1px solid #e2e8e7;padding-bottom:36px}
-.composite-sub{font-size:11.5px;color:#8a9694;font-weight:400}
-.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
+.best-section:not(:last-of-type){border-bottom:1px solid #E3EDE8;padding-bottom:36px}
+.composite-sub{font-size:11.5px;color:#5A6A65;font-weight:400}
+.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#083F35,#083F35);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
 .best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
-.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
+.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#22C79A;font-weight:600;margin-bottom:2px}
 .best-winner .bw-name{font-size:19px;font-weight:600;letter-spacing:-.01em}.best-winner .bw-name a{color:#fff}
 .best-winner .bw-val{margin-left:auto;text-align:right;flex:none}
-.best-winner .bw-num{font-size:26px;font-weight:700;color:#3ECCC0;line-height:1.1}
+.best-winner .bw-num{font-size:26px;font-weight:700;color:#22C79A;line-height:1.1}
 .best-winner .bw-lab{font-size:12px;color:rgba(255,255,255,.55)}
-.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #e2e8e7}
+.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #E3EDE8}
 .best-scroll table.list{border:none;margin:0;min-width:640px}
-table.best-table th{position:sticky;top:0;background:#fafcfb;z-index:1}
-table.best-table tr:nth-child(even) td{background:#fafcfb}
-table.best-table tr:hover td{background:#eef7f5}
+table.best-table th{position:sticky;top:0;background:#F6FAF8;z-index:1}
+table.best-table tr:nth-child(even) td{background:#F6FAF8}
+table.best-table tr:hover td{background:#F6FAF8}
 td.rank{width:44px;text-align:center}
-.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#42514f;background:#eef2f1}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#3B4D47;background:#EEF4F1}
 .rank-1 .rank-badge{background:#f6d873;color:#5c4a00}
 .rank-2 .rank-badge{background:#dfe4e6;color:#454d50}
 .rank-3 .rank-badge{background:#e8c39e;color:#5e3c14}
 .best-model{display:flex;align-items:center;gap:10px}
-.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #eef2f1;flex:none}
+.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #EEF4F1;flex:none}
 .metric-cell{min-width:120px}
 .metric-val{font-weight:600}
-.metric-bar{height:5px;border-radius:3px;background:#e7f0ee;margin-top:5px;overflow:hidden}
-.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#3ECCC0,#0f8a80)}
-.hub-leader{font-size:12.5px;color:#0c6f66;margin-top:4px}
+.metric-bar{height:5px;border-radius:3px;background:#EEF4F1;margin-top:5px;overflow:hidden}
+.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#22C79A,#0B6656)}
+.hub-leader{font-size:12.5px;color:#0B6656;margin-top:4px}
 
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
-header.site{background:#0F2B2B;height:60px;display:flex;align-items:center}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#083F35;background:#F6FAF8;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#0B6656;text-decoration:none}a:hover{text-decoration:underline}
+header.site{background:#083F35;height:60px;display:flex;align-items:center}
 header.site .wrap{display:flex;align-items:center;width:100%}
 header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
 header.site .brand:hover{text-decoration:none}
-.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-bold{color:#22C79A;font-weight:700}
 .wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
 .burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
 .burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
 .burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#083F35;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .burger-menu.open{transform:translateX(0)}
 .burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%;display:block;text-decoration:none;box-sizing:border-box}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
-.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-item.active{color:#22C79A;font-weight:500}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
 .burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease;flex-shrink:0}.burger-subgroup.open{max-height:1000px}.burger-menu>.burger-item,.burger-menu>.burger-subgroup{flex-shrink:0}
 .burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -81,122 +87,122 @@ header.site .brand:hover{text-decoration:none}
 @media(max-width:560px){.burger-menu{width:100%}}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
 main{padding:28px 0 56px}
-nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
-nav.crumbs a{color:#5b6b6b}nav.crumbs span{color:#9aa}
+nav.crumbs{font-size:13px;color:#5A6A65;margin-bottom:18px}
+nav.crumbs a{color:#5A6A65}nav.crumbs span{color:#5A6A65}
 h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
-.sub{color:#5b6b6b;font-size:15px;margin-bottom:24px}
+.sub{color:#5A6A65;font-size:15px;margin-bottom:24px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
-.badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
-table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden}
-table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #eef2f1;font-size:14.5px;vertical-align:top}
-table.spec th{width:42%;color:#42514f;font-weight:500;background:#fafcfb}
+.badge{background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden}
+table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #EEF4F1;font-size:14.5px;vertical-align:top}
+table.spec th{width:42%;color:#3B4D47;font-weight:500;background:#F6FAF8}
 table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
-.notes{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#34433f}
+.notes{background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#3B4D47}
 .article-body{max-width:720px}
-.article-body h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 12px;color:#0F2B2B}
-.article-body h3{font-size:16px;margin:22px 0 10px;color:#0F2B2B}
-.article-body p{color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px}
-.article-body strong{color:#16302f}
-.article-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 18px}
-.article-body th{text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;background:#fafcfb;color:#42514f;font-weight:600}
-.article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
-.article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
-.article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
-.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0D7377;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#f2fbfa;border:1px solid #cdeae6;border-left:4px solid #0D7377;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0D7377;flex-shrink:0}.article-tldr p{margin:0;color:#34433f;font-size:14px;line-height:1.6;flex:1;min-width:200px}
+.article-body h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 12px;color:#083F35}
+.article-body h3{font-size:16px;margin:22px 0 10px;color:#083F35}
+.article-body p{color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 14px}
+.article-body strong{color:#083F35}
+.article-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 18px}
+.article-body th{text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;background:#F6FAF8;color:#3B4D47;font-weight:600}
+.article-body td{padding:9px 14px;border-bottom:1px solid #EEF4F1}
+.article-body .callout{background:#fff;border:1px solid #E3EDE8;border-left:4px solid #22C79A;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#3B4D47}
+.article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#5A6A65;flex-wrap:wrap}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #E3EDE8;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#5A6A65;background:#F6FAF8;border-top:1px solid #EEF4F1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0B6656;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#F6FAF8;border:1px solid #BFE3D2;border-left:4px solid #0B6656;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0B6656;flex-shrink:0}.article-tldr p{margin:0;color:#3B4D47;font-size:14px;line-height:1.6;flex:1;min-width:200px}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.article-cat-insight{background:#e6f4f3;color:#0D7377}
-.article-cat-product{background:#fdf1e0;color:#a3660a}
-.article-cat-update{background:#e8eef5;color:#2b5a8a}
+.article-cat-insight{background:#E4F6EC;color:#0B6656}
+.article-cat-product{background:#BFE3D2;color:#083F35}
+.article-cat-update{background:#E4F6EC;color:#0B6656}
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.news-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
-.news-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
-.news-card h3{font-size:16px;margin:8px 0 6px;color:#0F2B2B}
-.news-card p{font-size:13.5px;color:#5b6b6b;line-height:1.6;margin:0}
+.news-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
+.news-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07)}
+.news-card h3{font-size:16px;margin:8px 0 6px;color:#083F35}
+.news-card p{font-size:13.5px;color:#5A6A65;line-height:1.6;margin:0}
 .news-list{display:flex;flex-direction:column;gap:18px}
-.news-row{display:flex;gap:22px;background:#fff;border:1px solid #e2e8e7;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
-.news-row:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
-.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#eef3f2;display:flex;align-items:center;justify-content:center}
+.news-row{display:flex;gap:22px;background:#fff;border:1px solid #E3EDE8;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.news-row:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07)}
+.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#EEF4F1;display:flex;align-items:center;justify-content:center}
 .news-row-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.news-row-thumb.placeholder{color:#9fb0af;font-size:13px;text-align:center;padding:0 16px}
+.news-row-thumb.placeholder{color:#5A6A65;font-size:13px;text-align:center;padding:0 16px}
 .news-row-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
-.news-row h3{font-size:20px;margin:8px 0 8px;color:#0F2B2B;letter-spacing:-.01em}
-.news-row p{font-size:14.5px;color:#5b6b6b;line-height:1.65;margin:0}
+.news-row h3{font-size:20px;margin:8px 0 8px;color:#083F35;letter-spacing:-.01em}
+.news-row p{font-size:14.5px;color:#5A6A65;line-height:1.65;margin:0}
 @media (max-width:640px){.news-row{flex-direction:column}.news-row-thumb{width:100%;flex-basis:auto;height:180px}}
-.notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
+.notes h2{font-size:15px;margin-bottom:6px;color:#083F35}
 h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.verified-box{margin:16px 0 0;padding:12px 14px;border:1px solid #cfe9e5;background:#f1faf8;border-radius:10px}
-.vb-title{font-size:14px;font-weight:700;color:#0F8074}
-.vb-detail{font-size:12.5px;color:#4d5f5f;margin-top:4px;line-height:1.55}
+.verified-box{margin:16px 0 0;padding:12px 14px;border:1px solid #BFE3D2;background:#F6FAF8;border-radius:10px}
+.vb-title{font-size:14px;font-weight:700;color:#0B6656}
+.vb-detail{font-size:12.5px;color:#3B4D47;margin-top:4px;line-height:1.55}
 .alt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.alt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
-.alt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.alt-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.alt-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
 .alt-card .ah{display:flex;gap:10px;align-items:center;margin-bottom:8px}
-.alt-card .ah img{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px}
-.alt-card .am{font-weight:600;color:#0F2B2B;font-size:14px;line-height:1.3}
-.alt-card .amf{font-size:12px;color:#5b6b6b}
+.alt-card .ah img{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:3px}
+.alt-card .am{font-weight:600;color:#083F35;font-size:14px;line-height:1.3}
+.alt-card .amf{font-size:12px;color:#5A6A65}
 .alt-card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:12.5px}
-.alt-card dt{color:#5b6b6b}.alt-card dd{margin:0;color:#0F2B2B;font-weight:600}
-.alt-why{font-size:13px;color:#5b6b6b;margin:-4px 0 12px}
-.card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
-.card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
-.card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
-.card .s{color:#5b6b6b;font-size:12.5px;margin-top:4px}
+.alt-card dt{color:#5A6A65}.alt-card dd{margin:0;color:#083F35;font-weight:600}
+.alt-why{font-size:13px;color:#5A6A65;margin:-4px 0 12px}
+.card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
+.card .m{font-weight:600;color:#083F35;font-size:14.5px;line-height:1.35}
+.card .s{color:#5A6A65;font-size:12.5px;margin-top:4px}
 .card.has-logo{display:flex;gap:12px;align-items:flex-start}
-.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:4px;flex-shrink:0}
-.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:6px;margin-bottom:14px}
-.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px;vertical-align:middle;margin-right:8px}
+.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:4px;flex-shrink:0}
+.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:6px;margin-bottom:14px}
+.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:3px;vertical-align:middle;margin-right:8px}
 .mfr-header{display:flex;align-items:center;gap:14px;margin-bottom:2px}
 .product-photo-block{margin-bottom:20px;text-align:center}
 .product-photo{max-width:360px;width:100%;height:auto;max-height:360px;object-fit:contain}
-.photo-credit{font-size:11.5px;color:#8a9694;margin-top:8px}
+.photo-credit{font-size:11.5px;color:#5A6A65;margin-top:8px}
 .product-photo{cursor:zoom-in}
 .product-photo-thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-.product-photo-thumb{width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid #e2e8e7;cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
+.product-photo-thumb{width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid #E3EDE8;cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
 .product-photo-thumb:hover{opacity:1}
-.product-photo-thumb.active{opacity:1;border-color:#0D7377}
-.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(15,43,43,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
+.product-photo-thumb.active{opacity:1;border-color:#0B6656}
+.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(8,63,53,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
 .photo-lightbox.open{display:flex}
 .photo-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:6px;cursor:default}
 .photo-lightbox-close{position:fixed;top:18px;right:22px;background:rgba(255,255,255,.12);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
-.trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
-table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
-table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
-table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+.trademark-note{font-size:11.5px;color:#5A6A65;margin-top:26px;line-height:1.5}
+table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:14px}
+table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #EEF4F1}
+table.list th{background:#F6FAF8;color:#3B4D47;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
 table.list tr:last-child td{border-bottom:none}
-table.list tr:hover td{background:#fafdfc}
-table.list tr.grp-row td{background:#f3f7f6;font-weight:600;color:#0F2B2B;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
-table.list tr.grp-row:hover td{background:#f3f7f6}
-.cta{display:inline-block;margin-top:8px;background:#0F2B2B;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
-.cta:hover{background:#16413f;text-decoration:none}
-footer.site{border-top:1px solid #e2e8e7;padding:26px 0;color:#7a8a88;font-size:13px;margin-top:30px}
-footer.site a{color:#7a8a88}
+table.list tr:hover td{background:#F6FAF8}
+table.list tr.grp-row td{background:#F6FAF8;font-weight:600;color:#083F35;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
+table.list tr.grp-row:hover td{background:#F6FAF8}
+.cta{display:inline-block;margin-top:8px;background:#083F35;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
+.cta:hover{background:#083F35;text-decoration:none}
+footer.site{border-top:1px solid #E3EDE8;padding:26px 0;color:#5A6A65;font-size:13px;margin-top:30px}
+footer.site a{color:#5A6A65}
 .disclaimer{background:#fff7ed;border:1px solid #fbe3c4;color:#92651f;border-radius:10px;padding:12px 16px;font-size:13px;margin:20px 0}
 @media(max-width:560px){table.spec th{width:48%}h1{font-size:23px}}
 /* ── Reviews & further reading (product pages) ── */
-.rv-list{list-style:none;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:4px 0;margin:0}
-.rv-item{padding:12px 18px;border-bottom:1px solid #eef2f1;font-size:14.5px;line-height:1.5}
+.rv-list{list-style:none;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:4px 0;margin:0}
+.rv-item{padding:12px 18px;border-bottom:1px solid #EEF4F1;font-size:14.5px;line-height:1.5}
 .rv-item:last-child{border-bottom:none}
 .rv-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:6px;vertical-align:middle}
-.rv-tag-review_article{background:#e7f4f2;color:#0c6f66}
-.rv-tag-news_article{background:#eef2fb;color:#3b4fa3}
-.rv-tag-manufacturer_page{background:#f3eefb;color:#5b3fa3}
-.rv-tag-performance_data{background:#fdf3e1;color:#8a5a00}
-.rv-source{color:#5b6b6b;font-size:13px}
-.rv-date{color:#9aa8a6;font-size:12.5px}
-.rv-note{color:#5b6b6b;font-size:13px;margin-top:3px}
+.rv-tag-review_article{background:#E4F6EC;color:#0B6656}
+.rv-tag-news_article{background:#E4F6EC;color:#0B6656}
+.rv-tag-manufacturer_page{background:#EEF4F1;color:#083F35}
+.rv-tag-performance_data{background:#BFE3D2;color:#083F35}
+.rv-source{color:#5A6A65;font-size:13px}
+.rv-date{color:#5A6A65;font-size:12.5px}
+.rv-note{color:#5A6A65;font-size:13px;margin-top:3px}
 .yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,300px));gap:14px;margin-top:12px}
-.yt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
-.yt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
-.yt-thumb-wrap{position:relative;display:block;background:#0F2B2B}
+.yt-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.yt-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
+.yt-thumb-wrap{position:relative;display:block;background:#083F35}
 .yt-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(15,43,43,.75);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
-.yt-title{display:block;padding:10px 14px 2px;font-weight:600;color:#0F2B2B;font-size:13.5px;line-height:1.35}
-.yt-source{display:block;padding:0 14px;color:#5b6b6b;font-size:12.5px}
-.yt-date{display:block;padding:2px 14px 12px;color:#9aa8a6;font-size:12px}
+.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(8,63,53,.75);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
+.yt-title{display:block;padding:10px 14px 2px;font-weight:600;color:#083F35;font-size:13.5px;line-height:1.35}
+.yt-source{display:block;padding:0 14px;color:#5A6A65;font-size:12.5px}
+.yt-date{display:block;padding:2px 14px 12px;color:#5A6A65;font-size:12px}
 </style>
-<link rel="stylesheet" href="/theme-pages.css?v=1">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Heat Pump Refrigerants Compared", "description": "Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.", "url": "https://www.heatpumpdatabase.com/knowledge/refrigerants/", "publisher": {"@type": "Organization", "name": "Heat Pump Database"}, "mainEntityOfPage": "https://www.heatpumpdatabase.com/knowledge/refrigerants/"}</script>
+<link rel="stylesheet" href="/theme-pages.css?v=2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Heat Pump Refrigerants Compared", "description": "Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.", "url": "https://www.heatpumpdatabase.com/knowledge/refrigerants/", "publisher": {"@type": "Organization", "name": "Heat Pump Database", "logo": {"@type": "ImageObject", "url": "https://www.heatpumpdatabase.com/images/brand/logo-512.png"}}, "mainEntityOfPage": "https://www.heatpumpdatabase.com/knowledge/refrigerants/"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.heatpumpdatabase.com/"}, {"@type": "ListItem", "position": 2, "name": "Refrigerant Guide", "item": "https://www.heatpumpdatabase.com/knowledge/refrigerants/"}]}</script>
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -220,9 +226,8 @@ function trackOut(){
 </script>
 </head>
 <body>
-<header class="site"><div class="wrap"><a class="brand" href="https://www.heatpumpdatabase.com/">
-<svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
-<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a>
+<header class="site"><div class="wrap"><a class="brand" href="https://www.heatpumpdatabase.com/" aria-label="Heat Pump Database - home">
+<svg class="brand-mark" viewBox="-100 -100 200 200" width="32" height="32" aria-hidden="true" focusable="false"><circle cx="0" cy="0" r="88" fill="none" stroke="#109680" stroke-width="7"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(60)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(120)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(180)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(240)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(300)"/><circle cx="0" cy="0" r="16" fill="#0B6656"/><circle cx="0" cy="0" r="5.5" fill="#FFFFFF"/></svg><span class="wm" aria-hidden="true"><span class="wm-bold">heatpump</span><span class="wm-light">database</span></span></a>
 <button class="burger" id="bbtn" aria-label="Menu" onclick="tB()"><span></span><span></span><span></span></button>
 <nav class="burger-menu" id="bmenu"><a class="burger-item" href="https://www.heatpumpdatabase.com/">Browse</a><a class="burger-item" href="https://www.heatpumpdatabase.com/manufacturers/">Manufacturers</a><button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button><div class="burger-subgroup" id="c-group"><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/heat-pump-comparison/">Heat Pump Comparison</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#compare">Compare Selected</a></div><a class="burger-item" href="https://www.heatpumpdatabase.com/best/">Best Heat Pumps</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#analytics">Visualise</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#gallery">Gallery</a><a class="burger-item" href="https://www.heatpumpdatabase.com/heat-pump-size-calculator/">Size Calculator</a><button class="burger-item burger-toggle active open" id="k-toggle" aria-expanded="true" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button><div class="burger-subgroup open" id="k-group"><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What Is a Heat Pump?</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/installation-costs/">Installation Costs</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/funding/">Funding &amp; Grants</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/planning-permission/">Planning Permission</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">Understanding COP &amp; SCOP</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow Temperature &amp; Efficiency</a><a class="burger-item burger-subitem active" href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant Guide</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#faq">FAQ</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#guide">Site Guide</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#links">Useful Links</a></div><a class="burger-item" href="https://www.heatpumpdatabase.com/news/">News &amp; Insight</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#contact">About &amp; Contact us</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#terms" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</a></nav>
 </div></header>
@@ -230,149 +235,149 @@ function trackOut(){
 <div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">&#10005;</button><img id="photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
 <main><div class="wrap">
 <nav class="crumbs"><a href="https://www.heatpumpdatabase.com/">Home</a> &rsaquo; <span>Refrigerant Guide</span></nav><h1 style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Refrigerants Compared</h1>
-      <p style="color:#5b6b6b;font-size:16px;line-height:1.65;margin:0 0 8px;max-width:680px">The refrigerant is the working fluid that lets a <a href="/knowledge/what-is-a-heat-pump/" style="color:#3ECCC0;font-weight:600;text-decoration:none">heat pump</a> move heat from outside to inside. Which one a unit uses affects its environmental impact, its efficiency and achievable flow temperature, how it must be installed, and (increasingly) whether it can still be sold in the years ahead. This guide compares the refrigerants you will find across the database.</p>
-      <p style="color:#5b6b6b;font-size:14px;line-height:1.6;margin:0 0 26px;max-width:680px"><strong>GWP</strong> (Global Warming Potential) measures how strongly one kilogram of the gas warms the planet over 100 years compared with one kilogram of CO₂, so CO₂ is 1, and a refrigerant with a GWP of 2,000 is 2,000 times worse if it leaks. The <strong>safety class</strong> (ASHRAE) flags flammability and toxicity: <strong>A1</strong> non-flammable and low toxicity, <strong>A2L</strong> mildly flammable, <strong>A3</strong> highly flammable, <strong>B2L</strong> mildly flammable but toxic.</p>
+      <p style="color:#5A6A65;font-size:16px;line-height:1.65;margin:0 0 8px;max-width:680px">The refrigerant is the working fluid that lets a <a href="/knowledge/what-is-a-heat-pump/" style="color:#22C79A;font-weight:600;text-decoration:none">heat pump</a> move heat from outside to inside. Which one a unit uses affects its environmental impact, its efficiency and achievable flow temperature, how it must be installed, and (increasingly) whether it can still be sold in the years ahead. This guide compares the refrigerants you will find across the database.</p>
+      <p style="color:#5A6A65;font-size:14px;line-height:1.6;margin:0 0 26px;max-width:680px"><strong>GWP</strong> (Global Warming Potential) measures how strongly one kilogram of the gas warms the planet over 100 years compared with one kilogram of CO₂, so CO₂ is 1, and a refrigerant with a GWP of 2,000 is 2,000 times worse if it leaks. The <strong>safety class</strong> (ASHRAE) flags flammability and toxicity: <strong>A1</strong> non-flammable and low toxicity, <strong>A2L</strong> mildly flammable, <strong>A3</strong> highly flammable, <strong>B2L</strong> mildly flammable but toxic.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:28px 0 12px">At a glance</h2>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
-      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:620px">
-        <thead><tr style="background:#fafcfb">
-          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Refrigerant</th>
-          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Family</th>
-          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">GWP (100-yr)</th>
-          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Safety</th>
-          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Typical heat-pump use</th>
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:620px">
+        <thead><tr style="background:#F6FAF8">
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Refrigerant</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Family</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">GWP (100-yr)</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Safety</th>
+          <th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Typical heat-pump use</th>
         </tr></thead>
         <tbody>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R717</strong> (Ammonia)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Natural</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">0</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">B2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Large industrial / district water source</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R1234ze</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFO</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">&lt;1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Large commercial / centrifugal chillers</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R744</strong> (CO₂)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Natural</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Commercial high-temp, hot water</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R1233zd</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFO</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">High-temp commercial, centrifugal</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R290</strong> (Propane)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Hydrocarbon</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Modern residential air source (monobloc)</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R600a</strong> (Isobutane)</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Hydrocarbon</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A3</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Industrial high-temperature</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R454C</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">148</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Low-GWP R410A replacement</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R515B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFO/HFC blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">293</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">R134a replacement (non-flammable)</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R454B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">466</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Main R410A replacement, commercial</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R513A</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">631</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">R134a replacement (non-flammable)</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R32</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">675</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Current residential &amp; commercial air source</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R452B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">698</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">R410A replacement</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R448A</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1387</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Commercial systems</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R134a</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1430</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Commercial high-temp (legacy)</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1"><strong>R407C</strong></td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">HFC blend</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">1774</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Legacy systems</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R717</strong> (Ammonia)</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Natural</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">0</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">B2L</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Large industrial / district water source</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R1234ze</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFO</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">&lt;1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Large commercial / centrifugal chillers</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R744</strong> (CO₂)</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Natural</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Commercial high-temp, hot water</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R1233zd</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFO</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">High-temp commercial, centrifugal</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R290</strong> (Propane)</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Hydrocarbon</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">3</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A3</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Modern residential air source (monobloc)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R600a</strong> (Isobutane)</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Hydrocarbon</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">3</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A3</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Industrial high-temperature</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R454C</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">148</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Low-GWP R410A replacement</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R515B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFO/HFC blend</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">293</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">R134a replacement (non-flammable)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R454B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">466</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Main R410A replacement, commercial</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R513A</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">631</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">R134a replacement (non-flammable)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R32</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">675</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Current residential &amp; commercial air source</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R452B</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">698</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A2L</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">R410A replacement</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R448A</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC/HFO blend</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">1387</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Commercial systems</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R134a</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">1430</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Commercial high-temp (legacy)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1"><strong>R407C</strong></td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">HFC blend</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">1774</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">A1</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Legacy systems</td></tr>
           <tr><td style="padding:9px 14px"><strong>R410A</strong></td><td style="padding:9px 14px">HFC blend</td><td style="padding:9px 14px">2088</td><td style="padding:9px 14px">A1</td><td style="padding:9px 14px">Legacy / commercial (phasing out)</td></tr>
         </tbody>
       </table>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:10px 0 0">GWP figures are 100-year values, rounded. They vary slightly between IPCC assessment reports (the EU moved from AR4 to AR5 values in 2025), but the relative picture is unchanged.</p>
+      <p style="color:#5A6A65;font-size:12.5px;margin:10px 0 0">GWP figures are 100-year values, rounded. They vary slightly between IPCC assessment reports (the EU moved from AR4 to AR5 values in 2025), but the relative picture is unchanged.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 6px">The families, with pros and cons</h2>
-      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Hydrocarbons: R290 (propane), R600a (isobutane)</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Natural refrigerants with negligible GWP. R290 has become the default for new residential air source heat pumps, while R600a appears in large industrial high-temperature machines.</p>
+      <div style="border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#083F35">Hydrocarbons: R290 (propane), R600a (isobutane)</div>
+        <p style="color:#3B4D47;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Natural refrigerants with negligible GWP. R290 has become the default for new residential air source heat pumps, while R600a appears in large industrial high-temperature machines.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈3), so no meaningful climate impact if it leaks</li><li>Excellent efficiency; high COP and SCOP</li><li>Reaches high flow temperatures (up to ~75&nbsp;°C), good for radiators and retrofit</li><li>Not subject to the F-Gas phase-down, making it future-proof</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>A3, highly flammable, so charge limits, siting rules and a competent installer are essential</li><li>Generally confined to outdoor monobloc units</li><li>Charge-size limits can constrain very large indoor systems</li></ul></div>
+          <div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0B6656;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Ultra-low GWP (≈3), so no meaningful climate impact if it leaks</li><li>Excellent efficiency; high COP and SCOP</li><li>Reaches high flow temperatures (up to ~75&nbsp;°C), good for radiators and retrofit</li><li>Not subject to the F-Gas phase-down, making it future-proof</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>A3, highly flammable, so charge limits, siting rules and a competent installer are essential</li><li>Generally confined to outdoor monobloc units</li><li>Charge-size limits can constrain very large indoor systems</li></ul></div>
         </div>
       </div>
-      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">CO₂ (R744)</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">A natural refrigerant that excels at producing very hot water and works well in cold weather. Common in commercial hot-water and high-temperature applications.</p>
+      <div style="border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#083F35">CO₂ (R744)</div>
+        <p style="color:#3B4D47;font-size:14.5px;line-height:1.6;margin:8px 0 12px">A natural refrigerant that excels at producing very hot water and works well in cold weather. Common in commercial hot-water and high-temperature applications.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>GWP of 1 (the benchmark)</li><li>Non-flammable (A1)</li><li>Excellent at high temperatures (70–90&nbsp;°C) and in cold ambient air</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Very high operating pressures need specialised components</li><li>Efficiency falls if the return-water temperature is high; best with a large temperature lift</li><li>Mainly commercial and hot-water duties</li></ul></div>
+          <div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0B6656;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>GWP of 1 (the benchmark)</li><li>Non-flammable (A1)</li><li>Excellent at high temperatures (70–90&nbsp;°C) and in cold ambient air</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Very high operating pressures need specialised components</li><li>Efficiency falls if the return-water temperature is high; best with a large temperature lift</li><li>Mainly commercial and hot-water duties</li></ul></div>
         </div>
       </div>
-      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Ammonia (R717)</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The workhorse of large industrial refrigeration, also used for big water-source and district-heating heat pumps.</p>
+      <div style="border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#083F35">Ammonia (R717)</div>
+        <p style="color:#3B4D47;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The workhorse of large industrial refrigeration, also used for big water-source and district-heating heat pumps.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Zero GWP and zero ozone impact</li><li>Outstanding efficiency, especially at scale</li><li>Decades of proven industrial use; inexpensive</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Toxic and mildly flammable (B2L), not for domestic use</li><li>Needs a plant room, leak detection and specialist design</li><li>Incompatible with copper pipework</li></ul></div>
+          <div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0B6656;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Zero GWP and zero ozone impact</li><li>Outstanding efficiency, especially at scale</li><li>Decades of proven industrial use; inexpensive</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Toxic and mildly flammable (B2L), not for domestic use</li><li>Needs a plant room, leak detection and specialist design</li><li>Incompatible with copper pipework</li></ul></div>
         </div>
       </div>
-      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFOs: R1234ze, R1233zd</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Synthetic but ultra-low-GWP fluids, mostly used in large commercial and high-temperature centrifugal machines.</p>
+      <div style="border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#083F35">HFOs: R1234ze, R1233zd</div>
+        <p style="color:#3B4D47;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Synthetic but ultra-low-GWP fluids, mostly used in large commercial and high-temperature centrifugal machines.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Ultra-low GWP (≈1 or below)</li><li>R1233zd is A1 (non-flammable) and low-pressure, ideal for large high-temperature systems</li><li>Not meaningfully affected by the phase-down</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Lower capacity per unit volume means larger equipment</li><li>Higher cost; mainly commercial/industrial</li><li>R1234ze is rated A2L (mildly flammable)</li></ul></div>
+          <div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0B6656;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Ultra-low GWP (≈1 or below)</li><li>R1233zd is A1 (non-flammable) and low-pressure, ideal for large high-temperature systems</li><li>Not meaningfully affected by the phase-down</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Lower capacity per unit volume means larger equipment</li><li>Higher cost; mainly commercial/industrial</li><li>R1234ze is rated A2L (mildly flammable)</li></ul></div>
         </div>
       </div>
-      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">HFCs: R32, R410A, R407C, R134a</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The fluorinated gases that dominated the last two decades. R32 is the current mainstream choice and far cleaner than the older R410A it replaced, but all are subject to the phase-down.</p>
+      <div style="border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#083F35">HFCs: R32, R410A, R407C, R134a</div>
+        <p style="color:#3B4D47;font-size:14.5px;line-height:1.6;margin:8px 0 12px">The fluorinated gases that dominated the last two decades. R32 is the current mainstream choice and far cleaner than the older R410A it replaced, but all are subject to the phase-down.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Mature, widely available and well understood</li><li>R32 has roughly a third of R410A's GWP and is a single compound (simple to recharge)</li><li>R410A, R407C and R134a are non-flammable (A1)</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Mid-to-high GWP (675 up to ~2,088): supply shrinks and prices rise under the phase-down</li><li>R32's 675 GWP exceeds the EU's 150 limit for small monobloc heat pumps from 2027</li><li>R410A/R407C/R134a are legacy choices being replaced</li><li>R32 is A2L (mildly flammable)</li></ul></div>
+          <div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0B6656;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Mature, widely available and well understood</li><li>R32 has roughly a third of R410A's GWP and is a single compound (simple to recharge)</li><li>R410A, R407C and R134a are non-flammable (A1)</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Mid-to-high GWP (675 up to ~2,088): supply shrinks and prices rise under the phase-down</li><li>R32's 675 GWP exceeds the EU's 150 limit for small monobloc heat pumps from 2027</li><li>R410A/R407C/R134a are legacy choices being replaced</li><li>R32 is A2L (mildly flammable)</li></ul></div>
         </div>
       </div>
-      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
-        <div style="font-size:17px;font-weight:600;color:#0F2B2B">Lower-GWP blends: R454B, R454C, R452B, R513A, R515B, R448A</div>
-        <p style="color:#42514f;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Engineered mixtures that cut GWP while staying close to the equipment design of the gases they replace: R454B/R452B for R410A, R513A/R515B for R134a.</p>
+      <div style="border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:18px 20px;margin:14px 0">
+        <div style="font-size:17px;font-weight:600;color:#083F35">Lower-GWP blends: R454B, R454C, R452B, R513A, R515B, R448A</div>
+        <p style="color:#3B4D47;font-size:14.5px;line-height:1.6;margin:8px 0 12px">Engineered mixtures that cut GWP while staying close to the equipment design of the gases they replace: R454B/R452B for R410A, R513A/R515B for R134a.</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
-          <div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Much lower GWP than the HFCs they replace (148–700)</li><li>Near drop-in for manufacturers, easing the transition</li><li>R513A, R515B and R448A are A1 (non-flammable)</li><li>R454C sits below the key 150 GWP threshold</li></ul></div>
-          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#34433f;line-height:1.6"><li>Still contain fluorinated components, so still caught by the phase-down</li><li>R454B, R454C and R452B are A2L (mildly flammable)</li><li>Being blends, they have temperature "glide" and must be recharged carefully</li></ul></div>
+          <div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#0B6656;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Pros</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Much lower GWP than the HFCs they replace (148–700)</li><li>Near drop-in for manufacturers, easing the transition</li><li>R513A, R515B and R448A are A1 (non-flammable)</li><li>R454C sits below the key 150 GWP threshold</li></ul></div>
+          <div style="background:#fff7ed;border:1px solid #fbe3c4;border-radius:10px;padding:12px 14px"><div style="font-size:12px;font-weight:700;color:#92651f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Cons</div><ul style="margin:0;padding-left:18px;font-size:14px;color:#3B4D47;line-height:1.6"><li>Still contain fluorinated components, so still caught by the phase-down</li><li>R454B, R454C and R452B are A2L (mildly flammable)</li><li>Being blends, they have temperature "glide" and must be recharged carefully</li></ul></div>
         </div>
       </div>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">The regulations</h2>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Fluorinated refrigerants are controlled by <strong>F-Gas regulations</strong>, which shrink the supply of high-GWP gases over time and ban them in new equipment where cleaner alternatives exist. Natural refrigerants (R290, CO₂, ammonia) and HFOs largely sit outside these limits. The picture differs across the UK.</p>
-      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 8px">European Union: Regulation (EU) 2024/573 (also applies in Northern Ireland)</p>
+      <p style="color:#3B4D47;font-size:14.5px;line-height:1.65;margin:0 0 14px">Fluorinated refrigerants are controlled by <strong>F-Gas regulations</strong>, which shrink the supply of high-GWP gases over time and ban them in new equipment where cleaner alternatives exist. Natural refrigerants (R290, CO₂, ammonia) and HFOs largely sit outside these limits. The picture differs across the UK.</p>
+      <p style="color:#083F35;font-size:14px;font-weight:600;margin:0 0 8px">European Union: Regulation (EU) 2024/573 (also applies in Northern Ireland)</p>
       <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:8px">
-      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:560px">
-        <thead><tr style="background:#fafcfb"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600;width:80px">From</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">What changes for air conditioning &amp; heat pumps</th></tr></thead>
+      <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:13.5px;min-width:560px">
+        <thead><tr style="background:#F6FAF8"><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600;width:80px">From</th><th style="text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">What changes for air conditioning &amp; heat pumps</th></tr></thead>
         <tbody>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2025</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Steep cut in the HFC quota (EU supply roughly halved versus 2023); servicing ban on virgin gas with GWP ≥ 2,500 begins</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2026</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Servicing/maintenance ban on GWP ≥ 2,500 extends to AC and heat pumps (reclaimed/recycled gas exempt)</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2027</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">New self-contained / monobloc AC &amp; heat pumps ≤ 12 kW must use GWP &lt; 150; monoblocs &gt; 12–50 kW with GWP ≥ 150 banned; quota tightens again</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2029</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">New split air-to-air systems ≤ 12 kW with GWP ≥ 150 banned</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2030</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Other self-contained AC/HP with GWP ≥ 150 banned; HFC quota falls to ~5% of the 2015 baseline</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2032</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">Full F-gas ban on new monobloc / self-contained AC &amp; heat pumps ≤ 12 kW (bar safety exemptions)</td></tr>
-          <tr><td style="padding:9px 14px;border-bottom:1px solid #eef2f1;font-weight:600">2035</td><td style="padding:9px 14px;border-bottom:1px solid #eef2f1">New split AC &amp; heat pumps ≤ 12 kW containing any F-gas banned</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1;font-weight:600">2025</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Steep cut in the HFC quota (EU supply roughly halved versus 2023); servicing ban on virgin gas with GWP ≥ 2,500 begins</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1;font-weight:600">2026</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Servicing/maintenance ban on GWP ≥ 2,500 extends to AC and heat pumps (reclaimed/recycled gas exempt)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1;font-weight:600">2027</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">New self-contained / monobloc AC &amp; heat pumps ≤ 12 kW must use GWP &lt; 150; monoblocs &gt; 12–50 kW with GWP ≥ 150 banned; quota tightens again</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1;font-weight:600">2029</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">New split air-to-air systems ≤ 12 kW with GWP ≥ 150 banned</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1;font-weight:600">2030</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Other self-contained AC/HP with GWP ≥ 150 banned; HFC quota falls to ~5% of the 2015 baseline</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1;font-weight:600">2032</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">Full F-gas ban on new monobloc / self-contained AC &amp; heat pumps ≤ 12 kW (bar safety exemptions)</td></tr>
+          <tr><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1;font-weight:600">2035</td><td style="padding:9px 14px;border-bottom:1px solid #EEF4F1">New split AC &amp; heat pumps ≤ 12 kW containing any F-gas banned</td></tr>
           <tr><td style="padding:9px 14px;font-weight:600">2050</td><td style="padding:9px 14px">HFC phase-down reaches zero</td></tr>
         </tbody>
       </table>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:0 0 16px">Thresholds and category definitions are simplified here; some categories have safety-related exemptions. Existing installed equipment is unaffected; the bans apply to new products placed on the market.</p>
-      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 6px">Great Britain (England, Scotland, Wales)</p>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Great Britain did <strong>not</strong> adopt the EU's 2024 regulation. It keeps the retained Regulation (EU) 517/2014 (the earlier HFC quota phase-down plus existing rules such as the GWP ≥ 2,500 servicing ban), so the EU's new product bans above do not currently apply in GB. Defra reviewed the rules and launched a consultation on a tighter GB HFC phase-down in November 2025; in May 2026 it confirmed it would not change the phase-down steps for the 2027 period yet, with a fuller response due later in 2026. The direction of travel mirrors the EU: tighter HFC limits and a shift to low-GWP and natural refrigerants, but the precise GB timeline is still being decided.</p>
-      <p style="color:#0F2B2B;font-size:14px;font-weight:600;margin:0 0 6px">Northern Ireland</p>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">Under the Windsor Framework, Northern Ireland continues to follow the EU F-Gas Regulation, so the EU timeline above applies there.</p>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 14px">All of this sits under the global <strong>Kigali Amendment</strong> to the Montreal Protocol, which commits developed countries to cutting HFC use to a small fraction of historic levels over the coming decades.</p>
+      <p style="color:#5A6A65;font-size:12.5px;margin:0 0 16px">Thresholds and category definitions are simplified here; some categories have safety-related exemptions. Existing installed equipment is unaffected; the bans apply to new products placed on the market.</p>
+      <p style="color:#083F35;font-size:14px;font-weight:600;margin:0 0 6px">Great Britain (England, Scotland, Wales)</p>
+      <p style="color:#3B4D47;font-size:14.5px;line-height:1.65;margin:0 0 14px">Great Britain did <strong>not</strong> adopt the EU's 2024 regulation. It keeps the retained Regulation (EU) 517/2014 (the earlier HFC quota phase-down plus existing rules such as the GWP ≥ 2,500 servicing ban), so the EU's new product bans above do not currently apply in GB. Defra reviewed the rules and launched a consultation on a tighter GB HFC phase-down in November 2025; in May 2026 it confirmed it would not change the phase-down steps for the 2027 period yet, with a fuller response due later in 2026. The direction of travel mirrors the EU: tighter HFC limits and a shift to low-GWP and natural refrigerants, but the precise GB timeline is still being decided.</p>
+      <p style="color:#083F35;font-size:14px;font-weight:600;margin:0 0 6px">Northern Ireland</p>
+      <p style="color:#3B4D47;font-size:14.5px;line-height:1.65;margin:0 0 14px">Under the Windsor Framework, Northern Ireland continues to follow the EU F-Gas Regulation, so the EU timeline above applies there.</p>
+      <p style="color:#3B4D47;font-size:14.5px;line-height:1.65;margin:0 0 14px">All of this sits under the global <strong>Kigali Amendment</strong> to the Montreal Protocol, which commits developed countries to cutting HFC use to a small fraction of historic levels over the coming decades.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">Where it's heading</h2>
-      <p style="color:#42514f;font-size:14.5px;line-height:1.65;margin:0 0 10px">The shrinking quota makes high-GWP gases such as R410A and R134a steadily scarcer and more expensive, pushing the whole market toward low-GWP and natural refrigerants. In practice:</p>
-      <ul style="margin:0 0 14px;padding-left:20px;color:#34433f;font-size:14.5px;line-height:1.7">
+      <p style="color:#3B4D47;font-size:14.5px;line-height:1.65;margin:0 0 10px">The shrinking quota makes high-GWP gases such as R410A and R134a steadily scarcer and more expensive, pushing the whole market toward low-GWP and natural refrigerants. In practice:</p>
+      <ul style="margin:0 0 14px;padding-left:20px;color:#3B4D47;font-size:14.5px;line-height:1.7">
         <li><strong>Residential heat pumps are converging on R290 (propane).</strong> It already dominates new monobloc ranges, has a GWP of 3, sits outside the phase-down and supports the higher flow temperatures UK retrofits often need, making it the most future-proof choice.</li>
         <li><strong>R32 remains common today</strong> but its 675 GWP exceeds the EU's 150 limit for small monoblocs from 2027, so EU and Northern Ireland units are moving to R290. R32 is likely to persist longer in GB and in larger or split systems.</li>
         <li><strong>Commercial and industrial systems</strong> are shifting to R290, CO₂, ammonia and HFOs (R1234ze, R1233zd, R515B) for large and high-temperature duties.</li>
       </ul>
-      <div style="background:#0F2B2B;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
+      <div style="background:#083F35;color:#fff;border-radius:14px;padding:22px 24px;margin:24px 0 8px">
         <div style="font-size:17px;font-weight:600;margin-bottom:10px">If you're choosing a heat pump</div>
         <ul style="margin:0;padding-left:20px;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.92)">
-          <li>For a new home system, <strong style="color:#3ECCC0">R290</strong> is the most future-proof option and often the strongest performer at higher flow temperatures.</li>
+          <li>For a new home system, <strong style="color:#22C79A">R290</strong> is the most future-proof option and often the strongest performer at higher flow temperatures.</li>
           <li>Already have an R410A or R32 unit? It's fine to keep running and servicing (the rules target new equipment, not existing installations), though servicing the highest-GWP gases will get costlier.</li>
           <li>Flammable refrigerants (A3, A2L) simply need a competent installer and correct siting; this is routine for modern units.</li>
-          <li>Check the refrigerant when comparing models here: it shapes environmental impact, long-term serviceability and sometimes <a href="/knowledge/cop-scop/" style="color:#3ECCC0;font-weight:600;text-decoration:none">efficiency</a> and <a href="/knowledge/flow-temperature/" style="color:#3ECCC0;font-weight:600;text-decoration:none">flow temperature</a>.</li>
+          <li>Check the refrigerant when comparing models here: it shapes environmental impact, long-term serviceability and sometimes <a href="/knowledge/cop-scop/" style="color:#22C79A;font-weight:600;text-decoration:none">efficiency</a> and <a href="/knowledge/flow-temperature/" style="color:#22C79A;font-weight:600;text-decoration:none">flow temperature</a>.</li>
         </ul>
       </div>
-      <p style="color:#9aa;font-size:12.5px;margin:14px 0 0">Reviewed June 2026. Regulations change and the GB rules are under review; always confirm the current position before making decisions. This guide is general information, not regulatory or professional advice.</p>
+      <p style="color:#5A6A65;font-size:12.5px;margin:14px 0 0">Reviewed June 2026. Regulations change and the GB rules are under review; always confirm the current position before making decisions. This guide is general information, not regulatory or professional advice.</p>
       <h2 style="font-size:20px;letter-spacing:-.01em;margin:34px 0 12px">GWP impact calculator</h2>
-      <p style="color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 16px;max-width:680px">GWP in the table above is a multiplier, not a real-world quantity: on its own, "675" or "2,088" doesn't say much about actual climate impact. This calculator turns it into a concrete figure: enter the <strong>refrigerant charge</strong> (the amount of gas sealed inside a heat pump's circuit, usually stated on its data plate or datasheet) and it converts that into the CO&#8322;e it represents. Because a sealed system doesn't lose its whole charge at once, the calculator also shows how that impact builds up gradually over time through ordinary annual leakage, rather than assuming a one-off release.</p>
-      <div style="border:1px solid #e2e8e7;border-radius:12px;background:#fff;padding:20px 22px;margin:14px 0 8px" id="gwp-calc">
+      <p style="color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 16px;max-width:680px">GWP in the table above is a multiplier, not a real-world quantity: on its own, "675" or "2,088" doesn't say much about actual climate impact. This calculator turns it into a concrete figure: enter the <strong>refrigerant charge</strong> (the amount of gas sealed inside a heat pump's circuit, usually stated on its data plate or datasheet) and it converts that into the CO&#8322;e it represents. Because a sealed system doesn't lose its whole charge at once, the calculator also shows how that impact builds up gradually over time through ordinary annual leakage, rather than assuming a one-off release.</p>
+      <div style="border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:20px 22px;margin:14px 0 8px" id="gwp-calc">
         <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-bottom:20px">
           <div style="flex:1;min-width:180px">
-            <label for="gwp-ref" style="display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px">Refrigerant</label>
-            <select id="gwp-ref" style="width:100%;padding:9px 10px;border:1px solid #d3dcdb;border-radius:8px;font-size:14px;background:#fff;color:#0F2B2B"></select>
+            <label for="gwp-ref" style="display:block;font-size:12.5px;font-weight:600;color:#3B4D47;margin-bottom:6px">Refrigerant</label>
+            <select id="gwp-ref" style="width:100%;padding:9px 10px;border:1px solid #CFDDD7;border-radius:8px;font-size:14px;background:#fff;color:#083F35"></select>
           </div>
           <div style="flex:1;min-width:150px">
-            <label for="gwp-qty" style="display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px">Refrigerant charge (kg)</label>
-            <input id="gwp-qty" type="number" min="0" step="0.1" value="2.5" style="width:100%;padding:9px 10px;border:1px solid #d3dcdb;border-radius:8px;font-size:14px;color:#0F2B2B">
+            <label for="gwp-qty" style="display:block;font-size:12.5px;font-weight:600;color:#3B4D47;margin-bottom:6px">Refrigerant charge (kg)</label>
+            <input id="gwp-qty" type="number" min="0" step="0.1" value="2.5" style="width:100%;padding:9px 10px;border:1px solid #CFDDD7;border-radius:8px;font-size:14px;color:#083F35">
           </div>
           <div style="flex:1;min-width:150px">
-            <label for="gwp-leak" style="display:block;font-size:12.5px;font-weight:600;color:#42514f;margin-bottom:6px">Annual leak rate (%)</label>
-            <input id="gwp-leak" type="number" min="0" max="100" step="0.5" value="4" style="width:100%;padding:9px 10px;border:1px solid #d3dcdb;border-radius:8px;font-size:14px;color:#0F2B2B">
+            <label for="gwp-leak" style="display:block;font-size:12.5px;font-weight:600;color:#3B4D47;margin-bottom:6px">Annual leak rate (%)</label>
+            <input id="gwp-leak" type="number" min="0" max="100" step="0.5" value="4" style="width:100%;padding:9px 10px;border:1px solid #CFDDD7;border-radius:8px;font-size:14px;color:#083F35">
           </div>
         </div>
-        <div style="font-size:11px;color:#9aa;margin:-12px 0 20px;line-height:1.4">Default 4%/yr is CIBSE TM65's typical rate for a heat pump with some on-site pipework (their range: 2% factory-sealed monobloc &ndash; 6% VRF). Edit to match your own system.</div>
+        <div style="font-size:11px;color:#5A6A65;margin:-12px 0 20px;line-height:1.4">Default 4%/yr is CIBSE TM65's typical rate for a heat pump with some on-site pipework (their range: 2% factory-sealed monobloc &ndash; 6% VRF). Edit to match your own system.</div>
         <div id="gwp-result"></div>
-        <p style="color:#9aa;font-size:12px;margin:16px 0 0">Illustrative estimate only. GWP values are the 100-year AR5 figures from the table above (charge in kg &times; GWP = kg CO&#8322;e). Annual leak rate is user-adjustable; the 4% default follows <a href="https://www.cibse.org/knowledge-research/knowledge-portal/embodied-carbon-in-building-services-a-calculation-methodology-tm65" target="_blank" rel="noopener" style="color:#0D7377">CIBSE TM65: Embodied Carbon in Building Services &mdash; A Methodology</a>, which gives typical annual refrigerant leakage rates of roughly 2% for factory-sealed monobloc units with no on-site refrigerant work, 4% for systems with some on-site pipework, and 6% for VRF systems with large on-site-filled charges; well-installed heat pumps can leak far less, and any leak of this size should be found and repaired by a qualified installer, not budgeted for. This tool is not a substitute for a proper F-Gas leak check or emissions audit.</p>
+        <p style="color:#5A6A65;font-size:12px;margin:16px 0 0">Illustrative estimate only. GWP values are the 100-year AR5 figures from the table above (charge in kg &times; GWP = kg CO&#8322;e). Annual leak rate is user-adjustable; the 4% default follows <a href="https://www.cibse.org/knowledge-research/knowledge-portal/embodied-carbon-in-building-services-a-calculation-methodology-tm65" target="_blank" rel="noopener" style="color:#0B6656">CIBSE TM65: Embodied Carbon in Building Services &mdash; A Methodology</a>, which gives typical annual refrigerant leakage rates of roughly 2% for factory-sealed monobloc units with no on-site refrigerant work, 4% for systems with some on-site pipework, and 6% for VRF systems with large on-site-filled charges; well-installed heat pumps can leak far less, and any leak of this size should be found and repaired by a qualified installer, not budgeted for. This tool is not a substitute for a proper F-Gas leak check or emissions audit.</p>
       </div>
       <script>
       (function(){
@@ -394,17 +399,17 @@ function trackOut(){
           for(var y=1;y<=15;y++){var leaked=remaining*(leak/100);cum+=leaked*gwp;remaining-=leaked;yearData[y]=cum;}
           var html='';
           if(gwp===0){
-            html+='<div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:14px 18px;font-size:14.5px;color:#0c6f66"><strong>Zero GWP</strong> \u2014 '+qty+' kg of '+row[0]+' has no direct global warming impact if released.</div>';
+            html+='<div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:14px 18px;font-size:14.5px;color:#0B6656"><strong>Zero GWP</strong> \u2014 '+qty+' kg of '+row[0]+' has no direct global warming impact if released.</div>';
           }else{
             html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:18px">';
-            html+='<div style="background:#e7f4f2;border:1px solid #cde9e5;border-radius:10px;padding:14px 16px"><div style="font-size:11.5px;font-weight:700;color:#0c6f66;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Full charge released</div><div style="font-size:22px;font-weight:700;color:#0F2B2B">'+fmt(totalKg)+' kg CO\u2082e</div><div style="font-size:12.5px;color:#5f7e7e;margin-top:2px">'+totalT.toFixed(2)+' tonnes CO\u2082e</div></div>';
-            html+='<div style="background:#fafcfb;border:1px solid #e2e8e7;border-radius:10px;padding:14px 16px"><div style="font-size:11.5px;font-weight:700;color:#42514f;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Roughly equivalent to</div><div style="font-size:22px;font-weight:700;color:#0F2B2B">'+fmt(carKm)+' km</div><div style="font-size:12.5px;color:#5f7e7e;margin-top:2px">of driving an average petrol car</div></div>';
+            html+='<div style="background:#E4F6EC;border:1px solid #BFE3D2;border-radius:10px;padding:14px 16px"><div style="font-size:11.5px;font-weight:700;color:#0B6656;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Full charge released</div><div style="font-size:22px;font-weight:700;color:#083F35">'+fmt(totalKg)+' kg CO\u2082e</div><div style="font-size:12.5px;color:#5A6A65;margin-top:2px">'+totalT.toFixed(2)+' tonnes CO\u2082e</div></div>';
+            html+='<div style="background:#F6FAF8;border:1px solid #E3EDE8;border-radius:10px;padding:14px 16px"><div style="font-size:11.5px;font-weight:700;color:#3B4D47;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px">Roughly equivalent to</div><div style="font-size:22px;font-weight:700;color:#083F35">'+fmt(carKm)+' km</div><div style="font-size:12.5px;color:#5A6A65;margin-top:2px">of driving an average petrol car</div></div>';
             html+='</div>';
-            html+='<div style="font-size:13px;font-weight:600;color:#42514f;margin:0 0 8px">Cumulative CO\u2082e released through leakage at '+leak.toFixed(1)+'%/year</div>';
-            html+='<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:10px;overflow:hidden;font-size:13.5px;min-width:340px"><thead><tr style="background:#fafcfb"><th style="text-align:left;padding:8px 12px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Time</th><th style="text-align:right;padding:8px 12px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">Cumulative CO\u2082e</th><th style="text-align:right;padding:8px 12px;border-bottom:1px solid #eef2f1;color:#42514f;font-weight:600">% of charge</th></tr></thead><tbody>';
+            html+='<div style="font-size:13px;font-weight:600;color:#3B4D47;margin:0 0 8px">Cumulative CO\u2082e released through leakage at '+leak.toFixed(1)+'%/year</div>';
+            html+='<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:10px;overflow:hidden;font-size:13.5px;min-width:340px"><thead><tr style="background:#F6FAF8"><th style="text-align:left;padding:8px 12px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Time</th><th style="text-align:right;padding:8px 12px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">Cumulative CO\u2082e</th><th style="text-align:right;padding:8px 12px;border-bottom:1px solid #EEF4F1;color:#3B4D47;font-weight:600">% of charge</th></tr></thead><tbody>';
             [1,5,10,15].forEach(function(y){
               var pct=totalKg>0?(100*yearData[y]/totalKg).toFixed(0):'0';
-              html+='<tr><td style="padding:7px 12px;border-bottom:1px solid #eef2f1">Year '+y+'</td><td style="padding:7px 12px;border-bottom:1px solid #eef2f1;text-align:right">'+fmt(yearData[y])+' kg CO\u2082e</td><td style="padding:7px 12px;border-bottom:1px solid #eef2f1;text-align:right;color:#7A9494">'+pct+'%</td></tr>';
+              html+='<tr><td style="padding:7px 12px;border-bottom:1px solid #EEF4F1">Year '+y+'</td><td style="padding:7px 12px;border-bottom:1px solid #EEF4F1;text-align:right">'+fmt(yearData[y])+' kg CO\u2082e</td><td style="padding:7px 12px;border-bottom:1px solid #EEF4F1;text-align:right;color:#5A6A65">'+pct+'%</td></tr>';
             });
             html+='</tbody></table></div>';
           }
@@ -434,12 +439,12 @@ function trackOut(){
 <p>Heat Pump Database &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
 <p style="margin-top:6px"><a href="https://www.heatpumpdatabase.com/">Search the full database</a> &middot; <a href="https://www.heatpumpdatabase.com/manufacturers/">All manufacturers</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/installation-costs/">Installation costs</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="https://www.heatpumpdatabase.com/news/">News &amp; Insight</a></p>
 </div></footer>
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#083F35;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
 <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
 <span>This site uses cookies to help us understand how visitors use the site. No personal data is shared with third parties.</span>
 <span style="display:flex;gap:8px;flex-shrink:0">
-<button onclick="acceptCookies()" style="background:#3ECCC0;color:#0F2B2B;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
-<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3a5757;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
+<button onclick="acceptCookies()" style="background:#22C79A;color:#083F35;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
+<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3B4D47;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
 </span>
 </div>
 </div>

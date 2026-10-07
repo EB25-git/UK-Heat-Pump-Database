@@ -16,64 +16,70 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://www.heatpumpdatabase.com/images/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="theme-color" content="#083F35">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>
 /* ── Best-of ranking pages ── */
 .best-toc{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 28px}
-.best-toc a{display:inline-block;background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}
-.best-toc a:hover{background:#d4ece7}
+.best-toc a{display:inline-block;background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}
+.best-toc a:hover{background:#BFE3D2}
+.best-toc a span{color:#5A6A65;font-weight:400}
+.type-link{margin-left:8px;font-size:13px;white-space:nowrap}
+.type-browse{margin:0 0 28px}
 .best-section{margin-bottom:44px;padding-top:8px;scroll-margin-top:80px}
-.best-section:not(:last-of-type){border-bottom:1px solid #e2e8e7;padding-bottom:36px}
-.composite-sub{font-size:11.5px;color:#8a9694;font-weight:400}
-.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#0F2B2B,#14403d);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
+.best-section:not(:last-of-type){border-bottom:1px solid #E3EDE8;padding-bottom:36px}
+.composite-sub{font-size:11.5px;color:#5A6A65;font-weight:400}
+.best-winner{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#083F35,#083F35);border-radius:14px;padding:20px 24px;margin:6px 0 24px;color:#fff}
 .best-winner img{width:56px;height:56px;border-radius:10px;background:#fff;object-fit:contain;padding:6px;flex:none}
-.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#3ECCC0;font-weight:600;margin-bottom:2px}
+.best-winner .bw-crown{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#22C79A;font-weight:600;margin-bottom:2px}
 .best-winner .bw-name{font-size:19px;font-weight:600;letter-spacing:-.01em}.best-winner .bw-name a{color:#fff}
 .best-winner .bw-val{margin-left:auto;text-align:right;flex:none}
-.best-winner .bw-num{font-size:26px;font-weight:700;color:#3ECCC0;line-height:1.1}
+.best-winner .bw-num{font-size:26px;font-weight:700;color:#22C79A;line-height:1.1}
 .best-winner .bw-lab{font-size:12px;color:rgba(255,255,255,.55)}
-.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #e2e8e7}
+.best-scroll{overflow-x:auto;border-radius:12px;border:1px solid #E3EDE8}
 .best-scroll table.list{border:none;margin:0;min-width:640px}
-table.best-table th{position:sticky;top:0;background:#fafcfb;z-index:1}
-table.best-table tr:nth-child(even) td{background:#fafcfb}
-table.best-table tr:hover td{background:#eef7f5}
+table.best-table th{position:sticky;top:0;background:#F6FAF8;z-index:1}
+table.best-table tr:nth-child(even) td{background:#F6FAF8}
+table.best-table tr:hover td{background:#F6FAF8}
 td.rank{width:44px;text-align:center}
-.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#42514f;background:#eef2f1}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-weight:600;font-size:13px;color:#3B4D47;background:#EEF4F1}
 .rank-1 .rank-badge{background:#f6d873;color:#5c4a00}
 .rank-2 .rank-badge{background:#dfe4e6;color:#454d50}
 .rank-3 .rank-badge{background:#e8c39e;color:#5e3c14}
 .best-model{display:flex;align-items:center;gap:10px}
-.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #eef2f1;flex:none}
+.best-model img{width:26px;height:26px;border-radius:6px;object-fit:contain;background:#fff;border:1px solid #EEF4F1;flex:none}
 .metric-cell{min-width:120px}
 .metric-val{font-weight:600}
-.metric-bar{height:5px;border-radius:3px;background:#e7f0ee;margin-top:5px;overflow:hidden}
-.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#3ECCC0,#0f8a80)}
-.hub-leader{font-size:12.5px;color:#0c6f66;margin-top:4px}
+.metric-bar{height:5px;border-radius:3px;background:#EEF4F1;margin-top:5px;overflow:hidden}
+.metric-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#22C79A,#0B6656)}
+.hub-leader{font-size:12.5px;color:#0B6656;margin-top:4px}
 
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#16302f;background:#f6f9f8;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:#0f8a80;text-decoration:none}a:hover{text-decoration:underline}
-header.site{background:#0F2B2B;height:60px;display:flex;align-items:center}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#083F35;background:#F6FAF8;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:#0B6656;text-decoration:none}a:hover{text-decoration:underline}
+header.site{background:#083F35;height:60px;display:flex;align-items:center}
 header.site .wrap{display:flex;align-items:center;width:100%}
 header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
 header.site .brand:hover{text-decoration:none}
-.wm-bold{color:#3ECCC0;font-weight:700}
+.wm-bold{color:#22C79A;font-weight:700}
 .wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
 .burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}
 .burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
 .burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#0F2B2B;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.burger-menu{position:fixed;top:60px;right:0;width:280px;background:#083F35;border-left:1px solid rgba(255,255,255,.08);box-shadow:-8px 0 40px rgba(0,0,0,.3);transform:translateX(100%);transition:transform .3s ease;z-index:51;display:flex;flex-direction:column;max-height:calc(100vh - 60px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .burger-menu.open{transform:translateX(0)}
 .burger-item{background:none;border:none;color:rgba(255,255,255,.6);font-size:15px;font-family:'Inter',sans-serif;font-weight:400;padding:16px 28px;text-align:left;transition:all .2s;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.01em;width:100%;display:block;text-decoration:none;box-sizing:border-box}
 .burger-item:hover{background:rgba(255,255,255,.05);color:#fff;text-decoration:none}
-.burger-item.active{color:#3ECCC0;font-weight:500}
+.burger-item.active{color:#22C79A;font-weight:500}
 .burger-subitem{padding-left:50px;font-size:14px;position:relative}
 .burger-subitem::before{content:"";position:absolute;left:30px;top:50%;width:9px;height:1px;background:rgba(255,255,255,.28)}.burger-toggle{display:flex;align-items:center;justify-content:space-between}.burger-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);transition:transform .25s ease;flex:none;margin-left:8px;opacity:.55}.burger-toggle.open .burger-chevron{transform:rotate(-135deg)}.burger-subgroup{max-height:0;overflow:hidden;transition:max-height .3s ease;flex-shrink:0}.burger-subgroup.open{max-height:1000px}.burger-menu>.burger-item,.burger-menu>.burger-subgroup{flex-shrink:0}
 .burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
@@ -81,121 +87,121 @@ header.site .brand:hover{text-decoration:none}
 @media(max-width:560px){.burger-menu{width:100%}}
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
 main{padding:28px 0 56px}
-nav.crumbs{font-size:13px;color:#5b6b6b;margin-bottom:18px}
-nav.crumbs a{color:#5b6b6b}nav.crumbs span{color:#9aa}
+nav.crumbs{font-size:13px;color:#5A6A65;margin-bottom:18px}
+nav.crumbs a{color:#5A6A65}nav.crumbs span{color:#5A6A65}
 h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
-.sub{color:#5b6b6b;font-size:15px;margin-bottom:24px}
+.sub{color:#5A6A65;font-size:15px;margin-bottom:24px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
-.badge{background:#e7f4f2;color:#0c6f66;border:1px solid #cde9e5;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
-table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden}
-table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #eef2f1;font-size:14.5px;vertical-align:top}
-table.spec th{width:42%;color:#42514f;font-weight:500;background:#fafcfb}
+.badge{background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden}
+table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #EEF4F1;font-size:14.5px;vertical-align:top}
+table.spec th{width:42%;color:#3B4D47;font-weight:500;background:#F6FAF8}
 table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
-.notes{background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#34433f}
+.notes{background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:18px 20px;margin-top:18px;font-size:14.5px;color:#3B4D47}
 .article-body{max-width:720px}
-.article-body h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 12px;color:#0F2B2B}
-.article-body h3{font-size:16px;margin:22px 0 10px;color:#0F2B2B}
-.article-body p{color:#5b6b6b;font-size:14.5px;line-height:1.7;margin:0 0 14px}
-.article-body strong{color:#16302f}
-.article-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 18px}
-.article-body th{text-align:left;padding:10px 14px;border-bottom:1px solid #eef2f1;background:#fafcfb;color:#42514f;font-weight:600}
-.article-body td{padding:9px 14px;border-bottom:1px solid #eef2f1}
-.article-body .callout{background:#fff;border:1px solid #e2e8e7;border-left:4px solid #3ECCC0;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#34433f}
-.article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#8a9694;flex-wrap:wrap}
-.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #e2e8e7;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#8a9694;background:#fafcfb;border-top:1px solid #eef2f1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0D7377;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#f2fbfa;border:1px solid #cdeae6;border-left:4px solid #0D7377;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0D7377;flex-shrink:0}.article-tldr p{margin:0;color:#34433f;font-size:14px;line-height:1.6;flex:1;min-width:200px}
+.article-body h2{font-size:20px;letter-spacing:-.01em;margin:30px 0 12px;color:#083F35}
+.article-body h3{font-size:16px;margin:22px 0 10px;color:#083F35}
+.article-body p{color:#5A6A65;font-size:14.5px;line-height:1.7;margin:0 0 14px}
+.article-body strong{color:#083F35}
+.article-body table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:13.5px;margin:0 0 18px}
+.article-body th{text-align:left;padding:10px 14px;border-bottom:1px solid #EEF4F1;background:#F6FAF8;color:#3B4D47;font-weight:600}
+.article-body td{padding:9px 14px;border-bottom:1px solid #EEF4F1}
+.article-body .callout{background:#fff;border:1px solid #E3EDE8;border-left:4px solid #22C79A;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#3B4D47}
+.article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#5A6A65;flex-wrap:wrap}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #E3EDE8;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#5A6A65;background:#F6FAF8;border-top:1px solid #EEF4F1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0B6656;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#F6FAF8;border:1px solid #BFE3D2;border-left:4px solid #0B6656;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0B6656;flex-shrink:0}.article-tldr p{margin:0;color:#3B4D47;font-size:14px;line-height:1.6;flex:1;min-width:200px}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.article-cat-insight{background:#e6f4f3;color:#0D7377}
-.article-cat-product{background:#fdf1e0;color:#a3660a}
-.article-cat-update{background:#e8eef5;color:#2b5a8a}
+.article-cat-insight{background:#E4F6EC;color:#0B6656}
+.article-cat-product{background:#BFE3D2;color:#083F35}
+.article-cat-update{background:#E4F6EC;color:#0B6656}
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.news-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
-.news-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
-.news-card h3{font-size:16px;margin:8px 0 6px;color:#0F2B2B}
-.news-card p{font-size:13.5px;color:#5b6b6b;line-height:1.6;margin:0}
+.news-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
+.news-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07)}
+.news-card h3{font-size:16px;margin:8px 0 6px;color:#083F35}
+.news-card p{font-size:13.5px;color:#5A6A65;line-height:1.6;margin:0}
 .news-list{display:flex;flex-direction:column;gap:18px}
-.news-row{display:flex;gap:22px;background:#fff;border:1px solid #e2e8e7;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
-.news-row:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07)}
-.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#eef3f2;display:flex;align-items:center;justify-content:center}
+.news-row{display:flex;gap:22px;background:#fff;border:1px solid #E3EDE8;border-radius:14px;padding:18px;text-decoration:none;transition:border-color .15s,box-shadow .15s}
+.news-row:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07)}
+.news-row-thumb{flex:0 0 260px;width:260px;height:170px;border-radius:10px;overflow:hidden;background:#EEF4F1;display:flex;align-items:center;justify-content:center}
 .news-row-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.news-row-thumb.placeholder{color:#9fb0af;font-size:13px;text-align:center;padding:0 16px}
+.news-row-thumb.placeholder{color:#5A6A65;font-size:13px;text-align:center;padding:0 16px}
 .news-row-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
-.news-row h3{font-size:20px;margin:8px 0 8px;color:#0F2B2B;letter-spacing:-.01em}
-.news-row p{font-size:14.5px;color:#5b6b6b;line-height:1.65;margin:0}
+.news-row h3{font-size:20px;margin:8px 0 8px;color:#083F35;letter-spacing:-.01em}
+.news-row p{font-size:14.5px;color:#5A6A65;line-height:1.65;margin:0}
 @media (max-width:640px){.news-row{flex-direction:column}.news-row-thumb{width:100%;flex-basis:auto;height:180px}}
-.notes h2{font-size:15px;margin-bottom:6px;color:#0F2B2B}
+.notes h2{font-size:15px;margin-bottom:6px;color:#083F35}
 h2.sec{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
-.verified-box{margin:16px 0 0;padding:12px 14px;border:1px solid #cfe9e5;background:#f1faf8;border-radius:10px}
-.vb-title{font-size:14px;font-weight:700;color:#0F8074}
-.vb-detail{font-size:12.5px;color:#4d5f5f;margin-top:4px;line-height:1.55}
+.verified-box{margin:16px 0 0;padding:12px 14px;border:1px solid #BFE3D2;background:#F6FAF8;border-radius:10px}
+.vb-title{font-size:14px;font-weight:700;color:#0B6656}
+.vb-detail{font-size:12.5px;color:#3B4D47;margin-top:4px;line-height:1.55}
 .alt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.alt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
-.alt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
+.alt-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.alt-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
 .alt-card .ah{display:flex;gap:10px;align-items:center;margin-bottom:8px}
-.alt-card .ah img{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px}
-.alt-card .am{font-weight:600;color:#0F2B2B;font-size:14px;line-height:1.3}
-.alt-card .amf{font-size:12px;color:#5b6b6b}
+.alt-card .ah img{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:3px}
+.alt-card .am{font-weight:600;color:#083F35;font-size:14px;line-height:1.3}
+.alt-card .amf{font-size:12px;color:#5A6A65}
 .alt-card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:12.5px}
-.alt-card dt{color:#5b6b6b}.alt-card dd{margin:0;color:#0F2B2B;font-weight:600}
-.alt-why{font-size:13px;color:#5b6b6b;margin:-4px 0 12px}
-.card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
-.card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
-.card .m{font-weight:600;color:#0F2B2B;font-size:14.5px;line-height:1.35}
-.card .s{color:#5b6b6b;font-size:12.5px;margin-top:4px}
+.alt-card dt{color:#5A6A65}.alt-card dd{margin:0;color:#083F35;font-weight:600}
+.alt-why{font-size:13px;color:#5A6A65;margin:-4px 0 12px}
+.card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
+.card .m{font-weight:600;color:#083F35;font-size:14.5px;line-height:1.35}
+.card .s{color:#5A6A65;font-size:12.5px;margin-top:4px}
 .card.has-logo{display:flex;gap:12px;align-items:flex-start}
-.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:4px;flex-shrink:0}
-.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:6px;margin-bottom:14px}
-.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#f3f7f6;border:1px solid #e2e8e7;padding:3px;vertical-align:middle;margin-right:8px}
+.card .logo-thumb{width:40px;height:40px;border-radius:8px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:4px;flex-shrink:0}
+.mfr-logo{width:64px;height:64px;border-radius:10px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:6px;margin-bottom:14px}
+.mfr-logo-sm{width:32px;height:32px;border-radius:7px;object-fit:contain;background:#F6FAF8;border:1px solid #E3EDE8;padding:3px;vertical-align:middle;margin-right:8px}
 .mfr-header{display:flex;align-items:center;gap:14px;margin-bottom:2px}
 .product-photo-block{margin-bottom:20px;text-align:center}
 .product-photo{max-width:360px;width:100%;height:auto;max-height:360px;object-fit:contain}
-.photo-credit{font-size:11.5px;color:#8a9694;margin-top:8px}
+.photo-credit{font-size:11.5px;color:#5A6A65;margin-top:8px}
 .product-photo{cursor:zoom-in}
 .product-photo-thumbs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-.product-photo-thumb{width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid #e2e8e7;cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
+.product-photo-thumb{width:52px;height:52px;object-fit:cover;border-radius:8px;border:2px solid #E3EDE8;cursor:pointer;opacity:.7;transition:opacity .15s,border-color .15s}
 .product-photo-thumb:hover{opacity:1}
-.product-photo-thumb.active{opacity:1;border-color:#0D7377}
-.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(15,43,43,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
+.product-photo-thumb.active{opacity:1;border-color:#0B6656}
+.photo-lightbox{display:none;position:fixed;inset:0;background:rgba(8,63,53,.92);z-index:500;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
 .photo-lightbox.open{display:flex}
 .photo-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:6px;cursor:default}
 .photo-lightbox-close{position:fixed;top:18px;right:22px;background:rgba(255,255,255,.12);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1}
-.trademark-note{font-size:11.5px;color:#8a9694;margin-top:26px;line-height:1.5}
-table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;font-size:14px}
-table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #eef2f1}
-table.list th{background:#fafcfb;color:#42514f;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+.trademark-note{font-size:11.5px;color:#5A6A65;margin-top:26px;line-height:1.5}
+table.list{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;font-size:14px}
+table.list th,table.list td{padding:10px 14px;text-align:left;border-bottom:1px solid #EEF4F1}
+table.list th{background:#F6FAF8;color:#3B4D47;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
 table.list tr:last-child td{border-bottom:none}
-table.list tr:hover td{background:#fafdfc}
-table.list tr.grp-row td{background:#f3f7f6;font-weight:600;color:#0F2B2B;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
-table.list tr.grp-row:hover td{background:#f3f7f6}
-.cta{display:inline-block;margin-top:8px;background:#0F2B2B;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
-.cta:hover{background:#16413f;text-decoration:none}
-footer.site{border-top:1px solid #e2e8e7;padding:26px 0;color:#7a8a88;font-size:13px;margin-top:30px}
-footer.site a{color:#7a8a88}
+table.list tr:hover td{background:#F6FAF8}
+table.list tr.grp-row td{background:#F6FAF8;font-weight:600;color:#083F35;font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;padding:8px 14px}
+table.list tr.grp-row:hover td{background:#F6FAF8}
+.cta{display:inline-block;margin-top:8px;background:#083F35;color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px}
+.cta:hover{background:#083F35;text-decoration:none}
+footer.site{border-top:1px solid #E3EDE8;padding:26px 0;color:#5A6A65;font-size:13px;margin-top:30px}
+footer.site a{color:#5A6A65}
 .disclaimer{background:#fff7ed;border:1px solid #fbe3c4;color:#92651f;border-radius:10px;padding:12px 16px;font-size:13px;margin:20px 0}
 @media(max-width:560px){table.spec th{width:48%}h1{font-size:23px}}
 /* ── Reviews & further reading (product pages) ── */
-.rv-list{list-style:none;background:#fff;border:1px solid #e2e8e7;border-radius:12px;padding:4px 0;margin:0}
-.rv-item{padding:12px 18px;border-bottom:1px solid #eef2f1;font-size:14.5px;line-height:1.5}
+.rv-list{list-style:none;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:4px 0;margin:0}
+.rv-item{padding:12px 18px;border-bottom:1px solid #EEF4F1;font-size:14.5px;line-height:1.5}
 .rv-item:last-child{border-bottom:none}
 .rv-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-right:6px;vertical-align:middle}
-.rv-tag-review_article{background:#e7f4f2;color:#0c6f66}
-.rv-tag-news_article{background:#eef2fb;color:#3b4fa3}
-.rv-tag-manufacturer_page{background:#f3eefb;color:#5b3fa3}
-.rv-tag-performance_data{background:#fdf3e1;color:#8a5a00}
-.rv-source{color:#5b6b6b;font-size:13px}
-.rv-date{color:#9aa8a6;font-size:12.5px}
-.rv-note{color:#5b6b6b;font-size:13px;margin-top:3px}
+.rv-tag-review_article{background:#E4F6EC;color:#0B6656}
+.rv-tag-news_article{background:#E4F6EC;color:#0B6656}
+.rv-tag-manufacturer_page{background:#EEF4F1;color:#083F35}
+.rv-tag-performance_data{background:#BFE3D2;color:#083F35}
+.rv-source{color:#5A6A65;font-size:13px}
+.rv-date{color:#5A6A65;font-size:12.5px}
+.rv-note{color:#5A6A65;font-size:13px;margin-top:3px}
 .yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,300px));gap:14px;margin-top:12px}
-.yt-card{display:block;background:#fff;border:1px solid #e2e8e7;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
-.yt-card:hover{border-color:#3ECCC0;box-shadow:0 6px 22px rgba(15,43,43,.07);text-decoration:none}
-.yt-thumb-wrap{position:relative;display:block;background:#0F2B2B}
+.yt-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.yt-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07);text-decoration:none}
+.yt-thumb-wrap{position:relative;display:block;background:#083F35}
 .yt-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
-.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(15,43,43,.75);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
-.yt-title{display:block;padding:10px 14px 2px;font-weight:600;color:#0F2B2B;font-size:13.5px;line-height:1.35}
-.yt-source{display:block;padding:0 14px;color:#5b6b6b;font-size:12.5px}
-.yt-date{display:block;padding:2px 14px 12px;color:#9aa8a6;font-size:12px}
+.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(8,63,53,.75);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:3px}
+.yt-title{display:block;padding:10px 14px 2px;font-weight:600;color:#083F35;font-size:13.5px;line-height:1.35}
+.yt-source{display:block;padding:0 14px;color:#5A6A65;font-size:12.5px}
+.yt-date{display:block;padding:2px 14px 12px;color:#5A6A65;font-size:12px}
 </style>
-<link rel="stylesheet" href="/theme-pages.css?v=1">
+<link rel="stylesheet" href="/theme-pages.css?v=2">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.heatpumpdatabase.com/"}, {"@type": "ListItem", "position": 2, "name": "Manufacturers", "item": "https://www.heatpumpdatabase.com/manufacturers/"}, {"@type": "ListItem", "position": 3, "name": "Carrier", "item": "https://www.heatpumpdatabase.com/manufacturers/carrier/"}, {"@type": "ListItem", "position": 4, "name": "61XWHHZE", "item": "https://www.heatpumpdatabase.com/products/carrier-61xwhhze-592/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProductModel", "name": "Carrier 61XWHHZE (1468 kW)", "manufacturer": {"@type": "Organization", "name": "Carrier"}, "alternateName": ["AquaForce 61XWHHZE", "61XWHHZE 15"], "sku": "61XWHHZE 15", "url": "https://www.heatpumpdatabase.com/products/carrier-61xwhhze-592/", "brand": {"@type": "Brand", "name": "Carrier"}, "description": "Carrier 61XWHHZE is a 1468 kW water source heat pump, using R1234ze refrigerant.", "image": "https://www.heatpumpdatabase.com/images/products/carrier-61xwh-ze.webp", "category": "Water Source (WSHP)", "additionalProperty": [{"@type": "PropertyValue", "name": "Heat pump type", "value": "Water Source (WSHP)"}, {"@type": "PropertyValue", "name": "Refrigerant", "value": "R1234ze"}, {"@type": "PropertyValue", "name": "Heating capacity", "value": "1468 kW"}, {"@type": "PropertyValue", "name": "Max flow temperature", "value": 85, "unitText": "°C"}, {"@type": "PropertyValue", "name": "Mode", "value": "Heating only"}, {"@type": "PropertyValue", "name": "Electrical supply", "value": "380-415V (Three Phase)"}]}</script>
 <script>
@@ -220,27 +226,26 @@ function trackOut(){
 </script>
 </head>
 <body>
-<header class="site"><div class="wrap"><a class="brand" href="https://www.heatpumpdatabase.com/">
-<svg viewBox="0 0 28 28" width="26" height="26" fill="none" aria-hidden="true"><g transform="translate(14,14)"><circle r="12.5" stroke="#3ECCC0" stroke-width="1.2" opacity=".3"/><circle r="2" fill="#3ECCC0"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(60)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(120)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(180)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(240)"/><path d="M0 -3 C-1 -6.5 -4 -9.5 -7 -11" stroke="#3ECCC0" stroke-width="1.8" stroke-linecap="round" transform="rotate(300)"/></g></svg>
-<span><span class="wm-bold">Heat Pump</span><span class="wm-light">Database</span></span></a>
+<header class="site"><div class="wrap"><a class="brand" href="https://www.heatpumpdatabase.com/" aria-label="Heat Pump Database - home">
+<svg class="brand-mark" viewBox="-100 -100 200 200" width="32" height="32" aria-hidden="true" focusable="false"><circle cx="0" cy="0" r="88" fill="none" stroke="#109680" stroke-width="7"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(60)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(120)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(180)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(240)"/><path d="M -6 -8 Q -12 -56 30 -73 A 5 5 0 0 1 37 -66 Q 4 -48 6 -8 Z" fill="#0B6656" transform="rotate(300)"/><circle cx="0" cy="0" r="16" fill="#0B6656"/><circle cx="0" cy="0" r="5.5" fill="#FFFFFF"/></svg><span class="wm" aria-hidden="true"><span class="wm-bold">heatpump</span><span class="wm-light">database</span></span></a>
 <button class="burger" id="bbtn" aria-label="Menu" onclick="tB()"><span></span><span></span><span></span></button>
 <nav class="burger-menu" id="bmenu"><a class="burger-item" href="https://www.heatpumpdatabase.com/">Browse</a><a class="burger-item" href="https://www.heatpumpdatabase.com/manufacturers/">Manufacturers</a><button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button><div class="burger-subgroup" id="c-group"><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/heat-pump-comparison/">Heat Pump Comparison</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#compare">Compare Selected</a></div><a class="burger-item" href="https://www.heatpumpdatabase.com/best/">Best Heat Pumps</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#analytics">Visualise</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#gallery">Gallery</a><a class="burger-item" href="https://www.heatpumpdatabase.com/heat-pump-size-calculator/">Size Calculator</a><button class="burger-item burger-toggle" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button><div class="burger-subgroup" id="k-group"><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What Is a Heat Pump?</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/installation-costs/">Installation Costs</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/funding/">Funding &amp; Grants</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/planning-permission/">Planning Permission</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">Understanding COP &amp; SCOP</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow Temperature &amp; Efficiency</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant Guide</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#faq">FAQ</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#guide">Site Guide</a><a class="burger-item burger-subitem" href="https://www.heatpumpdatabase.com/#links">Useful Links</a></div><a class="burger-item" href="https://www.heatpumpdatabase.com/news/">News &amp; Insight</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#contact">About &amp; Contact us</a><a class="burger-item" href="https://www.heatpumpdatabase.com/#terms" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</a></nav>
 </div></header>
 <div class="burger-overlay" id="bov" onclick="cB()"></div>
 <div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">&#10005;</button><img id="photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
 <main><div class="wrap">
-<nav class="crumbs"><a href="https://www.heatpumpdatabase.com/">Home</a> &rsaquo; <a href="https://www.heatpumpdatabase.com/manufacturers/">Manufacturers</a> &rsaquo; <a href="https://www.heatpumpdatabase.com/manufacturers/carrier/">Carrier</a> &rsaquo; <span>61XWHHZE</span></nav><div class="product-photo-block"><img class="product-photo" src="https://www.heatpumpdatabase.com/images/products/carrier-61xwh-ze.webp" alt="Carrier 61XWHHZE (1468 kW)" width="320" height="320" loading="eager" onclick="openPhotoLightbox(this.src,this.alt)"><div class="photo-credit">Image courtesy of Carrier &middot; click photo to enlarge</div></div><div class="mfr-header"><img class="mfr-logo-sm" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" width="32" height="32"><h1>Carrier 61XWHHZE (1468 kW)</h1></div><p class="sub">Specifications and technical data</p><p class="sub">Also known as: AquaForce 61XWHHZE</p><div class="badges"><span class="badge">Water Source (WSHP)</span><span class="badge">Commercial</span><span class="badge">R1234ze</span><span class="badge">1468 kW</span></div><table class="spec"><tr><th>Manufacturer</th><td>Carrier</td></tr><tr><th>Model</th><td>61XWHHZE</td></tr><tr><th>Model code</th><td>61XWHHZE 15</td></tr><tr><th>Heat pump type</th><td>Water Source (WSHP)</td></tr><tr><th>Application</th><td>Commercial</td></tr><tr><th>Refrigerant</th><td>R1234ze</td></tr><tr><th>Mode</th><td>Heating only</td></tr><tr><th>Heating capacity</th><td>1468 kW</td></tr><tr><th>Operating range (air)</th><td>-5 to 15 °C</td></tr><tr><th>Heating flow temperature</th><td>55–85 °C</td></tr><tr><th>Power input</th><td>602 kW</td></tr><tr><th>Electrical supply</th><td>380-415V (Three Phase)</td></tr><tr><th>Dimensions (H×W×D)</th><td>2305 × 1399 × 4790 mm</td></tr><tr><th>Operational Weight</th><td>9519 kg</td></tr><tr><th>Data added</th><td>2026-06-24</td></tr><tr><th>Data source</th><td>Manufacturer Data Sheet</td></tr><tr><th>Verification</th><td>Verified by a human</td></tr></table><p style="margin-top:16px"><a class="cta" href="https://www.carrier.uk/en/commercial/products/chillers/water-to-water-chillers-and-heat-pumps/61xwhze.html" rel="nofollow" target="_blank" onclick="trackOut(&quot;manufacturer&quot;,592,&quot;Carrier&quot;,&quot;61XWHHZE&quot;,null)">View manufacturer page &rarr;</a></p><div class="notes"><p>Carrier 61XWHHZE is a 1468 kW water source heat pump, using R1234ze refrigerant.</p></div><p style="margin:10px 0 0;font-size:12.5px"><a href="mailto:info@heatpumpdatabase.com?subject=Data%20correction%3A%20Carrier%2061XWHHZE%20%28ID%20592%29&amp;body=I%20would%20like%20to%20suggest%20a%20correction%20to%20the%20following%20heat%20pump%20record%20on%20Heat%20Pump%20Database.%0A%0A---%20Product%20%28please%20keep%20this%20section%20so%20we%20can%20identify%20the%20record%29%20---%0AID%3A%20592%0AManufacturer%3A%20Carrier%0AModel%3A%2061XWHHZE%0AProduct%20code%3A%2061XWHHZE%2015%0APage%3A%20https%3A//www.heatpumpdatabase.com/products/carrier-61xwhhze-592/%0ACurrent%20COP%3A%20%E2%80%94%20%28W20/W75%29%0ACurrent%20SCOP%3A%20%E2%80%94%0AVerification%3A%20Manual%20verification%0A%0A---%20Your%20correction%20---%0AWhich%20field%28s%29%20are%20incorrect%3A%0A%0ACorrect%20value%28s%29%3A%0A%0ASource%20%28datasheet%20link%20/%20certificate%20number%2C%20so%20we%20can%20verify%29%3A%0A%0A" style="color:#5a6b6b">&#9998; Suggest a correction to this data</a></p><div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or gaps. Always confirm specifications with the manufacturer before making decisions.</div><h2 class="sec">Alternatives to consider</h2><p class="alt-why">Three Water Source (WSHP) heat pumps from other manufacturers closest in capacity to this one.</p><div class="alt-grid"><a class="alt-card" href="https://www.heatpumpdatabase.com/products/rank-hp-1500/"><div class="ah"><img src="https://www.heatpumpdatabase.com/images/manufacturers/rank.jpeg" alt="Rank logo" loading="lazy" width="32" height="32"><div><div class="am">HP 1500</div><div class="amf">Rank &middot; Rank HP 1500</div></div></div><dl><dt>Capacity</dt><dd>1500 kW</dd><dt>Refrigerant</dt><dd>R1233zd</dd></dl></a><a class="alt-card" href="https://www.heatpumpdatabase.com/products/swegon-omega-sky-oh-1803/"><div class="ah"><img src="https://www.heatpumpdatabase.com/images/manufacturers/swegon.jpg" alt="Swegon logo" loading="lazy" width="32" height="32"><div><div class="am">OMEGA Sky OH</div><div class="amf">Swegon &middot; OMEGA Sky OH 132.2</div></div></div><dl><dt>Capacity</dt><dd>1417 kW</dd><dt>COP</dt><dd>4.56 (W10/W45)</dd><dt>Sound power</dt><dd>101 dB(A)</dd><dt>Refrigerant</dt><dd>R513A</dd></dl></a><a class="alt-card" href="https://www.heatpumpdatabase.com/products/gea-redastrum-1765/"><div class="ah"><img src="https://www.heatpumpdatabase.com/images/manufacturers/gea.png" alt="GEA logo" loading="lazy" width="32" height="32"><div><div class="am">RedAstrum</div><div class="amf">GEA &middot; RedAstrum NN</div></div></div><dl><dt>Capacity</dt><dd>1405 kW</dd><dt>Refrigerant</dt><dd>R717</dd></dl></a></div><h2 class="sec">More from Carrier</h2><div class="grid"><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 38 kW · SCOP 4.1</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-434/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 48 kW · SCOP 4.05</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-435/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 57.5 kW · SCOP 4.3</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-436/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 62.5 kW · SCOP 4.29</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-437/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 76 kW · SCOP 4.21</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-438/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 96 kW · SCOP 4.13</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-439/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 115 kW · SCOP 4.22</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-440/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 125 kW · SCOP 4.16</div></span></a></div><h2 class="sec">Other Water Source (WSHP) heat pumps</h2><div class="grid"><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hci-1000-r600a/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCI-1000 R600a</div><div class="s">WSHP · 500–1000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hci-2000-r600a/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCI-2000 R600a</div><div class="s">WSHP · 500–2000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hcp-1000-r290/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCP-1000 R290</div><div class="s">WSHP · 500–1000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hcp-2000-r290/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCP-2000 R290</div><div class="s">WSHP · 500–2000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/mitsubishi-electric-nx2-w-g06-h/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/mitsubishi-electric.png" alt="Mitsubishi Electric logo" loading="lazy" width="40" height="40"><span><div class="m">NX2-W-G06-H</div><div class="s">WSHP · 53.5 kW · SCOP 6.29</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/mitsubishi-electric-nx2-w-g06-h-171/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/mitsubishi-electric.png" alt="Mitsubishi Electric logo" loading="lazy" width="40" height="40"><span><div class="m">NX2-W-G06-H</div><div class="s">WSHP · 62.6 kW · SCOP 6.51</div></span></a></div><h2 class="sec">Compare with other products</h2><p><a class="cta" href="https://www.heatpumpdatabase.com/">Open the interactive database &rarr;</a></p><p class="trademark-note">The Carrier name and logo are trademarks of their respective owner and are used here for identification purposes only.</p>
+<nav class="crumbs"><a href="https://www.heatpumpdatabase.com/">Home</a> &rsaquo; <a href="https://www.heatpumpdatabase.com/manufacturers/">Manufacturers</a> &rsaquo; <a href="https://www.heatpumpdatabase.com/manufacturers/carrier/">Carrier</a> &rsaquo; <span>61XWHHZE</span></nav><div class="product-photo-block"><img class="product-photo" src="https://www.heatpumpdatabase.com/images/products/carrier-61xwh-ze.webp" alt="Carrier 61XWHHZE (1468 kW)" width="320" height="320" loading="eager" onclick="openPhotoLightbox(this.src,this.alt)"><div class="photo-credit">Image courtesy of Carrier &middot; click photo to enlarge</div></div><div class="mfr-header"><img class="mfr-logo-sm" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" width="32" height="32"><h1>Carrier 61XWHHZE (1468 kW)</h1></div><p class="sub">Specifications and technical data</p><p class="sub">Also known as: AquaForce 61XWHHZE</p><div class="badges"><span class="badge">Water Source (WSHP)</span><span class="badge">Commercial</span><span class="badge">R1234ze</span><span class="badge">1468 kW</span></div><table class="spec"><tr><th>Manufacturer</th><td>Carrier</td></tr><tr><th>Model</th><td>61XWHHZE</td></tr><tr><th>Model code</th><td>61XWHHZE 15</td></tr><tr><th>Heat pump type</th><td>Water Source (WSHP) <a class="type-link" href="https://www.heatpumpdatabase.com/types/water-source-heat-pumps/">All Water Source heat pumps &rarr;</a></td></tr><tr><th>Application</th><td>Commercial <a class="type-link" href="https://www.heatpumpdatabase.com/types/commercial-heat-pumps/">All Commercial heat pumps &rarr;</a></td></tr><tr><th>Refrigerant</th><td>R1234ze <a class="type-link" href="https://www.heatpumpdatabase.com/types/r1234ze-heat-pumps/">All R1234ze heat pumps &rarr;</a></td></tr><tr><th>Mode</th><td>Heating only</td></tr><tr><th>Heating capacity</th><td>1468 kW</td></tr><tr><th>Operating range (air)</th><td>-5 to 15 °C</td></tr><tr><th>Heating flow temperature</th><td>55–85 °C</td></tr><tr><th>Power input</th><td>602 kW</td></tr><tr><th>Electrical supply</th><td>380-415V (Three Phase)</td></tr><tr><th>Dimensions (H×W×D)</th><td>2305 × 1399 × 4790 mm</td></tr><tr><th>Operational Weight</th><td>9519 kg</td></tr><tr><th>Data added</th><td>2026-06-24</td></tr><tr><th>Data source</th><td>Manufacturer Data Sheet</td></tr><tr><th>Verification</th><td>Verified by a human</td></tr></table><p style="margin-top:16px"><a class="cta" href="https://www.carrier.uk/en/commercial/products/chillers/water-to-water-chillers-and-heat-pumps/61xwhze.html" rel="nofollow" target="_blank" onclick="trackOut(&quot;manufacturer&quot;,592,&quot;Carrier&quot;,&quot;61XWHHZE&quot;,null)">View manufacturer page &rarr;</a></p><div class="notes"><p>Carrier 61XWHHZE is a 1468 kW water source heat pump, using R1234ze refrigerant.</p></div><p style="margin:10px 0 0;font-size:12.5px"><a href="mailto:info@heatpumpdatabase.com?subject=Data%20correction%3A%20Carrier%2061XWHHZE%20%28ID%20592%29&amp;body=I%20would%20like%20to%20suggest%20a%20correction%20to%20the%20following%20heat%20pump%20record%20on%20Heat%20Pump%20Database.%0A%0A---%20Product%20%28please%20keep%20this%20section%20so%20we%20can%20identify%20the%20record%29%20---%0AID%3A%20592%0AManufacturer%3A%20Carrier%0AModel%3A%2061XWHHZE%0AProduct%20code%3A%2061XWHHZE%2015%0APage%3A%20https%3A//www.heatpumpdatabase.com/products/carrier-61xwhhze-592/%0ACurrent%20COP%3A%20%E2%80%94%20%28W20/W75%29%0ACurrent%20SCOP%3A%20%E2%80%94%0AVerification%3A%20Manual%20verification%0A%0A---%20Your%20correction%20---%0AWhich%20field%28s%29%20are%20incorrect%3A%0A%0ACorrect%20value%28s%29%3A%0A%0ASource%20%28datasheet%20link%20/%20certificate%20number%2C%20so%20we%20can%20verify%29%3A%0A%0A" style="color:#5A6A65">&#9998; Suggest a correction to this data</a></p><div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or gaps. Always confirm specifications with the manufacturer before making decisions.</div><h2 class="sec">Alternatives to consider</h2><p class="alt-why">Three Water Source (WSHP) heat pumps from other manufacturers closest in capacity to this one.</p><div class="alt-grid"><a class="alt-card" href="https://www.heatpumpdatabase.com/products/rank-hp-1500/"><div class="ah"><img src="https://www.heatpumpdatabase.com/images/manufacturers/rank.jpeg" alt="Rank logo" loading="lazy" width="32" height="32"><div><div class="am">HP 1500</div><div class="amf">Rank &middot; Rank HP 1500</div></div></div><dl><dt>Capacity</dt><dd>1500 kW</dd><dt>Refrigerant</dt><dd>R1233zd</dd></dl></a><a class="alt-card" href="https://www.heatpumpdatabase.com/products/swegon-omega-sky-oh-1803/"><div class="ah"><img src="https://www.heatpumpdatabase.com/images/manufacturers/swegon.jpg" alt="Swegon logo" loading="lazy" width="32" height="32"><div><div class="am">OMEGA Sky OH</div><div class="amf">Swegon &middot; OMEGA Sky OH 132.2</div></div></div><dl><dt>Capacity</dt><dd>1417 kW</dd><dt>COP</dt><dd>4.56 (W10/W45)</dd><dt>Sound power</dt><dd>101 dB(A)</dd><dt>Refrigerant</dt><dd>R513A</dd></dl></a><a class="alt-card" href="https://www.heatpumpdatabase.com/products/gea-redastrum-1765/"><div class="ah"><img src="https://www.heatpumpdatabase.com/images/manufacturers/gea.png" alt="GEA logo" loading="lazy" width="32" height="32"><div><div class="am">RedAstrum</div><div class="amf">GEA &middot; RedAstrum NN</div></div></div><dl><dt>Capacity</dt><dd>1405 kW</dd><dt>Refrigerant</dt><dd>R717</dd></dl></a></div><h2 class="sec">More from Carrier</h2><div class="grid"><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 38 kW · SCOP 4.1</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-434/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 48 kW · SCOP 4.05</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-435/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 57.5 kW · SCOP 4.3</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-436/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 62.5 kW · SCOP 4.29</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-437/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 76 kW · SCOP 4.21</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-438/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 96 kW · SCOP 4.13</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-439/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 115 kW · SCOP 4.22</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/carrier-aquasnap-61aq-440/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/carrier.png" alt="Carrier logo" loading="lazy" width="40" height="40"><span><div class="m">AquaSnap 61AQ</div><div class="s">ASHP · 125 kW · SCOP 4.16</div></span></a></div><h2 class="sec">Other Water Source (WSHP) heat pumps</h2><div class="grid"><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hci-1000-r600a/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCI-1000 R600a</div><div class="s">WSHP · 500–1000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hci-2000-r600a/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCI-2000 R600a</div><div class="s">WSHP · 500–2000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hcp-1000-r290/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCP-1000 R290</div><div class="s">WSHP · 500–1000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/fenagy-hcp-2000-r290/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/fenagy.webp" alt="Fenagy logo" loading="lazy" width="40" height="40"><span><div class="m">HCP-2000 R290</div><div class="s">WSHP · 500–2000 kW</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/mitsubishi-electric-nx2-w-g06-h/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/mitsubishi-electric.png" alt="Mitsubishi Electric logo" loading="lazy" width="40" height="40"><span><div class="m">NX2-W-G06-H</div><div class="s">WSHP · 53.5 kW · SCOP 6.29</div></span></a><a class="card has-logo" href="https://www.heatpumpdatabase.com/products/mitsubishi-electric-nx2-w-g06-h-171/"><img class="logo-thumb" src="https://www.heatpumpdatabase.com/images/manufacturers/mitsubishi-electric.png" alt="Mitsubishi Electric logo" loading="lazy" width="40" height="40"><span><div class="m">NX2-W-G06-H</div><div class="s">WSHP · 62.6 kW · SCOP 6.51</div></span></a></div><h2 class="sec">Compare with other products</h2><p><a class="cta" href="https://www.heatpumpdatabase.com/">Open the interactive database &rarr;</a></p><p class="trademark-note">The Carrier name and logo are trademarks of their respective owner and are used here for identification purposes only.</p>
 </div></main>
 <footer class="site"><div class="wrap">
 <p>Heat Pump Database &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
 <p style="margin-top:6px"><a href="https://www.heatpumpdatabase.com/">Search the full database</a> &middot; <a href="https://www.heatpumpdatabase.com/manufacturers/">All manufacturers</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/installation-costs/">Installation costs</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="https://www.heatpumpdatabase.com/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="https://www.heatpumpdatabase.com/news/">News &amp; Insight</a></p>
 </div></footer>
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#0F2B2B;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#083F35;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
 <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
 <span>This site uses cookies to help us understand how visitors use the site. No personal data is shared with third parties.</span>
 <span style="display:flex;gap:8px;flex-shrink:0">
-<button onclick="acceptCookies()" style="background:#3ECCC0;color:#0F2B2B;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
-<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3a5757;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
+<button onclick="acceptCookies()" style="background:#22C79A;color:#083F35;border:none;padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer">Accept</button>
+<button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #3B4D47;padding:8px 16px;border-radius:6px;cursor:pointer">Decline</button>
 </span>
 </div>
 </div>
