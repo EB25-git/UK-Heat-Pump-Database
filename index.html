@@ -574,10 +574,10 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="c-group">
     <button class="burger-item burger-subitem" data-page="compare" onclick="showPage('compare');closeBurger()">Compare Selected</button>
-    <a class="burger-item burger-subitem" href="/heat-pump-comparison/" onclick="closeBurger()">Heat Pump Comparison</a>
+    <button class="burger-item burger-subitem" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
+    <a class="burger-item burger-subitem" href="/heat-pump-comparison/" onclick="closeBurger()">Market Comparison</a>
     </div>
     <a class="burger-item" href="/best/" onclick="closeBurger()">Best Heat Pumps</a>
-    <button class="burger-item" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
     <button class="burger-item" data-page="gallery" onclick="showPage('gallery');closeBurger()">Gallery</button>
     <a class="burger-item" href="/heat-pump-size-calculator/" onclick="closeBurger()">Size Calculator</a>
     <button class="burger-item burger-toggle" data-page="knowledge" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>
@@ -1415,7 +1415,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     </div>
     <div class="footer-col">
       <h2>Compare &amp; rank</h2>
-      <a href="/heat-pump-comparison/">Heat pump comparison</a>
+      <a href="/heat-pump-comparison/">Market comparison</a>
       <a href="/best/">Best heat pumps</a>
       <a href="/heat-pump-size-calculator/">Heat pump size calculator</a>
       <a href="/news/">News &amp; insight</a>
@@ -2409,6 +2409,9 @@ function showPage(p) {
   const kOnPage=(p==='what-is-a-heat-pump'||p==='cop-scop'||p==='flow-temp'||p==='refrigerants'||p==='install-costs'||p==='funding'||p==='planning'||p==='faq'||p==='guide'||p==='links'||p==='knowledge');
   const kT=document.getElementById('k-toggle'),kG=document.getElementById('k-group');
   if(kT&&kG){kT.classList.toggle('open',kOnPage);kG.classList.toggle('open',kOnPage);kT.setAttribute('aria-expanded',kOnPage);}
+  const cOnPage=(p==='compare'||p==='analytics');
+  const cT=document.getElementById('c-toggle'),cG=document.getElementById('c-group');
+  if(cT&&cG){cT.classList.toggle('open',cOnPage);cT.classList.toggle('active',cOnPage);cG.classList.toggle('open',cOnPage);cT.setAttribute('aria-expanded',cOnPage);}
   const anb=document.getElementById('admin-nav-btn');
   if(anb)anb.classList.toggle('active',p==='admin');
   if(p==='browse'){applyFilters();updateHero();}

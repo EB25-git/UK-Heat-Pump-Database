@@ -824,15 +824,16 @@ def burger_menu(active=None):
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + '</div>'
     )
-    c_active = active in ("compare", "comparison")
+    c_active = active in ("compare", "analytics", "comparison")
     c_open = " open" if c_active else ""
     c_cls = "burger-item burger-toggle" + (" active" if c_active else "")
     compare_block = (
         f'<button class="{c_cls}{c_open}" id="c-toggle" aria-expanded="{"true" if c_active else "false"}" aria-controls="c-group" onclick="toggleCompare()">'
         f'Compare<span class="burger-chevron" aria-hidden="true"></span></button>'
         f'<div class="burger-subgroup{c_open}" id="c-group">'
-        + it("Heat Pump Comparison", f"{BASE_URL}/heat-pump-comparison/", "comparison", sub=True)
         + it("Compare Selected", f"{BASE_URL}/#compare", "compare", sub=True)
+        + it("Visualise", f"{BASE_URL}/#analytics", "analytics", sub=True)
+        + it("Market Comparison", f"{BASE_URL}/heat-pump-comparison/", "comparison", sub=True)
         + '</div>'
     )
     return (
@@ -840,7 +841,6 @@ def burger_menu(active=None):
         + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
         + compare_block
         + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
-        + it("Visualise", f"{BASE_URL}/#analytics", "analytics")
         + it("Gallery", f"{BASE_URL}/#gallery", "gallery")
         + it("Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc")
         + knowledge_block
@@ -2786,7 +2786,7 @@ def _cmp_stat_table(head, rows):
 
 def render_comparison_page(products):
     url = f"{BASE_URL}/heat-pump-comparison/"
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Heat Pump Comparison", None)]
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Market Comparison", None)]
     total = len(products)
     mfr_count = len({p.get("manufacturer") for p in products if p.get("manufacturer")})
 
@@ -2857,104 +2857,47 @@ def render_comparison_page(products):
 
     guide = (
         '<section id="how-to-compare" class="best-section">'
-        '<h2 class="sec">How to compare heat pumps fairly</h2>'
-        '<p>Most published heat pump figures are only comparable if you check the conditions they were '
-        'measured at. These are the traps worth knowing before you put two products side by side.</p>'
+        '<h2 class="sec">Comparing fairly</h2>'
         '<table class="spec">'
-        '<tr><th>SCOP, not COP</th><td>COP is efficiency at one instant under one test condition. SCOP is a '
-        'seasonal average across a heating season and is the fairer single number. Always check the flow '
-        f'temperature it was measured at — a SCOP at 35°C and one at 55°C are not comparable. '
-        f'<a href="{BASE_URL}/knowledge/cop-scop/">Full explanation</a>.</td></tr>'
-        '<tr><th>Test conditions</th><td>A COP quoted at A7/W35 (7°C outside air, 35°C flow) will always '
-        'look better than the same unit at A-7/W55. This database records the stated condition alongside every '
-        'figure so you can see when two numbers are not measuring the same thing.</td></tr>'
-        '<tr><th>Sound power vs sound pressure</th><td>Sound power is an absolute figure; sound pressure depends on '
-        'distance and is typically 8–12 dB lower for the same unit. UK permitted development noise assessments '
-        'under MCS 020 use sound power. Comparing one manufacturer’s pressure figure with another’s power '
-        'figure will mislead you.</td></tr>'
-        '<tr><th>Capacity at what temperature</th><td>A “12 kW” heat pump is usually 12 kW at a mild '
-        'outdoor temperature. What matters for sizing is its output at your design outdoor temperature, which can be '
-        f'much lower. <a href="{BASE_URL}/heat-pump-size-calculator/">Size calculator</a>.</td></tr>'
-        '<tr><th>Flow temperature</th><td>The maximum flow temperature decides whether a unit can work with existing '
-        'radiators or needs underfloor heating. Higher flow temperatures cost efficiency. '
-        f'<a href="{BASE_URL}/knowledge/flow-temperature/">More on flow temperature</a>.</td></tr>'
-        '<tr><th>Grant eligibility</th><td>Only MCS-certified products on the Ofgem Product Eligibility List '
-        'qualify for the Boiler Upgrade Scheme. This database records the certificate number where one exists. '
-        f'<a href="{BASE_URL}/knowledge/boiler-upgrade-scheme/">Boiler Upgrade Scheme guide</a>.</td></tr>'
+        f'<tr><th>SCOP, not COP</th><td>Use SCOP at the same flow temperature (W35 vs W35). '
+        f'<a href="{BASE_URL}/knowledge/cop-scop/">More</a></td></tr>'
+        '<tr><th>Test conditions</th><td>Only compare figures measured at the same condition, e.g. A7/W35.</td></tr>'
+        '<tr><th>Noise</th><td>Compare sound power with sound power, not sound pressure.</td></tr>'
+        f'<tr><th>Capacity</th><td>Check output at your design outdoor temperature. '
+        f'<a href="{BASE_URL}/heat-pump-size-calculator/">Size calculator</a></td></tr>'
+        f'<tr><th>Grants</th><td>Only MCS-certified products qualify for the Boiler Upgrade Scheme. '
+        f'<a href="{BASE_URL}/knowledge/funding/">Funding guide</a></td></tr>'
         '</table></section>')
 
     body = (
         crumbs(crumb_items) +
-        "<h1>Heat Pump Comparison</h1>"
+        "<h1>Market Comparison</h1>"
         f'<p class="sub">{total:,} heat pumps from {mfr_count} manufacturers · updated {TODAY}</p>'
-        f'<p>This is a heat pump comparison built on published manufacturer specifications rather than sales copy. '
-        f'Every product in the {SITE_NAME} carries its capacity, COP and SCOP with the test conditions they were '
-        f'measured at, sound level with its measurement basis, flow temperature limits, refrigerant, dimensions and '
-        f'MCS certification, so two products can be compared on the same terms.</p>'
-        f'<p style="margin:14px 0"><a class="cta" href="{BASE_URL}/#compare">Open the side-by-side comparison tool '
-        f'&rarr;</a></p>'
-        '<p>Pick any products while browsing and the tool puts their full specifications in adjacent columns. '
-        'The summaries below give you the shape of the data first.</p>'
+        '<p>How the heat pump market compares by type, size and refrigerant, from published manufacturer data.</p>'
+        f'<p style="margin:14px 0"><a class="cta" href="{BASE_URL}/#compare">Compare products side by side &rarr;</a></p>'
 
         '<section id="compare-by-type" class="best-section">'
-        '<h2 class="sec">Comparison by heat pump type</h2>'
-        '<p>Air, ground and water source machines are not interchangeable: they differ in installation cost, '
-        'achievable efficiency and how they behave in cold weather. Typical capacity is the middle half of each group — this database covers commercial and industrial plant as well as domestic units, so the full span runs far wider at both ends. Medians are across every product of that type:</p>'
+        '<h2 class="sec">By heat pump type</h2>'
+        '<p class="sub">Typical capacity is the middle half of each group; medians cover every product of that type.</p>'
         + type_table + '</section>'
 
         '<section id="compare-by-size" class="best-section">'
-        '<h2 class="sec">Comparison by capacity</h2>'
-        '<p>Comparing a 5 kW unit against a 20 kW one tells you little. These are the air source bands most UK '
-        'homes fall into, with the most efficient product in each:</p>'
+        '<h2 class="sec">By capacity (air source)</h2>'
         + band_table + '</section>'
 
         '<section id="compare-by-refrigerant" class="best-section">'
-        '<h2 class="sec">Comparison by refrigerant</h2>'
-        '<p>Refrigerant choice drives both environmental impact and the flow temperature a unit can reach, which in '
-        'turn decides whether it suits existing radiators. '
-        f'<a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a>.</p>'
+        '<h2 class="sec">By refrigerant</h2>'
+        f'<p class="sub"><a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a></p>'
         + ref_table + '</section>'
 
-        + guide +
-
-        '<section class="best-section">'
-        '<h2 class="sec">Other ways to compare</h2>'
-        '<table class="spec">'
-        f'<tr><th>Side-by-side tool</th><td><a href="{BASE_URL}/#compare">Compare selected heat pumps</a> — '
-        f'put any products’ full specifications in adjacent columns.</td></tr>'
-        f'<tr><th>Rankings</th><td><a href="{BASE_URL}/best/">Best heat pumps</a> — ranked by SCOP, sound '
-        f'power and price per kW.</td></tr>'
-        f'<tr><th>By manufacturer</th><td><a href="{BASE_URL}/manufacturers/">All {mfr_count} manufacturers</a> '
-        f'— compare a brand’s full range on one page.</td></tr>'
-        f'<tr><th>By type</th><td><a href="{BASE_URL}/types/air-source-heat-pumps/">Air source</a>, '
-        f'<a href="{BASE_URL}/types/ground-source-heat-pumps/">ground source</a> and '
-        f'<a href="{BASE_URL}/types/water-source-heat-pumps/">water source</a> category pages.</td></tr>'
-        '</table></section>'
+        + guide
     )
 
-    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-        {"@type": "Question", "name": "What should you compare when choosing a heat pump?",
-         "acceptedAnswer": {"@type": "Answer", "text":
-            "Compare SCOP at a stated flow temperature rather than COP, check that quoted capacities are at the "
-            "same outdoor temperature, make sure sound figures are both sound power or both sound pressure, and "
-            "confirm the maximum flow temperature suits your emitters. For a UK grant, check the product is "
-            "MCS certified."}},
-        {"@type": "Question", "name": "Is a higher COP always better?",
-         "acceptedAnswer": {"@type": "Answer", "text":
-            "Not on its own. COP is measured at a single test condition, so a high COP quoted at a low flow "
-            "temperature can look better than a more capable unit measured at a harder condition. SCOP at a stated "
-            "flow temperature is the fairer comparison."}},
-        {"@type": "Question", "name": "How many heat pumps can you compare here?",
-         "acceptedAnswer": {"@type": "Answer", "text":
-            f"The database holds {total:,} heat pumps from {mfr_count} manufacturers, each with full published "
-            f"specifications, and any of them can be placed side by side in the comparison tool."}},
-    ]}
-
     return page(
-        f"Heat Pump Comparison — Compare {total:,} Heat Pumps Side by Side | {SITE_NAME}",
-        f"Independent heat pump comparison across {total:,} models from {mfr_count} manufacturers. Compare SCOP, "
-        f"COP, capacity, noise, flow temperature, refrigerant and MCS status on matched test conditions.",
-        url, body, [breadcrumb_jsonld(crumb_items, url), faq_ld],
+        f"Heat Pump Market Comparison | {SITE_NAME}",
+        f"Heat pump market comparison: {total:,} models from {mfr_count} manufacturers compared by type, "
+        f"capacity and refrigerant - SCOP, noise, flow temperature and MCS status.",
+        url, body, [breadcrumb_jsonld(crumb_items, url)],
         active="comparison", og_image=get_og_image())
 
 # ───────────────────────── Build ─────────────────────────
