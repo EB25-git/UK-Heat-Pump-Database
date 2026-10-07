@@ -704,8 +704,9 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
+<link rel="stylesheet" href="/theme-pages.css?v=1">
 {blocks}
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -754,6 +755,7 @@ function trackOut(){{
 </div>
 </div>
 <script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').src='';document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
+<script src="/theme.js?v=1"></script>
 </body>
 </html>
 """

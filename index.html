@@ -55,7 +55,7 @@
   "description": "Independent UK heat pump comparison database providing specifications, COP data, and technical guidance for residential and commercial heat pumps."
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -554,6 +554,7 @@ function loadGA(){
 }
 if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 </script>
+<link rel="stylesheet" href="theme.css?v=1">
 </head>
 <body>
 <nav class="nav">
@@ -5634,7 +5635,10 @@ window.toggleFilters = toggleFilters;
 window.toggleKnowledge = toggleKnowledge;
 window.trackClick = trackClick;
 window.updateHero = updateHero;
+// read-only state for theme.js (market map, compare tray)
+window.__hpState={get db(){return db;},get filtered(){return filtered;},get compareIds(){return compareIds;}};
 });
 </script>
+<script src="theme.js?v=1"></script>
 </body>
 </html>
