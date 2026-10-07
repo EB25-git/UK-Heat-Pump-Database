@@ -47,6 +47,136 @@ TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
 # coverage report (2026-08-05) — every target here is confirmed to still be
 # generated. If a target ever stops being generated, main() silently skips
 # writing that one redirect rather than pointing at nothing.
+
+# Product URLs that Google indexed before slug_history.json existed (found in the
+# Search Console Pages export, Oct 2026: 121 URLs returning 404). Each maps to the
+# product it was (by id, so later renames still resolve) or, where the product has
+# since been removed, to the manufacturer page. Written as redirect stubs, not in
+# the sitemap.
+LEGACY_PRODUCT_REDIRECTS = {
+    "alpha-innotec-hybrox-21": ("id", 289),
+    "alpha-innotec-hybrox-8": ("id", 286),
+    "bosch-compress-2000-awf-395": ("id", 395),
+    "bosch-compress-7000i-aw-404": ("id", 404),
+    "bosch-compress-7000i-aw-407": ("id", 407),
+    "carrier-30xwhvze-a-851a": ("id", 505),
+    "carrier-61xwh-vze-15": ("id", 597),
+    "carrier-61xwh-vze-7": ("id", 596),
+    "carrier-aquasnap-30fq-he-ls-110kw": ("id", 477),
+    "carrier-aquasnap-30fq-he-ls-150kw": ("id", 480),
+    "carrier-aquasnap-30rq-120kw": ("id", 449),
+    "carrier-aquasnap-30rq-140kw": ("id", 450),
+    "carrier-aquasnap-30rq-160kw": ("id", 451),
+    "carrier-aquasnap-30rq-21kw": ("id", 519),
+    "carrier-aquasnap-30rq-26kw": ("id", 520),
+    "carrier-aquasnap-30rq-33kw": ("id", 521),
+    "carrier-aquasnap-30rq-40kw": ("id", 441),
+    "carrier-aquasnap-30rq-40kw-522": ("id", 522),
+    "carrier-aquasnap-30rq-50kw": ("id", 443),
+    "carrier-aquasnap-30rq-60kw": ("id", 444),
+    "carrier-aquasnap-30rq-70kw": ("id", 445),
+    "carrier-aquasnap-30rq-80kw": ("id", 446),
+    "carrier-aquasnap-30rq-90kw": ("id", 447),
+    "carrier-aquasnap-30rqp-165kw": ("id", 452),
+    "carrier-aquasnap-30rqp-180kw": ("id", 453),
+    "carrier-aquasnap-30rqp-210kw": ("id", 454),
+    "carrier-aquasnap-30rqp-270kw": ("id", 456),
+    "carrier-aquasnap-30rqp-330kw": ("id", 458),
+    "carrier-aquasnap-30rqp-370kw": ("id", 459),
+    "carrier-aquasnap-30rqp-400kw": ("id", 460),
+    "carrier-aquasnap-30rqp-430kw": ("id", 461),
+    "carrier-aquasnap-30rqp-520kw": ("id", 463),
+    "carrier-aquasnap-30rqp-570kw": ("id", 464),
+    "carrier-aquasnap-30rqp-680kw": ("id", 466),
+    "carrier-aquasnap-30rqp-740kw": ("id", 467),
+    "carrier-aquasnap-30wg-a-060": ("id", 547),
+    "carrier-aquasnap-30wg-a-090": ("id", 550),
+    "carrier-aquasnap-30wg-a-120": ("id", 552),
+    "carrier-aquasnap-61aq-050p": ("id", 434),
+    "carrier-aquasnap-61aq-060p": ("id", 435),
+    "carrier-aquasnap-61aq-070p": ("id", 436),
+    "carrier-aquasnap-61aq-080p": ("id", 437),
+    "carrier-aquasnap-61aq-100p": ("id", 438),
+    "carrier-aquasnap-61aq-120p": ("id", 439),
+    "carrier-aquasnap-61aq-140p": ("id", 440),
+    "carrier-aquasnap-61wg-045": ("id", 528),
+    "carrier-aquasnap-61wg-080": ("id", 532),
+    "carrier-aquasnap-61wg-090": ("id", 533),
+    "carrier-aquasnap-61wg-110": ("id", 534),
+    "carrier-aquasnap-61wg-140": ("id", 536),
+    "carrier-aquasnap-61wg-150": ("id", 537),
+    "ciat-aquaciat-caleo-itev-100p": ("id", 408),
+    "ciat-aquaciat-caleo-itev-130p": ("id", 409),
+    "ciat-aquaciat-caleo-itev-160p": ("id", 410),
+    "ciat-aquaciat-caleo-itev-180p": ("id", 411),
+    "ciat-aquaciat-caleo-itev-200p": ("id", 412),
+    "ciat-aquaciat-caleo-itev-320p": ("id", 414),
+    "ciat-aquaciat-caleo-itev-360p": ("id", 415),
+    "ciat-dynaciat-lg-080": ("id", 416),
+    "ciat-dynaciat-lg-100": ("id", 418),
+    "ciat-dynaciat-lg-120": ("id", 419),
+    "ciat-dynaciat-lg-130": ("id", 420),
+    "ciat-dynaciat-lg-150": ("id", 421),
+    "ciat-dynaciat-lg-180": ("id", 422),
+    "ciat-dynaciat-lg-200": ("id", 423),
+    "ciat-dynaciat-lg-240": ("id", 424),
+    "ciat-dynaciat-lg-260": ("id", 425),
+    "ciat-dynaciat-lg-300": ("id", 426),
+    "ciat-dynaciat-lg-360": ("id", 427),
+    "ciat-dynaciat-lg-390": ("id", 428),
+    "ciat-dynaciat-lg-600": ("id", 432),
+    "ctc-ecoair-700m-1616": ("id", 1616),
+    "dimplex-sih-11-me-11-kw": ("mfr", "Dimplex"),
+    "gea-redgenium-550": ("id", 1772),
+    "gea-redgenium-950": ("id", 1774),
+    "glow-worm-geniaair-11kw": ("id", 1598),
+    "glow-worm-geniaair-1596": ("id", 1596),
+    "haier-au112fycra-hw": ("id", 1695),
+    "haier-aw032hsgha": ("mfr", "Haier"),
+    "haier-aw052hsgha": ("mfr", "Haier"),
+    "haier-aw062hugha": ("id", 1700),
+    "haier-aw072mucha": ("id", 1702),
+    "haier-aw082mugha": ("id", 1704),
+    "haier-aw102hugha": ("id", 1706),
+    "haier-aw10nhugha": ("id", 1708),
+    "haier-hpm08-nd2": ("id", 1685),
+    "hisense-hi-therma-monobloc-10kw-three-phase": ("id", 1577),
+    "hisense-hi-therma-monobloc-12kw-single-phase": ("id", 1578),
+    "hisense-hi-therma-monobloc-12kw-three-phase": ("id", 1579),
+    "hisense-hi-therma-monobloc-14kw-single-phase": ("id", 1580),
+    "hisense-hi-therma-monobloc-16kw-three-phase": ("id", 1583),
+    "hoval-belaria-fit-70": ("id", 622),
+    "ideal-heating-hp290-615": ("id", 615),
+    "kensa-shoebox-nx-602": ("id", 602),
+    "lg-therma-v-r290-monobloc-12-kw": ("id", 1543),
+    "lg-therma-v-r290-monobloc-12-kw-hm123hf-ub60": ("id", 1544),
+    "lg-therma-v-r290-monobloc-14-kw": ("id", 1545),
+    "lg-therma-v-r32-hydrosplit-16-kw": ("id", 1557),
+    "lg-therma-v-r32-monobloc-s-16-kw-1541": ("id", 1541),
+    "lg-therma-v-r32-split-9-kw": ("id", 1551),
+    "mastertherm-boxair-37-inverter-p": ("id", 668),
+    "midea-a-series": ("mfr", "Midea"),
+    "midea-a-series-723": ("mfr", "Midea"),
+    "midea-a-series-724": ("mfr", "Midea"),
+    "midea-a-series-725": ("mfr", "Midea"),
+    "midea-a-series-728": ("mfr", "Midea"),
+    "midea-a-series-729": ("mfr", "Midea"),
+    "midea-a-series-732": ("mfr", "Midea"),
+    "midea-a-series-734": ("mfr", "Midea"),
+    "midea-a-series-735": ("mfr", "Midea"),
+    "midea-m-thermal-r32-monobloc-733": ("mfr", "Midea"),
+    "mitsubishi-electric-cahv-z450ya-hpb": ("id", 202),
+    "panasonic-ecoi-w-aqua-evo-h-40": ("id", 756),
+    "stiebel-eltron-hpa-o-07-2-trend-hc-230": ("id", 1458),
+    "stiebel-eltron-hpa-o-13-2-trend-hc-230": ("id", 1460),
+    "stiebel-eltron-wpe-i-08-hk-230-premium": ("id", 4463),
+    "toshiba-hwp-1001h8w-e-hydrobox": ("id", 1231),
+    "trianco-activair-ht-5kw": ("id", 1592),
+    "trianco-activair-ht-9kw": ("id", 1593),
+    "vaillant-arotherm-plus-10": ("id", 1356),
+    "viessmann-vitocal-200-a-1380": ("id", 1380),
+}
+
 LEGACY_TYPE_REDIRECTS = {
     "r1234ze-e-r515b-option-heat-pumps": "r1234ze-heat-pumps",
     "r1234ze-r515b-option-heat-pumps": "r1234ze-heat-pumps",
@@ -2251,7 +2381,36 @@ BEST_PAGES = [
      "filter": lambda p: p.get("hp_type") == "ASHP" and p.get("scop") and p.get("cap_max") and 12 < p["cap_max"] <= 25,
      "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP"},
 
+    {"slug": "best-ground-source-heat-pumps",
+     "title": "Best Ground Source Heat Pumps",
+     "h1": "Best Ground Source Heat Pumps by SCOP",
+     "desc": "The most efficient ground source heat pumps up to 25 kW, ranked by SCOP at 35\u00b0C flow. Top {n} of {pool} GSHPs compared on published data.",
+     "intro": "Ground source (brine-to-water) heat pumps up to 25 kW \u2014 the domestic and light-commercial range \u2014 ranked by SCOP at a 35\u00b0C flow temperature. Only products with a published SCOP at W35 are included, so every unit is compared on the same basis.",
+     "filter": lambda p: str(p.get("hp_type") or "").startswith("GSHP") and p.get("scop") and "35" in str(p.get("scop_cond") or "")
+                and (p.get("cap_max") or 999) <= 25,
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)"},
+
+    {"slug": "best-water-source-heat-pumps",
+     "title": "Best Water Source Heat Pumps",
+     "h1": "Best Water Source Heat Pumps by SCOP",
+     "desc": "The most efficient water source heat pumps up to 100 kW, ranked by SCOP at 35\u00b0C flow. Top {n} of {pool} WSHPs compared on published data.",
+     "intro": "Water-to-water heat pumps up to 100 kW \u2014 domestic through to light commercial \u2014 ranked by SCOP at a 35\u00b0C flow temperature. Large chiller-based plant is excluded so like is compared with like. Only products with a published SCOP at W35 are included.",
+     "filter": lambda p: str(p.get("hp_type") or "").startswith("WSHP") and p.get("scop") and "35" in str(p.get("scop_cond") or "")
+                and (p.get("cap_max") or 9999) <= 100,
+     "sort": lambda p: -(p.get("scop") or 0), "metric": "scop", "metric_label": "SCOP (W35)"},
+
+    {"slug": "best-air-source-heat-pumps-by-cop",
+     "title": "Best Air Source Heat Pumps by COP",
+     "h1": "Best Air Source Heat Pumps by COP (A7/W35)",
+     "desc": "Air source heat pumps ranked by COP at the standard A7/W35 test point (7\u00b0C outdoor, 35\u00b0C flow). Top {n} of {pool} ASHPs compared.",
+     "intro": "Ranked by COP at the standard EN 14511 rating point A7/W35 (7\u00b0C outdoor air, 35\u00b0C leaving water). COP is a single-point snapshot, so read it alongside SCOP \u2014 but it is the most widely published efficiency figure. Only products with a COP quoted at A7/W35 are included.",
+     "filter": lambda p: str(p.get("hp_type") or "").startswith("ASHP") and p.get("cop")
+                and str(p.get("cop_cond") or "").replace(" ", "").upper() == "A7/W35",
+     "sort": lambda p: -(p.get("cop") or 0), "metric": "cop", "metric_label": "COP (A7/W35)"},
+
 ]
+
+BEST_HUB_N = 5   # rows shown per ranking on the /best/ hub; the full list lives on /best/<slug>/
 
 BEST_TOP_N = 10
 
@@ -2466,13 +2625,16 @@ def render_best_single_page(composite, sections):
     section_html = _render_composite_section(composite_ranked, composite_pool) if composite_ranked else ""
     for cfg, ranked, pool_size in sections:
         n = len(ranked)
-        winner_html, table_html = _best_table_and_winner(cfg, ranked)
+        shown = ranked[:BEST_HUB_N]
+        winner_html, table_html = _best_table_and_winner(cfg, shown)
+        _full = f"{BASE_URL}/best/{cfg['slug']}/"
         section_html += (
             f'<section id="{cfg["slug"]}" class="best-section">'
-            f'<h2 class="sec">{cfg["title"]}</h2>'
-            f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
+            f'<h2 class="sec"><a href="{_full}">{cfg["title"]}</a></h2>'
+            f'<p class="sub">Top {len(shown)} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
             f'<p>{cfg["intro"]}</p>'
             + winner_html + table_html +
+            f'<p style="margin-top:12px"><a href="{_full}"><strong>See the full top {n}: {cfg["title"]} &rarr;</strong></a></p>'
             f'</section>')
         item_lds.append({"@context": "https://schema.org", "@type": "ItemList",
                           "name": cfg["title"], "numberOfItems": n,
@@ -2480,7 +2642,7 @@ def render_best_single_page(composite, sections):
                               {"@type": "ListItem", "position": i + 1,
                                "url": f"{BASE_URL}/products/{p['_slug']}/",
                                "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
-                              for i, p in enumerate(ranked)]})
+                              for i, p in enumerate(shown)]})
 
     total_rankings = len(sections) + (1 if composite_ranked else 0)
     body = (crumbs(crumb_items) +
@@ -2497,6 +2659,39 @@ def render_best_single_page(composite, sections):
                 f"{total_rankings} rankings on one page, updated automatically from the {SITE_NAME}.",
                 url, body, item_lds + [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
+
+
+def render_best_category_page(cfg, ranked, pool_size, sections):
+    """Standalone /best/<slug>/ page for one ranking. These were folded into the
+    single /best/ page earlier in 2026, which left broad searches ("best ground
+    source heat pumps") with no page matching them; Search Console showed the
+    old URLs still drawing impressions as 404s, so each ranking has its own
+    indexable page again and /best/ links to them as a hub."""
+    url = f"{BASE_URL}/best/{cfg['slug']}/"
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Best Heat Pumps", f"{BASE_URL}/best/"), (cfg["title"], None)]
+    n = len(ranked)
+    winner_html, table_html = _best_table_and_winner(cfg, ranked)
+    others = "".join(f'<a href="{BASE_URL}/best/{c["slug"]}/">{c["title"]}</a>'
+                     for c, _r, _p in sections if c["slug"] != cfg["slug"])
+    body = (crumbs(crumb_items) +
+            f'<h1>{cfg["h1"]} ({TODAY[:4]})</h1>'
+            f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
+            f'<p>{cfg["intro"]}</p>'
+            f'<p>Every figure comes from the manufacturer\u2019s published specification as recorded in the {SITE_NAME}; '
+            f'near-identical variants (e.g. single- and three-phase versions with the same result) are shown once. '
+            f'The list updates automatically as new products are added.</p>'
+            + winner_html + table_html +
+            f'<h2 class="sec" style="margin-top:32px">More heat pump rankings</h2>'
+            f'<div class="best-toc"><a href="{BASE_URL}/best/">All rankings</a>{others}</div>'
+            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
+    item_ld = {"@context": "https://schema.org", "@type": "ItemList", "name": cfg["title"], "numberOfItems": n,
+               "itemListElement": [{"@type": "ListItem", "position": i + 1,
+                                    "url": f"{BASE_URL}/products/{p['_slug']}/",
+                                    "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
+                                   for i, p in enumerate(ranked)]}
+    desc = cfg["desc"].format(n=n, pool=pool_size)
+    return page(f"{cfg['title']} {TODAY[:4]} \u2014 Top {n} Ranked | {SITE_NAME}", desc, url, body,
+                [item_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
 
 # ───────────────────── Heat pump comparison hub ─────────────────────
@@ -2581,7 +2776,7 @@ def render_comparison_page(products):
             num(_cmp_median([p['scop'] for p in scops])) if scops else "—",
             (f'<a href="{BASE_URL}/products/{top["_slug"]}/">{esc(top.get("manufacturer",""))} '
              f'{esc(top.get("model",""))}</a> ({num(top["scop"])})') if top else "—",
-            (f'<a href="{BASE_URL}/best/#{best_slug}">See the ranking</a>' if best_slug else "—"),
+            (f'<a href="{BASE_URL}/best/{best_slug}/">See the ranking</a>' if best_slug else "—"),
         ])
     band_table = _cmp_stat_table(
         ["Capacity band", "Air source products", "Median SCOP", "Highest SCOP in band", "Full ranking"], band_rows)
@@ -3303,6 +3498,43 @@ def main():
             write(os.path.join(ROOT, "products", old_slug, "index.html"), stub)
             redirect_count += 1
 
+    # legacy (pre-slug-history) product URLs from Search Console - see LEGACY_PRODUCT_REDIRECTS
+    _url_by_int_id = {p.get("id"): f"{BASE_URL}/products/{p['_slug']}/" for p in products}
+    _mfr_names = {p.get("manufacturer") for p in products}
+    legacy_product_redirects = 0
+    for old_slug, (kind, val) in LEGACY_PRODUCT_REDIRECTS.items():
+        if old_slug in current_slugs:
+            continue
+        if kind == "id":
+            target = _url_by_int_id.get(val)
+        else:
+            target = f"{BASE_URL}/manufacturers/{slugify(val)}/" if val in _mfr_names else f"{BASE_URL}/manufacturers/"
+        if not target:
+            target = f"{BASE_URL}/manufacturers/"
+        stub = (f"<!DOCTYPE html><html lang=\"en-GB\"><head><meta charset=\"utf-8\">"
+                f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
+                f"<link rel=\"canonical\" href=\"{target}\">"
+                f"<meta http-equiv=\"refresh\" content=\"0; url={target}\">"
+                f"</head><body><p>This page has moved. "
+                f"<a href=\"{target}\">Continue to the updated page</a>.</p></body></html>")
+        write(os.path.join(ROOT, "products", old_slug, "index.html"), stub)
+        legacy_product_redirects += 1
+
+    # 404.html - GitHub Pages serves this for any missing URL (with a 404 status).
+    _nf_body = (f'<h1>Page not found</h1>'
+                f'<p class="sub">The page you were looking for has moved or no longer exists.</p>'
+                f'<p>Product pages are sometimes renamed when we correct a model name. Try one of these:</p>'
+                f'<div class="best-toc">'
+                f'<a href="{BASE_URL}/">Search all heat pumps</a>'
+                f'<a href="{BASE_URL}/manufacturers/">Browse by manufacturer</a>'
+                f'<a href="{BASE_URL}/best/">Best heat pump rankings</a>'
+                f'<a href="{BASE_URL}/heat-pump-size-calculator/">Size calculator</a>'
+                f'<a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a>'
+                f'</div>')
+    _nf = page(f"Page not found | {SITE_NAME}", "This page could not be found.", f"{BASE_URL}/", _nf_body, [])
+    _nf = _nf.replace('<head>', '<head>\n<meta name="robots" content="noindex">', 1)
+    write(os.path.join(ROOT, "404.html"), _nf)
+
     # manufacturer pages + index
     for m, ps in by_mfr.items():
         write(os.path.join(ROOT, "manufacturers", slugify(m), "index.html"),
@@ -3455,6 +3687,14 @@ def main():
         [("__composite_ashp__", [p.get("id") for p in composite_ranked])] +
         [(cfg["slug"], [p.get("id") for p in ranked]) for cfg, ranked, _ in best_sections]))
 
+    # standalone page per ranking: /best/<slug>/
+    for cfg, ranked, pool_size in best_sections:
+        write(os.path.join(ROOT, "best", cfg["slug"], "index.html"),
+              render_best_category_page(cfg, ranked, pool_size, best_sections))
+        _burl = f"{BASE_URL}/best/{cfg['slug']}/"
+        urls.append(_burl)
+        _lastmod_for(_burl, _lastmod_hash([(cfg["slug"], [p.get("id") for p in ranked])]))
+
     # /heat-pump-comparison/ - the crawlable landing page for comparison
     # intent. The interactive tool at /#compare is a hash route and cannot be
     # indexed separately, so this page carries the comparison content and
@@ -3481,7 +3721,7 @@ def main():
         if ranked:
             _pid = ranked[0].get("id")
             best_winners.setdefault(_pid, []).append(
-                {"title": cfg["title"], "url": f"{BASE_URL}/best/#{cfg['slug']}"})
+                {"title": cfg["title"], "url": f"{BASE_URL}/best/{cfg['slug']}/"})
 
     # redirect stubs: general Best Of categories used to each have their own
     # /best/<slug>/ page; they're now sections on the single /best/ page.
@@ -3489,6 +3729,8 @@ def main():
                        "best-r290-heat-pumps", "best-small-heat-pumps-3-6kw",
                        "best-medium-heat-pumps-7-12kw", "best-large-heat-pumps-13-25kw",
                        "best-high-temperature-heat-pumps"):
+        if any(c["slug"] == _old_slug for c, _r, _p in best_sections):
+            continue  # this ranking has its own page again
         _target = f"{BASE_URL}/best/#{_old_slug}"
         _stub = (f"<!DOCTYPE html><html lang=\"en-GB\"><head><meta charset=\"utf-8\">"
                  f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
@@ -3618,6 +3860,7 @@ def main():
           f"{len(news_articles)} news articles.")
     print(f"sitemap.xml lists {len(urls)} URLs.")
     print(f"Wrote {redirect_count} redirect stub(s) for retired product slugs.")
+    print(f"Wrote {legacy_product_redirects} legacy product redirect stub(s) and 404.html.")
 
 if __name__ == "__main__":
     main()
