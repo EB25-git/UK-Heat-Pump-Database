@@ -329,16 +329,20 @@ html body .wm .wm-bold{color:#0B6656;font-weight:600}
 html body .wm .wm-light{color:#109680;font-weight:400;opacity:1;margin-left:0}
 @media(max-width:480px){html body .wm{font-size:18px}html body .brand-mark{width:28px;height:28px}}
 
-/* v280 card trophy: icon top-right, ranking shown on hover/tap */
+/* v281 card corner icons: MCS + trophy (26px), details on hover/tap */
 html body .hp-card{position:relative;overflow:visible}
-html body .hp-card.has-trophy .hp-card-head{padding-right:52px}
-html body .hp-trophy{position:absolute;top:12px;right:12px;z-index:5}
-html body .hp-trophy-btn{width:32px;height:32px;border-radius:50%;border:1px solid #F0D090;background:#f6d873;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
-html body .hp-trophy-btn:focus-visible{outline:2px solid #0B6656;outline-offset:2px}
+html body .hp-card.has-trophy .hp-card-head{padding-right:46px}
+html body .hp-card.has-two .hp-card-head{padding-right:78px}
+html body .hp-corner{position:absolute;top:12px;right:12px;z-index:5;display:flex;gap:6px;align-items:center}
+html body .hp-ico{position:relative;width:26px;height:26px}
+html body .hp-mcs img{width:26px;height:26px;border-radius:50%;display:block;cursor:help}
+html body .hp-trophy-btn{width:26px;height:26px;border-radius:50%;border:1px solid #F0D090;background:#f6d873;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+html body .hp-trophy-btn:focus-visible,html body .hp-mcs:focus-visible{outline:2px solid #0B6656;outline-offset:2px;border-radius:50%}
 html body .hp-trophy-tip{display:none;position:absolute;top:100%;right:0;padding-top:8px;min-width:230px;max-width:290px}
-html body .hp-trophy-tip a{display:block;background:#fff;color:#083F35;font-size:13px;font-weight:600;line-height:1.35;text-decoration:none;padding:9px 12px;border:1px solid #CFDDD7;border-top-width:0}
-html body .hp-trophy-tip a:first-child{border-top-width:1px;border-radius:8px 8px 0 0}
-html body .hp-trophy-tip a:last-child{border-radius:0 0 8px 8px;box-shadow:0 10px 24px -12px rgba(8,63,53,.35)}
-html body .hp-trophy-tip a:only-child{border-radius:8px}
+html body .hp-trophy-tip a,html body .hp-trophy-tip span{display:block;background:#fff;color:#083F35;font-size:13px;font-weight:600;line-height:1.35;text-decoration:none;padding:9px 12px;border:1px solid #CFDDD7;border-top-width:0}
+html body .hp-mcs .hp-trophy-tip{min-width:0;white-space:nowrap}
+html body .hp-trophy-tip > :first-child{border-top-width:1px;border-radius:8px 8px 0 0}
+html body .hp-trophy-tip > :last-child{border-radius:0 0 8px 8px;box-shadow:0 10px 24px -12px rgba(8,63,53,.35)}
+html body .hp-trophy-tip > :only-child{border-radius:8px}
 html body .hp-trophy-tip a:hover{background:#E4F6EC;color:#0B6656}
-html body .hp-trophy:hover .hp-trophy-tip,html body .hp-trophy:focus-within .hp-trophy-tip{display:block}
+html body .hp-ico:hover .hp-trophy-tip,html body .hp-ico:focus-within .hp-trophy-tip,html body .hp-mcs:focus .hp-trophy-tip{display:block}
