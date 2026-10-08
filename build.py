@@ -1615,6 +1615,43 @@ PRODUCT_IMAGE_BY_CODE = {
 # Octopus Energy, Rhoss, Sabroe all have null product_code in the source
 # data) - keyed on the unique row "id" instead, same file-drop workflow.
 PRODUCT_IMAGE_BY_ID = {
+    # Atlantic (added 8 Oct 2026) - keyed by id because product codes repeat across ranges
+    # (e.g. "A.I. 11" is both Alfea Excellia and Alfea Excellia Duo). Duo models lead with the
+    # cylinder indoor unit; see below for Alfea Extensa Duo.
+    # Alfea Extensa Duo: indoor cylinder unit + outdoor unit (Atlantic-branded shot). Alfea Extensa (wall-hung) still has none.
+    2391: "atlantic-alfea-extensa-duo.webp",  # Alfea Extensa Duo A.I. 5
+    2392: "atlantic-alfea-extensa-duo.webp",  # Alfea Extensa Duo A.I. 6
+    2393: "atlantic-alfea-extensa-duo.webp",  # Alfea Extensa Duo A.I. 8
+    2394: "atlantic-alfea-extensa-duo.webp",  # Alfea Extensa Duo A.I. 10
+    2376: ["atlantic-ixtra-m.webp", "atlantic-ixtra-m-cutaway.webp"],  # Ixtra M Ixtra M 9
+    2377: ["atlantic-ixtra-m.webp", "atlantic-ixtra-m-cutaway.webp"],  # Ixtra M Ixtra M 12
+    2378: ["atlantic-ixtra-m.webp", "atlantic-ixtra-m-cutaway.webp"],  # Ixtra M Ixtra M TRI 12
+    2379: ["atlantic-ixtra-m.webp", "atlantic-ixtra-m-cutaway.webp"],  # Ixtra M Ixtra M 15
+    2380: ["atlantic-ixtra-m.webp", "atlantic-ixtra-m-cutaway.webp"],  # Ixtra M Ixtra M TRI 15
+    2381: ["atlantic-ixtra-m.webp", "atlantic-ixtra-m-cutaway.webp"],  # Ixtra M Ixtra M TRI 17
+    2382: "atlantic-geolia.webp",  # Geolia Geolia 5
+    2383: "atlantic-geolia.webp",  # Geolia Geolia 7
+    2384: "atlantic-geolia.webp",  # Geolia Geolia 10
+    2385: "atlantic-geolia.webp",  # Geolia Geolia 13
+    2386: "atlantic-geolia.webp",  # Geolia Geolia 17
+    2395: ["atlantic-alfea-excellia-outdoor.webp", "atlantic-alfea-excellia-indoor.webp"],  # Alfea Excellia A.I. 11
+    2396: ["atlantic-alfea-excellia-outdoor.webp", "atlantic-alfea-excellia-indoor.webp"],  # Alfea Excellia A.I. 14
+    2397: ["atlantic-alfea-excellia-outdoor.webp", "atlantic-alfea-excellia-indoor.webp"],  # Alfea Excellia A.I. TRI 11
+    2398: ["atlantic-alfea-excellia-outdoor.webp", "atlantic-alfea-excellia-indoor.webp"],  # Alfea Excellia A.I. TRI 14
+    2399: ["atlantic-alfea-excellia-outdoor.webp", "atlantic-alfea-excellia-indoor.webp"],  # Alfea Excellia A.I. TRI 16
+    2400: ["atlantic-alfea-excellia-duo-indoor.webp", "atlantic-alfea-excellia-duo-outdoor.webp"],  # Alfea Excellia Duo A.I. 11
+    2401: ["atlantic-alfea-excellia-duo-indoor.webp", "atlantic-alfea-excellia-duo-outdoor.webp"],  # Alfea Excellia Duo A.I. 14
+    2402: ["atlantic-alfea-excellia-duo-indoor.webp", "atlantic-alfea-excellia-duo-outdoor.webp"],  # Alfea Excellia Duo A.I. TRI 11
+    2403: ["atlantic-alfea-excellia-duo-indoor.webp", "atlantic-alfea-excellia-duo-outdoor.webp"],  # Alfea Excellia Duo A.I. TRI 14
+    2404: ["atlantic-alfea-excellia-duo-indoor.webp", "atlantic-alfea-excellia-duo-outdoor.webp"],  # Alfea Excellia Duo A.I. TRI 16
+    2405: "atlantic-loria-outdoor.webp",  # Loria LORIA 6004
+    2406: "atlantic-loria-outdoor.webp",  # Loria LORIA 6006
+    2407: "atlantic-loria-outdoor.webp",  # Loria LORIA 6008
+    2408: "atlantic-loria-outdoor.webp",  # Loria LORIA 6010
+    2409: ["atlantic-loria-duo-indoor.webp", "atlantic-loria-outdoor.webp"],  # Loria Duo LORIA DUO 6004
+    2410: ["atlantic-loria-duo-indoor.webp", "atlantic-loria-outdoor.webp"],  # Loria Duo LORIA DUO 6006
+    2411: ["atlantic-loria-duo-indoor.webp", "atlantic-loria-outdoor.webp"],  # Loria Duo LORIA DUO 6008
+    2412: ["atlantic-loria-duo-indoor.webp", "atlantic-loria-outdoor.webp"],  # Loria Duo LORIA DUO 6010
     1444: "octopus-cosy-6.jpg",
     1445: "octopus-cosy-9.jpg",
     1446: "octopus-cosy-12.jpg",
