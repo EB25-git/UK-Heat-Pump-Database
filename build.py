@@ -3463,10 +3463,6 @@ def refresh_home_page(products, by_mfr):
     with open(path, "w", encoding="utf-8") as f:
         f.write(app)
 
-    # product notes for the admin tools (kept out of data.js)
-    notes = {str(p["id"]): p["notes"] for p in products if p.get("notes")}
-    with open(os.path.join(ROOT, "data-notes.js"), "w", encoding="utf-8") as f:
-        f.write("window._HPN=" + json.dumps(notes, ensure_ascii=False, separators=(",", ":")) + ";\n")
 
 def main():
     with open(DATA, encoding="utf-8") as f:
