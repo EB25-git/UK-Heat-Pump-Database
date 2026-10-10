@@ -936,7 +936,7 @@ function trackOut(){{
 </div>
 </div>
 <script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').src='';document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
-<script src="/theme.js?v=1"></script>
+<script src="/theme.js?v=2"></script>
 </body>
 </html>
 """
@@ -3434,6 +3434,14 @@ def refresh_home_page(products, by_mfr):
     og_desc = desc
     tw_desc = f"Compare {n_r} heat pumps from {n_m} brands: specs, COP/SCOP, noise and rankings."
     app = re.sub(r"<title>[^<]*</title>", f"<title>{esc(title)}</title>", app, count=1)
+    # hero figures and subtitle, so crawlers that don't run scripts see real numbers (the app recomputes them live)
+    _hero = {"hero-count": n, "hero-mfr": n_m,
+             "hero-ashp": sum(1 for p in products if p.get("hp_type") == "ASHP"),
+             "hero-wshp": sum(1 for p in products if p.get("hp_type") in ("WSHP", "GSHP"))}
+    for _id, _v in _hero.items():
+        app = re.sub(r'(id="%s">)[^<]*(<)' % _id, lambda m, v=_v: f"{m.group(1)}{v}{m.group(2)}", app, count=1)
+    app = re.sub(r'(<p[^>]*id="hero-subtitle">)[^<]*(</p>)',
+                 lambda m: m.group(1) + "Residential and commercial specifications, performance data, and COP test conditions from UK manufacturers." + m.group(2), app, count=1)
     app = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(desc)}">', app, count=1)
     app = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{esc(title)}">', app, count=1)
     app = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{esc(og_desc)}">', app, count=1)

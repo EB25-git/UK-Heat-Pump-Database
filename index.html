@@ -549,33 +549,33 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <span></span><span></span><span></span>
   </button>
   <div class="burger-menu" id="burger-menu">
-    <button class="burger-item active" data-page="browse" onclick="showPage('browse');closeBurger()">Browse</button>
+    <a class="burger-item active" data-page="browse" href="/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('browse');closeBurger();return false">Browse</a>
     <a class="burger-item" href="/manufacturers/" onclick="closeBurger()">Manufacturers</a>
     <button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="c-group">
-    <button class="burger-item burger-subitem" data-page="compare" onclick="showPage('compare');closeBurger()">Compare Selected</button>
-    <button class="burger-item burger-subitem" data-page="analytics" onclick="showPage('analytics');closeBurger()">Visualise</button>
+    <a class="burger-item burger-subitem" data-page="compare" href="/#compare" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('compare');closeBurger();return false">Compare Selected</a>
+    <a class="burger-item burger-subitem" data-page="analytics" href="/#analytics" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('analytics');closeBurger();return false">Visualise</a>
     <a class="burger-item burger-subitem" href="/heat-pump-comparison/" onclick="closeBurger()">Market Comparison</a>
     </div>
     <a class="burger-item" href="/best/" onclick="closeBurger()">Best Heat Pumps</a>
-    <button class="burger-item" data-page="gallery" onclick="showPage('gallery');closeBurger()">Gallery</button>
+    <a class="burger-item" data-page="gallery" href="/#gallery" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('gallery');closeBurger();return false">Gallery</a>
     <a class="burger-item" href="/heat-pump-size-calculator/" onclick="closeBurger()">Size Calculator</a>
     <button class="burger-item burger-toggle" data-page="knowledge" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="k-group">
-    <button class="burger-item burger-subitem" data-page="what-is-a-heat-pump" onclick="showPage('what-is-a-heat-pump');closeBurger()">What Is a Heat Pump?</button>
-    <button class="burger-item burger-subitem" data-page="install-costs" onclick="showPage('install-costs');closeBurger()">Installation Costs</button>
-    <button class="burger-item burger-subitem" data-page="funding" onclick="showPage('funding');closeBurger()">Funding &amp; Grants</button>
-    <button class="burger-item burger-subitem" data-page="planning" onclick="showPage('planning');closeBurger()">Planning Permission</button>
-    <button class="burger-item burger-subitem" data-page="cop-scop" onclick="showPage('cop-scop');closeBurger()">Understanding COP &amp; SCOP</button>
-    <button class="burger-item burger-subitem" data-page="flow-temp" onclick="showPage('flow-temp');closeBurger()">Flow Temperature &amp; Efficiency</button>
-    <button class="burger-item burger-subitem" data-page="refrigerants" onclick="showPage('refrigerants');closeBurger()">Refrigerant Guide</button>
-    <button class="burger-item burger-subitem" data-page="faq" onclick="showPage('faq');closeBurger()">FAQ</button>
-    <button class="burger-item burger-subitem" data-page="guide" onclick="showPage('guide');closeBurger()">Site Guide</button>
-    <button class="burger-item burger-subitem" data-page="links" onclick="showPage('links');closeBurger()">Useful Links</button>
+    <a class="burger-item burger-subitem" data-page="what-is-a-heat-pump" href="/knowledge/what-is-a-heat-pump/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('what-is-a-heat-pump');closeBurger();return false">What Is a Heat Pump?</a>
+    <a class="burger-item burger-subitem" data-page="install-costs" href="/knowledge/installation-costs/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('install-costs');closeBurger();return false">Installation Costs</a>
+    <a class="burger-item burger-subitem" data-page="funding" href="/knowledge/funding/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('funding');closeBurger();return false">Funding &amp; Grants</a>
+    <a class="burger-item burger-subitem" data-page="planning" href="/knowledge/planning-permission/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('planning');closeBurger();return false">Planning Permission</a>
+    <a class="burger-item burger-subitem" data-page="cop-scop" href="/knowledge/cop-scop/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('cop-scop');closeBurger();return false">Understanding COP &amp; SCOP</a>
+    <a class="burger-item burger-subitem" data-page="flow-temp" href="/knowledge/flow-temperature/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('flow-temp');closeBurger();return false">Flow Temperature &amp; Efficiency</a>
+    <a class="burger-item burger-subitem" data-page="refrigerants" href="/knowledge/refrigerants/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('refrigerants');closeBurger();return false">Refrigerant Guide</a>
+    <a class="burger-item burger-subitem" data-page="faq" href="/#faq" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('faq');closeBurger();return false">FAQ</a>
+    <a class="burger-item burger-subitem" data-page="guide" href="/#guide" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('guide');closeBurger();return false">Site Guide</a>
+    <a class="burger-item burger-subitem" data-page="links" href="/#links" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('links');closeBurger();return false">Useful Links</a>
     </div>
     <a class="burger-item" href="/news/" onclick="closeBurger()">News &amp; Insight</a>
-    <button class="burger-item" data-page="contact" onclick="showPage('contact');closeBurger()">About &amp; Contact us</button>
-    <button class="burger-item" data-page="terms" onclick="showPage('terms');closeBurger()" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</button>
+    <a class="burger-item" data-page="contact" href="/#contact" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('contact');closeBurger();return false">About &amp; Contact us</a>
+    <a class="burger-item" data-page="terms" href="/#terms" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('terms');closeBurger();return false" style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)">Terms of Use</a>
   </div>
 </nav>
 <div class="burger-overlay" id="burger-overlay" onclick="closeBurger()"></div>
@@ -586,13 +586,13 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div class="hero-inner">
       <div>
         <h1><em>Heat Pump Database</em></h1>
-        <p id="hero-subtitle">—</p>
+        <p id="hero-subtitle">Residential and commercial specifications, performance data, and COP test conditions from UK manufacturers.</p>
       </div>
       <div class="hero-stats">
-        <div><div class="stat-n" id="hero-count">—</div><div class="stat-l">heat pumps</div></div>
-        <div><div class="stat-n" id="hero-mfr">—</div><div class="stat-l">manufacturers</div></div>
-        <div><div class="stat-n" id="hero-ashp">—</div><div class="stat-l">ASHP</div></div>
-        <div><div class="stat-n" id="hero-wshp">—</div><div class="stat-l">WSHP / GSHP</div></div>
+        <div><div class="stat-n" id="hero-count">4345</div><div class="stat-l">heat pumps</div></div>
+        <div><div class="stat-n" id="hero-mfr">100</div><div class="stat-l">manufacturers</div></div>
+        <div><div class="stat-n" id="hero-ashp">2874</div><div class="stat-l">ASHP</div></div>
+        <div><div class="stat-n" id="hero-wshp">1441</div><div class="stat-l">WSHP / GSHP</div></div>
       </div>
     </div>
   </div>
@@ -888,55 +888,55 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <h2 class="pg-title" style="font-size:30px;letter-spacing:-.02em;margin:0 0 10px">Knowledge</h2>
       <p style="color:#5A6A65;font-size:16px;line-height:1.6;margin:0 0 28px;max-width:640px">Background reading and resources to help you make sense of the database. Learn the fundamentals in the FAQ, compare the refrigerants used in heat pumps, or browse our directory of useful external links.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-        <a href="#" onclick="showPage('what-is-a-heat-pump');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/knowledge/what-is-a-heat-pump/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('what-is-a-heat-pump');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">🔥</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">What Is a Heat Pump?</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">New to all this? A plain-English explainer with diagrams, a straight comparison against gas boilers, and what to consider before switching.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Start here →</div>
         </a>
-        <a href="#" onclick="showPage('faq');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/#faq" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('faq');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">❓</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">FAQ</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">Frequently asked questions covering COP and SCOP, refrigerants, sizing, flow temperatures and UK grant schemes.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Read the FAQ →</div>
         </a>
-        <a href="#" onclick="showPage('links');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/#links" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('links');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">🔗</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">Useful Links</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">A curated directory of manufacturers, certification bodies, grant schemes and independent advice on heat pumps.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Browse links →</div>
         </a>
-        <a href="#" onclick="showPage('refrigerants');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/knowledge/refrigerants/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('refrigerants');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">🧪</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">Refrigerant Guide</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">Compare the refrigerants used in heat pumps — GWP, safety class, pros and cons, and the F-Gas regulations shaping their future.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Compare refrigerants →</div>
         </a>
-        <a href="#" onclick="showPage('cop-scop');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/knowledge/cop-scop/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('cop-scop');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">📊</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">Understanding COP &amp; SCOP</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">What the efficiency figures mean, why test conditions like A7/W35 matter, and how to compare heat pumps fairly.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Read the guide →</div>
         </a>
-        <a href="#" onclick="showPage('flow-temp');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/knowledge/flow-temperature/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('flow-temp');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">🌡️</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">Flow Temperature &amp; Efficiency</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">Why a lower flow temperature means a more efficient heat pump, the trade-off with radiators, and how to read the data.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Read the guide →</div>
         </a>
-        <a href="#" onclick="showPage('funding');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/knowledge/funding/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('funding');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">💷</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">Funding &amp; Grants</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">Every UK funding route for a heat pump in one place: the Boiler Upgrade Scheme, 0% VAT, Home Energy Scotland, Warm Homes: Local Grant, ECO4 and Northern Ireland support.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Read the guide →</div>
         </a>
-        <a href="#" onclick="showPage('install-costs');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/knowledge/installation-costs/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('install-costs');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">🔧</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">Installation Costs</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">What a UK ASHP installation actually costs, broken into the unit, hot water cylinder, controls and radiator upgrades.</div>
           <div style="margin-top:14px;font-size:13px;font-weight:600;color:#22C79A">Read the guide →</div>
         </a>
-        <a href="#" onclick="showPage('planning');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
+        <a href="/knowledge/planning-permission/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('planning');return false" style="display:block;text-decoration:none;border:1px solid #E3EDE8;border-radius:14px;padding:24px;background:#fff;transition:all .2s" onmouseover="this.style.borderColor='#22C79A';this.style.boxShadow='0 6px 24px rgba(8,63,53,.08)'" onmouseout="this.style.borderColor='#E3EDE8';this.style.boxShadow='none'">
           <div style="font-size:24px;margin-bottom:10px">📋</div>
           <div style="font-size:18px;font-weight:600;color:#083F35;margin-bottom:6px">Planning Permission</div>
           <div style="font-size:14px;color:#5A6A65;line-height:1.55">Do you need planning permission? Permitted development rules, the application process and costs for England, Wales, Scotland and Northern Ireland.</div>
@@ -3693,6 +3693,6 @@ window.updateHero = updateHero;
 window.__hpState={get db(){return db;},get filtered(){return filtered;},get compareIds(){return compareIds;}};
 });
 </script>
-<script src="theme.js?v=1"></script>
+<script src="theme.js?v=2"></script>
 </body>
 </html>

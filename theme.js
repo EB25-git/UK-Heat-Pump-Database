@@ -18,18 +18,20 @@
     var d = document.createElement('div');
     d.className = 'nav-links'; d.id = 'nav-links';
     d.innerHTML =
-      '<button data-page="browse">Browse</button>' +
+      '<a data-page="browse" href="/">Browse</a>' +
       '<a href="/manufacturers/">Manufacturers</a>' +
-      '<button data-page="compare">Compare</button>' +
+      '<a data-page="compare" href="/#compare">Compare</a>' +
       '<a href="/best/">Best Heat Pumps</a>' +
-      '<button data-page="analytics">Visualise</button>' +
+      '<a data-page="analytics" href="/#analytics">Visualise</a>' +
       '<a href="/heat-pump-size-calculator/">Size Calculator</a>' +
-      '<button data-page="knowledge">Knowledge</button>' +
+      '<a data-page="knowledge" href="/#knowledge">Knowledge</a>' +
       '<a href="/news/">News &amp; Insight</a>';
     brand.insertAdjacentElement('afterend', d);
     d.addEventListener('click', function (e) {
-      var b = e.target.closest('button[data-page]');
-      if (b && window.showPage) window.showPage(b.dataset.page);
+      var b = e.target.closest('[data-page]');
+      if (!b || !window.showPage) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // let new-tab clicks through
+      e.preventDefault(); window.showPage(b.dataset.page);
     });
     var sync = function () {
       var v = $('.page.show'); if (!v) return;
