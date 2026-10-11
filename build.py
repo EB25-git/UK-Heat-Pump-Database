@@ -20,6 +20,7 @@ from collections import Counter
 # ───────────────────────── Config ─────────────────────────
 BASE_URL  = "https://www.heatpumpdatabase.com"   # no trailing slash
 SITE_NAME = "Heat Pump Database"
+HERO_SUBTITLE = 'Free, independent specifications, performance data and COP test conditions for residential and commercial heat pumps from UK manufacturers.'
 
 # Default social-share image (1200x630) used for og:image / twitter:image on any
 # page that doesn't have a more specific picture. OG_IMAGE_BY_MFR is the future
@@ -923,7 +924,7 @@ function trackOut(){{
 {body}
 </div></main>
 <footer class="site"><div class="wrap">
-<p>{SITE_NAME} &middot; A searchable database of UK heat pumps. Always confirm specifications with the manufacturer before purchase.</p>
+<p>{SITE_NAME} &middot; A free, searchable database of UK heat pumps \u2014 no subscription. Always confirm specifications with the manufacturer before purchase.</p>
 <p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="{BASE_URL}/news/">News &amp; Insight</a></p>
 </div></footer>
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#083F35;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
@@ -1926,7 +1927,7 @@ def render_product(p, by_mfr, by_type):
     if p.get("height") and p.get("weight"): d_bits.append("dimensions and weight")
     elif p.get("height"): d_bits.append("dimensions")
     if p.get("refrigerant"): d_bits.append("refrigerant")
-    tail = f" Compare with {TOTAL_PRODUCTS:,} heat pumps."
+    tail = f" Compare free with {TOTAL_PRODUCTS:,} heat pumps."
     head = f"{display_name} {hp_word} heat pump \u2014 full specification: "
     # Fit a search snippet (~158 chars). Google truncates anything longer, which
     # would cut the closing hook off the end, so shed spec items first and only
@@ -2126,7 +2127,10 @@ def render_manufacturer(mfr, products):
     n = len(products)
     types = sorted({TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type")) for p in products if p.get("hp_type")})
     desc = (f"{mfr} heat pumps: {n} models in the {SITE_NAME}. "
-            f"Compare {', '.join(types).lower()} specifications, COP and SCOP data.")
+            f"Compare {', '.join(types).lower()} specifications, COP and SCOP data for free.")
+    if len(desc) > 160:
+        desc = (f"{mfr} heat pumps: {n} models. Compare {', '.join(types).lower()} "
+                f"specs, COP and SCOP for free.")
     crumb_items = [("Home", f"{BASE_URL}/"),
                    ("Manufacturers", f"{BASE_URL}/manufacturers/"),
                    (mfr, None)]
@@ -2782,6 +2786,8 @@ def render_best_category_page(cfg, ranked, pool_size, sections):
                                     "name": f"{p.get('manufacturer','')} {p.get('model','')}"}
                                    for i, p in enumerate(ranked)]}
     desc = cfg["desc"].format(n=n, pool=pool_size)
+    if len(desc) <= 140:
+        desc += " Free to compare."
     return page(f"{cfg['title']} {TODAY[:4]} \u2014 Top {n} Ranked | {SITE_NAME}", desc, url, body,
                 [item_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
@@ -3428,11 +3434,11 @@ def refresh_home_page(products, by_mfr):
     n = len(products)
     n_r = f"{(n // 100) * 100:,}+"
     n_m = len([m for m in by_mfr if m])
-    title = f"Heat Pump Database \u2014 Compare {n_r} Heat Pumps Side by Side"
-    desc = (f"Compare {n_r} air, ground and water source heat pumps from {n_m} brands: "
-            f"full specs, COP and SCOP test data, noise, UK prices and rankings.")
+    title = f"Free Heat Pump Database \u2014 Compare {n_r} Heat Pumps"
+    desc = (f"Free heat pump database \u2014 no subscription. Compare {n_r} air, ground and "
+            f"water source heat pumps from {n_m} brands: specs, SCOP, noise and UK prices.")
     og_desc = desc
-    tw_desc = f"Compare {n_r} heat pumps from {n_m} brands: specs, COP/SCOP, noise and rankings."
+    tw_desc = f"Free to use: compare {n_r} heat pumps from {n_m} brands \u2014 specs, COP/SCOP, noise and rankings."
     app = re.sub(r"<title>[^<]*</title>", f"<title>{esc(title)}</title>", app, count=1)
     # hero figures and subtitle, so crawlers that don't run scripts see real numbers (the app recomputes them live)
     _hero = {"hero-count": n, "hero-mfr": n_m,
@@ -3441,7 +3447,7 @@ def refresh_home_page(products, by_mfr):
     for _id, _v in _hero.items():
         app = re.sub(r'(id="%s">)[^<]*(<)' % _id, lambda m, v=_v: f"{m.group(1)}{v}{m.group(2)}", app, count=1)
     app = re.sub(r'(<p[^>]*id="hero-subtitle">)[^<]*(</p>)',
-                 lambda m: m.group(1) + "Residential and commercial specifications, performance data, and COP test conditions from UK manufacturers." + m.group(2), app, count=1)
+                 lambda m: m.group(1) + HERO_SUBTITLE + m.group(2), app, count=1)
     app = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(desc)}">', app, count=1)
     app = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{esc(title)}">', app, count=1)
     app = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{esc(og_desc)}">', app, count=1)
@@ -3660,8 +3666,8 @@ def main():
         if ps:
             type_pages.append((slugify(label.split(" (")[0] + " heat pumps"),
                                label.split(" (")[0] + " Heat Pumps",
-                               f"Browse {label.split(' (')[0].lower()} heat pumps in the {SITE_NAME}: "
-                               f"{len(ps)} models with full specifications, COP and SCOP data.", ps))
+                               f"Compare {len(ps):,} {label.split(' (')[0].lower()} heat pumps for free: "
+                               f"full specifications, COP and SCOP data in the {SITE_NAME}.", ps))
     # refrigerant pages
     # Grouped by a normalised key, not the raw string. The data holds the same
     # refrigerant spelled several ways ("R410A" / "R-410A", "R134a" / "R134A",
@@ -3688,7 +3694,7 @@ def main():
         if len(ps) >= 5:
             type_pages.append((slugify(f"{ref} heat pumps"), f"{ref} Heat Pumps",
                                f"Heat pumps using {ref} refrigerant: {len(ps)} models with full "
-                               f"specifications in the {SITE_NAME}.", ps))
+                               f"specifications. Free to compare.", ps))
     # application pages
     by_app = {}
     for p in products:
@@ -3697,7 +3703,7 @@ def main():
     for app, ps in by_app.items():
         type_pages.append((slugify(f"{app} heat pumps"), f"{app} Heat Pumps",
                            f"{app} heat pumps: {len(ps)} models with specifications, COP and SCOP "
-                           f"data in the {SITE_NAME}.", ps))
+                           f"data. Free to compare.", ps))
 
     seen_type_slugs = set()
     for slug, heading, desc, ps in type_pages:

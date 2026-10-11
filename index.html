@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Heat Pump Database — Compare 4,300+ Heat Pumps Side by Side</title>
-<meta name="description" content="Compare 4,300+ air, ground and water source heat pumps from 100 brands: full specs, COP and SCOP test data, noise, UK prices and rankings.">
+<title>Free Heat Pump Database — Compare 4,300+ Heat Pumps</title>
+<meta name="description" content="Free heat pump database — no subscription. Compare 4,300+ air, ground and water source heat pumps from 100 brands: specs, SCOP, noise and UK prices.">
 <meta name="keywords" content="heat pump, ASHP, WSHP, GSHP, air source heat pump, water source heat pump, ground source heat pump, UK, COP, specifications, database">
 <meta name="author" content="Heat Pump Database">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.heatpumpdatabase.com/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Heat Pump Database — Compare 4,300+ Heat Pumps Side by Side">
-<meta property="og:description" content="Compare 4,300+ air, ground and water source heat pumps from 100 brands: full specs, COP and SCOP test data, noise, UK prices and rankings.">
+<meta property="og:title" content="Free Heat Pump Database — Compare 4,300+ Heat Pumps">
+<meta property="og:description" content="Free heat pump database — no subscription. Compare 4,300+ air, ground and water source heat pumps from 100 brands: specs, SCOP, noise and UK prices.">
 <meta property="og:url" content="https://www.heatpumpdatabase.com/">
 <meta property="og:site_name" content="Heat Pump Database">
 <meta property="og:image" content="https://www.heatpumpdatabase.com/images/og-default.jpg">
@@ -20,8 +20,8 @@
 <meta property="og:image:height" content="630">
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Heat Pump Database — Compare 4,300+ Heat Pumps Side by Side">
-<meta name="twitter:description" content="Compare 4,300+ heat pumps from 100 brands: specs, COP/SCOP, noise and rankings.">
+<meta name="twitter:title" content="Free Heat Pump Database — Compare 4,300+ Heat Pumps">
+<meta name="twitter:description" content="Free to use: compare 4,300+ heat pumps from 100 brands — specs, COP/SCOP, noise and rankings.">
 <meta name="twitter:image" content="https://www.heatpumpdatabase.com/images/og-default.jpg">
 <!-- Favicon (hosted files — crawlable by Google for search-results icon) -->
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
@@ -40,7 +40,8 @@
   "name": "Heat Pump Database",
   "alternateName": ["heatpumpdatabase.com", "www.heatpumpdatabase.com"],
   "url": "https://www.heatpumpdatabase.com/",
-  "description": "Compare 4,300+ air, ground and water source heat pumps from 100 brands: full specs, COP and SCOP test data, noise, UK prices and rankings.",
+  "isAccessibleForFree": true,
+  "description": "Free heat pump database — no subscription. Compare 4,300+ air, ground and water source heat pumps from 100 brands: specs, SCOP, noise and UK prices.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://www.heatpumpdatabase.com/?q={search_term_string}",
@@ -198,6 +199,7 @@ a.burger-item{display:block;text-decoration:none;box-sizing:border-box}
 /* ── HERO ── */
 .hero{background:linear-gradient(135deg,#083F35 0%,#083F35 100%);padding:3.5rem 2.5rem 3rem;position:relative;overflow:hidden}
 .hero-img{position:absolute;right:0;top:0;height:100%;width:55%;object-fit:cover;object-position:center;opacity:.45;mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.3) 20%,rgba(0,0,0,.7) 60%,rgba(0,0,0,.9) 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.3) 20%,rgba(0,0,0,.7) 60%,rgba(0,0,0,.9) 100%);pointer-events:none}
+.hero-free{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0}.hero-free li{display:inline-flex;align-items:center;gap:6px;background:rgba(34,199,154,.16);border:1px solid rgba(143,227,176,.45);color:#E4F6EC;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;letter-spacing:.01em}.hero-free li::before{content:"";width:12px;height:12px;flex:none;background:no-repeat center/12px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.3l2.2 2.2L9.5 3.7' fill='none' stroke='%238FE3B0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 .hero-inner{max-width:1280px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;position:relative;z-index:2}
 .hero h1{font-size:clamp(28px,4vw,48px);line-height:1.08;color:#fff;margin-bottom:.75rem;font-weight:700;letter-spacing:-.035em}
 .hero h1 em{color:#22C79A;font-style:normal;font-weight:700}
@@ -586,7 +588,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div class="hero-inner">
       <div>
         <h1><em>Heat Pump Database</em></h1>
-        <p id="hero-subtitle">Residential and commercial specifications, performance data, and COP test conditions from UK manufacturers.</p>
+        <p id="hero-subtitle">Free, independent specifications, performance data and COP test conditions for residential and commercial heat pumps from UK manufacturers.</p>
+        <ul class="hero-free" aria-label="Free to use"><li>Free forever</li><li>No subscription</li></ul>
       </div>
       <div class="hero-stats">
         <div><div class="stat-n" id="hero-count">4345</div><div class="stat-l">heat pumps</div></div>
@@ -1112,7 +1115,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<script src="faq-data.js?v=1" defer></script>
+<script src="faq-data.js?v=3" defer></script>
 <script src="data.js?v=136" defer></script>
 <script src="reviews-data.js?v=1" async></script>
 <script src="logos.js?v=131" defer></script>
@@ -1911,7 +1914,7 @@ const DEFAULT_LINKS = {
 let linksContent = JSON.parse(JSON.stringify(DEFAULT_LINKS));
 /* DEFAULT_FAQ moved to an external file (see <script> tags at the end of <body>) */
 let faqContent = JSON.parse(JSON.stringify(DEFAULT_FAQ));
-let heroSubtitle = 'Residential and commercial specifications, performance data, and COP test conditions from UK manufacturers.';
+let heroSubtitle = 'Free, independent specifications, performance data and COP test conditions for residential and commercial heat pumps from UK manufacturers.';
 let copyrightText = '© 2025 Heat Pump Database. All rights reserved. Product specifications are sourced from manufacturer datasheets and may change without notice. This site is an independent resource and is not affiliated with any manufacturer.';
 let view = 'grid';
 let sortKey = null, sortDir = 1;
