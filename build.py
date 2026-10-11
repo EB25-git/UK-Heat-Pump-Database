@@ -695,6 +695,7 @@ h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
 .badge{background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
 .badge.badge-bus{background:#0B6656;color:#fff;border-color:#0B6656;font-weight:600}
+@media(max-width:700px){html body table.list{display:block;overflow-x:auto!important;-webkit-overflow-scrolling:touch;max-width:100%}}
 table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden}
 table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #EEF4F1;font-size:14.5px;vertical-align:top}
 table.spec th{width:42%;color:#3B4D47;font-weight:500;background:#F6FAF8}
@@ -2187,7 +2188,7 @@ def render_datasheet(p):
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/datasheet.css?v=1">
+<link rel="stylesheet" href="/datasheet.css?v=2">
 </head>
 <body>
 <div class="ds-bar"><button type="button" onclick="window.print()">Save as PDF / Print</button><a href="{url}">&larr; Back to product page</a><span>Free data sheet, no subscription</span></div>

@@ -347,3 +347,14 @@ html body .hp-trophy-tip > :only-child{border-radius:8px}
 html body .hp-trophy-tip a:hover{background:#E4F6EC;color:#0B6656}
 html body .hp-ico:hover .hp-trophy-tip,html body .hp-ico:focus-within .hp-trophy-tip,html body .hp-mcs:focus .hp-trophy-tip{display:block}
 html body .badge.badge-bus{background:#0B6656;color:#fff;border:1px solid #0B6656;font-weight:600}
+html body .hp-card.has-three .hp-card-head{padding-right:110px}
+html body .hp-bus-mark{width:26px;height:26px;border-radius:50%;background:#0B6656;border:1px solid #0B6656;color:#fff;font-size:8.5px;font-weight:700;letter-spacing:.02em;line-height:1;display:flex;align-items:center;justify-content:center;cursor:help;font-family:inherit}
+html body .hp-bus .hp-trophy-tip{min-width:210px;max-width:240px;white-space:normal}
+html body .hp-bus:focus .hp-trophy-tip{display:block}
+html body .hp-bus:focus-visible{outline:2px solid #0B6656;outline-offset:2px;border-radius:50%}
+@media(max-width:1340px) and (min-width:1181px){html body .nav-links{margin-left:16px}html body .nav-links a,html body .nav-links button{padding:0 9px;font-size:14px}}
+html body .hp-card.has-four .hp-card-head{padding-right:142px}
+html body .hp-hpm-btn{width:26px;height:26px;border-radius:50%;border:0;padding:0;background:none;cursor:pointer;display:block;overflow:hidden}
+html body .hp-hpm-btn img{width:26px;height:26px;border-radius:50%;display:block}
+html body .hp-hpm-btn:focus-visible{outline:2px solid #0B6656;outline-offset:2px}
+html body .hp-hpm .hp-trophy-tip{min-width:210px;max-width:240px}
