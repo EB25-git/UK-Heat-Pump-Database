@@ -461,8 +461,12 @@ def spec_rows(p):
     add("Data added", esc(p.get("date_added")))
     add("Data source", esc(p.get("source")))
     add("Verification", "Verified by a human")
+    if p.get("bus_eligible"):
+        add("Boiler Upgrade Scheme", f'&#10003; BUS eligible &mdash; {esc(bus_line(p))}. Grant also needs an MCS-certified installer and a qualifying system design. '
+            f'<a href="{BASE_URL}/knowledge/funding/">Funding guide</a>')
+        if p.get("bus_cert"): add("PEL certificate no.", esc(p["bus_cert"]))
     if p.get("mcs_listed"):
-        add("MCS certification", "&#10003; MCS listed &mdash; eligible for Boiler Upgrade Scheme (MCS-certified install required)")
+        add("MCS certification", "&#10003; MCS listed")
         if p.get("mcs_cert"): add("MCS certificate no.", esc(p["mcs_cert"]))
         if p.get("mcs_url"):
             add("MCS listing", f'<a href="{esc(p["mcs_url"])}" target="_blank" rel="noopener nofollow">View on MCS &#8599;</a>')
@@ -690,6 +694,7 @@ h1{font-size:28px;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
 .sub{color:#5A6A65;font-size:15px;margin-bottom:24px}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 26px}
 .badge{background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500}
+.badge.badge-bus{background:#0B6656;color:#fff;border-color:#0B6656;font-weight:600}
 table.spec{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E3EDE8;border-radius:12px;overflow:hidden}
 table.spec th,table.spec td{text-align:left;padding:11px 16px;border-bottom:1px solid #EEF4F1;font-size:14.5px;vertical-align:top}
 table.spec th{width:42%;color:#3B4D47;font-weight:500;background:#F6FAF8}
@@ -889,7 +894,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
-<link rel="stylesheet" href="/theme-pages.css?v=2">
+<link rel="stylesheet" href="/theme-pages.css?v=3">
 {blocks}
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -1705,7 +1710,8 @@ def get_product_image(p):
 
 def product_card(p):
     bits = [t for t in (p.get("hp_type"), cap_str(p),
-            (f"SCOP {num(p['scop'])}" if p.get("scop") is not None else None)) if t]
+            (f"SCOP {num(p['scop'])}" if p.get("scop") is not None else None),
+            ("BUS eligible" if p.get("bus_eligible") else None)) if t]
     bits_str = " \u00b7 ".join(bits)
     mfr = p.get("manufacturer", "")
     logo = get_logo_url(mfr)
@@ -1921,6 +1927,7 @@ def render_product(p, by_mfr, by_type):
     # manufacturer's own page will not give you, so they rank above the
     # generic dimension/refrigerant items.
     d_bits = ["rated output", eff]
+    if p.get("bus_eligible"): d_bits.insert(2, "BUS eligibility")
     if p.get("mcs_listed"): d_bits.append("MCS certificate")
     if p.get("price_min") is not None: d_bits.append("UK price")
     if p.get("noise") is not None: d_bits.append("sound power")
@@ -1946,6 +1953,8 @@ def render_product(p, by_mfr, by_type):
         TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type")),
         p.get("type"), p.get("refrigerant"),
         (cap_str(p) if cap_str(p) else None)] if b)
+    if p.get("bus_eligible"):
+        badges = '<span class="badge badge-bus">&#10003; BUS eligible</span>' + badges
 
     extra = ""
     if p.get("description"): extra += f"<p>{esc(p['description'])}</p>"
@@ -2047,6 +2056,8 @@ def render_product(p, by_mfr, by_type):
         pass
     if p.get("mode"):
         prop("Mode", p["mode"])
+    if p.get("bus_eligible"):
+        prop("Boiler Upgrade Scheme", "Listed on Ofgem BUS Product Eligibility List")
     if p.get("electrical"):
         prop("Electrical supply", p["electrical"])
     if props:
@@ -2081,6 +2092,7 @@ def render_product(p, by_mfr, by_type):
             f'{aliases_html}'
             f'<div class="badges">{badges}</div>'
             f'<table class="spec">{rows}</table>'
+            f'<p style="margin-top:14px"><a class="cta" href="{BASE_URL}/products/{slug}/data-sheet/" rel="nofollow">Free data sheet (PDF) &rarr;</a></p>'
             f'{mfr_link}{notes_html}{render_suppliers(p)}{render_verified(p)}{render_correction(p)}'
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
@@ -2096,6 +2108,116 @@ def render_product(p, by_mfr, by_type):
     return page(title, desc, url, body,
                 [breadcrumb_jsonld(crumb_items, url), product_ld], og_type="product",
                 og_image=get_og_image(mfr))
+
+# ───────────────────── Printable data sheet ─────────────────────
+# products/<slug>/data-sheet/ : a one-page A4 sheet (print / save as PDF from the
+# browser). Free, no account. Not indexed: it repeats the product page, which is
+# its canonical, so it can't compete with it in search.
+DS_SECTIONS = [
+    ("General", ["Heat pump type", "Application", "Refrigerant", "Mode"]),
+    ("Heating performance", ["Heating capacity", "Max heating output (low temp)", "COP (heating)",
+                             "SCOP (heating)", "Operating range (air)", "Heating flow temperature"]),
+    ("Cooling performance", ["Cooling capacity", "Max cooling output (high temp)", "EER (cooling)",
+                             "SEER (cooling)", "Cooling flow temperature"]),
+    ("Electrical, acoustic and physical", ["Power input", "Electrical supply", "Sound power level",
+                                           "Dimensions (H×W×D)", "Operational Weight"]),
+]
+
+def render_datasheet(p):
+    mfr = p.get("manufacturer", ""); model = p.get("model", "")
+    display_name = f"{mfr} {model}".strip()
+    url = f"{BASE_URL}/products/{p['_slug']}/"
+    rows = dict(spec_rows(p))
+    def strip_links(v):
+        v = re.sub(r'\s*<a class="type-link"[^>]*>.*?</a>', "", v or "")
+        return re.sub(r"</?a\b[^>]*>", "", v)
+    table = ""
+    for title, labels in DS_SECTIONS:
+        body = "".join(f"<tr><th>{l}</th><td>{strip_links(rows[l])}</td></tr>" for l in labels if l in rows)
+        if body:
+            table += f'<tr class="sec"><th colspan="2">{title}</th></tr>{body}'
+    def kpi(label, val, cond=None):
+        if val in (None, ""): return ""
+        c = f'<div class="c">{esc(cond)}</div>' if cond else ""
+        return f'<div class="ds-kpi"><div class="l">{label}</div><div class="v">{val}</div>{c}</div>'
+    kpis = (kpi("Heating capacity", cap_str(p)) +
+            kpi("SCOP", num(p["scop"]) if p.get("scop") is not None else None,
+                p.get("scop_cond") if p.get("scop_cond") not in (None, "", "not stated") else None) +
+            kpi("COP", num(p["cop"]) if p.get("cop") is not None else None, p.get("cop_cond")) +
+            kpi("Max flow temp", f"{num(p['flow_temp_max'])}°C" if p.get("flow_temp_max") is not None else None) +
+            kpi("Sound power", f"{num(p['noise'])} dB(A)" if p.get("noise") is not None else None) +
+            kpi("Refrigerant", esc(p.get("refrigerant")) if p.get("refrigerant") else None))
+    photo = get_product_image(p)
+    photo_html = (f'<div class="ds-photo"><img src="{photo}" alt="{esc(display_name)}"></div>') if photo else ""
+    if p.get("bus_eligible"):
+        bus = (f'<p class="yes">&#10003; BUS eligible</p><p>{esc(bus_line(p))}.</p>'
+               + (f'<p>PEL certificate: {esc(p["bus_cert"])}</p>' if p.get("bus_cert") else "")
+               + '<p>Grant also needs an MCS-certified installer and a qualifying system design.</p>')
+    elif p.get("bus_over_cap"):
+        bus = f'<p class="no">On the Ofgem PEL, but rated above the {BUS_CAP_LIMIT_KW} kW BUS capacity limit.</p>'
+    else:
+        bus = '<p class="no">Not found on the Ofgem BUS Product Eligibility List.</p>'
+    if p.get("mcs_listed"):
+        mcs = '<p class="yes">&#10003; MCS listed</p>' + (f'<p>Certificate: {esc(p["mcs_cert"])}</p>' if p.get("mcs_cert") else "")
+    else:
+        mcs = '<p class="no">No MCS listing recorded.</p>'
+    badges = []
+    if p.get("bus_eligible"): badges.append('<span class="bus">&#10003; BUS eligible</span>')
+    if p.get("mcs_listed"): badges.append('<span>&#10003; MCS listed</span>')
+    for t in (TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type")), p.get("type"), p.get("mode")):
+        if t: badges.append(f"<span>{esc(t)}</span>")
+    has_cond = any(p.get(k) for k in ("cop_cond", "scop_cond", "eer_cond", "seer_cond"))
+    cond_note = ('<p class="ds-note"><b>Test conditions:</b> A = outdoor air &deg;C, W = flow water &deg;C '
+                 '(e.g. A7/W35 = 7&deg;C air, 35&deg;C flow). Compare COP and SCOP only at the same conditions.</p>') if has_cond else ""
+    code = f'<div class="code">Model code: {esc(p["product_code"])}</div>' if p.get("product_code") else ""
+    src = esc(p.get("source") or "Manufacturer data")
+    added = esc(nice_date(p.get("date_added")) or "")
+    title = f"{display_name} — Data Sheet | {SITE_NAME}"
+    desc = f"Free printable data sheet for the {display_name} heat pump: specifications, test conditions, MCS and BUS status."
+    return f"""<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{url}">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/datasheet.css?v=1">
+</head>
+<body>
+<div class="ds-bar"><button type="button" onclick="window.print()">Save as PDF / Print</button><a href="{url}">&larr; Back to product page</a><span>Free data sheet, no subscription</span></div>
+<article class="ds">
+  <header class="ds-head">
+    <div class="ds-brand"><img src="/images/brand/mark.svg" alt="">heatpump<span>database</span></div>
+    <div class="ds-kind">Product data sheet<b>heatpumpdatabase.com</b></div>
+  </header>
+  <div class="ds-title"><img class="logo" src="{get_logo_url(mfr)}" alt="{esc(mfr)} logo"><div><h1>{esc(display_name)}</h1>{code}</div></div>
+  <div class="ds-badges">{"".join(badges)}</div>
+  <div class="ds-main">
+    <div>
+      {photo_html}
+      <div class="ds-kpis">{kpis}</div>
+      <div class="ds-box"><h3>Boiler Upgrade Scheme</h3>{bus}</div>
+      <div class="ds-box"><h3>MCS certification</h3>{mcs}</div>
+    </div>
+    <div>
+      <table class="ds-spec">{table}</table>
+      {cond_note}
+    </div>
+  </div>
+  <footer class="ds-foot">
+    <div>Source: {src}{(' &middot; added ' + added) if added else ''} &middot; Verified by a human &middot; Sheet generated {esc(nice_date(TODAY))}.<br>
+    Data is compiled from manufacturer sources and may contain errors. Always confirm with the manufacturer before purchase or design.</div>
+    <div style="text-align:right;white-space:nowrap"><b>Full specification and comparisons</b><br>{url.replace('https://', '')}</div>
+  </footer>
+</article>
+</body>
+</html>"""
 
 def list_table(products):
     head = ("<tr><th>Model</th><th>Product code</th><th>Type</th><th>Capacity</th><th>COP</th>"
@@ -3478,9 +3600,49 @@ def refresh_home_page(products, by_mfr):
         f.write(app)
 
 
+BUS_CAP_LIMIT_KW = 45   # BUS: maximum installed capacity 45 kWth
+BUS_PEL_META = {}
+
+def apply_bus_pel(products):
+    """Mark products listed on Ofgem's BUS Product Eligibility List (bus-pel.json,
+    produced by tools/pel_match.py). A PEL match on a unit rated over the 45 kW
+    BUS capacity limit is not badged. Writes bus-pel.js for the app."""
+    global BUS_PEL_META
+    path = os.path.join(ROOT, "bus-pel.json")
+    if not os.path.exists(path):
+        return
+    data = json.load(open(path, encoding="utf-8"))
+    BUS_PEL_META = {k: v for k, v in data.items() if k != "items"}
+    items = data.get("items", {})
+    js = {}
+    for p in products:
+        it = items.get(str(p.get("id")))
+        if not it:
+            continue
+        caps = [v for v in (p.get("cap_min"), p.get("cap_max")) if isinstance(v, (int, float))]
+        if caps and max(caps) > BUS_CAP_LIMIT_KW:
+            p["bus_over_cap"] = True
+            continue
+        p["bus_eligible"] = True
+        p["bus_cert"] = it.get("cert")
+        p["bus_until"] = it.get("until")
+        js[p["id"]] = [it.get("cert"), it.get("until")]
+    with open(os.path.join(ROOT, "bus-pel.js"), "w", encoding="utf-8") as f:
+        f.write("// Generated by build.py from bus-pel.json (Ofgem BUS Product Eligibility List).\n")
+        f.write("window.BUS_PEL_DATE=" + json.dumps(BUS_PEL_META.get("pel_updated", "")) + ";\n")
+        f.write("window.BUS_PEL=" + json.dumps(js, separators=(",", ":")) + ";\n")
+    print(f"BUS: {len(js)} products badged BUS eligible (PEL {BUS_PEL_META.get('pel_updated','')}).")
+
+def bus_line(p):
+    """Plain-text BUS status for spec tables and data sheets."""
+    d = BUS_PEL_META.get("pel_updated")
+    on = f"Ofgem BUS Product Eligibility List{(' (' + d + ')') if d else ''}"
+    return f"Listed on the {on}"
+
 def main():
     with open(DATA, encoding="utf-8") as f:
         products = json.load(f)
+    apply_bus_pel(products)
 
     # clean previously generated output
     global TOTAL_PRODUCTS
@@ -3560,6 +3722,8 @@ def main():
     for p in products:
         write(os.path.join(ROOT, "products", p["_slug"], "index.html"),
               render_product(p, by_mfr, by_type))
+        write(os.path.join(ROOT, "products", p["_slug"], "data-sheet", "index.html"),
+              render_datasheet(p))
         url = f"{BASE_URL}/products/{p['_slug']}/"
         urls.append(url)
         _lastmod_for(url, product_hash_by_id[p.get("id")])

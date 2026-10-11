@@ -1,0 +1,5959 @@
+{
+ "pel_file": "BUS-external-PEL.xlsx",
+ "pel_updated": "24 Sep 2026",
+ "matched_on": "2026-10-11",
+ "items": {
+  "199": {
+   "cert": "037-0033-20-02",
+   "until": "2030-06-21",
+   "pel_model": "PUZ-WM60VAA-BS",
+   "method": "code"
+  },
+  "200": {
+   "cert": "037-0035-20-02",
+   "until": "2030-07-26",
+   "pel_model": "PUZ-HWM140VHA-BS",
+   "method": "code"
+  },
+  "201": {
+   "cert": "037-0113-23",
+   "until": "2033-06-29",
+   "pel_model": "CAHV-R450YA-HPB(-BS)",
+   "method": "code"
+  },
+  "282": {
+   "cert": "BBA 0037/06",
+   "until": null,
+   "pel_model": "GMLW 14 plus",
+   "method": "code"
+  },
+  "283": {
+   "cert": "BBA 0037/07",
+   "until": null,
+   "pel_model": "GMLW 19 plus",
+   "method": "code"
+  },
+  "284": {
+   "cert": "BBA 0037/08",
+   "until": null,
+   "pel_model": "GMLW 25 plus",
+   "method": "code"
+  },
+  "299": {
+   "cert": "041-K001-38 a",
+   "until": null,
+   "pel_model": "LW 140A",
+   "method": "code"
+  },
+  "300": {
+   "cert": "041-K001-39 a",
+   "until": null,
+   "pel_model": "LW 180A",
+   "method": "code"
+  },
+  "301": {
+   "cert": "041-K001-40 a",
+   "until": null,
+   "pel_model": "LW 251A",
+   "method": "code"
+  },
+  "306": {
+   "cert": "041-K001-12 c",
+   "until": null,
+   "pel_model": "WZSV 62(H)(K)3M",
+   "method": "code"
+  },
+  "307": {
+   "cert": "041-K001-26 c",
+   "until": null,
+   "pel_model": "WZSV 92(H)(K)3M(3~ 400V)",
+   "method": "code"
+  },
+  "308": {
+   "cert": "041-K001-13 c",
+   "until": null,
+   "pel_model": "WZSV 122(H)(K)3M",
+   "method": "code"
+  },
+  "309": {
+   "cert": "041-K001-50 a",
+   "until": null,
+   "pel_model": "WZSV 42K3M",
+   "method": "code"
+  },
+  "312": {
+   "cert": "041-K001-13 c",
+   "until": null,
+   "pel_model": "WZSV 122(H)(K)3M",
+   "method": "code"
+  },
+  "313": {
+   "cert": "041-K001-50 a",
+   "until": null,
+   "pel_model": "WZSV 42K3M",
+   "method": "code"
+  },
+  "314": {
+   "cert": "041-K001-12 a",
+   "until": null,
+   "pel_model": "SWCV 62(H)(K)3 (3~400V)",
+   "method": "code"
+  },
+  "315": {
+   "cert": "041-K001-26 a",
+   "until": null,
+   "pel_model": "SWCV 92(H)(K)3 (3~ 400V)",
+   "method": "code"
+  },
+  "316": {
+   "cert": "041-K001-13 a",
+   "until": null,
+   "pel_model": "SWCV 122(H)(K)3 (3~400V)",
+   "method": "code"
+  },
+  "317": {
+   "cert": "041-K001-14 a",
+   "until": null,
+   "pel_model": "SWCV 162(H)(K)3 (3~400V)",
+   "method": "code"
+  },
+  "342": {
+   "cert": "ICIM-PDC-000111 / 01-01",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 35 M NET R32",
+   "method": "code"
+  },
+  "343": {
+   "cert": "ICIM-PDC-000111 / 01-01",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 35 M NET R32",
+   "method": "code"
+  },
+  "344": {
+   "cert": "ICIM-PDC-000117 / 01-01",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 80 M NET R32",
+   "method": "cert"
+  },
+  "345": {
+   "cert": "ICIM-PDC-000108 / 01-01",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 120 M NET R32",
+   "method": "cert"
+  },
+  "346": {
+   "cert": "ICIM-PDC-000108 / 01-02",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 150 M NET R32",
+   "method": "cert"
+  },
+  "347": {
+   "cert": "ICIM-PDC-000117 / 01-02",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 80 M-T NET R32",
+   "method": "cert"
+  },
+  "348": {
+   "cert": "ICIM-PDC-000108 / 01-03",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 120 M-T NET R32",
+   "method": "cert"
+  },
+  "349": {
+   "cert": "ICIM-PDC-000108 / 01-04",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS PLUS 150 M-T NET R32",
+   "method": "cert"
+  },
+  "350": {
+   "cert": "ICIM-PDC-000109 / 02-02",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 35 M NET R32",
+   "method": "cert"
+  },
+  "351": {
+   "cert": "ICIM-PDC-000109 / 02-04",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 50 M NET R32",
+   "method": "cert"
+  },
+  "352": {
+   "cert": "ICIM-PDC-000115 / 02-02",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 80 M NET R32",
+   "method": "cert"
+  },
+  "353": {
+   "cert": "ICIM-PDC-000106 / 01-01",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 120 M NET R32",
+   "method": "cert"
+  },
+  "354": {
+   "cert": "ICIM-PDC-000106 / 01-03",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 150 M NET R32",
+   "method": "cert"
+  },
+  "355": {
+   "cert": "ICIM-PDC-000115 / 02-04",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 80 M-T NET R32",
+   "method": "cert"
+  },
+  "356": {
+   "cert": "ICIM-PDC-000106 / 01-02",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 120 M-T NET R32",
+   "method": "cert"
+  },
+  "357": {
+   "cert": "ICIM-PDC-000106 / 01-04",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS COMPACT 150 M-T NET R32",
+   "method": "cert"
+  },
+  "358": {
+   "cert": "ICIM-PDC-000111 / 01-03",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 35 M NET R32",
+   "method": "cert"
+  },
+  "359": {
+   "cert": "ICIM-PDC-000111 / 01-04",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 50 M NET R32",
+   "method": "cert"
+  },
+  "360": {
+   "cert": "ICIM-PDC-000117 / 01-03",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 80 M NET R32",
+   "method": "cert"
+  },
+  "361": {
+   "cert": "ICIM-PDC-000108 / 01-05",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 120 M NET R32",
+   "method": "cert"
+  },
+  "362": {
+   "cert": "ICIM-PDC-000108 / 01-06",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 150 M NET R32",
+   "method": "cert"
+  },
+  "363": {
+   "cert": "ICIM-PDC-000117 / 01-04",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 80 M-T NET R32",
+   "method": "cert"
+  },
+  "364": {
+   "cert": "ICIM-PDC-000108 / 01-07",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 120 M-T NET R32",
+   "method": "cert"
+  },
+  "365": {
+   "cert": "ICIM-PDC-000108 / 01-08",
+   "until": "2031-10-05",
+   "pel_model": "NIMBUS POCKET 150 M-T NET R32",
+   "method": "cert"
+  },
+  "366": {
+   "cert": "ICIM-PDC-000111 / 02-02",
+   "until": "2031-10-05",
+   "pel_model": "3302304 NIMBUS M HYBRID UNIVERSAL 35 R32 NET",
+   "method": "cert"
+  },
+  "367": {
+   "cert": "ICIM-PDC-000111 / 02-03",
+   "until": "2031-10-05",
+   "pel_model": "3302305 NIMBUS M HYBRID UNIVERSAL 50 R32 NET",
+   "method": "cert"
+  },
+  "368": {
+   "cert": "ICIM-PDC-000117 / 02-02",
+   "until": "2031-10-05",
+   "pel_model": "3302306 NIMBUS M HYBRID UNIVERSAL 80 R32 NET",
+   "method": "cert"
+  },
+  "369": {
+   "cert": "ICIM-PDC-000117 / 02-03",
+   "until": "2031-10-05",
+   "pel_model": "3302307 NIMBUS M HYBRID UNIVERSAL 80 T R32 NET",
+   "method": "cert"
+  },
+  "370": {
+   "cert": "ICIM-PDC-000108 / 02-04",
+   "until": "2031-10-05",
+   "pel_model": "3302308 NIMBUS M HYBRID UNIVERSAL 120 R32 NET",
+   "method": "cert"
+  },
+  "371": {
+   "cert": "ICIM-PDC-000108 / 02-05",
+   "until": "2031-10-05",
+   "pel_model": "3302309 NIMBUS M HYBRID UNIVERSAL 120 T R32 NET",
+   "method": "cert"
+  },
+  "372": {
+   "cert": "ICIM-PDC-000108 / 02-06",
+   "until": "2031-10-05",
+   "pel_model": "3302310 NIMBUS M HYBRID UNIVERSAL 150 R32 NET",
+   "method": "cert"
+  },
+  "373": {
+   "cert": "ICIM-PDC-000108 / 02-07",
+   "until": "2031-10-05",
+   "pel_model": "3302311 NIMBUS M HYBRID UNIVERSAL 150 T R32 NET",
+   "method": "cert"
+  },
+  "374": {
+   "cert": "MCS HP0033/01",
+   "until": null,
+   "pel_model": "HP40-4-1PHMB Mono 2 AWHP 4MR",
+   "method": "cert"
+  },
+  "375": {
+   "cert": "MCS HP0033/02",
+   "until": null,
+   "pel_model": "HP40-5-1PHMB Mono 2 AWHP 6MR",
+   "method": "cert"
+  },
+  "376": {
+   "cert": "MCS HP0033/03",
+   "until": null,
+   "pel_model": "HP40-7-1PHMB Mono 2 AWHP 8MR",
+   "method": "cert"
+  },
+  "377": {
+   "cert": "MCS HP0033/04",
+   "until": null,
+   "pel_model": "HP40-8-1PHMB Mono 2 AWHP 10MR",
+   "method": "cert"
+  },
+  "378": {
+   "cert": "MCS HP0033/05",
+   "until": null,
+   "pel_model": "HP40-11-1PHMB Mono 2 AWHP 12MR",
+   "method": "cert"
+  },
+  "379": {
+   "cert": "MCS HP0033/06",
+   "until": null,
+   "pel_model": "HP40-13-1PHMB Mono 2 AWHP 16MR",
+   "method": "cert"
+  },
+  "380": {
+   "cert": "MCS HP0033/07",
+   "until": null,
+   "pel_model": "HP40-11-3PHMB Mono 2 AWHP 12TR",
+   "method": "cert"
+  },
+  "381": {
+   "cert": "MCS HP0033/08",
+   "until": null,
+   "pel_model": "HP40-13-3PHMB Mono 2 AWHP 16TR",
+   "method": "cert"
+  },
+  "389": {
+   "cert": "MCS HP0329/05",
+   "until": null,
+   "pel_model": "Bosch CS5800iAW 4 ORE-S",
+   "method": "cert"
+  },
+  "390": {
+   "cert": "MCS HP0329/06",
+   "until": null,
+   "pel_model": "Bosch CS5800iAW 5 ORE-S",
+   "method": "cert"
+  },
+  "391": {
+   "cert": "MCS HP0329/07",
+   "until": null,
+   "pel_model": "Bosch CS5800iAW 7 ORE-S",
+   "method": "cert"
+  },
+  "392": {
+   "cert": "041-K044-01 a",
+   "until": null,
+   "pel_model": "CS2000AWF 4 R-S",
+   "method": "cert"
+  },
+  "393": {
+   "cert": "041-K044-01 b",
+   "until": null,
+   "pel_model": "CS2000AWF 6 R-S",
+   "method": "cert"
+  },
+  "394": {
+   "cert": "041-K044-02 a",
+   "until": null,
+   "pel_model": "CS2000AWF 8 R-S",
+   "method": "cert"
+  },
+  "395": {
+   "cert": "041-K044-02 b",
+   "until": null,
+   "pel_model": "CS2000AWF 10 R-S",
+   "method": "code"
+  },
+  "403": {
+   "cert": "011-1W0122_01",
+   "until": "2027-07-31",
+   "pel_model": "Bosch CS7001iAW 5 ORE-S",
+   "method": "cert"
+  },
+  "404": {
+   "cert": "011-1W0123_01",
+   "until": "2027-07-31",
+   "pel_model": "Bosch CS7001iAW 7 ORE-S",
+   "method": "cert"
+  },
+  "405": {
+   "cert": "011-1W0124_01",
+   "until": "2027-07-31",
+   "pel_model": "Bosch CS7001iAW 9 ORE-S",
+   "method": "cert"
+  },
+  "601": {
+   "cert": "BBA 0055/46",
+   "until": null,
+   "pel_model": "Shoebox NX 3",
+   "method": "code"
+  },
+  "602": {
+   "cert": "BBA 0055/45",
+   "until": null,
+   "pel_model": "Shoebox NX5 Single Compressor Single Phase - S5-P0K",
+   "method": "cert"
+  },
+  "603": {
+   "cert": "BBA 0055/31",
+   "until": null,
+   "pel_model": "Type 3kW Shoebox Single Compressor Single Phase – S3-P0K",
+   "method": "code"
+  },
+  "604": {
+   "cert": "BBA 0055/35",
+   "until": null,
+   "pel_model": "Type 6kW Shoebox Twin Compressor Single Phase – S6-P0K",
+   "method": "cert"
+  },
+  "605": {
+   "cert": "BBA 0055/41",
+   "until": null,
+   "pel_model": "K070-S1H – Ground source heat pump (7 kW Evo)",
+   "method": "cert"
+  },
+  "606": {
+   "cert": "BBA 0055/42",
+   "until": null,
+   "pel_model": "K090-S1H – Ground source heat pump (9kW Evo)",
+   "method": "cert"
+  },
+  "607": {
+   "cert": "BBA 0055/43",
+   "until": null,
+   "pel_model": "K130-S1H – Ground source heat pump (13kW Evo)",
+   "method": "cert"
+  },
+  "608": {
+   "cert": "BBA 0055/39",
+   "until": null,
+   "pel_model": "K150-S3H – Ground source heat pump (15kW Evo)",
+   "method": "cert"
+  },
+  "609": {
+   "cert": "BBA 0055/44",
+   "until": null,
+   "pel_model": "K170-S1H – Ground source heat pump (17kW Evo)",
+   "method": "cert"
+  },
+  "610": {
+   "cert": "KIWA 00027/024 HP",
+   "until": "2027-08-25",
+   "pel_model": "Ideal Logic Air 4kW",
+   "method": "code"
+  },
+  "611": {
+   "cert": "KIWA 00027/023 HP",
+   "until": "2027-08-25",
+   "pel_model": "Ideal Logic Air 5kW",
+   "method": "code"
+  },
+  "612": {
+   "cert": "KIWA 00027/021 HP",
+   "until": "2027-08-25",
+   "pel_model": "Ideal Logic Air 8kW",
+   "method": "code"
+  },
+  "613": {
+   "cert": "KIWA 00027/022 HP",
+   "until": "2027-08-25",
+   "pel_model": "Ideal Logic Air 10kW",
+   "method": "code"
+  },
+  "617": {
+   "cert": "24.04.001 HP290 Monobloc 10kW",
+   "until": null,
+   "pel_model": "HP290 Monobloc 10kW",
+   "method": "code"
+  },
+  "657": {
+   "cert": "MCS HP0265/01",
+   "until": null,
+   "pel_model": "Aerona HPR2904",
+   "method": "cert"
+  },
+  "658": {
+   "cert": "MCS HP0265/02",
+   "until": null,
+   "pel_model": "Aerona HPR29065",
+   "method": "cert"
+  },
+  "659": {
+   "cert": "MCS HP0265/03",
+   "until": null,
+   "pel_model": "Aerona HPR2909",
+   "method": "cert"
+  },
+  "660": {
+   "cert": "ICIM-PDC-000303",
+   "until": "2033-08-30",
+   "pel_model": "HPR29012",
+   "method": "code"
+  },
+  "661": {
+   "cert": "MCS HP0265/05",
+   "until": null,
+   "pel_model": "Aerona HPR290155",
+   "method": "cert"
+  },
+  "662": {
+   "cert": "BBA 0009/15",
+   "until": null,
+   "pel_model": "Grant Aerona3 HPID6 R32",
+   "method": "cert"
+  },
+  "663": {
+   "cert": "BBA 0009/16",
+   "until": null,
+   "pel_model": "Grant Aerona3 HPID10 R32",
+   "method": "cert"
+  },
+  "664": {
+   "cert": "BBA 0009/18",
+   "until": null,
+   "pel_model": "Grant Aerona3 HPID13 R32",
+   "method": "cert"
+  },
+  "665": {
+   "cert": "BBA 0009/17",
+   "until": null,
+   "pel_model": "Grant Aerona3 HPID17 R32",
+   "method": "cert"
+  },
+  "693": {
+   "cert": "012-C700141",
+   "until": "2032-06-06",
+   "pel_model": "F2050-6 (1x230V)",
+   "method": "code"
+  },
+  "694": {
+   "cert": "012-C700142",
+   "until": "2032-12-11",
+   "pel_model": "F2050-10 (1x230V)",
+   "method": "code"
+  },
+  "695": {
+   "cert": "012-C700251",
+   "until": "2034-11-03",
+   "pel_model": "F2050-12 (1x230V)",
+   "method": "code"
+  },
+  "696": {
+   "cert": "012-C700252",
+   "until": "2034-11-03",
+   "pel_model": "F2050-16 (1x230V)",
+   "method": "code"
+  },
+  "697": {
+   "cert": "012-C700114",
+   "until": "2031-12-30",
+   "pel_model": "S2125-8 (1x230V)",
+   "method": "code"
+  },
+  "698": {
+   "cert": "012-C700115",
+   "until": "2031-12-30",
+   "pel_model": "S2125-12 (1x230V)",
+   "method": "code"
+  },
+  "699": {
+   "cert": "012-C700272",
+   "until": "2034-06-25",
+   "pel_model": "S2125-16",
+   "method": "code"
+  },
+  "700": {
+   "cert": "012-C700273",
+   "until": "2034-06-25",
+   "pel_model": "S2125-20",
+   "method": "code"
+  },
+  "701": {
+   "cert": "012-C700074",
+   "until": "2030-06-08",
+   "pel_model": "S1155-25 3x400",
+   "method": "cert"
+  },
+  "702": {
+   "cert": "012-050",
+   "until": "2027-06-14",
+   "pel_model": "F1345-24",
+   "method": "code"
+  },
+  "703": {
+   "cert": "012-051",
+   "until": "2027-06-14",
+   "pel_model": "F1345-30",
+   "method": "code"
+  },
+  "704": {
+   "cert": "012-052",
+   "until": "2027-06-14",
+   "pel_model": "F1345-40",
+   "method": "code"
+  },
+  "705": {
+   "cert": "012-050",
+   "until": "2027-06-14",
+   "pel_model": "F1345-24",
+   "method": "cert"
+  },
+  "706": {
+   "cert": "012-SC1196-17",
+   "until": "2027-10-05",
+   "pel_model": "F1355 - 28",
+   "method": "code"
+  },
+  "707": {
+   "cert": "012-C700002",
+   "until": "2030-02-11",
+   "pel_model": "F1355-43 3x400",
+   "method": "cert"
+  },
+  "708": {
+   "cert": "012-C700186 issue 1",
+   "until": "2033-09-03",
+   "pel_model": "S1156-8 PC EM 1x230V & S1256-8 PC EM 1x230V",
+   "method": "cert"
+  },
+  "709": {
+   "cert": "012-C700187_issue1",
+   "until": "2033-09-03",
+   "pel_model": "NIBE S1156-13 EM 1x230V and NIBE S1256-13 R EM UK 1x230V",
+   "method": "cert"
+  },
+  "710": {
+   "cert": "012-C700186 issue 1",
+   "until": "2033-09-03",
+   "pel_model": "S1156-8 PC EM 1x230V & S1256-8 PC EM 1x230V",
+   "method": "cert"
+  },
+  "711": {
+   "cert": "012-C700187_issue1",
+   "until": "2033-09-03",
+   "pel_model": "NIBE S1156-13 EM 1x230V and NIBE S1256-13 R EM UK 1x230V",
+   "method": "cert"
+  },
+  "712": {
+   "cert": "MCS HP0270/122",
+   "until": null,
+   "pel_model": "MHC-V4WD2N7-****",
+   "method": "code"
+  },
+  "713": {
+   "cert": "MCS HP0270/123",
+   "until": null,
+   "pel_model": "MHC-V6WD2N7-****",
+   "method": "code"
+  },
+  "714": {
+   "cert": "MCS HP0270/124",
+   "until": null,
+   "pel_model": "MHC-V8WD2N7-****",
+   "method": "code"
+  },
+  "715": {
+   "cert": "MCS HP0270/125",
+   "until": null,
+   "pel_model": "MHC-V10WD2N7-****",
+   "method": "code"
+  },
+  "716": {
+   "cert": "MCS HP0270/126",
+   "until": null,
+   "pel_model": "MHC-V12WD2N7-****",
+   "method": "code"
+  },
+  "717": {
+   "cert": "MCS HP0270/128",
+   "until": null,
+   "pel_model": "MHC-V14WD2N7-****",
+   "method": "code"
+  },
+  "718": {
+   "cert": "MCS HP0270/130",
+   "until": null,
+   "pel_model": "MHC-V16WD2N7-****",
+   "method": "code"
+  },
+  "719": {
+   "cert": "MCS HP0270/127",
+   "until": null,
+   "pel_model": "MHC-V12WD2RN7-****",
+   "method": "code"
+  },
+  "720": {
+   "cert": "MCS HP0270/129",
+   "until": null,
+   "pel_model": "MHC-V14WD2RN7-****",
+   "method": "code"
+  },
+  "721": {
+   "cert": "MCS HP0270/131",
+   "until": null,
+   "pel_model": "MHC-V16WD2RN7-****",
+   "method": "code"
+  },
+  "748": {
+   "cert": "011-1W0850_09",
+   "until": "2034-07-31",
+   "pel_model": "WH-WXG09ME5 + WH-SDC0916M3E5",
+   "method": "code"
+  },
+  "749": {
+   "cert": "011-1W0850_12",
+   "until": "2034-07-31",
+   "pel_model": "WH-WXG12ME5 + WH-SDC0916M3E5",
+   "method": "code"
+  },
+  "750": {
+   "cert": "011-1W0924_1",
+   "until": "2034-11-30",
+   "pel_model": "WH-WXG16ME8 (Outdoor unit Stand-alone)",
+   "method": "code"
+  },
+  "751": {
+   "cert": "011-1W0925_1",
+   "until": "2034-11-30",
+   "pel_model": "WH-WXG20ME8 (Outdoor unit Stand-alone)",
+   "method": "code"
+  },
+  "752": {
+   "cert": "011-1W0925_3",
+   "until": "2034-11-30",
+   "pel_model": "WH-WXG25ME8 (Outdoor unit Stand-alone)",
+   "method": "code"
+  },
+  "753": {
+   "cert": "011-1W1146_01",
+   "until": "2035-04-30",
+   "pel_model": "WH-WXG30ME8",
+   "method": "code"
+  },
+  "781": {
+   "cert": "011-1W0686_1",
+   "until": "2034-06-30",
+   "pel_model": "AE050CXYDEK/EU & MIM-E03EN",
+   "method": "code"
+  },
+  "782": {
+   "cert": "011-1W0687_1",
+   "until": "2034-06-30",
+   "pel_model": "AE080CXYDEK/EU + MIM-E03EN",
+   "method": "code"
+  },
+  "783": {
+   "cert": "011-1W0684_3",
+   "until": "2034-06-30",
+   "pel_model": "AE120CXYDEK/EU +AE260CNWMEG/EU",
+   "method": "code"
+  },
+  "784": {
+   "cert": "011-1W0684_5",
+   "until": "2034-06-30",
+   "pel_model": "AE160CXYDEK/EU + AE260CNWMEG/EU",
+   "method": "code"
+  },
+  "785": {
+   "cert": "011-1W0687_3",
+   "until": "2033-09-30",
+   "pel_model": "AE080CXYBEK/EU",
+   "method": "code"
+  },
+  "786": {
+   "cert": "011-1W0685_5",
+   "until": "2033-09-30",
+   "pel_model": "AE120CXYBEK/EU AE160CXYBEK/EU",
+   "method": "cert"
+  },
+  "787": {
+   "cert": "011-1W0685_5",
+   "until": "2033-09-30",
+   "pel_model": "AE120CXYBEK/EU AE160CXYBEK/EU",
+   "method": "cert"
+  },
+  "788": {
+   "cert": "MCS HP0227/17",
+   "until": null,
+   "pel_model": "AE160AXEDEH/EU / AE160ANYDEH/EU",
+   "method": "cert"
+  },
+  "789": {
+   "cert": "011-1W0550_01",
+   "until": "2034-06-30",
+   "pel_model": "AE120BXYDEG/EU & MIM-E03EN",
+   "method": "code"
+  },
+  "790": {
+   "cert": "011-1W0550_05",
+   "until": "2034-06-30",
+   "pel_model": "AE140BXYDEG/EU & MIM-E03EN",
+   "method": "code"
+  },
+  "1356": {
+   "cert": "KIWA 00044/001 HP",
+   "until": "2026-10-26",
+   "pel_model": "aroTHERM Plus 10kW  VWL 105/6 A S2",
+   "method": "cert"
+  },
+  "1357": {
+   "cert": "KIWA 00044/002 HP",
+   "until": "2026-10-26",
+   "pel_model": "aroTHERM Plus 12kW  VWL 125/6 A S2",
+   "method": "cert"
+  },
+  "1371": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1372": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1373": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1374": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1375": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1376": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1377": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1378": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1379": {
+   "cert": "011-1W0465_01",
+   "until": "2031-12-31",
+   "pel_model": "Vitocal 150-A AWO-M-E-AC-AF 151.A10",
+   "method": "cert"
+  },
+  "1392": {
+   "cert": "011-1W0833_01",
+   "until": "2034-07-31",
+   "pel_model": "AWO-AC-AF251.A40",
+   "method": "code"
+  },
+  "1393": {
+   "cert": "011-1W0291",
+   "until": null,
+   "pel_model": "Vitocal 300-G BWC 301.C06",
+   "method": "code"
+  },
+  "1394": {
+   "cert": "011-1W0292",
+   "until": null,
+   "pel_model": "Vitocal 300-G BWC 301.C12",
+   "method": "code"
+  },
+  "1395": {
+   "cert": "011-1W0212",
+   "until": "2030-08-31",
+   "pel_model": "Vitocal 300-G BWC 301.C16",
+   "method": "code"
+  },
+  "1444": {
+   "cert": "MCS HP0255/03",
+   "until": null,
+   "pel_model": "Cosy 6",
+   "method": "cert"
+  },
+  "1445": {
+   "cert": "MCS HP0255/04",
+   "until": null,
+   "pel_model": "Cosy 9",
+   "method": "cert"
+  },
+  "1457": {
+   "cert": "011-1W0981_01",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 05.2 Trend HC 230",
+   "method": "code"
+  },
+  "1458": {
+   "cert": "011-1W0981_02",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 07.2 Trend HC 230",
+   "method": "code"
+  },
+  "1459": {
+   "cert": "011-1W0981",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 10.2 Trend HC 230",
+   "method": "code"
+  },
+  "1460": {
+   "cert": "011-1W0982_01",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 13.2 Trend HC 230",
+   "method": "code"
+  },
+  "1461": {
+   "cert": "011-1W0982",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 13.2 Trend HC 400",
+   "method": "code"
+  },
+  "1462": {
+   "cert": "011-1W1166_01",
+   "until": "2035-12-31",
+   "pel_model": "HPA-O 17.2 Trend HC 400",
+   "method": "code"
+  },
+  "1463": {
+   "cert": "011-1W0978",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 07.2 Plus HC 230",
+   "method": "code"
+  },
+  "1464": {
+   "cert": "011-1W0979_01",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 10.2 Plus HC 230",
+   "method": "code"
+  },
+  "1465": {
+   "cert": "011-1W0979",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 10.2 Plus HC 400",
+   "method": "code"
+  },
+  "1466": {
+   "cert": "011-1W0980",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 13.2 Plus HC 400",
+   "method": "code"
+  },
+  "1467": {
+   "cert": "011-1W0978_01",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 07.2 W Plus HC 230",
+   "method": "code"
+  },
+  "1468": {
+   "cert": "011-1W0979_02",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 10.2 W Plus HC 230",
+   "method": "code"
+  },
+  "1469": {
+   "cert": "011-1W0979_03",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 10.2 W Plus HC 400",
+   "method": "code"
+  },
+  "1470": {
+   "cert": "011-1W0980_01",
+   "until": "2035-02-28",
+   "pel_model": "HPA-O 13.2 W Plus HC 400",
+   "method": "code"
+  },
+  "1471": {
+   "cert": "011-1W0393_02",
+   "until": "2030-08-31",
+   "pel_model": "WPL-A 07 HK 230 Premium",
+   "method": "code"
+  },
+  "1472": {
+   "cert": "012-C700369",
+   "until": "2035-03-19",
+   "pel_model": "WPE-I 07.1 Plus H 230",
+   "method": "code"
+  },
+  "1473": {
+   "cert": "012-C700370",
+   "until": "2035-03-19",
+   "pel_model": "WPE-I 12.1 Plus H 230",
+   "method": "code"
+  },
+  "1474": {
+   "cert": "011-1W0394_05",
+   "until": "2030-09-30",
+   "pel_model": "WPE-I 08 H 230 Premium",
+   "method": "cert"
+  },
+  "1475": {
+   "cert": "011-1W0395_03",
+   "until": "2030-09-30",
+   "pel_model": "WPE-I 15 H 230 Premium",
+   "method": "cert"
+  },
+  "1476": {
+   "cert": "011-1W0332",
+   "until": "2029-04-09",
+   "pel_model": "WPE-I 33 H 400 Premium",
+   "method": "code"
+  },
+  "1477": {
+   "cert": "011-1W0333",
+   "until": "2029-04-09",
+   "pel_model": "WPE-I 44 H 400 Premium",
+   "method": "code"
+  },
+  "1532": {
+   "cert": "KIWA 00033/056 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM051MR U44",
+   "method": "code"
+  },
+  "1533": {
+   "cert": "KIWA 00033/057 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM071MR U44",
+   "method": "code"
+  },
+  "1534": {
+   "cert": "KIWA 00033/058 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM091MR U44",
+   "method": "code"
+  },
+  "1536": {
+   "cert": "KIWA 00033/059 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM121MR U34",
+   "method": "code"
+  },
+  "1537": {
+   "cert": "KIWA 00033/062 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM123MR U34",
+   "method": "code"
+  },
+  "1538": {
+   "cert": "KIWA 00033/060 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM141MR U34",
+   "method": "code"
+  },
+  "1539": {
+   "cert": "KIWA 00033/063 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM143MR U34",
+   "method": "code"
+  },
+  "1540": {
+   "cert": "KIWA 00033/061 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM161MR U34",
+   "method": "code"
+  },
+  "1541": {
+   "cert": "KIWA 00033/064 HP",
+   "until": "2027-03-11",
+   "pel_model": "HM163MR U34",
+   "method": "code"
+  },
+  "1542": {
+   "cert": "011-1W0689_31",
+   "until": "2033-09-30",
+   "pel_model": "HM093HFX UB60 / HN16XAHC NK1",
+   "method": "cert"
+  },
+  "1543": {
+   "cert": "011-1W0689_36",
+   "until": "2033-09-30",
+   "pel_model": "HM121HF UB60 / PHCS1 EEWXLEU",
+   "method": "cert"
+  },
+  "1544": {
+   "cert": "011-1W0689_28",
+   "until": "2033-09-30",
+   "pel_model": "HM123HF UB60 / HN16XAHC NK1",
+   "method": "cert"
+  },
+  "1545": {
+   "cert": "011-1W0689_35",
+   "until": "2033-09-30",
+   "pel_model": "HM141HF UB60 / PHCS1 EEWXLEU",
+   "method": "cert"
+  },
+  "1546": {
+   "cert": "011-1W0689_26",
+   "until": "2033-09-30",
+   "pel_model": "HM143HF UB60 / HN20XAHY NK1",
+   "method": "cert"
+  },
+  "1547": {
+   "cert": "011-1W0689_34",
+   "until": "2033-09-30",
+   "pel_model": "HM161HF UB60 / PHCS1 EEWXLEU",
+   "method": "cert"
+  },
+  "1548": {
+   "cert": "011-1W0689_37",
+   "until": "2033-09-30",
+   "pel_model": "HM163HF UB60 / PHCS1 EEWXLEU",
+   "method": "cert"
+  },
+  "1549": {
+   "cert": "KIWA 00033/035 HP",
+   "until": "2027-03-11",
+   "pel_model": "HU051MR U44 / HN091MR NK5",
+   "method": "cert"
+  },
+  "1550": {
+   "cert": "KIWA 00033/036 HP",
+   "until": "2027-03-11",
+   "pel_model": "HU071MR U44 / HN091MR NK5",
+   "method": "cert"
+  },
+  "1551": {
+   "cert": "KIWA 00033/037 HP",
+   "until": "2027-03-11",
+   "pel_model": "HU091MR U44 / HN091MR NK5",
+   "method": "cert"
+  },
+  "1552": {
+   "cert": "KIWA 00033/044 HP",
+   "until": "2027-03-11",
+   "pel_model": "HU121 MA U33 / HN 1616M NK5",
+   "method": "cert"
+  },
+  "1553": {
+   "cert": "KIWA 00033/046 HP",
+   "until": "2027-03-11",
+   "pel_model": "HU141 MA U33 / HN 1616M NK5",
+   "method": "cert"
+  },
+  "1554": {
+   "cert": "KIWA 00033/048 HP",
+   "until": "2027-03-11",
+   "pel_model": "HU161 MA U33 / HN 1616M NK5",
+   "method": "cert"
+  },
+  "1555": {
+   "cert": "011-1W0962_6",
+   "until": "2035-01-31",
+   "pel_model": "HM123MRS UB40",
+   "method": "cert"
+  },
+  "1556": {
+   "cert": "011-1W0962_4",
+   "until": "2035-01-31",
+   "pel_model": "HM143MRS UB40",
+   "method": "cert"
+  },
+  "1557": {
+   "cert": "011-1W0962_2",
+   "until": "2035-01-31",
+   "pel_model": "HM163MRS UB40",
+   "method": "cert"
+  },
+  "1564": {
+   "cert": "MCS HP0017/39",
+   "until": null,
+   "pel_model": "A6M",
+   "method": "cert"
+  },
+  "1565": {
+   "cert": "MCS HP0017/37",
+   "until": null,
+   "pel_model": "A8M",
+   "method": "cert"
+  },
+  "1566": {
+   "cert": "MCS HP0017/33",
+   "until": null,
+   "pel_model": "A12M",
+   "method": "cert"
+  },
+  "1567": {
+   "cert": "MCS HP0017/34",
+   "until": null,
+   "pel_model": "A16M",
+   "method": "cert"
+  },
+  "1574": {
+   "cert": "041-K021-03",
+   "until": null,
+   "pel_model": "AHZ-044HCDS1",
+   "method": "code"
+  },
+  "1575": {
+   "cert": "041-K021-04",
+   "until": null,
+   "pel_model": "AHZ-080HCDS1",
+   "method": "code"
+  },
+  "1576": {
+   "cert": "011-1W0661_1",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-100HCDS1",
+   "method": "code"
+  },
+  "1577": {
+   "cert": "011-1W0661_2",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-100HEDS1",
+   "method": "code"
+  },
+  "1578": {
+   "cert": "011-1W0661_3",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-120HCDS1",
+   "method": "code"
+  },
+  "1579": {
+   "cert": "011-1W0661_4",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-120HEDS1",
+   "method": "code"
+  },
+  "1580": {
+   "cert": "011-1W0662_1",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-140HCDS1",
+   "method": "code"
+  },
+  "1581": {
+   "cert": "011-1W0662_2",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-140HEDS1",
+   "method": "code"
+  },
+  "1582": {
+   "cert": "011-1W0662_3",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-160HCDS1",
+   "method": "code"
+  },
+  "1583": {
+   "cert": "011-1W0662_4",
+   "until": "2033-08-10",
+   "pel_model": "AHZ-160HEDS1",
+   "method": "code"
+  },
+  "1588": {
+   "cert": "MCS HP0369/01",
+   "until": null,
+   "pel_model": "H1A05**-GB",
+   "method": "code"
+  },
+  "1589": {
+   "cert": "MCS HP0369/01",
+   "until": null,
+   "pel_model": "H1A05**-GB",
+   "method": "code"
+  },
+  "1590": {
+   "cert": "MCS HP0369/02",
+   "until": null,
+   "pel_model": "H1D09**-GB",
+   "method": "code"
+  },
+  "1591": {
+   "cert": "MCS HP0369/02",
+   "until": null,
+   "pel_model": "H1D09**-GB",
+   "method": "code"
+  },
+  "1592": {
+   "cert": "MCS HP0289/03",
+   "until": null,
+   "pel_model": "Activair High Temp 5kw",
+   "method": "code"
+  },
+  "1596": {
+   "cert": "011-1W1214_01",
+   "until": "2036-02-28",
+   "pel_model": "HA 5-7.1 O 230V B2",
+   "method": "code"
+  },
+  "1597": {
+   "cert": "011-1W1215_01",
+   "until": "2036-02-28",
+   "pel_model": "HA 7-7.1 O 230V B2",
+   "method": "code"
+  },
+  "1598": {
+   "cert": "011-1W1248_01",
+   "until": "2036-04-30",
+   "pel_model": "HA 11-7.1 O 230V B2",
+   "method": "code"
+  },
+  "1619": {
+   "cert": "047-A1001",
+   "until": "2035-06-29",
+   "pel_model": "CTC EcoAir C106 1x230V",
+   "method": "code"
+  },
+  "1620": {
+   "cert": "047-A1008",
+   "until": "2035-06-29",
+   "pel_model": "CTC EcoAir C108 1x230V",
+   "method": "cert"
+  },
+  "1621": {
+   "cert": "047-A1009",
+   "until": "2035-06-29",
+   "pel_model": "CTC EcoAir C112 1x230V",
+   "method": "cert"
+  },
+  "1622": {
+   "cert": "047-A1010",
+   "until": "2035-06-29",
+   "pel_model": "CTC EcoAir C116 1x230V",
+   "method": "cert"
+  },
+  "1623": {
+   "cert": "047-A1008",
+   "until": "2035-06-29",
+   "pel_model": "CTC EcoAir C108 1x230V",
+   "method": "code"
+  },
+  "1624": {
+   "cert": "047-A1009",
+   "until": "2035-06-29",
+   "pel_model": "CTC EcoAir C112 1x230V",
+   "method": "code"
+  },
+  "1625": {
+   "cert": "047-A1010_1",
+   "until": "2035-06-29",
+   "pel_model": "CTC EcoAir C116 3x400V",
+   "method": "cert"
+  },
+  "1677": {
+   "cert": "MR 50717196 0001/001",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM06(12)-ND2-WW1 and outdoor unit HPM06-ND2-H",
+   "method": "code"
+  },
+  "1678": {
+   "cert": "MR 50717196 0001/002",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM06(12)-ND2-WW1 and outdoor unit HPM08-ND2-H",
+   "method": "code"
+  },
+  "1679": {
+   "cert": "MR 50717196 0001/003",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM06(12)-ND2-WW1 and outdoor unit HPM10-ND2-H",
+   "method": "code"
+  },
+  "1680": {
+   "cert": "MR 50717196 0001/005",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM10(12)-TND2-WW1 and outdoor unit HPM10-TND2-H",
+   "method": "code"
+  },
+  "1681": {
+   "cert": "MR 50717196 0001/004",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM06(12)-ND2-WW1 and outdoor unit HPM12-ND2-H",
+   "method": "code"
+  },
+  "1682": {
+   "cert": "MR 50717196 0001/006",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM10(12)-TND2-WW1 and outdoor unit HPM12-TND2-H",
+   "method": "code"
+  },
+  "1683": {
+   "cert": "MR 50717196 0001/007",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM14(16)-TND2-WW1 and outdoor unit HPM14-TND2-H",
+   "method": "code"
+  },
+  "1684": {
+   "cert": "MR 50717196 0001/008",
+   "until": "2031-04-01",
+   "pel_model": "Indoor unit HPM14(16)-TND2-WW1 and outdoor unit HPM16-TND2-H",
+   "method": "code"
+  },
+  "1685": {
+   "cert": "MCS HP0390/01",
+   "until": null,
+   "pel_model": "HPM08-Nd2",
+   "method": "code"
+  },
+  "1686": {
+   "cert": "MCS HP0390/03",
+   "until": null,
+   "pel_model": "HPM10-Nd2",
+   "method": "code"
+  },
+  "1687": {
+   "cert": "MCS HP0390/05",
+   "until": null,
+   "pel_model": "HPM12-Nd2",
+   "method": "code"
+  },
+  "1688": {
+   "cert": "MCS HP0390/07",
+   "until": null,
+   "pel_model": "HPM14-Nd2",
+   "method": "code"
+  },
+  "1689": {
+   "cert": "MCS HP0390/09",
+   "until": null,
+   "pel_model": "HPM16-Nd2",
+   "method": "code"
+  },
+  "1692": {
+   "cert": "MCS HP0359/01",
+   "until": null,
+   "pel_model": "AU052FYCRA(HW)",
+   "method": "code"
+  },
+  "1694": {
+   "cert": "MCS HP0359/02",
+   "until": null,
+   "pel_model": "AU082FYCRA(HW)",
+   "method": "code"
+  },
+  "1695": {
+   "cert": "MCS HP0359/03",
+   "until": null,
+   "pel_model": "AU112FYCRA(HW)",
+   "method": "code"
+  },
+  "1696": {
+   "cert": "MCS HP0359/04",
+   "until": null,
+   "pel_model": "AU162FYCRA(HW)",
+   "method": "code"
+  },
+  "1699": {
+   "cert": "MCS HP0359/09",
+   "until": null,
+   "pel_model": "AW052MUCHA",
+   "method": "code"
+  },
+  "1702": {
+   "cert": "MCS HP0359/10",
+   "until": null,
+   "pel_model": "AW072MUCHA",
+   "method": "code"
+  },
+  "1705": {
+   "cert": "MCS HP0359/11",
+   "until": null,
+   "pel_model": "AW092MUCHA",
+   "method": "code"
+  },
+  "1710": {
+   "cert": "MCS HP0359/12",
+   "until": null,
+   "pel_model": "AW112MXCHA",
+   "method": "code"
+  },
+  "1711": {
+   "cert": "MCS HP0359/15",
+   "until": null,
+   "pel_model": "AW11NMXCHA",
+   "method": "code"
+  },
+  "1717": {
+   "cert": "MCS HP0359/13",
+   "until": null,
+   "pel_model": "AW142MXCHA",
+   "method": "code"
+  },
+  "1720": {
+   "cert": "MCS HP0359/16",
+   "until": null,
+   "pel_model": "AW14NMXCHA",
+   "method": "code"
+  },
+  "1723": {
+   "cert": "MCS HP0359/14",
+   "until": null,
+   "pel_model": "AW162MXCHA",
+   "method": "code"
+  },
+  "1726": {
+   "cert": "MCS HP0359/17",
+   "until": null,
+   "pel_model": "AW16NMXCHA",
+   "method": "code"
+  },
+  "1777": {
+   "cert": "MCS HP0372/06",
+   "until": null,
+   "pel_model": "HPO-AW-6-230V-1.0",
+   "method": "code"
+  },
+  "1778": {
+   "cert": "MCS HP0372/07",
+   "until": null,
+   "pel_model": "HPO-AW-8-230V-1.0",
+   "method": "code"
+  },
+  "1779": {
+   "cert": "MCS HP0372/10",
+   "until": null,
+   "pel_model": "HPO-AW-12-230V-1.0",
+   "method": "code"
+  },
+  "1780": {
+   "cert": "MCS HP0372/08",
+   "until": null,
+   "pel_model": "HPO-AW-12-400V-1.0",
+   "method": "code"
+  },
+  "1798": {
+   "cert": "011-1W0547_01",
+   "until": "2034-06-30",
+   "pel_model": "AE080BXYDEG/EU & MIM-E03EN",
+   "method": "code"
+  },
+  "1799": {
+   "cert": "011-1W0686_3",
+   "until": "2033-09-30",
+   "pel_model": "AE050CXYBEK/EU",
+   "method": "code"
+  },
+  "1954": {
+   "cert": "011-1W0850_1",
+   "until": "2034-07-31",
+   "pel_model": "WH-WXG09ME8 (Outdoor unit Stand-alone)",
+   "method": "code"
+  },
+  "1955": {
+   "cert": "011-1W0850_3",
+   "until": "2034-07-31",
+   "pel_model": "WH-WXG12ME8 (Outdoor unit Stand-alone)",
+   "method": "code"
+  },
+  "1982": {
+   "cert": "MCS HP0017/40",
+   "until": null,
+   "pel_model": "LA 35TBS",
+   "method": "code"
+  },
+  "1986": {
+   "cert": "MCS HP0017/42",
+   "until": null,
+   "pel_model": "LA 60S-TUR",
+   "method": "code"
+  },
+  "1992": {
+   "cert": "MCS HP0017/44",
+   "until": null,
+   "pel_model": "LIA 0608HWCF MS",
+   "method": "code"
+  },
+  "1993": {
+   "cert": "MCS HP0017/46",
+   "until": null,
+   "pel_model": "LIA 0911HWCF MS",
+   "method": "code"
+  },
+  "2013": {
+   "cert": "MCS HP0017/32",
+   "until": null,
+   "pel_model": "SI 18 TU",
+   "method": "code"
+  },
+  "2015": {
+   "cert": "MCS HP0017/35",
+   "until": null,
+   "pel_model": "SI 26TU",
+   "method": "code"
+  },
+  "2016": {
+   "cert": "MCS HP0017/38",
+   "until": null,
+   "pel_model": "SI 35 TU",
+   "method": "code"
+  },
+  "2112": {
+   "cert": "MCS HP0291/01",
+   "until": null,
+   "pel_model": "NXHM 004",
+   "method": "code"
+  },
+  "2113": {
+   "cert": "MCS HP0291/02",
+   "until": null,
+   "pel_model": "NXHM 006",
+   "method": "code"
+  },
+  "2114": {
+   "cert": "MCS HP0291/03",
+   "until": null,
+   "pel_model": "NXHM 008",
+   "method": "code"
+  },
+  "2115": {
+   "cert": "MCS HP0291/04",
+   "until": null,
+   "pel_model": "NXHM 010",
+   "method": "code"
+  },
+  "2116": {
+   "cert": "MCS HP0291/05",
+   "until": null,
+   "pel_model": "NXHM 012",
+   "method": "code"
+  },
+  "2117": {
+   "cert": "MCS HP0291/06",
+   "until": null,
+   "pel_model": "NXHM 014",
+   "method": "code"
+  },
+  "2118": {
+   "cert": "MCS HP0291/07",
+   "until": null,
+   "pel_model": "NXHM 016",
+   "method": "code"
+  },
+  "2126": {
+   "cert": "011-1W0616",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 004",
+   "method": "code"
+  },
+  "2127": {
+   "cert": "011-1W0617",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 006",
+   "method": "code"
+  },
+  "2128": {
+   "cert": "011-1W0618",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 008",
+   "method": "code"
+  },
+  "2129": {
+   "cert": "011-1W0619",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 010",
+   "method": "code"
+  },
+  "2130": {
+   "cert": "011-1W0620_01",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 012",
+   "method": "code"
+  },
+  "2131": {
+   "cert": "011-1W0620_02",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 014",
+   "method": "code"
+  },
+  "2132": {
+   "cert": "011-1W0620_03",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 012T",
+   "method": "code"
+  },
+  "2133": {
+   "cert": "011-1W0620_04",
+   "until": "2033-06-30",
+   "pel_model": "NXHP 014T",
+   "method": "code"
+  },
+  "2171": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2172": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2173": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2174": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2175": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2176": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2177": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2178": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2179": {
+   "cert": "011-1W0353_01",
+   "until": "2030-02-28",
+   "pel_model": "EPRA14DV - ETB(H/X)16D6V",
+   "method": "code"
+  },
+  "2180": {
+   "cert": "011-1W0423_05",
+   "until": "2030-10-31",
+   "pel_model": "EDLA09DAV3",
+   "method": "code"
+  },
+  "2181": {
+   "cert": "011-1W0424_05",
+   "until": "2030-10-31",
+   "pel_model": "EDLA11DAV3",
+   "method": "code"
+  },
+  "2182": {
+   "cert": "011-1W0425_05",
+   "until": "2030-10-31",
+   "pel_model": "EDLA14DAV3",
+   "method": "code"
+  },
+  "2184": {
+   "cert": "011-1W0423_01",
+   "until": "2030-10-31",
+   "pel_model": "EBLA09DAV3",
+   "method": "code"
+  },
+  "2185": {
+   "cert": "011-1W0424_01",
+   "until": "2030-10-31",
+   "pel_model": "EBLA11DAV3",
+   "method": "code"
+  },
+  "2186": {
+   "cert": "011-1W0425_01",
+   "until": "2030-10-31",
+   "pel_model": "EBLA14DAV3",
+   "method": "code"
+  },
+  "2210": {
+   "cert": "011-1W0246_11",
+   "until": "2027-11-30",
+   "pel_model": "ERGA06EVA / EHBH08E6V",
+   "method": "cert"
+  },
+  "2287": {
+   "cert": "037-0102-22-1",
+   "until": "2032-12-06",
+   "pel_model": "Acond Grandis-N",
+   "method": "cert"
+  },
+  "2289": {
+   "cert": "037-0103-22-1",
+   "until": "2032-12-06",
+   "pel_model": "Acond Grandis-R",
+   "method": "cert"
+  },
+  "2290": {
+   "cert": "037-0103-22-2",
+   "until": "2032-12-06",
+   "pel_model": "Acond Grandis-R SP",
+   "method": "cert"
+  },
+  "2291": {
+   "cert": "037-0075-22",
+   "until": "2032-03-16",
+   "pel_model": "Acond PRO-N",
+   "method": "cert"
+  },
+  "2292": {
+   "cert": "037-0076-22-1",
+   "until": "2032-03-16",
+   "pel_model": "Acond PRO-R",
+   "method": "cert"
+  },
+  "2293": {
+   "cert": "037-0183-24",
+   "until": "2034-07-07",
+   "pel_model": "Acond Aconomis S",
+   "method": "cert"
+  },
+  "2294": {
+   "cert": "037-0183-24",
+   "until": "2034-07-07",
+   "pel_model": "Acond Aconomis S",
+   "method": "cert"
+  },
+  "2295": {
+   "cert": "011-1W0631_02",
+   "until": "2033-05-31",
+   "pel_model": "WH-ADC0509L3E5UK / WH-WDG05LE5",
+   "method": "cert"
+  },
+  "2296": {
+   "cert": "011-1W0631_04",
+   "until": "2033-05-31",
+   "pel_model": "WH-ADC0509L3E5UK / WH-WDG07LE5",
+   "method": "cert"
+  },
+  "2297": {
+   "cert": "011-1W0632_02",
+   "until": "2033-05-31",
+   "pel_model": "WH-ADC0509L3E5UK / WH-WDG09LE5",
+   "method": "cert"
+  },
+  "2300": {
+   "cert": "MCS HP0086/106",
+   "until": null,
+   "pel_model": "WH-MDC05J3E5",
+   "method": "code"
+  },
+  "2301": {
+   "cert": "MCS HP0086/107",
+   "until": null,
+   "pel_model": "WH-MDC07J3E5",
+   "method": "code"
+  },
+  "2302": {
+   "cert": "MCS HP0086/108",
+   "until": null,
+   "pel_model": "WH-MDC09J3E5",
+   "method": "code"
+  },
+  "2303": {
+   "cert": "MCS HP0086/112",
+   "until": null,
+   "pel_model": "WH-MXC09J3E5",
+   "method": "code"
+  },
+  "2304": {
+   "cert": "MCS HP0086/111",
+   "until": null,
+   "pel_model": "WH-MXC12J6E5",
+   "method": "code"
+  },
+  "2305": {
+   "cert": "011-1W0463",
+   "until": "2031-11-30",
+   "pel_model": "WH-MXC09J3E8",
+   "method": "code"
+  },
+  "2306": {
+   "cert": "011-1W0463_05",
+   "until": "2031-11-30",
+   "pel_model": "WH-MXC12J9E8-1",
+   "method": "cert"
+  },
+  "2307": {
+   "cert": "MCS HP0086/113",
+   "until": null,
+   "pel_model": "WH-MXC16J9E8",
+   "method": "code"
+  },
+  "2308": {
+   "cert": "011-1W0604_01",
+   "until": "2033-04-30",
+   "pel_model": "WH-ADC0309K3E5UK / WH-UDZ03KE5",
+   "method": "cert"
+  },
+  "2309": {
+   "cert": "011-1W0605_04",
+   "until": "2033-04-30",
+   "pel_model": "WH-SDC0309K3E5 + WH-UDZ05KE5",
+   "method": "code"
+  },
+  "2310": {
+   "cert": "011-1W0605_05",
+   "until": "2033-04-30",
+   "pel_model": "WH-SDC0309K3E5 + WH-UDZ07KE5",
+   "method": "code"
+  },
+  "2311": {
+   "cert": "011-1W0605_06",
+   "until": "2033-04-30",
+   "pel_model": "WH-SDC0309K3E5 + WH-UDZ09KE5",
+   "method": "code"
+  },
+  "2312": {
+   "cert": "011-1W1108_01",
+   "until": "2035-10-31",
+   "pel_model": "WH-SDC12K6E5 + WH-UDZ12KE5",
+   "method": "code"
+  },
+  "2317": {
+   "cert": "011-1W0606_02",
+   "until": "2033-04-30",
+   "pel_model": "WH-SXC09K3E5 + WH-UXZ09KE5",
+   "method": "code"
+  },
+  "2318": {
+   "cert": "011-1W0606_03",
+   "until": "2033-04-30",
+   "pel_model": "WH-SXC12K6E5 + WH-UXZ12KE5",
+   "method": "code"
+  },
+  "2319": {
+   "cert": "011-1W0606_04",
+   "until": "2033-04-30",
+   "pel_model": "WH-SXC09K3E8 / WH-UXZ09KE8",
+   "method": "cert"
+  },
+  "2320": {
+   "cert": "011-1W0606_05",
+   "until": "2033-04-30",
+   "pel_model": "WH-SXC12K9E8 / WH-UXZ12KE8",
+   "method": "cert"
+  },
+  "2321": {
+   "cert": "011-1W0780_01",
+   "until": "2034-04-30",
+   "pel_model": "WH-SXC16K9E8 + WH-UXZ16KE8",
+   "method": "code"
+  },
+  "2324": {
+   "cert": "MCS HP0086/110",
+   "until": null,
+   "pel_model": "WH-SQC16H9E8 / WH-UQ16HE8",
+   "method": "cert"
+  },
+  "2325": {
+   "cert": "041-K015-01 c",
+   "until": null,
+   "pel_model": "AW-WHPMA04-H91",
+   "method": "code"
+  },
+  "2326": {
+   "cert": "041-K015-01 d",
+   "until": null,
+   "pel_model": "AW-WHPMA06-H91",
+   "method": "code"
+  },
+  "2327": {
+   "cert": "041-K015-02 c",
+   "until": null,
+   "pel_model": "AW-WHPMA08-H91",
+   "method": "code"
+  },
+  "2328": {
+   "cert": "041-K015-02 d",
+   "until": null,
+   "pel_model": "AW-WHPMA10-H91",
+   "method": "code"
+  },
+  "2329": {
+   "cert": "041-K015-03 g",
+   "until": null,
+   "pel_model": "AW-WHPMA12-H91",
+   "method": "code"
+  },
+  "2330": {
+   "cert": "041-K015-03 h",
+   "until": null,
+   "pel_model": "AW-WHPMA14-H91",
+   "method": "code"
+  },
+  "2331": {
+   "cert": "041-K015-03 j",
+   "until": null,
+   "pel_model": "AW-WHPMA16-H91",
+   "method": "code"
+  },
+  "2332": {
+   "cert": "041-K015-03 k",
+   "until": null,
+   "pel_model": "AW-WHPMA12-H93",
+   "method": "code"
+  },
+  "2333": {
+   "cert": "041-K015-03 m",
+   "until": null,
+   "pel_model": "AW-WHPMA14-H93",
+   "method": "code"
+  },
+  "2334": {
+   "cert": "041-K015-03 n",
+   "until": null,
+   "pel_model": "AW-WHPMA16-H93",
+   "method": "code"
+  },
+  "2335": {
+   "cert": "041-K015-04 a",
+   "until": null,
+   "pel_model": "AW-WHPMA18-H93",
+   "method": "code"
+  },
+  "2336": {
+   "cert": "041-K015-04 b",
+   "until": null,
+   "pel_model": "AW-WHPMA22-H93",
+   "method": "code"
+  },
+  "2337": {
+   "cert": "041-K015-04 c",
+   "until": null,
+   "pel_model": "AW-WHPMA26-H93",
+   "method": "code"
+  },
+  "2338": {
+   "cert": "041-K015-04 d",
+   "until": null,
+   "pel_model": "AW-WHPMA30-H93",
+   "method": "code"
+  },
+  "2349": {
+   "cert": "041-K015-01 a",
+   "until": null,
+   "pel_model": "AW-YHPSA04-H91 + AW-WHPSA0406-N91",
+   "method": "code"
+  },
+  "2350": {
+   "cert": "041-K015-01 b",
+   "until": null,
+   "pel_model": "AW-YHPSA06-H91 + AW-WHPSA0406-N91",
+   "method": "cert"
+  },
+  "2351": {
+   "cert": "041-K015-02 a",
+   "until": null,
+   "pel_model": "AW-YHPSA08-H91 + AW-WHPSA0810-N91",
+   "method": "cert"
+  },
+  "2352": {
+   "cert": "041-K015-02 b",
+   "until": null,
+   "pel_model": "AW-YHPSA10-H91 + AW-WHPSA0810-N91",
+   "method": "cert"
+  },
+  "2353": {
+   "cert": "041-K015-03 a",
+   "until": null,
+   "pel_model": "AW-YHPSA12-H91 + AW-WHPSA1216-N91",
+   "method": "cert"
+  },
+  "2354": {
+   "cert": "041-K015-03 b",
+   "until": null,
+   "pel_model": "AW-YHPSA14-H91 + AW-WHPSA1216-N91",
+   "method": "cert"
+  },
+  "2355": {
+   "cert": "041-K015-03 c",
+   "until": null,
+   "pel_model": "AW-YHPSA16-H91 + AW-WHPSA1216-N91",
+   "method": "cert"
+  },
+  "2356": {
+   "cert": "041-K015-03 d",
+   "until": null,
+   "pel_model": "AW-YHPSA12-H93 + AW-WHPSA1216-N93",
+   "method": "cert"
+  },
+  "2357": {
+   "cert": "041-K015-03 e",
+   "until": null,
+   "pel_model": "AW-YHPSA14-H93 + AW-WHPSA1216-N93",
+   "method": "cert"
+  },
+  "2358": {
+   "cert": "041-K015-03 f",
+   "until": null,
+   "pel_model": "AW-YHPSA16-H93 + AW-WHPSA1216-N93",
+   "method": "cert"
+  },
+  "2359": {
+   "cert": "MCS HP0287/01",
+   "until": null,
+   "pel_model": "YHPK-06V1TBA",
+   "method": "code"
+  },
+  "2360": {
+   "cert": "MCS HP0287/02",
+   "until": null,
+   "pel_model": "YHPK-09V1TBA",
+   "method": "code"
+  },
+  "2361": {
+   "cert": "MCS HP0287/03",
+   "until": null,
+   "pel_model": "YHPK-12V1TBA",
+   "method": "code"
+  },
+  "2362": {
+   "cert": "MCS HP0287/01",
+   "until": null,
+   "pel_model": "YHPK-06V1TBA",
+   "method": "cert"
+  },
+  "2363": {
+   "cert": "MCS HP0287/02",
+   "until": null,
+   "pel_model": "YHPK-09V1TBA",
+   "method": "cert"
+  },
+  "2364": {
+   "cert": "MCS HP0287/03",
+   "until": null,
+   "pel_model": "YHPK-12V1TBA",
+   "method": "cert"
+  },
+  "2366": {
+   "cert": "MCS HP0287/04",
+   "until": null,
+   "pel_model": "YHEPK-45V4MA",
+   "method": "code"
+  },
+  "2372": {
+   "cert": "MCS HP0314/01",
+   "until": null,
+   "pel_model": "LCM-60R / LCM-R",
+   "method": "code"
+  },
+  "2373": {
+   "cert": "MCS HP0314/02",
+   "until": null,
+   "pel_model": "LCM-100R / LCM-R",
+   "method": "code"
+  },
+  "2374": {
+   "cert": "MCS HP0314/03",
+   "until": null,
+   "pel_model": "LCM-150R / LCM-R",
+   "method": "code"
+  },
+  "2375": {
+   "cert": "MCS HP0314/04",
+   "until": null,
+   "pel_model": "LCM-180R / LCM-R",
+   "method": "code"
+  },
+  "2509": {
+   "cert": "ICIM-PDC-000335 / 00",
+   "until": "2035-06-03",
+   "pel_model": "WiSAN-P 14.1",
+   "method": "code"
+  },
+  "2510": {
+   "cert": "ICIM-PDC-000335 / 01",
+   "until": "2035-06-03",
+   "pel_model": "WiSAN-P 16.1",
+   "method": "code"
+  },
+  "2511": {
+   "cert": "ICIM-PDC-000336 / 00",
+   "until": "2035-06-03",
+   "pel_model": "WiSAN-P 18.,1",
+   "method": "code"
+  },
+  "2512": {
+   "cert": "ICIM-PDC-000336 / 01",
+   "until": "2035-06-03",
+   "pel_model": "WiSAN-P 19.1",
+   "method": "code"
+  },
+  "2513": {
+   "cert": "ICIM-PDC-000336 / 02",
+   "until": "2035-06-03",
+   "pel_model": "WiSAN-P 20.1",
+   "method": "code"
+  },
+  "2514": {
+   "cert": "ICIM-PDC-000337 / 00",
+   "until": "2035-06-03",
+   "pel_model": "WiSAN-P 25.2",
+   "method": "code"
+  },
+  "2515": {
+   "cert": "ICIM-PDC-000337 / 01",
+   "until": "2035-06-03",
+   "pel_model": "WiSAN-P 30.2",
+   "method": "code"
+  },
+  "2546": {
+   "cert": "BBA 0136/26",
+   "until": null,
+   "pel_model": "HP 08S10W-M-BC",
+   "method": "code"
+  },
+  "2547": {
+   "cert": "BBA 0136/24",
+   "until": null,
+   "pel_model": "HP12S16W-M-BC",
+   "method": "code"
+  },
+  "2548": {
+   "cert": "BBA 0136/23",
+   "until": null,
+   "pel_model": "HP20S25W-M-BC",
+   "method": "code"
+  },
+  "2552": {
+   "cert": "BBA 0136/27",
+   "until": null,
+   "pel_model": "HP 08L-M-BC",
+   "method": "code"
+  },
+  "2553": {
+   "cert": "BBA 0136/25",
+   "until": null,
+   "pel_model": "HP12L-M-BC",
+   "method": "code"
+  },
+  "2561": {
+   "cert": "MCS HP0383/01",
+   "until": null,
+   "pel_model": "EF AD-P1-9K0-S1",
+   "method": "code"
+  },
+  "2562": {
+   "cert": "MCS HP0383/02",
+   "until": null,
+   "pel_model": "EF AD-P3-20K-S1",
+   "method": "code"
+  },
+  "2581": {
+   "cert": "MCS HP0400/01",
+   "until": null,
+   "pel_model": "PEM750V004PGKC",
+   "method": "code"
+  },
+  "2582": {
+   "cert": "MCS HP0400/02",
+   "until": null,
+   "pel_model": "PEM750V006PGKC",
+   "method": "code"
+  },
+  "2583": {
+   "cert": "MCS HP0400/03",
+   "until": null,
+   "pel_model": "PEM750V008PGKC",
+   "method": "code"
+  },
+  "2584": {
+   "cert": "MCS HP0400/04",
+   "until": null,
+   "pel_model": "PEM750V010PGKC",
+   "method": "code"
+  },
+  "2585": {
+   "cert": "MCS HP0400/05",
+   "until": null,
+   "pel_model": "PEM750V017PGKC",
+   "method": "code"
+  },
+  "2586": {
+   "cert": "MCS HP0253/01",
+   "until": null,
+   "pel_model": "PEP-M06",
+   "method": "code"
+  },
+  "2587": {
+   "cert": "MCS HP0253/02",
+   "until": null,
+   "pel_model": "PEP-M09",
+   "method": "code"
+  },
+  "2588": {
+   "cert": "MCS HP0253/03",
+   "until": null,
+   "pel_model": "PEP-M17",
+   "method": "code"
+  },
+  "2589": {
+   "cert": "MCS HP0253/04",
+   "until": null,
+   "pel_model": "V-Therm S-MIDI",
+   "method": "cert"
+  },
+  "2590": {
+   "cert": "MCS HP0253/05",
+   "until": null,
+   "pel_model": "V-Therm S-MAXI",
+   "method": "cert"
+  },
+  "2591": {
+   "cert": "MCS HP0253/06",
+   "until": null,
+   "pel_model": "V-Therm D-MIDI",
+   "method": "cert"
+  },
+  "2592": {
+   "cert": "MCS HP0253/07",
+   "until": null,
+   "pel_model": "V-Therm D-MAXI",
+   "method": "cert"
+  },
+  "2619": {
+   "cert": "KM 815531/1",
+   "until": null,
+   "pel_model": "Qvantum QA9",
+   "method": "cert"
+  },
+  "2620": {
+   "cert": "KM 815531/2",
+   "until": null,
+   "pel_model": "Qvantum QA15",
+   "method": "cert"
+  },
+  "2621": {
+   "cert": "KM 815531/3",
+   "until": null,
+   "pel_model": "Qvantum QA15",
+   "method": "cert"
+  },
+  "2626": {
+   "cert": "MCS HP0326/01",
+   "until": null,
+   "pel_model": "SHP M PRO 006",
+   "method": "code"
+  },
+  "2627": {
+   "cert": "MCS HP0326/02",
+   "until": null,
+   "pel_model": "SHP M PRO 008",
+   "method": "code"
+  },
+  "2628": {
+   "cert": "MCS HP0326/03",
+   "until": null,
+   "pel_model": "SHP M PRO 010",
+   "method": "code"
+  },
+  "2629": {
+   "cert": "MCS HP0326/04",
+   "until": null,
+   "pel_model": "SHP M PRO 012",
+   "method": "code"
+  },
+  "2630": {
+   "cert": "MCS HP0326/05",
+   "until": null,
+   "pel_model": "SHP M PRO 014",
+   "method": "code"
+  },
+  "2631": {
+   "cert": "MCS HP0326/06",
+   "until": null,
+   "pel_model": "SHP M PRO 016",
+   "method": "code"
+  },
+  "2632": {
+   "cert": "MCS HP0326/07",
+   "until": null,
+   "pel_model": "SHP M PRO 012T",
+   "method": "code"
+  },
+  "2633": {
+   "cert": "MCS HP0326/08",
+   "until": null,
+   "pel_model": "SHP M PRO 014T",
+   "method": "code"
+  },
+  "2634": {
+   "cert": "MCS HP0326/09",
+   "until": null,
+   "pel_model": "SHP M PRO 016T",
+   "method": "code"
+  },
+  "2635": {
+   "cert": "011-1W0427",
+   "until": null,
+   "pel_model": "ecoAIR 1-7 PRO",
+   "method": "code"
+  },
+  "2636": {
+   "cert": "BSI KM 610194/260",
+   "until": null,
+   "pel_model": "ecoAIR+ 1-9 PRO ",
+   "method": "code"
+  },
+  "2637": {
+   "cert": "011-1W0428_01",
+   "until": "2030-11-30",
+   "pel_model": "ecoAIR 3-12 PRO",
+   "method": "cert"
+  },
+  "2638": {
+   "cert": "BSI KM 610194/263",
+   "until": null,
+   "pel_model": "ecoAIR+ 3-18 PRO ",
+   "method": "cert"
+  },
+  "2661": {
+   "cert": "MCS HP0249/05",
+   "until": null,
+   "pel_model": "ASH004FHP",
+   "method": "code"
+  },
+  "2662": {
+   "cert": "MCS HP0249/06",
+   "until": null,
+   "pel_model": "ASH006FHP",
+   "method": "code"
+  },
+  "2663": {
+   "cert": "MCS HP0249/07",
+   "until": null,
+   "pel_model": "ASH010FHP",
+   "method": "code"
+  },
+  "2664": {
+   "cert": "MCS HP0249/08",
+   "until": null,
+   "pel_model": "ASH014FHP",
+   "method": "cert"
+  },
+  "2665": {
+   "cert": "MCS HP0249/09",
+   "until": null,
+   "pel_model": "ASH016FHP",
+   "method": "code"
+  },
+  "2675": {
+   "cert": "MCS HP0268/04",
+   "until": null,
+   "pel_model": "GRS-CQ10Pd/NhG3-E",
+   "method": "code"
+  },
+  "2676": {
+   "cert": "MCS HP0268/02",
+   "until": null,
+   "pel_model": "GRS-CQ6.0Pd/NhG3-E",
+   "method": "code"
+  },
+  "2677": {
+   "cert": "MCS HP0268/03",
+   "until": null,
+   "pel_model": "GRS-CQ8.0Pd/NhG3-E",
+   "method": "code"
+  },
+  "2678": {
+   "cert": "MCS HP0010/04",
+   "until": null,
+   "pel_model": "Caernarfon Eco Air Boiler CAER410MOD1",
+   "method": "cert"
+  },
+  "2679": {
+   "cert": "MCS HP0010/05",
+   "until": null,
+   "pel_model": "Winchester Eco Air Boiler - WINR410MOD1",
+   "method": "cert"
+  },
+  "2683": {
+   "cert": "MCS HP0345/01",
+   "until": null,
+   "pel_model": "HR290-006-1PH",
+   "method": "code"
+  },
+  "2684": {
+   "cert": "MCS HP0345/02",
+   "until": null,
+   "pel_model": "HR290-008-1PH",
+   "method": "code"
+  },
+  "2685": {
+   "cert": "MCS HP0345/05",
+   "until": null,
+   "pel_model": "HR290-008-3PH",
+   "method": "code"
+  },
+  "2686": {
+   "cert": "MCS HP0345/03",
+   "until": null,
+   "pel_model": "HR290-012-1PH",
+   "method": "code"
+  },
+  "2687": {
+   "cert": "MCS HP0345/06",
+   "until": null,
+   "pel_model": "HR290-012-3PH",
+   "method": "code"
+  },
+  "2688": {
+   "cert": "MCS HP0345/04",
+   "until": null,
+   "pel_model": "HR290-018-1PH",
+   "method": "code"
+  },
+  "2689": {
+   "cert": "MCS HP0345/07",
+   "until": null,
+   "pel_model": "HR290-018-3PH",
+   "method": "code"
+  },
+  "2691": {
+   "cert": "MCS HP0411/04",
+   "until": null,
+   "pel_model": "IG4-MP1-A1",
+   "method": "code"
+  },
+  "2692": {
+   "cert": "MCS HP0411/01",
+   "until": null,
+   "pel_model": "IG6-MP1-A1",
+   "method": "code"
+  },
+  "2693": {
+   "cert": "MCS HP0411/02",
+   "until": null,
+   "pel_model": "IG8-MP1-A1",
+   "method": "code"
+  },
+  "2694": {
+   "cert": "MCS HP0411/05",
+   "until": null,
+   "pel_model": "IG10-MP1-A1",
+   "method": "code"
+  },
+  "2695": {
+   "cert": "MCS HP0411/03",
+   "until": null,
+   "pel_model": "IG12-MP1-A1",
+   "method": "code"
+  },
+  "2696": {
+   "cert": "MCS HP0411/06",
+   "until": null,
+   "pel_model": "IG16-MP1-A1",
+   "method": "code"
+  },
+  "2697": {
+   "cert": "011-1W1028",
+   "until": "2035-04-30",
+   "pel_model": "ADAPT MAX 10035 HT / HK 3F",
+   "method": "cert"
+  },
+  "2698": {
+   "cert": "011-1W1029",
+   "until": "2035-04-30",
+   "pel_model": "ADAPT MAX 10070 HT / HK 3F",
+   "method": "cert"
+  },
+  "2699": {
+   "cert": "011-1W1030",
+   "until": "2035-04-30",
+   "pel_model": "ADAPT MAX 10105 HT / HK 3F",
+   "method": "cert"
+  },
+  "2700": {
+   "cert": "011-1W1031",
+   "until": "2035-04-30",
+   "pel_model": "ADAPT MAX 10140 HT / HK 3F",
+   "method": "cert"
+  },
+  "2701": {
+   "cert": "011-1W0885_1",
+   "until": "2034-09-30",
+   "pel_model": "ETERA S-1 HT / HK UF E",
+   "method": "code"
+  },
+  "2702": {
+   "cert": "011-1W0886_1",
+   "until": "2034-09-30",
+   "pel_model": "ETERA M-1 HT / HK UF E",
+   "method": "code"
+  },
+  "2703": {
+   "cert": "011-1W0886_2",
+   "until": "2034-09-30",
+   "pel_model": "ETERA M-1 HT / HK 3F E",
+   "method": "code"
+  },
+  "2704": {
+   "cert": "011-1W0887_1",
+   "until": "2034-09-30",
+   "pel_model": "ETERA L-1 HT / HK 3F E",
+   "method": "code"
+  },
+  "2705": {
+   "cert": "011-1W0519_01",
+   "until": "2032-01-31",
+   "pel_model": "VERSI-O 0209-K1 HT / HK 1F",
+   "method": "code"
+  },
+  "2706": {
+   "cert": "011-1W0519_03",
+   "until": "2032-01-31",
+   "pel_model": "VERSI-I 0209-K1 HT / HK UF E",
+   "method": "cert"
+  },
+  "2708": {
+   "cert": "011-1W0519_02",
+   "until": "2032-01-31",
+   "pel_model": "VERSI-X 0209-K1 HT / HK 1F",
+   "method": "code"
+  },
+  "2709": {
+   "cert": "011-1W1275_01",
+   "until": "2036-06-30",
+   "pel_model": "ADAPT 2 S / HK 1F",
+   "method": "cert"
+  },
+  "2710": {
+   "cert": "011-1W1251_01",
+   "until": "2036-05-31",
+   "pel_model": "ADAPT 2 M / HK 1F",
+   "method": "cert"
+  },
+  "2711": {
+   "cert": "011-1W1271_01",
+   "until": "2036-05-31",
+   "pel_model": "ADAPT 2 M / HK 3F",
+   "method": "cert"
+  },
+  "2712": {
+   "cert": "011-1W1252_01",
+   "until": "2036-05-31",
+   "pel_model": "ADAPT 2 L / HK 3F",
+   "method": "cert"
+  },
+  "2719": {
+   "cert": "BSI KM 612798/9",
+   "until": null,
+   "pel_model": "AS01-R290",
+   "method": "code"
+  },
+  "2720": {
+   "cert": "BSI KM 612798/10",
+   "until": null,
+   "pel_model": "AS02-R290",
+   "method": "code"
+  },
+  "2721": {
+   "cert": "BSI KM 612798/11",
+   "until": null,
+   "pel_model": "AS03-R290",
+   "method": "code"
+  },
+  "2722": {
+   "cert": "KM 612798/12",
+   "until": null,
+   "pel_model": "GS03",
+   "method": "cert"
+  },
+  "2723": {
+   "cert": "MCS HP0033/13",
+   "until": null,
+   "pel_model": "HP50-11-1PHMB Mono 2 AWHP 12MR",
+   "method": "cert"
+  },
+  "2724": {
+   "cert": "MCS HP0033/15",
+   "until": null,
+   "pel_model": "HP50-11-3PHMB Mono 2 AWHP 12TR",
+   "method": "cert"
+  },
+  "2725": {
+   "cert": "MCS HP0033/14",
+   "until": null,
+   "pel_model": "HP50-13-1PHMB Mono 2 AWHP 16MR",
+   "method": "cert"
+  },
+  "2726": {
+   "cert": "MCS HP0033/16",
+   "until": null,
+   "pel_model": "HP50-13-3PHMB Mono 2 AWHP 16TR",
+   "method": "cert"
+  },
+  "2727": {
+   "cert": "MCS HP0033/09",
+   "until": null,
+   "pel_model": "HP50-4-1PHMB Mono 2 AWHP 4MR",
+   "method": "cert"
+  },
+  "2728": {
+   "cert": "MCS HP0033/10",
+   "until": null,
+   "pel_model": "HP50-5-1PHMB Mono 2 AWHP 6MR",
+   "method": "cert"
+  },
+  "2729": {
+   "cert": "MCS HP0033/11",
+   "until": null,
+   "pel_model": "HP50-7-1PHMB Mono 2 AWHP 8MR",
+   "method": "cert"
+  },
+  "2730": {
+   "cert": "MCS HP0033/12",
+   "until": null,
+   "pel_model": "HP50-8-1PHMB Mono 2 AWHP 10MR",
+   "method": "cert"
+  },
+  "2731": {
+   "cert": "MCS HP0365/02",
+   "until": null,
+   "pel_model": "Xtend 5 mono FT",
+   "method": "code"
+  },
+  "2732": {
+   "cert": "MCS HP0365/01",
+   "until": null,
+   "pel_model": "Xtend 5",
+   "method": "code"
+  },
+  "2768": {
+   "cert": "MCS HP0347/01",
+   "until": null,
+   "pel_model": "Aurora II - 6kW",
+   "method": "code"
+  },
+  "2769": {
+   "cert": "MCS HP0347/02",
+   "until": null,
+   "pel_model": "Aurora II - 10kW",
+   "method": "code"
+  },
+  "2770": {
+   "cert": "MCS HP0347/03",
+   "until": null,
+   "pel_model": "Aurora II - 14kW",
+   "method": "code"
+  },
+  "3273": {
+   "cert": "ICIM-PDC-000395-00_0",
+   "until": "2036-03-22",
+   "pel_model": "WiSAN-PMP 1 S 2.1",
+   "method": "code"
+  },
+  "3274": {
+   "cert": "ICIM-PDC-000395-00_1",
+   "until": "2036-03-22",
+   "pel_model": "WiSAN-PMP 1 S 3.1",
+   "method": "code"
+  },
+  "3275": {
+   "cert": "ICIM-PDC-000396-00_0",
+   "until": "2036-03-22",
+   "pel_model": "WiSAN-PMP 1 S 4.1",
+   "method": "code"
+  },
+  "3276": {
+   "cert": "ICIM-PDC-000396-00_2",
+   "until": "2036-03-22",
+   "pel_model": "WiSAN-PMP 1 S 5.1",
+   "method": "code"
+  },
+  "3277": {
+   "cert": "ICIM-PDC-000397-00_0",
+   "until": "2036-03-22",
+   "pel_model": "WiSAN-PMP 1 S 6.1",
+   "method": "code"
+  },
+  "3278": {
+   "cert": "ICIM-PDC-000397-00_2",
+   "until": "2036-03-22",
+   "pel_model": "WiSAN-PMP 1 S 7.1",
+   "method": "code"
+  },
+  "3279": {
+   "cert": "ICIM-PDC-000397-00_4",
+   "until": "2036-03-22",
+   "pel_model": "WiSAN-PMP 1 S 8.1",
+   "method": "code"
+  },
+  "3282": {
+   "cert": "ICIM-PDC-000213-01",
+   "until": "2033-10-26",
+   "pel_model": "WiSAN-PME 1 S 2.1",
+   "method": "code"
+  },
+  "3283": {
+   "cert": "ICIM-PDC-000213-02",
+   "until": "2033-10-26",
+   "pel_model": "WiSAN-PME 1 S 3.1",
+   "method": "code"
+  },
+  "3284": {
+   "cert": "ICIM-PDC-000214-01",
+   "until": "2033-10-26",
+   "pel_model": "WiSAN-PME 1 S 4.1",
+   "method": "code"
+  },
+  "3285": {
+   "cert": "ICIM-PDC-000214-02",
+   "until": "2033-10-26",
+   "pel_model": "WiSAN-PME 1 S 5.1",
+   "method": "code"
+  },
+  "3286": {
+   "cert": "ICIM-PDC-000215-01",
+   "until": "2033-10-26",
+   "pel_model": "WiSAN-PME 1 S 6.1",
+   "method": "code"
+  },
+  "3287": {
+   "cert": "ICIM-PDC-000215-02",
+   "until": "2033-10-26",
+   "pel_model": "WiSAN-PME 1 S 7.1",
+   "method": "code"
+  },
+  "3288": {
+   "cert": "ICIM-PDC-000215-03",
+   "until": "2033-10-26",
+   "pel_model": "WiSAN-PME 1 S 8.1",
+   "method": "code"
+  },
+  "3450": {
+   "cert": "MCS HP0327/04",
+   "until": null,
+   "pel_model": "CE-iH6+",
+   "method": "code"
+  },
+  "3451": {
+   "cert": "MCS HP0327/05",
+   "until": null,
+   "pel_model": "CE-iH12+",
+   "method": "code"
+  },
+  "3453": {
+   "cert": "MCS HP0327/06",
+   "until": null,
+   "pel_model": "CE-iH24+",
+   "method": "code"
+  },
+  "3540": {
+   "cert": "BBA 0037/18",
+   "until": null,
+   "pel_model": "GMSW 7 plus VX",
+   "method": "code"
+  },
+  "3566": {
+   "cert": "BBA 0037/17",
+   "until": null,
+   "pel_model": "GMLW 9 plus VX",
+   "method": "code"
+  },
+  "3617": {
+   "cert": "BBA 0037/31",
+   "until": null,
+   "pel_model": "OCHSNER AIR 18 C11B",
+   "method": "code"
+  },
+  "3619": {
+   "cert": "BBA 0037/32",
+   "until": null,
+   "pel_model": "OCHSNER AIR 29 C12A",
+   "method": "code"
+  },
+  "3624": {
+   "cert": "BBA 0037/30",
+   "until": null,
+   "pel_model": "OCHSNER AIR HAWK 518 C11A",
+   "method": "code"
+  },
+  "3626": {
+   "cert": "BBA 0037/33",
+   "until": null,
+   "pel_model": "OCHSNER HAWK 726 C12A",
+   "method": "code"
+  },
+  "3627": {
+   "cert": "BBA 0037/34",
+   "until": null,
+   "pel_model": "OCHSNER HAWK 1850 C12A",
+   "method": "code"
+  },
+  "3651": {
+   "cert": "037-0102-22-1",
+   "until": "2032-12-06",
+   "pel_model": "Acond Grandis-N",
+   "method": "cert"
+  },
+  "3653": {
+   "cert": "037-0103-22-1",
+   "until": "2032-12-06",
+   "pel_model": "Acond Grandis-R",
+   "method": "cert"
+  },
+  "3654": {
+   "cert": "037-0103-22-2",
+   "until": "2032-12-06",
+   "pel_model": "Acond Grandis-R SP",
+   "method": "cert"
+  },
+  "3655": {
+   "cert": "CN-MCS-250005/09",
+   "until": "2030-07-29",
+   "pel_model": "THMLd-12D/3HBp-A",
+   "method": "code"
+  },
+  "3656": {
+   "cert": "CN-MCS-250005/19",
+   "until": "2030-07-29",
+   "pel_model": "THMLd-14D/3HBp-A",
+   "method": "code"
+  },
+  "3657": {
+   "cert": "CN-MCS-250005/29",
+   "until": "2030-07-29",
+   "pel_model": "THMLd-16D/3HBp-A",
+   "method": "code"
+  },
+  "3658": {
+   "cert": "CN-MCS-250005/01",
+   "until": "2030-07-29",
+   "pel_model": "THML-12S/HBp-A",
+   "method": "code"
+  },
+  "3659": {
+   "cert": "CN-MCS-250005/11",
+   "until": "2030-07-29",
+   "pel_model": "THML-14S/HBp-A",
+   "method": "code"
+  },
+  "3660": {
+   "cert": "CN-MCS-250005/21",
+   "until": "2030-07-29",
+   "pel_model": "THML-16S/HBp-A",
+   "method": "code"
+  },
+  "3661": {
+   "cert": "CN-MCS-250007/03",
+   "until": "2030-08-20",
+   "pel_model": "THML-8D/FBp-A",
+   "method": "code"
+  },
+  "3662": {
+   "cert": "CN-MCS-250007/05",
+   "until": "2030-08-20",
+   "pel_model": "THMLd-10D/3FBp-A",
+   "method": "code"
+  },
+  "3663": {
+   "cert": "CN-MCS-250002/08",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-12D/3FBp-A",
+   "method": "code"
+  },
+  "3664": {
+   "cert": "CN-MCS-250002/20",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-14D/3FBp-A",
+   "method": "code"
+  },
+  "3665": {
+   "cert": "CN-MCS-250002/32",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-16D/3FBp-A",
+   "method": "code"
+  },
+  "3666": {
+   "cert": "CN-MCS-250002/01",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-12S/9FBp-A",
+   "method": "code"
+  },
+  "3667": {
+   "cert": "CN-MCS-250002/13",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-14S/9FBp-A",
+   "method": "code"
+  },
+  "3668": {
+   "cert": "CN-MCS-250002/25",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-16S/9FBp-A",
+   "method": "code"
+  },
+  "3669": {
+   "cert": "MR 50734528 0001/001",
+   "until": "2031-06-30",
+   "pel_model": "ALT04-SF0",
+   "method": "code"
+  },
+  "3670": {
+   "cert": "MR 50734528 0001/002",
+   "until": "2031-06-30",
+   "pel_model": "ALT05-SF0",
+   "method": "code"
+  },
+  "3671": {
+   "cert": "MR 50734528 0001/003",
+   "until": "2031-06-30",
+   "pel_model": "ALT06-SF0",
+   "method": "code"
+  },
+  "3672": {
+   "cert": "011-1W1110_01",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU1-C08R290",
+   "method": "code"
+  },
+  "3673": {
+   "cert": "011-1W1110_03",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU3-C08R290",
+   "method": "code"
+  },
+  "3674": {
+   "cert": "011-1W1110_02",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU1-C10R290",
+   "method": "code"
+  },
+  "3675": {
+   "cert": "011-1W1110_04",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU3-C10R290",
+   "method": "code"
+  },
+  "3676": {
+   "cert": "011-1W1111_01",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU1-C12R290",
+   "method": "code"
+  },
+  "3677": {
+   "cert": "011-1W1111_04",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU3-C12R290",
+   "method": "code"
+  },
+  "3678": {
+   "cert": "011-1W1111_02",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU1-C14R290",
+   "method": "code"
+  },
+  "3679": {
+   "cert": "011-1W1111_05",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU3-C14R290",
+   "method": "code"
+  },
+  "3680": {
+   "cert": "011-1W1111_03",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU1-C16R290",
+   "method": "code"
+  },
+  "3681": {
+   "cert": "011-1W1111_06",
+   "until": "2035-10-31",
+   "pel_model": "Indoor unit STN1-C01 and outdoor unit STU3-C16R290",
+   "method": "code"
+  },
+  "3690": {
+   "cert": "ICIM-PDC-000361-01",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M HI3 4",
+   "method": "code"
+  },
+  "3691": {
+   "cert": "ICIM-PDC-000361-03",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M HI3 6",
+   "method": "code"
+  },
+  "3692": {
+   "cert": "ICIM-PDC-000362-01",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M HI3 8",
+   "method": "code"
+  },
+  "3693": {
+   "cert": "ICIM-PDC-000362-04",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M HI3 10",
+   "method": "code"
+  },
+  "3694": {
+   "cert": "ICIM-PDC-000363-00",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M 12",
+   "method": "cert"
+  },
+  "3695": {
+   "cert": "ICIM-PDC-000363-03",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M 14",
+   "method": "cert"
+  },
+  "3696": {
+   "cert": "ICIM-PDC-000363-06",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M 16",
+   "method": "cert"
+  },
+  "3697": {
+   "cert": "ICIM-PDC-000363-02",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M HI9 12T",
+   "method": "code"
+  },
+  "3698": {
+   "cert": "ICIM-PDC-000363-05",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M HI9 14T",
+   "method": "code"
+  },
+  "3699": {
+   "cert": "ICIM-PDC-000363-08",
+   "until": "2034-03-18",
+   "pel_model": "OMNIA LIFE M HI9 16T",
+   "method": "code"
+  },
+  "3703": {
+   "cert": "MCS HP0274/01",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 *** 4",
+   "method": "code"
+  },
+  "3704": {
+   "cert": "MCS HP0274/02",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 *** 6",
+   "method": "code"
+  },
+  "3705": {
+   "cert": "MCS HP0274/03",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 *** 8",
+   "method": "code"
+  },
+  "3706": {
+   "cert": "MCS HP0274/04",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 *** 10",
+   "method": "code"
+  },
+  "3707": {
+   "cert": "MCS HP0274/05",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 12",
+   "method": "cert"
+  },
+  "3708": {
+   "cert": "MCS HP0274/07",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 14",
+   "method": "cert"
+  },
+  "3709": {
+   "cert": "MCS HP0274/09",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 16",
+   "method": "cert"
+  },
+  "3710": {
+   "cert": "MCS HP0274/06",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 *** 12T",
+   "method": "code"
+  },
+  "3711": {
+   "cert": "MCS HP0274/08",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 *** 14T",
+   "method": "code"
+  },
+  "3712": {
+   "cert": "MCS HP0274/10",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 *** 16T",
+   "method": "code"
+  },
+  "3713": {
+   "cert": "MCS HP0274/12",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 22T",
+   "method": "cert"
+  },
+  "3714": {
+   "cert": "MCS HP0274/13",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 26T",
+   "method": "cert"
+  },
+  "3715": {
+   "cert": "MCS HP0274/14",
+   "until": null,
+   "pel_model": "OMNIA M 3.2 30T",
+   "method": "cert"
+  },
+  "3716": {
+   "cert": "011-1W0597_1",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 4",
+   "method": "cert"
+  },
+  "3717": {
+   "cert": "011-1W0597_2",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 6",
+   "method": "cert"
+  },
+  "3718": {
+   "cert": "011-1W0598_1",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 8",
+   "method": "cert"
+  },
+  "3719": {
+   "cert": "011-1W0598_2",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 10",
+   "method": "cert"
+  },
+  "3720": {
+   "cert": "011-1W0596_1",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 12",
+   "method": "cert"
+  },
+  "3721": {
+   "cert": "011-1W0596_2",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 14",
+   "method": "cert"
+  },
+  "3722": {
+   "cert": "011-1W0596_3",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 16",
+   "method": "cert"
+  },
+  "3723": {
+   "cert": "011-1W0596_4",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 12T",
+   "method": "cert"
+  },
+  "3724": {
+   "cert": "011-1W0596_5",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 14T",
+   "method": "cert"
+  },
+  "3725": {
+   "cert": "011-1W0596_6",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA S 3.2 16T",
+   "method": "cert"
+  },
+  "3726": {
+   "cert": "011-1W0597_3",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 4",
+   "method": "cert"
+  },
+  "3727": {
+   "cert": "011-1W0597_4",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 6",
+   "method": "cert"
+  },
+  "3728": {
+   "cert": "011-1W0598_3",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 8",
+   "method": "cert"
+  },
+  "3729": {
+   "cert": "011-1W0598_4",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 10",
+   "method": "cert"
+  },
+  "3730": {
+   "cert": "011-1W0596_7",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 12",
+   "method": "cert"
+  },
+  "3731": {
+   "cert": "011-1W0596_8",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 14",
+   "method": "cert"
+  },
+  "3732": {
+   "cert": "011-1W0596_9",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 16",
+   "method": "cert"
+  },
+  "3733": {
+   "cert": "011-1W0596_10",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 12T",
+   "method": "cert"
+  },
+  "3734": {
+   "cert": "011-1W0596_11",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 14T",
+   "method": "cert"
+  },
+  "3735": {
+   "cert": "011-1W0596_12",
+   "until": "2033-05-31",
+   "pel_model": "OMNIA ST 3.2 16T",
+   "method": "cert"
+  },
+  "3758": {
+   "cert": "MCS HP0296/14",
+   "until": null,
+   "pel_model": "ecoSTAR06 / ecoSTAR All-in-one",
+   "method": "code"
+  },
+  "3762": {
+   "cert": "MCS HP0296/16",
+   "until": null,
+   "pel_model": "ecoSTAR08 / ecoSTAR All-in-one",
+   "method": "code"
+  },
+  "3766": {
+   "cert": "MCS HP0296/18",
+   "until": null,
+   "pel_model": "ecoSTAR12 / ecoSTAR All-in-one",
+   "method": "code"
+  },
+  "3770": {
+   "cert": "MCS HP0296/20",
+   "until": null,
+   "pel_model": "ecoSTAR15 / ecoSTAR Al-in-one",
+   "method": "code"
+  },
+  "3827": {
+   "cert": "MCS HP0303/01",
+   "until": null,
+   "pel_model": "BLN-006TB1",
+   "method": "code"
+  },
+  "3828": {
+   "cert": "MCS HP0303/03",
+   "until": null,
+   "pel_model": "BLN-010TB1",
+   "method": "code"
+  },
+  "3829": {
+   "cert": "MCS HP0303/07",
+   "until": null,
+   "pel_model": "BLN-014TB1",
+   "method": "code"
+  },
+  "3830": {
+   "cert": "MCS HP0303/11",
+   "until": null,
+   "pel_model": "BLN-018TB1",
+   "method": "code"
+  },
+  "3831": {
+   "cert": "MCS HP0303/05",
+   "until": null,
+   "pel_model": "BLN-010TB3",
+   "method": "code"
+  },
+  "3832": {
+   "cert": "MCS HP0303/09",
+   "until": null,
+   "pel_model": "BLN-014TB3",
+   "method": "code"
+  },
+  "3833": {
+   "cert": "MCS HP0303/13",
+   "until": null,
+   "pel_model": "BLN-018TB3",
+   "method": "code"
+  },
+  "3834": {
+   "cert": "MCS HP0303/15",
+   "until": null,
+   "pel_model": "BLN-024TB3",
+   "method": "code"
+  },
+  "3835": {
+   "cert": "MCS HP0303/17",
+   "until": null,
+   "pel_model": "BLN-006TC1",
+   "method": "code"
+  },
+  "3836": {
+   "cert": "MCS HP0303/18",
+   "until": null,
+   "pel_model": "BLN-008TC1",
+   "method": "code"
+  },
+  "3837": {
+   "cert": "MCS HP0303/19",
+   "until": null,
+   "pel_model": "BLN-008TC3",
+   "method": "code"
+  },
+  "3838": {
+   "cert": "MCS HP0303/20",
+   "until": null,
+   "pel_model": "BLN-012TC1",
+   "method": "code"
+  },
+  "3839": {
+   "cert": "MCS HP0303/21",
+   "until": null,
+   "pel_model": "BLN-012TC3",
+   "method": "code"
+  },
+  "3840": {
+   "cert": "MCS HP0303/22",
+   "until": null,
+   "pel_model": "BLN-018TC1",
+   "method": "code"
+  },
+  "3841": {
+   "cert": "MCS HP0303/23",
+   "until": null,
+   "pel_model": "BLN-018TC3",
+   "method": "code"
+  },
+  "3843": {
+   "cert": "MCS HP0303/25",
+   "until": null,
+   "pel_model": "BLN-006TE1",
+   "method": "code"
+  },
+  "3844": {
+   "cert": "MCS HP0303/26",
+   "until": null,
+   "pel_model": "BLN-008TE1",
+   "method": "code"
+  },
+  "3845": {
+   "cert": "MCS HP0303/27",
+   "until": null,
+   "pel_model": "BLN-012TE1",
+   "method": "code"
+  },
+  "3846": {
+   "cert": "MCS HP0303/30",
+   "until": null,
+   "pel_model": "BLN-015TE1",
+   "method": "code"
+  },
+  "3847": {
+   "cert": "MCS HP0303/31",
+   "until": null,
+   "pel_model": "BLN-018TE1",
+   "method": "code"
+  },
+  "3848": {
+   "cert": "MCS HP0303/28",
+   "until": null,
+   "pel_model": "BLN-008TE3",
+   "method": "code"
+  },
+  "3849": {
+   "cert": "MCS HP0303/29",
+   "until": null,
+   "pel_model": "BLN-012TE3",
+   "method": "code"
+  },
+  "3850": {
+   "cert": "MCS HP0303/32",
+   "until": null,
+   "pel_model": "BLN-015TE3",
+   "method": "code"
+  },
+  "3851": {
+   "cert": "MCS HP0303/33",
+   "until": null,
+   "pel_model": "BLN-018TE3",
+   "method": "code"
+  },
+  "3896": {
+   "cert": "011-1W1109_01",
+   "until": "2035-10-31",
+   "pel_model": "AMH-4R2",
+   "method": "code"
+  },
+  "3897": {
+   "cert": "011-1W1109_02",
+   "until": "2035-10-31",
+   "pel_model": "AMH-6R2",
+   "method": "code"
+  },
+  "3898": {
+   "cert": "011-1W1021_1",
+   "until": "2035-03-31",
+   "pel_model": "AMH-8R2",
+   "method": "code"
+  },
+  "3899": {
+   "cert": "011-1W1021_3",
+   "until": "2035-03-31",
+   "pel_model": "AMH-10R2",
+   "method": "code"
+  },
+  "3900": {
+   "cert": "011-1W1022_1",
+   "until": "2035-03-31",
+   "pel_model": "AMH-12R2",
+   "method": "code"
+  },
+  "3901": {
+   "cert": "011-1W1022_3",
+   "until": "2035-03-31",
+   "pel_model": "AMH-14R2",
+   "method": "code"
+  },
+  "3902": {
+   "cert": "011-1W1022_5",
+   "until": "2035-03-31",
+   "pel_model": "AMH-16R2 ",
+   "method": "code"
+  },
+  "3903": {
+   "cert": "011-1W1023_1",
+   "until": "2035-03-31",
+   "pel_model": "AMH-12TR2",
+   "method": "code"
+  },
+  "3904": {
+   "cert": "011-1W1023_3",
+   "until": "2035-03-31",
+   "pel_model": "AMH-14TR2 ",
+   "method": "code"
+  },
+  "3905": {
+   "cert": "011-1W1023_5",
+   "until": "2035-03-31",
+   "pel_model": "AMH-16TR2 ",
+   "method": "code"
+  },
+  "3906": {
+   "cert": "011-1W1136_01",
+   "until": "2035-11-30",
+   "pel_model": "AMH-18TR2",
+   "method": "code"
+  },
+  "3907": {
+   "cert": "011-1W1136_03",
+   "until": "2035-11-30",
+   "pel_model": "AMH-20TR2",
+   "method": "code"
+  },
+  "3932": {
+   "cert": "MCS HP0304/13",
+   "until": null,
+   "pel_model": "CGK015V3L-B",
+   "method": "code"
+  },
+  "3933": {
+   "cert": "MCS HP0304/01",
+   "until": null,
+   "pel_model": "CGK025V3L-B",
+   "method": "code"
+  },
+  "3934": {
+   "cert": "MCS HP0304/03",
+   "until": null,
+   "pel_model": "CGK-030V3L-B",
+   "method": "code"
+  },
+  "3935": {
+   "cert": "MCS HP0304/05",
+   "until": null,
+   "pel_model": "CGK040V3L-B",
+   "method": "code"
+  },
+  "3936": {
+   "cert": "MCS HP0304/01",
+   "until": null,
+   "pel_model": "CGK025V3L-B",
+   "method": "code"
+  },
+  "3937": {
+   "cert": "MCS HP0304/03",
+   "until": null,
+   "pel_model": "CGK-030V3L-B",
+   "method": "code"
+  },
+  "3938": {
+   "cert": "MCS HP0304/04",
+   "until": null,
+   "pel_model": "CGK-040V3L",
+   "method": "code"
+  },
+  "3939": {
+   "cert": "MCS HP0304/14",
+   "until": null,
+   "pel_model": "CGK-100V3L-B",
+   "method": "code"
+  },
+  "3944": {
+   "cert": "MCS HP0304/08",
+   "until": null,
+   "pel_model": "CGK030V4P",
+   "method": "code"
+  },
+  "3945": {
+   "cert": "MCS HP0304/09",
+   "until": null,
+   "pel_model": "CGK040V4P",
+   "method": "code"
+  },
+  "3946": {
+   "cert": "MCS HP0304/08",
+   "until": null,
+   "pel_model": "CGK030V4P",
+   "method": "code"
+  },
+  "3947": {
+   "cert": "MCS HP0304/09",
+   "until": null,
+   "pel_model": "CGK040V4P",
+   "method": "code"
+  },
+  "3948": {
+   "cert": "MCS HP0304/10",
+   "until": null,
+   "pel_model": "CGK050V4P",
+   "method": "code"
+  },
+  "3949": {
+   "cert": "MCS HP0304/11",
+   "until": null,
+   "pel_model": "CGK060V4P",
+   "method": "code"
+  },
+  "3950": {
+   "cert": "MCS HP0304/10",
+   "until": null,
+   "pel_model": "CGK050V4P",
+   "method": "code"
+  },
+  "3951": {
+   "cert": "MCS HP0304/11",
+   "until": null,
+   "pel_model": "CGK060V4P",
+   "method": "code"
+  },
+  "3967": {
+   "cert": "MCS HP0304/15",
+   "until": null,
+   "pel_model": "CGK-080V4-B",
+   "method": "code"
+  },
+  "3968": {
+   "cert": "MCS HP0304/16",
+   "until": null,
+   "pel_model": "CGK-100V4-B",
+   "method": "code"
+  },
+  "3969": {
+   "cert": "MCS HP0304/17",
+   "until": null,
+   "pel_model": "CGK-151V4-B",
+   "method": "code"
+  },
+  "3981": {
+   "cert": "MCS HP0293/04",
+   "until": null,
+   "pel_model": "KS-40W/EN8BP",
+   "method": "code"
+  },
+  "3982": {
+   "cert": "MCS HP0293/05",
+   "until": null,
+   "pel_model": "KS-60W/EN8BP",
+   "method": "code"
+  },
+  "3983": {
+   "cert": "MCS HP0293/02",
+   "until": null,
+   "pel_model": "KS-80W/EN8BP",
+   "method": "code"
+  },
+  "3984": {
+   "cert": "MCS HP0293/06",
+   "until": null,
+   "pel_model": "KS-100W/EN8BP",
+   "method": "code"
+  },
+  "3985": {
+   "cert": "MCS HP0293/03",
+   "until": null,
+   "pel_model": "KS-120W/EN8BP",
+   "method": "code"
+  },
+  "3986": {
+   "cert": "MCS HP0293/07",
+   "until": null,
+   "pel_model": "KS-140W/EN8BP",
+   "method": "code"
+  },
+  "3987": {
+   "cert": "MCS HP0293/01",
+   "until": null,
+   "pel_model": "KS-160W/EN8BP",
+   "method": "code"
+  },
+  "4000": {
+   "cert": "MR 50726487 0001/001",
+   "until": "2031-04-28",
+   "pel_model": "KS-350W/N7SBP",
+   "method": "code"
+  },
+  "4001": {
+   "cert": "MR 50726487 0001/002",
+   "until": "2031-04-28",
+   "pel_model": "KS-500W/N7SBP",
+   "method": "code"
+  },
+  "4062": {
+   "cert": "MCS HP0371/01",
+   "until": null,
+   "pel_model": "GT-SKR020KBDC-M290",
+   "method": "code"
+  },
+  "4063": {
+   "cert": "MCS HP0371/03",
+   "until": null,
+   "pel_model": "GT-SKR030KBDC-M290",
+   "method": "code"
+  },
+  "4064": {
+   "cert": "MCS HP0371/05",
+   "until": null,
+   "pel_model": "GT-SKR040KBDC-M290",
+   "method": "code"
+  },
+  "4065": {
+   "cert": "MCS HP0371/07",
+   "until": null,
+   "pel_model": "GT-SKR040KBDC-M290T",
+   "method": "code"
+  },
+  "4066": {
+   "cert": "MCS HP0371/09",
+   "until": null,
+   "pel_model": "GT-SKR050KBDC-M290T",
+   "method": "code"
+  },
+  "4093": {
+   "cert": "011-1W0635_1",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V40W/R2",
+   "method": "code"
+  },
+  "4094": {
+   "cert": "011-1W0635_2",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V60W/R2",
+   "method": "code"
+  },
+  "4095": {
+   "cert": "011-1W0636_1",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V80W/R2",
+   "method": "code"
+  },
+  "4096": {
+   "cert": "011-1W0636_2",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V100W/R2",
+   "method": "code"
+  },
+  "4097": {
+   "cert": "011-1W0637_1",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V120W/R2",
+   "method": "code"
+  },
+  "4098": {
+   "cert": "011-1W0637_2",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V140W/R2",
+   "method": "code"
+  },
+  "4099": {
+   "cert": "011-1W0637_3",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V160W/R2",
+   "method": "code"
+  },
+  "4100": {
+   "cert": "011-1W0637_4",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V120W/SR2",
+   "method": "code"
+  },
+  "4101": {
+   "cert": "011-1W0637_5",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V140W/SR2",
+   "method": "code"
+  },
+  "4102": {
+   "cert": "011-1W0637_6",
+   "until": "2033-06-30",
+   "pel_model": "HPM-V160W/SR2",
+   "method": "code"
+  },
+  "4103": {
+   "cert": "011-1W0923_01",
+   "until": "2034-11-30",
+   "pel_model": "HPM-V260W/SR2",
+   "method": "code"
+  },
+  "4104": {
+   "cert": "011-1W0923_02",
+   "until": "2034-11-30",
+   "pel_model": "HPM-V300W/SR2",
+   "method": "code"
+  },
+  "4105": {
+   "cert": "011-1W0678_01",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V40W/R2 + IU: HM-60/DR2",
+   "method": "cert"
+  },
+  "4106": {
+   "cert": "011-1W0678_02",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V60W/R2 + IU: HM-60/DR2",
+   "method": "cert"
+  },
+  "4107": {
+   "cert": "011-1W0679_01",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V80W/R2 + IU: HM-100/DR2",
+   "method": "cert"
+  },
+  "4108": {
+   "cert": "011-1W0679_02",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V100W/R2 + IU: HM-100/DR2",
+   "method": "cert"
+  },
+  "4109": {
+   "cert": "011-1W0680_01",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V120W/R2 + IU: HM-160/DR2",
+   "method": "cert"
+  },
+  "4110": {
+   "cert": "011-1W0680_02",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V140W/R2 + IU: HM-160/DR2",
+   "method": "cert"
+  },
+  "4111": {
+   "cert": "011-1W0680_03",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V160W/R2 + IU: HM-160/DR2",
+   "method": "cert"
+  },
+  "4112": {
+   "cert": "011-1W0680_04",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V120W/SR2 + IU: HM-160/DSR2",
+   "method": "cert"
+  },
+  "4113": {
+   "cert": "011-1W0680_05",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V140W/SR2 + IU: HM-160/DSR2",
+   "method": "cert"
+  },
+  "4114": {
+   "cert": "011-1W0680_06",
+   "until": "2033-09-30",
+   "pel_model": "OU: HPS-V160W/SR2 + IU: HM-160/DSR2",
+   "method": "cert"
+  },
+  "4115": {
+   "cert": "011-1W0745_1",
+   "until": "2033-11-30",
+   "pel_model": "HPM-V60W/R3",
+   "method": "code"
+  },
+  "4116": {
+   "cert": "011-1W0746_1",
+   "until": "2033-11-30",
+   "pel_model": "HPM-V90W/R3",
+   "method": "code"
+  },
+  "4117": {
+   "cert": "011-1W0744_1",
+   "until": "2033-11-30",
+   "pel_model": "HPM-V120W/R3",
+   "method": "code"
+  },
+  "4118": {
+   "cert": "011-1W0744_2",
+   "until": "2033-11-30",
+   "pel_model": "HPM-V150W/R3",
+   "method": "code"
+  },
+  "4119": {
+   "cert": "011-1W0744_3",
+   "until": "2033-11-30",
+   "pel_model": "HPM-V120W/SR3",
+   "method": "code"
+  },
+  "4120": {
+   "cert": "011-1W0744_4",
+   "until": "2033-11-30",
+   "pel_model": "HPM-V150W/SR3",
+   "method": "code"
+  },
+  "4121": {
+   "cert": "011-1W0906_01",
+   "until": "2034-10-31",
+   "pel_model": "HPM-V180W/SR3",
+   "method": "code"
+  },
+  "4122": {
+   "cert": "011-1W0906_02",
+   "until": "2034-10-31",
+   "pel_model": "HPM-V220W/SR3",
+   "method": "code"
+  },
+  "4123": {
+   "cert": "011-1W0800_1",
+   "until": "2034-06-30",
+   "pel_model": "OU: HPM-V90W/R3-B + IU: HM-90/DM",
+   "method": "cert"
+  },
+  "4124": {
+   "cert": "011-1W0801_1",
+   "until": "2034-06-30",
+   "pel_model": "OU: HPM-V120W/SR3-B + IU: HM-90/DM",
+   "method": "cert"
+  },
+  "4125": {
+   "cert": "011-1W0801_3",
+   "until": "2034-06-30",
+   "pel_model": "OU: HPM-V150W/SR3-B + IU: HM-90/DM",
+   "method": "cert"
+  },
+  "4149": {
+   "cert": "011-1W0862_1",
+   "until": "2034-08-31",
+   "pel_model": "XAH07Csi9",
+   "method": "code"
+  },
+  "4150": {
+   "cert": "011-1W0849_1",
+   "until": "2034-07-31",
+   "pel_model": "XAH10Csi9",
+   "method": "code"
+  },
+  "4151": {
+   "cert": "011-1W0814_1",
+   "until": "2034-07-31",
+   "pel_model": "XAH12Csi9",
+   "method": "code"
+  },
+  "4152": {
+   "cert": "011-1W0926_1",
+   "until": "2034-11-30",
+   "pel_model": "XAH16Csi9T",
+   "method": "code"
+  },
+  "4153": {
+   "cert": "011-1W0793_01",
+   "until": "2034-05-31",
+   "pel_model": "XAH10Csiu32",
+   "method": "code"
+  },
+  "4154": {
+   "cert": "011-1W0794_01",
+   "until": "2034-05-31",
+   "pel_model": "XAH12Csiu32T",
+   "method": "code"
+  },
+  "4155": {
+   "cert": "011-1W0781_01",
+   "until": "2034-04-30",
+   "pel_model": "XAH19Csiu32T",
+   "method": "code"
+  },
+  "4156": {
+   "cert": "011-1W0861_1",
+   "until": "2034-08-31",
+   "pel_model": "XAH26Csiu32T",
+   "method": "code"
+  },
+  "4157": {
+   "cert": "011-1W0673_1",
+   "until": "2033-09-30",
+   "pel_model": "XAH07Csi32",
+   "method": "code"
+  },
+  "4158": {
+   "cert": "011-1W0649_01",
+   "until": "2033-06-30",
+   "pel_model": "XAH10Csi32",
+   "method": "code"
+  },
+  "4159": {
+   "cert": "011-1W0660_01",
+   "until": "2033-08-31",
+   "pel_model": "XAH12Csi32",
+   "method": "code"
+  },
+  "4160": {
+   "cert": "011-1W0674_1",
+   "until": "2033-09-30",
+   "pel_model": "XAH16Csi32",
+   "method": "code"
+  },
+  "4161": {
+   "cert": "011-1W0733_1",
+   "until": "2033-10-31",
+   "pel_model": "XAH12Csi32T",
+   "method": "code"
+  },
+  "4162": {
+   "cert": "011-1W0734_1",
+   "until": "2033-10-31",
+   "pel_model": "XAH16Csi32T",
+   "method": "code"
+  },
+  "4172": {
+   "cert": "011-1W1084_1",
+   "until": "2035-08-31",
+   "pel_model": "XAH10Csi9-S",
+   "method": "code"
+  },
+  "4181": {
+   "cert": "007-DR0221",
+   "until": "2036-04-02",
+   "pel_model": "MAGIS M5 TOP",
+   "method": "code"
+  },
+  "4182": {
+   "cert": "007-DR0222",
+   "until": "2036-04-02",
+   "pel_model": "MAGIS M8 TOP",
+   "method": "code"
+  },
+  "4183": {
+   "cert": "007-DR0223",
+   "until": "2036-04-02",
+   "pel_model": "MAGIS M12 TOP",
+   "method": "code"
+  },
+  "4184": {
+   "cert": "007-DR0223_3",
+   "until": "2036-04-02",
+   "pel_model": "MAGIS M16 TOP",
+   "method": "code"
+  },
+  "4185": {
+   "cert": "007-DR0223_2",
+   "until": "2036-04-02",
+   "pel_model": "MAGIS M12T TOP",
+   "method": "code"
+  },
+  "4186": {
+   "cert": "007-DR0223_4",
+   "until": "2036-04-02",
+   "pel_model": "MAGIS M16T TOP",
+   "method": "code"
+  },
+  "4222": {
+   "cert": "MCS HP0284/14",
+   "until": null,
+   "pel_model": "PASRW150S-BP-PS-D",
+   "method": "code"
+  },
+  "4224": {
+   "cert": "BSI KM 748508/7",
+   "until": null,
+   "pel_model": "PASRW020-BP-PS-D",
+   "method": "code"
+  },
+  "4225": {
+   "cert": "BSI KM 748508/8",
+   "until": null,
+   "pel_model": "PASRW040-BP-PS-D",
+   "method": "code"
+  },
+  "4226": {
+   "cert": "BSI KM 748508/9",
+   "until": null,
+   "pel_model": "PASRW040S-BP-PS-D",
+   "method": "code"
+  },
+  "4227": {
+   "cert": "BSI KM 748508/10",
+   "until": null,
+   "pel_model": "PASRW060-BP-PS-D",
+   "method": "code"
+  },
+  "4228": {
+   "cert": "BSI KM 748508/11",
+   "until": null,
+   "pel_model": "PASRW060S-BP-PS-D",
+   "method": "code"
+  },
+  "4229": {
+   "cert": "007-DQ0202_1",
+   "until": "2035-06-20",
+   "pel_model": "HP 8kW R290",
+   "method": "code"
+  },
+  "4230": {
+   "cert": "007-DQ0205_1",
+   "until": "2035-06-20",
+   "pel_model": "HP 12kW R290",
+   "method": "code"
+  },
+  "4231": {
+   "cert": "007-DQ0210_1",
+   "until": "2035-06-20",
+   "pel_model": "HP 15kW R290 1PH",
+   "method": "code"
+  },
+  "4232": {
+   "cert": "007-DQ0208_1",
+   "until": "2035-06-20",
+   "pel_model": "HP 15kW R290 3PH",
+   "method": "code"
+  },
+  "4241": {
+   "cert": "011-1W1099_03",
+   "until": "2035-08-31",
+   "pel_model": "Outdoor unit HP 40kW R290 and indoor unit ES MCB PRO",
+   "method": "code"
+  },
+  "4257": {
+   "cert": "011-1W1077_01",
+   "until": "2035-06-30",
+   "pel_model": "vampair eco 08/1 + hydromodul M",
+   "method": "code"
+  },
+  "4258": {
+   "cert": "011-1W1078_01",
+   "until": "2035-06-30",
+   "pel_model": "vampair eco 12/1 + hydromodul L",
+   "method": "code"
+  },
+  "4259": {
+   "cert": "011-1W1079_01",
+   "until": "2035-06-30",
+   "pel_model": "vampair eco 15/3 + hydromodul L",
+   "method": "code"
+  },
+  "4279": {
+   "cert": "011-1W0592",
+   "until": "2029-11-29",
+   "pel_model": "Hydro 5",
+   "method": "cert"
+  },
+  "4280": {
+   "cert": "011-1W0593",
+   "until": "2029-11-29",
+   "pel_model": "Hydro 8",
+   "method": "cert"
+  },
+  "4281": {
+   "cert": "011-1W0591_1",
+   "until": "2029-11-29",
+   "pel_model": "Hydro 12",
+   "method": "cert"
+  },
+  "4282": {
+   "cert": "011-1W0591_2",
+   "until": "2029-11-29",
+   "pel_model": "Hydro 16",
+   "method": "cert"
+  },
+  "4283": {
+   "cert": "MCS HP0341/01",
+   "until": null,
+   "pel_model": "MWMHP-6KW1",
+   "method": "code"
+  },
+  "4284": {
+   "cert": "MCS HP0341/02",
+   "until": null,
+   "pel_model": "MWMHP-10KW1",
+   "method": "code"
+  },
+  "4285": {
+   "cert": "MCS HP0341/03",
+   "until": null,
+   "pel_model": "MWMHP-10KW3",
+   "method": "code"
+  },
+  "4286": {
+   "cert": "MCS HP0341/04",
+   "until": null,
+   "pel_model": "MWMHP-14KW1",
+   "method": "code"
+  },
+  "4287": {
+   "cert": "MCS HP0341/05",
+   "until": null,
+   "pel_model": "MWMHP-14KW3",
+   "method": "code"
+  },
+  "4288": {
+   "cert": "MCS HP0341/06",
+   "until": null,
+   "pel_model": "MWMHP-18KW1",
+   "method": "code"
+  },
+  "4289": {
+   "cert": "MCS HP0341/07",
+   "until": null,
+   "pel_model": "MWMHP-18KW3",
+   "method": "code"
+  },
+  "4290": {
+   "cert": "MCS HP0341/08",
+   "until": null,
+   "pel_model": "MWMHP-24KW3",
+   "method": "code"
+  },
+  "4291": {
+   "cert": "MCS HP0341/09",
+   "until": null,
+   "pel_model": "MWMHPC-6KW1",
+   "method": "code"
+  },
+  "4292": {
+   "cert": "MCS HP0341/10",
+   "until": null,
+   "pel_model": "MWMHPC-8KW1",
+   "method": "code"
+  },
+  "4293": {
+   "cert": "MCS HP0341/11",
+   "until": null,
+   "pel_model": "MWMHPC-8KW3",
+   "method": "code"
+  },
+  "4294": {
+   "cert": "MCS HP0341/12",
+   "until": null,
+   "pel_model": "MWMHPC-12KW1",
+   "method": "code"
+  },
+  "4295": {
+   "cert": "MCS HP0341/13",
+   "until": null,
+   "pel_model": "MWMHPC-12KW3",
+   "method": "code"
+  },
+  "4296": {
+   "cert": "MCS HP0341/14",
+   "until": null,
+   "pel_model": "MWMHPC-18KW1",
+   "method": "code"
+  },
+  "4297": {
+   "cert": "MCS HP0341/15",
+   "until": null,
+   "pel_model": "MWMHPC-18KW3",
+   "method": "code"
+  },
+  "4298": {
+   "cert": "MCS HP0407/01",
+   "until": null,
+   "pel_model": "BEMHP-V4WR1P",
+   "method": "code"
+  },
+  "4299": {
+   "cert": "MCS HP0407/02",
+   "until": null,
+   "pel_model": "BEMHP-V6WR1P",
+   "method": "code"
+  },
+  "4300": {
+   "cert": "MCS HP0407/03",
+   "until": null,
+   "pel_model": "BEMHP-V8WR1P",
+   "method": "code"
+  },
+  "4301": {
+   "cert": "MCS HP0407/04",
+   "until": null,
+   "pel_model": "BEMHP-V10WR1P",
+   "method": "code"
+  },
+  "4302": {
+   "cert": "MCS HP0407/05",
+   "until": null,
+   "pel_model": "BEMHP-V12WR1P",
+   "method": "code"
+  },
+  "4303": {
+   "cert": "MCS HP0407/06",
+   "until": null,
+   "pel_model": "BEMHP-V14WR1P",
+   "method": "code"
+  },
+  "4304": {
+   "cert": "MCS HP0407/07",
+   "until": null,
+   "pel_model": "BEMHP-V16WR1P",
+   "method": "code"
+  },
+  "4305": {
+   "cert": "MCS HP0407/08",
+   "until": null,
+   "pel_model": "BEMHP-V12WR3P",
+   "method": "code"
+  },
+  "4306": {
+   "cert": "MCS HP0407/09",
+   "until": null,
+   "pel_model": "BEMHP-V14WR3P",
+   "method": "code"
+  },
+  "4307": {
+   "cert": "MCS HP0407/10",
+   "until": null,
+   "pel_model": "BEMHP-V16WR3P",
+   "method": "code"
+  },
+  "4308": {
+   "cert": "CN-MCS-250004/01",
+   "until": "2030-07-07",
+   "pel_model": "THMLd-4D/3HBp-A",
+   "method": "code"
+  },
+  "4309": {
+   "cert": "CN-MCS-250004/05",
+   "until": "2030-07-07",
+   "pel_model": "THMLd-6D/3HBp-A",
+   "method": "code"
+  },
+  "4310": {
+   "cert": "CN-MCS-250001/01",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-8D/3HBp-A",
+   "method": "code"
+  },
+  "4311": {
+   "cert": "CN-MCS-250001/05",
+   "until": "2030-03-10",
+   "pel_model": "THMLd-10D/3HBp-A",
+   "method": "code"
+  },
+  "4316": {
+   "cert": "011-1W0423_03",
+   "until": "2030-10-31",
+   "pel_model": "EBLA09DAW1",
+   "method": "code"
+  },
+  "4317": {
+   "cert": "011-1W0424_03",
+   "until": "2030-10-31",
+   "pel_model": "EBLA11DAW1",
+   "method": "code"
+  },
+  "4318": {
+   "cert": "011-1W0425_03",
+   "until": "2030-10-31",
+   "pel_model": "EBLA14DAW1",
+   "method": "code"
+  },
+  "4319": {
+   "cert": "011-1W0566_03",
+   "until": "2032-12-31",
+   "pel_model": "EBLA16DAW17",
+   "method": "code"
+  },
+  "4320": {
+   "cert": "011-1W0423_01",
+   "until": "2030-10-31",
+   "pel_model": "EBLA09DAV3",
+   "method": "code"
+  },
+  "4321": {
+   "cert": "011-1W0424_01",
+   "until": "2030-10-31",
+   "pel_model": "EBLA11DAV3",
+   "method": "code"
+  },
+  "4322": {
+   "cert": "011-1W0425_01",
+   "until": "2030-10-31",
+   "pel_model": "EBLA14DAV3",
+   "method": "code"
+  },
+  "4323": {
+   "cert": "011-1W0566_01",
+   "until": "2032-12-31",
+   "pel_model": "EBLA16DAV37",
+   "method": "code"
+  },
+  "4324": {
+   "cert": "011-1W0423_04",
+   "until": "2030-10-31",
+   "pel_model": "EBLA09DA3W1",
+   "method": "code"
+  },
+  "4325": {
+   "cert": "011-1W0424_04",
+   "until": "2030-10-31",
+   "pel_model": "EBLA11DA3W1",
+   "method": "code"
+  },
+  "4326": {
+   "cert": "011-1W0425_04",
+   "until": "2030-10-31",
+   "pel_model": "EBLA14DA3W1",
+   "method": "code"
+  },
+  "4327": {
+   "cert": "011-1W0566_04",
+   "until": "2032-12-31",
+   "pel_model": "EBLA16DA3W17",
+   "method": "code"
+  },
+  "4328": {
+   "cert": "011-1W0423_02",
+   "until": "2030-10-31",
+   "pel_model": "EBLA09DA3V3",
+   "method": "code"
+  },
+  "4329": {
+   "cert": "011-1W0424_02",
+   "until": "2030-10-31",
+   "pel_model": "EBLA11DA3V3",
+   "method": "code"
+  },
+  "4330": {
+   "cert": "011-1W0425_02",
+   "until": "2030-10-31",
+   "pel_model": "EBLA14DA3V3",
+   "method": "code"
+  },
+  "4331": {
+   "cert": "011-1W0566_02",
+   "until": "2032-12-31",
+   "pel_model": "EBLA16DA3V37",
+   "method": "code"
+  },
+  "4332": {
+   "cert": "011-1W0423_07",
+   "until": "2030-10-31",
+   "pel_model": "EDLA09DAW1",
+   "method": "code"
+  },
+  "4333": {
+   "cert": "011-1W0424_07",
+   "until": "2030-10-31",
+   "pel_model": "EDLA11DAW1",
+   "method": "code"
+  },
+  "4334": {
+   "cert": "011-1W0425_07",
+   "until": "2030-10-31",
+   "pel_model": "EDLA14DAW1",
+   "method": "code"
+  },
+  "4335": {
+   "cert": "011-1W0566_07",
+   "until": "2032-12-31",
+   "pel_model": "EDLA16DAW17",
+   "method": "code"
+  },
+  "4336": {
+   "cert": "011-1W0423_05",
+   "until": "2030-10-31",
+   "pel_model": "EDLA09DAV3",
+   "method": "code"
+  },
+  "4337": {
+   "cert": "011-1W0424_05",
+   "until": "2030-10-31",
+   "pel_model": "EDLA11DAV3",
+   "method": "code"
+  },
+  "4338": {
+   "cert": "011-1W0425_05",
+   "until": "2030-10-31",
+   "pel_model": "EDLA14DAV3",
+   "method": "code"
+  },
+  "4339": {
+   "cert": "011-1W0566_05",
+   "until": "2032-12-31",
+   "pel_model": "EDLA16DAV37",
+   "method": "code"
+  },
+  "4340": {
+   "cert": "011-1W0423_08",
+   "until": "2030-10-31",
+   "pel_model": "EDLA09DA3W1",
+   "method": "code"
+  },
+  "4341": {
+   "cert": "011-1W0424_08",
+   "until": "2030-10-31",
+   "pel_model": "EDLA11DA3W1",
+   "method": "code"
+  },
+  "4342": {
+   "cert": "011-1W0425_08",
+   "until": "2030-10-31",
+   "pel_model": "EDLA14DA3W1",
+   "method": "code"
+  },
+  "4343": {
+   "cert": "011-1W0566_08",
+   "until": "2032-12-31",
+   "pel_model": "EDLA16DA3W17",
+   "method": "code"
+  },
+  "4344": {
+   "cert": "011-1W0423_06",
+   "until": "2030-10-31",
+   "pel_model": "EDLA09DA3V3",
+   "method": "code"
+  },
+  "4345": {
+   "cert": "011-1W0424_06",
+   "until": "2030-10-31",
+   "pel_model": "EDLA11DA3V3",
+   "method": "code"
+  },
+  "4346": {
+   "cert": "011-1W0425_06",
+   "until": "2030-10-31",
+   "pel_model": "EDLA14DA3V3",
+   "method": "code"
+  },
+  "4347": {
+   "cert": "011-1W0566_06",
+   "until": "2032-12-31",
+   "pel_model": "EDLA16DA3V37",
+   "method": "code"
+  },
+  "4348": {
+   "cert": "011-1W0527_2",
+   "until": "2032-05-31",
+   "pel_model": "EBLA04E2V3",
+   "method": "code"
+  },
+  "4349": {
+   "cert": "011-1W0528_2",
+   "until": "2032-05-31",
+   "pel_model": "EBLA06E2V3",
+   "method": "code"
+  },
+  "4350": {
+   "cert": "011-1W0529_2",
+   "until": "2032-05-31",
+   "pel_model": "EBLA08E2V3",
+   "method": "code"
+  },
+  "4351": {
+   "cert": "011-1W0527_4",
+   "until": "2032-05-31",
+   "pel_model": "EBLA04E23V3",
+   "method": "code"
+  },
+  "4352": {
+   "cert": "011-1W0528_4",
+   "until": "2032-05-31",
+   "pel_model": "EBLA06E23V3",
+   "method": "code"
+  },
+  "4353": {
+   "cert": "011-1W0529_4",
+   "until": "2032-05-31",
+   "pel_model": "EBLA08E23V3",
+   "method": "code"
+  },
+  "4354": {
+   "cert": "011-1W0527_1",
+   "until": "2032-05-31",
+   "pel_model": "EDLA04E2V3",
+   "method": "code"
+  },
+  "4355": {
+   "cert": "011-1W0528_1",
+   "until": "2032-05-31",
+   "pel_model": "EDLA06E2V3",
+   "method": "code"
+  },
+  "4356": {
+   "cert": "011-1W0529_1",
+   "until": "2032-05-31",
+   "pel_model": "EDLA08E2V3",
+   "method": "code"
+  },
+  "4357": {
+   "cert": "011-1W0527_3",
+   "until": "2032-05-31",
+   "pel_model": "EDLA04E23V3",
+   "method": "code"
+  },
+  "4358": {
+   "cert": "011-1W0528_3",
+   "until": "2032-05-31",
+   "pel_model": "EDLA06E23V3",
+   "method": "code"
+  },
+  "4359": {
+   "cert": "011-1W0529_3",
+   "until": "2032-05-31",
+   "pel_model": "EDLA08E23V3",
+   "method": "code"
+  },
+  "4425": {
+   "cert": "KIWA 00023/002 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 57/4",
+   "method": "code"
+  },
+  "4426": {
+   "cert": "KIWA 00023/004 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 57/4 + VWA 11/4 SA",
+   "method": "code"
+  },
+  "4427": {
+   "cert": "KIWA 00023/003 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 57/4 + VWW 11/4 SI",
+   "method": "code"
+  },
+  "4428": {
+   "cert": "KIWA 00023/005 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 87/4",
+   "method": "code"
+  },
+  "4429": {
+   "cert": "KIWA 00023/007 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 87/4 + VWA 11/4 SA",
+   "method": "code"
+  },
+  "4430": {
+   "cert": "KIWA 00023/006 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 87/4 + VWW 11/4 SI",
+   "method": "code"
+  },
+  "4431": {
+   "cert": "KIWA 00023/008 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 117/4",
+   "method": "code"
+  },
+  "4432": {
+   "cert": "KIWA 00023/010 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 117/4 + VWA 11/4 SA",
+   "method": "code"
+  },
+  "4433": {
+   "cert": "KIWA 00023/009 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 117/4 + VWW 11/4 SI",
+   "method": "code"
+  },
+  "4434": {
+   "cert": "KIWA 00023/011 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 157/4",
+   "method": "code"
+  },
+  "4435": {
+   "cert": "KIWA 00023/013 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 157/4 + VWA 11/4 SA + VWA 11/4 SA",
+   "method": "code"
+  },
+  "4436": {
+   "cert": "KIWA 00023/012 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 157/4 + VWW 19/4 SI",
+   "method": "code"
+  },
+  "4437": {
+   "cert": "KIWA 00023/014 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 197/4",
+   "method": "code"
+  },
+  "4438": {
+   "cert": "KIWA 00023/016 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 197/4 + VWA 11/4 SA + VWA 11/4 SA",
+   "method": "code"
+  },
+  "4439": {
+   "cert": "KIWA 00023/015 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 197/4 + VWW 19/4 SI",
+   "method": "code"
+  },
+  "4440": {
+   "cert": "KIWA 00023/023 HP",
+   "until": "2027-04-23",
+   "pel_model": "VWF 117/4 230v VWW 11/4 SI",
+   "method": "code"
+  },
+  "4441": {
+   "cert": "KIWA 00016/013 HP",
+   "until": "2026-11-14",
+   "pel_model": "aroTHERM split 3kW VWL 35/5 AS 230V S2 + VWL 57/5 IS",
+   "method": "cert"
+  },
+  "4442": {
+   "cert": "KIWA 00016/014 HP",
+   "until": "2026-11-14",
+   "pel_model": "aroTHERM split 5kw VWL 55/5 AS 230V S2 + VWL 57/5 IS",
+   "method": "code"
+  },
+  "4443": {
+   "cert": "KIWA 00016/015 HP",
+   "until": "2026-11-14",
+   "pel_model": "aroTHERM split 7kW VWL 75/5 AS 230V S2 + VWL 77/5 IS",
+   "method": "code"
+  },
+  "4444": {
+   "cert": "KIWA 00016/016 HP",
+   "until": "2027-10-23",
+   "pel_model": "aroTHERM Split 10kW VWL 105/5 AS 230V S2 + VWL 127/5 IS",
+   "method": "code"
+  },
+  "4445": {
+   "cert": "KIWA 00016/017 HP",
+   "until": "2027-10-23",
+   "pel_model": "aroTHERM split 12kW VWL 125/5 AS 230V S2 + VWL 127/5 IS",
+   "method": "code"
+  },
+  "4457": {
+   "cert": "011-1W0060",
+   "until": "2026-12-31",
+   "pel_model": "WPL 07 ACS classic",
+   "method": "code"
+  },
+  "4458": {
+   "cert": "011-1W0061_1",
+   "until": "2026-12-31",
+   "pel_model": "WPL 09 ACS classic",
+   "method": "code"
+  },
+  "4459": {
+   "cert": "011-1W0061_2",
+   "until": "2026-10-31",
+   "pel_model": "WPL 13 ACS classic, WPL 17 ACS classic",
+   "method": "code"
+  },
+  "4460": {
+   "cert": "011-1W0061_2",
+   "until": "2026-10-31",
+   "pel_model": "WPL 13 ACS classic, WPL 17 ACS classic",
+   "method": "code"
+  },
+  "4466": {
+   "cert": "012-040",
+   "until": "2027-06-14",
+   "pel_model": "F1145-8",
+   "method": "code"
+  },
+  "4468": {
+   "cert": "012-044",
+   "until": "2027-06-14",
+   "pel_model": "F1145-12",
+   "method": "code"
+  },
+  "4469": {
+   "cert": "012-045",
+   "until": "2027-06-14",
+   "pel_model": "F1145-15",
+   "method": "code"
+  },
+  "4470": {
+   "cert": "012-046",
+   "until": "2027-06-14",
+   "pel_model": "F1145-17",
+   "method": "code"
+  },
+  "4473": {
+   "cert": "012-042",
+   "until": "2027-06-14",
+   "pel_model": "F1245-10",
+   "method": "code"
+  },
+  "4478": {
+   "cert": "012-C700408",
+   "until": "2036-04-20",
+   "pel_model": "NIBE S2060-6 1x230V",
+   "method": "code"
+  },
+  "4479": {
+   "cert": "012-C700409",
+   "until": "2036-04-20",
+   "pel_model": "NIBE S2060-10 1x230V",
+   "method": "code"
+  },
+  "4493": {
+   "cert": "011-1W0739_1",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H04/4R2HA-M",
+   "method": "code"
+  },
+  "4494": {
+   "cert": "011-1W0739_3",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H04/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4495": {
+   "cert": "011-1W0739_2",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H06/4R2HA-M",
+   "method": "code"
+  },
+  "4496": {
+   "cert": "011-1W0739_4",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H06/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4497": {
+   "cert": "011-1W0740_3",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H08/4R2HA-M",
+   "method": "code"
+  },
+  "4498": {
+   "cert": "011-1W0740_5",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H08/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4499": {
+   "cert": "011-1W0740_1",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H08/5R2HA-M",
+   "method": "code"
+  },
+  "4500": {
+   "cert": "011-1W0740_4",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H10/4R2HA-M",
+   "method": "code"
+  },
+  "4501": {
+   "cert": "011-1W0740_6",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H10/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4502": {
+   "cert": "011-1W0740_2",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H10/5R2HA-M",
+   "method": "code"
+  },
+  "4503": {
+   "cert": "011-1W0741_10",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H12/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4504": {
+   "cert": "011-1W0741_10",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H12/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4505": {
+   "cert": "011-1W0741_1",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H12/5R2HA-M",
+   "method": "code"
+  },
+  "4506": {
+   "cert": "011-1W0741_4",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H12/5R2HA-M(NE)",
+   "method": "code"
+  },
+  "4507": {
+   "cert": "011-1W0741_11",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H14/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4508": {
+   "cert": "011-1W0741_11",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H14/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4509": {
+   "cert": "011-1W0741_2",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H14/5R2HA-M",
+   "method": "code"
+  },
+  "4510": {
+   "cert": "011-1W0741_5",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H14/5R2HA-M(NE)",
+   "method": "code"
+  },
+  "4511": {
+   "cert": "011-1W0741_12",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H16/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4512": {
+   "cert": "011-1W0741_12",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H16/4R2HA-M(NE)",
+   "method": "code"
+  },
+  "4513": {
+   "cert": "011-1W0741_3",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H16/5R2HA-M",
+   "method": "code"
+  },
+  "4514": {
+   "cert": "011-1W0741_6",
+   "until": "2033-11-30",
+   "pel_model": "ACHP-H16/5R2HA-M(NE)",
+   "method": "code"
+  },
+  "4515": {
+   "cert": "041-K001-12 f",
+   "until": null,
+   "pel_model": "PWZSV 62H1S (1~230V)",
+   "method": "code"
+  },
+  "4516": {
+   "cert": "041-K001-12 e",
+   "until": null,
+   "pel_model": "PWZSV 62H2S (3~230V)",
+   "method": "code"
+  },
+  "4517": {
+   "cert": "041-K001-12 d",
+   "until": null,
+   "pel_model": "PWZSV 62H3S (3~400V)",
+   "method": "code"
+  },
+  "4518": {
+   "cert": "041-K001-26 f",
+   "until": null,
+   "pel_model": "PWZSV 92H1S(1~ 230V)",
+   "method": "code"
+  },
+  "4519": {
+   "cert": "041-K001-26 e",
+   "until": null,
+   "pel_model": "PWZSV 92H2S (3~ 230V)",
+   "method": "code"
+  },
+  "4520": {
+   "cert": "041-K001-26 d",
+   "until": null,
+   "pel_model": "PWZSV 92H3S (3~ 400V)",
+   "method": "code"
+  },
+  "4521": {
+   "cert": "041-K001-13 f",
+   "until": null,
+   "pel_model": "PWZSV 122H1S (1~230V)",
+   "method": "code"
+  },
+  "4522": {
+   "cert": "041-K001-13 e",
+   "until": null,
+   "pel_model": "PWZSV 122H2S (3~230V)",
+   "method": "code"
+  },
+  "4523": {
+   "cert": "041-K001-13 d",
+   "until": null,
+   "pel_model": "PWZSV 122H3S (3~400V)",
+   "method": "code"
+  },
+  "4524": {
+   "cert": "041-K001-14 c",
+   "until": null,
+   "pel_model": "PWZSV 162H3S (3~400V)",
+   "method": "code"
+  },
+  "4525": {
+   "cert": "041-K001-12 b",
+   "until": null,
+   "pel_model": "SWCV 62H1 (1~230V)",
+   "method": "code"
+  },
+  "4526": {
+   "cert": "041-K001-26 b",
+   "until": null,
+   "pel_model": "SWCV 92H1 (1~ 230V)",
+   "method": "code"
+  },
+  "4527": {
+   "cert": "041-K001-13 b",
+   "until": null,
+   "pel_model": "SWCV 122H1 (1~230V)",
+   "method": "code"
+  },
+  "4528": {
+   "cert": "041-K001-38 b",
+   "until": null,
+   "pel_model": "LW 140 (L)",
+   "method": "code"
+  },
+  "4529": {
+   "cert": "041-K001-39 b",
+   "until": null,
+   "pel_model": "LW 180 (L)",
+   "method": "code"
+  },
+  "4530": {
+   "cert": "041-K001-40 b",
+   "until": null,
+   "pel_model": "LW 251 (L)",
+   "method": "code"
+  },
+  "4531": {
+   "cert": "041-K001-20 a",
+   "until": null,
+   "pel_model": "LWD 50 A/SX",
+   "method": "code"
+  },
+  "4532": {
+   "cert": "041-K001-21 a",
+   "until": null,
+   "pel_model": "LWD 70 A/SX",
+   "method": "code"
+  },
+  "4533": {
+   "cert": "041-K001-24 a",
+   "until": null,
+   "pel_model": "LWDV 91-1/3-HDV 12-3",
+   "method": "code"
+  },
+  "4537": {
+   "cert": "041-K008-02 a",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 2.1",
+   "method": "code"
+  },
+  "4538": {
+   "cert": "041-K008-02 b",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 3.1",
+   "method": "code"
+  },
+  "4539": {
+   "cert": "041-K008-03 a",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 4.1",
+   "method": "code"
+  },
+  "4540": {
+   "cert": "041-K008-03 b",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 5.1",
+   "method": "code"
+  },
+  "4541": {
+   "cert": "041-K008-04 a",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 6.1",
+   "method": "code"
+  },
+  "4542": {
+   "cert": "041-K008-04 b",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 7.1",
+   "method": "code"
+  },
+  "4543": {
+   "cert": "041-K008-04 c",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 8.1",
+   "method": "code"
+  },
+  "4544": {
+   "cert": "041-K008-04 d",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 6.1T",
+   "method": "code"
+  },
+  "4545": {
+   "cert": "041-K008-04 e",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 7.1T",
+   "method": "code"
+  },
+  "4546": {
+   "cert": "041-K008-04 f",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 8.1T",
+   "method": "code"
+  },
+  "4547": {
+   "cert": "041-K008-05 a",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 9.1",
+   "method": "code"
+  },
+  "4548": {
+   "cert": "041-K008-05 b",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 10.1",
+   "method": "code"
+  },
+  "4549": {
+   "cert": "041-K008-05 c",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 12.1",
+   "method": "code"
+  },
+  "4550": {
+   "cert": "041-K008-05 d",
+   "until": null,
+   "pel_model": "WiSAN-YME 1 S 14.1",
+   "method": "code"
+  },
+  "4551": {
+   "cert": "011-1W0259_11",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ011CA3V3",
+   "method": "code"
+  },
+  "4552": {
+   "cert": "011-1W0259_16",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ011C3W1",
+   "method": "code"
+  },
+  "4553": {
+   "cert": "011-1W0260_11",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ014CA3V3",
+   "method": "code"
+  },
+  "4554": {
+   "cert": "011-1W0260_16",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ014C3W1",
+   "method": "code"
+  },
+  "4555": {
+   "cert": "011-1W0261_11",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ016CA3V3",
+   "method": "code"
+  },
+  "4556": {
+   "cert": "011-1W0261_16",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ016C3W1",
+   "method": "code"
+  },
+  "4557": {
+   "cert": "011-1W0423_10",
+   "until": "2030-10-31",
+   "pel_model": "EBLA09D3V3U",
+   "method": "code"
+  },
+  "4566": {
+   "cert": "MCS HP0017/47",
+   "until": null,
+   "pel_model": "Latitude C 20kW LA 2030CP ",
+   "method": "code"
+  },
+  "4567": {
+   "cert": "MCS HP0017/48",
+   "until": null,
+   "pel_model": "Latitude C 40kW LA 4060CP ",
+   "method": "code"
+  },
+  "4568": {
+   "cert": "MCS HP0017/04",
+   "until": null,
+   "pel_model": "SI 11 ME",
+   "method": "code"
+  },
+  "4569": {
+   "cert": "MCS HP0017/28",
+   "until": null,
+   "pel_model": "SI 14 ME",
+   "method": "code"
+  },
+  "4571": {
+   "cert": "MCS HP0017/16",
+   "until": null,
+   "pel_model": "SIH 40 TE",
+   "method": "code"
+  },
+  "4577": {
+   "cert": "041-K002-72 a",
+   "until": null,
+   "pel_model": "RAS-3.5WHVRP2E + RWD-3.5RW3E-220S(-K)",
+   "method": "code"
+  },
+  "4578": {
+   "cert": "041-K002-73 b",
+   "until": null,
+   "pel_model": "RAS-4WHRP2E + RWD-4RW3E-220S(-K)",
+   "method": "code"
+  },
+  "4579": {
+   "cert": "041-K002-73 a",
+   "until": null,
+   "pel_model": "RAS-4WHVRP2E + RWD-4RW3E-220S(-K)",
+   "method": "code"
+  },
+  "4580": {
+   "cert": "041-K002-74 b",
+   "until": null,
+   "pel_model": "RAS-5WHRP2E + RWD-5RW3E-220S(-K)",
+   "method": "code"
+  },
+  "4581": {
+   "cert": "041-K002-74 a",
+   "until": null,
+   "pel_model": "RAS-5WHVRP2E + RWD-5RW3E-220S(-K)",
+   "method": "code"
+  },
+  "4582": {
+   "cert": "041-K002-75 b",
+   "until": null,
+   "pel_model": "RAS-6WHRP2E + RWD-6RW3E-220S(-K)",
+   "method": "code"
+  },
+  "4583": {
+   "cert": "041-K002-75 a",
+   "until": null,
+   "pel_model": "RAS-6WHVRP2E + RWD-6RW3E-220S(-K)",
+   "method": "code"
+  },
+  "4584": {
+   "cert": "MCS HP0032/07",
+   "until": null,
+   "pel_model": "RHUE-3AVHN1",
+   "method": "code"
+  },
+  "4585": {
+   "cert": "011-1W0962_5",
+   "until": "2035-01-31",
+   "pel_model": "HM121MRS UB40",
+   "method": "code"
+  },
+  "4586": {
+   "cert": "011-1W0962_3",
+   "until": "2035-01-31",
+   "pel_model": "HM141MRS UB40",
+   "method": "code"
+  },
+  "4587": {
+   "cert": "011-1W0962_1",
+   "until": "2035-01-31",
+   "pel_model": "HM161MRS UB40",
+   "method": "code"
+  },
+  "4588": {
+   "cert": "KIWA 00033/024 HP",
+   "until": "2027-03-11",
+   "pel_model": "HU141MRB U30 / HN1600MB NK0",
+   "method": "code"
+  },
+  "4590": {
+   "cert": "011-1W1195_03",
+   "until": "2036-01-31",
+   "pel_model": "HM051HFS UA41",
+   "method": "code"
+  },
+  "4591": {
+   "cert": "011-1W1195_02",
+   "until": "2036-01-31",
+   "pel_model": "HM071HFS UA41",
+   "method": "code"
+  },
+  "4592": {
+   "cert": "011-1W1195_05",
+   "until": "2036-01-31",
+   "pel_model": "HM073HFS UA41",
+   "method": "code"
+  },
+  "4593": {
+   "cert": "011-1W1195_01",
+   "until": "2036-01-31",
+   "pel_model": "HM091HFS UA41",
+   "method": "code"
+  },
+  "4594": {
+   "cert": "011-1W1195_04",
+   "until": "2036-01-31",
+   "pel_model": "HM093HFS UA41",
+   "method": "code"
+  },
+  "4595": {
+   "cert": "037-0001-18-03",
+   "until": "2028-10-08",
+   "pel_model": "PUHZ-W85VAA",
+   "method": "code"
+  },
+  "4596": {
+   "cert": "037-0001-18-05",
+   "until": "2028-10-08",
+   "pel_model": "PUHZ-W85YAA",
+   "method": "code"
+  },
+  "4597": {
+   "cert": "037-0002-18-01",
+   "until": "2028-10-08",
+   "pel_model": "PUHZ-W112VAA",
+   "method": "code"
+  },
+  "4598": {
+   "cert": "037-0002-18-03",
+   "until": "2028-10-08",
+   "pel_model": "PUHZ-W112YAA",
+   "method": "code"
+  },
+  "4599": {
+   "cert": "037-0033-20-03",
+   "until": "2030-06-21",
+   "pel_model": "PUZ-WM85VAA",
+   "method": "code"
+  },
+  "4600": {
+   "cert": "037-0198-25-1",
+   "until": "2035-04-08",
+   "pel_model": "AQ17ICP",
+   "method": "code"
+  },
+  "4601": {
+   "cert": "037-0032-20-01",
+   "until": "2030-06-21",
+   "pel_model": "PUZ-WM50VHA",
+   "method": "code"
+  },
+  "4602": {
+   "cert": "037-0034-20-01",
+   "until": "2030-07-26",
+   "pel_model": "PUZ-WM112VAA",
+   "method": "code"
+  },
+  "4603": {
+   "cert": "037-0034-20-03",
+   "until": "2030-07-26",
+   "pel_model": "PUZ-WM112YAA",
+   "method": "code"
+  },
+  "4604": {
+   "cert": "037-0035-20-03",
+   "until": "2030-07-26",
+   "pel_model": "PUZ-HWM140YHA",
+   "method": "code"
+  },
+  "4605": {
+   "cert": "037-0135-23-1",
+   "until": "2033-08-30",
+   "pel_model": "PUZ-WZ50VAA",
+   "method": "code"
+  },
+  "4606": {
+   "cert": "037-0135-23-3",
+   "until": "2033-08-30",
+   "pel_model": "PUZ-WZ60VAA",
+   "method": "code"
+  },
+  "4607": {
+   "cert": "037-0136-23-1",
+   "until": "2033-08-30",
+   "pel_model": "PUZ-WZ80VAA",
+   "method": "code"
+  },
+  "4608": {
+   "cert": "037-0159-25-1",
+   "until": "2035-02-24",
+   "pel_model": "PUZ-WZ85VAA(-BS)",
+   "method": "code"
+  },
+  "4609": {
+   "cert": "037-0159-25-2",
+   "until": "2035-02-24",
+   "pel_model": "PUZ-WZ85YAA(-BS)",
+   "method": "code"
+  },
+  "4610": {
+   "cert": "037-161-25-1",
+   "until": "2035-02-24",
+   "pel_model": "PUZ-WZ100VAA(-BS)",
+   "method": "code"
+  },
+  "4611": {
+   "cert": "037-161-25-2",
+   "until": "2035-02-24",
+   "pel_model": "PUZ-WZ100YAA(-BS)",
+   "method": "code"
+  },
+  "4612": {
+   "cert": "037-161-25-3",
+   "until": "2035-02-24",
+   "pel_model": "PUZ-WZ120VAA(-BS)",
+   "method": "code"
+  },
+  "4613": {
+   "cert": "037-161-25-4",
+   "until": "2035-02-24",
+   "pel_model": "PUZ-WZ120YAA(-BS)",
+   "method": "code"
+  },
+  "4614": {
+   "cert": "012-SC0014-18",
+   "until": "2028-02-04",
+   "pel_model": "F2040-6",
+   "method": "code"
+  },
+  "4615": {
+   "cert": "012-026",
+   "until": "2027-06-14",
+   "pel_model": "F2040-8",
+   "method": "code"
+  },
+  "4616": {
+   "cert": "012-027",
+   "until": "2027-06-14",
+   "pel_model": "F2040-12",
+   "method": "code"
+  },
+  "4617": {
+   "cert": "012-028",
+   "until": "2027-06-14",
+   "pel_model": "F2040-16",
+   "method": "code"
+  },
+  "4618": {
+   "cert": "012-SC0190-19-2",
+   "until": "2027-06-14",
+   "pel_model": "S1255-6 1x230",
+   "method": "code"
+  },
+  "4619": {
+   "cert": "012-SC0191-19-2",
+   "until": "2027-06-14",
+   "pel_model": "S1255-12 1x230",
+   "method": "code"
+  },
+  "4624": {
+   "cert": "MCS HP0086/75",
+   "until": null,
+   "pel_model": "WH-SDC03H3E5 + WH-UD03HE5",
+   "method": "code"
+  },
+  "4625": {
+   "cert": "MCS HP0086/73",
+   "until": null,
+   "pel_model": "WH-SDC05H3E5 + WH-UD05HE5",
+   "method": "code"
+  },
+  "4626": {
+   "cert": "MCS HP0086/76",
+   "until": null,
+   "pel_model": "WH-SDC07H3E5 + WH-UD07HE5",
+   "method": "code"
+  },
+  "4627": {
+   "cert": "MCS HP0086/74",
+   "until": null,
+   "pel_model": "WH-SDC09H3E5 + WH-UD09HE5",
+   "method": "code"
+  },
+  "4628": {
+   "cert": "MCS HP0086/92",
+   "until": null,
+   "pel_model": "WH-SDC12H6E5 / WH-UD12HE5",
+   "method": "cert"
+  },
+  "4629": {
+   "cert": "MCS HP0086/91",
+   "until": null,
+   "pel_model": "WH-SDC16H6E5-1 / WH-UD16HE5-1",
+   "method": "cert"
+  },
+  "4631": {
+   "cert": "MCS HP0086/87",
+   "until": null,
+   "pel_model": "WH-SXC12H6E5 / WH-UX12HE5",
+   "method": "cert"
+  },
+  "4632": {
+   "cert": "MCS HP0086/77",
+   "until": null,
+   "pel_model": "WH-SXC16H9E8 - WH-UX16HE8",
+   "method": "cert"
+  },
+  "4633": {
+   "cert": "MCS HP0086/56",
+   "until": null,
+   "pel_model": "WH-ADC0309G3E5UK / WH-UD03EE5",
+   "method": "cert"
+  },
+  "4634": {
+   "cert": "MCS HP0086/57",
+   "until": null,
+   "pel_model": "WH-ADC0309G3E5UK / WH-UD05EE5",
+   "method": "cert"
+  },
+  "4641": {
+   "cert": "MCS HP0086/43",
+   "until": null,
+   "pel_model": "WH-SXC16F9E8 / WH-UX16FE8",
+   "method": "cert"
+  },
+  "4642": {
+   "cert": "MCS HP0086/47",
+   "until": null,
+   "pel_model": "WH-SHF09F3E5 / WH-UH09FE5",
+   "method": "cert"
+  },
+  "4643": {
+   "cert": "MCS HP0086/48",
+   "until": null,
+   "pel_model": "WH-SHF12F6E5 / WH-UH12FE5",
+   "method": "cert"
+  },
+  "4644": {
+   "cert": "MCS HP0086/44",
+   "until": null,
+   "pel_model": "WH-MDC05F3E5",
+   "method": "code"
+  },
+  "4645": {
+   "cert": "MCS HP0086/64",
+   "until": null,
+   "pel_model": "WH-MDC06G3E5",
+   "method": "code"
+  },
+  "4646": {
+   "cert": "MCS HP0086/65",
+   "until": null,
+   "pel_model": "WH-MDC09G3E5",
+   "method": "code"
+  },
+  "4647": {
+   "cert": "MCS HP0086/68",
+   "until": null,
+   "pel_model": "WH-MDC12G6E5",
+   "method": "code"
+  },
+  "4648": {
+   "cert": "MCS HP0086/69",
+   "until": null,
+   "pel_model": "WH-MDC16G6E5",
+   "method": "code"
+  },
+  "4649": {
+   "cert": "MCS HP0086/88",
+   "until": null,
+   "pel_model": "WH-MDC05H3E5",
+   "method": "code"
+  },
+  "4650": {
+   "cert": "MCS HP0086/89",
+   "until": null,
+   "pel_model": "WH-MDC07H3E5",
+   "method": "code"
+  },
+  "4651": {
+   "cert": "MCS HP0086/90",
+   "until": null,
+   "pel_model": "WH-MDC09H3E5",
+   "method": "code"
+  },
+  "4652": {
+   "cert": "MCS HP0086/95",
+   "until": null,
+   "pel_model": "WH-MDC12H6E5",
+   "method": "code"
+  },
+  "4653": {
+   "cert": "MCS HP0086/96",
+   "until": null,
+   "pel_model": "WH-MDC16H6E5",
+   "method": "code"
+  },
+  "4654": {
+   "cert": "MCS HP0086/66",
+   "until": null,
+   "pel_model": "WH-MXC09G3E5",
+   "method": "code"
+  },
+  "4655": {
+   "cert": "MCS HP0086/67",
+   "until": null,
+   "pel_model": "WH-MXC12G6E5",
+   "method": "code"
+  },
+  "4656": {
+   "cert": "MCS HP0086/72",
+   "until": null,
+   "pel_model": "WH-MXC16G9E8",
+   "method": "code"
+  },
+  "4657": {
+   "cert": "MCS HP0086/93",
+   "until": null,
+   "pel_model": "WH-MXC09H3E5",
+   "method": "code"
+  },
+  "4658": {
+   "cert": "MCS HP0086/94",
+   "until": null,
+   "pel_model": "WH-MXC12H6E5",
+   "method": "code"
+  },
+  "4659": {
+   "cert": "MCS HP0086/97",
+   "until": null,
+   "pel_model": "WH-MXC16H9E8",
+   "method": "code"
+  },
+  "4660": {
+   "cert": "MCS HP0086/70",
+   "until": null,
+   "pel_model": "WH-MHF09G3E5",
+   "method": "code"
+  },
+  "4661": {
+   "cert": "MCS HP0086/71",
+   "until": null,
+   "pel_model": "WH-MHF12G6E5",
+   "method": "code"
+  },
+  "4673": {
+   "cert": "011-1W0467_02",
+   "until": "2031-12-31",
+   "pel_model": "HWT-401HW-E / HWT-601XWHM6W-E",
+   "method": "cert"
+  },
+  "4677": {
+   "cert": "011-1W0607_02",
+   "until": "2033-07-31",
+   "pel_model": "HWT-1401HW-E / HWT-1401XWHM6W-E",
+   "method": "cert"
+  },
+  "4685": {
+   "cert": "KIWA 00016/011 HP",
+   "until": "2026-11-14",
+   "pel_model": "aroTHERM VWL 115/2 A 230V",
+   "method": "code"
+  },
+  "4686": {
+   "cert": "KIWA 00016/012 HP",
+   "until": "2026-11-14",
+   "pel_model": "aroTHERM VWL 155/2 A 230V",
+   "method": "code"
+  },
+  "4687": {
+   "cert": "BSI KM 554512/14/1",
+   "until": null,
+   "pel_model": "BWC 301.B06",
+   "method": "code"
+  },
+  "4688": {
+   "cert": "BSI KM 554512/14/12",
+   "until": null,
+   "pel_model": "BWS 301.B08",
+   "method": "code"
+  },
+  "4689": {
+   "cert": "BSI KM 554512/14/13",
+   "until": null,
+   "pel_model": "BWS 301.B10",
+   "method": "code"
+  },
+  "4690": {
+   "cert": "BSI KM 554512/14/14",
+   "until": null,
+   "pel_model": "BWS 301.B13",
+   "method": "code"
+  },
+  "4691": {
+   "cert": "BSI KM 554512/14/10",
+   "until": null,
+   "pel_model": "BW 301.B17",
+   "method": "code"
+  },
+  "4692": {
+   "cert": "BSI KM 554512/07/1",
+   "until": null,
+   "pel_model": "BW 301.A21",
+   "method": "code"
+  },
+  "4693": {
+   "cert": "BSI KM 554512/07/2",
+   "until": null,
+   "pel_model": "BW 301.A29",
+   "method": "code"
+  },
+  "4694": {
+   "cert": "BSI KM 554512/07/3",
+   "until": null,
+   "pel_model": "BW 301.A45",
+   "method": "code"
+  },
+  "4695": {
+   "cert": "BSI KM 554512/16/1/2",
+   "until": null,
+   "pel_model": "BW 351.B20",
+   "method": "code"
+  },
+  "4696": {
+   "cert": "BSI KM 554512/16/2",
+   "until": null,
+   "pel_model": "BW 351.B27",
+   "method": "code"
+  },
+  "4697": {
+   "cert": "BSI KM 554512/16/3",
+   "until": null,
+   "pel_model": "BW 351.B33",
+   "method": "code"
+  },
+  "4698": {
+   "cert": "BSI KM 554512/16/4",
+   "until": null,
+   "pel_model": "BW 351.B42",
+   "method": "code"
+  },
+  "4699": {
+   "cert": "BSI KM 554512/04/4",
+   "until": null,
+   "pel_model": "AWHO 351.A10",
+   "method": "code"
+  },
+  "4700": {
+   "cert": "BSI KM 554512/04/1",
+   "until": null,
+   "pel_model": "AWHI 351.A10",
+   "method": "code"
+  },
+  "4701": {
+   "cert": "BSI KM 554512/04/5",
+   "until": null,
+   "pel_model": "AWHO 351.A14",
+   "method": "code"
+  },
+  "4702": {
+   "cert": "BSI KM 554512/04/2",
+   "until": null,
+   "pel_model": "AWHI 351.A14",
+   "method": "code"
+  },
+  "4703": {
+   "cert": "BSI KM 554512/04/6",
+   "until": null,
+   "pel_model": "AWHO 351.A20",
+   "method": "code"
+  },
+  "4704": {
+   "cert": "BSI KM 554512/04/3",
+   "until": null,
+   "pel_model": "AWHI 351.A20",
+   "method": "code"
+  },
+  "4705": {
+   "cert": "BSI KM 554512/13/1",
+   "until": null,
+   "pel_model": "AWO-AC 301.B11",
+   "method": "code"
+  },
+  "4706": {
+   "cert": "BSI KM 554512/13/2",
+   "until": null,
+   "pel_model": "AWO-AC 301.B14",
+   "method": "code"
+  },
+  "4707": {
+   "cert": "BSI KM 554512/02/1",
+   "until": null,
+   "pel_model": "BWC-M 201.A06",
+   "method": "cert"
+  },
+  "4708": {
+   "cert": "BSI KM 554512/02/2",
+   "until": null,
+   "pel_model": "BWC-M 201.A08",
+   "method": "cert"
+  },
+  "4709": {
+   "cert": "BSI KM 554512/02/3",
+   "until": null,
+   "pel_model": "BWC-M 201.A10",
+   "method": "cert"
+  },
+  "4712": {
+   "cert": "011-1W0290",
+   "until": null,
+   "pel_model": "BWT-M 221.B10",
+   "method": "code"
+  },
+  "4570": {
+   "cert": "MCS HP0017/29",
+   "until": null,
+   "pel_model": "SI 22 TU",
+   "method": "code"
+  },
+  "4713": {
+   "cert": "011-1W1212_01",
+   "until": "2036-02-28",
+   "pel_model": "VWL 55/7.1 A 230V S2",
+   "method": "code"
+  },
+  "4714": {
+   "cert": "011-1W1213_01",
+   "until": "2036-02-28",
+   "pel_model": "VWL 75/7.1 A 230V S2",
+   "method": "code"
+  },
+  "4715": {
+   "cert": "011-1W1247_01",
+   "until": "2036-04-30",
+   "pel_model": "VWL 115/7.1 A 230V S2",
+   "method": "code"
+  },
+  "4718": {
+   "cert": "KIWA00050/003 HP",
+   "until": null,
+   "pel_model": "FDCM60VNX-P",
+   "method": "code"
+  },
+  "4719": {
+   "cert": "KIWA00050/004 HP",
+   "until": null,
+   "pel_model": "FDCM71VNX-P",
+   "method": "code"
+  },
+  "4730": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4731": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4732": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4733": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4734": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4735": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4736": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4737": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  },
+  "4738": {
+   "cert": "041-K002-76 a",
+   "until": null,
+   "pel_model": "RASM-2VTW2E & ATW-CBX-01",
+   "method": "code"
+  }
+ }
+}

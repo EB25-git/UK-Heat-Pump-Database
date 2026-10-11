@@ -540,7 +540,7 @@ function loadGA(){
 }
 if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 </script>
-<link rel="stylesheet" href="theme.css?v=4">
+<link rel="stylesheet" href="theme.css?v=5">
 </head>
 <body>
 <nav class="nav">
@@ -761,7 +761,8 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
           <label class="filter-label">Grant / certification</label>
           <select class="filt" id="filt-mcs" onchange="applyFilters()">
             <option value="">Any</option>
-            <option value="mcs">MCS-listed (BUS-eligible)</option>
+            <option value="bus">BUS eligible (Ofgem PEL)</option>
+            <option value="mcs">MCS certified</option>
           </select>
         </div>
         <div class="filter-col">
@@ -1037,6 +1038,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       </div>
       <div style="display:flex;align-items:center;gap:8px">
         <button class="btn btn-sm" id="modal-share" onclick="copyProductLink(window.__modalId)" aria-label="Copy a link to this product page" title="Copy a link to this product page"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false" style="flex:none"><path d="M9.5 2.5H13.5V6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.5 2.5L7.5 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 9.8V12.5A1.5 1.5 0 0 1 11 14H3.5A1.5 1.5 0 0 1 2 12.5V5A1.5 1.5 0 0 1 3.5 3.5H6.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Share</button>
+        <a class="btn btn-sm" id="modal-sheet" style="text-decoration:none" href="#" target="_blank" rel="noopener" onclick="var u=productSheetUrl(window.__modalId);if(!u){return false;}this.href=u;" title="Free printable data sheet (save as PDF)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false" style="flex:none"><path d="M4 1.75h5.5L12.5 4.75V14.25H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 8.5h4.5M6 11h4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Data sheet</a>
         <button class="modal-close" onclick="closeModal()" aria-label="Close details">✕</button>
       </div>
     </div>
@@ -1115,8 +1117,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<script src="faq-data.js?v=3" defer></script>
+<script src="faq-data.js?v=4" defer></script>
 <script src="data.js?v=136" defer></script>
+<script src="bus-pel.js?v=1" defer></script>
 <script src="reviews-data.js?v=1" async></script>
 <script src="logos.js?v=131" defer></script>
 <script src="product-images.js?v=5" defer></script>
@@ -1862,6 +1865,8 @@ const MFR_URLS = {
 };
 // ═══════════════ STATE ═══════════════
 let db = SEED.map(d=>({...d}));
+// BUS eligibility: products matched to Ofgem's BUS Product Eligibility List (bus-pel.js, written by build.py)
+if(window.BUS_PEL)db.forEach(d=>{const b=BUS_PEL[d.id];if(b){d.bus_eligible=true;d.bus_cert=b[0];d.bus_until=b[1];}});
 // The in-browser admin panel was removed (Oct 2026): clear anything it may have left in visitors' browsers.
 try{['hpdb_v9','hpsrc_v9','hpadminpw','hp_guide','hp_contact_v7','hp_links_v6','hp_faq_v2','hp_hero_sub','hp_copyright','hp_clicks'].forEach(k=>localStorage.removeItem(k));}catch(e){}
 
@@ -2204,6 +2209,7 @@ function getFiltered(){
     if(SF.sound<85){if(!isSoundPower(d)||d.noise>SF.sound)return false;}
     if(!dimOk(d.height,SF.dimH)||!dimOk(d.width,SF.dimW)||!dimOk(d.depth,SF.dimD))return false;
     if(mcs==='mcs'&&!d.mcs_listed)return false;
+    if(mcs==='bus'&&!d.bus_eligible)return false;
     if(hpm==='hpm'&&!d.heatpumpmonitor_url)return false;
     return true;
   });
@@ -2365,6 +2371,7 @@ function cardHTML(d){
         <div class="hp-card-name">${d.model}</div>
         ${d.product_code?'<div class="hp-card-code" style="font-size:12px;color:var(--text3);margin-top:2px">'+d.product_code+'</div>':''}
         <div class="hp-card-badges">
+          ${d.bus_eligible?`<span class="badge badge-bus" title="${jsAttrEsc('On Ofgem\'s Boiler Upgrade Scheme Product Eligibility List'+(d.bus_cert?' · cert '+d.bus_cert:''))}">✓ BUS eligible</span>`:''}
           <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
           ${d.refrigerant?`<span class="badge badge-ref">${d.refrigerant}</span>`:''}
           ${d.mode?`<span class="badge ${/cool/i.test(d.mode)?'badge-cool':'badge-heat'}">${/cool/i.test(d.mode)?'Heating &amp; cooling':d.mode}</span>`:''}
@@ -2767,6 +2774,7 @@ function openModal(id){
   document.getElementById('modal-body').innerHTML=`
     ${photoHTML}
     <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem">
+      ${d.bus_eligible?'<span class="badge badge-bus">✓ BUS eligible</span>':''}
       <span class="badge ${hptc(d.hp_type)}">${d.hp_type}</span>
       ${d.mode?`<span class="badge ${/cool/i.test(d.mode)?'badge-cool':'badge-heat'}">${/cool/i.test(d.mode)?'Heating &amp; cooling':d.mode}</span>`:''}
       ${d.refrigerant?`<span class="badge badge-ref">${d.refrigerant}</span>`:''}
@@ -2808,9 +2816,15 @@ function openModal(id){
       ${row('H × W × D',d.height&&d.width&&d.depth?`${d.height}×${d.width}×${d.depth} mm`:null)}
       ${row('Operational Weight',d.weight!=null?d.weight+' kg':null)}
     </div>
+    ${d.bus_eligible?`<div class="spec-section">
+      <h4>Boiler Upgrade Scheme</h4>
+      <div class="spec-row"><div class="spec-row-l">BUS status</div><div class="spec-row-v" style="color:#0B6656;font-weight:600">✓ BUS eligible — listed on Ofgem's Product Eligibility List${window.BUS_PEL_DATE?' ('+BUS_PEL_DATE+')':''}</div></div>
+      ${row('PEL certificate no.',d.bus_cert||null)}
+      <div class="spec-row"><div class="spec-row-l">Grant conditions</div><div class="spec-row-v" style="font-size:12px;color:var(--text2)">Needs an MCS-certified installer and a qualifying system design. <a href="/knowledge/funding/" style="color:var(--accent)">Funding guide</a></div></div>
+    </div>`:''}
     ${d.mcs_listed?`<div class="spec-section">
       <h4>MCS certification</h4>
-      <div class="spec-row"><div class="spec-row-l">Scheme eligibility</div><div class="spec-row-v" style="color:#0B6656;font-weight:600">✓ MCS listed — eligible for Boiler Upgrade Scheme (MCS-certified install required)</div></div>
+      <div class="spec-row"><div class="spec-row-l">Status</div><div class="spec-row-v" style="color:#0B6656;font-weight:600">✓ MCS listed</div></div>
       ${row('Certificate no.',d.mcs_cert||null)}
       ${d.mcs_url?`<div class="spec-row"><div class="spec-row-l">MCS listing</div><div class="spec-row-v"><a href="${d.mcs_url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;background:#0B6656;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;text-decoration:none">View on MCS ↗</a></div></div>`:''}
     </div>`:''}
@@ -2939,6 +2953,10 @@ function productPageUrl(id){
   // from manufacturer + model in the browser.
   const slug=(typeof PRODUCT_SLUGS!=='undefined')?PRODUCT_SLUGS[id]:null;
   return slug?location.origin+'/products/'+slug+'/':null;
+}
+function productSheetUrl(id){
+  const u=productPageUrl(id);
+  return u?u+'data-sheet/':null;
 }
 function copyProductLink(id){
   const url=productPageUrl(id)||(location.origin+location.pathname+'#product='+id);
@@ -3666,6 +3684,7 @@ window.closeBurger = closeBurger;
 window.closeModal = closeModal;
 window.copyCompareLink = copyCompareLink;
 window.copyProductLink = copyProductLink;
+window.productSheetUrl = productSheetUrl;
 window.productPageUrl = productPageUrl;
 window.declineCookies = declineCookies;
 window.exportCompareCSV = exportCompareCSV;

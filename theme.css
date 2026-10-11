@@ -346,3 +346,4 @@ html body .hp-trophy-tip > :last-child{border-radius:0 0 8px 8px;box-shadow:0 10
 html body .hp-trophy-tip > :only-child{border-radius:8px}
 html body .hp-trophy-tip a:hover{background:#E4F6EC;color:#0B6656}
 html body .hp-ico:hover .hp-trophy-tip,html body .hp-ico:focus-within .hp-trophy-tip,html body .hp-mcs:focus .hp-trophy-tip{display:block}
+html body .badge.badge-bus{background:#0B6656;color:#fff;border:1px solid #0B6656;font-weight:600}
