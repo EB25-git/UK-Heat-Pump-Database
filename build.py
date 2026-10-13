@@ -3586,7 +3586,7 @@ NOISE_CSS = """
 .nc-q label:has(input:checked){border-color:#0B6656;background:#F2FAF6;box-shadow:0 0 0 3px rgba(34,199,154,.2)}
 .nc-q svg{display:block;width:100%;height:auto;max-height:80px}
 .nc-q b{display:block;font-size:13px;color:#083F35;margin-top:4px}
-.nc-q span{display:block;font-size:11.5px;color:#5A6A65}
+.nc-q span{display:block;font-size:11.5px;font-weight:400;color:#5A6A65;line-height:1.4;margin-top:2px}
 .nc-pos{border:1px solid #E3EDE8;border-radius:12px;padding:12px 14px;margin:0 0 12px;background:#FBFDFC}
 .nc-pos-head{display:flex;gap:10px;align-items:center;margin-bottom:8px}
 .nc-pos-num{font-weight:700;color:#083F35;font-size:14px;white-space:nowrap}
@@ -3627,7 +3627,7 @@ NOISE_CSS = """
 .nc-table th,.nc-table td{border:1px solid #E3EDE8;padding:6px 9px;text-align:left}
 .nc-table th{background:#F6FAF8;color:#3B4D47}
 .nc-print-only{display:none}
-@media (max-width:760px){.nc-grid3{grid-template-columns:1fr 1fr}.nc-grid3 .dm-field:first-child{grid-column:1/-1}.nc-q{grid-template-columns:repeat(3,minmax(0,1fr))}.nc-q span{display:none}.nc-v-work{margin-left:0}}
+@media (max-width:760px){.nc-grid3{grid-template-columns:1fr 1fr}.nc-grid3 .dm-field:first-child{grid-column:1/-1}.nc-q{grid-template-columns:1fr}.nc-q label{display:grid;grid-template-columns:96px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;text-align:left}.nc-q svg{grid-row:1/3;grid-column:1}.nc-q b{grid-column:2;margin-top:0;align-self:end}.nc-q span{grid-column:2;align-self:start}.nc-v-work{margin-left:0}}
 @media print{header.site,footer.site,.crumbs,.nc-actions,.nc-search-wrap,.nc-units,#cookie-banner,.nc-noprint,.nc-link,.nc-i{display:none!important}
  .nc-print-only{display:block}.nc-summary{-webkit-print-color-adjust:exact;print-color-adjust:exact}.nc-more[open],.nc-more{display:none}
  .nc-card,.nc-pos{break-inside:avoid}body{background:#fff}}
@@ -3651,7 +3651,9 @@ def _q_svg(kind):
     return f'<svg viewBox="0 0 160 88" aria-hidden="true">{body}</svg>'
 
 def _q_cards(u):
-    opts = [(2, "Q2", "Ground only"), (4, "Q4", "Ground + wall"), (8, "Q8", "Corner")]
+    opts = [(2, "Q2 &middot; Ground only", "Free-standing on the ground, or wall-mounted on one wall. +3 dB"),
+            (4, "Q4 &middot; Ground + wall", "On the ground against one wall, or wall-mounted in the angle of two walls. +6 dB"),
+            (8, "Q8 &middot; Corner", "On the ground between two walls, or wall-mounted between three walls. +9 dB")]
     return '<div class="nc-q">' + "".join(
         f'<label><input type="radio" name="nc-q-{u}" value="{q}"{" checked" if q == 4 else ""}>{_q_svg(q)}<b>{t}</b><span>{d}</span></label>'
         for q, t, d in opts) + '</div>'
