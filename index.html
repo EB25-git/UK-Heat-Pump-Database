@@ -568,6 +568,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <a class="burger-item" href="/best/" onclick="closeBurger()">Best Heat Pumps</a>
     <a class="burger-item" data-page="gallery" href="/#gallery" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('gallery');closeBurger();return false">Gallery</a>
     <a class="burger-item" href="/heat-pump-size-calculator/" onclick="closeBurger()">Size Calculator</a>
+    <a class="burger-item" href="/heat-pump-noise-calculator/" onclick="closeBurger()">Noise Calculator</a>
     <button class="burger-item burger-toggle" data-page="knowledge" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="k-group">
     <a class="burger-item burger-subitem" data-page="what-is-a-heat-pump" href="/knowledge/what-is-a-heat-pump/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('what-is-a-heat-pump');closeBurger();return false">What Is a Heat Pump?</a>
@@ -1067,6 +1068,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
       <a href="/heat-pump-comparison/">Market comparison</a>
       <a href="/best/">Best heat pumps</a>
       <a href="/heat-pump-size-calculator/">Heat pump size calculator</a>
+      <a href="/heat-pump-noise-calculator/">Heat pump noise calculator</a>
       <a href="/news/">News &amp; insight</a>
     </div>
     <div class="footer-col">
@@ -1123,7 +1125,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<script src="faq-data.js?v=4" defer></script>
+<script src="faq-data.js?v=5" defer></script>
 <script src="data.js?v=136" defer></script>
 <script src="bus-pel.js?v=1" defer></script>
 <script src="reviews-data.js?v=1" async></script>
@@ -1894,12 +1896,12 @@ const DEFAULT_CONTACT = {
   intro: '',
   email: 'info@heatpumpdatabase.com',
   sections: [
-    {id:'c0',title:'👤 About',body:'Heat Pump Database is built and maintained by Euan Brownlie, a chartered engineer who works in the energy decarbonisation industry with a particular focus on the design of district heating and cooling systems. Please note this site is operated in a personal capacity and does not represent the views of, or have the endorsement of, the individual\'s employer or any affiliated organisation.'},
+    {id:'c0',title:'👤 About',body:'Heat Pump Database is built and maintained by Euan Brownlie, a chartered engineer who works in the energy decarbonisation industry with a particular focus on the design of district heating and cooling systems.'},
     {id:'c6',title:'🧭 Why?',body:'Heating is one of the hardest parts of decarbonisation to get right, and the choices put in front of homeowners and specifiers are rarely presented fairly. Comparisons are shaped by whoever is paying for the placement, and the figures that matter most are buried in a datasheet or left out altogether.<br><br>This site puts the same specifications, presented the same way, for every manufacturer. It is free to use and will stay that way, because information meant to make the market fairer has no business sitting behind a paywall.'},
     {id:'c5',title:'🔍 How the data is verified',body:'Specifications are extracted from manufacturer datasheets and published technical documentation, and <strong>every data point is then checked by a human</strong> before it goes live. Each listing records the source it came from, and where a manufacturer quotes performance at non-standard test conditions, those conditions are stored alongside the figure so you can compare like with like.<br><br>Datasheets get revised and we do make mistakes, so every product page carries a &ldquo;Suggest a correction&rdquo; link. Corrections are genuinely welcome.'},
     {id:'c1',title:'📊 Data submissions & manufacturer partnerships',body:'If you are a heat pump manufacturer or distributor and would like your products included in the database, or would like to verify and update existing listings, please get in touch. We welcome official datasheets, technical specifications, and product catalogues. Accurate data helps the whole industry.'},
     {id:'c2',title:'✏️ Corrections & updates',body:'Spotted an error in a product listing? Have updated specifications or a discontinued model that should be flagged? Let us know the product, the field that needs correcting, and your source — we will review and update promptly.'},
-    {id:'c3',title:'💬 General enquiries',body:'For questions about how to use the database, partnership opportunities, API access, or anything else, drop us a line at the email address above. We aim to respond within two working days.'},
+    {id:'c3',title:'💬 General enquiries',body:'For questions about how to use the database, partnership opportunities, API access, or anything else, drop us a line at the email address above. We aim to respond within two working days.<br><br>Please note this site is operated in a personal capacity and does not represent the views of, or have the endorsement of, the individual\'s employer or any affiliated organisation.'},
     {id:'c4',title:'🍪 Cookies',body:'If you accept cookies, they simply help us see how the site is used — which pages people visit and where things could work better. That insight guides improvements. Your data is never sold, shared, or used for anything beyond making this site better.'}
   ]
 };
@@ -3724,6 +3726,6 @@ window.updateHero = updateHero;
 window.__hpState={get db(){return db;},get filtered(){return filtered;},get compareIds(){return compareIds;}};
 });
 </script>
-<script src="theme.js?v=2"></script>
+<script src="theme.js?v=3"></script>
 </body>
 </html>

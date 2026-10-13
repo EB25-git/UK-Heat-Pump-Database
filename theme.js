@@ -23,7 +23,7 @@
       '<a data-page="compare" href="/#compare">Compare</a>' +
       '<a href="/best/">Best Heat Pumps</a>' +
       '<a data-page="analytics" href="/#analytics">Visualise</a>' +
-      '<a href="/heat-pump-size-calculator/">Size Calculator</a>' +
+      '<a href="/heat-pump-size-calculator/">Calculators</a>' +
       '<a data-page="knowledge" href="/#knowledge">Knowledge</a>' +
       '<a href="/news/">News &amp; Insight</a>';
     brand.insertAdjacentElement('afterend', d);
@@ -54,7 +54,7 @@
       ['Compare', '/#compare', path.indexOf('/heat-pump-comparison/') === 0],
       ['Best Heat Pumps', '/best/', path.indexOf('/best/') === 0 || path.indexOf('/top-10/') === 0],
       ['Visualise', '/#analytics', false],
-      ['Size Calculator', '/heat-pump-size-calculator/', path.indexOf('/heat-pump-size-calculator/') === 0],
+      ['Calculators', '/heat-pump-size-calculator/', path.indexOf('/heat-pump-size-calculator/') === 0 || path.indexOf('/heat-pump-noise-calculator/') === 0],
       ['Knowledge', '/#knowledge', path.indexOf('/knowledge/') === 0],
       ['News &amp; Insight', '/news/', path.indexOf('/news/') === 0]
     ];
