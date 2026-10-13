@@ -831,6 +831,16 @@ def burger_menu(active=None):
         + it("Useful Links", f"{BASE_URL}/#links", "links", sub=True)
         + '</div>'
     )
+    s_active = active in ("size-calc", "noise-calc")
+    s_open = " open" if s_active else ""
+    calc_block = (
+        f'<button class="burger-item burger-toggle{" active" if s_active else ""}{s_open}" id="s-toggle" aria-expanded="{"true" if s_active else "false"}" aria-controls="s-group" onclick="toggleCalc()">'
+        f'Calculators<span class="burger-chevron" aria-hidden="true"></span></button>'
+        f'<div class="burger-subgroup{s_open}" id="s-group">'
+        + it("Heat Pump Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc", sub=True)
+        + it("Noise Calculator", f"{BASE_URL}/heat-pump-noise-calculator/", "noise-calc", sub=True)
+        + '</div>'
+    )
     c_active = active in ("compare", "analytics", "comparison")
     c_open = " open" if c_active else ""
     c_cls = "burger-item burger-toggle" + (" active" if c_active else "")
@@ -849,8 +859,7 @@ def burger_menu(active=None):
         + compare_block
         + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
         + it("Gallery", f"{BASE_URL}/#gallery", "gallery")
-        + it("Size Calculator", f"{BASE_URL}/heat-pump-size-calculator/", "size-calc")
-        + it("Noise Calculator", f"{BASE_URL}/heat-pump-noise-calculator/", "noise-calc")
+        + calc_block
         + knowledge_block
         + it("News &amp; Insight", f"{BASE_URL}/news/", "news")
         + it("About &amp; Contact us", f"{BASE_URL}/#contact", "contact")
@@ -943,7 +952,7 @@ function trackOut(){{
 </span>
 </div>
 </div>
-<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').src='';document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
+<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCalc(){{var t=document.getElementById('s-toggle'),g=document.getElementById('s-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').src='';document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
 <script src="/theme.js?v=3"></script>
 </body>
 </html>
@@ -3554,62 +3563,78 @@ def render_size_calculator_page():
     return page(title, desc, canonical, body, jsonld, active="size-calc")
 
 NOISE_CSS = """
-.nc-units{display:inline-flex;border:1px solid #E3EDE8;border-radius:10px;overflow:hidden;margin:4px 0 18px}
-.nc-units button{background:#fff;border:0;padding:9px 16px;font:inherit;font-size:13.5px;font-weight:600;color:#3B4D47;cursor:pointer}
+.nc-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nc-units{display:inline-flex;border:1px solid #E3EDE8;border-radius:10px;overflow:hidden;margin:4px 0 16px}
+.nc-units button{background:#fff;border:0;padding:8px 16px;font:inherit;font-size:13.5px;font-weight:600;color:#3B4D47;cursor:pointer}
 .nc-units button.active{background:#0B6656;color:#fff}
-.nc-card{background:#fff;border:1px solid #E3EDE8;border-radius:14px;padding:18px 20px;margin:0 0 18px}
-.nc-card h2{font-size:17px;margin:0 0 4px;color:#083F35}
-.nc-card .nc-step{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#109680;margin-bottom:2px}
-.nc-search-wrap{position:relative;max-width:560px}
-.nc-search-wrap input{width:100%;height:42px;padding:9px 12px;border:1px solid #E3EDE8;border-radius:10px;font:inherit;font-size:14px;box-sizing:border-box}
-.nc-results{display:none;position:absolute;left:0;right:0;top:46px;z-index:20;background:#fff;border:1px solid #CFDDD7;border-radius:10px;box-shadow:0 12px 30px rgba(8,63,53,.15);max-height:330px;overflow:auto}
+.nc-card{background:#fff;border:1px solid #E3EDE8;border-radius:14px;padding:16px 18px;margin:0 0 16px}
+.nc-card h2{font-size:16px;margin:0 0 10px;color:#083F35;display:flex;align-items:center;gap:6px}
+.nc-row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.nc-row .dm-field{flex:1 1 220px}
+.nc-row .nc-lw{flex:0 1 190px}
+.nc-search-wrap{position:relative}
+.nc-search-wrap input,.nc-lw input,.nc-pos input[type=text]{width:100%;height:40px;padding:9px 12px;border:1px solid #E3EDE8;border-radius:10px;font:inherit;font-size:13.5px;box-sizing:border-box}
+.nc-results{display:none;position:absolute;left:0;right:0;top:44px;z-index:20;background:#fff;border:1px solid #CFDDD7;border-radius:10px;box-shadow:0 12px 30px rgba(8,63,53,.15);max-height:330px;overflow:auto}
 .nc-hit{display:flex;justify-content:space-between;gap:12px;width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid #EEF4F1;padding:9px 12px;font:inherit;font-size:13px;cursor:pointer;color:#083F35}
 .nc-hit:hover{background:#E4F6EC}
 .nc-hit-meta{color:#5A6A65;white-space:nowrap;font-size:12px}
 .nc-hit-empty{padding:10px 12px;font-size:13px;color:#5A6A65}
-.nc-picked{font-size:12.5px;color:#0B6656;margin-top:8px;min-height:1px}
-.nc-or{font-size:12px;color:#5A6A65;margin:12px 0 6px}
-.nc-lw input{max-width:180px}
-.nc-q{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:6px}
-.nc-q label{display:block;border:1.5px solid #E3EDE8;border-radius:12px;padding:10px;cursor:pointer;background:#fff}
+.nc-picked{font-size:12.5px;color:#0B6656;margin-top:6px;min-height:1px}
+.nc-q{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:4px}
+.nc-q label{display:block;border:1.5px solid #E3EDE8;border-radius:12px;padding:8px 10px;cursor:pointer;background:#fff;text-align:center}
 .nc-q input{position:absolute;opacity:0}
 .nc-q label:has(input:checked){border-color:#0B6656;background:#F2FAF6;box-shadow:0 0 0 3px rgba(34,199,154,.2)}
-.nc-q svg{display:block;width:100%;height:auto;max-height:96px}
-.nc-q b{display:block;font-size:13.5px;color:#083F35;margin-top:6px}
-.nc-q span{display:block;font-size:11.5px;color:#5A6A65;line-height:1.45;margin-top:2px}
-.nc-unit-title{font-weight:700;color:#083F35;margin:0 0 10px;font-size:14px}
-.nc-pos{border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px;margin:0 0 14px;background:#FBFDFC}
-.nc-pos-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.nc-pos-num{font-weight:700;color:#083F35;font-size:14px}
-.nc-pos input[type=text]{width:100%;height:40px;padding:9px 12px;border:1px solid #E3EDE8;border-radius:10px;font:inherit;font-size:13.5px;box-sizing:border-box}
-.nc-pos-unit{margin-top:12px}
-.nc-unit-lab{font-size:12px;font-weight:700;color:#109680;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.nc-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.nc-link{background:none;border:0;color:#B02A2A;font:inherit;font-size:12.5px;cursor:pointer;text-decoration:underline}
-.nc-btn{background:#fff;border:1px solid #0B6656;color:#0B6656;border-radius:10px;padding:9px 16px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.nc-q svg{display:block;width:100%;height:auto;max-height:80px}
+.nc-q b{display:block;font-size:13px;color:#083F35;margin-top:4px}
+.nc-q span{display:block;font-size:11.5px;color:#5A6A65}
+.nc-pos{border:1px solid #E3EDE8;border-radius:12px;padding:12px 14px;margin:0 0 12px;background:#FBFDFC}
+.nc-pos-head{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.nc-pos-num{font-weight:700;color:#083F35;font-size:14px;white-space:nowrap}
+.nc-pos-head input{flex:1}
+.nc-pos-unit{margin-top:8px}
+.nc-unit-lab{font-size:11.5px;font-weight:700;color:#109680;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.nc-grid3{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1fr);gap:12px}
+.nc-grid3 label{display:flex;align-items:center;gap:5px}
+.nc-link{background:none;border:0;color:#B02A2A;font:inherit;font-size:12.5px;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.nc-btn{background:#fff;border:1px solid #0B6656;color:#0B6656;border-radius:10px;padding:8px 16px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
 .nc-btn.solid{background:#0B6656;color:#fff}
-.nc-pos-result{margin-top:12px}
+.nc-pos-result{margin-top:10px}
 .nc-pending{font-size:12.5px;color:#5A6A65}
-.nc-verdict{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-radius:10px;padding:10px 14px;margin-bottom:6px}
+.nc-verdict{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-radius:10px;padding:8px 12px}
 .nc-verdict.pass{background:#E4F6EC;color:#0B6656}.nc-verdict.fail{background:#FBE6E6;color:#B02A2A}
-.nc-v-num{font-size:22px;font-weight:700}.nc-v-txt{font-size:13.5px;font-weight:600}
+.nc-v-num{font-size:20px;font-weight:700}.nc-v-txt{font-size:13px;font-weight:600}
+.nc-v-work{margin-left:auto}
 .nc-work{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#3B4D47;margin:3px 0}
-.nc-help{font-size:12.5px;color:#3B4D47;background:#FFF7E6;border:1px solid #F3DDB0;border-radius:8px;padding:8px 12px;margin-top:8px;line-height:1.55}
-.nc-summary{background:#083F35;color:#fff;border-radius:16px;padding:22px 26px;margin:6px 0 24px}
+.nc-help{font-size:12.5px;color:#3B4D47;background:#FFF7E6;border:1px solid #F3DDB0;border-radius:8px;padding:7px 12px;margin-top:6px;line-height:1.5}
+.nc-summary{background:#083F35;color:#fff;border-radius:14px;padding:16px 20px;margin:4px 0 16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .nc-summary.pass{background:#0B6656}.nc-summary.fail{background:#8E2525}
+.nc-sum-big{font-size:30px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}.nc-sum-big span{font-size:15px;font-weight:600;opacity:.8}
 .nc-sum-title{font-size:15px;font-weight:700}
-.nc-sum-big{font-size:34px;font-weight:700;letter-spacing:-.02em;margin:2px 0}.nc-sum-big span{font-size:16px;font-weight:600;opacity:.8}
-.nc-sum-sub{font-size:12.5px;opacity:.85;line-height:1.55;max-width:820px}
-.nc-actions{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 20px}
-.nc-table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0 14px}
-.nc-table th,.nc-table td{border:1px solid #E3EDE8;padding:7px 10px;text-align:left;vertical-align:top}
+.nc-sum-sub{font-size:12.5px;opacity:.85}
+.nc-actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 22px}
+/* info icons with hover / tap tooltips */
+.nc-i{position:relative;display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;background:#E4F6EC;color:#0B6656;font:700 11px/1 Georgia,serif;font-style:italic;cursor:help;flex:none;vertical-align:middle;outline:none}
+.nc-i:hover,.nc-i:focus{background:#0B6656;color:#fff}
+.nc-i .nc-tip{display:none;position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);width:max-content;max-width:min(280px,78vw);background:#083F35;color:#fff;font:400 12.5px/1.5 'Instrument Sans',system-ui,sans-serif;font-style:normal;text-align:left;padding:9px 12px;border-radius:9px;box-shadow:0 10px 26px rgba(8,63,53,.3);z-index:40;white-space:normal;text-transform:none;letter-spacing:0}
+.nc-i .nc-tip::before{content:"";position:absolute;top:-5px;left:50%;margin-left:-5px;border:5px solid transparent;border-top:0;border-bottom-color:#083F35}
+.nc-i:hover .nc-tip,.nc-i:focus .nc-tip{display:block}
+.nc-i.r .nc-tip{left:auto;right:-8px;transform:none}.nc-i.r .nc-tip::before{left:auto;right:12px}
+.nc-i.l .nc-tip{left:-8px;transform:none}.nc-i.l .nc-tip::before{left:12px}
+.nc-more{border:1px solid #E3EDE8;border-radius:12px;background:#fff;padding:0 16px;margin:0 0 14px}
+.nc-more summary{cursor:pointer;font-weight:600;color:#083F35;padding:12px 0;font-size:14.5px}
+.nc-more p,.nc-more li{font-size:13.5px;line-height:1.6}
+.nc-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 12px}
+.nc-table th,.nc-table td{border:1px solid #E3EDE8;padding:6px 9px;text-align:left}
 .nc-table th{background:#F6FAF8;color:#3B4D47}
 .nc-print-only{display:none}
-@media (max-width:760px){.nc-grid3{grid-template-columns:1fr}.nc-q{grid-template-columns:1fr}.nc-q label{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}.nc-q b{margin-top:0}.nc-summary{position:static}}
-@media print{header.site,footer.site,.crumbs,.nc-actions,.nc-search-wrap,.nc-or,.nc-units,#cookie-banner,.nc-noprint,.nc-link{display:none!important}
- .nc-print-only{display:block}.nc-summary{position:static;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@media (max-width:760px){.nc-grid3{grid-template-columns:1fr 1fr}.nc-grid3 .dm-field:first-child{grid-column:1/-1}.nc-q{grid-template-columns:repeat(3,minmax(0,1fr))}.nc-q span{display:none}.nc-v-work{margin-left:0}}
+@media print{header.site,footer.site,.crumbs,.nc-actions,.nc-search-wrap,.nc-units,#cookie-banner,.nc-noprint,.nc-link,.nc-i{display:none!important}
+ .nc-print-only{display:block}.nc-summary{-webkit-print-color-adjust:exact;print-color-adjust:exact}.nc-more[open],.nc-more{display:none}
  .nc-card,.nc-pos{break-inside:avoid}body{background:#fff}}
 """
+
+def _info(text, cls=""):
+    return f'<span class="nc-i{(" " + cls) if cls else ""}" tabindex="0" role="button" aria-label="More information">i<span class="nc-tip" role="tooltip">{text}</span></span>'
 
 def _q_svg(kind):
     ground = '<rect x="0" y="78" width="160" height="6" fill="#BFD8CC"/>'
@@ -3619,38 +3644,37 @@ def _q_svg(kind):
           '<circle cx="{c}" cy="61" r="11" fill="none" stroke="#109680" stroke-width="2"/>')
     if kind == 2:
         body = ground + hp.format(x=54, c=72)
-        arcs = '<path d="M40 40 Q80 10 120 40" fill="none" stroke="#22C79A" stroke-width="2" stroke-dasharray="4 4"/>'
     elif kind == 4:
         body = ground + wall + hp.format(x=27, c=45)
-        arcs = '<path d="M90 30 Q120 46 104 72" fill="none" stroke="#22C79A" stroke-width="2" stroke-dasharray="4 4"/>'
     else:
-        body = ground + wall + wall2 + '<rect x="26" y="8" width="110" height="5" fill="#9DBFB1" opacity=".45"/>' + hp.format(x=54, c=72)
-        arcs = ''
-    return f'<svg viewBox="0 0 160 88" aria-hidden="true">{body}{arcs}</svg>'
+        body = ground + wall + wall2 + hp.format(x=54, c=72)
+    return f'<svg viewBox="0 0 160 88" aria-hidden="true">{body}</svg>'
 
 def _q_cards(u):
-    opts = [(2, "Q2 &middot; 1 reflecting surface", "Free-standing on the ground, or wall-mounted off the ground on one wall. +3 dB."),
-            (4, "Q4 &middot; 2 reflecting surfaces", "On the ground against one wall, or off the ground in the angle of two walls. +6 dB."),
-            (8, "Q8 &middot; 3 reflecting surfaces", "On the ground in a corner (two walls), or off the ground between three walls. +9 dB.")]
+    opts = [(2, "Q2", "Ground only"), (4, "Q4", "Ground + wall"), (8, "Q8", "Corner")]
     return '<div class="nc-q">' + "".join(
         f'<label><input type="radio" name="nc-q-{u}" value="{q}"{" checked" if q == 4 else ""}>{_q_svg(q)}<b>{t}</b><span>{d}</span></label>'
         for q, t, d in opts) + '</div>'
 
+_LW_TIP = ("The A-weighted <b>sound power</b> level from the product fiche, energy label or MCS product directory. "
+           "Don&rsquo;t use the &ldquo;low noise&rdquo; or night-mode figure, or a sound <i>pressure</i> figure measured at a distance.")
+_Q_TIP = ("Count hard surfaces within 1 m of the unit that extend at least 1 m beyond it (the ground counts, plants don&rsquo;t). "
+          "<b>Q2</b>: ground only, or one wall if wall-mounted (+3 dB). <b>Q4</b>: ground + one wall, or two walls if wall-mounted (+6 dB). "
+          "<b>Q8</b>: a corner, or three walls if wall-mounted (+9 dB). More than three surfaces (e.g. a lightwell) can&rsquo;t comply.")
+
 def _unit_card(u):
     return f"""
 <div class="nc-card" id="nc-unit-{u + 1}"{' style="display:none"' if u else ''}>
-  <div class="nc-step">Heat pump {u + 1}</div>
-  <h2>Sound power and reflecting surfaces</h2>
-  <div class="dm-field" style="margin-top:10px"><label for="nc-search-{u}">Find a heat pump in the database</label>
-    <div class="nc-search-wrap" id="nc-search-wrap-{u}"><input type="search" id="nc-search-{u}" placeholder="Type a brand, model or product code&hellip;" autocomplete="off"><div class="nc-results" id="nc-results-{u}"></div></div>
-    <div class="nc-picked" id="nc-picked-{u}"></div></div>
-  <div class="nc-or">&hellip;or enter it yourself</div>
-  <div class="dm-field nc-lw"><label for="nc-lw-{u}">A-weighted sound power level, L<sub>W</sub> (dB(A))</label>
-    <input type="number" id="nc-lw-{u}" min="30" max="100" step="0.1" placeholder="e.g. 58">
-    <div class="dm-hint">From the product fiche, energy label or MCS product directory. Use the standard figure, not &ldquo;low noise&rdquo; or &ldquo;night&rdquo; mode, and make sure it is <b>sound power</b>, not sound pressure at a distance.</div></div>
-  <div class="dm-field" style="margin-top:16px"><label>Reflecting surfaces within 1 m of the heat pump (directivity Q)</label>
-    {_q_cards(u)}
-    <div class="dm-hint">A reflecting surface is any hard surface (including the ground, not vegetation) within 1 m of the unit that extends at least 1 m beyond its edge in two or more directions. More than three reflecting surfaces (e.g. a small lightwell) cannot meet MCS 020 a).</div></div>
+  <h2>Heat pump {u + 1 if u else ''}</h2>
+  <div class="nc-row">
+    <div class="dm-field"><label for="nc-search-{u}">Find in the database</label>
+      <div class="nc-search-wrap" id="nc-search-wrap-{u}"><input type="search" id="nc-search-{u}" placeholder="Brand, model or code&hellip;" autocomplete="off"><div class="nc-results" id="nc-results-{u}"></div></div></div>
+    <div class="dm-field nc-lw"><label for="nc-lw-{u}" class="nc-head">Sound power dB(A) {_info(_LW_TIP, "r")}</label>
+      <input type="number" id="nc-lw-{u}" min="30" max="100" step="0.1" placeholder="e.g. 58"></div>
+  </div>
+  <div class="nc-picked" id="nc-picked-{u}"></div>
+  <div class="dm-field" style="margin-top:12px"><label class="nc-head">Reflecting surfaces {_info(_Q_TIP, "l")}</label>
+    {_q_cards(u)}</div>
 </div>"""
 
 def render_noise_calculator_page(n_products):
@@ -3660,7 +3684,7 @@ def render_noise_calculator_page(n_products):
             f"{n_products:,} heat pumps.")
     canonical = f"{BASE_URL}/heat-pump-noise-calculator/"
     jsonld = [{
-        "@context": "https://schema.org", "@type": "WebApplication", "name": "Heat Pump Noise Calculator (MCS 020 a)",
+        "@context": "https://schema.org", "@type": "WebApplication", "name": "Heat Pump Noise Calculator",
         "url": canonical, "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)",
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}, "description": desc,
         "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": f"{BASE_URL}/"}},
@@ -3671,58 +3695,54 @@ def render_noise_calculator_page(n_products):
             ("Measure the distance", "Measure in a straight line from the centre of the heat pump to 1 m outside the centre of each neighbouring habitable-room window or door, to 0.1 m."),
             ("Apply any barrier correction", "A solid barrier with no gaps reduces the level by up to 10 dB depending on its type and the line of sight."),
             ("Calculate and compare", "Lp = LW + 10 log(Q / 4 pi r^2) - barrier. Round to 0.1 dB. Every assessment position must be 37.0 dB(A) or lower.")]]}]
-    q_explain = "".join(f"<tr><td>Q{q}</td><td>{s}</td><td>+{d} dB</td></tr>" for q, s, d in
-                        [(2, "One reflecting surface (ground, or one wall if wall-mounted)", 3), (4, "Two (ground + one wall)", 6), (8, "Three (ground + two walls, i.e. a corner)", 9)])
+    intro_tip = ("Follows MCS 020 a) Issue 1.1, the calculation required for permitted development in England since 29 May 2025. "
+                 "It&rsquo;s a planning aid: your installer must still complete the official calculation. "
+                 "Scotland, Wales and Northern Ireland use the older MCS 020, which isn&rsquo;t covered here.")
+    pos_tip = ("Check every neighbouring window or door to a <b>habitable room</b> (bedroom, living, dining, study) on every side and floor. "
+               "Bathrooms, halls, landings and utility rooms don&rsquo;t count. The nearest window isn&rsquo;t always the loudest.")
     body = f"""
 <style>{CALC_CSS}{NOISE_CSS}</style>
 <nav class="crumbs"><a href="{BASE_URL}/">Home</a> &rsaquo; <span>Heat Pump Noise Calculator</span></nav>
 <div class="dm-tabs nc-noprint" style="margin-top:4px"><a class="dm-tab" href="{BASE_URL}/heat-pump-size-calculator/" style="text-decoration:none">Size calculator</a><span class="dm-tab active">Noise calculator</span></div>
 <h1>Heat Pump Noise Calculator</h1>
-<p class="sub">Check whether an air source heat pump meets the <b>37 dB(A)</b> permitted development noise limit at your neighbours&rsquo; windows, using the official <b>MCS 020 a)</b> calculation for England. Pick a heat pump from <span id="nc-db-count">{n_products:,}</span> models with published sound power data, describe where it will go, and add every neighbouring window or door that could be affected.</p>
-<p class="dm-note">Free to use, no subscription. This follows MCS 020 a) Issue 1.1 exactly, but it is a planning aid: your installer must still complete and keep the MCS 020 a) calculation for the installation. <a href="{BASE_URL}/knowledge/planning-permission/">Other permitted development conditions</a> also apply.</p>
-<div class="nc-print-only"><p><b>MCS 020 a) sound calculation</b> &middot; calculated <span id="nc-print-date"></span> &middot; heatpumpdatabase.com/heat-pump-noise-calculator/</p></div>
+<p class="sub nc-head">Will your heat pump meet the <b>37&nbsp;dB(A)</b> limit at your neighbours&rsquo; windows? Uses the official MCS 020 a) method. {_info(intro_tip)}</p>
+<div class="nc-print-only"><p><b>MCS 020 a) sound calculation</b> &middot; <span id="nc-print-date"></span> &middot; heatpumpdatabase.com/heat-pump-noise-calculator/</p></div>
 
 <div id="nc-app">
-<div class="nc-units" role="group" aria-label="Number of heat pumps"><button type="button" id="nc-units-1" class="active">One heat pump</button><button type="button" id="nc-units-2">Two heat pumps (detached house)</button></div>
+<div class="nc-units" role="group" aria-label="Number of heat pumps"><button type="button" id="nc-units-1" class="active">One heat pump</button><button type="button" id="nc-units-2">Two (detached house)</button></div>
 {_unit_card(0)}{_unit_card(1)}
 <div class="nc-card">
-  <div class="nc-step">Neighbours</div>
-  <h2>Assessment positions</h2>
-  <p class="dm-hint" style="font-size:12.5px;margin:2px 0 12px">An assessment position is <b>1 m outside the centre of any window or door to a habitable room</b> (bedroom, living room, dining room, study) of a neighbouring home, on every side and every floor. The nearest window is not always the worst one &ndash; a further window with a clear line of sight can be louder. Bathrooms, hallways, landings and utility rooms do not count. In a block of flats, other flats in the same block count.</p>
+  <h2>Neighbours&rsquo; windows {_info(pos_tip)}</h2>
   <div id="nc-positions"></div>
-  <button type="button" class="nc-btn" id="nc-add-pos">+ Add another assessment position</button>
+  <button type="button" class="nc-btn" id="nc-add-pos">+ Add window</button>
 </div>
 <div class="nc-summary" id="nc-summary" aria-live="polite"></div>
 <div class="nc-actions"><button type="button" class="nc-btn solid" id="nc-print">Print / save as PDF</button></div>
 </div>
 
-<h2 class="sec">How the calculation works</h2>
-<p>MCS 020 a) predicts the sound pressure level at each assessment position from the heat pump&rsquo;s sound power, how much hard surface surrounds it, the distance and any solid barrier:</p>
-<p style="font-family:ui-monospace,Menlo,Consolas,monospace;background:#F6FAF8;border-radius:10px;padding:12px 16px;font-size:14px">L<sub>p</sub> = L<sub>W</sub> + 10&middot;log<sub>10</sub>( Q &divide; 4&pi;r&sup2; ) &minus; A<sub>B</sub></p>
-<table class="nc-table"><tr><th>Directivity</th><th>Situation</th><th>Effect</th></tr>{q_explain}</table>
-<table class="nc-table"><tr><th>Barrier attenuation A<sub>B</sub></th><th>No view</th><th>Partial view</th><th>Full view</th></tr>
-<tr><td>Type 1 &ndash; masonry wall or solid fence &ge;18 mm, no gaps</td><td>10 dB</td><td>5 dB</td><td>0 dB</td></tr>
-<tr><td>Type 2 &ndash; solid fence &lt;18 mm, no gaps</td><td>5 dB</td><td>2.5 dB</td><td>0 dB</td></tr>
-<tr><td>No barrier &ndash; open, slatted or gappy fences, hedges, damaged walls</td><td>0 dB</td><td>0 dB</td><td>0 dB</td></tr></table>
-<p>Line of sight is judged from the top edge of the heat pump: <b>no view</b> if the barrier completely hides the assessment position, <b>partial view</b> if it becomes visible when you move up to 0.25 m, <b>full view</b> if it is visible. A barrier must extend at least 1 m beyond each side of the unit.</p>
-<p>With two heat pumps the levels at a position are added logarithmically: L<sub>p,total</sub> = 10&middot;log<sub>10</sub>(10<sup>L<sub>p1</sub>/10</sup> + 10<sup>L<sub>p2</sub>/10</sup>). Two equal units are 3 dB louder than one. The result is rounded to 0.1 dB and must be <b>37.0 dB(A) or lower at every assessment position</b>.</p>
-<p><b>Worked example (MCS 020 a) Appendix A):</b> a 60 dB(A) heat pump on the ground against one wall (Q4), 8.0 m from a first-floor bedroom window, behind a brick wall with a partial view (5 dB): 60 + 10&middot;log(4 &divide; (4&middot;&pi;&middot;8&sup2;)) &minus; 5 = <b>32.0 dB(A)</b> &ndash; compliant.</p>
-
-<h2 class="sec">Where this applies</h2>
-<ul style="line-height:1.75">
-<li><b>England:</b> since 29 May 2025 an air source heat pump installed under permitted development must meet MCS 020 a) (37 dB LAeq,5min). This applies whether or not the installer is MCS certified. The same changes removed the 1 m boundary rule, raised the size limit to 1.5 m&sup3; and allow two heat pumps on a detached house.</li>
-<li><b>Scotland, Wales and Northern Ireland:</b> installations still follow the earlier MCS 020 standard and their own permitted development rules, which this calculator does not cover.</li>
-<li>Meeting the noise limit does not by itself make an installation permitted development. Listed buildings, Article 4 areas and some other sites need planning permission. See our <a href="{BASE_URL}/knowledge/planning-permission/">planning permission guide</a>.</li>
+<details class="nc-more nc-noprint"><summary>How the calculation works</summary>
+<p style="font-family:ui-monospace,Menlo,Consolas,monospace;background:#F6FAF8;border-radius:8px;padding:10px 14px">L<sub>p</sub> = L<sub>W</sub> + 10&middot;log<sub>10</sub>( Q &divide; 4&pi;r&sup2; ) &minus; A<sub>B</sub></p>
+<table class="nc-table"><tr><th>Barrier</th><th>No view</th><th>Partial</th><th>Full view</th></tr>
+<tr><td>Masonry wall / solid fence &ge;18&nbsp;mm</td><td>10 dB</td><td>5 dB</td><td>0</td></tr>
+<tr><td>Solid fence &lt;18&nbsp;mm</td><td>5 dB</td><td>2.5 dB</td><td>0</td></tr>
+<tr><td>Open or gappy fence, hedge</td><td>0</td><td>0</td><td>0</td></tr></table>
+<p>Two heat pumps add logarithmically (two equal units are +3 dB). Round to 0.1 dB; every window must be 37.0 dB(A) or lower. Example from MCS 020 a): 60 dB(A), Q4, 8.0 m, brick wall with partial view &rarr; <b>32.0 dB(A)</b>.</p>
+</details>
+<details class="nc-more nc-noprint"><summary>Where this applies</summary>
+<ul>
+<li><b>England</b>, permitted development, since 29 May 2025 &ndash; whether or not the installer is MCS certified.</li>
+<li>Other conditions still apply (size up to 1.5&nbsp;m&sup3;, max two units on a detached house, listed buildings and Article 4 areas excluded). See the <a href="{BASE_URL}/knowledge/planning-permission/">planning guide</a>.</li>
+<li>Scotland, Wales and Northern Ireland follow the earlier MCS 020.</li>
 </ul>
-<p class="dm-note">Source: <a href="https://mcscertified.com/wp-content/uploads/2025/07/MCS-020-a-Issue-1.1-Final.pdf" target="_blank" rel="noopener nofollow">MCS 020 a) Issue 1.1, Air Source Heat Pump Sound Calculation (MCS, 14 April 2025)</a> and <a href="https://mcscertified.com/new-permitted-development-rules-in-england-air-source-heat-pump-installations-must-now-comply-with-mcs-020-a/" target="_blank" rel="noopener nofollow">MCS: New Permitted Development rules in England</a>. Sound power figures come from manufacturers&rsquo; published data in this database &ndash; always confirm against the current product fiche.</p>
+<p class="dm-note">Source: <a href="https://mcscertified.com/wp-content/uploads/2025/07/MCS-020-a-Issue-1.1-Final.pdf" target="_blank" rel="noopener nofollow">MCS 020 a) Issue 1.1 (14 April 2025)</a>. Sound power figures are manufacturers&rsquo; published data &ndash; confirm against the current product fiche.</p>
+</details>
 
-<h2 class="sec nc-noprint">Related</h2>
-<div class="grid nc-noprint">
-  <a class="card" href="{BASE_URL}/best/quietest-air-source-heat-pumps/"><div class="m">Quietest air source heat pumps</div><div class="s">Ranked by sound power level</div></a>
-  <a class="card" href="{BASE_URL}/knowledge/planning-permission/"><div class="m">Planning permission &amp; permitted development</div><div class="s">All the conditions, not just noise</div></a>
-  <a class="card" href="{BASE_URL}/heat-pump-size-calculator/"><div class="m">Heat pump size calculator</div><div class="s">Estimate the kW your home needs</div></a>
+<div class="grid nc-noprint" style="margin-top:22px">
+  <a class="card" href="{BASE_URL}/best/quietest-air-source-heat-pumps/"><div class="m">Quietest air source heat pumps</div><div class="s">Ranked by sound power</div></a>
+  <a class="card" href="{BASE_URL}/knowledge/planning-permission/"><div class="m">Planning &amp; permitted development</div><div class="s">All the conditions</div></a>
+  <a class="card" href="{BASE_URL}/heat-pump-size-calculator/"><div class="m">Size calculator</div><div class="s">Estimate the kW you need</div></a>
 </div>
-<script src="/noise-calc.js?v=2" defer></script>
+<script src="/noise-calc.js?v=4" defer></script>
 """
     return page(title, desc, canonical, body, jsonld, active="noise-calc")
 

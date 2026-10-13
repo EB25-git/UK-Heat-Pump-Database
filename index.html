@@ -567,8 +567,11 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     </div>
     <a class="burger-item" href="/best/" onclick="closeBurger()">Best Heat Pumps</a>
     <a class="burger-item" data-page="gallery" href="/#gallery" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('gallery');closeBurger();return false">Gallery</a>
-    <a class="burger-item" href="/heat-pump-size-calculator/" onclick="closeBurger()">Size Calculator</a>
-    <a class="burger-item" href="/heat-pump-noise-calculator/" onclick="closeBurger()">Noise Calculator</a>
+    <button class="burger-item burger-toggle" id="s-toggle" aria-expanded="false" aria-controls="s-group" onclick="toggleCalc()">Calculators<span class="burger-chevron" aria-hidden="true"></span></button>
+    <div class="burger-subgroup" id="s-group">
+    <a class="burger-item burger-subitem" href="/heat-pump-size-calculator/" onclick="closeBurger()">Heat Pump Size Calculator</a>
+    <a class="burger-item burger-subitem" href="/heat-pump-noise-calculator/" onclick="closeBurger()">Noise Calculator</a>
+    </div>
     <button class="burger-item burger-toggle" data-page="knowledge" id="k-toggle" aria-expanded="false" aria-controls="k-group" onclick="toggleKnowledge()">Knowledge<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="k-group">
     <a class="burger-item burger-subitem" data-page="what-is-a-heat-pump" href="/knowledge/what-is-a-heat-pump/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('what-is-a-heat-pump');closeBurger();return false">What Is a Heat Pump?</a>
@@ -2045,6 +2048,11 @@ function showPage(p) {
 // BURGER MENU
 function toggleKnowledge(){
   const t=document.getElementById('k-toggle'),g=document.getElementById('k-group');
+  const open=!g.classList.contains('open');
+  t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);
+}
+function toggleCalc(){
+  const t=document.getElementById('s-toggle'),g=document.getElementById('s-group');
   const open=!g.classList.contains('open');
   t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);
 }
@@ -3718,6 +3726,7 @@ window.showPage = showPage;
 window.sortBy = sortBy;
 window.toggleBurger = toggleBurger;
 window.toggleCompare = toggleCompare;
+window.toggleCalc = toggleCalc;
 window.toggleFilters = toggleFilters;
 window.toggleKnowledge = toggleKnowledge;
 window.trackClick = trackClick;
