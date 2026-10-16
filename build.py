@@ -1066,6 +1066,18 @@ def get_logo_url(mfr):
 PRODUCT_IMAGE_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "product-images")
 PRODUCT_IMAGE_OUT_DIR = "images/products"
 PRODUCT_IMAGE_BY_CODE = {
+    # ── Bexie ───────────────────────────────────────────────────────────
+    # One photo supplied by Bexie for the 8-16 kW monobloc casing (1-phase
+    # V8-V16 WR1P and 3-phase V12-V16 WR3P share it - same recorded H x W x D).
+    # V4/V6 use a smaller casing, so they have no photo yet.
+    "BEMHP-V8WR1P": "bexie-bemhp-v8-16-monobloc.webp",
+    "BEMHP-V10WR1P": "bexie-bemhp-v8-16-monobloc.webp",
+    "BEMHP-V12WR1P": "bexie-bemhp-v8-16-monobloc.webp",
+    "BEMHP-V14WR1P": "bexie-bemhp-v8-16-monobloc.webp",
+    "BEMHP-V16WR1P": "bexie-bemhp-v8-16-monobloc.webp",
+    "BEMHP-V12WR3P": "bexie-bemhp-v8-16-monobloc.webp",
+    "BEMHP-V14WR3P": "bexie-bemhp-v8-16-monobloc.webp",
+    "BEMHP-V16WR3P": "bexie-bemhp-v8-16-monobloc.webp",
     # ── Exinda ──────────────────────────────────────────────────────────
     # 4 ton R32 EVI unit; tonnage and refrigerant match the FBMBHFT3B1 submittal sheet.
     "FBMBHFT3B1": "exinda-4ton-r32-evi-air-to-water.webp",
