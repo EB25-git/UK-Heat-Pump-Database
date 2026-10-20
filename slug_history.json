@@ -13057,5 +13057,680 @@
   ],
   "4750": [
     "lochinvar-amicus-altus-4750"
+  ],
+  "4760": [
+    "carrier-aquasnap-30awh-ng"
+  ],
+  "4762": [
+    "carrier-aquasnap-30awh-ng-4762"
+  ],
+  "4764": [
+    "carrier-aquasnap-30awh-ng-4764"
+  ],
+  "4766": [
+    "carrier-aquasnap-30awh-ng-4766"
+  ],
+  "4768": [
+    "carrier-aquasnap-30awh-ng-4768"
+  ],
+  "4772": [
+    "carrier-aquasnap-30awh-ng-4772"
+  ],
+  "4776": [
+    "carrier-aquasnap-30awh-ng-4776"
+  ],
+  "4948": [
+    "global-energy-systems-gree-versati-iii-split-nhh"
+  ],
+  "4949": [
+    "global-energy-systems-gree-versati-iii-split-nhh-4949"
+  ],
+  "4961": [
+    "global-energy-systems-gree-versati-iii-split-nhh-4961"
+  ],
+  "4962": [
+    "global-energy-systems-gree-versati-iii-split-nhh-4962"
+  ],
+  "4977": [
+    "global-energy-systems-gree-versati-iii-split-nhh-4977"
+  ],
+  "4978": [
+    "global-energy-systems-gree-versati-iii-split-nhh-4978"
+  ],
+  "4993": [
+    "global-energy-systems-gree-versati-iii-split-nhh-4993"
+  ],
+  "4994": [
+    "global-energy-systems-gree-versati-iii-split-nhh-4994"
+  ],
+  "5007": [
+    "global-energy-systems-gree-versati-iii-split-nhh-5007"
+  ],
+  "5013": [
+    "global-energy-systems-gree-versati-iii-split-nhh-5013"
+  ],
+  "5023": [
+    "global-energy-systems-gree-versati-iii-split-nhh-5023"
+  ],
+  "5037": [
+    "global-energy-systems-thurso-eco-air-boiler"
+  ],
+  "5038": [
+    "midea-mdv-impact-split-air-thermal"
+  ],
+  "5039": [
+    "midea-mdv-impact-split-air-thermal-5039"
+  ],
+  "5040": [
+    "midea-mdv-impact-split-air-thermal-5040"
+  ],
+  "5041": [
+    "midea-mdv-impact-split-air-thermal-5041"
+  ],
+  "5042": [
+    "midea-mdv-impact-split-air-thermal-5042"
+  ],
+  "5043": [
+    "midea-mdv-impact-split-air-thermal-5043"
+  ],
+  "5044": [
+    "midea-mdv-impact-split-air-thermal-5044"
+  ],
+  "5045": [
+    "midea-mdv-impact-split-air-thermal-5045"
+  ],
+  "5046": [
+    "midea-mdv-impact-split-air-thermal-5046"
+  ],
+  "5047": [
+    "midea-mdv-impact-split-air-thermal-5047"
+  ],
+  "5124": [
+    "hitachi-yutaki-s-combi"
+  ],
+  "5125": [
+    "hitachi-yutaki-s-5125"
+  ],
+  "5127": [
+    "hitachi-yutaki-s-combi-5127"
+  ],
+  "5131": [
+    "hitachi-yutaki-s-5131"
+  ],
+  "5135": [
+    "hitachi-yutaki-s-combi-5135"
+  ],
+  "5136": [
+    "hitachi-yutaki-s-5136"
+  ],
+  "5140": [
+    "hitachi-yutaki-s-combi-5140"
+  ],
+  "5143": [
+    "hitachi-yutaki-s-combi-5143"
+  ],
+  "5148": [
+    "hitachi-yutaki-s-5148"
+  ],
+  "5175": [
+    "hitachi-yutaki-m-5175"
+  ],
+  "5176": [
+    "hitachi-yutaki-m-5176"
+  ],
+  "5177": [
+    "hitachi-yutaki-m-5177"
+  ],
+  "5188": [
+    "ctc-ecoair-510m"
+  ],
+  "5219": [
+    "ctc-gsi-12"
+  ],
+  "5220": [
+    "ctc-gsi-16"
+  ],
+  "5234": [
+    "ctc-gsi-12-5234"
+  ],
+  "5279": [
+    "clivet-sheen-evo-2-0"
+  ],
+  "5280": [
+    "clivet-sheen-evo-2-0-5280"
+  ],
+  "5281": [
+    "clivet-sheen-evo-2-0-5281"
+  ],
+  "5282": [
+    "clivet-sheen-evo-2-0-5282"
+  ],
+  "5284": [
+    "clivet-sheen-evo-2-0-5284"
+  ],
+  "5285": [
+    "clivet-sheen-evo-2-0-5285"
+  ],
+  "5286": [
+    "clivet-sheen-evo-2-0-5286"
+  ],
+  "5287": [
+    "clivet-sheen-evo-2-0-5287"
+  ],
+  "5288": [
+    "clivet-sheen-evo-2-0-5288"
+  ],
+  "5289": [
+    "clivet-sheen-evo-2-0-5289"
+  ],
+  "5293": [
+    "daikin-altherma-monobloc-5293"
+  ],
+  "5294": [
+    "daikin-altherma-monobloc-5294"
+  ],
+  "5295": [
+    "daikin-altherma-monobloc-5295"
+  ],
+  "5296": [
+    "daikin-altherma-monobloc-5296"
+  ],
+  "5297": [
+    "daikin-altherma-monobloc-5297"
+  ],
+  "5298": [
+    "daikin-altherma-monobloc-5298"
+  ],
+  "5299": [
+    "daikin-altherma-monobloc-edlq-heating-only"
+  ],
+  "5300": [
+    "daikin-altherma-monobloc-edlq-heating-only-5300"
+  ],
+  "5301": [
+    "daikin-altherma-monobloc-edlq-heating-only-5301"
+  ],
+  "5302": [
+    "daikin-altherma-monobloc-edlq-heating-only-5302"
+  ],
+  "5303": [
+    "daikin-altherma-monobloc-edlq-heating-only-5303"
+  ],
+  "5304": [
+    "daikin-altherma-monobloc-edlq-heating-only-5304"
+  ],
+  "5305": [
+    "daikin-altherma-monobloc-edlq-heating-only-5305"
+  ],
+  "5306": [
+    "daikin-altherma-monobloc-edlq-heating-only-5306"
+  ],
+  "5307": [
+    "daikin-altherma-monobloc-edlq-heating-only-5307"
+  ],
+  "5308": [
+    "daikin-altherma-monobloc-edlq-heating-only-5308"
+  ],
+  "5309": [
+    "daikin-altherma-monobloc-edlq-heating-only-5309"
+  ],
+  "5310": [
+    "daikin-altherma-monobloc-edlq-heating-only-5310"
+  ],
+  "5311": [
+    "daikin-altherma-3-geo-for-collective-housing"
+  ],
+  "5312": [
+    "daikin-altherma-3-geo-for-collective-housing-5312"
+  ],
+  "5313": [
+    "daikin-altherma-3-geo-for-collective-housing-5313"
+  ],
+  "5314": [
+    "daikin-altherma-3-geo-for-collective-housing-5314"
+  ],
+  "5315": [
+    "daikin-altherma-3-h-epga-d"
+  ],
+  "5316": [
+    "daikin-altherma-3-h-epga-d-5316"
+  ],
+  "5317": [
+    "daikin-altherma-3-h-epga-d-5317"
+  ],
+  "5318": [
+    "daikin-altherma-3-h-epga-d-5318"
+  ],
+  "5319": [
+    "daikin-altherma-3-h-epga-d-5319"
+  ],
+  "5320": [
+    "daikin-altherma-3-h-epga-d-5320"
+  ],
+  "5337": [
+    "daikin-altherma-3-r-erga-d"
+  ],
+  "5338": [
+    "daikin-altherma-3-r-erga-d-5338"
+  ],
+  "5339": [
+    "daikin-altherma-3-r-erga-d-5339"
+  ],
+  "5340": [
+    "daikin-altherma-3-r-erga-d-5340"
+  ],
+  "5459": [
+    "phnix-heroplus"
+  ],
+  "5463": [
+    "phnix-heroplus-5463"
+  ],
+  "5467": [
+    "phnix-heropremium"
+  ],
+  "5468": [
+    "phnix-heropremium-5468"
+  ],
+  "5469": [
+    "phnix-heropremium-5469"
+  ],
+  "5479": [
+    "carrier-aquasnap-30awh-m-r32"
+  ],
+  "5480": [
+    "carrier-aquasnap-30awh-m-r32-5480"
+  ],
+  "5481": [
+    "carrier-aquasnap-30awh-m-r32-5481"
+  ],
+  "5482": [
+    "carrier-aquasnap-30awh-m-r32-5482"
+  ],
+  "5483": [
+    "carrier-aquasnap-30awh-m-r32-5483"
+  ],
+  "5489": [
+    "carrier-aquasnap-30awh-p-r290"
+  ],
+  "5490": [
+    "carrier-aquasnap-30awh-p-r290-5490"
+  ],
+  "5491": [
+    "carrier-aquasnap-30awh-p-r290-5491"
+  ],
+  "5492": [
+    "carrier-aquasnap-30awh-p-r290-5492"
+  ],
+  "5493": [
+    "carrier-aquasnap-30awh-p-r290-5493"
+  ],
+  "5494": [
+    "carrier-aquasnap-30awh-p-r290-5494"
+  ],
+  "5495": [
+    "carrier-aquasnap-30awh-p-r290-5495"
+  ],
+  "5496": [
+    "carrier-aquasnap-30awh-p-r290-5496"
+  ],
+  "5497": [
+    "beretta-riello-hydro-unit-p"
+  ],
+  "5498": [
+    "beretta-riello-hydro-unit-p-5498"
+  ],
+  "5499": [
+    "beretta-riello-hydro-unit-p-5499"
+  ],
+  "5500": [
+    "beretta-riello-hydro-unit-p-5500"
+  ],
+  "5501": [
+    "beretta-riello-hydro-unit-p-5501"
+  ],
+  "5502": [
+    "beretta-riello-hydro-unit-p-5502"
+  ],
+  "5503": [
+    "beretta-riello-hydro-unit-p-5503"
+  ],
+  "5504": [
+    "beretta-riello-hydro-unit-p-5504"
+  ],
+  "5514": [
+    "heliotherm-comfort-compact-air"
+  ],
+  "5515": [
+    "heliotherm-comfort-compact-air-5515"
+  ],
+  "5516": [
+    "heliotherm-comfort-compact-air-5516"
+  ],
+  "5517": [
+    "heliotherm-solid-compact-large"
+  ],
+  "5518": [
+    "heliotherm-solid-air-large-split"
+  ],
+  "5519": [
+    "heliotherm-solid-compact-large-5519"
+  ],
+  "5520": [
+    "heliotherm-solid-air-large-split-5520"
+  ],
+  "5521": [
+    "heliotherm-solid-compact-large-5521"
+  ],
+  "5522": [
+    "heliotherm-solid-air-large-split-5522"
+  ],
+  "5525": [
+    "heliotherm-whisper-rs-compact-air-r290"
+  ],
+  "5526": [
+    "heliotherm-whisper-rs-compact-air-r290-5526"
+  ],
+  "5527": [
+    "heliotherm-whisper-rs-compact-air-r290-5527"
+  ],
+  "5528": [
+    "heliotherm-whisper-rs-compact-air-r290-5528"
+  ],
+  "5555": [
+    "exinda-xdash-r290-monobloc-5555"
+  ],
+  "5556": [
+    "exinda-xdash-r290-monobloc-5556"
+  ],
+  "5557": [
+    "exinda-xdash-r290-monobloc-5557"
+  ],
+  "5558": [
+    "exinda-xdash-r290-monobloc-5558"
+  ],
+  "5687": [
+    "es-heat-pumps-aw-evi-m-5687"
+  ],
+  "5713": [
+    "dimplex-sih-me-high-temperature"
+  ],
+  "5734": [
+    "nibe-f1255"
+  ],
+  "5735": [
+    "nibe-f1255-5735"
+  ],
+  "5736": [
+    "nibe-f1253"
+  ],
+  "5737": [
+    "nibe-f1253-5737"
+  ],
+  "5740": [
+    "bosch-compress-7400i-aw"
+  ],
+  "5741": [
+    "bosch-compress-7400i-aw-5741"
+  ],
+  "5746": [
+    "ideal-heating-alfea-excellia-a-i"
+  ],
+  "5756": [
+    "mitsubishi-electric-ecodan-r32-monobloc-5756"
+  ],
+  "5757": [
+    "mitsubishi-electric-ecodan-r32-monobloc-5757"
+  ],
+  "5784": [
+    "alpha-innotec-lw-300-l"
+  ],
+  "5795": [
+    "alpha-e-tec-hybrid"
+  ],
+  "5800": [
+    "advantix-maxa-i-290"
+  ],
+  "5801": [
+    "advantix-maxa-i-290-5801"
+  ],
+  "5802": [
+    "advantix-maxa-i-290-5802"
+  ],
+  "5803": [
+    "advantix-maxa-i-290-5803"
+  ],
+  "5804": [
+    "advantix-maxa-i-290-5804"
+  ],
+  "5805": [
+    "advantix-maxa-i-290-5805"
+  ],
+  "5806": [
+    "advantix-maxa-i-290-5806"
+  ],
+  "5807": [
+    "advantix-maxa-i-290-5807"
+  ],
+  "5808": [
+    "advantix-maxa-i-290-5808"
+  ],
+  "5809": [
+    "advantix-maxa-i-32v5"
+  ],
+  "5814": [
+    "advantix-maxa-i-32v5-current"
+  ],
+  "5815": [
+    "advantix-maxa-i-32v5-current-5815"
+  ],
+  "5816": [
+    "advantix-maxa-i-32v5-current-5816"
+  ],
+  "5817": [
+    "advantix-maxa-i-32v5-current-5817"
+  ],
+  "5818": [
+    "advantix-maxa-i-32v5-current-5818"
+  ],
+  "5819": [
+    "advantix-maxa-i-32v5-current-5819"
+  ],
+  "5820": [
+    "advantix-maxa-i-32v5-current-5820"
+  ],
+  "5821": [
+    "advantix-maxa-i-32v5-current-5821"
+  ],
+  "5822": [
+    "advantix-maxa-i-32v5-current-5822"
+  ],
+  "5823": [
+    "advantix-maxa-i-32v5-current-5823"
+  ],
+  "5824": [
+    "advantix-maxa-i-32v5-current-5824"
+  ],
+  "5825": [
+    "advantix-maxa-i-32v5-5825"
+  ],
+  "5826": [
+    "advantix-maxa-i-32v5-5826"
+  ],
+  "5828": [
+    "advantix-maxa-i-32v5-5828"
+  ],
+  "5830": [
+    "advantix-maxa-i-32v5-5830"
+  ],
+  "5831": [
+    "advantix-maxa-i-32v5-5831"
+  ],
+  "5832": [
+    "advantix-maxa-i-32v5-5832"
+  ],
+  "5833": [
+    "advantix-maxa-i-32v5-5833"
+  ],
+  "5834": [
+    "advantix-maxa-i-32v5-5834"
+  ],
+  "5835": [
+    "advantix-maxa-i-32v5-5835"
+  ],
+  "5836": [
+    "advantix-maxa-i-32v5-5836"
+  ],
+  "5837": [
+    "advantix-maxa-i-32v5-5837"
+  ],
+  "5851": [
+    "climer-airys-compact"
+  ],
+  "5852": [
+    "climer-airys-compact-5852"
+  ],
+  "5854": [
+    "climer-airys-compact-5854"
+  ],
+  "5856": [
+    "climer-airys-compact-5856"
+  ],
+  "6030": [
+    "lamborghini-caloreclima-idola-s-3-2"
+  ],
+  "6031": [
+    "lamborghini-caloreclima-idola-s-3-2-6031"
+  ],
+  "6032": [
+    "lamborghini-caloreclima-idola-s-3-2-6032"
+  ],
+  "6033": [
+    "lamborghini-caloreclima-idola-s-3-2-6033"
+  ],
+  "6034": [
+    "lamborghini-caloreclima-idola-s-3-2-6034"
+  ],
+  "6035": [
+    "lamborghini-caloreclima-idola-s-3-2-6035"
+  ],
+  "6036": [
+    "lamborghini-caloreclima-idola-s-3-2-6036"
+  ],
+  "6037": [
+    "lamborghini-caloreclima-idola-s-3-2-6037"
+  ],
+  "6038": [
+    "lamborghini-caloreclima-idola-s-3-2-6038"
+  ],
+  "6039": [
+    "lamborghini-caloreclima-idola-s-3-2-6039"
+  ],
+  "6050": [
+    "ares-renewables-mb3"
+  ],
+  "6051": [
+    "ares-renewables-mb3-6051"
+  ],
+  "6052": [
+    "ares-renewables-mb3-6052"
+  ],
+  "6053": [
+    "ares-renewables-mb3-6053"
+  ],
+  "6054": [
+    "ares-renewables-mb5"
+  ],
+  "6055": [
+    "ares-renewables-mb5-6055"
+  ],
+  "6056": [
+    "ares-renewables-mb5-6056"
+  ],
+  "6057": [
+    "ares-renewables-mb5-6057"
+  ],
+  "6058": [
+    "ares-renewables-mb5-6058"
+  ],
+  "6059": [
+    "ares-renewables-mb5-6059"
+  ],
+  "6060": [
+    "ares-renewables-mb5-6060"
+  ],
+  "6061": [
+    "ares-renewables-mb5-6061"
+  ],
+  "6062": [
+    "ares-renewables-mb5-6062"
+  ],
+  "6063": [
+    "ares-renewables-s5"
+  ],
+  "6064": [
+    "ares-renewables-s5-6064"
+  ],
+  "6078": [
+    "luckingstar-lks-r32-elite"
+  ],
+  "6079": [
+    "luckingstar-lks-r290-ultimate"
+  ],
+  "6080": [
+    "luckingstar-lks-r290-ultimate-6080"
+  ],
+  "6081": [
+    "luckingstar-lks-r32-elite-6081"
+  ],
+  "6082": [
+    "luckingstar-lks-r290-ultimate-6082"
+  ],
+  "6083": [
+    "luckingstar-lks-r32-elite-6083"
+  ],
+  "6084": [
+    "luckingstar-lks-r290-ultimate-6084"
+  ],
+  "6085": [
+    "luckingstar-lks-r290-ultimate-6085"
+  ],
+  "6086": [
+    "luckingstar-lks-r290-ultraheat"
+  ],
+  "6087": [
+    "luckingstar-lks-r32-elite-6087"
+  ],
+  "6088": [
+    "luckingstar-lks-r290-ultimate-6088"
+  ],
+  "6099": [
+    "elco-aerotop-l"
+  ],
+  "6100": [
+    "elco-aerotop-l-6100"
+  ],
+  "6101": [
+    "elco-aerotop-l-6101"
+  ],
+  "6102": [
+    "elco-aerotop-l-6102"
+  ],
+  "6103": [
+    "elco-aerotop-l-6103"
+  ],
+  "6104": [
+    "elco-aerotop-m"
+  ],
+  "6105": [
+    "elco-aerotop-m-6105"
+  ],
+  "6106": [
+    "elco-aerotop-m-6106"
+  ],
+  "6107": [
+    "elco-aerotop-m-6107"
+  ],
+  "6220": [
+    "mitsubishi-heavy-industries-air-conditioning-q-ton"
   ]
 }

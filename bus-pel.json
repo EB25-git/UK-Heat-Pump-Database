@@ -5954,6 +5954,1356 @@
    "until": null,
    "pel_model": "RASM-2VTW2E & ATW-CBX-01",
    "method": "code"
+  },
+  "4760": {
+   "cert": "011-1W1013_1",
+   "until": "2035-04-30",
+   "pel_model": "AquaSnap 30AWH004H1--NG",
+   "method": "pel_gap_review"
+  },
+  "4762": {
+   "cert": "011-1W1013_2",
+   "until": "2035-04-30",
+   "pel_model": "AquaSnap 30AWH006H1--NG",
+   "method": "pel_gap_review"
+  },
+  "4764": {
+   "cert": "011-1W1013_3",
+   "until": "2035-04-30",
+   "pel_model": "AquaSnap 30AWH008H1--NG",
+   "method": "pel_gap_review"
+  },
+  "4766": {
+   "cert": "011-1W1014_1",
+   "until": "2035-04-30",
+   "pel_model": "AquaSnap 30AWH010H1--NG",
+   "method": "pel_gap_review"
+  },
+  "4768": {
+   "cert": "011-1W1014_4",
+   "until": "2035-04-30",
+   "pel_model": "AquaSnap 30AWH010H19-NG",
+   "method": "pel_gap_review"
+  },
+  "4772": {
+   "cert": "011-1W1014_5",
+   "until": "2035-04-30",
+   "pel_model": "AquaSnap 30AWH013H19-NG",
+   "method": "pel_gap_review"
+  },
+  "4776": {
+   "cert": "011-1W1014_6",
+   "until": "2035-04-30",
+   "pel_model": "AquaSnap 30AWH016H19-NG",
+   "method": "pel_gap_review"
+  },
+  "4948": {
+   "cert": "MCS HP0268/32",
+   "until": null,
+   "pel_model": "GRS-CQ10Pd/NhH-E",
+   "method": "pel_gap_review"
+  },
+  "4949": {
+   "cert": "MCS HP0268/37",
+   "until": null,
+   "pel_model": "GRS-CQ10Pd/NhH-M",
+   "method": "pel_gap_review"
+  },
+  "4961": {
+   "cert": "MCS HP0268/33",
+   "until": null,
+   "pel_model": "GRS-CQ12Pd/NhH-E",
+   "method": "pel_gap_review"
+  },
+  "4962": {
+   "cert": "MCS HP0268/38",
+   "until": null,
+   "pel_model": "GRS-CQ12Pd/NhH-M",
+   "method": "pel_gap_review"
+  },
+  "4977": {
+   "cert": "MCS HP0268/34",
+   "until": null,
+   "pel_model": "GRS-CQ14Pd/NhH-E",
+   "method": "pel_gap_review"
+  },
+  "4978": {
+   "cert": "MCS HP0268/39",
+   "until": null,
+   "pel_model": "GRS-CQ14Pd/NhH-M",
+   "method": "pel_gap_review"
+  },
+  "4993": {
+   "cert": "MCS HP0268/35",
+   "until": null,
+   "pel_model": "GRS-CQ16Pd/NhH-E",
+   "method": "pel_gap_review"
+  },
+  "4994": {
+   "cert": "MCS HP0268/40",
+   "until": null,
+   "pel_model": "GRS-CQ16Pd/NhH-M",
+   "method": "pel_gap_review"
+  },
+  "5007": {
+   "cert": "MCS HP0268/29",
+   "until": null,
+   "pel_model": "GRS-CQ4.0Pd/NhH-E",
+   "method": "pel_gap_review"
+  },
+  "5013": {
+   "cert": "MCS HP0268/30",
+   "until": null,
+   "pel_model": "GRS-CQ6.0Pd/NhH-E",
+   "method": "pel_gap_review"
+  },
+  "5023": {
+   "cert": "MCS HP0268/31",
+   "until": null,
+   "pel_model": "GRS-CQ8.0Pd/NhH-E",
+   "method": "pel_gap_review"
+  },
+  "5037": {
+   "cert": "MCS HP0010/07",
+   "until": null,
+   "pel_model": "Thurso Eco Air Boiler - THUR410MOD1",
+   "method": "pel_gap_review"
+  },
+  "5038": {
+   "cert": "MCS HP0270/93",
+   "until": null,
+   "pel_model": "AHPS-V10W/D2N8-B+AHB-A100/C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5039": {
+   "cert": "MCS HP0270/112; MCS HP0270/100",
+   "until": null,
+   "pel_model": "AHPS-V12W/D2N8- B+AHBT-A160/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5040": {
+   "cert": "MCS HP0270/103; MCS HP0270/115",
+   "until": null,
+   "pel_model": "AHPS-V12W/D2RN8- B+AHB-A160/C****GN8-B | AHPS-V12W/D2RN8- B+AHBT-A160/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5041": {
+   "cert": "MCS HP0270/113; MCS HP0270/101",
+   "until": null,
+   "pel_model": "AHPS-V14W/D2N8- B+AHBT-A160/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5042": {
+   "cert": "MCS HP0270/104; MCS HP0270/116",
+   "until": null,
+   "pel_model": "AHPS-V14W/D2RN8- B+AHB-A160/C****GN8-B | AHPS-V14W/D2RN8- B+AHBT-A160/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5043": {
+   "cert": "MCS HP0270/114; MCS HP0270/102",
+   "until": null,
+   "pel_model": "AHPS-V16W/D2N8- B+AHBT-A160/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5044": {
+   "cert": "MCS HP0270/105; MCS HP0270/117",
+   "until": null,
+   "pel_model": "AHPS-V16W/D2RN8- B+AHB-A160/C****GN8-B | AHPS-V16W/D2RN8- B+AHBT-A160/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5045": {
+   "cert": "MCS HP0270/84; MCS HP0270/88; MCS HP0270/90",
+   "until": null,
+   "pel_model": "AHPS-V4W/D2N8-B+AHB-A60/C****GN8-B | AHPS-V4W/D2N8-B+AHBT_x0002_A100/190C****GN8-B | AHPS-V4W/D2N8-B+AHBT-A100/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5046": {
+   "cert": "MCS HP0270/85; MCS HP0270/89; MCS HP0270/91",
+   "until": null,
+   "pel_model": "AHPS-V6W/D2N8-B+AHB-A60/C****GN8-B | AHPS-V6W/D2N8-B+AHBT_x0002_A100/190C****GN8-B | AHPS-V6W/D2N8-B+AHBT-A100/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5047": {
+   "cert": "MCS HP0270/92; MCS HP0270/96; MCS HP0270/98",
+   "until": null,
+   "pel_model": "AHPS-V8W/D2N8-B+AHB-A100/C****GN8-B | AHPS-V8W/D2N8-B+AHBT-A100/190C****GN8-B | AHPS-V8W/D2N8-B+AHBT-A100/240C****GN8-B",
+   "method": "pel_gap_review"
+  },
+  "5124": {
+   "cert": "MCS HP0032/48; MCS HP0032/49",
+   "until": null,
+   "pel_model": "RWD-6HFSNWE-200S / RAS- 6.0HVRNME-AF | RWD-6HFSNWE-260S / RAS- 6.0HVRNME-AF",
+   "method": "pel_gap_review"
+  },
+  "5125": {
+   "cert": "MCS HP0032/33",
+   "until": null,
+   "pel_model": "RWM-10HFSN3E / RAS-10HRNME-AF",
+   "method": "pel_gap_review"
+  },
+  "5127": {
+   "cert": "MCS HP0032/40; MCS HP0032/41",
+   "until": null,
+   "pel_model": "RWD-2HFSNWE-200S / RAS-2.0HVRN2 | RWD-2HFSNWE-260S / RAS-2.0HVRN2",
+   "method": "pel_gap_review"
+  },
+  "5131": {
+   "cert": "MCS HP0032/24",
+   "until": null,
+   "pel_model": "RWM-2HFSN3E / RAS-2HVRN2",
+   "method": "pel_gap_review"
+  },
+  "5135": {
+   "cert": "MCS HP0032/42; MCS HP0032/43",
+   "until": null,
+   "pel_model": "RWD-3HFSNWE-200S / RAS-3.0HVRNME-AF | RWD-3HFSNWE-260S / RAS-3.0HVRNME-AF",
+   "method": "pel_gap_review"
+  },
+  "5136": {
+   "cert": "MCS HP0032/25",
+   "until": null,
+   "pel_model": "RWM-3HFSN3E / RAS-3HVRNME-AF",
+   "method": "pel_gap_review"
+  },
+  "5140": {
+   "cert": "MCS HP0032/44; MCS HP0032/45",
+   "until": null,
+   "pel_model": "RWD-4HFSNWE-200S / RAS-4.0HVRNME-AF | RWD-4HFSNWE-260S / RAS-4.0HVRNME-AF",
+   "method": "pel_gap_review"
+  },
+  "5143": {
+   "cert": "MCS HP0032/46; MCS HP0032/47",
+   "until": null,
+   "pel_model": "RWD-5HFSNWE-200S / RAS-5.0HVRNME-AF | RWD-5HFSNWE-260S / RAS-5.0HVRNME-AF",
+   "method": "pel_gap_review"
+  },
+  "5148": {
+   "cert": "MCS HP0032/32",
+   "until": null,
+   "pel_model": "RWM-8HFSN3E / RAS-8HRNME-AF",
+   "method": "pel_gap_review"
+  },
+  "5175": {
+   "cert": "MCS HP0032/09",
+   "until": null,
+   "pel_model": "RHUE-4AVHN-HM",
+   "method": "pel_gap_review"
+  },
+  "5176": {
+   "cert": "MCS HP0032/10",
+   "until": null,
+   "pel_model": "RHUE-5AHN-HM",
+   "method": "pel_gap_review"
+  },
+  "5177": {
+   "cert": "MCS HP0032/11",
+   "until": null,
+   "pel_model": "RHUE-5AVHN-HM",
+   "method": "pel_gap_review"
+  },
+  "5188": {
+   "cert": "MCS HP0023/56",
+   "until": null,
+   "pel_model": "CTC EcoAir 510M",
+   "method": "pel_gap_review"
+  },
+  "5219": {
+   "cert": "MCS HP0023/55",
+   "until": null,
+   "pel_model": "CTC GSi 12 (1 phase)",
+   "method": "pel_gap_review"
+  },
+  "5220": {
+   "cert": "MCS HP0023/62",
+   "until": null,
+   "pel_model": "CTC GSi 16 (3 phase)",
+   "method": "pel_gap_review"
+  },
+  "5234": {
+   "cert": "MCS HP0023/68",
+   "until": null,
+   "pel_model": "GSi 12 (3 phase)",
+   "method": "pel_gap_review"
+  },
+  "5279": {
+   "cert": "ICIM-PDC-000234_03",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 EXC-EN 43,2",
+   "method": "pel_gap_review"
+  },
+  "5280": {
+   "cert": "ICIM-PDC-000234_04",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 EXC-EN 45,2",
+   "method": "pel_gap_review"
+  },
+  "5281": {
+   "cert": "ICIM-PDC-000234_01",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 EXC-SC 43,2",
+   "method": "pel_gap_review"
+  },
+  "5282": {
+   "cert": "ICIM-PDC-000234_02",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 EXC-SC 45,2",
+   "method": "pel_gap_review"
+  },
+  "5284": {
+   "cert": "ICIM-PDC-000235_02",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 PRM-EN 45,2",
+   "method": "pel_gap_review"
+  },
+  "5285": {
+   "cert": "ICIM-PDC-000235_04",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 PRM-EN 50,2",
+   "method": "pel_gap_review"
+  },
+  "5286": {
+   "cert": "ICIM-PDC-000235_06",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 PRM-EN 55,2",
+   "method": "pel_gap_review"
+  },
+  "5287": {
+   "cert": "ICIM-PDC-000235_01",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 PRM-SC 45,2",
+   "method": "pel_gap_review"
+  },
+  "5288": {
+   "cert": "ICIM-PDC-000235_03",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 PRM-SC 50,2",
+   "method": "pel_gap_review"
+  },
+  "5289": {
+   "cert": "ICIM-PDC-000235_05",
+   "until": "2034-01-24",
+   "pel_model": "WiSAN-YSE1 PRM-SC 55,2",
+   "method": "pel_gap_review"
+  },
+  "5293": {
+   "cert": "011-1W0259_13",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ011CV3",
+   "method": "pel_gap_review"
+  },
+  "5294": {
+   "cert": "011-1W0259_17",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ011CW1",
+   "method": "pel_gap_review"
+  },
+  "5295": {
+   "cert": "011-1W0260_13",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ014CV3",
+   "method": "pel_gap_review"
+  },
+  "5296": {
+   "cert": "011-1W0260_17",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ014CW1",
+   "method": "pel_gap_review"
+  },
+  "5297": {
+   "cert": "011-1W0261_13",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ016CV3",
+   "method": "pel_gap_review"
+  },
+  "5298": {
+   "cert": "011-1W0261_17",
+   "until": "2028-06-30",
+   "pel_model": "EBLQ016CW1",
+   "method": "pel_gap_review"
+  },
+  "5299": {
+   "cert": "011-1W0259_14",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ011C3W1",
+   "method": "pel_gap_review"
+  },
+  "5300": {
+   "cert": "011-1W0259_10",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ011CA3V3",
+   "method": "pel_gap_review"
+  },
+  "5301": {
+   "cert": "011-1W0259_12",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ011CV3",
+   "method": "pel_gap_review"
+  },
+  "5302": {
+   "cert": "011-1W0259_15",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ011CW1",
+   "method": "pel_gap_review"
+  },
+  "5303": {
+   "cert": "011-1W0260_14",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ014C3W1",
+   "method": "pel_gap_review"
+  },
+  "5304": {
+   "cert": "011-1W0260_10",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ014CA3V3",
+   "method": "pel_gap_review"
+  },
+  "5305": {
+   "cert": "011-1W0260_12",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ014CV3",
+   "method": "pel_gap_review"
+  },
+  "5306": {
+   "cert": "011-1W0260_15",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ014CW1",
+   "method": "pel_gap_review"
+  },
+  "5307": {
+   "cert": "011-1W0261_14",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ016C3W1",
+   "method": "pel_gap_review"
+  },
+  "5308": {
+   "cert": "011-1W0261_10",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ016CA3V3",
+   "method": "pel_gap_review"
+  },
+  "5309": {
+   "cert": "011-1W0261_12",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ016CV3",
+   "method": "pel_gap_review"
+  },
+  "5310": {
+   "cert": "011-1W0261_15",
+   "until": "2028-06-30",
+   "pel_model": "EDLQ016CW1",
+   "method": "pel_gap_review"
+  },
+  "5311": {
+   "cert": "011-1W0337_1",
+   "until": "2029-06-30",
+   "pel_model": "EGSAH06UDA9W",
+   "method": "pel_gap_review"
+  },
+  "5312": {
+   "cert": "011-1W0338_1",
+   "until": "2029-06-30",
+   "pel_model": "EGSAH10UDA9W",
+   "method": "pel_gap_review"
+  },
+  "5313": {
+   "cert": "011-1W0337_2",
+   "until": "2029-06-30",
+   "pel_model": "EGSAX06UDA9W",
+   "method": "pel_gap_review"
+  },
+  "5314": {
+   "cert": "011-1W0338_2",
+   "until": "2029-06-30",
+   "pel_model": "EGSAX10UDA9W",
+   "method": "pel_gap_review"
+  },
+  "5315": {
+   "cert": "011-1W0319_10",
+   "until": "2029-03-31",
+   "pel_model": "EPGA11DAV3/EABH16DF6V",
+   "method": "pel_gap_review"
+  },
+  "5316": {
+   "cert": "011-1W0319_2; 011-1W0319_3; 011-1W0319_4; 011-1W0319_5; 011-1W0320",
+   "until": "2029-03-31",
+   "pel_model": "EPGA11DV7 / EABH16D9W7 | EPGA11DV7 / EABX16D6V7 | EPGA11DV7 / EABX16D9W7 | EPGA11DV7 / EAVH16SU18D6V7 | EPGA11DV7 / EAVH16SU23D6V7",
+   "method": "pel_gap_review"
+  },
+  "5317": {
+   "cert": "011-1W0321_10",
+   "until": "2029-03-31",
+   "pel_model": "EPGA14DAV3/EABH16DF6V",
+   "method": "pel_gap_review"
+  },
+  "5318": {
+   "cert": "011-1W0321_1; 011-1W0321_2; 011-1W0321_3; 011-1W0321_4; 011-1W0321_5; 011-1W0322",
+   "until": "2029-03-31",
+   "pel_model": "EPGA14DV7 / EABH16D6V7 | EPGA14DV7 / EABH16D9W7 | EPGA14DV7 / EABX16D6V7 | EPGA14DV7 / EABX16D9W7 | EPGA14DV7 / EAVH16SU18D6V7 | EPGA14DV7 / EAVH16SU23D6V7",
+   "method": "pel_gap_review"
+  },
+  "5319": {
+   "cert": "011-1W0323_10",
+   "until": "2029-03-31",
+   "pel_model": "EPGA16DAV3/EABH16DF6V",
+   "method": "pel_gap_review"
+  },
+  "5320": {
+   "cert": "011-1W0323_1; 011-1W0323_2; 011-1W0323_3; 011-1W0323_4; 011-1W0323_5; 011-1W0324",
+   "until": "2029-03-31",
+   "pel_model": "EPGA16DV7 / EABH16D6V7 | EPGA16DV7 / EABH16D9W7 | EPGA16DV7 / EABX16D6V7 | EPGA16DV7 / EABX16D9W7 | EPGA16DV7 / EAVH16SU18D6V7 | EPGA16DV7 / EAVH16SU23D6V7",
+   "method": "pel_gap_review"
+  },
+  "5337": {
+   "cert": "011-1W0218_01; 011-1W0218_02",
+   "until": "2027-11-30",
+   "pel_model": "ERGA04DAV3A / EHBH04DA6V | ERGA04DAV3A / EHBX04DA6V",
+   "method": "pel_gap_review"
+  },
+  "5338": {
+   "cert": "011-1W0246_01; 011-1W0246_02; 011-1W0246_03; 011-1W0246_04",
+   "until": "2028-03-31",
+   "pel_model": "ERGA06DAV3A / EHBH08DA6V | ERGA06DAV3A / EHBX08DA6V | ERGA06DAV3A / EHBH08DA9W | ERGA06DAV3A / EHBX08DA9W",
+   "method": "pel_gap_review"
+  },
+  "5339": {
+   "cert": "011-1W0219",
+   "until": "2027-11-30",
+   "pel_model": "ERGA06DV / EHVH08SU18D6V",
+   "method": "pel_gap_review"
+  },
+  "5340": {
+   "cert": "011-1W0248_01; 011-1W0248_02; 011-1W0248_03; 011-1W0248_04",
+   "until": "2028-03-31",
+   "pel_model": "ERGA08DAV3A / EHBH08DA6V | ERGA08DAV3A / EHBX08DA6V | ERGA08DAV3A / EHBH08DA9W | ERGA08DAV3A / EHBX08DA9W",
+   "method": "pel_gap_review"
+  },
+  "5459": {
+   "cert": "BSI KM 748508/3",
+   "until": null,
+   "pel_model": "P17A",
+   "method": "pel_gap_review"
+  },
+  "5463": {
+   "cert": "BSI KM 748508/1",
+   "until": null,
+   "pel_model": "P6",
+   "method": "pel_gap_review"
+  },
+  "5467": {
+   "cert": "BSI KM 748508/4",
+   "until": null,
+   "pel_model": "PASRW020-BP-PS-B",
+   "method": "pel_gap_review"
+  },
+  "5468": {
+   "cert": "BSI KM 748508/5",
+   "until": null,
+   "pel_model": "PASRW040-BP-PS-B",
+   "method": "pel_gap_review"
+  },
+  "5469": {
+   "cert": "BSI KM 748508/6",
+   "until": null,
+   "pel_model": "PASRW060-BP-PS-B",
+   "method": "pel_gap_review"
+  },
+  "5479": {
+   "cert": "041-K019-21 a",
+   "until": null,
+   "pel_model": "30AWH004H---M",
+   "method": "pel_gap_review"
+  },
+  "5480": {
+   "cert": "041-K019-21 b",
+   "until": null,
+   "pel_model": "30AWH006H---M",
+   "method": "pel_gap_review"
+  },
+  "5481": {
+   "cert": "041-K019-22 a",
+   "until": null,
+   "pel_model": "30AWH008H---M",
+   "method": "pel_gap_review"
+  },
+  "5482": {
+   "cert": "041-K019-22 b",
+   "until": null,
+   "pel_model": "30AWH010H---M",
+   "method": "pel_gap_review"
+  },
+  "5483": {
+   "cert": "041-K019-23 a",
+   "until": null,
+   "pel_model": "30AWH012H---M",
+   "method": "pel_gap_review"
+  },
+  "5489": {
+   "cert": "011-1W0621",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 004 HP-C--C-",
+   "method": "pel_gap_review"
+  },
+  "5490": {
+   "cert": "011-1W0622",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 006 HP-C--C-",
+   "method": "pel_gap_review"
+  },
+  "5491": {
+   "cert": "011-1W0623",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 008 HP-C--C-",
+   "method": "pel_gap_review"
+  },
+  "5492": {
+   "cert": "011-1W0624",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 010 HP-C--C-",
+   "method": "pel_gap_review"
+  },
+  "5493": {
+   "cert": "011-1W0625_01",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 012 HP-C--C-",
+   "method": "pel_gap_review"
+  },
+  "5494": {
+   "cert": "011-1W0625_02",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 012 HP9C--C-",
+   "method": "pel_gap_review"
+  },
+  "5495": {
+   "cert": "011-1W0625_03",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 014 HP-C--C-",
+   "method": "pel_gap_review"
+  },
+  "5496": {
+   "cert": "011-1W0625_04",
+   "until": "2033-06-30",
+   "pel_model": "Carrier Aquasnap 30 AWH 014 HP9C--C-",
+   "method": "pel_gap_review"
+  },
+  "5497": {
+   "cert": "011-1W0626",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 004",
+   "method": "pel_gap_review"
+  },
+  "5498": {
+   "cert": "011-1W0627",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 006",
+   "method": "pel_gap_review"
+  },
+  "5499": {
+   "cert": "011-1W0628",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 008",
+   "method": "pel_gap_review"
+  },
+  "5500": {
+   "cert": "011-1W0629",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 010",
+   "method": "pel_gap_review"
+  },
+  "5501": {
+   "cert": "011-1W0630_01",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 012",
+   "method": "pel_gap_review"
+  },
+  "5502": {
+   "cert": "011-1W0630_03",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 012T",
+   "method": "pel_gap_review"
+  },
+  "5503": {
+   "cert": "011-1W0630_02",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 014",
+   "method": "pel_gap_review"
+  },
+  "5504": {
+   "cert": "011-1W0630_04",
+   "until": "2033-06-30",
+   "pel_model": "HYDRO UNIT P 014T",
+   "method": "pel_gap_review"
+  },
+  "5514": {
+   "cert": "BBA 0136/17",
+   "until": null,
+   "pel_model": "S 08 L-M-CC",
+   "method": "pel_gap_review"
+  },
+  "5515": {
+   "cert": "BBA 0136/18",
+   "until": null,
+   "pel_model": "S 12 L-M-CC",
+   "method": "pel_gap_review"
+  },
+  "5516": {
+   "cert": "BBA 0136/19",
+   "until": null,
+   "pel_model": "S 18 L-M-CC",
+   "method": "pel_gap_review"
+  },
+  "5517": {
+   "cert": "BBA 0136/33",
+   "until": null,
+   "pel_model": "S30L-M-CC",
+   "method": "pel_gap_review"
+  },
+  "5518": {
+   "cert": "BBA 0136/36",
+   "until": null,
+   "pel_model": "S30L-M-SOLID",
+   "method": "pel_gap_review"
+  },
+  "5519": {
+   "cert": "BBA 0136/34",
+   "until": null,
+   "pel_model": "S40L-M-CC",
+   "method": "pel_gap_review"
+  },
+  "5520": {
+   "cert": "BBA 0136/37",
+   "until": null,
+   "pel_model": "S40L-M-SOLID",
+   "method": "pel_gap_review"
+  },
+  "5521": {
+   "cert": "BBA 0136/35",
+   "until": null,
+   "pel_model": "S55L-M-CC",
+   "method": "pel_gap_review"
+  },
+  "5522": {
+   "cert": "BBA 0136/38",
+   "until": null,
+   "pel_model": "S55L-M-SOLID",
+   "method": "pel_gap_review"
+  },
+  "5525": {
+   "cert": "BBA 0136/29",
+   "until": null,
+   "pel_model": "SNT07L-M-R-CC",
+   "method": "pel_gap_review"
+  },
+  "5526": {
+   "cert": "BBA 0136/30",
+   "until": null,
+   "pel_model": "SNT10L-M-R-CC",
+   "method": "pel_gap_review"
+  },
+  "5527": {
+   "cert": "BBA 0136/31",
+   "until": null,
+   "pel_model": "SNT15L-M-R-CC",
+   "method": "pel_gap_review"
+  },
+  "5528": {
+   "cert": "BBA 0136/32",
+   "until": null,
+   "pel_model": "SNT18L-M-R-CC",
+   "method": "pel_gap_review"
+  },
+  "5555": {
+   "cert": "MCS HP0403/01",
+   "until": null,
+   "pel_model": "XDASH06C3A",
+   "method": "pel_gap_review"
+  },
+  "5556": {
+   "cert": "MCS HP0403/04",
+   "until": null,
+   "pel_model": "XDASH06C3A-S",
+   "method": "pel_gap_review"
+  },
+  "5557": {
+   "cert": "MCS HP0403/02",
+   "until": null,
+   "pel_model": "XDASH06C3B",
+   "method": "pel_gap_review"
+  },
+  "5558": {
+   "cert": "MCS HP0403/03",
+   "until": null,
+   "pel_model": "XDASH06C3C",
+   "method": "pel_gap_review"
+  },
+  "5687": {
+   "cert": "MCS HP0358/01",
+   "until": null,
+   "pel_model": "AW30-EVI-M / AWC30/90-EVI-M",
+   "method": "pel_gap_review"
+  },
+  "5713": {
+   "cert": "MCS HP0017/03",
+   "until": null,
+   "pel_model": "SIH 11 ME",
+   "method": "pel_gap_review"
+  },
+  "5734": {
+   "cert": "012-048",
+   "until": "2027-06-14",
+   "pel_model": "F1255 - 12",
+   "method": "pel_gap_review"
+  },
+  "5735": {
+   "cert": "012-047 / issue 2",
+   "until": "2027-06-14",
+   "pel_model": "F1255 - 6",
+   "method": "pel_gap_review"
+  },
+  "5736": {
+   "cert": "012-C700130 issue 1",
+   "until": "2033-12-11",
+   "pel_model": "NIBE F1253-4 R 1x230 UK",
+   "method": "pel_gap_review"
+  },
+  "5737": {
+   "cert": "012-C700219 issue 1",
+   "until": "2033-12-11",
+   "pel_model": "NIBE F1253-6 R 1x230 UK",
+   "method": "pel_gap_review"
+  },
+  "5740": {
+   "cert": "011-1W0123_02",
+   "until": "2027-07-31",
+   "pel_model": "Bosch CS7400iAW 5 ORE",
+   "method": "pel_gap_review"
+  },
+  "5741": {
+   "cert": "011-1W0124_02",
+   "until": "2027-07-31",
+   "pel_model": "Bosch CS7400iAW 7 ORE",
+   "method": "pel_gap_review"
+  },
+  "5746": {
+   "cert": "KIWA 00027/016 HP",
+   "until": "2027-08-25",
+   "pel_model": "Alféa Excellia A.I tri 16",
+   "method": "pel_gap_review"
+  },
+  "5756": {
+   "cert": "037-0033-20-05",
+   "until": "2030-06-21",
+   "pel_model": "PUZ-WM85YAA",
+   "method": "pel_gap_review"
+  },
+  "5757": {
+   "cert": "037-0033-20-06",
+   "until": "2030-06-21",
+   "pel_model": "PUZ-WM85YAA-BS",
+   "method": "pel_gap_review"
+  },
+  "5784": {
+   "cert": "041-K001-42 b",
+   "until": null,
+   "pel_model": "LW 300(L)",
+   "method": "pel_gap_review"
+  },
+  "5795": {
+   "cert": "011-1W0293",
+   "until": "2029-02-28",
+   "pel_model": "E-TEC EHP / E-TEC 33 HB",
+   "method": "pel_gap_review"
+  },
+  "5800": {
+   "cert": "ICIM-PDC-000207",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0106",
+   "method": "pel_gap_review"
+  },
+  "5801": {
+   "cert": "ICIM-PDC-000208",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0109",
+   "method": "pel_gap_review"
+  },
+  "5802": {
+   "cert": "ICIM-PDC-000209",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0112",
+   "method": "pel_gap_review"
+  },
+  "5803": {
+   "cert": "ICIM-PDC-000210",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0115",
+   "method": "pel_gap_review"
+  },
+  "5804": {
+   "cert": "ICIM-PDC-000210 -01",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0118",
+   "method": "pel_gap_review"
+  },
+  "5805": {
+   "cert": "ICIM-PDC-000211",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0121",
+   "method": "pel_gap_review"
+  },
+  "5806": {
+   "cert": "ICIM-PDC-000211 -01",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0123",
+   "method": "pel_gap_review"
+  },
+  "5807": {
+   "cert": "ICIM-PDC-000212",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0125",
+   "method": "pel_gap_review"
+  },
+  "5808": {
+   "cert": "ICIM-PDC-000212 -01",
+   "until": "2033-08-30",
+   "pel_model": "i-290 0127",
+   "method": "pel_gap_review"
+  },
+  "5809": {
+   "cert": "ICIM-PDC-000073-00-01",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5 10",
+   "method": "pel_gap_review"
+  },
+  "5814": {
+   "cert": "ICIM-PDC-000171-00-04",
+   "until": "2032-08-04",
+   "pel_model": "i-32V5/KA/06A",
+   "method": "pel_gap_review"
+  },
+  "5815": {
+   "cert": "ICIM-PDC-000171-00-05",
+   "until": "2032-08-04",
+   "pel_model": "i-32V5/KA/08A",
+   "method": "pel_gap_review"
+  },
+  "5816": {
+   "cert": "ICIM-PDC-000073-00-07",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/10",
+   "method": "pel_gap_review"
+  },
+  "5817": {
+   "cert": "ICIM-PDC-000073-00-08",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/10T",
+   "method": "pel_gap_review"
+  },
+  "5818": {
+   "cert": "ICIM-PDC-000073-00-09",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/12",
+   "method": "pel_gap_review"
+  },
+  "5819": {
+   "cert": "ICIM-PDC-000073-00-10",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/12T",
+   "method": "pel_gap_review"
+  },
+  "5820": {
+   "cert": "ICIM-PDC-000075-00-03",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/14",
+   "method": "pel_gap_review"
+  },
+  "5821": {
+   "cert": "ICIM-PDC-000075-00-04",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/14T",
+   "method": "pel_gap_review"
+  },
+  "5822": {
+   "cert": "ICIM-PDC-000074-00-06",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/16",
+   "method": "pel_gap_review"
+  },
+  "5823": {
+   "cert": "ICIM-PDC-000074-00-07",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/16T",
+   "method": "pel_gap_review"
+  },
+  "5824": {
+   "cert": "ICIIM-PDC-000074-00-10",
+   "until": "2030-05-25",
+   "pel_model": "i-32V5/KA/18T",
+   "method": "pel_gap_review"
+  },
+  "5825": {
+   "cert": "ICIM-PDC-000103-04",
+   "until": "2031-06-06",
+   "pel_model": "i-32V504",
+   "method": "pel_gap_review"
+  },
+  "5826": {
+   "cert": "ICIIM-PDC-000103-01; ICIM-PDC-000072-00-01",
+   "until": "2030-05-25",
+   "pel_model": "i-32V506 | i-32V5 06",
+   "method": "pel_gap_review"
+  },
+  "5828": {
+   "cert": "ICIIM-PDC-000103-02; ICIM-PDC-000072-00-02",
+   "until": "2030-05-25",
+   "pel_model": "i-32V508 | i-32V5 08",
+   "method": "pel_gap_review"
+  },
+  "5830": {
+   "cert": "ICIIM-PDC-000073-00-02",
+   "until": "2030-05-25",
+   "pel_model": "i-32V510T",
+   "method": "pel_gap_review"
+  },
+  "5831": {
+   "cert": "ICIIM-PDC-000073-00-03; ICIM-PDC-000073-00-02",
+   "until": "2030-05-25",
+   "pel_model": "i-32V512 | i-32V5 12",
+   "method": "pel_gap_review"
+  },
+  "5832": {
+   "cert": "ICIIM-PDC-000073-00-04",
+   "until": "2030-05-25",
+   "pel_model": "i-32V512T",
+   "method": "pel_gap_review"
+  },
+  "5833": {
+   "cert": "ICIIM-PDC-000075-00-01; ICIM-PDC-000075-00-01",
+   "until": "2030-05-25",
+   "pel_model": "i-32V514 | i-32V5 14",
+   "method": "pel_gap_review"
+  },
+  "5834": {
+   "cert": "ICIIM-PDC-000075-00-02; ICIM-PDC-000075-00-02",
+   "until": "2030-05-25",
+   "pel_model": "i-32V514T | i-32V5 14T",
+   "method": "pel_gap_review"
+  },
+  "5835": {
+   "cert": "ICIIM-PDC-000074-00-01; ICIM-PDC-000074-00-01",
+   "until": "2030-05-25",
+   "pel_model": "i-32V516 | i-32V5 16",
+   "method": "pel_gap_review"
+  },
+  "5836": {
+   "cert": "ICIIM-PDC-000074-00-02; ICIM-PDC-000074-00-02",
+   "until": "2030-05-25",
+   "pel_model": "i-32V516T | i-32V5 16T",
+   "method": "pel_gap_review"
+  },
+  "5837": {
+   "cert": "ICIIM-PDC-000074-00-05; ICIM-PDC-000074-00-03",
+   "until": "2030-05-25",
+   "pel_model": "i-32V518T | i-32V5 18T",
+   "method": "pel_gap_review"
+  },
+  "5851": {
+   "cert": "ICIM-PDC-000201-00",
+   "until": "2032-08-04",
+   "pel_model": "ACP06",
+   "method": "pel_gap_review"
+  },
+  "5852": {
+   "cert": "ICIM-PDC-000201-00-01",
+   "until": "2032-08-04",
+   "pel_model": "ACP08",
+   "method": "pel_gap_review"
+  },
+  "5854": {
+   "cert": "ICIM-PDC-000202-00-01",
+   "until": "2030-05-25",
+   "pel_model": "ACP12T",
+   "method": "pel_gap_review"
+  },
+  "5856": {
+   "cert": "ICIM-PDC-000203-00-01",
+   "until": "2030-05-25",
+   "pel_model": "ACP14T",
+   "method": "pel_gap_review"
+  },
+  "6030": {
+   "cert": "011-1W0603_2",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 10",
+   "method": "pel_gap_review"
+  },
+  "6031": {
+   "cert": "011-1W0601_1",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 12",
+   "method": "pel_gap_review"
+  },
+  "6032": {
+   "cert": "011-1W0601_4",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 12T",
+   "method": "pel_gap_review"
+  },
+  "6033": {
+   "cert": "011-1W0601_2",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 14",
+   "method": "pel_gap_review"
+  },
+  "6034": {
+   "cert": "011-1W0601_5",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 14T",
+   "method": "pel_gap_review"
+  },
+  "6035": {
+   "cert": "011-1W0601_3",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 16",
+   "method": "pel_gap_review"
+  },
+  "6036": {
+   "cert": "011-1W0601_6",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 16T",
+   "method": "pel_gap_review"
+  },
+  "6037": {
+   "cert": "011-1W0602_1",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 4",
+   "method": "pel_gap_review"
+  },
+  "6038": {
+   "cert": "011-1W0602_2",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 6",
+   "method": "pel_gap_review"
+  },
+  "6039": {
+   "cert": "011-1W0603_1",
+   "until": "2033-05-31",
+   "pel_model": "IDOLA S 3.2 8",
+   "method": "pel_gap_review"
+  },
+  "6050": {
+   "cert": "24.01.009",
+   "until": null,
+   "pel_model": "M305V3",
+   "method": "pel_gap_review"
+  },
+  "6051": {
+   "cert": "24.01.009",
+   "until": null,
+   "pel_model": "M308V3",
+   "method": "pel_gap_review"
+  },
+  "6052": {
+   "cert": "24.01.009",
+   "until": null,
+   "pel_model": "M311SV3",
+   "method": "pel_gap_review"
+  },
+  "6053": {
+   "cert": "24.01.009",
+   "until": null,
+   "pel_model": "M316SV3",
+   "method": "pel_gap_review"
+  },
+  "6054": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M505V3",
+   "method": "pel_gap_review"
+  },
+  "6055": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M507V3",
+   "method": "pel_gap_review"
+  },
+  "6056": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M509V3",
+   "method": "pel_gap_review"
+  },
+  "6057": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M511SV3",
+   "method": "pel_gap_review"
+  },
+  "6058": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M511TV3",
+   "method": "pel_gap_review"
+  },
+  "6059": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M514SV3",
+   "method": "pel_gap_review"
+  },
+  "6060": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M514TV3",
+   "method": "pel_gap_review"
+  },
+  "6061": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M516SV3",
+   "method": "pel_gap_review"
+  },
+  "6062": {
+   "cert": "24.01.010",
+   "until": null,
+   "pel_model": "M516TV3",
+   "method": "pel_gap_review"
+  },
+  "6063": {
+   "cert": "24.01.011",
+   "until": null,
+   "pel_model": "S506V3/S5IU06SV3",
+   "method": "pel_gap_review"
+  },
+  "6064": {
+   "cert": "24.01.011",
+   "until": null,
+   "pel_model": "S508V3/S5IU10SV3",
+   "method": "pel_gap_review"
+  },
+  "6078": {
+   "cert": "MCS HP0382/02",
+   "until": null,
+   "pel_model": "LWH-F11HVLZPEN5",
+   "method": "pel_gap_review"
+  },
+  "6079": {
+   "cert": "011-1W0852_1",
+   "until": "2034-08-30",
+   "pel_model": "LWH-F11HVLZPN9",
+   "method": "pel_gap_review"
+  },
+  "6080": {
+   "cert": "011-1W0852_2",
+   "until": "2034-08-30",
+   "pel_model": "LWH-F11HVZPN9",
+   "method": "pel_gap_review"
+  },
+  "6081": {
+   "cert": "MCS HP0382/03",
+   "until": null,
+   "pel_model": "LWH-F15HVLZPEN5",
+   "method": "pel_gap_review"
+  },
+  "6082": {
+   "cert": "011-1W0853_1",
+   "until": "2034-08-30",
+   "pel_model": "LWH-F15HVLZPN9",
+   "method": "pel_gap_review"
+  },
+  "6083": {
+   "cert": "MCS HP0382/04",
+   "until": null,
+   "pel_model": "LWH-F15HVZPEN5",
+   "method": "pel_gap_review"
+  },
+  "6084": {
+   "cert": "011-1W0853_2",
+   "until": "2034-08-30",
+   "pel_model": "LWH-F15HVZPN9",
+   "method": "pel_gap_review"
+  },
+  "6085": {
+   "cert": "011-1W0854_1",
+   "until": "2034-08-30",
+   "pel_model": "LWH-F18HVZPN9",
+   "method": "pel_gap_review"
+  },
+  "6086": {
+   "cert": "011-1W1068",
+   "until": "2035-07-31",
+   "pel_model": "LWH-F50VSN9H",
+   "method": "pel_gap_review"
+  },
+  "6087": {
+   "cert": "MCS HP0382/01",
+   "until": null,
+   "pel_model": "LWH-F8HVLZPEN5",
+   "method": "pel_gap_review"
+  },
+  "6088": {
+   "cert": "011-1W0851_1",
+   "until": "2034-08-31",
+   "pel_model": "LWH-F8HVLZPN9",
+   "method": "pel_gap_review"
+  },
+  "6099": {
+   "cert": "ICIM-PDC-000098-00-01",
+   "until": "2030-12-22",
+   "pel_model": "AEROTOP L 054",
+   "method": "pel_gap_review"
+  },
+  "6100": {
+   "cert": "ICIM-PDC-000098-00-02",
+   "until": "2030-12-22",
+   "pel_model": "AEROTOP L 061",
+   "method": "pel_gap_review"
+  },
+  "6101": {
+   "cert": "ICIM-PDC-000099-00-01",
+   "until": "2030-12-22",
+   "pel_model": "AEROTOP L 065",
+   "method": "pel_gap_review"
+  },
+  "6102": {
+   "cert": "ICIM-PDC-000099-00-02",
+   "until": "2030-12-22",
+   "pel_model": "AEROTOP L 079",
+   "method": "pel_gap_review"
+  },
+  "6103": {
+   "cert": "ICIM-PDC-000099-00-03",
+   "until": "2030-12-22",
+   "pel_model": "AEROTOP L 088",
+   "method": "pel_gap_review"
+  },
+  "6104": {
+   "cert": "ICIM-PDC-000096-00-01",
+   "until": "2030-01-19",
+   "pel_model": "AEROTOP M 024",
+   "method": "pel_gap_review"
+  },
+  "6105": {
+   "cert": "ICIM-PDC-000096-00-02",
+   "until": "2030-01-19",
+   "pel_model": "AEROTOP M 027",
+   "method": "pel_gap_review"
+  },
+  "6106": {
+   "cert": "ICIM-PDC-000096-00-03",
+   "until": "2030-01-19",
+   "pel_model": "AEROTOP M 032",
+   "method": "pel_gap_review"
+  },
+  "6107": {
+   "cert": "ICIM-PDC-000097-00-01",
+   "until": "2030-01-19",
+   "pel_model": "AEROTOP M 048",
+   "method": "pel_gap_review"
+  },
+  "6220": {
+   "cert": "MCS HP0230/03",
+   "until": null,
+   "pel_model": "ESA30EH2-25",
+   "method": "pel_gap_review"
   }
  }
 }
