@@ -2326,6 +2326,7 @@ def flag_img(country, css_class="flag-icon"):
             f'width="16" height="12" alt="" loading="lazy">')
 
 MANUFACTURER_COUNTRY = {
+    "Gree": "China",
     "Acond": "Czech Republic",
     "Adlar": "United Kingdom",
     "Aira": "Sweden",
