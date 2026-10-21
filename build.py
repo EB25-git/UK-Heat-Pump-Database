@@ -1684,6 +1684,271 @@ PRODUCT_IMAGE_BY_ID = {
     1444: "octopus-cosy-6.jpg",
     1445: "octopus-cosy-9.jpg",
     1446: "octopus-cosy-12.jpg",
+    # ── Added 21 Oct 2026 from images supplied in the Images folder (permission granted per copyright register) ──
+    405: "bosch-compress-7000i-aw.webp",  # Bosch Compress 7000i AW 9kW (230V) 8738210257
+    1406: "viessmann-vitocal-300-w-pro-ww.webp",  # Viessmann Vitocal 300-W Pro WW Vitocal 300-W Pro WW 301.B125
+    1407: "viessmann-vitocal-300-w-pro-ww.webp",  # Viessmann Vitocal 300-W Pro WW Vitocal 300-W Pro WW 301.B155
+    1408: "viessmann-vitocal-300-w-pro-ww.webp",  # Viessmann Vitocal 300-W Pro WW Vitocal 300-W Pro WW 302.B125
+    1409: "viessmann-vitocal-300-w-pro-ww.webp",  # Viessmann Vitocal 300-W Pro WW Vitocal 300-W Pro WW 302.B155
+    1410: "viessmann-vitocal-300-w-pro-ww.webp",  # Viessmann Vitocal 300-W Pro WW Vitocal 300-W Pro WW 302.B200
+    1411: "viessmann-vitocal-300-w-pro-ww.webp",  # Viessmann Vitocal 300-W Pro WW Vitocal 300-W Pro WW 302.B250
+    1412: "viessmann-vitocal-300-w-pro-ww.webp",  # Viessmann Vitocal 300-W Pro WW Vitocal 300-W Pro WW 302.B300
+    2387: "atlantic-alfea-extensa.webp",  # Atlantic Alfea Extensa A.I. 5
+    2388: "atlantic-alfea-extensa.webp",  # Atlantic Alfea Extensa A.I. 6
+    2389: "atlantic-alfea-extensa.webp",  # Atlantic Alfea Extensa A.I. 8
+    2390: "atlantic-alfea-extensa.webp",  # Atlantic Alfea Extensa A.I. 10
+    2435: "clivet-elfoenergy-magnum-hw.webp",  # Clivet Elfoenergy Magnum HW WSAN-XEM HW 35.4
+    2436: "clivet-elfoenergy-magnum-hw.webp",  # Clivet Elfoenergy Magnum HW WSAN-XEM HW 40.4
+    2437: "clivet-elfoenergy-magnum-hw.webp",  # Clivet Elfoenergy Magnum HW WSAN-XEM HW 45.4
+    2438: "clivet-elfoenergy-magnum-hw.webp",  # Clivet Elfoenergy Magnum HW WSAN-XEM HW 50.4
+    2439: "clivet-elfoenergy-magnum-hw.webp",  # Clivet Elfoenergy Magnum HW WSAN-XEM HW 55.4
+    2440: "clivet-elfoenergy-magnum-hw.webp",  # Clivet Elfoenergy Magnum HW WSAN-XEM HW 60.4
+    2441: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 122
+    2442: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 162
+    2443: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 182
+    2444: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 222
+    2445: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 262
+    2446: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 302
+    2447: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 352
+    2448: "clivet-elfoenergy-duct-medium.webp",  # Clivet Elfoenergy Duct Medium WSN-XEE 402
+    2486: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 80.3
+    2487: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 90.4
+    2488: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 100.4
+    2489: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 110.4
+    2490: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 120.4
+    2491: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 130.4
+    2492: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 145.4
+    2493: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 160.4
+    2494: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 185.5
+    2495: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 210.6
+    2496: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 225.6
+    2497: "clivet-spinchiller4-excellence.webp",  # Clivet Spinchiller4 Excellence WSAN-YSC4 240.6
+    2498: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 90.3
+    2499: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 100.3
+    2500: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 110.4
+    2501: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 120.4
+    2502: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 130.4
+    2503: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 145.4
+    2504: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 160.4
+    2505: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 185.5
+    2506: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 210.6
+    2507: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 225.6
+    2508: "clivet-spinchiller4-premium.webp",  # Clivet Spinchiller4 Premium WSAN-YSC4 240.6
+    2525: "clivet-elfoenergy-storm-evo.webp",  # Clivet Elfoenergy Storm Evo WSAN-YES 18.2
+    2526: "clivet-elfoenergy-storm-evo.webp",  # Clivet Elfoenergy Storm Evo WSAN-YES 20.2
+    2527: "clivet-elfoenergy-storm-evo.webp",  # Clivet Elfoenergy Storm Evo WSAN-YES 25.2
+    2528: "clivet-elfoenergy-storm-evo.webp",  # Clivet Elfoenergy Storm Evo WSAN-YES 30.2
+    2529: "clivet-elfoenergy-storm-evo.webp",  # Clivet Elfoenergy Storm Evo WSAN-YES 35.2
+    2530: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 70.4
+    2531: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 75.4
+    2532: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 80.4
+    2533: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 85.4
+    2534: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 90.4
+    2535: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 100.4
+    2536: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 110.4
+    2537: "clivet-spinchiller3.webp",  # Clivet Spinchiller3 WSH-XSC3 120.4
+    2538: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT9-EVI
+    2539: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT10-EVI
+    2540: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT18
+    2541: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT18-3PH
+    2542: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT18-EVI
+    2543: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT22-EVI
+    2544: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT26-3PH
+    2545: "cool-energy-invertech-ivt.webp",  # Cool Energy inverTech iVT CE-iVT32-3PH
+    2705: "kronoterm-versi-o-1f.webp",  # Kronoterm VERSI-O 1F VERSI-O 1F
+    2706: "kronoterm-versi-i-1f.webp",  # Kronoterm VERSI-I 1F VERSI-I 1F
+    2707: "kronoterm-versi-i-3f.webp",  # Kronoterm VERSI-I 3F (400V) VERSI-I 3F
+    2708: "kronoterm-versi-x-1f.webp",  # Kronoterm VERSI-X 1F VERSI-X 1F
+    3455: "cool-energy-proinverter-ih32-3ph.webp",  # Cool Energy ProInverter iH32+ 3PH CE-iH32+ 3PH
+    3456: "cool-energy-proinverter-ih40-3ph.webp",  # Cool Energy ProInverter iH40+ 3PH CE-iH40+ 3PH
+    3457: "cool-energy-proinverter-ih60-3ph.webp",  # Cool Energy ProInverter iH60+ 3PH CE-iH60+ 3PH
+    3460: "cool-energy-proinverter-ih120-3ph.webp",  # Cool Energy ProInverter iH120+ 3PH CE-iH120+ 3PH
+    3802: "amitime-heatlite-m-fm-range-single-fan.webp",  # Amitime HeatLITE M-FM Range HeatLITE06M-FM
+    3803: "amitime-heatlite-m-fm-range-single-fan.webp",  # Amitime HeatLITE M-FM Range HeatLITE09M-FM
+    3804: "amitime-heatlite-m-fm-range-single-fan.webp",  # Amitime HeatLITE M-FM Range HeatLITE12M-FM
+    3805: "amitime-heatlite-m-fm-range-twin-fan.webp",  # Amitime HeatLITE M-FM Range HeatLITE15M-FM
+    3806: "amitime-heatlite-m-fm-range-twin-fan.webp",  # Amitime HeatLITE M-FM Range HeatLITE19M-FM
+    3807: ["amitime-powerstar-series-commercial-heat-pumps.webp", "amitime-powerstar-series-commercial-heat-pumps-2.webp", "amitime-powerstar-series-commercial-heat-pumps-3.webp"],  # Amitime PowerSTAR+ Series Commercial Heat Pumps PowerSTAR+ 30M
+    3808: ["amitime-powerstar-series-commercial-heat-pumps.webp", "amitime-powerstar-series-commercial-heat-pumps-2.webp", "amitime-powerstar-series-commercial-heat-pumps-3.webp"],  # Amitime PowerSTAR+ Series Commercial Heat Pumps PowerSTAR+ 40M
+    3809: ["amitime-powerstar-series-commercial-heat-pumps.webp", "amitime-powerstar-series-commercial-heat-pumps-2.webp", "amitime-powerstar-series-commercial-heat-pumps-3.webp"],  # Amitime PowerSTAR+ Series Commercial Heat Pumps PowerSTAR+ 80M
+    4298: ["bexie-monobloc-heat-pump.webp", "bexie-monobloc-heat-pump-2.webp"],  # Bexie Monobloc Heat Pump BEMHP-V4WR1P
+    4299: ["bexie-monobloc-heat-pump.webp", "bexie-monobloc-heat-pump-2.webp"],  # Bexie Monobloc Heat Pump BEMHP-V6WR1P
+    4312: "viessmann-vitocal-200-a-ie.webp",  # Viessmann Vitocal 200-A ie 6kW AWMOF-201.A1.06-230-V004
+    4313: "viessmann-vitocal-200-a-ie.webp",  # Viessmann Vitocal 200-A ie 8kW AWMOF-201.A1.08-230-V004
+    4314: "viessmann-vitocal-200-a-ie.webp",  # Viessmann Vitocal 200-A ie 10kW AWMOF-201.A1.10-230-V004
+    4315: "viessmann-vitocal-200-a-ie.webp",  # Viessmann Vitocal 200-A ie 12kW AWMOF-201.A1.12-230-V004
+    4446: "bosch-compress-3400i-aws-new.webp",  # Bosch Compress 3400i AWS CS3400iAWS 4 OR-S
+    4537: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 2.1
+    4538: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 3.1
+    4539: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 4.1
+    4540: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 5.1
+    4541: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 6.1
+    4542: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 7.1
+    4543: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 8.1
+    4544: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 6.1T
+    4545: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 7.1T
+    4546: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 8.1T
+    4547: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 9.1
+    4548: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 10.1
+    4549: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 12.1
+    4550: ["clivet-elfoenergy-edge-evo-2-0.webp", "clivet-elfoenergy-edge-evo-2-0-2.webp"],  # Clivet ELFOEnergy Edge EVO 2.0 WiSAN-YME 1 S 14.1
+    4687: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.B06
+    4688: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.B08
+    4689: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.B10
+    4690: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.B13
+    4691: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.B17
+    4692: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.A21
+    4693: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.A29
+    4694: "viessmann-vitocal-300-g.webp",  # Viessmann Vitocal 300-G BW 301.A45
+    4695: "viessmann-vitocal-350-g.webp",  # Viessmann Vitocal 350-G BW 351.B20
+    4696: "viessmann-vitocal-350-g.webp",  # Viessmann Vitocal 350-G BW 351.B27
+    4697: "viessmann-vitocal-350-g.webp",  # Viessmann Vitocal 350-G BW 351.B33
+    4698: "viessmann-vitocal-350-g.webp",  # Viessmann Vitocal 350-G BW 351.B42
+    4700: "viessmann-vitocal-350-a-indoor-installation.webp",  # Viessmann Vitocal 350-A (indoor installation) AWHI 351.A10
+    4702: "viessmann-vitocal-350-a-indoor-installation.webp",  # Viessmann Vitocal 350-A (indoor installation) AWHI 351.A14
+    4704: "viessmann-vitocal-350-a-indoor-installation.webp",  # Viessmann Vitocal 350-A (indoor installation) AWHI 351.A20
+    4705: "viessmann-vitocal-300-a.webp",  # Viessmann Vitocal 300-A AWO-AC 301.B11
+    4706: "viessmann-vitocal-300-a.webp",  # Viessmann Vitocal 300-A AWO-AC 301.B14
+    4707: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G BWC 201.A06
+    4708: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G BWC 201.A08
+    4709: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G BWC 201.A10
+    4712: "viessmann-vitocal-222-g.webp",  # Viessmann Vitocal 222-G BWT-M 221.B10
+    4724: "ideal-heating-ecomod-290ht.webp",  # Ideal Heating ECOMOD 290HT ECOMOD 290HT 15kW
+    4725: "ideal-heating-ecomod-290ht.webp",  # Ideal Heating ECOMOD 290HT ECOMOD 290HT 18kW
+    4726: "ideal-heating-ecomod-290ht.webp",  # Ideal Heating ECOMOD 290HT ECOMOD 290HT 27kW
+    4727: "ideal-heating-ecomod-290ht.webp",  # Ideal Heating ECOMOD 290HT ECOMOD 290HT 40kW
+    4728: "ideal-heating-ecomod-290ht.webp",  # Ideal Heating ECOMOD 290HT ECOMOD 290HT 50kW
+    4729: "ideal-heating-ecomod-290ht.webp",  # Ideal Heating ECOMOD 290HT ECOMOD 290HT 65kW
+    4760: "carrier-aquasnap-30awh-ng.webp",  # Carrier AquaSnap 30AWH-NG AquaSnap 30AWH004H1--NG
+    4762: "carrier-aquasnap-30awh-ng.webp",  # Carrier AquaSnap 30AWH-NG AquaSnap 30AWH006H1--NG
+    4764: "carrier-aquasnap-30awh-ng.webp",  # Carrier AquaSnap 30AWH-NG AquaSnap 30AWH008H1--NG
+    4766: "carrier-aquasnap-30awh-ng.webp",  # Carrier AquaSnap 30AWH-NG AquaSnap 30AWH010H1--NG
+    4768: "carrier-aquasnap-30awh-ng.webp",  # Carrier AquaSnap 30AWH-NG AquaSnap 30AWH010H19-NG
+    4772: "carrier-aquasnap-30awh-ng.webp",  # Carrier AquaSnap 30AWH-NG AquaSnap 30AWH013H19-NG
+    4776: "carrier-aquasnap-30awh-ng.webp",  # Carrier AquaSnap 30AWH-NG AquaSnap 30AWH016H19-NG
+    4814: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT 241.A06
+    4815: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT 241.A08
+    4816: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT 241.A10
+    4817: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-M-AC-AF 101.A06
+    4818: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-M-AC-AF 101.A08
+    4819: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-M-AC-AF 101.A10
+    4820: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-M-AC-AF 101.A12
+    4821: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-M-AC-AF 101.A14
+    4822: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-M-AC-AF 101.A16
+    4840: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC 201.B06
+    4841: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC 201.B08
+    4842: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC 201.B10
+    4843: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC 201.B13
+    4844: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC 201.B17
+    4845: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC-M 201.B06
+    4846: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC-M 201.B08
+    4847: "viessmann-vitocal-200-g.webp",  # Viessmann Vitocal 200-G Vitocal 200-G BWC-M 201.B10
+    5244: "clivet-edge-f-6-1.webp",  # Clivet Edge F 6.1 WiSAN-PME 1 S 6.1T
+    5245: "clivet-edge-f-7-1.webp",  # Clivet Edge F 7.1 WiSAN-PME 1 S 7.1T
+    5246: "clivet-edge-f-8-1.webp",  # Clivet Edge F 8.1 WiSAN-PME 1 S 8.1T
+    5247: "clivet-edge-pro-4-1.webp",  # Clivet Edge Pro 4.1 WiSAN-PMP 1 S 4.1T
+    5248: "clivet-edge-pro-4-1.webp",  # Clivet Edge Pro 5.1 WiSAN-PMP 1 S 5.1T
+    5249: "clivet-edge-pro-4-1.webp",  # Clivet Edge Pro 6.1 WiSAN-PMP 1 S 6.1T
+    5250: "clivet-edge-pro-4-1.webp",  # Clivet Edge Pro 7.1 WiSAN-PMP 1 S 7.1T
+    5251: "clivet-edge-pro-4-1.webp",  # Clivet Edge Pro 8.1 WiSAN-PMP 1 S 8.1T
+    5252: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 45.4 EN
+    5253: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 45.4 LN
+    5254: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 45.4 SC
+    5255: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 50.4 EN
+    5256: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 50.4 LN
+    5257: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 50.4 SC
+    5258: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 55.4 EN
+    5259: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 55.4 LN
+    5260: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 55.4 SC
+    5261: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 60.4 EN
+    5262: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 60.4 LN
+    5263: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 60.4 SC
+    5264: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 65.4 EN
+    5265: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 65.4 LN
+    5266: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 65.4 SC
+    5267: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 70.4 EN
+    5268: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 70.4 LN
+    5269: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 70.4 SC
+    5270: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 75.4 EN
+    5271: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 75.4 LN
+    5272: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 75.4 SC
+    5273: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 80.4 EN
+    5274: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 80.4 LN
+    5275: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 80.4 SC
+    5276: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 85.4 EN
+    5277: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 85.4 LN
+    5278: "clivet-large-evo.webp",  # Clivet Large EVO WiSAN-YEE1 85.4 SC
+    5279: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 EXC-EN 43,2
+    5280: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 EXC-EN 45,2
+    5281: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 EXC-SC 43,2
+    5282: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 EXC-SC 45,2
+    5284: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 PRM-EN 45,2
+    5285: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 PRM-EN 50,2
+    5286: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 PRM-EN 55,2
+    5287: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 PRM-SC 45,2
+    5288: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 PRM-SC 50,2
+    5289: "clivet-sheen-evo-2-0.webp",  # Clivet Sheen EVO 2.0 WiSAN-YSE1 PRM-SC 55,2
+    5414: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE040RXEDEG/EU
+    5416: "samsung-ehs-mono-r32.webp",  # Samsung EHS Mono R32 AE050RXYDEG/EU
+    5417: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE060RXEDEG/EU
+    5421: "samsung-ehs-mono-r290.webp",  # Samsung EHS Mono R290 AE080CXYDGK/EU
+    5422: "samsung-ehs-mono-r32.webp",  # Samsung EHS Mono R32 AE080RXYDEG/EU
+    5424: "samsung-ehs-tdm-plus-r410a.webp",  # Samsung EHS TDM Plus (R410A) AE090MXTPEH/EU
+    5425: "samsung-ehs-tdm-plus-r410a.webp",  # Samsung EHS TDM Plus (R410A) AE090MXTPGH/EU
+    5426: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE090RXEDEG/EU
+    5427: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE090RXEDGG/EU
+    5432: "samsung-ehs-tdm-plus-r410a.webp",  # Samsung EHS TDM Plus (R410A) AE120MXTPEH/EU
+    5433: "samsung-ehs-tdm-plus-r410a.webp",  # Samsung EHS TDM Plus (R410A) AE120MXTPGH/EU
+    5434: "samsung-ehs-mono-r32.webp",  # Samsung EHS Mono R32 AE120RXYDEG/EU
+    5436: "samsung-ehs-mono-ht-quiet-r32.webp",  # Samsung EHS Mono HT Quiet R32 AE140BXYDGG/EU
+    5443: "samsung-ehs-tdm-plus-r410a.webp",  # Samsung EHS TDM Plus (R410A) AE160MXTPEH/EU
+    5444: "samsung-ehs-tdm-plus-r410a.webp",  # Samsung EHS TDM Plus (R410A) AE160MXTPGH/EU
+    5445: "samsung-ehs-mono-r32.webp",  # Samsung EHS Mono R32 AE160RXYDEG/EU
+    5446: "samsung-ehs-mono-r32.webp",  # Samsung EHS Mono R32 AE160RXYDGG/EU
+    5479: "carrier-aquasnap-30awh-m-r32.webp",  # Carrier Aquasnap 30AWH-M (R32) 30AWH004H---M
+    5480: "carrier-aquasnap-30awh-m-r32.webp",  # Carrier Aquasnap 30AWH-M (R32) 30AWH006H---M
+    5481: "carrier-aquasnap-30awh-m-r32.webp",  # Carrier Aquasnap 30AWH-M (R32) 30AWH008H---M
+    5482: "carrier-aquasnap-30awh-m-r32.webp",  # Carrier Aquasnap 30AWH-M (R32) 30AWH010H---M
+    5483: "carrier-aquasnap-30awh-m-r32.webp",  # Carrier Aquasnap 30AWH-M (R32) 30AWH012H---M
+    5489: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH004HP-C--C-
+    5490: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH006HP-C--C-
+    5491: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH008HP-C--C-
+    5492: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH010HP-C--C-
+    5493: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH012HP-C--C-
+    5494: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH012HP9C--C-
+    5495: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH014HP-C--C-
+    5496: "carrier-aquasnap-30awh-p-r290.webp",  # Carrier Aquasnap 30AWH-P (R290) 30AWH014HP9C--C-
+    5740: "bosch-compress-7400i-aw.webp",  # Bosch Compress 7400i AW CS7400iAW 5 ORE
+    5741: "bosch-compress-7400i-aw.webp",  # Bosch Compress 7400i AW CS7400iAW 7 ORE
+    6275: "viessmann-vitocal-222-s.webp",  # Viessmann Vitocal 222-S AWBT-M-E-AC 221.E06
+    6276: "viessmann-vitocal-222-s.webp",  # Viessmann Vitocal 222-S AWBT-M-E-AC 221.E08
+    6277: "viessmann-vitocal-222-s.webp",  # Viessmann Vitocal 222-S AWBT-M-E-AC 221.E10
+    6278: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH004R
+    6279: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH006R
+    6280: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH008R
+    6281: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH010R
+    6282: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH012R
+    6283: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH014R
+    6284: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH016R
+    6285: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH012R
+    6286: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH014R
+    6287: "carrier-aquasnap-30awh-r-r32.webp",  # Carrier Aquasnap 30AWH-R (R32) 30AWH016R
+    6300: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE125DXEDEG/EU
+    6301: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE125DXEDGG/EU
+    6302: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE160DXEDEG/EU
+    6303: "samsung-ehs-split-r32-gen-7.webp",  # Samsung EHS Split R32 (Gen 7) AE160DXEDGG/EU
+    6310: "viessmann-vitocal-222-g.webp",  # Viessmann Vitocal 222-G BWT 221.B06
+    6311: "viessmann-vitocal-222-g.webp",  # Viessmann Vitocal 222-G BWT 221.B08
+    6312: "viessmann-vitocal-222-g.webp",  # Viessmann Vitocal 222-G BWT 221.B10
+    6313: "viessmann-vitocal-222-g.webp",  # Viessmann Vitocal 222-G BWT-M 221.B06
+    6314: "viessmann-vitocal-222-g.webp",  # Viessmann Vitocal 222-G BWT-M 221.B08
+    6315: "viessmann-vitocal-300-a.webp",  # Viessmann Vitocal 300-A AWO-AC 301.B07
+    6316: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-AC 101.A14
+    6317: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-AC 101.A16
+    6318: "viessmann-vitocal-100-a.webp",  # Viessmann Vitocal 100-A Vitocal 100-A AWO-AC 101.A18
+    6319: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT-M 241.A06
+    6320: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT-M 241.A08
+    6321: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT-M 241.A10
 }
 _PRODUCT_IMAGE_CACHE = {}
 
