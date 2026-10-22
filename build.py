@@ -686,7 +686,7 @@ header.site .brand:hover{text-decoration:none}
 .burger-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:49;opacity:0;pointer-events:none;transition:opacity .3s}
 .burger-overlay.open{opacity:1;pointer-events:auto}
 @media(max-width:560px){.burger-menu{width:100%}}
-.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}.wrap.wrap-wide{max-width:1280px;padding:0 2.5rem}.wrap-wide>p,.wrap-wide section>p,.wrap-wide .mfr-cat p,.wrap-wide .hub-faq-item p{max-width:820px}@media(max-width:768px){.wrap.wrap-wide{padding:0 1rem}}
 main{padding:28px 0 56px}
 nav.crumbs{font-size:13px;color:#5A6A65;margin-bottom:18px}
 nav.crumbs a{color:#5A6A65}nav.crumbs span{color:#5A6A65}
@@ -867,7 +867,7 @@ def burger_menu(active=None):
              extra=' style="margin-top:auto;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.35)"')
     )
 
-def page(title, description, canonical, body, jsonld_list, og_type="website", active=None, og_image=None):
+def page(title, description, canonical, body, jsonld_list, og_type="website", active=None, og_image=None, wide=False):
     blocks = "\n".join(
         '<script type="application/ld+json">%s</script>' % json.dumps(j, ensure_ascii=False)
         for j in jsonld_list
@@ -936,7 +936,7 @@ function trackOut(){{
 </div></header>
 <div class="burger-overlay" id="bov" onclick="cB()"></div>
 <div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">&#10005;</button><img id="photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
-<main><div class="wrap">
+<main><div class="wrap{' wrap-wide' if wide else ''}">
 {body}
 </div></main>
 <footer class="site"><div class="wrap">
@@ -2169,6 +2169,28 @@ def render_alternatives(p, by_type):
             f'closest in capacity to this one.</p>'
             f'<div class="alt-grid">' + "".join(alt_card(q) for q in alts) + '</div>')
 
+TITLE_MAX = 60
+
+def product_title(display_name, p):
+    """SERP title for a product page. Google truncates at roughly 60
+    characters, so the old '{name} \u2014 Specifications | Heat Pump Database'
+    (37 characters of suffix) was cut off on most pages. Pick the most
+    descriptive suffix that still fits; Google shows the site name separately.
+    'Datasheet' and 'SCOP' are terms people search alongside model names."""
+    # tidy model names that carry a size token after a comma, e.g.
+    # "Nimbus Pocket M Net R32, 50" -> "Nimbus Pocket M Net R32 50"
+    name = re.sub(r",\s+(?=\d[\w.]*$)", " ", display_name).strip()
+    eff = "SCOP" if p.get("scop") is not None else ("COP" if p.get("cop") is not None else None)
+    options = ([f"{name} \u2014 Specs, {eff} & Datasheet"] if eff else []) + [
+        f"{name} \u2014 Specs & Datasheet",
+        f"{name} Specifications",
+        f"{name} Specs",
+    ]
+    for t in options:
+        if len(t) <= TITLE_MAX:
+            return t
+    return f"{name} Specs"
+
 def render_product(p, by_mfr, by_type):
     slug = p["_slug"]
     url  = f"{BASE_URL}/products/{slug}/"
@@ -2196,6 +2218,23 @@ def render_product(p, by_mfr, by_type):
                 disambig = f" ({p['product_code']})"
         elif len(codes) > 1 and p.get("product_code"):
             disambig = f" ({p['product_code']})"
+        # Same code listed twice (e.g. Carrier 30AWH-R 1-phase and 3-phase
+        # share a code): add the phase so the names stay unique.
+        if disambig and p.get("product_code") and disambig == f" ({p['product_code']})":
+            twins = [q for q in siblings if str(q.get("product_code")) == str(p.get("product_code"))]
+            if len(twins) > 1:
+                def _ph(q):
+                    el = str(q.get("electrical") or "")
+                    return "3-ph" if ("Three" in el or "400" in el) else ("1-ph" if ("Single" in el or "230" in el) else None)
+                extra = None
+                if len({cap_str(q) for q in twins}) > 1 and cap_str(p):
+                    extra = cap_str(p)
+                elif len({q.get("refrigerant") for q in twins}) > 1 and p.get("refrigerant"):
+                    extra = p["refrigerant"]
+                elif len({_ph(q) for q in twins}) > 1 and _ph(p):
+                    extra = _ph(p)
+                if extra:
+                    disambig = f" ({p['product_code']}, {extra})"
     display_name = f"{mfr} {model}{disambig}"
 
     # Meta description. Deliberately names *which* figures the page carries
@@ -2395,7 +2434,7 @@ def render_product(p, by_mfr, by_type):
             f'<p class="trademark-note">The {esc(mfr)} name and logo are trademarks of their respective owner '
             f'and are used here for identification purposes only.</p>')
 
-    title = f"{display_name} \u2014 Specifications | {SITE_NAME}"
+    title = product_title(display_name, p)
     return page(title, desc, url, body,
                 [breadcrumb_jsonld(crumb_items, url), product_ld], og_type="product",
                 og_image=get_og_image(mfr))
@@ -2591,6 +2630,36 @@ def flag_img(country, css_class="flag-icon"):
             f'width="16" height="12" alt="" loading="lazy">')
 
 MANUFACTURER_COUNTRY = {
+    "AS Thermal": "China",
+    "AUX": "China",
+    "AXEN": "China",
+    "Advantix (MAXA)": "Italy",
+    "Alpha": "United Kingdom",
+    "Amitime": "China",
+    "Ares Renewables": "United Kingdom",
+    "Beretta (Riello)": "Italy",
+    "Bexie": "Spain",
+    "Climer": "Spain",
+    "ELCO": "Germany",
+    "ES Heat Pumps": "Sweden",
+    "Exinda": "China",
+    "Ferroli": "Italy",
+    "GT": "China",
+    "Hamworthy": "United Kingdom",
+    "Immergas": "Italy",
+    "Lamborghini Caloreclima": "Italy",
+    "Luckingstar": "China",
+    "MAXA": "Italy",
+    "Megawave": "China",
+    "Mitsubishi Heavy Industries Air-Conditioning": "Japan",
+    "PHNIX": "China",
+    "SOLARFOCUS": "Austria",
+    "SPRSUN": "China",
+    "Shenling": "China",
+    "SolaX": "China",
+    "SolarEast": "China",
+    "TCL": "China",
+    "Zealux": "China",
     "Gree": "China",
     "Acond": "Czech Republic",
     "Adlar": "United Kingdom",
@@ -2687,9 +2756,11 @@ def render_manufacturers_index(by_mfr):
         'Each card shows country, product mix and MCS-listed models &mdash; use the filters below to narrow the list.</p>'
     )
     _hp, _app, _ref, _pills = type_links_html()
+    _n_types = len(re.findall(r"<a\b", _pills(_hp + _app) + _pills(_ref)))
     intro += ('<div class="type-browse"><h2 class="sec">Browse by type and refrigerant</h2>'
+              f'<details class="hub-more"><summary>Show all {_n_types} heat pump types and refrigerants</summary>'
               f'<div class="best-toc">{_pills(_hp + _app)}</div>'
-              f'<div class="best-toc">{_pills(_ref)}</div></div>')
+              f'<div class="best-toc">{_pills(_ref)}</div></details></div>')
 
     country_set = set()
     card_data = []  # (name, html, country) — built once so we can also derive the filter dropdown options
@@ -2832,8 +2903,12 @@ def render_manufacturers_index(by_mfr):
 
     def _cat(h, text, rows, type_slug=None, type_label=None):
         more = (f' <a href="{BASE_URL}/types/{type_slug}/">Browse all {type_label} &rarr;</a>' if type_slug else "")
+        shown = min(len(rows), 16)
+        label = (f"Show top {shown} of {len(rows)} brands" if len(rows) > shown
+                 else f"Show all {len(rows)} brand" + ("s" if len(rows) != 1 else ""))
         return (f'<section class="mfr-cat"><h2 class="sec">{h}</h2><p>{text}{more}</p>'
-                f'<div class="best-toc">{_pills_for(rows)}</div></section>')
+                f'<details class="hub-more"><summary>{label}</summary>'
+                f'<div class="best-toc">{_pills_for(rows)}</div></details></section>')
     n_com = sum(k for _, k in com); n_w = sum(k for _, k in wshp); n_g = sum(k for _, k in gshp)
     n_a = sum(k for _, k in ashp); n_b = sum(k for _, k in bus)
     cats = (
@@ -2900,7 +2975,7 @@ def render_manufacturers_index(by_mfr):
     return page(f"Heat Pump Manufacturers: {len(by_mfr)} Brands Compared ({yr})",
                 f"Compare {len(by_mfr)} heat pump manufacturers and suppliers: UK brands, commercial and industrial makers, "
                 f"ground and water source specialists — {len(all_products):,} models.", url, body,
-                [list_ld, faq_ld, breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image())
+                [list_ld, faq_ld, breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image(), wide=True)
 
 def render_type(slug, heading, desc, products):
     url = f"{BASE_URL}/types/{slug}/"
@@ -3045,7 +3120,15 @@ HUB_CSS = ("<style>.hub-faq-item{margin:0 0 18px}.hub-faq-item h3{font-size:16px
            ".hub-faq-item p{margin:0;line-height:1.65;max-width:760px}"
            ".hub-howto ul{margin:8px 0 0 18px;line-height:1.7;max-width:760px}"
            ".mfr-cat{margin:26px 0}.mfr-cat p{max-width:760px;line-height:1.65}"
-           ".mfr-cat .best-toc a .n{opacity:.65;font-weight:400;margin-left:4px}</style>")
+           ".mfr-cat .best-toc a .n{opacity:.65;font-weight:400;margin-left:4px}"
+           ".hub-more{margin:6px 0 4px}.hub-more>summary{cursor:pointer;display:inline-flex;align-items:center;gap:6px;"
+           "list-style:none;font-size:14px;font-weight:600;color:#0B6656;padding:6px 12px;border:1px solid #BFE3D2;"
+           "border-radius:999px;background:#fff}"
+           ".hub-more>summary::-webkit-details-marker{display:none}"
+           ".hub-more>summary::after{content:'\\25BE';font-size:12px;transition:transform .15s}"
+           ".hub-more[open]>summary::after{transform:rotate(180deg)}"
+           ".hub-more>summary:hover,.hub-more>summary:focus-visible{background:#E4F6EC;outline:none}"
+           ".hub-more[open]>.best-toc{margin-top:10px}</style>")
 
 def _pname(p):
     return f"{p.get('manufacturer','')} {p.get('model','')}".strip()
@@ -3142,15 +3225,30 @@ def _render_composite_section(ranked, pool_size):
         f'<div class="bw-val"><div class="bw-num">{w["_total"]:.1f}</div><div class="bw-lab">Score / 30</div></div>'
         f'</div>')
 
-    explanation_html = ('<div class="article-tldr"><span class="article-tldr-label">Scoring</span>'
-                         '<p>' + COMPOSITE_SCORING_EXPLANATION + '</p></div>')
+    explanation_html = ""
+    info_tip = (
+        '<style>'
+        '.info-tip{position:relative;display:inline-flex;vertical-align:middle;margin-left:8px}'
+        '.info-tip>button{width:22px;height:22px;border-radius:50%;border:1.5px solid #0B6656;background:#fff;color:#0B6656;'
+        'font:700 13px/1 Georgia,serif;font-style:italic;cursor:pointer;padding:0;display:inline-flex;align-items:center;justify-content:center}'
+        '.info-tip>button:hover,.info-tip>button:focus-visible,.info-tip.open>button{background:#0B6656;color:#fff;outline:none}'
+        '.info-tip .tip-pop{display:none;position:absolute;z-index:50;top:30px;left:-12px;width:min(440px,86vw);background:#fff;'
+        'border:1px solid #BFE3D2;border-left:4px solid #0B6656;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.14);'
+        'padding:12px 14px;font-size:14px;line-height:1.6;font-weight:400;color:#1d2b27;text-align:left}'
+        '.info-tip .tip-pop strong{display:block;color:#0B6656;margin-bottom:4px}'
+        '.info-tip:hover .tip-pop,.info-tip:focus-within .tip-pop,.info-tip.open .tip-pop{display:block}'
+        'h2.sec.has-tip{position:relative}@media(max-width:600px){.info-tip{position:static}.info-tip .tip-pop{left:0;right:0;width:auto;top:calc(100% + 6px)}}'
+        '</style>'
+        '<span class="info-tip"><button type="button" aria-label="How the Best Overall score works" aria-expanded="false" '
+        'onclick="var t=this.parentNode;var o=t.classList.toggle(\'open\');this.setAttribute(\'aria-expanded\',o)">i</button>'
+        '<span class="tip-pop" role="tooltip"><strong>Scoring</strong>' + COMPOSITE_SCORING_EXPLANATION + '</span></span>')
 
     table_html = (f'<div class="best-scroll"><table class="list best-table">'
                   f'<tr><th>#</th><th>Model</th><th>Capacity</th><th>SCOP (W35)</th><th>Noise</th>'
                   f'<th>\u00a3/kW</th><th>Score</th></tr>{rows}</table></div>')
 
     return (f'<section id="best-overall-ashp" class="best-section">'
-            f'<h2 class="sec">Best Overall Air Source Heat Pumps</h2>'
+            f'<h2 class="sec has-tip">Best Overall Air Source Heat Pumps{info_tip}</h2>'
             f'<p class="sub">Top {n} of {pool_size} qualifying ASHPs \u00b7 updated {TODAY}</p>'
             + explanation_html +
             f'<p>A single blended ranking across efficiency, noise and price, rather than one metric at a time '
@@ -3385,7 +3483,7 @@ def render_best_single_page(composite, sections):
             f"Top-rated air, ground and water source models across {total_rankings} independent rankings.")
     return page(f"Best Heat Pumps {yr}: Top Rated by SCOP & Noise",
                 desc, url, body, item_lds + [faq_ld, breadcrumb_jsonld(crumb_items, url)],
-                active="best", og_image=get_og_image())
+                active="best", og_image=get_og_image(), wide=True)
 
 
 
@@ -3438,7 +3536,7 @@ def render_best_category_page(cfg, ranked, pool_size, sections):
     if len(desc) <= 140:
         desc += " Free to compare."
     return page(f"{cfg['title']} {TODAY[:4]} \u2014 Top {n} Ranked | {SITE_NAME}", desc, url, body,
-                [item_ld, _cat_faq_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
+                [item_ld, _cat_faq_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image(), wide=True)
 
 
 # ───────────────────── Heat pump comparison hub ─────────────────────
