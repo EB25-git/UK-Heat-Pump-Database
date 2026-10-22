@@ -2792,17 +2792,115 @@ def render_manufacturers_index(by_mfr):
 '''
 
     crumb_items = [("Home", f"{BASE_URL}/"), ("Manufacturers", None)]
-    body = (crumbs(crumb_items) +
-            "<h1>Heat Pump Manufacturers</h1>"
-            f'<p class="sub">{len(by_mfr)} brands in the database</p>'
+    yr = TODAY[:4]
+    murl = lambda m: f"{BASE_URL}/manufacturers/{slugify(m)}/"
+    def _count(pred):
+        c = {}
+        for m, ps in by_mfr.items():
+            k = sum(1 for p in ps if pred(p))
+            if k: c[m] = k
+        return sorted(c.items(), key=lambda x: (-x[1], x[0]))
+    def _pills_for(rows, limit=16):
+        return "".join(f'<a href="{murl(m)}">{esc(m)}<span class="n">{k}</span></a>' for m, k in rows[:limit])
+    def _names(rows, k=5):
+        n = [f'<a href="{murl(m)}">{esc(m)}</a>' for m, _ in rows[:k]]
+        return ", ".join(n[:-1]) + " and " + n[-1] if len(n) > 1 else "".join(n)
+
+    by_size = sorted(((m, len(ps)) for m, ps in by_mfr.items()), key=lambda x: (-x[1], x[0]))
+    uk = sorted(((m, len(by_mfr[m])) for m in by_mfr if MANUFACTURER_COUNTRY.get(m) == "United Kingdom"),
+                key=lambda x: (-x[1], x[0]))
+    com = _count(lambda p: p.get("type") == "Commercial")
+    wshp = _count(lambda p: str(p.get("hp_type") or "").upper().startswith("WSHP"))
+    gshp = _count(lambda p: str(p.get("hp_type") or "").upper().startswith("GSHP"))
+    ashp = _count(lambda p: str(p.get("hp_type") or "").upper().startswith("ASHP"))
+    bus = _count(lambda p: p.get("bus_eligible"))
+    countries = {}
+    for m in by_mfr:
+        c = MANUFACTURER_COUNTRY.get(m)
+        if c: countries[c] = countries.get(c, 0) + 1
+    top_c = sorted(countries.items(), key=lambda x: (-x[1], x[0]))[:4]
+    _cname = lambda c, k: ("the " if c in ("United Kingdom", "United States", "Netherlands") else "") + f"{esc(c)} ({k})"
+    own_url = f"{BASE_URL}/news/who-owns-your-heat-pump-brand-parent-companies/"
+
+    summary = (
+        '<div class="article-tldr"><span class="article-tldr-label">At a glance</span><p>'
+        f'The {SITE_NAME} lists {len(all_products):,} heat pumps from {len(by_mfr)} manufacturers in {n_countries} countries. '
+        f'The manufacturers with the most models listed are {_names(by_size)}. '
+        + (f'{len(uk)} are UK-based, including {_names(uk, 4)}. ' if uk else '') +
+        f'The most common home countries are ' + ", ".join(_cname(c, k) for c, k in top_c[:-1]) + " and " + _cname(*top_c[-1]) + '. '
+        f'Many brands share a parent company &mdash; see <a href="{own_url}">who owns your heat pump brand</a>.</p></div>')
+
+    def _cat(h, text, rows, type_slug=None, type_label=None):
+        more = (f' <a href="{BASE_URL}/types/{type_slug}/">Browse all {type_label} &rarr;</a>' if type_slug else "")
+        return (f'<section class="mfr-cat"><h2 class="sec">{h}</h2><p>{text}{more}</p>'
+                f'<div class="best-toc">{_pills_for(rows)}</div></section>')
+    n_com = sum(k for _, k in com); n_w = sum(k for _, k in wshp); n_g = sum(k for _, k in gshp)
+    n_a = sum(k for _, k in ashp); n_b = sum(k for _, k in bus)
+    cats = (
+        '<h2 class="sec" style="margin-top:34px">Heat pump manufacturers by category</h2>'
+        + _cat("Commercial and industrial heat pump manufacturers",
+               f"{len(com)} manufacturers list {n_com:,} commercial heat pumps, from large air source units to industrial water-to-water and high-temperature plant. "
+               f"The biggest commercial ranges in the database come from {_names(com)}.",
+               com, "commercial-heat-pumps", "commercial heat pumps")
+        + _cat("Air source heat pump manufacturers",
+               f"{len(ashp)} manufacturers make air source heat pumps ({n_a:,} models), the most common type for homes. "
+               f"The largest ranges are from {_names(ashp)}.",
+               ashp, "air-source-heat-pumps", "air source heat pumps")
+        + _cat("Ground source heat pump manufacturers",
+               f"{len(gshp)} manufacturers list {n_g:,} ground source (brine-to-water) heat pumps. "
+               f"Specialists with the widest ground source ranges include {_names(gshp)}.",
+               gshp, "ground-source-heat-pumps", "ground source heat pumps")
+        + _cat("Water source heat pump manufacturers",
+               f"{len(wshp)} manufacturers list {n_w:,} water source and water-to-water heat pumps, used with rivers, lakes, boreholes and heat networks. "
+               f"The largest water source ranges are from {_names(wshp)}.",
+               wshp, "water-source-heat-pumps", "water source heat pumps")
+        + (_cat("UK heat pump manufacturers",
+               f"{len(uk)} manufacturers in the database are based in the UK: {_names(uk, len(uk))}.", uk) if uk else "")
+        + _cat("Manufacturers with Boiler Upgrade Scheme (BUS) eligible models",
+               f"{len(bus)} manufacturers have models on Ofgem’s BUS Product Eligibility List ({n_b:,} products in total), "
+               f"led by {_names(bus)}. Installation must still be by an MCS-certified installer to claim the grant.",
+               bus))
+
+    faqs = [
+        ("Who are the largest heat pump manufacturers?",
+         f"By number of models in the {SITE_NAME}, the largest manufacturers are {_names(by_size)}. "
+         f"This counts published models, not sales &mdash; several big brands also share parent companies "
+         f'(see <a href="{own_url}">who owns your heat pump brand</a>).'),
+    ]
+    if uk:
+        faqs.append(("Which heat pump manufacturers are based in the UK?",
+                     f"{len(uk)} manufacturers in the database are UK-based, including {_names(uk, 6)}."))
+    faqs += [
+        ("Who makes commercial and industrial heat pumps?",
+         f"{len(com)} manufacturers list commercial heat pumps here; the largest ranges are from {_names(com)}."),
+        ("Who makes water source heat pumps?",
+         f"{len(wshp)} manufacturers list water source heat pumps, led by {_names(wshp)}."),
+        ("Which manufacturers make ground source heat pumps?",
+         f"{len(gshp)} manufacturers list ground source heat pumps, including {_names(gshp)}."),
+        ("Which heat pump brands are eligible for the Boiler Upgrade Scheme?",
+         f"{len(bus)} manufacturers have at least one model on Ofgem’s BUS Product Eligibility List, including {_names(bus)}. "
+         f"Each product page shows whether that model is listed."),
+    ]
+    faq_html, faq_ld = _faq_block(faqs)
+
+    list_ld = {"@context": "https://schema.org", "@type": "ItemList",
+               "name": "Heat pump manufacturers", "numberOfItems": len(by_mfr),
+               "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": m, "url": murl(m)}
+                                   for i, m in enumerate(sorted(by_mfr))]}
+
+    body = (HUB_CSS + crumbs(crumb_items) +
+            f"<h1>Heat Pump Manufacturers ({yr})</h1>"
+            f'<p class="sub">{len(by_mfr)} brands · {len(all_products):,} models · updated {_nice_date(TODAY)}</p>'
+            + summary +
             f'{intro}'
             f'{filter_bar}'
             f'<div class="grid" id="mfr-grid">{cards}</div>'
+            + cats + faq_html +
             f'<script>{MFR_FILTER_JS}</script>')
-    return page(f"Heat Pump Manufacturers (A–Z) | {SITE_NAME}",
-                f"Browse heat pumps by manufacturer. {len(by_mfr)} brands with full specifications, "
-                f"COP and SCOP data in the {SITE_NAME}.", url, body,
-                [breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image())
+    return page(f"Heat Pump Manufacturers: {len(by_mfr)} Brands Compared ({yr})",
+                f"Compare {len(by_mfr)} heat pump manufacturers and suppliers: UK brands, commercial and industrial makers, "
+                f"ground and water source specialists — {len(all_products):,} models.", url, body,
+                [list_ld, faq_ld, breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image())
 
 def render_type(slug, heading, desc, products):
     url = f"{BASE_URL}/types/{slug}/"
@@ -2920,7 +3018,42 @@ BEST_PAGES = [
 
 ]
 
-BEST_HUB_N = 5   # rows shown per ranking on the /best/ hub; the full list lives on /best/<slug>/
+
+# ───────── Hub-page helpers (FAQ blocks, readable dates) - added v301 ─────────
+def _nice_date(iso):
+    try:
+        d = datetime.date.fromisoformat(iso)
+        return f"{d.day} {d.strftime('%B %Y')}"
+    except Exception:
+        return iso
+
+def _faq_block(qas, heading="Frequently asked questions"):
+    """Render visible FAQ HTML plus a matching FAQPage JSON-LD object.
+    qas: list of (question, answer_html). The JSON-LD answer is the same
+    text with tags stripped, so the markup always matches what's on the page."""
+    items = "".join(
+        f'<div class="hub-faq-item"><h3>{esc(q)}</h3><p>{a}</p></div>' for q, a in qas)
+    html_out = (f'<section class="hub-faq"><h2 class="sec">{esc(heading)}</h2>{items}</section>')
+    ld = {"@context": "https://schema.org", "@type": "FAQPage",
+          "mainEntity": [{"@type": "Question", "name": q,
+                          "acceptedAnswer": {"@type": "Answer",
+                                             "text": re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", a))).strip()}}
+                         for q, a in qas]}
+    return html_out, ld
+
+HUB_CSS = ("<style>.hub-faq-item{margin:0 0 18px}.hub-faq-item h3{font-size:16px;margin:0 0 6px}"
+           ".hub-faq-item p{margin:0;line-height:1.65;max-width:760px}"
+           ".hub-howto ul{margin:8px 0 0 18px;line-height:1.7;max-width:760px}"
+           ".mfr-cat{margin:26px 0}.mfr-cat p{max-width:760px;line-height:1.65}"
+           ".mfr-cat .best-toc a .n{opacity:.65;font-weight:400;margin-left:4px}</style>")
+
+def _pname(p):
+    return f"{p.get('manufacturer','')} {p.get('model','')}".strip()
+
+def _plink(p):
+    return f'<a href="{BASE_URL}/products/{p["_slug"]}/">{esc(_pname(p))}</a>'
+
+BEST_HUB_N = 3   # rows shown per ranking on the /best/ hub; the full list lives on /best/<slug>/
 
 BEST_TOP_N = 10
 
@@ -3155,19 +3288,104 @@ def render_best_single_page(composite, sections):
                               for i, p in enumerate(shown)]})
 
     total_rankings = len(sections) + (1 if composite_ranked else 0)
-    body = (crumbs(crumb_items) +
-            "<h1>Best Heat Pumps \u2014 Rankings</h1>"
-            f'<p class="sub">{total_rankings} data-driven rankings \u00b7 updated {TODAY}</p>'
+    by_slug = {cfg["slug"]: (cfg, ranked, pool) for cfg, ranked, pool in sections}
+    def _top(slug, k=0):
+        t = by_slug.get(slug)
+        return t[1][k] if t and len(t[1]) > k else None
+    yr = TODAY[:4]
+
+    # ── quick answer: generated from the #1 of each key ranking ──
+    qa_bits = []
+    if composite_ranked:
+        w = composite_ranked[0]
+        qa_bits.append(f"the best-rated air source heat pump overall is the {_plink(w)}, scoring "
+                       f"{w['_total']:.1f}/30 across efficiency, noise and price")
+    s = _top("best-air-source-heat-pumps-by-scop")
+    if s: qa_bits.append(f"the most efficient is the {_plink(s)} (SCOP {num(s['scop'])} at 35°C flow)")
+    q = _top("quietest-air-source-heat-pumps")
+    if q: qa_bits.append(f"the quietest is the {_plink(q)} ({num(q['noise'])} dB(A) sound power)")
+    r = _top("best-r290-heat-pumps")
+    if r: qa_bits.append(f"the top R290 (propane) model is the {_plink(r)}")
+    g = _top("best-ground-source-heat-pumps")
+    quick = ""
+    if qa_bits:
+        quick = ("Based on published manufacturer specifications, " + "; ".join(qa_bits[:-1]) +
+                 ("; and " if len(qa_bits) > 1 else "") + qa_bits[-1] + ".")
+        if g:
+            quick += f" For ground source, the {_plink(g)} leads on SCOP."
+        quick = quick[0].upper() + quick[1:]
+    quick_html = (f'<div class="article-tldr"><span class="article-tldr-label">Quick answer</span>'
+                  f'<p>{quick}</p></div>') if quick else ""
+
+    howto_html = (
+        '<section class="hub-howto"><h2 class="sec">How we rank heat pumps</h2>'
+        f'<p>These are independent, data-driven rankings, not reviews or opinions.</p><ul>'
+        '<li>Every figure comes from manufacturer datasheets and published technical documentation, and is checked by a person before it goes live.</li>'
+        '<li>Products are compared at matching test conditions &mdash; for example SCOP at a 35°C flow temperature, COP at A7/W35 and sound power (not sound pressure) for noise.</li>'
+        '<li>Near-identical variants (such as single- and three-phase versions with the same result) are shown once, so one range can’t fill a list.</li>'
+        f'<li>Rankings are calculated from the published data alone and update automatically as new products are added (last updated {_nice_date(TODAY)}).</li>'
+        f'</ul><p>See the <a href="{BASE_URL}/knowledge/cop-scop/">COP vs SCOP guide</a> for how to read the efficiency figures.</p></section>')
+
+    # ── FAQ: answers computed from the same rankings ──
+    faqs = []
+    if composite_ranked:
+        w = composite_ranked[0]
+        faqs.append(("What is the best heat pump in " + yr + "?",
+            f"On published data, the {_plink(w)} is the best-rated air source heat pump overall, with a blended score of "
+            f"{w['_total']:.1f}/30 across SCOP, noise and price per kW. The right choice still depends on the size of your home and "
+            f"heat loss, so check the capacity-band rankings below for the best small, medium and large models."))
+    m = _top("best-medium-heat-pumps-7-12kw")
+    if m:
+        faqs.append(("What is the best heat pump for a typical UK home?",
+            f"Most three- and four-bedroom UK homes need 7–12 kW. In that band the {_plink(m)} has the highest SCOP "
+            f"({num(m['scop'])}). Get a heat loss calculation first so the unit is sized correctly — "
+            f'our <a href="{BASE_URL}/heat-pump-size-calculator/">size calculator</a> gives a quick estimate.'))
+    cnt = {}
+    for cfg, ranked, pool in sections:
+        for p in ranked:
+            cnt[p.get("manufacturer")] = cnt.get(p.get("manufacturer"), 0) + 1
+    for p in composite_ranked:
+        cnt[p.get("manufacturer")] = cnt.get(p.get("manufacturer"), 0) + 1
+    topb = sorted(cnt.items(), key=lambda x: (-x[1], x[0]))[:4]
+    if topb:
+        names = [f'<a href="{BASE_URL}/manufacturers/{slugify(n)}/">{esc(n)}</a> ({c})' for n, c in topb]
+        faqs.append(("Which brand makes the best heat pumps?",
+            "No single brand leads every category. Counting appearances across all our top-10 lists, the brands that appear most often are "
+            + ", ".join(names[:-1]) + " and " + names[-1] + ". Compare individual models rather than brands — efficiency varies a lot within a range."))
+    w35 = [p["scop"] for p in by_slug.get("best-air-source-heat-pumps-by-scop", (None, [], 0))[1]]
+    if w35:
+        faqs.append(("What is a good SCOP for a heat pump?",
+            f"SCOP measures seasonal efficiency. For a home air source heat pump at a 35°C flow temperature, around 4.7 or above is good, "
+            f"and the very best published figures reach {num(max(w35))}. Always compare SCOP at the same flow temperature — "
+            f'see <a href="{BASE_URL}/knowledge/cop-scop/">COP vs SCOP explained</a>.'))
+    if q:
+        faqs.append(("What is the quietest heat pump?",
+            f"Of the air source heat pumps up to 25 kW with a declared sound power level, the {_plink(q)} is the quietest at "
+            f"{num(q['noise'])} dB(A). Sound power is the figure used for UK permitted-development noise checks (MCS 020) — "
+            f'try the <a href="{BASE_URL}/heat-pump-noise-calculator/">noise calculator</a>.'))
+    if r:
+        faqs.append(("Are R290 heat pumps better?",
+            f"R290 (propane) has a global warming potential of 3, compared with 675 for R32, and typically allows higher flow temperatures, "
+            f"which helps with existing radiators. The highest-ranked R290 model on SCOP is the {_plink(r)} \u2014 "
+            f'see the <a href="{BASE_URL}/best/best-r290-heat-pumps/">full R290 ranking</a>.'))
+    faq_html, faq_ld = _faq_block(faqs)
+
+    body = (HUB_CSS + crumbs(crumb_items) +
+            f"<h1>Best Heat Pumps {yr}: Top-Rated Models Ranked by Real Data</h1>"
+            f'<p class="sub">{total_rankings} data-driven rankings · updated {_nice_date(TODAY)}</p>'
+            + quick_html +
             f'<p>Every ranking below is generated automatically from the specifications in the {SITE_NAME}, '
-            f'compared at matching test conditions wherever possible, and updates as new products are added.</p>'
+            f'compared at matching test conditions wherever possible. Each section shows the top {BEST_HUB_N} — '
+            f'follow the link for the full top 10.</p>'
             f'<div class="best-toc">{toc}</div>'
-            + section_html +
+            + section_html + howto_html + faq_html +
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
 
-    return page(f"Best Heat Pumps {TODAY[:4]} \u2014 Data-Driven Rankings | {SITE_NAME}",
-                f"The best heat pumps ranked by real specification data: SCOP, noise, refrigerant and capacity band. "
-                f"{total_rankings} rankings on one page, updated automatically from the {SITE_NAME}.",
-                url, body, item_lds + [breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
+    desc = (f"The best heat pumps of {yr} ranked on real data: SCOP, noise, price and capacity. "
+            f"Top-rated air, ground and water source models across {total_rankings} independent rankings.")
+    return page(f"Best Heat Pumps {yr}: Top Rated by SCOP & Noise",
+                desc, url, body, item_lds + [faq_ld, breadcrumb_jsonld(crumb_items, url)],
+                active="best", og_image=get_og_image())
 
 
 
@@ -3183,6 +3401,23 @@ def render_best_category_page(cfg, ranked, pool_size, sections):
     winner_html, table_html = _best_table_and_winner(cfg, ranked)
     others = "".join(f'<a href="{BASE_URL}/best/{c["slug"]}/">{c["title"]}</a>'
                      for c, _r, _p in sections if c["slug"] != cfg["slug"])
+    _mv = lambda p: (f"\u00a3{num(p.get(cfg['metric']))}" if cfg["metric"] == "gbp_per_kw" else num(p.get(cfg["metric"])))
+    _top3 = ranked[:3]
+    _t3l = [f"{_plink(p)} ({cfg['metric_label']} {_mv(p)})" for p in _top3]
+    _t3 = ", ".join(_t3l[:-1]) + " and " + _t3l[-1] if len(_t3l) > 1 else "".join(_t3l)
+    _subj = cfg["title"].lower()
+    for _a, _b2 in (("r290", "R290"), ("kw", "kW"), ("scop", "SCOP"), ("cop", "COP")):
+        _subj = re.sub(r"\b" + _a + r"\b", _b2, _subj)
+    _subj = _subj[5:] if _subj.startswith("best ") else _subj
+    _q1 = (f"What is the {_subj[:-1] if _subj.endswith('s') else _subj}?" if _subj.startswith("quietest")
+           else f"What are the best {_subj}?")
+    _cat_faq = [
+        (_q1, f"On published specifications, the top three are {_t3}. The full top {n} is in the table above."),
+        ("How is this ranking calculated?", re.sub(r"\s+", " ", cfg["intro"]) + f" {pool_size} products currently qualify."),
+        ("How often is this list updated?", f"It is rebuilt automatically whenever products are added or corrected in the {SITE_NAME} \u2014 last updated {_nice_date(TODAY)}."),
+    ]
+    _cat_faq_html, _cat_faq_ld = _faq_block(_cat_faq)
+    _cat_faq_html = HUB_CSS + _cat_faq_html
     body = (crumbs(crumb_items) +
             f'<h1>{cfg["h1"]} ({TODAY[:4]})</h1>'
             f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
@@ -3190,7 +3425,7 @@ def render_best_category_page(cfg, ranked, pool_size, sections):
             f'<p>Every figure comes from the manufacturer\u2019s published specification as recorded in the {SITE_NAME}; '
             f'near-identical variants (e.g. single- and three-phase versions with the same result) are shown once. '
             f'The list updates automatically as new products are added.</p>'
-            + winner_html + table_html +
+            + winner_html + table_html + _cat_faq_html +
             f'<h2 class="sec" style="margin-top:32px">More heat pump rankings</h2>'
             f'<div class="best-toc"><a href="{BASE_URL}/best/">All rankings</a>{others}</div>'
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
@@ -3203,7 +3438,7 @@ def render_best_category_page(cfg, ranked, pool_size, sections):
     if len(desc) <= 140:
         desc += " Free to compare."
     return page(f"{cfg['title']} {TODAY[:4]} \u2014 Top {n} Ranked | {SITE_NAME}", desc, url, body,
-                [item_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
+                [item_ld, _cat_faq_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image())
 
 
 # ───────────────────── Heat pump comparison hub ─────────────────────
