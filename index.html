@@ -548,6 +548,7 @@ function loadGA(){
 if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 </script>
 <link rel="stylesheet" href="theme.css?v=7">
+<style>.hp-skel{height:260px;border-radius:12px;background:linear-gradient(90deg,#eef3f1 25%,#e3ebe8 37%,#eef3f1 63%);background-size:400% 100%;animation:hpsk 1.4s ease infinite}.hp-skel-msg{grid-column:1/-1;text-align:center;color:#5b6b66;font-size:14px;margin:8px 0}@keyframes hpsk{0%{background-position:100% 50%}100%{background-position:0 50%}}@media (prefers-reduced-motion:reduce){.hp-skel{animation:none}}</style>
 </head>
 <body>
 <nav class="nav">
@@ -789,7 +790,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   </div>
   <div class="container">
     <div id="mfr-profile" style="display:none"></div>
-    <div id="hp-grid" class="hp-grid"></div>
+    <div id="hp-grid" class="hp-grid"><div class="hp-skel" aria-hidden="true"></div><div class="hp-skel" aria-hidden="true"></div><div class="hp-skel" aria-hidden="true"></div><div class="hp-skel" aria-hidden="true"></div><div class="hp-skel" aria-hidden="true"></div><div class="hp-skel" aria-hidden="true"></div><p class="hp-skel-msg" role="status">Loading 4,800+ heat pumps&hellip;</p></div>
     <div id="hp-table" class="table-wrap" style="display:none">
       <table>
         <thead><tr>
@@ -1130,16 +1131,43 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 #cm-pop .cm-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 #cm-pop .cm-btn:disabled{opacity:.4;cursor:default}
 </style>
-<script src="faq-data.js?v=5" defer></script>
-<script src="data.js?v=136" defer></script>
-<script src="bus-pel.js?v=1" defer></script>
-<script src="reviews-data.js?v=1" async></script>
-<script src="logos.js?v=131" defer></script>
-<script src="product-images.js?v=5" defer></script>
-<script src="best-winners.js?v=1" defer></script>
-<script src="slugs.js?v=1" defer></script>
 <script>
-document.addEventListener('DOMContentLoaded', function(){
+/* Deferred data loading (v308). The ~3 MB product database (data.js) and the
+   other data files used to be parsed before DOMContentLoaded, delaying first
+   paint and making the page unresponsive on mobile. They are now injected after
+   the first frame has painted, and the app boots once they have run. Clicks on
+   app controls made before boot are queued and replayed. */
+(function(){
+  var core=['faq-data.js?v=5','data.js?v=136','bus-pel.js?v=1','logos.js?v=131','product-images.js?v=5','best-winners.js?v=1','slugs.js?v=1'];
+  var queued=null;
+  // theme.js reads this at load; it proxies to the real state once the app has booted
+  window.__hpState={get db(){var r=window.__hpStateReal;return r?r.db:[];},get filtered(){var r=window.__hpStateReal;return r?r.filtered:[];},get compareIds(){var r=window.__hpStateReal;return r?r.compareIds:[];}};
+  document.addEventListener('click',function(e){
+    if(window.__hpReady)return;
+    var el=e.target&&e.target.closest&&e.target.closest('[onclick]');
+    if(el){e.preventDefault();e.stopPropagation();queued=el;}
+  },true);
+  function boot(){
+    if(window.__hpReady)return;
+    try{window.__hpBoot&&window.__hpBoot();}finally{window.__hpReady=true;document.documentElement.classList.remove('hp-loading');document.dispatchEvent(new Event('hp:ready'));}
+    if(queued){var q=queued;queued=null;setTimeout(function(){q.click();},0);}
+    var r=document.createElement('script');r.src='reviews-data.js?v=1';r.async=true;document.body.appendChild(r);
+  }
+  function load(){
+    var left=core.length;
+    core.forEach(function(src){
+      var sc=document.createElement('script');sc.src=src;sc.async=false;
+      sc.onload=sc.onerror=function(){if(--left===0)boot();};
+      document.body.appendChild(sc);
+    });
+  }
+  function afterPaint(){requestAnimationFrame(function(){setTimeout(load,0);});}
+  document.documentElement.classList.add('hp-loading');
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',afterPaint);else afterPaint();
+})();
+</script>
+<script>
+window.__hpBoot=function(){
 // ═══════════════ SEED DATA ═══════════════
 // cop_cond: the exact test conditions the quoted COP applies to
 // hp_type: ASHP | WSHP | GSHP
@@ -2026,7 +2054,7 @@ function loadAppSection(el){
     el.querySelectorAll('script').forEach(o=>{const n=document.createElement('script');n.textContent=o.textContent;o.replaceWith(n);});
   }).catch(()=>{delete el.dataset.loaded;el.innerHTML='<div class="container" style="padding:48px 0">This guide could not be loaded. <a href="/knowledge/">Open the Knowledge section</a>.</div>';});
 }
-window.addEventListener('load',()=>setTimeout(()=>{document.querySelectorAll('.page[data-src]').forEach(el=>fetchAppSection(el.dataset.src).catch(()=>{}));},3000));
+((f)=>document.readyState==='complete'?f():window.addEventListener('load',f))(()=>setTimeout(()=>{document.querySelectorAll('.page[data-src]').forEach(el=>fetchAppSection(el.dataset.src).catch(()=>{}));},3000));
 function showPage(p) {
   loadAppSection(document.getElementById('page-'+p));
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));
@@ -3734,10 +3762,10 @@ window.toggleKnowledge = toggleKnowledge;
 window.trackClick = trackClick;
 window.updateHero = updateHero;
 // read-only state for theme.js (market map, compare tray)
-window.__hpState={get db(){return db;},get filtered(){return filtered;},get compareIds(){return compareIds;}};
-});
+window.__hpStateReal={get db(){return db;},get filtered(){return filtered;},get compareIds(){return compareIds;}};
+};
 </script>
-<script src="theme.js?v=3"></script>
+<script src="theme.js?v=4"></script>
 <script>
 (function(){var b=document.getElementById('hero-verified-btn'),p=document.getElementById('hero-verified-pop');if(!b||!p)return;
 var li=b.parentNode,pinned=false,t;

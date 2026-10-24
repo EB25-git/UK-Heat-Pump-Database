@@ -153,10 +153,15 @@
       if (e.target.closest('.cmp-clear')) { S.compareIds.slice().forEach(trayRemove); return; }
       if (e.target.closest('.cmp-go')) window.showPage('compare');
     });
-    if (typeof window.addCompare === 'function') {
+    function wrapAdd() {
+      if (typeof window.addCompare !== 'function' || window.addCompare.__wrapped) return;
       var add = window.addCompare;
       window.addCompare = function () { var r = add.apply(this, arguments); renderTray(); drawMap(); return r; };
+      window.addCompare.__wrapped = true;
     }
+    wrapAdd();
+    // the app boots after its data files load (v308): wrap again, and redraw, once it is ready
+    document.addEventListener('hp:ready', function () { wrapAdd(); onRender(); });
     new MutationObserver(renderTray).observe(page, { attributes: true, attributeFilter: ['class'] });
 
     // market map
