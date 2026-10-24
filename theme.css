@@ -91,7 +91,7 @@ html .metric-n{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',
 html .metric-l{text-transform:none;letter-spacing:normal}
 html .mfr-count{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
 html .admin-table th{text-transform:none;letter-spacing:normal;font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
-html .empty-state h3{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+html .empty-state h3,.empty-state h2.empty-title{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
 html .guide-card table th{font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
 html #cm-ring{box-shadow:0 0 0 4px rgba(34,199,154,.4),0 0 0 9999px rgba(8,63,53,.42)}
 html #cm-pop{box-shadow:0 16px 48px rgba(8,63,53,.32)}

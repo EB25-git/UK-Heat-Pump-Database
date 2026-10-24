@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# App fragments fetched by the homepage (duplicates of /knowledge/ pages)
+Disallow: /app-sections/
 
 Sitemap: https://www.heatpumpdatabase.com/sitemap.xml

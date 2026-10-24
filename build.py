@@ -2237,43 +2237,47 @@ def render_product(p, by_mfr, by_type):
                     disambig = f" ({p['product_code']}, {extra})"
     display_name = f"{mfr} {model}{disambig}"
 
-    # Meta description. Deliberately names *which* figures the page carries
-    # without printing the values themselves. The previous version listed
-    # capacity, COP, SCOP and refrigerant outright, which answered the whole
-    # query inside the search result - pages ranking in the top five were
-    # taking thousands of impressions and almost no clicks. Keep the searched
-    # terms (so they still match and embolden), withhold the answers.
+    # Meta description (v309). Leads with the real headline numbers - output,
+    # refrigerant, SCOP/COP with its test basis, max flow temperature and sound
+    # power - so every product snippet is unique and specific. (An earlier
+    # version withheld values to push clicks; the Oct 2026 SEO audit found
+    # 4,500+ near-identical template descriptions, so the values are back.)
+    # Items are in priority order and dropped from the end to fit ~158 chars;
+    # the closing hook points at what the snippet can't show (test conditions,
+    # datasheet, comparison).
     hp_word = TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type") or "").split(" (")[0].lower()
-    has_cop, has_scop = p.get("cop") is not None, p.get("scop") is not None
-    if has_cop and has_scop:   eff = "COP and SCOP with test conditions"
-    elif has_scop:             eff = "SCOP with its test basis"
-    elif has_cop:              eff = "COP with test conditions"
-    else:                      eff = "published efficiency data"
-    # Ordered by how much each item is worth as a reason to click, because the
-    # trim below drops from the end. MCS status and a price are things the
-    # manufacturer's own page will not give you, so they rank above the
-    # generic dimension/refrigerant items.
-    d_bits = ["rated output", eff]
-    if p.get("bus_eligible"): d_bits.insert(2, "BUS eligibility")
-    if p.get("mcs_listed"): d_bits.append("MCS certificate")
-    if p.get("price_min") is not None: d_bits.append("UK price")
-    if p.get("noise") is not None: d_bits.append("sound power")
-    if p.get("height") and p.get("weight"): d_bits.append("dimensions and weight")
-    elif p.get("height"): d_bits.append("dimensions")
-    if p.get("refrigerant"): d_bits.append("refrigerant")
-    tail = f" Compare free with {TOTAL_PRODUCTS:,} heat pumps."
-    head = f"{display_name} {hp_word} heat pump \u2014 full specification: "
-    # Fit a search snippet (~158 chars). Google truncates anything longer, which
-    # would cut the closing hook off the end, so shed spec items first and only
-    # drop the hook itself if a very long product name leaves no room.
-    def _fits(bits, with_tail):
-        return len(head + ", ".join(bits) + "." + (tail if with_tail else "")) <= 158
-    while not _fits(d_bits, True) and len(d_bits) > 1:
-        d_bits.pop()
-    if _fits(d_bits, True):
-        desc = head + ", ".join(d_bits) + "." + tail
-    else:
-        desc = head + ", ".join(d_bits) + "."
+    def _cond(v):
+        v = str(v or "").strip()
+        return f" ({v})" if v and len(v) <= 12 and re.match(r"^[AWBE]-?\d", v, re.I) else ""
+    _dn = re.sub(r",\s+(?=\d[\w.]*$)", " ", display_name).strip()
+    lead = f"{_dn}: "
+    cs = cap_str(p)
+    if cs and cs in _dn: cs = None   # capacity already in the product name
+    lead += (f"{cs} {hp_word} heat pump" if cs else f"{hp_word} heat pump").strip()
+    d_bits = []
+    if p.get("refrigerant"): d_bits.append(str(p["refrigerant"]))
+    if p.get("scop") is not None: d_bits.append(f"SCOP {num(p['scop'])}{_cond(p.get('scop_cond'))}")
+    elif p.get("cop") is not None: d_bits.append(f"COP {num(p['cop'])}{_cond(p.get('cop_cond'))}")
+    if p.get("flow_temp_max") is not None: d_bits.append(f"flow up to {num(p['flow_temp_max'])}\u00b0C")
+    if p.get("noise") is not None: d_bits.append(f"{num(p['noise'])} dB(A)")
+    if p.get("scop") is not None and p.get("cop") is not None: d_bits.append(f"COP {num(p['cop'])}{_cond(p.get('cop_cond'))}")
+    if p.get("bus_eligible"): d_bits.append("BUS eligible")
+    if p.get("price_min") is not None: d_bits.append(f"from \u00a3{num(p['price_min'])}")
+    hooks = [" Full specs, test conditions & datasheet.", " Full specs & datasheet.", ""]
+    def _mk(bits, hook):
+        body = lead + (", " + ", ".join(bits) if bits else "") + "."
+        return body + hook
+    desc = None
+    for hook in hooks:
+        bits = list(d_bits)
+        while bits and len(_mk(bits, hook)) > 158:
+            bits.pop()
+        cand = _mk(bits, hook)
+        # prefer keeping at least two figures over keeping the hook
+        if len(cand) <= 158 and (len(bits) >= min(2, len(d_bits)) or hook == ""):
+            desc = cand; break
+    if desc is None:
+        desc = _mk([], "")
 
     rows = "".join(f"<tr><th>{l}</th><td>{v}</td></tr>" for l, v in spec_rows(p))
     badges = "".join(f'<span class="badge">{esc(b)}</span>' for b in [
@@ -4396,15 +4400,15 @@ def refresh_home_page(products, by_mfr):
     best = "".join(f'<a href="{BASE_URL}/best/{c["slug"]}/">{esc(c["title"])}</a>' for c in BEST_PAGES)
     block = ('<section class="home-links" aria-labelledby="home-links-h">'
              '<style>.home-links{max-width:1200px;margin:8px auto 40px;padding:0 24px}'
-             '.home-links h2{font-size:20px;margin:0 0 6px}.home-links h3{font-size:14px;margin:18px 0 8px;color:#3B4D47;text-transform:uppercase;letter-spacing:.04em}'
+             '.home-links h2{font-size:20px;margin:0 0 6px}.home-links h2.hl-sub{font-size:14px;margin:18px 0 8px;color:#3B4D47;text-transform:uppercase;letter-spacing:.04em}'
              '.hl-pills{display:flex;flex-wrap:wrap;gap:8px}.hl-pills a{display:inline-block;background:#E4F6EC;color:#0B6656;border:1px solid #BFE3D2;'
              'border-radius:999px;padding:5px 14px;font-size:13px;font-weight:500;text-decoration:none}.hl-pills a:hover{background:#BFE3D2}'
              '.hl-pills a span{color:#5A6A65;font-weight:400}</style>'
              '<h2 id="home-links-h">Browse the database</h2>'
-             f'<h3>By heat pump type</h3><div class="hl-pills">{pills(hp + appl)}</div>'
-             f'<h3>By refrigerant</h3><div class="hl-pills">{pills(ref)}</div>'
-             f'<h3>Rankings</h3><div class="hl-pills"><a href="{BASE_URL}/best/">All rankings</a>{best}</div>'
-             f'<h3>Manufacturers</h3><div class="hl-pills">{pills(mfr_items)}<a href="{BASE_URL}/manufacturers/">All {n_m} manufacturers &rarr;</a></div>'
+             f'<h2 class="hl-sub">By heat pump type</h2><div class="hl-pills">{pills(hp + appl)}</div>'
+             f'<h2 class="hl-sub">By refrigerant</h2><div class="hl-pills">{pills(ref)}</div>'
+             f'<h2 class="hl-sub">Rankings</h2><div class="hl-pills"><a href="{BASE_URL}/best/">All rankings</a>{best}</div>'
+             f'<h2 class="hl-sub">Manufacturers</h2><div class="hl-pills">{pills(mfr_items)}<a href="{BASE_URL}/manufacturers/">All {n_m} manufacturers &rarr;</a></div>'
              '</section>')
     app = re.sub(r"(<!-- BUILD:home-links[^>]*-->).*?(<!-- /BUILD:home-links -->)",
                  lambda m: m.group(1) + "\n" + block + "\n" + m.group(2), app, count=1, flags=re.S)
@@ -4957,7 +4961,7 @@ def main():
 
     # robots.txt
     write(os.path.join(ROOT, "robots.txt"),
-          f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n")
+          f"User-agent: *\nAllow: /\n# App fragments fetched by the homepage (duplicates of /knowledge/ pages)\nDisallow: /app-sections/\n\nSitemap: {BASE_URL}/sitemap.xml\n")
 
     print(f"Built {len(products)} product pages, {len(by_mfr)} manufacturer pages, "
           f"{len(type_pages)} category pages, {kg_count} knowledge pages, "
