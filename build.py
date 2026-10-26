@@ -2726,6 +2726,8 @@ MANUFACTURER_COUNTRY = {
     "Panasonic": "Japan",
     "Peak": "United Kingdom",
     "Qvantum": "Sweden",
+    "Rinnai": "Japan",
+    "Dethermina": "Italy",
     "Rank": "Spain",
     "Rhoss": "Italy",
     "Riello": "Italy",
