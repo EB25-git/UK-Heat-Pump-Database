@@ -358,3 +358,6 @@ html body .hp-hpm-btn{width:26px;height:26px;border-radius:50%;border:0;padding:
 html body .hp-hpm-btn img{width:26px;height:26px;border-radius:50%;display:block}
 html body .hp-hpm-btn:focus-visible{outline:2px solid #0B6656;outline-offset:2px}
 html body .hp-hpm .hp-trophy-tip{min-width:210px;max-width:240px}
+
+@media(max-width:370px){html body .nav-brand,html body header.site .brand{gap:6px;font-size:15px}html body .brand-mark{width:24px;height:24px}}
+@media(max-width:370px){html body nav.nav,html body header.site .wrap{padding-left:12px;padding-right:12px}}

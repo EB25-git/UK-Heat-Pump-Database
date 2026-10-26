@@ -205,3 +205,6 @@ html body .wm .wm-bold{color:#0B6656;font-weight:600}
 html body .wm .wm-light{color:#109680;font-weight:400;opacity:1;margin-left:0}
 @media(max-width:480px){html body .wm{font-size:18px}html body .brand-mark{width:28px;height:28px}}
 html body .badge.badge-bus{background:#0B6656;color:#fff;border-color:#0B6656;font-weight:600}
+
+@media(max-width:370px){html body .nav-brand,html body header.site .brand{gap:6px;font-size:15px}html body .brand-mark{width:24px;height:24px}}
+@media(max-width:370px){html body nav.nav,html body header.site .wrap{padding-left:12px;padding-right:12px}}
