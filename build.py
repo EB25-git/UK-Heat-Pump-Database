@@ -1950,6 +1950,16 @@ PRODUCT_IMAGE_BY_ID = {
     6319: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT-M 241.A06
     6320: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT-M 241.A08
     6321: "viessmann-vitocal-242-g.webp",  # Viessmann Vitocal 242-G BWT-M 241.A10
+    # ── Added 27 Oct 2026 - Adlar images supplied in the Images folder ──
+    2767: "adlar-aurora-ii-core.webp",  # Adlar Aurora II Core 4kW
+    2768: "adlar-aurora-ii-pro.webp",  # Adlar Aurora II Pro 6kW
+    2769: "adlar-aurora-ii-pro.webp",  # Adlar Aurora II Pro 10kW
+    2770: "adlar-aurora-ii-pro.webp",  # Adlar Aurora II Pro 14kW
+    # ── Added 28 Oct 2026 - Aira images supplied in the Images folder ──
+    1777: ["aira-6-8kw.webp", "aira-installed-house.webp", "aira-installed-snow.webp", "aira-detail.webp", "aira-range.webp"],  # Aira 6kW
+    1778: ["aira-6-8kw.webp", "aira-installed-house.webp", "aira-installed-snow.webp", "aira-detail.webp", "aira-range.webp"],  # Aira 8kW
+    1779: ["aira-12kw.webp", "aira-detail.webp", "aira-range.webp"],  # Aira 12kW
+    1780: ["aira-12kw.webp", "aira-detail.webp", "aira-range.webp"],  # Aira 12kW (400V)
 }
 _PRODUCT_IMAGE_CACHE = {}
 
