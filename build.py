@@ -348,7 +348,7 @@ def render_reviews(p):
             date_bit = f'<div class="yt-date">{esc(e["date"][:7])}</div>' if e.get("date") else ""
             cards.append(
                 f'<a class="yt-card" href="{esc(e["url"])}" target="_blank" rel="nofollow noopener" onclick="{onclick}">'
-                f'<span class="yt-thumb-wrap"><img class="yt-thumb" src="{esc(thumb)}" alt="" loading="lazy" width="320" height="180">'
+                f'<span class="yt-thumb-wrap"><img class="yt-thumb" src="{esc(thumb)}" alt="{esc((e.get("title") or e.get("source") or "YouTube video") + " - video thumbnail")}" loading="lazy" width="320" height="180">'
                 f'<span class="yt-play">&#9658;</span></span>'
                 f'<span class="yt-title">{esc(e.get("title") or e.get("source") or "Watch on YouTube")}</span>'
                 f'<span class="yt-source">{esc(e.get("source",""))}</span>{date_bit}</a>'
@@ -711,7 +711,7 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .article-body td{padding:9px 14px;border-bottom:1px solid #EEF4F1}
 .article-body .callout{background:#fff;border:1px solid #E3EDE8;border-left:4px solid #22C79A;border-radius:8px;padding:16px 20px;margin:0 0 20px;font-size:14px;color:#3B4D47}
 .article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#5A6A65;flex-wrap:wrap}
-.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #E3EDE8;max-width:760px}.article-hero img{width:100%;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#5A6A65;background:#F6FAF8;border-top:1px solid #EEF4F1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0B6656;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#F6FAF8;border:1px solid #BFE3D2;border-left:4px solid #0B6656;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0B6656;flex-shrink:0}.article-tldr p{margin:0;color:#3B4D47;font-size:14px;line-height:1.6;flex:1;min-width:200px}
+.article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #E3EDE8;max-width:760px}.article-hero img{width:100%;height:auto;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#5A6A65;background:#F6FAF8;border-top:1px solid #EEF4F1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0B6656;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#F6FAF8;border:1px solid #BFE3D2;border-left:4px solid #0B6656;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0B6656;flex-shrink:0}.article-tldr p{margin:0;color:#3B4D47;font-size:14px;line-height:1.6;flex:1;min-width:200px}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .article-cat-insight{background:#E4F6EC;color:#0B6656}
 .article-cat-product{background:#BFE3D2;color:#083F35}
@@ -868,6 +868,10 @@ def burger_menu(active=None):
     )
 
 def page(title, description, canonical, body, jsonld_list, og_type="website", active=None, og_image=None, wide=False):
+    # Oct 2026 audit: keep <title> within ~60 chars. Google shows the site
+    # name separately, so drop the " | Heat Pump Database" suffix when long.
+    if len(title) > 60 and title.endswith(f" | {SITE_NAME}"):
+        title = title[: -len(f" | {SITE_NAME}")]
     blocks = "\n".join(
         '<script type="application/ld+json">%s</script>' % json.dumps(j, ensure_ascii=False)
         for j in jsonld_list
@@ -2200,7 +2204,37 @@ def product_title(display_name, p):
     for t in options:
         if len(t) <= TITLE_MAX:
             return t
-    return f"{name} Specs"
+    # Euan (28 Oct 2026): don't abbreviate or cut words from model names.
+    # If even "{name} Specs" is too long, use the full name on its own and
+    # accept the overrun - Google truncates, but the name stays intact.
+    return name
+
+_ABBR = [(r"\((\d{3})V\)", r"\1V"), (r"\s+installation\b", ""), (r"\bGeneration\b", "Gen"), (r"\bHigh Performance\b", "HP"),
+         (r"\s*\(bi-bloc / All in One\)", " Bi-bloc AIO"), (r"\bAll[- ]in[- ]One\b", "AIO"),
+         (r"\s+-\s+DHW integrated\b", " DHW"), (r"\bmonobloc\b", "Mono"), (r"\bMonobloc\b", "Mono"),
+         (r"\bhigh[- ]pressure pump\b", "HP pump"), (r"\bTemperature\b", "Temp"),
+         (r"\bSeries\b", ""), (r"\s{2,}", " ")]
+
+def shorten_name(name, limit):
+    """Fit a long display name into `limit` characters without losing the
+    part that tells same-named SKUs apart (the final bracket, e.g. '(16 kW)'
+    or '(PUHZ-W85YAA)'). Abbreviate common words first, then drop earlier
+    brackets, then trim words from the end of the series name."""
+    n = name
+    for pat, sub in _ABBR:
+        if len(n) <= limit:
+            break
+        n = re.sub(pat, sub, n).strip()
+    if len(n) <= limit:
+        return n
+    m = re.match(r"^(.*?)\s*(\([^()]*\))\s*$", n)
+    core, tail = (m.group(1), " " + m.group(2)) if m else (n, "")
+    while len(core + tail) > limit and re.search(r"\s*\([^()]*\)", core):
+        core = re.sub(r"\s*\([^()]*\)(?!.*\()", "", core, count=1).strip()
+    words = core.split()
+    while len(" ".join(words) + tail) > limit and len(words) > 2:
+        words.pop()
+    return (" ".join(words) + tail).strip()
 
 def render_product(p, by_mfr, by_type):
     slug = p["_slug"]
@@ -2289,6 +2323,21 @@ def render_product(p, by_mfr, by_type):
             desc = cand; break
     if desc is None:
         desc = _mk([], "")
+    if len(desc) < 110:
+        # thin spec sheets: add what else we know so the snippet isn't short
+        more = []
+        if p.get("mode") and "cool" in str(p["mode"]).lower(): more.append("Heats and cools")
+        if p.get("op_temp_min") is not None: more.append(f"Runs down to {num(p['op_temp_min'])}\u00b0C outside")
+        ph = (p.get("electrical") or "")
+        if "Three" in ph: more.append("Three-phase supply")
+        elif "Single" in ph: more.append("Single-phase supply")
+        if p.get("type"): more.append(f"{p['type']} use")
+        more.append(f"Compare it free on {SITE_NAME}")
+        for m in more:
+            cand = desc + " " + m + "."
+            if len(cand) > 160: break
+            desc = cand
+            if len(desc) >= 110: break
 
     rows = "".join(f"<tr><th>{l}</th><td>{v}</td></tr>" for l, v in spec_rows(p))
     badges = "".join(f'<span class="badge">{esc(b)}</span>' for b in [
@@ -2413,7 +2462,7 @@ def render_product(p, by_mfr, by_type):
         if len(photos) > 1:
             thumb_items = "".join(
                 f'<img class="product-photo-thumb{" active" if i == 0 else ""}" src="{u}" '
-                f'alt="{esc(display_name)} photo {i+1}" loading="lazy" '
+                f'alt="{esc(display_name)} photo {i+1}" loading="lazy" width="52" height="52" '
                 f'onclick="event.stopPropagation();document.querySelector(\'.product-photo\').src=this.src;'
                 f'document.querySelectorAll(\'.product-photo-thumb\').forEach(t=>t.classList.remove(\'active\'));'
                 f'this.classList.add(\'active\')">'
@@ -2589,23 +2638,36 @@ def list_table(products):
                      f'<td>{esc(p.get("refrigerant") or "")}</td></tr>')
     return f'<table class="list">{head}{rows}</table>'
 
+def mfr_label(mfr):
+    """'Vaillant' -> 'Vaillant Heat Pumps'; 'ES Heat Pumps' stays as is."""
+    return mfr if re.search(r"heat pumps?$", mfr, re.I) else f"{mfr} Heat Pumps"
+
+def mfr_title(mfr):
+    lab = mfr_label(mfr)
+    for t in (f"{lab}: Models & Specs | {SITE_NAME}", f"{lab} \u2014 Models & Specifications",
+              f"{lab} \u2014 Models & Specs", f"{lab} Models & Specs"):
+        if len(t) <= 60:
+            return t
+    return lab
+
 def render_manufacturer(mfr, products):
     mslug = slugify(mfr)
     url = f"{BASE_URL}/manufacturers/{mslug}/"
     n = len(products)
     types = sorted({TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type")) for p in products if p.get("hp_type")})
-    desc = (f"{mfr} heat pumps: {n} models in the {SITE_NAME}. "
-            f"Compare {', '.join(types).lower()} specifications, COP and SCOP data for free.")
+    _tl = ", ".join(t.split(" (")[0].lower() for t in types)
+    _nm = f"{n} model{'s' if n != 1 else ''}"
+    desc = (f"{mfr_label(mfr)}: {_nm} in the {SITE_NAME}. "
+            f"Compare {_tl} specifications, COP, SCOP and noise data for free.")
     if len(desc) > 160:
-        desc = (f"{mfr} heat pumps: {n} models. Compare {', '.join(types).lower()} "
-                f"specs, COP and SCOP for free.")
+        desc = (f"{mfr_label(mfr)}: {_nm}. Compare {_tl} specs, COP and SCOP for free.")
     crumb_items = [("Home", f"{BASE_URL}/"),
                    ("Manufacturers", f"{BASE_URL}/manufacturers/"),
                    (mfr, None)]
     logo = get_logo_url(mfr)
     body = (crumbs(crumb_items) +
             f'<div class="mfr-header"><img class="mfr-logo" src="{logo}" alt="{esc(mfr)} logo" width="64" height="64">'
-            f"<h1>{esc(mfr)} Heat Pumps</h1></div>"
+            f"<h1>{esc(mfr_label(mfr))}</h1></div>"
             f'<p class="sub">{n} model{"s" if n != 1 else ""} in the database</p>' +
             list_table(sorted(products, key=lambda x: (x.get("model") or "", x.get("cap_max") or 0))) +
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Search the full database &rarr;</a></p>'
@@ -2618,7 +2680,7 @@ def render_manufacturer(mfr, products):
                     "url": f"{BASE_URL}/products/{p['_slug']}/",
                     "name": f"{mfr} {p['model']}"}
                    for i, p in enumerate(products)]}
-    title = f"{mfr} Heat Pumps \u2014 Models & Specifications | {SITE_NAME}"
+    title = mfr_title(mfr)
     return page(title, desc, url, body, [item_ld, breadcrumb_jsonld(crumb_items, url)],
                 active="manufacturers", og_image=get_og_image(mfr))
 
@@ -3781,14 +3843,14 @@ KNOWLEDGE_PAGES = [
      "dir": "what-is-a-heat-pump", "active": "what-is-a-heat-pump", "crumb": "What Is a Heat Pump?",
      "headline": "What Is a Heat Pump?",
      "title": f"What Is a Heat Pump? A Plain-English Guide | {SITE_NAME}",
-     "desc": ("What a heat pump is and how it works, explained for complete beginners with diagrams. "
-              "Includes a straight comparison against gas boilers and the key things to consider before switching.")},
+     "desc": ("What a heat pump is and how it works, explained simply with diagrams, plus an honest "
+              "comparison with gas boilers and what to check before you switch.")},
     {"page_id": "page-refrigerants", "end_marker": "<!-- ═══ COP & SCOP GUIDE ═══ -->",
      "dir": "refrigerants", "active": "refrigerants", "crumb": "Refrigerant Guide",
      "headline": "Heat Pump Refrigerants Compared",
      "title": f"Heat Pump Refrigerants Compared: GWP, Safety & F-Gas Rules | {SITE_NAME}",
-     "desc": ("Compare the refrigerants used in heat pumps: GWP, safety class, pros and cons, and the "
-              "EU and UK F-Gas regulations. R290, R32, R410A, CO2, ammonia, HFOs and low-GWP blends.")},
+     "desc": ("Heat pump refrigerants compared: GWP, safety class, pros and cons and UK/EU F-Gas rules "
+              "for R290, R32, R410A, CO2, ammonia and low-GWP blends.")},
     {"page_id": "page-cop-scop", "end_marker": "<!-- ═══ FLOW TEMPERATURE GUIDE ═══ -->",
      "dir": "cop-scop", "active": "cop-scop", "crumb": "What Is a Good SCOP?",
      "headline": "What Is a Good SCOP? COP vs SCOP Explained",
@@ -3808,28 +3870,26 @@ KNOWLEDGE_PAGES = [
      "dir": "flow-temperature", "active": "flow-temp", "crumb": "Flow Temperature & Efficiency",
      "headline": "Flow Temperature & Efficiency",
      "title": f"Heat Pump Flow Temperature & Efficiency Explained | {SITE_NAME}",
-     "desc": ("Why a lower flow temperature makes a heat pump more efficient, the trade-off with radiator "
-              "and underfloor sizing, weather compensation, and how flow temperature relates to COP and SCOP.")},
+     "desc": ("Why a lower flow temperature makes a heat pump more efficient, how it affects radiator "
+              "sizing and weather compensation, and its link to COP and SCOP.")},
     {"page_id": "page-install-costs", "end_marker": "<!-- ═══ FUNDING GUIDE ═══ -->",
      "dir": "installation-costs", "active": "install-costs", "crumb": "Installation Costs",
      "headline": "ASHP Installation Costs Explained",
      "title": f"Air Source Heat Pump Installation Costs UK 2026 | {SITE_NAME}",
-     "desc": ("A breakdown of what a UK air source heat pump installation costs: the unit itself, hot water "
-              "cylinder, controls, and radiator upgrades, plus typical totals before and after the Boiler "
-              "Upgrade Scheme grant.")},
+     "desc": ("What a UK air source heat pump installation costs: the unit, cylinder, controls and "
+              "radiator upgrades, with typical totals before and after the BUS grant.")},
     {"page_id": "page-funding", "end_marker": "<!-- ═══ PLANNING PERMISSION GUIDE ═══ -->",
      "dir": "funding", "active": "funding", "crumb": "Funding & Grants",
      "headline": "Heat Pump Funding & Grants in the UK",
-     "title": f"Heat Pump Funding & Grants UK 2026: BUS, VAT, Scotland & More | {SITE_NAME}",
-     "desc": ("Every UK funding route for a heat pump in one place: the Boiler Upgrade Scheme, 0% VAT, "
-              "Home Energy Scotland, Warm Homes: Local Grant, ECO4 and Northern Ireland support: amounts, "
-              "eligibility and how to apply.")},
+     "title": "Heat Pump Funding & Grants UK 2026: BUS, VAT & More",
+     "desc": ("Every UK heat pump grant in one place: Boiler Upgrade Scheme, 0% VAT, Home Energy "
+              "Scotland, Warm Homes, ECO4 and NI support, with amounts and how to apply.")},
     {"page_id": "page-planning", "end_marker": "<!-- ═══ FAQ ═══ -->",
      "dir": "planning-permission", "active": "planning", "crumb": "Planning Permission",
      "headline": "UK Planning Permission for Heat Pumps",
-     "title": f"UK Planning Permission for Heat Pumps 2026: England, Wales, Scotland & NI | {SITE_NAME}",
-     "desc": ("Do you need planning permission for a heat pump? Permitted development rules, the "
-              "application process, and typical costs for England, Wales, Scotland and Northern Ireland.")},
+     "title": "Heat Pump Planning Permission UK 2026: Rules by Nation",
+     "desc": ("Do you need planning permission for a heat pump? Permitted development rules, how to "
+              "apply and typical costs in England, Wales, Scotland and NI.")},
 ]
 
 def render_knowledge_page(cfg):
@@ -3906,12 +3966,26 @@ def _news_card(article):
             f'<div class="article-meta" style="margin-top:10px">{esc(_news_date_str(article.get("date")))}</div>'
             f'</a>')
 
+def _img_dims_attr(img_url):
+    """width/height attributes for a locally-built image (prevents layout shift)."""
+    try:
+        from PIL import Image as _I
+        rel = img_url.replace(BASE_URL + "/", "").lstrip("/")
+        for base in (ROOT, os.path.dirname(os.path.abspath(__file__))):
+            f = os.path.join(base, rel)
+            if os.path.isfile(f):
+                w, h = _I.open(f).size
+                return f' width="{w}" height="{h}"'
+    except Exception:
+        pass
+    return ""
+
 def _news_row(article):
     """Full-width preview row with an image thumbnail, used on the news index."""
     url = f'{BASE_URL}/news/{article["slug"]}/'
     img_url = get_news_image(article)
     if img_url:
-        thumb = f'<div class="news-row-thumb"><img src="{img_url}" alt="{esc(article["title"])}" loading="lazy"></div>'
+        thumb = f'<div class="news-row-thumb"><img src="{img_url}" alt="{esc(article["title"])}"{_img_dims_attr(img_url)} loading="lazy"></div>'
     else:
         thumb = '<div class="news-row-thumb placeholder">Heat Pump Database</div>'
     cat = article.get("category", "update")
@@ -3943,8 +4017,8 @@ function newsFilter(btn){
 def render_news_index(articles):
     url = f"{BASE_URL}/news/"
     title = f"News & Insight | {SITE_NAME}"
-    desc = ("Product press releases, site updates and data-driven insights from Heat Pump Database - "
-            "including deep dives into the specification data behind every product in the database.")
+    desc = ("Heat pump product news, site updates and data-driven insights from Heat Pump Database, "
+            "including deep dives into the specs behind every model.")
     crumb_items = [("Home", f"{BASE_URL}/"), ("News & Insight", None)]
     if articles:
         rows = "".join(_news_row(a) for a in articles)
@@ -3981,8 +4055,10 @@ def render_news_index(articles):
 
 def render_news_article(article, all_articles):
     url = f'{BASE_URL}/news/{article["slug"]}/'
-    title = f'{article["title"]} | {SITE_NAME} News'
-    desc = article.get("summary", article["title"])
+    title = article.get("seo_title") or f'{article["title"]} | {SITE_NAME} News'
+    if len(title) > 60:
+        title = article["title"]
+    desc = article.get("meta_description") or article.get("summary", article["title"])
     crumb_items = [("Home", f"{BASE_URL}/"), ("News & Insight", f"{BASE_URL}/news/"), (article["title"], None)]
     date_str = _news_date_str(article.get("date"))
     author = article.get("author")
@@ -3992,7 +4068,7 @@ def render_news_article(article, all_articles):
     hero = ""
     if img_url:
         img_credit = article.get("image_credit", SITE_NAME)
-        hero = (f'<div class="article-hero"><img src="{img_url}" alt="{esc(article["title"])}" '
+        hero = (f'<div class="article-hero"><img src="{img_url}" alt="{esc(article["title"])}"{_img_dims_attr(img_url)} '
                 f'onclick="openPhotoLightbox(this.src,this.alt)">'
                 f'<div class="article-hero-credit">{esc(img_credit)}'
                 f'<span class="article-hero-zoom">Click to enlarge</span></div></div>')
@@ -4029,9 +4105,9 @@ def render_news_article(article, all_articles):
                 active="news", og_image=img_url or get_og_image())
 
 def render_size_calculator_page():
-    title = f"Heat Pump Size Calculator — What kW Do You Need? | {SITE_NAME}"
-    desc = ("Free UK heat pump size calculator. Estimate the kW your home needs and your annual "
-            "running cost in seconds, then see matching air and ground source heat pumps from the database.")
+    title = "Heat Pump Size Calculator: What kW Do You Need?"
+    desc = ("Free UK heat pump size calculator: estimate the kW your home needs and your yearly "
+            "running cost, then see matching heat pumps from the database.")
     canonical = f"{BASE_URL}/heat-pump-size-calculator/"
     jsonld = [{
         "@context": "https://schema.org",
@@ -4309,10 +4385,9 @@ def _unit_card(u):
 </div>"""
 
 def render_noise_calculator_page(n_products):
-    title = f"Heat Pump Noise Calculator — MCS 020 a) 37 dB Check | {SITE_NAME}"
-    desc = ("Free MCS 020 a) heat pump noise calculator. Check your air source heat pump meets the 37 dB(A) "
-            "permitted development limit at a neighbour's window, with sound power data for "
-            f"{n_products:,} heat pumps.")
+    title = "Heat Pump Noise Calculator: MCS 020 a) 37 dB Check"
+    desc = ("Free MCS 020 a) noise calculator: check a heat pump meets the 37 dB(A) permitted "
+            f"development limit at a neighbour's window. Data for {n_products:,} models.")
     canonical = f"{BASE_URL}/heat-pump-noise-calculator/"
     jsonld = [{
         "@context": "https://schema.org", "@type": "WebApplication", "name": "Heat Pump Noise Calculator",
@@ -4687,8 +4762,8 @@ def main():
     for ref, ps in by_ref.items():
         if len(ps) >= 5:
             type_pages.append((slugify(f"{ref} heat pumps"), f"{ref} Heat Pumps",
-                               f"Heat pumps using {ref} refrigerant: {len(ps)} models with full "
-                               f"specifications. Free to compare.", ps))
+                               f"Compare {len(ps):,} heat pumps that use {ref} refrigerant: capacity, COP, SCOP, "
+                               f"flow temperature and noise for every model. Free, independent specs.", ps))
     # application pages
     by_app = {}
     for p in products:
@@ -4696,8 +4771,8 @@ def main():
             by_app.setdefault(p["type"], []).append(p)
     for app, ps in by_app.items():
         type_pages.append((slugify(f"{app} heat pumps"), f"{app} Heat Pumps",
-                           f"{app} heat pumps: {len(ps)} models with specifications, COP and SCOP "
-                           f"data. Free to compare.", ps))
+                           f"Compare {len(ps):,} {app.lower()} heat pumps by capacity, COP, SCOP, refrigerant, "
+                           f"flow temperature and noise. Free, independent specifications.", ps))
 
     seen_type_slugs = set()
     for slug, heading, desc, ps in type_pages:

@@ -599,7 +599,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
 <!-- ═══ BROWSE ═══ -->
 <div class="page show" id="page-browse">
   <div class="hero">
-    <img class="hero-img" src="images/hero-home.jpg" fetchpriority="high" alt="">
+    <img class="hero-img" src="images/hero-home.jpg" fetchpriority="high" alt="" width="900" height="600">
     <div class="hero-inner">
       <div>
         <h1><em>Heat Pump Database</em></h1>
@@ -2740,7 +2740,7 @@ function reviewsHTML(d){
       if(!thumb) return '';
       const dateBit = e.date ? `<div class="yt-date">${jsAttrEsc(e.date.slice(0,7))}</div>` : '';
       const onclick = `trackClick(${d.id},'${jsAttrEsc(e.url)}','youtube','${jsAttrEsc(e.source||'')}')`;
-      return `<a class="yt-card" href="${e.url}" target="_blank" rel="noopener" onclick="${onclick}"><span class="yt-thumb-wrap"><img class="yt-thumb" src="${thumb}" alt="" loading="lazy" width="320" height="180"><span class="yt-play">&#9658;</span></span><span class="yt-title">${e.title||e.source||'Watch on YouTube'}</span><span class="yt-source">${e.source||''}</span>${dateBit}</a>`;
+      return `<a class="yt-card" href="${e.url}" target="_blank" rel="noopener" onclick="${onclick}"><span class="yt-thumb-wrap"><img class="yt-thumb" src="${thumb}" alt="${String((e.title||e.source||'YouTube video')+' - video thumbnail').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}" loading="lazy" width="320" height="180"><span class="yt-play">&#9658;</span></span><span class="yt-title">${e.title||e.source||'Watch on YouTube'}</span><span class="yt-source">${e.source||''}</span>${dateBit}</a>`;
     }).filter(Boolean).join('');
     if(cards) html += `<div class="yt-grid">${cards}</div>`;
   }
