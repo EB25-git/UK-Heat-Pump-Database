@@ -713,9 +713,10 @@ table.spec tr:last-child th,table.spec tr:last-child td{border-bottom:none}
 .article-meta{display:flex;gap:10px;align-items:center;font-size:12.5px;color:#5A6A65;flex-wrap:wrap}
 .article-hero{margin:18px 0 26px;border-radius:14px;overflow:hidden;border:1px solid #E3EDE8;max-width:760px}.article-hero img{width:100%;height:auto;display:block;cursor:zoom-in}.article-hero-credit{padding:9px 14px;font-size:12px;color:#5A6A65;background:#F6FAF8;border-top:1px solid #EEF4F1;display:flex;gap:12px;align-items:baseline;justify-content:space-between}.article-hero-zoom{flex-shrink:0;color:#0B6656;font-weight:600;white-space:nowrap}.article-tldr{max-width:760px;margin:0 0 24px;background:#F6FAF8;border:1px solid #BFE3D2;border-left:4px solid #0B6656;border-radius:10px;padding:14px 20px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.article-tldr-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0B6656;flex-shrink:0}.article-tldr p{margin:0;color:#3B4D47;font-size:14px;line-height:1.6;flex:1;min-width:200px}
 .article-cat{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.article-cat-insight{background:#E4F6EC;color:#0B6656}
-.article-cat-product{background:#BFE3D2;color:#083F35}
-.article-cat-update{background:#E4F6EC;color:#0B6656}
+.article-cat{align-self:flex-start}
+.article-cat-insight{background:#E3EEFB;color:#1D4F8C}
+.article-cat-product{background:#DDF3E8;color:#0B6656}
+.article-cat-update{background:#FFF1D6;color:#8A5300}
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .news-card{display:block;background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:18px 20px;transition:border-color .15s,box-shadow .15s;text-decoration:none}
 .news-card:hover{border-color:#22C79A;box-shadow:0 6px 22px rgba(8,63,53,.07)}
@@ -910,7 +911,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <style>{CSS}</style>
-<link rel="stylesheet" href="/theme-pages.css?v=3">
+<link rel="stylesheet" href="/theme-pages.css?v=4">
 {blocks}
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -4025,6 +4026,17 @@ def _news_row(article):
             f'</div>'
             f'</a>')
 
+NEWS_FILTER_CSS = ("<style>"
+    ".news-filter{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}"
+    "html body .news-chip{display:inline-flex;align-items:center;background:#fff;border:1px solid #CFDDD7;color:#3B4D47;"
+    "font:600 13px/1 'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;padding:8px 15px;border-radius:20px;cursor:pointer;transition:all .15s}"
+    "html body .news-chip:hover{border-color:#22C79A;color:#0B6656}"
+    "html body .news-chip.active{background:#0B6656;border-color:#0B6656;color:#fff}"
+    "html body .news-chip .nf-n{font-weight:500;opacity:.7;margin-left:6px}"
+    "html body .news-chip.is-empty{opacity:.5}"
+    ".news-empty{display:none;color:#5A6A65;font-size:14px;padding:34px 0;text-align:center}"
+    "</style>")
+
 NEWS_FILTER_JS = """
 function newsFilter(btn){
   var cat=btn.getAttribute('data-cat');
@@ -4062,7 +4074,8 @@ def render_news_index(articles):
             empty = " is-empty" if n == 0 else ""
             chips.append(f'<button type="button" class="news-chip{empty}" data-cat="{esc(key)}" '
                          f'onclick="newsFilter(this)">{esc(label)}<span class="nf-n">{n}</span></button>')
-        filter_bar = f'<div class="news-filter" id="news-filter">{"".join(chips)}</div>'
+        filter_bar = (NEWS_FILTER_CSS +
+                      f'<div class="news-filter" id="news-filter">{"".join(chips)}</div>')
         body_inner = (filter_bar
                       + f'<div class="news-list" id="news-list">{rows}</div>'
                       + '<p class="news-empty" id="news-empty">No articles in this category yet.</p>'
