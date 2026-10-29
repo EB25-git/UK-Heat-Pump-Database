@@ -1964,6 +1964,32 @@ PRODUCT_IMAGE_BY_ID = {
     1778: ["aira-6-8kw.webp", "aira-installed-house.webp", "aira-installed-snow.webp", "aira-detail.webp", "aira-range.webp"],  # Aira 8kW
     1779: ["aira-12kw.webp", "aira-detail.webp", "aira-range.webp"],  # Aira 12kW
     1780: ["aira-12kw.webp", "aira-detail.webp", "aira-range.webp"],  # Aira 12kW (400V)
+    # ── Added 29 Oct 2026 - Baxi images supplied in the Images folder ──
+    374: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    375: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    376: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    377: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    378: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    379: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    380: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    381: "baxi-hp40-monobloc.webp",  # Baxi HP40 Monobloc
+    382: "baxi-hp60-high-monobloc.webp",  # Baxi HP60 High Monobloc
+    383: "baxi-hp60-high-monobloc.webp",  # Baxi HP60 High Monobloc
+    384: "baxi-hp60-high-monobloc.webp",  # Baxi HP60 High Monobloc
+    385: "baxi-hp60-high-monobloc.webp",  # Baxi HP60 High Monobloc
+    386: "baxi-hp60-high-monobloc.webp",  # Baxi HP60 High Monobloc
+    387: "baxi-hp60-high-monobloc.webp",  # Baxi HP60 High Monobloc
+    388: "baxi-hp60-high-monobloc.webp",  # Baxi HP60 High Monobloc
+    2723: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    2724: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    2725: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    2726: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    2727: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    2728: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    2729: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    2730: "baxi-hp40-monobloc.webp",  # Baxi HP50 Monobloc (same casing as HP40)
+    4716: "baxi-auriga-hp-plus-20-30.webp",  # Baxi Auriga HP+
+    4717: "baxi-auriga-hp-plus-20-30.webp",  # Baxi Auriga HP+
 }
 _PRODUCT_IMAGE_CACHE = {}
 
