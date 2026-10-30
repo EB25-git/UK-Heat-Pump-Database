@@ -1,0 +1,4 @@
+# Paste the full article text from:
+# https://www.viessmann.co.uk/en/latest-news/Vitocal-200-A-ie-is-Gateway-to-the-Fully-Electrified-Home.html
+# below this line. Blank line = new paragraph. '## ' = sub-heading. '- ' = bullet.
+# While this file has no pasted text, the current Heat Pump Database write-up is shown.

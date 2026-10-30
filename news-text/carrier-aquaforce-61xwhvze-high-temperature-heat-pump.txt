@@ -1,0 +1,4 @@
+# Paste the full article text from:
+# https://www.carrier.com/commercial/en/eu/news/news-article/carrier-aquaforce-61xwhvze-press-news.html
+# below this line. Blank line = new paragraph. '## ' = sub-heading. '- ' = bullet.
+# While this file has no pasted text, the current Heat Pump Database write-up is shown.

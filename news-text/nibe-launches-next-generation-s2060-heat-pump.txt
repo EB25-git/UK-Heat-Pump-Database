@@ -1,0 +1,4 @@
+# Paste the full article text from:
+# https://www.nibe.eu/en-gb/about-nibe/nibe-news/built-for-whats-next-nibes-next-generation-s2060-signals-the-future-of-heat-pump-innovation
+# below this line. Blank line = new paragraph. '## ' = sub-heading. '- ' = bullet.
+# While this file has no pasted text, the current Heat Pump Database write-up is shown.

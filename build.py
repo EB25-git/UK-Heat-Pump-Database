@@ -4112,6 +4112,37 @@ def _news_product_block(article):
             '<div style="overflow-x:auto;max-width:760px"><table class="list"><tr><th>Model</th><th>Code</th>'
             '<th>Capacity</th><th>Efficiency</th><th>Refrigerant</th></tr>' + "".join(rows) + '</table></div>')
 
+NEWS_TEXT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "news-text")
+
+def _news_pasted_body(article):
+    """If Euan has pasted a manufacturer's article into news-text/<slug>.txt,
+    use it verbatim as the article body. Blank lines separate paragraphs;
+    a line starting with '## ' becomes a sub-heading and '- ' a bullet.
+    Lines starting with '#' only (comments) are ignored."""
+    f = os.path.join(NEWS_TEXT_DIR, article["slug"] + ".txt")
+    if not os.path.isfile(f):
+        return None
+    raw = open(f, encoding="utf-8").read()
+    lines = [l for l in raw.splitlines() if not (l.startswith("#") and not l.startswith("## "))]
+    text = "\n".join(lines).strip()
+    if not text:
+        return None
+    out = []
+    for block in re.split(r"\n\s*\n", text):
+        bl = [l.strip() for l in block.splitlines() if l.strip()]
+        if not bl:
+            continue
+        if all(l.startswith("- ") for l in bl):
+            out.append("<ul>" + "".join(f"<li>{esc(l[2:])}</li>" for l in bl) + "</ul>")
+        elif bl[0].startswith("## ") and len(bl) == 1:
+            out.append(f"<h2>{esc(bl[0][3:])}</h2>")
+        else:
+            out.append("<p>" + "<br>".join(esc(l) for l in bl) + "</p>")
+    src = article.get("source_url")
+    if src:
+        out.append(f'<p>Source: <a href="{esc(src)}" rel="nofollow" target="_blank">{esc(article.get("source_name") or src)}</a>.</p>')
+    return "".join(out)
+
 def render_news_article(article, all_articles):
     url = f'{BASE_URL}/news/{article["slug"]}/'
     title = article.get("seo_title") or f'{article["title"]} | {SITE_NAME} News'
@@ -4150,7 +4181,7 @@ def render_news_article(article, all_articles):
     body = (crumbs(crumb_items) +
             f'<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 10px;max-width:760px">{esc(article["title"])}</h1>'
             + header + hero + tldr_block +
-            f'<div class="article-body">{article.get("body_html", "")}</div>'
+            f'<div class="article-body">{_news_pasted_body(article) or article.get("body_html", "")}</div>'
             + _news_product_block(article)
             + related)
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": article["title"],

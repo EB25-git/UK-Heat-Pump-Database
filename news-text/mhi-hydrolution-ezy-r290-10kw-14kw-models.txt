@@ -1,0 +1,4 @@
+# Paste the full article text from:
+# https://mhiae.com/mhiae-launches-higher-capacity-hydrolution-ezy-r290-heat-pump-models/
+# below this line. Blank line = new paragraph. '## ' = sub-heading. '- ' = bullet.
+# While this file has no pasted text, the current Heat Pump Database write-up is shown.

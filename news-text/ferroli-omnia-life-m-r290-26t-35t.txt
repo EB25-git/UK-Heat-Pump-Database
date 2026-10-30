@@ -1,0 +1,4 @@
+# Paste the full article text from:
+# https://www.ferroli.com/int-en/news/la-gamma-omnia-life-m-r290-si-amplia-con-i-nuovi-modelli-ad-alta-potenza-26t-35t
+# below this line. Blank line = new paragraph. '## ' = sub-heading. '- ' = bullet.
+# While this file has no pasted text, the current Heat Pump Database write-up is shown.

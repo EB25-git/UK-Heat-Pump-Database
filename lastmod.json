@@ -1,7 +1,7 @@
 {
   "https://www.heatpumpdatabase.com/": {
-    "date": "2026-10-29",
-    "hash": "02efc16e37af7d9e"
+    "date": "2026-10-30",
+    "hash": "282f98ff4fde7790"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-10-21",
@@ -44,12 +44,12 @@
     "hash": "538da17b4b66a110"
   },
   "https://www.heatpumpdatabase.com/heat-pump-comparison/": {
-    "date": "2026-10-26",
-    "hash": "fa68c3da26341d52"
+    "date": "2026-10-30",
+    "hash": "639e8fcc2abfdddd"
   },
   "https://www.heatpumpdatabase.com/heat-pump-noise-calculator/": {
-    "date": "2026-10-29",
-    "hash": "eb956b04b6b09f65"
+    "date": "2026-10-30",
+    "hash": "f8bbb51f33f98c4b"
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
     "date": "2026-10-29",
@@ -112,12 +112,12 @@
     "hash": "92974ca38a393216"
   },
   "https://www.heatpumpdatabase.com/manufacturers/alpha/": {
-    "date": "2026-10-20",
-    "hash": "bdcc47d8bcf2a896"
+    "date": "2026-10-30",
+    "hash": "8904c77020a02898"
   },
   "https://www.heatpumpdatabase.com/manufacturers/amitime/": {
-    "date": "2026-10-11",
-    "hash": "e0b7b03923da6353"
+    "date": "2026-10-30",
+    "hash": "f1734ddd13332ae8"
   },
   "https://www.heatpumpdatabase.com/manufacturers/ares-renewables/": {
     "date": "2026-10-20",
@@ -180,8 +180,8 @@
     "hash": "70caf4c585253013"
   },
   "https://www.heatpumpdatabase.com/manufacturers/clivet/": {
-    "date": "2026-10-23",
-    "hash": "2322b21133cbf170"
+    "date": "2026-10-30",
+    "hash": "b163b330bb714fda"
   },
   "https://www.heatpumpdatabase.com/manufacturers/cool-energy/": {
     "date": "2026-10-11",
@@ -364,8 +364,8 @@
     "hash": "f44b0264c6ed3632"
   },
   "https://www.heatpumpdatabase.com/manufacturers/midea/": {
-    "date": "2026-10-21",
-    "hash": "1069ac736185411c"
+    "date": "2026-10-30",
+    "hash": "d3b08bdb60a1c3fe"
   },
   "https://www.heatpumpdatabase.com/manufacturers/mitsubishi-electric/": {
     "date": "2026-10-20",
@@ -537,39 +537,39 @@
   },
   "https://www.heatpumpdatabase.com/news/": {
     "date": "2026-10-30",
-    "hash": "d8e0555e3db62ef2"
+    "hash": "8401d9a02eecf735"
   },
   "https://www.heatpumpdatabase.com/news/baxi-launches-high-output-auriga-hp-plus-air-source-heat-pumps/": {
     "date": "2026-10-30",
-    "hash": "4cce0903b769aba3"
+    "hash": "d16f0549bdb1d017"
   },
   "https://www.heatpumpdatabase.com/news/carrier-aquaforce-61xwhvze-high-temperature-heat-pump/": {
     "date": "2026-10-30",
-    "hash": "6635864be3ba2e20"
+    "hash": "491d30ae34e29713"
   },
   "https://www.heatpumpdatabase.com/news/ferroli-omnia-life-m-r290-26t-35t/": {
     "date": "2026-10-30",
-    "hash": "de37945b932e8545"
+    "hash": "45087d66aa1b45a3"
   },
   "https://www.heatpumpdatabase.com/news/mhi-hydrolution-ezy-r290-10kw-14kw-models/": {
     "date": "2026-10-30",
-    "hash": "03ddec174c00a8ae"
+    "hash": "bbcf57c207f06973"
   },
   "https://www.heatpumpdatabase.com/news/nibe-launches-next-generation-s2060-heat-pump/": {
     "date": "2026-10-30",
-    "hash": "51ef77ed5f4696a6"
+    "hash": "f826e9a1a090994a"
   },
   "https://www.heatpumpdatabase.com/news/stiebel-eltron-50-years-hpnext-2026-range/": {
     "date": "2026-10-30",
-    "hash": "17595297b9152a72"
+    "hash": "5fb7c4d7486d83e6"
   },
   "https://www.heatpumpdatabase.com/news/vaillant-remastered-arotherm-plus-quiet-mark-7kw/": {
     "date": "2026-10-30",
-    "hash": "ad4f92f16d478852"
+    "hash": "df414d130eac5e50"
   },
   "https://www.heatpumpdatabase.com/news/viessmann-launches-vitocal-200-a-ie-heat-pump/": {
     "date": "2026-10-30",
-    "hash": "71e8b0538d47e906"
+    "hash": "85f22a45196a14fe"
   },
   "https://www.heatpumpdatabase.com/news/who-owns-your-heat-pump-brand-parent-companies/": {
     "date": "2026-10-30",
@@ -1298,6 +1298,46 @@
   "https://www.heatpumpdatabase.com/products/alpha-magis-m/": {
     "date": "2026-09-11",
     "hash": "eb3c405e95d09e80"
+  },
+  "https://www.heatpumpdatabase.com/products/alpha-magis-m12-t-top/": {
+    "date": "2026-10-30",
+    "hash": "0690dea82dd13f0b"
+  },
+  "https://www.heatpumpdatabase.com/products/alpha-magis-m12-top/": {
+    "date": "2026-10-30",
+    "hash": "f5700d08455b1fda"
+  },
+  "https://www.heatpumpdatabase.com/products/alpha-magis-m16-t-top/": {
+    "date": "2026-10-30",
+    "hash": "a708e6d7c8f10b7d"
+  },
+  "https://www.heatpumpdatabase.com/products/alpha-magis-m16-top/": {
+    "date": "2026-10-30",
+    "hash": "7e29dd09a67d7ed8"
+  },
+  "https://www.heatpumpdatabase.com/products/alpha-magis-m5-top/": {
+    "date": "2026-10-30",
+    "hash": "0aec04c7d81cf813"
+  },
+  "https://www.heatpumpdatabase.com/products/alpha-magis-m8-top/": {
+    "date": "2026-10-30",
+    "hash": "5ca182596dce5a78"
+  },
+  "https://www.heatpumpdatabase.com/products/amitime-ecolite-series-m-fm-6608/": {
+    "date": "2026-10-30",
+    "hash": "16f20179550014ca"
+  },
+  "https://www.heatpumpdatabase.com/products/amitime-ecolite-series-m-fm-6609/": {
+    "date": "2026-10-30",
+    "hash": "ef7282a3b1a65cc3"
+  },
+  "https://www.heatpumpdatabase.com/products/amitime-ecolite-series-m-fm-6610/": {
+    "date": "2026-10-30",
+    "hash": "cfee0d39a4b808cf"
+  },
+  "https://www.heatpumpdatabase.com/products/amitime-ecolite-series-m-fm/": {
+    "date": "2026-10-30",
+    "hash": "53782f1caa998cd8"
   },
   "https://www.heatpumpdatabase.com/products/amitime-ecostar-r290-pro-series-m-aio-3746/": {
     "date": "2026-09-28",
@@ -4402,6 +4442,22 @@
   "https://www.heatpumpdatabase.com/products/clivet-sheen-evo-2-0/": {
     "date": "2026-10-20",
     "hash": "79cb31421b09c6c2"
+  },
+  "https://www.heatpumpdatabase.com/products/clivet-sheen-pro-6604/": {
+    "date": "2026-10-30",
+    "hash": "bcdd0c9afe496931"
+  },
+  "https://www.heatpumpdatabase.com/products/clivet-sheen-pro-6605/": {
+    "date": "2026-10-30",
+    "hash": "279e30831c827cce"
+  },
+  "https://www.heatpumpdatabase.com/products/clivet-sheen-pro-6606/": {
+    "date": "2026-10-30",
+    "hash": "7c41141be3994381"
+  },
+  "https://www.heatpumpdatabase.com/products/clivet-sheen-pro/": {
+    "date": "2026-10-30",
+    "hash": "f85eaa56f8e5456a"
   },
   "https://www.heatpumpdatabase.com/products/clivet-spinchiller3-2531/": {
     "date": "2026-10-23",
@@ -10298,6 +10354,18 @@
   "https://www.heatpumpdatabase.com/products/midea-m-thermal-r290/": {
     "date": "2026-10-11",
     "hash": "6fcb4f1124193067"
+  },
+  "https://www.heatpumpdatabase.com/products/midea-mars-large-r290-6601/": {
+    "date": "2026-10-30",
+    "hash": "c4d39e5bd8c05919"
+  },
+  "https://www.heatpumpdatabase.com/products/midea-mars-large-r290-6602/": {
+    "date": "2026-10-30",
+    "hash": "5a28f6bf827f187c"
+  },
+  "https://www.heatpumpdatabase.com/products/midea-mars-large-r290/": {
+    "date": "2026-10-30",
+    "hash": "1f1f22a1688876a4"
   },
   "https://www.heatpumpdatabase.com/products/midea-mdv-impact-mono-6271/": {
     "date": "2026-10-20",
@@ -20340,12 +20408,12 @@
     "hash": "713598c73095f9ad"
   },
   "https://www.heatpumpdatabase.com/types/air-source-heat-pumps/": {
-    "date": "2026-10-26",
-    "hash": "c149131065552e6b"
+    "date": "2026-10-30",
+    "hash": "d932615395f8a784"
   },
   "https://www.heatpumpdatabase.com/types/commercial-heat-pumps/": {
-    "date": "2026-10-26",
-    "hash": "d32ed9114d1fa7fa"
+    "date": "2026-10-30",
+    "hash": "9a3b3fd3ae01a7b0"
   },
   "https://www.heatpumpdatabase.com/types/domestic-heat-pumps/": {
     "date": "2026-10-23",
@@ -20372,8 +20440,8 @@
     "hash": "a423db806abcfba8"
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
-    "date": "2026-10-26",
-    "hash": "6a58471e8f772549"
+    "date": "2026-10-30",
+    "hash": "642fe7daa4e61597"
   },
   "https://www.heatpumpdatabase.com/types/r32-heat-pumps/": {
     "date": "2026-10-26",
@@ -20420,8 +20488,8 @@
     "hash": "6267e02944897148"
   },
   "https://www.heatpumpdatabase.com/types/residential-heat-pumps/": {
-    "date": "2026-10-26",
-    "hash": "e96dd84830227f10"
+    "date": "2026-10-30",
+    "hash": "b941b36b88e81a0d"
   },
   "https://www.heatpumpdatabase.com/types/water-source-heat-pumps/": {
     "date": "2026-10-23",

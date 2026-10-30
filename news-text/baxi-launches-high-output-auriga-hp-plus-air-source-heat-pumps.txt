@@ -1,0 +1,4 @@
+# Paste the full article text from:
+# https://www.baxi.co.uk/commercial/help-and-advice/knowledge-hub/baxi-launches-new-high-output-auriga-hp-plus-air-source-heat-pump-series
+# below this line. Blank line = new paragraph. '## ' = sub-heading. '- ' = bullet.
+# While this file has no pasted text, the current Heat Pump Database write-up is shown.

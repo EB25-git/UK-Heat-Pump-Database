@@ -1,0 +1,4 @@
+# Paste the full article text from:
+# https://www.vaillant.co.uk/news/quiet-mark/
+# below this line. Blank line = new paragraph. '## ' = sub-heading. '- ' = bullet.
+# While this file has no pasted text, the current Heat Pump Database write-up is shown.
