@@ -4092,6 +4092,26 @@ def render_news_index(articles):
     return page(title, desc, url, body, [ld, breadcrumb_jsonld(crumb_items, url)], og_type="website",
                 active="news", og_image=get_og_image())
 
+NEWS_PRODUCTS = {}
+
+def _news_product_block(article):
+    """'Product listings' table at the end of a product-news article, linking
+    to every listing named in the article's "product_ids" (news.json)."""
+    ps = [NEWS_PRODUCTS[i] for i in article.get("product_ids", []) if i in NEWS_PRODUCTS]
+    if not ps:
+        return ""
+    rows = []
+    for p in ps:
+        eff = (f"SCOP {num(p['scop'])}" if p.get("scop") is not None
+               else (f"COP {num(p['cop'])}" if p.get("cop") is not None else "&mdash;"))
+        rows.append(f'<tr><td><a href="{BASE_URL}/products/{p["_slug"]}/">{esc(p["manufacturer"])} {esc(p["model"])}</a></td>'
+                    f'<td>{esc(p.get("product_code") or "")}</td><td>{esc(cap_str(p) or "")}</td>'
+                    f'<td>{eff}</td><td>{esc(p.get("refrigerant") or "")}</td></tr>')
+    head = article.get("products_heading") or "Product listings on Heat Pump Database"
+    return (f'<h2 style="font-size:20px;margin:34px 0 12px">{esc(head)}</h2>'
+            '<div style="overflow-x:auto;max-width:760px"><table class="list"><tr><th>Model</th><th>Code</th>'
+            '<th>Capacity</th><th>Efficiency</th><th>Refrigerant</th></tr>' + "".join(rows) + '</table></div>')
+
 def render_news_article(article, all_articles):
     url = f'{BASE_URL}/news/{article["slug"]}/'
     title = article.get("seo_title") or f'{article["title"]} | {SITE_NAME} News'
@@ -4131,6 +4151,7 @@ def render_news_article(article, all_articles):
             f'<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 10px;max-width:760px">{esc(article["title"])}</h1>'
             + header + hero + tldr_block +
             f'<div class="article-body">{article.get("body_html", "")}</div>'
+            + _news_product_block(article)
             + related)
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": article["title"],
           "description": desc, "url": url, "datePublished": article.get("date"),
@@ -4854,6 +4875,7 @@ def main():
 
     # news (product press releases, site updates, insights)
     news_articles = load_news()
+    NEWS_PRODUCTS.update({p["id"]: p for p in products if p.get("_slug")})
     for article in news_articles:
         html_ = render_news_article(article, news_articles)
         write(os.path.join(ROOT, "news", article["slug"], "index.html"), html_)
