@@ -1,7 +1,7 @@
 {
   "https://www.heatpumpdatabase.com/": {
-    "date": "2026-10-30",
-    "hash": "282f98ff4fde7790"
+    "date": "2026-10-31",
+    "hash": "bf02ed050ef70791"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-10-21",
@@ -44,12 +44,12 @@
     "hash": "538da17b4b66a110"
   },
   "https://www.heatpumpdatabase.com/heat-pump-comparison/": {
-    "date": "2026-10-30",
-    "hash": "639e8fcc2abfdddd"
+    "date": "2026-10-31",
+    "hash": "a6cb3ad634bed3a4"
   },
   "https://www.heatpumpdatabase.com/heat-pump-noise-calculator/": {
-    "date": "2026-10-30",
-    "hash": "f8bbb51f33f98c4b"
+    "date": "2026-10-31",
+    "hash": "a3718137ebe0b479"
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
     "date": "2026-10-29",
@@ -368,8 +368,8 @@
     "hash": "d3b08bdb60a1c3fe"
   },
   "https://www.heatpumpdatabase.com/manufacturers/mitsubishi-electric/": {
-    "date": "2026-10-20",
-    "hash": "86a0558a3195c5d7"
+    "date": "2026-10-31",
+    "hash": "01c11bcc963ce908"
   },
   "https://www.heatpumpdatabase.com/manufacturers/mitsubishi-heavy-industries-air-conditioning/": {
     "date": "2026-10-20",
@@ -536,48 +536,52 @@
     "hash": "37f248bb34ff229c"
   },
   "https://www.heatpumpdatabase.com/news/": {
-    "date": "2026-10-30",
-    "hash": "8401d9a02eecf735"
+    "date": "2026-10-31",
+    "hash": "5f112ba6237fc4b4"
   },
   "https://www.heatpumpdatabase.com/news/baxi-launches-high-output-auriga-hp-plus-air-source-heat-pumps/": {
-    "date": "2026-10-30",
-    "hash": "d16f0549bdb1d017"
+    "date": "2026-10-31",
+    "hash": "e403a7c08f3a16c5"
   },
   "https://www.heatpumpdatabase.com/news/carrier-aquaforce-61xwhvze-high-temperature-heat-pump/": {
-    "date": "2026-10-30",
-    "hash": "491d30ae34e29713"
+    "date": "2026-10-31",
+    "hash": "c14b1928bcf91c53"
   },
   "https://www.heatpumpdatabase.com/news/ferroli-omnia-life-m-r290-26t-35t/": {
-    "date": "2026-10-30",
-    "hash": "45087d66aa1b45a3"
+    "date": "2026-10-31",
+    "hash": "9bf75c6f48a7d06f"
   },
   "https://www.heatpumpdatabase.com/news/mhi-hydrolution-ezy-r290-10kw-14kw-models/": {
-    "date": "2026-10-30",
-    "hash": "bbcf57c207f06973"
+    "date": "2026-10-31",
+    "hash": "0a2822d2da32db7f"
   },
   "https://www.heatpumpdatabase.com/news/nibe-launches-next-generation-s2060-heat-pump/": {
-    "date": "2026-10-30",
-    "hash": "f826e9a1a090994a"
+    "date": "2026-10-31",
+    "hash": "2bcb23ede305e119"
+  },
+  "https://www.heatpumpdatabase.com/news/r290-vs-r32-heat-pumps-what-the-data-shows/": {
+    "date": "2026-10-31",
+    "hash": "f8101bc3c6f68158"
   },
   "https://www.heatpumpdatabase.com/news/stiebel-eltron-50-years-hpnext-2026-range/": {
-    "date": "2026-10-30",
-    "hash": "5fb7c4d7486d83e6"
+    "date": "2026-10-31",
+    "hash": "387e77fba240fe77"
   },
   "https://www.heatpumpdatabase.com/news/vaillant-remastered-arotherm-plus-quiet-mark-7kw/": {
-    "date": "2026-10-30",
-    "hash": "df414d130eac5e50"
+    "date": "2026-10-31",
+    "hash": "d0816bd90ec30dde"
   },
   "https://www.heatpumpdatabase.com/news/viessmann-launches-vitocal-200-a-ie-heat-pump/": {
-    "date": "2026-10-30",
-    "hash": "85f22a45196a14fe"
+    "date": "2026-10-31",
+    "hash": "53629f471790795d"
   },
   "https://www.heatpumpdatabase.com/news/who-owns-your-heat-pump-brand-parent-companies/": {
-    "date": "2026-10-30",
-    "hash": "f16843ae56bc3d4b"
+    "date": "2026-10-31",
+    "hash": "6f1374befa9976b5"
   },
   "https://www.heatpumpdatabase.com/news/why-small-heat-pumps-beat-large-ones-on-scop/": {
-    "date": "2026-10-30",
-    "hash": "02766ba2ce47e767"
+    "date": "2026-10-31",
+    "hash": "48641adbb9680b93"
   },
   "https://www.heatpumpdatabase.com/products/acond-aconomis-2294/": {
     "date": "2026-10-23",
@@ -10527,6 +10531,14 @@
     "date": "2026-10-11",
     "hash": "d9af3e048994795e"
   },
+  "https://www.heatpumpdatabase.com/products/mitsubishi-electric-ecodan-r290-monobloc-suz-wz-6621/": {
+    "date": "2026-10-31",
+    "hash": "df8ce44f03612086"
+  },
+  "https://www.heatpumpdatabase.com/products/mitsubishi-electric-ecodan-r290-monobloc-suz-wz/": {
+    "date": "2026-10-31",
+    "hash": "5a0661294638e32a"
+  },
   "https://www.heatpumpdatabase.com/products/mitsubishi-electric-ecodan-r290-monobloc/": {
     "date": "2026-10-11",
     "hash": "dbc9c3fcab38547b"
@@ -20408,8 +20420,8 @@
     "hash": "713598c73095f9ad"
   },
   "https://www.heatpumpdatabase.com/types/air-source-heat-pumps/": {
-    "date": "2026-10-30",
-    "hash": "d932615395f8a784"
+    "date": "2026-10-31",
+    "hash": "d4e75cb87ced3d55"
   },
   "https://www.heatpumpdatabase.com/types/commercial-heat-pumps/": {
     "date": "2026-10-30",
@@ -20440,8 +20452,8 @@
     "hash": "a423db806abcfba8"
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
-    "date": "2026-10-30",
-    "hash": "642fe7daa4e61597"
+    "date": "2026-10-31",
+    "hash": "00b9ddcdbbcde9c3"
   },
   "https://www.heatpumpdatabase.com/types/r32-heat-pumps/": {
     "date": "2026-10-26",
@@ -20488,8 +20500,8 @@
     "hash": "6267e02944897148"
   },
   "https://www.heatpumpdatabase.com/types/residential-heat-pumps/": {
-    "date": "2026-10-30",
-    "hash": "b941b36b88e81a0d"
+    "date": "2026-10-31",
+    "hash": "2ff0821db6dcc3b6"
   },
   "https://www.heatpumpdatabase.com/types/water-source-heat-pumps/": {
     "date": "2026-10-23",
