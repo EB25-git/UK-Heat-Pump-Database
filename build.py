@@ -3579,6 +3579,7 @@ def render_best_single_page(composite, sections):
             f"<h1>Best Heat Pumps {yr}: Top-Rated Models Ranked by Real Data</h1>"
             f'<p class="sub">{total_rankings} data-driven rankings · updated {_nice_date(TODAY)}</p>'
             + quick_html +
+            f'<div class="callout" style="margin:16px 0"><strong>Rank them your way.</strong> Pick up to four priorities &ndash; SCOP, noise, weight, price and more &ndash; weight them and set a capacity range in the <a href="{BASE_URL}/heat-pump-finder/">Heat Pump Finder</a>.</div>'
             f'<p>Every ranking below is generated automatically from the specifications in the {SITE_NAME}, '
             f'compared at matching test conditions wherever possible. Each section shows the top {BEST_HUB_N} — '
             f'follow the link for the full top 10.</p>'
@@ -4475,6 +4476,166 @@ def _unit_card(u):
     {_q_cards(u)}</div>
 </div>"""
 
+
+GWP = {"R290": 3, "R32": 675, "R410A": 2088, "R-410A": 2088, "R454B": 466, "R513A": 631, "R1234ZE": 7, "R744": 1,
+       "R717": 0, "R134A": 1430, "R407C": 1774, "R452B": 698, "R454C": 148, "R515B": 293, "R600A": 3,
+       "R1233ZD": 1, "R1234YF": 4, "R290 (PROPANE)": 3, "CO2": 1}
+
+def _gwp(r):
+    if not r:
+        return None
+    k = str(r).upper().replace(" ", "").replace("-", "")
+    for key, v in GWP.items():
+        if key.replace("-", "").replace(" ", "") == k:
+            return v
+    return None
+
+def finder_products(products):
+    def _lw(p):
+        ref = (p.get("noise_ref") or "").lower()
+        return p.get("noise") if (p.get("noise") is not None and not re.search(r"lpa|pressure|@\s?\d|at \d|distance", ref)) else None
+    out = []
+    for p in products:
+        k = p.get("cap_max")
+        if not isinstance(k, (int, float)) or k <= 0:
+            continue
+        t = (p.get("hp_type") or "")[:4].upper()
+        pr = p.get("price_min")
+        out.append({
+            "i": p["id"], "m": p.get("manufacturer"), "n": p.get("model"), "c": p.get("product_code"),
+            "t": t, "a": p.get("type"), "r": p.get("refrigerant"), "k": k,
+            "s": p["scop"] if (p.get("scop") is not None and str(p.get("scop_cond") or "").upper() in ("W35", "B0/W35", "W10/W35")) else None,
+            "p": p["cop"] if (p.get("cop") is not None and str(p.get("cop_cond") or "").upper() in ("A7/W35", "B0/W35", "W10/W35")) else None,
+            "lw": _lw(p), "w": p.get("weight"), "f": p.get("flow_temp_max"), "o": p.get("op_temp_min"),
+            "pk": round(pr / k, 1) if isinstance(pr, (int, float)) and pr > 0 else None,
+            "g": _gwp(p.get("refrigerant")), "u": p["_slug"]})
+    return out
+
+FINDER_CSS = """
+.fd-card{background:#fff;border:1px solid #E3EDE8;border-radius:14px;padding:18px 20px;margin:0 0 18px}
+.fd-card h2{font-size:17px;margin:0 0 12px}
+.fd-row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.fd-row label{display:flex;flex-direction:column;font-size:13px;color:#3B4D47;gap:5px}
+.fd-row select,.fd-row input[type=number]{font:inherit;font-size:14px;padding:8px 10px;border:1px solid #CFDDD7;border-radius:8px;min-width:130px;background:#fff}
+.fd-crit{display:flex;flex-wrap:wrap;gap:8px}
+.fd-crit button{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:20px;border:1px solid #CFDDD7;background:#fff;color:#3B4D47;cursor:pointer}
+.fd-crit button.on{background:#0B6656;border-color:#0B6656;color:#fff}
+.fd-crit button:disabled{opacity:.45;cursor:not-allowed}
+.fd-weights{margin-top:14px;display:grid;gap:10px}
+.fd-w{display:grid;grid-template-columns:170px 1fr 52px;gap:12px;align-items:center;font-size:14px}
+.fd-w input{width:100%;accent-color:#0B6656}
+.fd-w .pct{font-weight:700;color:#0B6656;text-align:right}
+.fd-hint{font-size:12.5px;color:#5A6A65;margin:8px 0 0}
+.fd-res table{width:100%;border-collapse:collapse;font-size:14px}
+.fd-res th,.fd-res td{padding:9px 8px;border-bottom:1px solid #EEF4F1;text-align:left;vertical-align:middle}
+.fd-res th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#5A6A65}
+.fd-rank{font-weight:700;color:#083F35;width:28px}
+.fd-score{min-width:120px}
+.fd-bar{height:8px;background:#E3EDE8;border-radius:5px;overflow:hidden;margin-top:4px}
+.fd-bar i{display:block;height:100%;background:#22C79A}
+.fd-meta{font-size:13px;color:#5A6A65;margin:0 0 10px}
+.fd-empty{padding:24px 0;color:#5A6A65}
+@media(max-width:640px){.fd-w{grid-template-columns:1fr 1fr 44px}.fd-hide-sm{display:none}}
+"""
+
+FINDER_JS = """
+(function(){
+var C=[
+ {id:'s',label:'SCOP',unit:'',hi:true,fmt:function(v){return v.toFixed(2)},tip:'Seasonal efficiency at 35 °C flow'},
+ {id:'p',label:'COP',unit:'',hi:true,fmt:function(v){return v.toFixed(2)},tip:'Efficiency at A7/W35 (or B0/W35)'},
+ {id:'lw',label:'Quietness',unit:' dB(A)',hi:false,fmt:function(v){return v.toFixed(0)},tip:'Lower sound power scores higher'},
+ {id:'w',label:'Lightness',unit:' kg',hi:false,fmt:function(v){return v.toFixed(0)},tip:'Lower weight scores higher'},
+ {id:'f',label:'Max flow temp',unit:' °C',hi:true,fmt:function(v){return v.toFixed(0)},tip:'Higher suits radiators'},
+ {id:'o',label:'Cold operation',unit:' °C',hi:false,fmt:function(v){return v.toFixed(0)},tip:'Lowest outdoor temperature it runs at'},
+ {id:'pk',label:'Price per kW',unit:' £/kW',hi:false,fmt:function(v){return '£'+v.toFixed(0)},tip:'UK retailer price, unit only'},
+ {id:'g',label:'Low-GWP refrigerant',unit:'',hi:false,fmt:function(v){return v},tip:'Refrigerant global warming potential'}];
+var MAX=4,D=[],sel=['s','lw','f'],wt={s:3,lw:3,pk:3,p:3,w:3,f:3,o:3,g:3};
+function $(id){return document.getElementById(id)}
+function readHash(){try{var h=decodeURIComponent(location.hash.slice(1));if(!h)return;var q={};h.split('&').forEach(function(x){var a=x.split('=');q[a[0]]=a[1]});
+ if(q.c){sel=q.c.split(',').filter(function(c){return C.some(function(x){return x.id===c})}).slice(0,MAX);}
+ if(q.w){q.w.split(',').forEach(function(v,i){if(sel[i])wt[sel[i]]=Math.max(1,Math.min(5,+v||3))})}
+ ['type','app','kmin','kmax'].forEach(function(k){if(q[k]!=null&&$('fd-'+k))$('fd-'+k).value=q[k]})}catch(e){}}
+function writeHash(){var h='c='+sel.join(',')+'&w='+sel.map(function(c){return wt[c]}).join(',')+'&type='+$('fd-type').value+'&app='+$('fd-app').value+'&kmin='+$('fd-kmin').value+'&kmax='+$('fd-kmax').value;history.replaceState(null,'','#'+h)}
+function drawCrit(){var b=$('fd-crit');b.innerHTML='';C.forEach(function(c){var x=document.createElement('button');x.type='button';x.textContent=c.label;x.title=c.tip;
+ var on=sel.indexOf(c.id)>=0;if(on)x.className='on';if(!on&&sel.length>=MAX)x.disabled=true;
+ x.onclick=function(){var i=sel.indexOf(c.id);if(i>=0){if(sel.length>1)sel.splice(i,1)}else if(sel.length<MAX)sel.push(c.id);drawCrit();drawW();run()};b.appendChild(x)});
+ $('fd-count').textContent=sel.length+' of '+MAX+' selected'}
+function drawW(){var w=$('fd-weights');w.innerHTML='';var tot=sel.reduce(function(a,c){return a+wt[c]},0);
+ sel.forEach(function(id){var c=C.filter(function(x){return x.id===id})[0];var r=document.createElement('div');r.className='fd-w';
+  r.innerHTML='<span>'+c.label+'</span><input type="range" min="1" max="5" step="1" value="'+wt[id]+'" aria-label="Weight for '+c.label+'"><span class="pct">'+Math.round(wt[id]/tot*100)+'%</span>';
+  r.querySelector('input').oninput=function(e){wt[id]=+e.target.value;drawW();run()};w.appendChild(r)})}
+function pct(a,q){var i=(a.length-1)*q,lo=Math.floor(i),hi=Math.ceil(i);return a[lo]+(a[hi]-a[lo])*(i-lo)}
+function run(){writeHash();var type=$('fd-type').value,app=$('fd-app').value,kmin=parseFloat($('fd-kmin').value)||0,kmax=parseFloat($('fd-kmax').value)||1e9;
+ var base=D.filter(function(p){return (type==='ANY'||p.t===type)&&(app==='Any'||p.a===app)&&p.k>=kmin&&p.k<=kmax});
+ var pool=base.filter(function(p){return sel.every(function(c){return typeof p[c]==='number'})});
+ var res=$('fd-results');
+ if(pool.length<3){res.innerHTML='<p class="fd-empty">Only '+pool.length+' of '+base.length+' heat pumps in this range publish all the selected figures. Try fewer criteria or a wider capacity range.</p>';return}
+ var rng={};sel.forEach(function(c){var v=pool.map(function(p){return p[c]}).sort(function(a,b){return a-b});rng[c]=[pct(v,.05),pct(v,.95)]});
+ var tot=sel.reduce(function(a,c){return a+wt[c]},0);
+ pool.forEach(function(p){var s=0;sel.forEach(function(id){var c=C.filter(function(x){return x.id===id})[0];var lo=rng[id][0],hi=rng[id][1];var n=hi>lo?(p[id]-lo)/(hi-lo):1;n=Math.max(0,Math.min(1,n));if(!c.hi)n=1-n;s+=n*wt[id]});p._s=s/tot*100});
+ pool.sort(function(a,b){return b._s-a._s||b.k-a.k});
+ var top=pool.slice(0,10);
+ var head='<tr><th>#</th><th>Heat pump</th><th class="fd-hide-sm">Output</th>'+sel.map(function(id){return '<th>'+C.filter(function(x){return x.id===id})[0].label+'</th>'}).join('')+'<th>Score</th></tr>';
+ var rows=top.map(function(p,i){return '<tr><td class="fd-rank">'+(i+1)+'</td><td><a href="/products/'+p.u+'/">'+esc(p.m+' '+p.n)+'</a>'+(p.c?'<div style="font-size:12px;color:#5A6A65">'+esc(p.c)+'</div>':'')+'</td><td class="fd-hide-sm">'+p.k+' kW</td>'+
+  sel.map(function(id){var c=C.filter(function(x){return x.id===id})[0];var v=p[id];return '<td>'+(id==='g'?esc(p.r||'')+' <span style="color:#5A6A65;font-size:12px">('+v+')</span>':c.fmt(v)+(id==='pk'?'':c.unit))+'</td>'}).join('')+
+  '<td class="fd-score"><b>'+p._s.toFixed(0)+'</b>/100<div class="fd-bar"><i style="width:'+p._s.toFixed(0)+'%"></i></div></td></tr>'}).join('');
+ res.innerHTML='<p class="fd-meta">Top 10 of <b>'+pool.length+'</b> heat pumps that publish all selected figures ('+(base.length-pool.length)+' others in this range left out for missing data).</p><div style="overflow-x:auto"><table>'+head+rows+'</table></div>';
+ if(window.gtag)try{gtag('event','finder_run',{criteria:sel.join(','),pool:pool.length})}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+readHash();drawCrit();drawW();
+['fd-type','fd-app','fd-kmin','fd-kmax'].forEach(function(id){$(id).addEventListener('input',run)});
+$('fd-reset').onclick=function(){sel=['s','lw','f'];C.forEach(function(c){wt[c.id]=3});$('fd-type').value='ASHP';$('fd-app').value='Residential';$('fd-kmin').value=4;$('fd-kmax').value=16;drawCrit();drawW();run()};
+fetch('/finder-products.json').then(function(r){return r.json()}).then(function(d){D=d;run()}).catch(function(){$('fd-results').innerHTML='<p class="fd-empty">Could not load product data.</p>'});
+})();
+"""
+
+def render_finder_page(n_products):
+    title = "Heat Pump Finder: Build Your Own Top 10 Ranking"
+    desc = ("Rank heat pumps your way: pick up to four priorities such as SCOP, noise, weight or price, "
+            f"weight them, set a capacity range and get a top 10 from {n_products:,} models.")
+    canonical = f"{BASE_URL}/heat-pump-finder/"
+    jsonld = [{"@context": "https://schema.org", "@type": "WebApplication", "name": "Heat Pump Finder",
+               "url": canonical, "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)",
+               "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}, "description": desc,
+               "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": f"{BASE_URL}/"}},
+              breadcrumb_jsonld([("Home", f"{BASE_URL}/"), ("Best Heat Pumps", f"{BASE_URL}/best/"), ("Heat Pump Finder", None)], canonical)]
+    how = ("Each heat pump is scored 0&ndash;10 on every criterion you pick, scaled between the 5th and 95th percentile of the "
+           "heat pumps in your filtered range (so one extreme model can&rsquo;t distort the scale). Lower is better for noise, "
+           "weight, cold operation, price and GWP. Scores are combined using your weights into a total out of 100. Only heat "
+           "pumps that publish every selected figure are ranked. SCOP is taken at 35&nbsp;&deg;C flow and COP at A7/W35 so models "
+           "are compared at the same conditions.")
+    body = f"""
+<style>{FINDER_CSS}</style>
+{crumbs([("Home", f"{BASE_URL}/"), ("Best Heat Pumps", f"{BASE_URL}/best/"), ("Heat Pump Finder", None)])}
+<h1>Heat Pump Finder: Build Your Own Top 10</h1>
+<p class="sub">Choose what matters to you, weight it, and we&rsquo;ll rank {n_products:,} heat pumps on their published specifications. Free and independent.</p>
+<div class="fd-card">
+ <h2>1. What are you looking for?</h2>
+ <div class="fd-row">
+  <label>Heat pump type<select id="fd-type"><option value="ASHP">Air source</option><option value="GSHP">Ground source</option><option value="WSHP">Water source</option><option value="ANY">Any</option></select></label>
+  <label>Application<select id="fd-app"><option value="Residential">Residential</option><option value="Commercial">Commercial</option><option value="Any">Any</option></select></label>
+  <label>Min output (kW)<input type="number" id="fd-kmin" value="4" min="0" step="0.5"></label>
+  <label>Max output (kW)<input type="number" id="fd-kmax" value="16" min="0" step="0.5"></label>
+ </div>
+ <p class="fd-hint">Output is the maximum heating capacity. Not sure what size you need? Try the <a href="{BASE_URL}/heat-pump-size-calculator/">size calculator</a>.</p>
+</div>
+<div class="fd-card">
+ <h2>2. Pick up to four priorities <span id="fd-count" style="font-size:13px;font-weight:500;color:#5A6A65;margin-left:6px"></span></h2>
+ <div class="fd-crit" id="fd-crit"></div>
+ <h2 style="margin-top:18px">3. Weight them</h2>
+ <div class="fd-weights" id="fd-weights"></div>
+ <p class="fd-hint">Slide right to make a priority count for more. Percentages show each one&rsquo;s share of the final score. <button type="button" id="fd-reset" style="font:inherit;font-size:12.5px;background:none;border:0;color:#0B6656;text-decoration:underline;cursor:pointer;padding:0">Reset</button></p>
+</div>
+<div class="fd-card fd-res">
+ <h2>Your top 10</h2>
+ <div id="fd-results" aria-live="polite"><p class="fd-empty">Loading products&hellip;</p></div>
+</div>
+<details class="hub-faq-item" style="margin:8px 0 20px"><summary style="cursor:pointer;font-weight:600">How is the score calculated?</summary><p>{how}</p></details>
+<p>Prefer our fixed rankings? See the <a href="{BASE_URL}/best/">best heat pumps of the year</a>, or check a shortlist against the <a href="{BASE_URL}/heat-pump-noise-calculator/">37&nbsp;dB noise limit</a>.</p>
+<script>{FINDER_JS}</script>
+"""
+    return page(title, desc, canonical, body, jsonld, active="best")
+
 def render_noise_calculator_page(n_products):
     title = "Heat Pump Noise Calculator: MCS 020 a) 37 dB Check"
     desc = ("Free MCS 020 a) noise calculator: check a heat pump meets the 37 dB(A) permitted "
@@ -5075,6 +5236,14 @@ def main():
     ]
     noise_products.sort(key=lambda x: (str(x["m"]), str(x["n"]), x["k"] or 0))
     write(os.path.join(ROOT, "noise-products.json"), json.dumps(noise_products, ensure_ascii=False, separators=(",", ":")))
+    finder_rows = finder_products(products)
+    write(os.path.join(ROOT, "finder-products.json"),
+          json.dumps([{k: v for k, v in r.items() if v is not None} for r in finder_rows], ensure_ascii=False, separators=(",", ":")))
+    finder_html = render_finder_page(len(finder_rows))
+    write(os.path.join(ROOT, "heat-pump-finder", "index.html"), finder_html)
+    url = f"{BASE_URL}/heat-pump-finder/"
+    urls.append(url)
+    _lastmod_for(url, hashlib.sha256(finder_html.encode("utf-8")).hexdigest()[:16])
     noise_html = render_noise_calculator_page(len(noise_products))
     write(os.path.join(ROOT, "heat-pump-noise-calculator", "index.html"), noise_html)
     url = f"{BASE_URL}/heat-pump-noise-calculator/"
