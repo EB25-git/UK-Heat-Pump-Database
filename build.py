@@ -859,6 +859,7 @@ def burger_menu(active=None):
         + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
         + compare_block
         + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
+        + it("Heat Pump Finder", f"{BASE_URL}/heat-pump-finder/", "finder")
         + it("Gallery", f"{BASE_URL}/#gallery", "gallery")
         + calc_block
         + knowledge_block
@@ -4634,7 +4635,7 @@ def render_finder_page(n_products):
 <p>Prefer our fixed rankings? See the <a href="{BASE_URL}/best/">best heat pumps of the year</a>, or check a shortlist against the <a href="{BASE_URL}/heat-pump-noise-calculator/">37&nbsp;dB noise limit</a>.</p>
 <script>{FINDER_JS}</script>
 """
-    return page(title, desc, canonical, body, jsonld, active="best")
+    return page(title, desc, canonical, body, jsonld, active="finder")
 
 def render_noise_calculator_page(n_products):
     title = "Heat Pump Noise Calculator: MCS 020 a) 37 dB Check"
