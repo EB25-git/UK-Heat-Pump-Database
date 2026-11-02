@@ -10267,7 +10267,7 @@
     "mcs_listed": true,
     "mcs_cert": "ICIM-PDC-000111 / 01-04",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=NIMBUS%20POCKET%2050%20M%20NET%20R32",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=864"
+    "heatpumpmonitor_url": null
   },
   {
     "id": 360,
@@ -12019,7 +12019,7 @@
     "mcs_listed": true,
     "mcs_cert": "041-K044-01 a",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=CS2000AWF%204%20R-S",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=737",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=737",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -22976,7 +22976,7 @@
     "price_min": 9065.0,
     "price_max": 9065.0,
     "price_check_date": "2026-08-03",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=47"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=47"
   },
   {
     "id": 608,
@@ -23132,7 +23132,7 @@
     "price_min": 2569.24,
     "price_max": 2962.32,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=378",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=67",
     "price_source": "UK retailer survey (26 retailers)",
     "mcs_cert": "KIWA 00027/024 HP",
     "aliases": [
@@ -23572,7 +23572,7 @@
     "price_min": 3847.52,
     "price_max": 4355.45,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=291",
+    "heatpumpmonitor_url": null,
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -25449,7 +25449,7 @@
     "price_min": 3881,
     "price_max": 7158.2,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": null,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=35",
     "mcs_cert": "MCS HP0265/05",
     "price_source": "UK retailer survey (26 retailers)"
   },
@@ -25503,7 +25503,7 @@
     "price_min": 2004.99,
     "price_max": 2545.41,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=628",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=36",
     "mcs_cert": "BBA 0009/15",
     "aliases": [
       "HPID6R32BODY"
@@ -27103,7 +27103,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=531"
+    "heatpumpmonitor_url": null
   },
   {
     "id": 697,
@@ -27208,7 +27208,7 @@
     "price_min": 4412.5,
     "price_max": 4412.5,
     "price_check_date": "2026-08-03",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=252"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=58"
   },
   {
     "id": 699,
@@ -27313,7 +27313,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=448"
+    "heatpumpmonitor_url": null
   },
   {
     "id": 701,
@@ -27834,7 +27834,7 @@
     "price_min": 10715.69,
     "price_max": 10715.69,
     "price_check_date": "2026-09-30",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=309"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=309"
   },
   {
     "id": 711,
@@ -28147,7 +28147,7 @@
     "price_min": 3528,
     "price_max": 3528,
     "price_check_date": "2026-07-07",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=20"
+    "heatpumpmonitor_url": null
   },
   {
     "id": 717,
@@ -30627,7 +30627,7 @@
     "price_min": 2466.53,
     "price_max": 3029.16,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": null,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=54",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -30681,7 +30681,7 @@
     "price_min": 3518.63,
     "price_max": 4245.82,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": null,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=55",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -31000,7 +31000,7 @@
     "price_min": 3704.4,
     "price_max": 4527.49,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=51",
+    "heatpumpmonitor_url": null,
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -57700,7 +57700,8 @@
     "mcs_cert": "011-1W0465_01",
     "price_min": 5889.17,
     "price_max": 5889.17,
-    "price_check_date": "28/08/2026"
+    "price_check_date": "28/08/2026",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=9"
   },
   {
     "id": 1378,
@@ -57752,7 +57753,8 @@
     "mcs_cert": "011-1W0465_01",
     "price_min": 5946.67,
     "price_max": 5946.67,
-    "price_check_date": "28/08/2026"
+    "price_check_date": "28/08/2026",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=10"
   },
   {
     "id": 1379,
@@ -57805,7 +57807,7 @@
     "price_min": 6004.17,
     "price_max": 6004.17,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=786"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=11"
   },
   {
     "id": 1380,
@@ -60965,7 +60967,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=685",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=18",
     "mcs_cert": "MCS HP0255/04"
   },
   {
@@ -61018,7 +61020,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1224"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=1224"
   },
   {
     "id": 1447,
@@ -61617,7 +61619,7 @@
     "price_min": 7300,
     "price_max": 7300,
     "price_check_date": "2026-09-30",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=965",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=965",
     "aliases": [
       "HPA-O 07.2 Plus HC 230"
     ]
@@ -65196,7 +65198,7 @@
     "price_max": 3578.32,
     "price_check_date": "28/08/2026",
     "mcs_cert": "KIWA 00033/057 HP",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=808",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=808",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -65250,7 +65252,7 @@
     "price_max": 2583.32,
     "price_check_date": "28/08/2026",
     "mcs_cert": "KIWA 00033/058 HP",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=854",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=854",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -65407,7 +65409,8 @@
     "price_min": 3341.52,
     "price_max": 3889.0,
     "price_check_date": "2026-07-15",
-    "mcs_cert": "KIWA 00033/062 HP"
+    "mcs_cert": "KIWA 00033/062 HP",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=82"
   },
   {
     "id": 1538,
@@ -65460,7 +65463,7 @@
     "price_max": 5678.32,
     "price_check_date": "28/08/2026",
     "mcs_cert": "KIWA 00033/060 HP",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=895",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=895",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -65619,7 +65622,8 @@
     "price_min": 4300,
     "price_max": 4300,
     "price_check_date": "2026-07-07",
-    "mcs_cert": "KIWA 00033/064 HP"
+    "mcs_cert": "KIWA 00033/064 HP",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=86"
   },
   {
     "id": 1542,
@@ -68772,7 +68776,7 @@
     "price_max": null,
     "price_check_date": null,
     "mcs_listed": false,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1062"
+    "heatpumpmonitor_url": null
   },
   {
     "id": 1612,
@@ -85914,7 +85918,8 @@
     "price_min": 4075,
     "price_max": 4075,
     "price_check_date": "2026-07-10",
-    "mcs_listed": true
+    "mcs_listed": true,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=79"
   },
   {
     "id": 1955,
@@ -93498,7 +93503,7 @@
     "price_min": 2929,
     "price_max": 2929,
     "price_check_date": "2026-07-07",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=326"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=42"
   },
   {
     "id": 2115,
@@ -93605,7 +93610,7 @@
     "price_min": 2813.45,
     "price_max": 3500,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": null,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=98",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -93659,7 +93664,7 @@
     "price_min": 2875,
     "price_max": 2875,
     "price_check_date": "2026-07-08",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=675"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=89"
   },
   {
     "id": 2118,
@@ -93765,7 +93770,8 @@
     "price_min": 3690.4,
     "price_max": 3690.4,
     "price_check_date": "28/08/2026",
-    "price_source": "UK retailer survey (26 retailers)"
+    "price_source": "UK retailer survey (26 retailers)",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=98"
   },
   {
     "id": 2120,
@@ -93817,7 +93823,8 @@
     "mcs_cert": null,
     "price_min": 10552.0,
     "price_max": 10552.0,
-    "price_check_date": "2026-08-03"
+    "price_check_date": "2026-08-03",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=89"
   },
   {
     "id": 2121,
@@ -96474,7 +96481,7 @@
     "price_min": 5110.33,
     "price_max": 5110.33,
     "price_check_date": "2026-08-03",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1096",
+    "heatpumpmonitor_url": null,
     "aliases": [
       "EPRA14DV - ETB(H/X)16D6V"
     ]
@@ -96530,7 +96537,7 @@
     "price_min": 5459.44,
     "price_max": 5459.44,
     "price_check_date": "2026-08-03",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=193",
+    "heatpumpmonitor_url": null,
     "aliases": [
       "EPRA14DV - ETB(H/X)16D6V"
     ]
@@ -97024,7 +97031,7 @@
     "price_min": 5582,
     "price_max": 5582,
     "price_check_date": "2026-07-07",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=27"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=48"
   },
   {
     "manufacturer": "Daikin",
@@ -97129,7 +97136,7 @@
     "price_min": 6149.49,
     "price_max": 6149.49,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=931",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=931",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -97391,7 +97398,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1197"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=1197"
   },
   {
     "manufacturer": "Daikin",
@@ -97444,7 +97451,7 @@
     "price_min": 4147.49,
     "price_max": 4147.49,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=80",
+    "heatpumpmonitor_url": null,
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -97498,7 +97505,7 @@
     "price_min": 4326.91,
     "price_max": 4326.91,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=665",
+    "heatpumpmonitor_url": null,
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -98488,7 +98495,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=44"
+    "heatpumpmonitor_url": null
   },
   {
     "manufacturer": "Daikin",
@@ -98594,7 +98601,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=46"
+    "heatpumpmonitor_url": null
   },
   {
     "manufacturer": "Daikin",
@@ -103037,7 +103044,7 @@
     "product_url": "https://www.aircon.panasonic.eu/GB_en/happening/aquarea-l-generation/",
     "date_added": "2026-07-10",
     "id": 2296,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=405"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=405"
   },
   {
     "manufacturer": "Panasonic",
@@ -103408,7 +103415,7 @@
     "product_url": "https://www.aircon.panasonic.eu/GB_en/product/aquarea-t-cap-mono-bloc-j-generation-1-phase-3-phase-heating-and-cooling---mxc-r32/",
     "date_added": "2026-07-10",
     "id": 2303,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=354",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=354",
     "price_source": "UK retailer survey (26 retailers)"
   },
   {
@@ -103567,7 +103574,8 @@
     "price_check_date": "2026-08-15",
     "product_url": "https://www.aircon.panasonic.eu/GB_en/product/aquarea-t-cap-mono-bloc-j-generation-1-phase-3-phase-heating-and-cooling---mxc-r32/",
     "date_added": "2026-07-10",
-    "id": 2306
+    "id": 2306,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=77"
   },
   {
     "manufacturer": "Panasonic",
@@ -107954,7 +107962,7 @@
     "price_max": 3287.08,
     "price_check_date": "2026-07-15",
     "id": 2389,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=25"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=25"
   },
   {
     "manufacturer": "Atlantic",
@@ -120927,7 +120935,7 @@
     "mcs_listed": true,
     "mcs_cert": "BSI KM 610194/260",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ecoAIR%2B%201-9%20PRO",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1188"
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=1188"
   },
   {
     "id": 2637,
@@ -124460,7 +124468,7 @@
     "mcs_listed": true,
     "mcs_cert": "011-1W0519_01",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=VERSI-O%201F",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=881",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=881",
     "aliases": [
       "VERSI-O 0209-K1 HT / HK 1F"
     ]
@@ -124727,7 +124735,7 @@
     "mcs_listed": true,
     "mcs_cert": "011-1W1251_01",
     "mcs_url": "https://mcscertified.com/product-directory/?_sf_s=ADAPT-2-M-1F",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=668"
+    "heatpumpmonitor_url": null
   },
   {
     "id": 2711,
@@ -127815,7 +127823,7 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=1173",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/system/view?id=1173",
     "aliases": [
       "Aurora II - 6kW"
     ]
@@ -155550,7 +155558,7 @@
     "price_min": 2975,
     "price_max": 3647.75,
     "price_check_date": "28/08/2026",
-    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=287",
+    "heatpumpmonitor_url": null,
     "model": "Edge F 5.1",
     "product_code": "WiSAN-PME 1 S 5.1",
     "hp_type": "ASHP (Monobloc)",
@@ -206720,7 +206728,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA09D3W1"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=47"
   },
   {
     "id": 4333,
@@ -206773,7 +206782,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA11D3W1"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=48"
   },
   {
     "id": 4334,
@@ -206932,7 +206942,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA09D3V3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=47"
   },
   {
     "id": 4337,
@@ -206985,7 +206996,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA11D3V3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=48"
   },
   {
     "id": 4338,
@@ -207141,7 +207153,8 @@
     "price_min": 5034.24,
     "price_max": 5456.59,
     "price_check_date": "2026-09-30",
-    "mcs_listed": false
+    "mcs_listed": false,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=47"
   },
   {
     "id": 4341,
@@ -207191,7 +207204,8 @@
     "price_min": 5465.28,
     "price_max": 5465.28,
     "price_check_date": "2026-09-30",
-    "mcs_listed": false
+    "mcs_listed": false,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=48"
   },
   {
     "id": 4342,
@@ -207341,7 +207355,8 @@
     "price_min": 4581.06,
     "price_max": 4581.06,
     "price_check_date": "2026-09-30",
-    "mcs_listed": false
+    "mcs_listed": false,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=47"
   },
   {
     "id": 4345,
@@ -207391,7 +207406,8 @@
     "price_min": 4970.76,
     "price_max": 5582.4,
     "price_check_date": "2026-09-30",
-    "mcs_listed": false
+    "mcs_listed": false,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=48"
   },
   {
     "id": 4346,
@@ -207862,7 +207878,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA04EV3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=44"
   },
   {
     "id": 4355,
@@ -207915,7 +207932,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA06EV3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=45"
   },
   {
     "id": 4356,
@@ -207968,7 +207986,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA08EV3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=46"
   },
   {
     "id": 4357,
@@ -208021,7 +208040,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA04E3V3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=44"
   },
   {
     "id": 4358,
@@ -208074,7 +208094,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA06E3V3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=45"
   },
   {
     "id": 4359,
@@ -208127,7 +208148,8 @@
     "mcs_listed": false,
     "aliases": [
       "EDLA08E3V3"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=46"
   },
   {
     "id": 4393,
@@ -211878,7 +211900,8 @@
     "price_max": null,
     "price_check_date": null,
     "mcs_listed": true,
-    "mcs_cert": "KIWA 00016/015 HP"
+    "mcs_cert": "KIWA 00016/015 HP",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=73"
   },
   {
     "id": 4444,
@@ -212230,7 +212253,8 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "mcs_listed": false
+    "mcs_listed": false,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=71"
   },
   {
     "id": 4451,
@@ -213484,7 +213508,8 @@
     "mcs_cert": "012-C700408",
     "aliases": [
       "NIBE S2060-6 1x230V"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=97"
   },
   {
     "id": 4479,
@@ -218774,7 +218799,8 @@
     "mcs_cert": "037-0001-18-03; 037-0001-18-04",
     "aliases": [
       "PUHZ-W85VAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=20"
   },
   {
     "id": 4596,
@@ -218828,7 +218854,8 @@
     "mcs_cert": "037-0001-18-05; 037-0001-18-06",
     "aliases": [
       "PUHZ-W85YAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=20"
   },
   {
     "id": 4597,
@@ -218882,7 +218909,8 @@
     "mcs_cert": "037-0002-18-01; 037-0002-18-02",
     "aliases": [
       "PUHZ-W112VAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=21"
   },
   {
     "id": 4598,
@@ -218936,7 +218964,8 @@
     "mcs_cert": "037-0002-18-03; 037-0002-18-04",
     "aliases": [
       "PUHZ-W112YAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=21"
   },
   {
     "id": 4599,
@@ -218990,7 +219019,8 @@
     "mcs_cert": "037-0033-20-03; 037-0033-20-04",
     "aliases": [
       "PUZ-WM85VAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=24"
   },
   {
     "id": 4600,
@@ -219099,7 +219129,8 @@
     "mcs_cert": "037-0032-20-01; 037-0032-20-02",
     "aliases": [
       "PUZ-WM50VHA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=22"
   },
   {
     "id": 4602,
@@ -219153,7 +219184,8 @@
     "mcs_cert": "037-0034-20-01; 037-0034-20-02",
     "aliases": [
       "PUZ-WM112VAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=25"
   },
   {
     "id": 4603,
@@ -219207,7 +219239,8 @@
     "mcs_cert": "037-0034-20-03; 037-0034-20-04",
     "aliases": [
       "PUZ-WM112YAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=25"
   },
   {
     "id": 4604,
@@ -219261,7 +219294,8 @@
     "mcs_cert": "037-0035-20-03; 037-0035-20-04",
     "aliases": [
       "PUZ-HWM140YHA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=69"
   },
   {
     "id": 4605,
@@ -219316,7 +219350,8 @@
     "aliases": [
       "PUZ-WZ50VAA-BS",
       "PUZ-WZ50VAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=26"
   },
   {
     "id": 4606,
@@ -219371,7 +219406,8 @@
     "aliases": [
       "PUZ-WZ60VAA-BS",
       "PUZ-WZ60VAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=27"
   },
   {
     "id": 4607,
@@ -219426,7 +219462,8 @@
     "aliases": [
       "PUZ-WZ80VAA-BS",
       "PUZ-WZ80VAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=75"
   },
   {
     "id": 4608,
@@ -219481,7 +219518,8 @@
     "aliases": [
       "PUZ-WZ85VAA-BS",
       "PUZ-WZ85VAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=28"
   },
   {
     "id": 4609,
@@ -219536,7 +219574,8 @@
     "aliases": [
       "PUZ-WZ85YAA-BS",
       "PUZ-WZ85YAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=28"
   },
   {
     "id": 4610,
@@ -219591,7 +219630,8 @@
     "aliases": [
       "PUZ-WZ100VAA-BS",
       "PUZ-WZ100VAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=29"
   },
   {
     "id": 4611,
@@ -219646,7 +219686,8 @@
     "aliases": [
       "PUZ-WZ100YAA-BS",
       "PUZ-WZ100YAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=29"
   },
   {
     "id": 4612,
@@ -219701,7 +219742,8 @@
     "aliases": [
       "PUZ-WZ120VAA-BS",
       "PUZ-WZ120VAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=30"
   },
   {
     "id": 4613,
@@ -219756,7 +219798,8 @@
     "aliases": [
       "PUZ-WZ120YAA-BS",
       "PUZ-WZ120YAA(-BS)"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=30"
   },
   {
     "id": 4614,
@@ -219811,7 +219854,8 @@
     "aliases": [
       "NIBE F2040-6",
       "F2040-6 UK 1x230V"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=62"
   },
   {
     "id": 4615,
@@ -219921,7 +219965,8 @@
     "aliases": [
       "NIBE F2040-12",
       "F2040-12 UK 1x230V"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=61"
   },
   {
     "id": 4617,
@@ -219976,7 +220021,8 @@
     "aliases": [
       "NIBE F2040-16",
       "F2040-16 UK 1x230V"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=59"
   },
   {
     "id": 4618,
@@ -233420,7 +233466,8 @@
     "price_max": null,
     "price_check_date": null,
     "mcs_listed": true,
-    "mcs_cert": "BBA 0136/29"
+    "mcs_cert": "BBA 0136/29",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=94"
   },
   {
     "id": 5526,
@@ -233471,7 +233518,8 @@
     "price_max": null,
     "price_check_date": null,
     "mcs_listed": true,
-    "mcs_cert": "BBA 0136/30"
+    "mcs_cert": "BBA 0136/30",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=93"
   },
   {
     "id": 5527,
@@ -233522,7 +233570,8 @@
     "price_max": null,
     "price_check_date": null,
     "mcs_listed": true,
-    "mcs_cert": "BBA 0136/31"
+    "mcs_cert": "BBA 0136/31",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=91"
   },
   {
     "id": 5528,
@@ -233573,7 +233622,8 @@
     "price_max": null,
     "price_check_date": null,
     "mcs_listed": true,
-    "mcs_cert": "BBA 0136/32"
+    "mcs_cert": "BBA 0136/32",
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=92"
   },
   {
     "id": 5555,
@@ -234305,7 +234355,8 @@
     "mcs_cert": "037-0033-20-05",
     "aliases": [
       "PUZ-WM85YAA-BS"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=24"
   },
   {
     "id": 5757,
@@ -234359,7 +234410,8 @@
     "mcs_cert": "037-0033-20-06",
     "aliases": [
       "PUZ-WM85YAA"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=24"
   },
   {
     "id": 5784,
@@ -241474,7 +241526,8 @@
       "AE050RXYDEG/EU & AE160DNZMPK/EU",
       "AE050RXYDEG/EU & AE160DNYMPK/EU",
       "AE050RXYDEG/EU & MIM-E03FN"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=49"
   },
   {
     "id": 5417,
@@ -241590,7 +241643,8 @@
       "AE080CXYDGK/EU & AE200DNWMPK/EU",
       "AE080CXYDGK/EU & AE160DNZMPK/EU",
       "AE080CXYDGK/EU & AE160DNYMPK/EU"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=54"
   },
   {
     "id": 5422,
@@ -241651,7 +241705,8 @@
       "AE080RXYDEG/EU & AE160DNZMPK/EU",
       "AE080RXYDEG/EU & AE160DNYMPK/EU",
       "AE080RXYDEG/EU & MIM-E03FN"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=50"
   },
   {
     "id": 5424,
@@ -242045,7 +242100,8 @@
       "AE120RXYDEG/EU & AE160DNZMPK/EU",
       "AE120RXYDEG/EU & AE160DNYMPK/EU",
       "AE120RXYDEG/EU & MIM-E03FN"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=51"
   },
   {
     "id": 5436,
@@ -242277,7 +242333,8 @@
       "AE160RXYDEG/EU & AE160DNZMPK/EU",
       "AE160RXYDEG/EU & AE160DNYMPK/EU",
       "AE160RXYDEG/EU & MIM-E03FN"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=52"
   },
   {
     "id": 5446,
@@ -242337,7 +242394,8 @@
       "AE160RXYDGG/EU & AE160DNZMPK/EU",
       "AE160RXYDGG/EU & AE160DNYMPK/EU",
       "AE160RXYDGG/EU & MIM-E03FN"
-    ]
+    ],
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=52"
   },
   {
     "id": 5512,
@@ -245773,7 +245831,8 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "mcs_listed": false
+    "mcs_listed": false,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=57"
   },
   {
     "id": 6306,
@@ -245873,7 +245932,8 @@
     "price_min": null,
     "price_max": null,
     "price_check_date": null,
-    "mcs_listed": false
+    "mcs_listed": false,
+    "heatpumpmonitor_url": "https://heatpumpmonitor.org/heatpump/view?id=57"
   },
   {
     "id": 6308,
