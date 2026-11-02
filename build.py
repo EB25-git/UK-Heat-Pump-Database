@@ -807,7 +807,7 @@ footer.site a{color:#5A6A65}
 """
 
 def burger_menu(active=None):
-    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "install-costs", "funding", "planning", "faq", "guide", "links", "knowledge")
+    knowledge_active = active in ("what-is-a-heat-pump", "cop-scop", "flow-temp", "refrigerants", "install-costs", "funding", "planning", "smart-tariffs", "faq", "guide", "links", "knowledge")
     def it(label, href, key=None, sub=False, extra=""):
         cls = "burger-item" + (" burger-subitem" if sub else "")
         if key == active or (key == "knowledge" and knowledge_active):
@@ -826,6 +826,7 @@ def burger_menu(active=None):
         + it("Planning Permission", f"{BASE_URL}/knowledge/planning-permission/", "planning", sub=True)
         + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
         + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
+        + it("Smart Tariffs &amp; Running Costs", f"{BASE_URL}/knowledge/smart-tariffs/", "smart-tariffs", sub=True)
         + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
         + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
         + it("Site Guide", f"{BASE_URL}/#guide", "guide", sub=True)
@@ -948,7 +949,7 @@ function trackOut(){{
 </div></main>
 <footer class="site"><div class="wrap">
 <p>{SITE_NAME} &middot; A free, searchable database of UK heat pumps \u2014 no subscription. Always confirm specifications with the manufacturer before purchase.</p>
-<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="{BASE_URL}/heat-pump-size-calculator/">Size calculator</a> &middot; <a href="{BASE_URL}/heat-pump-noise-calculator/">Noise calculator</a> &middot; <a href="{BASE_URL}/news/">News &amp; Insight</a></p>
+<p style="margin-top:6px"><a href="{BASE_URL}/">Search the full database</a> &middot; <a href="{BASE_URL}/manufacturers/">All manufacturers</a> &middot; <a href="{BASE_URL}/knowledge/what-is-a-heat-pump/">What is a heat pump?</a> &middot; <a href="{BASE_URL}/knowledge/installation-costs/">Installation costs</a> &middot; <a href="{BASE_URL}/knowledge/refrigerants/">Refrigerant guide</a> &middot; <a href="{BASE_URL}/knowledge/cop-scop/">COP &amp; SCOP</a> &middot; <a href="{BASE_URL}/knowledge/flow-temperature/">Flow temperature</a> &middot; <a href="{BASE_URL}/knowledge/smart-tariffs/">Smart tariffs</a> &middot; <a href="{BASE_URL}/heat-pump-size-calculator/">Size calculator</a> &middot; <a href="{BASE_URL}/heat-pump-noise-calculator/">Noise calculator</a> &middot; <a href="{BASE_URL}/news/">News &amp; Insight</a></p>
 </div></footer>
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#083F35;color:#fff;padding:14px 24px;z-index:200;font-size:13px;line-height:1.5">
 <div class="wrap" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
@@ -2514,6 +2515,8 @@ def render_product(p, by_mfr, by_type):
             f'<p style="margin-top:14px"><a class="cta" href="{BASE_URL}/products/{slug}/data-sheet/" rel="nofollow">Free data sheet (PDF) &rarr;</a></p>'
             + (f'<p style="margin-top:10px"><a class="cta" href="{BASE_URL}/heat-pump-noise-calculator/?id={p.get("id")}" rel="nofollow">Check noise at a neighbour&rsquo;s window (MCS 020 a) &rarr;</a></p>'
                if p.get("hp_type") == "ASHP" and p.get("noise") is not None and not re.search(r"lpa|pressure|@\s?\d|at \d|distance", (p.get("noise_ref") or "").lower()) else '')
+            + (f'<p style="margin-top:10px"><a class="cta" href="{BASE_URL}/knowledge/smart-tariffs/?id={p.get("id")}#calculator" rel="nofollow">Estimate running costs on smart tariffs &rarr;</a></p>'
+               if p.get("hp_type") == "ASHP" and p.get("type") == "Residential" and p.get("scop") is not None and str(p.get("scop_cond") or "").upper() == "W35" else '')
             +
             f'{mfr_link}{notes_html}{render_suppliers(p)}{render_verified(p)}{render_correction(p)}'
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
@@ -4637,6 +4640,221 @@ def render_finder_page(n_products):
 """
     return page(title, desc, canonical, body, jsonld, active="finder")
 
+SMART_TARIFF_CSS = """
+.st-card{background:#fff;border:1px solid #E3EDE8;border-radius:14px;padding:18px 20px;margin:0 0 18px}
+.st-card h2{font-size:18px;margin:0 0 12px}
+.st-card h3{font-size:16px;margin:0 0 10px}
+.st-types{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin:14px 0 22px}
+.st-type{background:#fff;border:1px solid #E3EDE8;border-radius:12px;padding:14px 16px}
+.st-type h3{font-size:15px;margin:0 0 4px}
+.st-type p{font-size:13.5px;line-height:1.55;margin:8px 0 0;color:#3B4D47}
+.st-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-radius:10px;padding:2px 8px;background:#DDF3E8;color:#0B6656}
+.st-rib{display:grid;grid-template-columns:repeat(48,1fr);height:16px;border-radius:5px;overflow:hidden;margin-top:10px}
+.st-rib i{display:block}
+.st-rib-ax{display:flex;justify-content:space-between;font-size:10.5px;color:#5A6A65;margin-top:2px}
+.st-key{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:#3B4D47;margin:6px 0 0}
+.st-key i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.st-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 16px}
+.st-grid label,.st-edit label{display:flex;flex-direction:column;font-size:13px;color:#3B4D47;gap:5px}
+.st-grid input[type=number],.st-grid input[type=text],.st-grid select,.st-edit input{font:inherit;font-size:14px;padding:8px 10px;border:1px solid #CFDDD7;border-radius:8px;background:#fff;min-width:0}
+.st-radio{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin:0 0 12px}
+.st-check{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#083F35;margin:14px 0 8px}
+.st-check input{accent-color:#0B6656;width:16px;height:16px}
+.st-range{display:grid;grid-template-columns:1fr 52px;gap:10px;align-items:center}
+.st-range input{accent-color:#0B6656}
+.st-hint{font-size:12.5px;color:#5A6A65;margin:8px 0 0;line-height:1.5}
+.st-eff{font-size:13px;color:#083F35;margin-top:8px}
+.st-tab{width:100%;border-collapse:collapse;font-size:14px}
+.st-tab th,.st-tab td{padding:10px 8px;border-bottom:1px solid #EEF4F1;text-align:left;vertical-align:top}
+.st-tab th{font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:#5A6A65}
+.st-tab tr[data-id]{cursor:pointer}
+.st-tab tr[data-id]:hover td{background:#F6FAF8}
+.st-tab tr.on td{background:#EAF6F1}
+.st-tab .st-r{text-align:right;white-space:nowrap}
+.st-eg{font-size:12px;color:#5A6A65;font-weight:400}
+.st-best{font-size:10.5px;font-weight:700;text-transform:uppercase;background:#0B6656;color:#fff;border-radius:9px;padding:2px 7px;margin-left:4px;vertical-align:1px}
+.st-bar{height:6px;background:#E3EDE8;border-radius:4px;overflow:hidden;margin-top:6px;max-width:260px}
+.st-bar i{display:block;height:100%;background:#22C79A}
+.st-save{color:#0B6656;font-weight:700}.st-more{color:#A33A2B;font-weight:700}
+.st-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.st-kpi{border:1px solid #E3EDE8;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.st-kpi span{font-size:12.5px;color:#5A6A65}.st-kpi b{font-size:22px;color:#083F35}.st-kpi em{font-style:normal;font-size:12px;color:#5A6A65}
+.st-kpi-g{background:#EAF6F1;border-color:#BFE7D8}
+.st-edit{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;margin-top:14px}
+.st-edit input{width:120px}
+.st-edit button{font:inherit;font-size:13px;background:none;border:1px solid #CFDDD7;border-radius:8px;padding:8px 12px;cursor:pointer;color:#0B6656}
+.st-svg{width:100%;height:auto;margin-top:14px;display:block}
+.st-leg{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:#3B4D47;margin-top:4px}
+.st-leg i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:0}
+.st-list{font-size:14px;line-height:1.65;padding-left:20px}
+.st-list li{margin:0 0 8px}
+.st-tt{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0}
+.st-tt th,.st-tt td{padding:9px 8px;border-bottom:1px solid #EEF4F1;text-align:left;vertical-align:top}
+.st-tt th{font-size:11.5px;text-transform:uppercase;letter-spacing:.03em;color:#5A6A65}
+.st-scroll{overflow-x:auto}
+@media(max-width:640px){.st-tab .st-hide{display:none}.st-tab th,.st-tab td{padding:9px 5px}.st-edit input{width:100px}}
+"""
+
+SMART_TARIFF_FAQ = [
+    ("Do I need a smart meter for a heat pump tariff?",
+     "Yes. Every time-of-use tariff needs a smart meter that sends half-hourly readings to your supplier, otherwise it can&rsquo;t tell when you used the electricity. Smart meters are free from your supplier."),
+    ("Does my heat pump need to have been installed by the supplier?",
+     "Usually not. Most heat pump tariffs accept any working heat pump, whoever installed it. Some suppliers ask for evidence, such as an MCS certificate or a photo of the unit. EV tariffs are different: they need an eligible car or charger."),
+    ("Will shifting my heating make my heat pump less efficient?",
+     "A little. Pre-heating the house before a peak means running slightly warmer, and every extra degree of flow temperature costs roughly 2&ndash;3% of efficiency. A small boost of 1&ndash;2&nbsp;&deg;C is normally well worth it when the cheap rate is half price. Big boosts usually aren&rsquo;t. The calculator includes this as the &ldquo;shifting penalty&rdquo;."),
+    ("Which tariff is best for a heat pump?",
+     "It depends on how much of your use you can move, and when. Tariffs with an afternoon window suit heat pumps because the air is warmest then, so efficiency is highest. Tariffs with a 4&ndash;7pm peak reward homes that can coast through the evening. If you can&rsquo;t shift anything, a flat or discount-window tariff with no peak is the safer choice. Put your own numbers into the calculator above."),
+    ("Is a smart tariff worth it without a battery?",
+     "Often, yes. A house is itself a heat store and a hot water cylinder is a ready-made thermal battery. Scheduling the cylinder reheat into a cheap window alone can save money without any change to comfort. A home battery widens the gap further because it lets the whole house run on the cheap rate."),
+    ("How often do these rates change?",
+     "Most variable smart tariffs move with the Ofgem price cap every three months. Dynamic tariffs change every half hour. The next cap announcement is due on 25 November 2026 for January to March 2027."),
+]
+
+def render_smart_tariffs_page():
+    url = f"{BASE_URL}/knowledge/smart-tariffs/"
+    title = "Smart Tariffs for Heat Pumps: Running Cost Calculator"
+    desc = ("How UK smart and time-of-use tariffs work with an air source heat pump, which types suit you, "
+            "and a free calculator to compare annual running costs on each tariff.")
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Smart Tariffs for Heat Pumps", None)]
+    faq_html = "".join(f'<div class="hub-faq-item"><h3>{q}</h3><p>{a}</p></div>' for q, a in SMART_TARIFF_FAQ)
+    def _plain(s):
+        return html.unescape(re.sub(r"<[^>]+>", "", s))
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": _plain(q), "acceptedAnswer": {"@type": "Answer", "text": _plain(a)}} for q, a in SMART_TARIFF_FAQ]}
+    article_ld = {"@context": "https://schema.org", "@type": "Article", "headline": "Smart tariffs for heat pumps",
+                  "description": desc, "url": url, "dateModified": "2026-11-02",
+                  "publisher": {"@type": "Organization", "name": SITE_NAME, "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/images/brand/logo-512.png"}},
+                  "mainEntityOfPage": url}
+    app_ld = {"@context": "https://schema.org", "@type": "WebApplication", "name": "Heat pump smart tariff calculator",
+              "url": url + "#calculator", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)",
+              "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"}}
+    types = [
+        ("flat", "Flat rate", "Standard variable or fixed", "One price all day, every day. The Ofgem price cap sets the maximum for standard variable tariffs. Simple, but there&rsquo;s nothing to gain from timing your heating."),
+        ("e7", "Two-rate", "Economy 7 / Economy 10", "Older tariffs with a cheaper night rate and a dearer day rate. They were designed for storage heaters. A heat pump runs most of the day, so the higher day rate often outweighs the cheap nights."),
+        ("cosy", "Heat pump tariff", "Fixed cheap windows", "Built for heat pumps, with set cheap periods every day, often including an afternoon slot. Some also have a 4&ndash;7pm peak that costs more than the standard rate. Others have no peak at all."),
+        ("ev", "EV tariff", "Long overnight window", "A very cheap 5&ndash;7 hour overnight rate for the whole home, but you need an eligible electric car or charger. Worth comparing if you have an EV and a heat pump."),
+        ("agile", "Dynamic tariff", "Half-hourly prices", "Prices follow the wholesale market and change every half hour, published a day ahead. Overnight and windy, sunny periods can be very cheap, and occasionally prices go below zero. The 4&ndash;7pm peak is expensive. Best with automation."),
+    ]
+    types_html = "".join(
+        f'<div class="st-type"><span class="st-tag">{tag}</span><h3 style="margin-top:8px">{name}</h3>'
+        f'<div data-rib="{rid}"></div><p>{txt}</p></div>' for rid, tag, name, txt in types)
+    tariffs = [
+        ("Cosy Octopus", "Octopus Energy", "04:00&ndash;07:00, 13:00&ndash;16:00, 22:00&ndash;00:00, about 51% below the day rate", "16:00&ndash;19:00, about 50% above the day rate", "Heat pump, electric boiler or electric radiators", "https://octopus.energy/smart/cosy-octopus/"),
+        ("Heat Pump Tracker", "EDF", "04:00&ndash;07:00 and 13:00&ndash;16:00, 10p/kWh below the standard rate", "None", "Any heat pump", "https://www.moneysupermarket.com/gas-and-electricity/heat-pump-tariffs/"),
+        ("Heat pump tariff", "British Gas", "Half price 00:00&ndash;07:00 and 13:00&ndash;16:00, paid back as a weekly credit", "None", "Heat pump; rates by postcode quote", "https://www.moneysupermarket.com/gas-and-electricity/heat-pump-tariffs/"),
+        ("Next Pumped", "E.ON Next", "Super off-peak 22:00&ndash;06:00; off-peak 06:00&ndash;16:00 and 19:00&ndash;22:00", "16:00&ndash;19:00", "Heat pump", "https://www.eonnext.com/air-source-heat-pumps/guides/time-of-use-tariffs-for-heat-pumps"),
+        ("Heat Pump Saver", "ScottishPower", "14p/kWh 11:00&ndash;16:00 every day", "None", "Heat pump, monthly Direct Debit", "https://www.scottishpower.co.uk/heat-pump-tariff"),
+        ("Intelligent Octopus Go", "Octopus Energy", "23:30&ndash;05:30 for the whole home, plus smart-charging slots", "None", "Eligible EV or charger", "https://octopus.energy/smart/intelligent-octopus-go/"),
+        ("Agile Octopus", "Octopus Energy", "Changes every half hour; cheapest overnight and at windy or sunny times", "Usually 16:00&ndash;19:00", "Smart meter only", "https://octopus.energy/smart/agile/"),
+    ]
+    tt = "".join(f'<tr><td><b>{n}</b><div class="st-eg">{s}</div></td><td>{c}</td><td>{p}</td><td>{e}</td>'
+                 f'<td><a href="{u}" rel="nofollow noopener" target="_blank">Details</a></td></tr>' for n, s, c, p, e, u in tariffs)
+    body = f"""
+<style>{SMART_TARIFF_CSS}</style>
+{crumbs(crumb_items)}
+<h1>Smart Tariffs for Heat Pumps</h1>
+<p class="sub">How time-of-use electricity tariffs work, which types suit an air source heat pump, and what they could mean for your running costs.</p>
+<p>A heat pump uses most of a home&rsquo;s electricity, so <em>when</em> it runs matters as much as how efficient it is. Smart tariffs charge less at quieter times of day. A heat pump can take advantage of that because a house holds its warmth for hours and a hot water cylinder can be heated in advance. This guide explains the main tariff types, how to set a heat pump up to use them, and includes a <a href="#calculator">calculator</a> so you can test the numbers for your home.</p>
+
+<h2>Types of smart tariff</h2>
+<p>All smart tariffs need a smart meter that records half-hourly readings. The coloured strip on each card shows a typical day, from midnight to midnight.</p>
+<div class="st-key"><span><i style="background:#22C79A"></i>Cheapest</span><span><i style="background:#BFE7D8"></i>Cheaper</span><span><i style="background:#CFDDD7"></i>Standard</span><span><i style="background:#F6D38A"></i>Dearer</span><span><i style="background:#E8836B"></i>Peak</span></div>
+<div class="st-types">{types_html}</div>
+
+<h2>How a heat pump works with a smart tariff</h2>
+<ul class="st-list">
+<li><b>Your home is a heat store.</b> Heat pumps run best low and slow. Raising the room temperature by a degree or two in a cheap window lets the house coast through the dearer hours that follow. Well-insulated homes and underfloor heating screeds hold heat longest.</li>
+<li><b>Your cylinder is a thermal battery.</b> Hot water is often 15&ndash;25% of a heat pump&rsquo;s electricity. Scheduling the daily reheat into a cheap window is the easiest saving, with no change to comfort.</li>
+<li><b>Afternoons are a bonus.</b> Efficiency (COP) rises by roughly 2&ndash;3% for every degree warmer it is outside, so a 1&ndash;4pm window gets cheaper electricity <em>and</em> more heat per kWh.</li>
+<li><b>Mind the peak.</b> Some tariffs charge 40p/kWh or more from 4&ndash;7pm. Turning the heating down during the peak saves money, but turning it right off can make the house cold and the catch-up costly. A modest setback usually works best.</li>
+<li><b>Don&rsquo;t overdo the boost.</b> Pre-heating means running at a higher flow temperature, which lowers efficiency (see <a href="{BASE_URL}/knowledge/flow-temperature/">flow temperature &amp; efficiency</a>). Small, regular boosts beat one big one.</li>
+<li><b>Controls do the work.</b> Most heat pump controllers allow time-based setpoints and separate hot water schedules. Some apps and smart controls can follow tariff windows automatically. Keep weather compensation on so the heat pump still runs at the lowest flow temperature it can.</li>
+<li><b>Batteries and solar change the maths.</b> A home battery can be charged in the cheap window and run the heat pump through the peak. Solar panels can cover daytime running in spring and autumn.</li>
+</ul>
+
+<h2>UK heat pump and smart tariffs, November 2026</h2>
+<p>Times and structures as published by each supplier or reported by comparison sites. Rates depend on your region and change, usually every quarter, so always get a quote for your postcode. OVO&rsquo;s Heat Pump Plus has closed to new customers. Ofgem&rsquo;s price cap for 1 October to 31 December 2026 is 26.32p/kWh for electricity, with a 54.83p daily standing charge (averages). VAT has been removed from electricity bills from 1 October 2026 to 31 March 2027.</p>
+<div class="st-scroll"><table class="st-tt"><thead><tr><th>Tariff</th><th>Cheaper periods</th><th>Peak</th><th>Who can join</th><th></th></tr></thead><tbody>{tt}</tbody></table></div>
+
+<h2 id="calculator" style="scroll-margin-top:80px">Heat pump running cost calculator</h2>
+<p>Change the inputs to see an estimated annual cost on each tariff type. Click a tariff to see its daily profile and enter your own rates.</p>
+<div id="st-inputs">
+<div class="st-card">
+ <h3>1. Your heat demand</h3>
+ <div class="st-radio"><label><input type="radio" name="st-mode" id="st-mode-gas" checked> From my gas bill</label><label><input type="radio" name="st-mode" id="st-mode-heat"> I know my heat demand</label></div>
+ <div class="st-grid" id="st-gasbox">
+  <label>Annual gas use (kWh)<input type="number" id="st-gas" value="11500" min="0" step="100"></label>
+  <label>Current boiler efficiency (%)<input type="number" id="st-eff" value="85" min="50" max="100" step="1"></label>
+  <label>Share used for hot water (%)<input type="number" id="st-dhwpct" value="20" min="0" max="60" step="1"></label>
+ </div>
+ <div class="st-grid" id="st-heatbox" style="display:none">
+  <label>Space heating (kWh of heat a year)<input type="number" id="st-heat" value="8000" min="0" step="100"></label>
+  <label>Hot water (kWh of heat a year)<input type="number" id="st-dhwkwh" value="2000" min="0" step="100"></label>
+ </div>
+ <p class="st-hint">Your annual gas use is on your bill or supplier app. A heat-loss survey or our <a href="{BASE_URL}/heat-pump-size-calculator/">size calculator</a> gives heat demand directly.</p>
+</div>
+<div class="st-card">
+ <h3>2. Your heat pump</h3>
+ <div class="st-grid">
+  <label style="grid-column:1/-1">Pick a heat pump from the database (optional)<input type="text" id="st-prod" list="st-plist" placeholder="Start typing a brand or model&hellip;" autocomplete="off"><datalist id="st-plist"></datalist><span class="st-hint" id="st-prod-note" style="margin:0"></span></label>
+  <label>SCOP at 35&nbsp;&deg;C (datasheet)<input type="number" id="st-scop" value="4.4" min="1.5" max="7" step="0.05"></label>
+  <label>Your flow temperature<select id="st-flow"><option value="35">35&nbsp;&deg;C (underfloor)</option><option value="45" selected>45&nbsp;&deg;C (large radiators)</option><option value="50">50&nbsp;&deg;C</option><option value="55">55&nbsp;&deg;C (standard radiators)</option></select></label>
+  <label>Hot water efficiency (COP)<input type="number" id="st-dcop" value="2.8" min="1" max="5" step="0.05"></label>
+ </div>
+ <p class="st-eff">Effective space-heating efficiency: <b id="st-eff-scop">&ndash;</b></p>
+</div>
+<div class="st-card">
+ <h3>3. How you&rsquo;ll run it</h3>
+ <label class="st-check"><input type="checkbox" id="st-shift-on" checked> Shift heating into cheap periods</label>
+ <div class="st-grid">
+  <label>Share of heating moved out of dearer hours<div class="st-range"><input type="range" id="st-shift" min="0" max="80" step="5" value="30"><b id="st-shift-v">30%</b></div></label>
+  <label>Shifting penalty (% extra heat)<input type="number" id="st-pen" value="5" min="0" max="30" step="1"></label>
+ </div>
+ <p class="st-hint">Heat is moved from the most expensive half hours first. The penalty covers the extra losses and lower efficiency from pre-heating. On cold days a short window can&rsquo;t take all the load, so keep this realistic.</p>
+ <label class="st-check"><input type="checkbox" id="st-dhw-cheap" checked> Heat hot water in the cheapest 2 hours</label>
+ <p class="st-hint" style="margin-top:0">Untick to use a typical timer (05:30 and 17:30).</p>
+ <label class="st-check"><input type="checkbox" id="st-diurnal" checked> Allow for warmer afternoons</label>
+ <div class="st-grid"><label>Day/night temperature swing (&deg;C)<input type="number" id="st-swing" value="5" min="0" max="12" step="1"></label></div>
+ <label class="st-check"><input type="checkbox" id="st-house-on" checked> Include the rest of the home&rsquo;s electricity</label>
+ <div class="st-grid"><label>Other electricity use (kWh a year)<input type="number" id="st-house" value="2700" min="0" step="100"></label></div>
+</div>
+<details class="st-card"><summary style="cursor:pointer;font-weight:600">Gas comparison rates</summary>
+ <div class="st-grid" style="margin-top:12px">
+  <label>Gas unit rate (p/kWh)<input type="number" id="st-gasrate" value="7.97" min="0" step="0.01"></label>
+  <label>Gas standing charge (p/day)<input type="number" id="st-gassc" value="29.68" min="0" step="0.01"></label>
+ </div>
+ <p class="st-hint">Defaults are Ofgem price cap averages for October&ndash;December 2026.</p>
+</details>
+</div>
+<div class="st-card">
+ <h3>Estimated annual cost by tariff</h3>
+ <div class="st-scroll" id="st-results" aria-live="polite"><p class="st-hint">Calculating&hellip;</p></div>
+ <p class="st-hint">Total bill = heat pump + rest of home + electricity standing charge. Click a row to view it below.</p>
+</div>
+<div class="st-card" id="st-detail"></div>
+<div class="st-card">
+ <h3>Compared with a gas boiler</h3>
+ <div class="st-kpis" id="st-gas-out"></div>
+ <p class="st-hint">Heating and hot water only. Your electricity standing charge is paid either way, so it&rsquo;s left out of this comparison. The gas standing charge is only saved if you cap the gas supply.</p>
+</div>
+<details class="hub-faq-item st-card"><summary style="cursor:pointer;font-weight:600">Method and assumptions</summary>
+<p>The day is split into 48 half hours. Space heating follows outdoor temperature, which is coldest before dawn and warmest mid-afternoon. Efficiency rises 2.5% per degree, scaled so the yearly average equals your effective SCOP. Effective SCOP is the 35&nbsp;&deg;C datasheet figure reduced for higher flow temperatures (45&nbsp;&deg;C &times;0.85, 50&nbsp;&deg;C &times;0.79, 55&nbsp;&deg;C &times;0.73). When shifting is on, the chosen share of heating is taken from the most expensive half hours and added to the cheapest periods, plus the shifting penalty. Dynamic tariffs use an illustrative winter price shape scaled to your average and treat the cheapest six hours as the cheap periods. The rest of the home follows a typical UK household profile. The model uses one representative day, so it doesn&rsquo;t capture very cold spells, defrosting, seasonal price changes or saving-session rewards. Default tariff rates are indicative examples, not quotes. Enter the rates you are offered for an accurate result.</p></details>
+<p class="st-hint">Rates and tariff details checked 2 November 2026 against supplier pages, Ofgem and comparison sites. Heat Pump Database is independent and isn&rsquo;t paid by any energy supplier.</p>
+
+<h2>Frequently asked questions</h2>
+{faq_html}
+<h2>Related guides</h2>
+<div class="grid">
+  <a class="card" href="{BASE_URL}/knowledge/cop-scop/"><div class="m">Understanding COP &amp; SCOP</div><div class="s">How efficiency figures are measured</div></a>
+  <a class="card" href="{BASE_URL}/knowledge/flow-temperature/"><div class="m">Flow temperature &amp; efficiency</div><div class="s">Why lower flow temperatures cut running costs</div></a>
+  <a class="card" href="{BASE_URL}/heat-pump-finder/"><div class="m">Heat Pump Finder</div><div class="s">Rank heat pumps by SCOP, noise, price and more</div></a>
+</div>
+<script src="/smart-tariff-calc.js?v=2" defer></script>
+"""
+    return page(title, desc, url, body, [article_ld, app_ld, faq_ld, breadcrumb_jsonld(crumb_items, url)],
+                og_type="article", active="smart-tariffs", og_image=get_og_image())
+
+
 def render_noise_calculator_page(n_products):
     title = "Heat Pump Noise Calculator: MCS 020 a) 37 dB Check"
     desc = ("Free MCS 020 a) noise calculator: check a heat pump meets the 37 dB(A) permitted "
@@ -5245,6 +5463,12 @@ def main():
     url = f"{BASE_URL}/heat-pump-finder/"
     urls.append(url)
     _lastmod_for(url, hashlib.sha256(finder_html.encode("utf-8")).hexdigest()[:16])
+    st_html = render_smart_tariffs_page()
+    write(os.path.join(ROOT, "knowledge", "smart-tariffs", "index.html"), st_html)
+    url = f"{BASE_URL}/knowledge/smart-tariffs/"
+    urls.append(url)
+    _lastmod_for(url, hashlib.sha256(st_html.encode("utf-8")).hexdigest()[:16])
+    kg_count += 1
     noise_html = render_noise_calculator_page(len(noise_products))
     write(os.path.join(ROOT, "heat-pump-noise-calculator", "index.html"), noise_html)
     url = f"{BASE_URL}/heat-pump-noise-calculator/"
