@@ -826,7 +826,7 @@ def burger_menu(active=None):
         + it("Planning Permission", f"{BASE_URL}/knowledge/planning-permission/", "planning", sub=True)
         + it("Understanding COP &amp; SCOP", f"{BASE_URL}/knowledge/cop-scop/", "cop-scop", sub=True)
         + it("Flow Temperature &amp; Efficiency", f"{BASE_URL}/knowledge/flow-temperature/", "flow-temp", sub=True)
-        + it("Smart Tariffs &amp; Running Costs", f"{BASE_URL}/knowledge/smart-tariffs/", "smart-tariffs", sub=True)
+        # Smart Tariffs page (/knowledge/smart-tariffs/) hidden from the menu for now - re-add when ready
         + it("Refrigerant Guide", f"{BASE_URL}/knowledge/refrigerants/", "refrigerants", sub=True)
         + it("FAQ", f"{BASE_URL}/#faq", "faq", sub=True)
         + it("Site Guide", f"{BASE_URL}/#guide", "guide", sub=True)
@@ -911,7 +911,10 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="theme-color" content="#083F35">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap"></noscript>
 <style>{CSS}</style>
 <link rel="stylesheet" href="/theme-pages.css?v=4">
 {blocks}
@@ -943,7 +946,7 @@ function trackOut(){{
 <nav class="burger-menu" id="bmenu">{burger_menu(active)}</nav>
 </div></header>
 <div class="burger-overlay" id="bov" onclick="cB()"></div>
-<div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">&#10005;</button><img id="photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
+<div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">&#10005;</button><img id="photo-lightbox-img" alt="" onclick="event.stopPropagation()"></div>
 <main><div class="wrap{' wrap-wide' if wide else ''}">
 {body}
 </div></main>
@@ -960,7 +963,7 @@ function trackOut(){{
 </span>
 </div>
 </div>
-<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCalc(){{var t=document.getElementById('s-toggle'),g=document.getElementById('s-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').src='';document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
+<script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCalc(){{var t=document.getElementById('s-toggle'),g=document.getElementById('s-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').removeAttribute('src');document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
 <script src="/theme.js?v=4"></script>
 </body>
 </html>
@@ -994,6 +997,7 @@ TOTAL_PRODUCTS = 0
 
 LOGO_SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logos")
 LOGO_OUT_DIR = "images/manufacturers"
+LOGO_MAX_PX = 512
 LOGO_EXT_PRIORITY = [".svg", ".png", ".webp", ".avif", ".jpg", ".jpeg", ".gif"]
 
 # A small curated palette (not random/ugly hues) used to give each generated
@@ -1055,6 +1059,21 @@ def get_logo_url(mfr):
         src = os.path.join(LOGO_SRC_DIR, slug + ext)
         if os.path.isfile(src):
             out_rel = f"{LOGO_OUT_DIR}/{slug}{ext}"
+            if ext != ".svg":
+                # Raster logos are shown at 26-64 px, so ship a small WebP
+                # (longest side 512 px) instead of the full-size original.
+                try:
+                    from PIL import Image
+                    with Image.open(src) as im:
+                        im = im.convert("RGBA")
+                        im.thumbnail((LOGO_MAX_PX, LOGO_MAX_PX), Image.LANCZOS)
+                        out_rel = f"{LOGO_OUT_DIR}/{slug}.webp"
+                        dest = os.path.join(ROOT, out_rel)
+                        os.makedirs(os.path.dirname(dest), exist_ok=True)
+                        im.save(dest, "WEBP", quality=88, method=6)
+                    break
+                except Exception:
+                    out_rel = f"{LOGO_OUT_DIR}/{slug}{ext}"
             dest = os.path.join(ROOT, out_rel)
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             shutil.copyfile(src, dest)
@@ -2429,9 +2448,14 @@ def render_product(p, by_mfr, by_type):
     # specs) remains valid since ProductModel inherits from Product. (If real
     # pricing/reviews are ever added, switch back to "Product" and add a
     # valid offers/aggregateRating block.)
+    # Products with a checked UK retailer price are typed as Product with an
+    # AggregateOffer (eligible for Google product snippets); the rest stay
+    # ProductModel so Search Console doesn't flag a missing offers field.
+    _pmin, _pmax = p.get("price_min"), p.get("price_max")
+    _priced = isinstance(_pmin, (int, float)) and _pmin > 0
     product_ld = {
         "@context": "https://schema.org",
-        "@type": "ProductModel",
+        "@type": "Product" if _priced else "ProductModel",
         "name": display_name,
         "manufacturer": {"@type": "Organization", "name": mfr},
     }
@@ -2445,6 +2469,12 @@ def render_product(p, by_mfr, by_type):
     # Rich attributes: description, brand, image, category, and the key
     # specifications as PropertyValue entries (still no offers/review — see above).
     product_ld["brand"] = {"@type": "Brand", "name": mfr}
+    if _priced:
+        _hi = _pmax if isinstance(_pmax, (int, float)) and _pmax >= _pmin else _pmin
+        product_ld["offers"] = {"@type": "AggregateOffer", "priceCurrency": "GBP",
+                                "lowPrice": round(float(_pmin), 2), "highPrice": round(float(_hi), 2)}
+        if url:
+            product_ld["offers"]["url"] = url
     if p.get("description"):
         product_ld["description"] = p["description"]
     product_ld["image"] = get_product_image(p) or get_logo_url(mfr)
@@ -2612,7 +2642,10 @@ def render_datasheet(p):
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap"></noscript>
 <link rel="stylesheet" href="/datasheet.css?v=2">
 </head>
 <body>
@@ -4758,7 +4791,7 @@ def render_smart_tariffs_page():
 
 <h2>Types of smart tariff</h2>
 <p>All smart tariffs need a smart meter that records half-hourly readings. The coloured strip on each card shows a typical day, from midnight to midnight.</p>
-<div class="st-key"><span><i style="background:#22C79A"></i>Cheapest</span><span><i style="background:#BFE7D8"></i>Cheaper</span><span><i style="background:#CFDDD7"></i>Standard</span><span><i style="background:#F6D38A"></i>Dearer</span><span><i style="background:#E8836B"></i>Peak</span></div>
+<div class="st-key"><span><i style="background:#22C79A"></i>Cheapest</span><span><i style="background:#7FD1B2"></i>Cheaper</span><span><i style="background:#E4E7EA;box-shadow:inset 0 0 0 1px #C9CED2"></i>Standard</span><span><i style="background:#F6D38A"></i>Dearer</span><span><i style="background:#E8836B"></i>Peak</span></div>
 <div class="st-types">{types_html}</div>
 
 <h2>How a heat pump works with a smart tariff</h2>
@@ -4849,7 +4882,7 @@ def render_smart_tariffs_page():
   <a class="card" href="{BASE_URL}/knowledge/flow-temperature/"><div class="m">Flow temperature &amp; efficiency</div><div class="s">Why lower flow temperatures cut running costs</div></a>
   <a class="card" href="{BASE_URL}/heat-pump-finder/"><div class="m">Heat Pump Finder</div><div class="s">Rank heat pumps by SCOP, noise, price and more</div></a>
 </div>
-<script src="/smart-tariff-calc.js?v=2" defer></script>
+<script src="/smart-tariff-calc.js?v=3" defer></script>
 """
     return page(title, desc, url, body, [article_ld, app_ld, faq_ld, breadcrumb_jsonld(crumb_items, url)],
                 og_type="article", active="smart-tariffs", og_image=get_og_image())
@@ -5144,6 +5177,7 @@ def main():
                     f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
                     f"<link rel=\"canonical\" href=\"{target}\">"
                     f"<meta http-equiv=\"refresh\" content=\"0; url={target}\">"
+                f"<meta name=\"robots\" content=\"noindex\"><script>location.replace(\"{target}\")</script>"
                     f"</head><body><p>This page has moved. "
                     f"<a href=\"{target}\">Continue to the updated page</a>.</p></body></html>")
             write(os.path.join(ROOT, "products", old_slug, "index.html"), stub)
@@ -5166,6 +5200,7 @@ def main():
                 f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
                 f"<link rel=\"canonical\" href=\"{target}\">"
                 f"<meta http-equiv=\"refresh\" content=\"0; url={target}\">"
+                f"<meta name=\"robots\" content=\"noindex\"><script>location.replace(\"{target}\")</script>"
                 f"</head><body><p>This page has moved. "
                 f"<a href=\"{target}\">Continue to the updated page</a>.</p></body></html>")
         write(os.path.join(ROOT, "products", old_slug, "index.html"), stub)
@@ -5268,6 +5303,7 @@ def main():
                 f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
                 f"<link rel=\"canonical\" href=\"{target_url}\">"
                 f"<meta http-equiv=\"refresh\" content=\"0; url={target_url}\">"
+                f"<meta name=\"robots\" content=\"noindex\"><script>location.replace(\"{target_url}\")</script>"
                 f"</head><body><p>This page has moved. "
                 f"<a href=\"{target_url}\">Continue to the updated page</a>.</p></body></html>")
         write(os.path.join(ROOT, "types", old_slug, "index.html"), stub)
@@ -5308,6 +5344,7 @@ def main():
             f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
             f"<link rel=\"canonical\" href=\"{_bus_redirect_target}\">"
             f"<meta http-equiv=\"refresh\" content=\"0; url={_bus_redirect_target}\">"
+                f"<meta name=\"robots\" content=\"noindex\"><script>location.replace(\"{_bus_redirect_target}\")</script>"
             f"</head><body><p>This page has moved. "
             f"<a href=\"{_bus_redirect_target}\">Continue to the updated page</a>.</p></body></html>")
     write(os.path.join(ROOT, "knowledge", "boiler-upgrade-scheme", "index.html"), _bus_redirect_stub)
@@ -5388,6 +5425,7 @@ def main():
                  f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
                  f"<link rel=\"canonical\" href=\"{BASE_URL}/best/\">"
                  f"<meta http-equiv=\"refresh\" content=\"0; url={_target}\">"
+                f"<meta name=\"robots\" content=\"noindex\"><script>location.replace(\"{_target}\")</script>"
                  f"</head><body><p>This ranking now lives on the combined Best Of page. "
                  f"<a href=\"{_target}\">Continue to the updated page</a>.</p></body></html>")
         write(os.path.join(ROOT, "best", _old_slug, "index.html"), _stub)
@@ -5402,6 +5440,7 @@ def main():
                  f"<title>Redirecting\u2026 | {SITE_NAME}</title>"
                  f"<link rel=\"canonical\" href=\"{_target}\">"
                  f"<meta http-equiv=\"refresh\" content=\"0; url={_target}\">"
+                f"<meta name=\"robots\" content=\"noindex\"><script>location.replace(\"{_target}\")</script>"
                  f"</head><body><p>Top 10 rankings are now part of the combined Best Heat Pumps page. "
                  f"<a href=\"{_target}\">Continue to the updated page</a>.</p></body></html>")
         _out_path = (os.path.join(ROOT, "top-10", "index.html") if _old_slug is None

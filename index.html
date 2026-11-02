@@ -32,6 +32,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="theme-color" content="#083F35">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
 {
@@ -60,7 +61,9 @@
   "description": "Independent UK heat pump comparison database providing specifications, COP data, and technical guidance for residential and commercial heat pumps."
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap"></noscript>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -586,7 +589,6 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <a class="burger-item burger-subitem" data-page="planning" href="/knowledge/planning-permission/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('planning');closeBurger();return false">Planning Permission</a>
     <a class="burger-item burger-subitem" data-page="cop-scop" href="/knowledge/cop-scop/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('cop-scop');closeBurger();return false">Understanding COP &amp; SCOP</a>
     <a class="burger-item burger-subitem" data-page="flow-temp" href="/knowledge/flow-temperature/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('flow-temp');closeBurger();return false">Flow Temperature &amp; Efficiency</a>
-    <a class="burger-item burger-subitem" href="/knowledge/smart-tariffs/" onclick="closeBurger()">Smart Tariffs &amp; Running Costs</a>
     <a class="burger-item burger-subitem" data-page="refrigerants" href="/knowledge/refrigerants/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('refrigerants');closeBurger();return false">Refrigerant Guide</a>
     <a class="burger-item burger-subitem" data-page="faq" href="/#faq" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('faq');closeBurger();return false">FAQ</a>
     <a class="burger-item burger-subitem" data-page="guide" href="/#guide" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('guide');closeBurger();return false">Site Guide</a>
@@ -1051,7 +1053,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   <div class="modal">
     <div class="modal-hd">
       <div class="modal-hd-left">
-        <img id="modal-logo" class="modal-logo" src="" alt="" style="display:none">
+        <img id="modal-logo" class="modal-logo" alt="" style="display:none">
         <div><h2 id="modal-ttl"></h2><p id="modal-sub"></p></div>
       </div>
       <div class="modal-hd-actions">
@@ -1063,7 +1065,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
-<div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">✕</button><img id="photo-lightbox-img" src="" alt="" onclick="event.stopPropagation()"></div>
+<div class="photo-lightbox" id="photo-lightbox" onclick="closePhotoLightbox()"><button class="photo-lightbox-close" onclick="event.stopPropagation();closePhotoLightbox()" aria-label="Close">✕</button><img id="photo-lightbox-img" alt="" onclick="event.stopPropagation()"></div>
 <footer class="site-footer" id="site-footer">
   <nav class="footer-nav" aria-label="Site sections">
     <div class="footer-col">
@@ -1143,7 +1145,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
    the first frame has painted, and the app boots once they have run. Clicks on
    app controls made before boot are queued and replayed. */
 (function(){
-  var core=['faq-data.js?v=5','data.js?v=140','bus-pel.js?v=1','logos.js?v=132','product-images.js?v=8','best-winners.js?v=1','slugs.js?v=4'];
+  var core=['faq-data.js?v=5','data.js?v=140','bus-pel.js?v=1','logos.js?v=133','product-images.js?v=8','best-winners.js?v=1','slugs.js?v=4'];
   var queued=null;
   // theme.js reads this at load; it proxies to the real state once the app has booted
   window.__hpState={get db(){var r=window.__hpStateReal;return r?r.db:[];},get filtered(){var r=window.__hpStateReal;return r?r.filtered:[];},get compareIds(){var r=window.__hpStateReal;return r?r.compareIds:[];}};
@@ -2920,7 +2922,7 @@ function openPhotoLightbox(src,alt){
 function closePhotoLightbox(){
   const lb=document.getElementById('photo-lightbox');
   lb.classList.remove('open');
-  document.getElementById('photo-lightbox-img').src='';
+  document.getElementById('photo-lightbox-img').removeAttribute('src');
   document.body.style.overflow='';
 }
 function closeModal(){

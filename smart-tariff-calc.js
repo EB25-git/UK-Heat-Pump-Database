@@ -193,9 +193,9 @@
       var r = R[s], c;
       if (t.dyn) {
         var f = mx > mn ? (r - mn) / (mx - mn) : 0;
-        c = f < 0.15 ? '#22C79A' : f < 0.4 ? '#BFE7D8' : f < 0.6 ? '#CFDDD7' : f < 0.8 ? '#F6D38A' : '#E8836B';
-      } else if (Math.abs(r - mode) < 0.01) c = '#CFDDD7';
-      else if (r < mode) c = Math.abs(r - mn) < 0.01 ? '#22C79A' : '#BFE7D8';
+        c = f < 0.15 ? '#22C79A' : f < 0.4 ? '#7FD1B2' : f < 0.6 ? '#E4E7EA' : f < 0.8 ? '#F6D38A' : '#E8836B';
+      } else if (Math.abs(r - mode) < 0.01) c = '#E4E7EA';
+      else if (r < mode) c = Math.abs(r - mn) < 0.01 ? '#22C79A' : '#7FD1B2';
       else c = (Math.abs(r - mx) < 0.01 && r > mode * 1.25) ? '#E8836B' : '#F6D38A';
       h += '<i style="background:' + c + '" title="' + String(Math.floor(s / 2)).padStart(2, '0') + ':' + (s % 2 ? '30' : '00') + ' ' + r.toFixed(1) + 'p"></i>';
     }
