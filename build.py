@@ -1671,6 +1671,253 @@ PRODUCT_IMAGE_BY_CODE = {
 # Octopus Energy, Rhoss, Sabroe all have null product_code in the source
 # data) - keyed on the unique row "id" instead, same file-drop workflow.
 PRODUCT_IMAGE_BY_ID = {
+    # Daikin (added 3 Nov 2026) - one image per model range, keyed by id
+    5311: "daikin-altherma-3-geo-for-collective-housing.webp",  # Altherma 3 GEO for Collective Housing EGSAH06UDA9W
+    5312: "daikin-altherma-3-geo-for-collective-housing.webp",  # Altherma 3 GEO for Collective Housing EGSAH10UDA9W
+    5313: "daikin-altherma-3-geo-for-collective-housing.webp",  # Altherma 3 GEO for Collective Housing EGSAX06UDA9W
+    5314: "daikin-altherma-3-geo-for-collective-housing.webp",  # Altherma 3 GEO for Collective Housing EGSAX10UDA9W
+    5315: "daikin-altherma-3-h-epga-d.webp",  # Altherma 3 H (EPGA-D) EPGA11DAV3
+    5316: "daikin-altherma-3-h-epga-d.webp",  # Altherma 3 H (EPGA-D) EPGA11DV7
+    5317: "daikin-altherma-3-h-epga-d.webp",  # Altherma 3 H (EPGA-D) EPGA14DAV3
+    5318: "daikin-altherma-3-h-epga-d.webp",  # Altherma 3 H (EPGA-D) EPGA14DV7
+    5319: "daikin-altherma-3-h-epga-d.webp",  # Altherma 3 H (EPGA-D) EPGA16DAV3
+    5320: "daikin-altherma-3-h-epga-d.webp",  # Altherma 3 H (EPGA-D) EPGA16DV7
+    2171: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETBH16E6V + EPRA14DV3
+    2172: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETBH16E6V + EPRA16DV3
+    2173: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETBH16E6V + EPRA18DV3
+    2174: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETBX16E6V + EPRA14DV3
+    2175: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETBX16E6V + EPRA16DV3
+    2176: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETBX16E6V + EPRA18DV3
+    2177: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETVH16SU18E6V + EPRA14DV3
+    2178: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETVH16SU18E6V + EPRA16DV3
+    2179: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT ETVH16SU18E6V + EPRA18DV3
+    4360: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA08EAV3
+    4361: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA10EAV3
+    4362: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA12EAV3
+    4363: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA08EAW1
+    4364: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA10EAW1
+    4365: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA12EAW1
+    4366: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA14DAV37
+    4367: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA16DAV37
+    4368: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA18DAV37
+    4369: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA14DAW17
+    4370: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA14DBW17
+    4371: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA16DAW17
+    4372: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA16DBW17
+    4373: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA18DAW17
+    4374: "daikin-altherma-3-h-ht.webp",  # Altherma 3 H HT EPRA18DBW17
+    2180: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA09DV3
+    2181: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA11DV3
+    2182: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA14DV3
+    2183: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA16DV3
+    2184: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA09DV3
+    2185: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA11DV3
+    2186: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA14DV3
+    2187: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA16DV3
+    4316: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA09DAW1
+    4317: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA11DAW1
+    4318: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA14DAW1
+    4319: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA16DAW17
+    4320: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA09DAV3
+    4321: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA11DAV3
+    4322: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA14DAV3
+    4323: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA16DAV37
+    4324: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA09DA3W1
+    4325: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA11DA3W1
+    4326: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA14DA3W1
+    4327: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA16DA3W17
+    4328: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA09DA3V3
+    4329: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA11DA3V3
+    4330: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA14DA3V3
+    4331: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA16DA3V37
+    4332: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA09DAW1
+    4333: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA11DAW1
+    4334: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA14DAW1
+    4335: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA16DAW17
+    4336: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA09DAV3
+    4337: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA11DAV3
+    4338: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA14DAV3
+    4339: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA16DAV37
+    4340: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA09DA3W1
+    4341: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA11DA3W1
+    4342: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA14DA3W1
+    4343: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA16DA3W17
+    4344: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA09DA3V3
+    4345: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA11DA3V3
+    4346: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA14DA3V3
+    4347: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA16DA3V37
+    4348: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA04E2V3
+    4349: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA06E2V3
+    4350: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA08E2V3
+    4351: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA04E23V3
+    4352: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA06E23V3
+    4353: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA08E23V3
+    4354: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA04E2V3
+    4355: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA06E2V3
+    4356: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA08E2V3
+    4357: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA04E23V3
+    4358: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA06E23V3
+    4359: "daikin-altherma-3-m.webp",  # Altherma 3 M EDLA08E23V3
+    4557: "daikin-altherma-3-m.webp",  # Altherma 3 M EBLA09D3V3U
+    4375: "daikin-altherma-3-r.webp",  # Altherma 3 R ERGA04EAV3
+    4376: "daikin-altherma-3-r.webp",  # Altherma 3 R ERGA04EAV3A
+    4377: "daikin-altherma-3-r.webp",  # Altherma 3 R ERGA06EAV3A
+    4378: "daikin-altherma-3-r.webp",  # Altherma 3 R ERGA06EAV3H
+    4379: "daikin-altherma-3-r.webp",  # Altherma 3 R ERGA08EAV3A
+    4380: "daikin-altherma-3-r.webp",  # Altherma 3 R ERGA08EAV3H7
+    4381: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA11D2V3
+    4382: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA11DAV3
+    4383: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA14D2V3
+    4384: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA14DAV3
+    4385: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA11D2W1
+    4386: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA11DAW1
+    4387: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA14D2W1
+    4388: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA14DAW1
+    4389: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA16D2V37
+    4390: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA16DAV37
+    4391: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA16D2W17
+    4392: "daikin-altherma-3-r.webp",  # Altherma 3 R ERLA16DAW17
+    5337: "daikin-altherma-3-r-erga-d.webp",  # Altherma 3 R (ERGA-D) ERGA04DAV3A
+    5338: "daikin-altherma-3-r-erga-d.webp",  # Altherma 3 R (ERGA-D) ERGA06DAV3A
+    5339: "daikin-altherma-3-r-erga-d.webp",  # Altherma 3 R (ERGA-D) ERGA06DV
+    5340: "daikin-altherma-3-r-erga-d.webp",  # Altherma 3 R (ERGA-D) ERGA08DAV3A
+    2197: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSH04P30E + ERGA04EV
+    2198: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSH08P30E/P50E + ERGA06EVH
+    2199: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSH08P30E/P50E + ERGA08EVH
+    2200: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSHB04P30E + ERGA04EV
+    2201: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSHB08P30E/P50E + ERGA06EVH
+    2202: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSHB08P30E/P50E + ERGA08EVH
+    2203: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSX04P30E/P50E + ERGA04EV
+    2204: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSX04P30E/P50E + ERGA06EVH
+    2205: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSX04P30E/P50E + ERGA08EVH
+    2206: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSXB04P30E/P50E + ERGA04EV
+    2207: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSXB04P30E/P50E + ERGA06EVH
+    2208: "daikin-altherma-3-r-ech2o.webp",  # Altherma 3 R ECH2O EHSXB04P30E/P50E + ERGA08EVH
+    2188: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVH04S18E6V + ERGA04EV
+    2189: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVH08S18E6V/E9WH + ERGA06EVH
+    2190: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVH08S18E6V/E9WH + ERGA08EVH
+    2191: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVX04S18E3V/E6V + ERGA04EV
+    2192: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVX08S18E6V/E9W + ERGA06EVH
+    2193: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVX08S18E6V/E9W + ERGA08EVH
+    2194: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVZ04S18E6V + ERGA04EV
+    2195: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVZ08S18E6V/E9W + ERGA06EVH
+    2196: "daikin-altherma-3-r-f.webp",  # Altherma 3 R F EHVZ08S18E6V/E9W + ERGA08EVH
+    2209: "daikin-altherma-3-r-w.webp",  # Altherma 3 R W EHBH04E6V + ERGA04EV
+    2210: "daikin-altherma-3-r-w.webp",  # Altherma 3 R W EHBH08E6V/E9W + ERGA06EVH
+    2211: "daikin-altherma-3-r-w.webp",  # Altherma 3 R W EHBH08E6V/E9W + ERGA08EVH
+    2212: "daikin-altherma-3-r-w.webp",  # Altherma 3 R W EHBX04E6V + ERGA04EV
+    2213: "daikin-altherma-3-r-w.webp",  # Altherma 3 R W EHBX08E6V/E9W + ERGA06EVH
+    2214: "daikin-altherma-3-r-w.webp",  # Altherma 3 R W EHBX08E6V/E9W + ERGA08EVH
+    4558: "daikin-altherma-4.webp",  # Altherma 4 EPSK06ARV3
+    4559: "daikin-altherma-4.webp",  # Altherma 4 EPSK08ARV3
+    4560: "daikin-altherma-4.webp",  # Altherma 4 EPSK10ARV3
+    4561: "daikin-altherma-4.webp",  # Altherma 4 EPSK12ARW1
+    4562: "daikin-altherma-4.webp",  # Altherma 4 EPSK14ARW1
+    4563: "daikin-altherma-4.webp",  # Altherma 4 EPSKS04ARV3
+    4564: "daikin-altherma-4.webp",  # Altherma 4 EPSKS06ARV3
+    4565: "daikin-altherma-4.webp",  # Altherma 4 EPSKS07ARV3
+    4551: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ011CA3V3
+    4552: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ011CA3W1
+    4553: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ014CA3V3
+    4554: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ014CA3W1
+    4555: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ016CA3V3
+    4556: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ016CA3W1
+    5293: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ011CV3
+    5294: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ011CW1
+    5295: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ014CV3
+    5296: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ014CW1
+    5297: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ016CV3
+    5298: "daikin-altherma-monobloc.webp",  # Altherma monobloc EBLQ016CW1
+    5299: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ011C3W1
+    5300: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ011CA3V3
+    5301: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ011CV3
+    5302: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ011CW1
+    5303: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ014C3W1
+    5304: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ014CA3V3
+    5305: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ014CV3
+    5306: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ014CW1
+    5307: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ016C3W1
+    5308: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ016CA3V3
+    5309: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ016CV3
+    5310: "daikin-altherma-monobloc-edlq-heating-only.webp",  # Altherma monobloc (EDLQ heating only) EDLQ016CW1
+    6308: "daikin-altherma-3-r-erga-dv.webp",  # Daikin Altherma 3 R ERGA04DV
+    6309: "daikin-altherma-3-r-erga-dv.webp",  # Daikin Altherma 3 R ERGA08DV
+    6304: "daikin-altherma-low-temperature-monobloc.webp",  # Daikin Altherma low temperature monobloc EBLQ05CV3
+    6305: "daikin-altherma-low-temperature-monobloc.webp",  # Daikin Altherma low temperature monobloc EBLQ07CV3
+    6306: "daikin-altherma-low-temperature-monobloc.webp",  # Daikin Altherma low temperature monobloc EDLQ05CV3
+    6307: "daikin-altherma-low-temperature-monobloc.webp",  # Daikin Altherma low temperature monobloc EDLQ07CV3
+    2218: "daikin-ewht-q.webp",  # EWHT-Q EWHT100Q-XSA1
+    2251: "daikin-ewwd-j-ss.webp",  # EWWD-J-SS EWWD120J-SS
+    2252: "daikin-ewwd-j-ss.webp",  # EWWD-J-SS EWWD140J-SS
+    2253: "daikin-ewwd-j-ss.webp",  # EWWD-J-SS EWWD150J-SS
+    2254: "daikin-ewwd-j-ss.webp",  # EWWD-J-SS EWWD180J-SS
+    2255: "daikin-ewwd-j-ss.webp",  # EWWD-J-SS EWWD210J-SS
+    2256: "daikin-ewwd-j-ss.webp",  # EWWD-J-SS EWWD250J-SS
+    2257: "daikin-ewwd-j-ss.webp",  # EWWD-J-SS EWWD280J-SS
+    2258: "daikin-ewwh-j-ss.webp",  # EWWH-J-SS EWWH90J-SS
+    2259: "daikin-ewwh-j-ss.webp",  # EWWH-J-SS EWWH110J-SS
+    2260: "daikin-ewwh-j-ss.webp",  # EWWH-J-SS EWWH120J-SS
+    2261: "daikin-ewwh-j-ss.webp",  # EWWH-J-SS EWWH130J-SS
+    2262: "daikin-ewwh-j-ss.webp",  # EWWH-J-SS EWWH150J-SS
+    2263: "daikin-ewwh-j-ss.webp",  # EWWH-J-SS EWWH180J-SS
+    2264: "daikin-ewwh-j-ss.webp",  # EWWH-J-SS EWWH200J-SS
+    2272: "daikin-ewwq-kc.webp",  # EWWQ-KC EWWQ014KCW1N
+    2273: "daikin-ewwq-kc.webp",  # EWWQ-KC EWWQ025KCW1N
+    2274: "daikin-ewwq-kc.webp",  # EWWQ-KC EWWQ033KCW1N
+    2275: "daikin-ewwq-kc.webp",  # EWWQ-KC EWWQ049KCW1N
+    2276: "daikin-ewwq-kc.webp",  # EWWQ-KC EWWQ064KCW1N
+    2265: "daikin-ewws-j-ss.webp",  # EWWS-J-SS EWWS120J-SS
+    2266: "daikin-ewws-j-ss.webp",  # EWWS-J-SS EWWS140J-SS
+    2267: "daikin-ewws-j-ss.webp",  # EWWS-J-SS EWWS150J-SS
+    2268: "daikin-ewws-j-ss.webp",  # EWWS-J-SS EWWS180J-SS
+    2269: "daikin-ewws-j-ss.webp",  # EWWS-J-SS EWWS210J-SS
+    2270: "daikin-ewws-j-ss.webp",  # EWWS-J-SS EWWS240J-SS
+    2271: "daikin-ewws-j-ss.webp",  # EWWS-J-SS EWWS270J-SS
+    2215: "daikin-ewwt-q.webp",  # EWWT-Q EWWT100Q-XSA1
+    2216: "daikin-ewwt-q.webp",  # EWWT-Q EWWT125Q-XSA1
+    2217: "daikin-ewwt-q.webp",  # EWWT-Q EWWT160Q-XSA1
+    2219: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE019CZP-A1
+    2220: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE022CZP-A1
+    2221: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE025CZP-A1
+    2222: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE030CZP-A1
+    2223: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE035CZP-A1
+    2224: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE050CZP-A2
+    2225: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE060CZP-A2
+    2226: "daikin-ewye-cz.webp",  # EWYE-CZ EWYE070CZP-A2
+    2243: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK020CZPA1
+    2244: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK025CZPA1
+    2245: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK030CZPA1
+    2246: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK040CZPA2
+    2247: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK050CZPA2
+    2248: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK060CZPA2
+    2249: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK070CZPA2
+    2250: "daikin-ewyk-cz.webp",  # EWYK-CZ EWYK085CZPA2
+    2277: "daikin-ewyk-qz.webp",  # EWYK-QZ EWYK100QZXSA2
+    2278: "daikin-ewyk-qz.webp",  # EWYK-QZ EWYK135QZXSA2
+    2279: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS4004ZXSB2
+    2280: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS4504ZXSB2
+    2281: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS5004ZXSB2
+    2282: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS5504ZXSB2
+    2283: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS6004ZXSB2
+    2284: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS6504ZXSB2
+    2285: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS7004ZXSB2
+    2286: "daikin-ewys-4z.webp",  # EWYS-4Z EWYS8004ZXSB2
+    2227: "daikin-ewyt-b.webp",  # EWYT-B EWYT085B-SS
+    2228: "daikin-ewyt-b.webp",  # EWYT-B EWYT105B-SS
+    2229: "daikin-ewyt-b.webp",  # EWYT-B EWYT135B-SS
+    2230: "daikin-ewyt-b.webp",  # EWYT-B EWYT175B-SS
+    2231: "daikin-ewyt-b.webp",  # EWYT-B EWYT215B-SS
+    2232: "daikin-ewyt-b.webp",  # EWYT-B EWYT205B-SS
+    2233: "daikin-ewyt-b.webp",  # EWYT-B EWYT235B-SS
+    2234: "daikin-ewyt-b.webp",  # EWYT-B EWYT255B-SS
+    2235: "daikin-ewyt-b.webp",  # EWYT-B EWYT300B-SS
+    2236: "daikin-ewyt-b.webp",  # EWYT-B EWYT340B-SS
+    2237: "daikin-ewyt-b.webp",  # EWYT-B EWYT390B-SS
+    2238: "daikin-ewyt-b.webp",  # EWYT-B EWYT430B-SS
+    2239: "daikin-ewyt-b.webp",  # EWYT-B EWYT490B-SS
+    2240: "daikin-ewyt-b.webp",  # EWYT-B EWYT540B-SS
+    2241: "daikin-ewyt-b.webp",  # EWYT-B EWYT590B-SS
+    2242: "daikin-ewyt-b.webp",  # EWYT-B EWYT630B-SS
     # Atlantic (added 8 Oct 2026) - keyed by id because product codes repeat across ranges
     # (e.g. "A.I. 11" is both Alfea Excellia and Alfea Excellia Duo). Duo models lead with the
     # cylinder indoor unit; see below for Alfea Extensa Duo.
