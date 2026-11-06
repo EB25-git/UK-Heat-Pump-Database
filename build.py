@@ -35,7 +35,7 @@ DATA      = os.path.join(ROOT, "products.json")
 NEWS_DATA = os.path.join(ROOT, "news.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["products", "manufacturers", "types", "knowledge", "best", "heat-pump-comparison", "heat-pump-size-calculator", "heat-pump-noise-calculator", "news"]
+GENERATED_DIRS = ["cylinders", "products", "manufacturers", "types", "knowledge", "best", "heat-pump-comparison", "heat-pump-size-calculator", "heat-pump-noise-calculator", "news"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -858,6 +858,7 @@ def burger_menu(active=None):
     return (
         it("Browse", f"{BASE_URL}/", "browse")
         + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
+        + it("Cylinders &amp; Tanks", f"{BASE_URL}/cylinders/", "cylinders")
         + compare_block
         + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
         + it("Heat Pump Finder", f"{BASE_URL}/heat-pump-finder/", "finder")
@@ -1671,6 +1672,16 @@ PRODUCT_IMAGE_BY_CODE = {
 # Octopus Energy, Rhoss, Sabroe all have null product_code in the source
 # data) - keyed on the unique row "id" instead, same file-drop workflow.
 PRODUCT_IMAGE_BY_ID = {
+    # Ariston Nimbus 5 M R290 (added 5 Nov 2026, Ariston permission) - outdoor unit sized by capacity:
+    # 30/50 = small single-fan, 80 = mid single-fan, 120/150 = large twin-fan
+    6508: ["ariston-nimbus-5-r290-small-front.webp", "ariston-nimbus-5-r290-small-left.webp", "ariston-nimbus-5-r290-small-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 30
+    6509: ["ariston-nimbus-5-r290-small-front.webp", "ariston-nimbus-5-r290-small-left.webp", "ariston-nimbus-5-r290-small-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 50
+    6510: ["ariston-nimbus-5-r290-mid-front.webp", "ariston-nimbus-5-r290-mid-left.webp", "ariston-nimbus-5-r290-mid-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 80
+    6511: ["ariston-nimbus-5-r290-mid-front.webp", "ariston-nimbus-5-r290-mid-left.webp", "ariston-nimbus-5-r290-mid-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 80-T
+    6512: ["ariston-nimbus-5-r290-large-front.webp", "ariston-nimbus-5-r290-large-left.webp", "ariston-nimbus-5-r290-large-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 120
+    6513: ["ariston-nimbus-5-r290-large-front.webp", "ariston-nimbus-5-r290-large-left.webp", "ariston-nimbus-5-r290-large-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 120-T
+    6514: ["ariston-nimbus-5-r290-large-front.webp", "ariston-nimbus-5-r290-large-left.webp", "ariston-nimbus-5-r290-large-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 150
+    6515: ["ariston-nimbus-5-r290-large-front.webp", "ariston-nimbus-5-r290-large-left.webp", "ariston-nimbus-5-r290-large-right.webp", "ariston-nimbus-5-r290-outdoor-installed.webp", "ariston-nimbus-5-r290-range.webp"],  # Nimbus 5 M R290, 150-T
     # Daikin (added 3 Nov 2026) - one image per model range, keyed by id
     5311: "daikin-altherma-3-geo-for-collective-housing.webp",  # Altherma 3 GEO for Collective Housing EGSAH06UDA9W
     5312: "daikin-altherma-3-geo-for-collective-housing.webp",  # Altherma 3 GEO for Collective Housing EGSAH10UDA9W
@@ -2799,6 +2810,7 @@ def render_product(p, by_mfr, by_type):
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{render_reviews(p)}'
+            f'{render_compatible_cylinders(p)}'
             f'{render_alternatives(p, by_type)}'
             f'{rel}'
             f'<h2 class="sec">Compare with other products</h2>'
@@ -5295,6 +5307,197 @@ def bus_line(p):
     on = f"Ofgem BUS Product Eligibility List{(' (' + d + ')') if d else ''}"
     return f"Listed on the {on}"
 
+# ───────────────────────── Hot water cylinders & tanks ─────────────────────────
+# Data: cylinders.json (exported from Euan's Hot Water Cylinder Review workbook by
+# cylinders/export_site.py - only the user-facing columns he chose). Each cylinder
+# lists hp_ids = compatible heat pump product IDs; heat pump pages show the matching
+# cylinders, and each cylinder gets its own page under /cylinders/<slug>/.
+CYL_DATA = os.path.join(ROOT, "cylinders.json")
+CYL_BY_HP = {}
+CYL_DUP_NAMES = set()
+CYL_LABELS = [
+    ("cylinder_type", "Type", ""), ("pre_plumbed", "Pre-plumbed", ""), ("product_code", "Product code", ""),
+    ("volume_nominal_l", "Nominal volume", " L"), ("volume_actual_l", "Actual / usable volume", " L"),
+    ("max_temp_c", "Max operating temperature", " &deg;C"), ("heat_loss_kwh_24h", "Standing heat loss", " kWh/24h"),
+    ("heat_loss_w", "Standing heat loss (watts)", " W"), ("erp_class", "ErP class", ""), ("coil_type", "Coil type", ""),
+    ("coil_rating_kw", "Coil rating", " kW"), ("secondary_coil", "Solar / secondary coil", ""),
+    ("immersion_kw", "Immersion heater", " kW"), ("max_pressure_bar", "Max operating pressure", " bar"),
+    ("expansion_vessel_l", "Expansion vessel", " L"), ("height_mm", "Height", " mm"), ("width_mm", "Diameter / width", " mm"),
+    ("depth_mm", "Depth", " mm"), ("shape", "Shape", ""), ("footprint_m2", "Footprint", " m&sup2;"),
+    ("weight_empty_kg", "Weight (empty)", " kg"), ("weight_full_kg", "Weight (full)", " kg"),
+    ("inner_material", "Inner material", ""), ("warranty_yrs", "Warranty", " years"),
+]
+
+def _cv(c, k, unit=""):
+    v = c.get(k)
+    if v is None or v == "":
+        return ""
+    if isinstance(v, float):
+        v = num(v) if k != "footprint_m2" else f"{v:.2f}"
+    s = esc(str(v))
+    # only append the unit when the value is a bare number
+    return s + (unit if unit and re.fullmatch(r"[\d.,]+", str(v)) else "")
+
+def _cyl_dims(c):
+    h, w, d = c.get("height_mm"), c.get("width_mm"), c.get("depth_mm")
+    if not (h or w):
+        return ""
+    parts = [str(num(x)) for x in (h, w, d) if isinstance(x, (int, float))]
+    return " &times; ".join(parts) + " mm" if parts else ""
+
+def _cyl_vol(c):
+    v = c.get("volume_nominal_l") or c.get("volume_actual_l")
+    return f"{num(v)} L" if isinstance(v, (int, float)) else (esc(str(v)) if v else "")
+
+def _cyl_url(c):
+    return f"{BASE_URL}/cylinders/{c['_slug']}/"
+
+def load_cylinders(products):
+    """Load cylinders.json, give each a unique slug and index them by heat pump ID."""
+    global CYL_BY_HP
+    try:
+        with open(CYL_DATA, encoding="utf-8") as f:
+            cyls = json.load(f)
+    except FileNotFoundError:
+        return []
+    ids = {p.get("id") for p in products}
+    seen = {}
+    for c in cyls:
+        base = slugify(f"{c.get('manufacturer','')} {c.get('model','')}")
+        slug = base
+        if slug in seen:
+            code = slugify(str(c.get("product_code") or "")) or str(c["id"])
+            slug = f"{base}-{code}"
+            k = 2
+            while slug in seen:
+                slug = f"{base}-{code}-{k}"; k += 1
+        seen[slug] = True
+        c["_slug"] = slug
+        c["hp_ids"] = [i for i in (c.get("hp_ids") or []) if i in ids]
+    global CYL_DUP_NAMES
+    _nc = Counter(f"{c.get('manufacturer','')} {c.get('model','')}" for c in cyls)
+    CYL_DUP_NAMES = {n for n, k in _nc.items() if k > 1}
+    CYL_BY_HP = {}
+    for c in cyls:
+        for i in c["hp_ids"]:
+            CYL_BY_HP.setdefault(i, []).append(c)
+    return cyls
+
+def _cyl_table(cyls, show_mfr=False):
+    head = (("<th>Manufacturer</th>" if show_mfr else "") +
+            "<th>Model</th><th>Type</th><th>Volume</th><th>Heat loss</th><th>H &times; W &times; D</th><th>Price</th>")
+    rows = ""
+    for c in cyls:
+        hl = c.get("heat_loss_kwh_24h")
+        rows += ("<tr" + (f' data-type="{esc(c.get("cylinder_type") or "")}" data-mfr="{esc(c.get("manufacturer") or "")}"'
+                          f' data-vol="{c.get("volume_nominal_l") if isinstance(c.get("volume_nominal_l"), (int, float)) else ""}"' if show_mfr else "") + ">"
+                 + (f'<td>{esc(c.get("manufacturer") or "")}</td>' if show_mfr else "")
+                 + f'<td><a href="{_cyl_url(c)}">{esc(c.get("model") or "")}</a></td>'
+                 f'<td>{esc(c.get("cylinder_type") or "")}</td><td>{_cyl_vol(c)}</td>'
+                 f'<td style="white-space:nowrap">{(esc(num(hl)) + " kWh/24h") if isinstance(hl, (int, float)) else ""}</td>'
+                 f'<td style="white-space:nowrap">{_cyl_dims(c)}</td><td style="white-space:nowrap">{esc(str(c.get("price") or ""))}</td></tr>')
+    return f'<table class="list">{"<tr>" + head + "</tr>"}{rows}</table>'
+
+def render_compatible_cylinders(p):
+    cyls = CYL_BY_HP.get(p.get("id")) or []
+    if not cyls:
+        return ""
+    cyls = sorted(cyls, key=lambda c: (c.get("cylinder_type") or "", c.get("volume_nominal_l") if isinstance(c.get("volume_nominal_l"), (int, float)) else 9e9))
+    return ('<h2 class="sec">Compatible hot water cylinders &amp; tanks</h2>'
+            f'<p class="sub">{len(cyls)} cylinder{"s" if len(cyls) != 1 else ""}, buffer{"s" if len(cyls) != 1 else ""} and indoor units listed for this heat pump.</p>'
+            + _cyl_table(cyls))
+
+def render_cylinder(c, pid):
+    url = _cyl_url(c)
+    mfr, model = c.get("manufacturer", ""), c.get("model", "")
+    name = f"{mfr} {model}"
+    rows = ""
+    for k, label, unit in CYL_LABELS:
+        v = _cv(c, k, unit)
+        if v:
+            rows += f"<tr><th>{label}</th><td>{v}</td></tr>"
+    if c.get("price"):
+        ps = c.get("price_sources") or {}
+        src = (f' <span class="sub">({esc(ps.get("text") or "")})</span>' if ps.get("text") else "")
+        if ps.get("url"):
+            src = f' <a href="{esc(ps["url"])}" rel="nofollow noopener" target="_blank">source</a>' + src
+        rows += f'<tr><th>Price (unit only, inc VAT)</th><td>{esc(str(c["price"]))}{src}</td></tr>'
+        if c.get("price_check_date"):
+            rows += f'<tr><th>Price checked</th><td>{esc(str(c["price_check_date"]))}</td></tr>'
+    if c.get("product_url"):
+        rows += f'<tr><th>Manufacturer / retailer page</th><td><a href="{esc(c["product_url"])}" rel="nofollow noopener" target="_blank">View product page</a></td></tr>'
+    hps = [pid[i] for i in c.get("hp_ids") or [] if i in pid]
+    hp_html = ""
+    if hps:
+        groups = {}
+        for q in sorted(hps, key=lambda q: (q.get("manufacturer", ""), q.get("model", ""), q.get("cap_max") or 0)):
+            groups.setdefault((q.get("manufacturer", ""), q.get("model", "")), []).append(q)
+        items = ""
+        for (m, mo), qs in groups.items():
+            links = ", ".join(f'<a href="{BASE_URL}/products/{q["_slug"]}/">{esc(cap_str(q) or q.get("product_code") or mo)}</a>' for q in qs)
+            items += f"<li><strong>{esc(m)} {esc(mo)}</strong>: {links}</li>"
+        hp_html = (f'<h2 class="sec">Compatible heat pumps ({len(hps)})</h2><ul class="cyl-hps">{items}</ul>')
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Cylinders", f"{BASE_URL}/cylinders/"), (name, None)]
+    vol = _cyl_vol(c)
+    desc = (f"{name}{' ' + re.sub('<[^>]+>', '', vol) if vol and vol not in model else ''} "
+            f"{(c.get('cylinder_type') or 'cylinder').lower()} specifications: volume, heat loss, dimensions, weight"
+            f"{', price' if c.get('price') else ''} and compatible heat pumps.")[:300]
+    body = (crumbs(crumb_items) + f"<h1>{esc(name)}</h1>"
+            f'<p class="sub">{esc(c.get("cylinder_type") or "")}{(" &middot; " + vol) if vol else ""}</p>'
+            f'<table class="spec">{rows}</table>{hp_html}'
+            '<div class="disclaimer">Data is compiled from manufacturer and retailer sources and may contain errors or '
+            'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
+            f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/cylinders/">All cylinders &amp; tanks &rarr;</a></p>'
+            f'<p class="trademark-note">The {esc(mfr)} name is a trademark of its respective owner and is used here for identification purposes only.</p>')
+    # Priced cylinders -> Product + AggregateOffer; unpriced -> ProductModel (avoids the
+    # Search Console "Either offers, review, or aggregateRating" error on Product items).
+    _nums = [float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*(?:\.\d+)?", str(c.get("price") or ""))]
+    ld = {"@context": "https://schema.org", "@type": "Product" if _nums else "ProductModel", "name": name,
+          "brand": {"@type": "Brand", "name": mfr}, "category": "Hot water cylinder", "url": url}
+    if c.get("product_code"):
+        ld["mpn"] = str(c["product_code"])
+    if _nums:
+        ld["offers"] = {"@type": "AggregateOffer", "priceCurrency": "GBP", "lowPrice": min(_nums), "highPrice": max(_nums), "url": url}
+    # title: unique, within ~60 chars where possible
+    tname = name if name not in CYL_DUP_NAMES else f"{name} ({c.get('product_code') or c['id']})"
+    title = f"{tname} Specifications" if len(f"{tname} Specifications") <= 60 else tname
+    # meta description: 110-160 chars
+    if len(desc) > 160:
+        desc = desc[:157].rsplit(" ", 1)[0].rstrip(",:;") + "\u2026"
+    elif len(desc) < 110:
+        desc = desc + " Free, independent heat pump database."
+        desc = desc if len(desc) <= 160 else desc[:157].rsplit(" ", 1)[0] + "\u2026"
+    return page(f"{title} | {SITE_NAME}", desc, url, body,
+                [breadcrumb_jsonld(crumb_items, url), ld], og_type="product", og_image=get_og_image(mfr))
+
+def render_cylinders_index(cyls):
+    url = f"{BASE_URL}/cylinders/"
+    cyls = sorted(cyls, key=lambda c: (c.get("manufacturer", "").lower(), c.get("model", "").lower()))
+    types = sorted({c.get("cylinder_type") for c in cyls if c.get("cylinder_type")})
+    mfrs = sorted({c.get("manufacturer") for c in cyls if c.get("manufacturer")}, key=str.lower)
+    opt = lambda vals: "".join(f'<option value="{esc(v)}">{esc(v)}</option>' for v in vals)
+    filters = ('<div class="cyl-filters" style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">'
+               f'<select id="cf-type" aria-label="Type"><option value="">All types</option>{opt(types)}</select>'
+               f'<select id="cf-mfr" aria-label="Manufacturer"><option value="">All manufacturers</option>{opt(mfrs)}</select>'
+               '<input id="cf-min" type="number" placeholder="Min litres" style="width:110px" aria-label="Minimum volume">'
+               '<input id="cf-max" type="number" placeholder="Max litres" style="width:110px" aria-label="Maximum volume">'
+               '<span id="cf-count" class="sub" style="align-self:center"></span></div>')
+    js = ("<script>(function(){var t=document.getElementById('cf-type'),m=document.getElementById('cf-mfr'),"
+          "a=document.getElementById('cf-min'),b=document.getElementById('cf-max'),n=document.getElementById('cf-count'),"
+          "rows=[].slice.call(document.querySelectorAll('#cyl-table tr[data-type]'));function f(){var k=0;rows.forEach(function(r){"
+          "var v=parseFloat(r.dataset.vol),ok=(!t.value||r.dataset.type==t.value)&&(!m.value||r.dataset.mfr==m.value)"
+          "&&(!a.value||(v>=+a.value))&&(!b.value||(v<=+b.value));r.style.display=ok?'':'none';if(ok)k++});"
+          "n.textContent=k+' of '+rows.length+' shown'}[t,m,a,b].forEach(function(e){e.addEventListener('input',f)});f()})();</script>")
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Cylinders", None)]
+    body = (crumbs(crumb_items) + "<h1>Heat pump hot water cylinders &amp; tanks</h1>"
+            f'<p class="sub">{len(cyls)} cylinders, buffer tanks and indoor units from {len(mfrs)} manufacturers, '
+            'with volumes, heat loss, dimensions and the heat pumps each one works with.</p>'
+            + filters + f'<div id="cyl-table">{_cyl_table(cyls, show_mfr=True)}</div>' + js)
+    return page(f"Heat Pump Hot Water Cylinders & Tanks | {SITE_NAME}",
+                f"Compare {len(cyls)} heat pump hot water cylinders, buffer tanks and indoor units: volume, heat loss, dimensions, price and compatible heat pumps.",
+                url, body, [breadcrumb_jsonld(crumb_items, url)], og_image=get_og_image(), wide=True)
+
+
 def main():
     with open(DATA, encoding="utf-8") as f:
         products = json.load(f)
@@ -5341,6 +5544,7 @@ def main():
         by_mfr.setdefault(p.get("manufacturer", ""), []).append(p)
         by_type.setdefault(p.get("hp_type"), []).append(p)
     compute_type_links(products)
+    cylinders = load_cylinders(products)
 
     # --- Per-page content fingerprints, for sitemap.xml <lastmod> ---
     # See _lastmod_hash() above. product_hash_by_id lets every page that lists
@@ -5348,7 +5552,10 @@ def main():
     # own fingerprint from exactly the product data it displays, so it only
     # gets a fresh lastmod when a product it actually shows has changed.
     product_hash_by_id = {
-        p.get("id"): _lastmod_hash(_with_reviews(p, {k: v for k, v in p.items() if k != "_slug"}))
+        p.get("id"): _lastmod_hash(_with_reviews(p, {k: v for k, v in p.items() if k != "_slug"})
+                                   if not CYL_BY_HP.get(p.get("id")) else
+                                   [_with_reviews(p, {k: v for k, v in p.items() if k != "_slug"}),
+                                    sorted(c["_slug"] for c in CYL_BY_HP[p.get("id")])])
         for p in products
     }
     lastmod_path = os.path.join(ROOT, "lastmod.json")
@@ -5467,6 +5674,19 @@ def main():
     _nf = page(f"Page not found | {SITE_NAME}", "This page could not be found.", f"{BASE_URL}/", _nf_body, [])
     _nf = _nf.replace('<head>', '<head>\n<meta name="robots" content="noindex">', 1)
     write(os.path.join(ROOT, "404.html"), _nf)
+
+    # cylinder pages + index (cylinders.json)
+    _pid = {p.get("id"): p for p in products}
+    for c in cylinders:
+        write(os.path.join(ROOT, "cylinders", c["_slug"], "index.html"), render_cylinder(c, _pid))
+        url = f"{BASE_URL}/cylinders/{c['_slug']}/"
+        urls.append(url)
+        _lastmod_for(url, _lastmod_hash(c))
+    if cylinders:
+        write(os.path.join(ROOT, "cylinders", "index.html"), render_cylinders_index(cylinders))
+        url = f"{BASE_URL}/cylinders/"
+        urls.append(url)
+        _lastmod_for(url, _lastmod_hash(sorted(c["_slug"] for c in cylinders)))
 
     # manufacturer pages + index
     for m, ps in by_mfr.items():
