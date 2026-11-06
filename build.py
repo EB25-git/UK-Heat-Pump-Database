@@ -856,9 +856,9 @@ def burger_menu(active=None):
         + '</div>'
     )
     return (
-        it("Browse", f"{BASE_URL}/", "browse")
+        it("Browse - Heat Pumps", f"{BASE_URL}/", "browse")
+        + it("Browse - Cylinders &amp; Tanks", f"{BASE_URL}/cylinders/", "cylinders")
         + it("Manufacturers", f"{BASE_URL}/manufacturers/", "manufacturers")
-        + it("Cylinders &amp; Tanks", f"{BASE_URL}/cylinders/", "cylinders")
         + compare_block
         + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
         + it("Heat Pump Finder", f"{BASE_URL}/heat-pump-finder/", "finder")

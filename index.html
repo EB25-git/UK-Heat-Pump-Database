@@ -565,9 +565,9 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
   </button>
   </div>
   <div class="burger-menu" id="burger-menu">
-    <a class="burger-item active" data-page="browse" href="/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('browse');closeBurger();return false">Browse</a>
+    <a class="burger-item active" data-page="browse" href="/" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('browse');closeBurger();return false">Browse - Heat Pumps</a>
+    <a class="burger-item" href="/cylinders/" onclick="closeBurger()">Browse - Cylinders &amp; Tanks</a>
     <a class="burger-item" href="/manufacturers/" onclick="closeBurger()">Manufacturers</a>
-    <a class="burger-item" href="/cylinders/" onclick="closeBurger()">Cylinders &amp; Tanks</a>
     <button class="burger-item burger-toggle" id="c-toggle" aria-expanded="false" aria-controls="c-group" onclick="toggleCompare()">Compare<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="c-group">
     <a class="burger-item burger-subitem" data-page="compare" href="/#compare" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('compare');closeBurger();return false">Compare Selected</a>
