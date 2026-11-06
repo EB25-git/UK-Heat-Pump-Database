@@ -5470,33 +5470,141 @@ def render_cylinder(c, pid):
     return page(f"{title} | {SITE_NAME}", desc, url, body,
                 [breadcrumb_jsonld(crumb_items, url), ld], og_type="product", og_image=get_og_image(mfr))
 
+def cylinders_browse_data(cyls, products):
+    """Compact records for /cylinders-data.json (drives the Browse-style cylinder page)."""
+    pid = {p.get("id"): p for p in products}
+    mfr_names = {p.get("manufacturer") for p in products}
+    n = lambda v: v if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+    out = []
+    for c in sorted(cyls, key=lambda c: (c.get("manufacturer", "").lower(), c.get("model", "").lower())):
+        nums = [float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*(?:\.\d+)?", str(c.get("price") or ""))]
+        hb = sorted({pid[i].get("manufacturer") for i in c.get("hp_ids") or [] if i in pid})
+        r = {"i": c["_slug"], "m": c.get("manufacturer"), "n": c.get("model"), "c": c.get("product_code"),
+             "t": c.get("cylinder_type"), "pp": c.get("pre_plumbed"), "v": n(c.get("volume_nominal_l")) or n(c.get("volume_actual_l")),
+             "hl": n(c.get("heat_loss_kwh_24h")), "h": n(c.get("height_mm")), "w": n(c.get("width_mm")), "dp": n(c.get("depth_mm")),
+             "wt": n(c.get("weight_empty_kg")), "ct": c.get("coil_type"), "cr": n(c.get("coil_rating_kw")), "erp": c.get("erp_class"),
+             "p": c.get("price") or None, "pn": min(nums) if nums else None, "k": len(c.get("hp_ids") or []), "hb": hb,
+             "lg": get_logo_url(c.get("manufacturer")) if c.get("manufacturer") in mfr_names else None}
+        out.append({k: v for k, v in r.items() if v not in (None, "", [])})
+    return out
+
+CYL_SEG = [("", "All"), ("Unvented", "Unvented"), ("Buffer", "Buffer"), ("Combi (buffer + DHW)", "Combi"),
+           ("Integrated (all-in-one)", "All-in-one"), ("Thermal store", "Thermal store"),
+           ("Hydrobox / indoor unit (no storage)", "Indoor unit")]
+
 def render_cylinders_index(cyls):
+    """Browse-style listing (same look as the homepage): hero with search + type buttons,
+    filter sidebar, toolbar, card grid / table. Data loads from /cylinders-data.json; a plain
+    A-Z link list is kept in the HTML so every cylinder page stays crawlable."""
     url = f"{BASE_URL}/cylinders/"
     cyls = sorted(cyls, key=lambda c: (c.get("manufacturer", "").lower(), c.get("model", "").lower()))
-    types = sorted({c.get("cylinder_type") for c in cyls if c.get("cylinder_type")})
     mfrs = sorted({c.get("manufacturer") for c in cyls if c.get("manufacturer")}, key=str.lower)
-    opt = lambda vals: "".join(f'<option value="{esc(v)}">{esc(v)}</option>' for v in vals)
-    filters = ('<div class="cyl-filters" style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">'
-               f'<select id="cf-type" aria-label="Type"><option value="">All types</option>{opt(types)}</select>'
-               f'<select id="cf-mfr" aria-label="Manufacturer"><option value="">All manufacturers</option>{opt(mfrs)}</select>'
-               '<input id="cf-min" type="number" placeholder="Min litres" style="width:110px" aria-label="Minimum volume">'
-               '<input id="cf-max" type="number" placeholder="Max litres" style="width:110px" aria-label="Maximum volume">'
-               '<span id="cf-count" class="sub" style="align-self:center"></span></div>')
-    js = ("<script>(function(){var t=document.getElementById('cf-type'),m=document.getElementById('cf-mfr'),"
-          "a=document.getElementById('cf-min'),b=document.getElementById('cf-max'),n=document.getElementById('cf-count'),"
-          "rows=[].slice.call(document.querySelectorAll('#cyl-table tr[data-type]'));function f(){var k=0;rows.forEach(function(r){"
-          "var v=parseFloat(r.dataset.vol),ok=(!t.value||r.dataset.type==t.value)&&(!m.value||r.dataset.mfr==m.value)"
-          "&&(!a.value||(v>=+a.value))&&(!b.value||(v<=+b.value));r.style.display=ok?'':'none';if(ok)k++});"
-          "n.textContent=k+' of '+rows.length+' shown'}[t,m,a,b].forEach(function(e){e.addEventListener('input',f)});f()})();</script>")
-    crumb_items = [("Home", f"{BASE_URL}/"), ("Cylinders", None)]
-    body = (crumbs(crumb_items) + "<h1>Heat pump hot water cylinders &amp; tanks</h1>"
-            f'<p class="sub">{len(cyls)} cylinders, buffer tanks and indoor units from {len(mfrs)} manufacturers, '
-            'with volumes, heat loss, dimensions and the heat pumps each one works with.</p>'
-            + filters + f'<div id="cyl-table">{_cyl_table(cyls, show_mfr=True)}</div>' + js)
+    cnt = Counter(c.get("cylinder_type") for c in cyls)
+    seg = "".join(f'<button type="button" data-ct="{esc(v)}" aria-pressed="{"true" if not v else "false"}">{l}</button>'
+                  for v, l in CYL_SEG if not v or cnt.get(v))
+    def fcol(label, inner):
+        return f'<div class="filter-col"><label class="filter-label">{label}</label>{inner}</div>'
+    def slider(key, label):
+        return f'<div class="filter-col"><label class="filter-label">{label} <span class="f-slider-val" id="sv-{key}">Any</span></label><div class="range-wrap" id="sl-{key}"></div></div>'
+    sel = lambda i, first, extra="": f'<select class="filt" id="{i}"><option value="">{first}</option>{extra}</select>'
+    az = "".join(f'<li><a href="{_cyl_url(c)}">{esc(c.get("manufacturer",""))} {esc(c.get("model",""))}</a></li>' for c in cyls)
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Cylinders & Tanks", None)]
+    body = f"""<link rel="stylesheet" href="/browse-shared.css?v=1">
+<style>
+html body main>.wrap{{max-width:none;padding:0}}
+html body main{{padding:0}}
+.cyl-app{{overflow-x:hidden}}
+.cyl-app .hp-seg{{flex-wrap:nowrap}}
+@media(min-width:521px){{html body .cyl-app .hp-seg button{{padding:9px 10px;font-size:14px}}}}
+@media(max-width:520px){{.cyl-app .hp-seg{{flex-wrap:wrap}}}}
+.cyl-app .hp-seg button{{white-space:nowrap}}
+.cyl-app .card-act{{white-space:nowrap}}
+.cyl-app #hp-table td:nth-child(2){{min-width:200px}}
+.cyl-app .hero h1 em{{font-style:normal}}
+.cyl-app .hero-img{{opacity:.35}}
+.cyl-app .browse-main .table-wrap table{{width:100%;border-collapse:collapse;font-size:13px}}
+.cyl-app .browse-main thead th{{background:var(--surface2);padding:11px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}}
+.cyl-app .browse-main tbody tr{{border-bottom:.5px solid var(--border);cursor:pointer}}
+.cyl-app .browse-main tbody tr:hover{{background:var(--accent-light)}}
+.cyl-app .browse-main td{{padding:11px 14px;vertical-align:middle}}
+.cyl-app td.mv{{font-variant-numeric:tabular-nums;white-space:nowrap}} .cyl-app td.acc{{color:var(--accent);font-weight:500}}
+.cyl-app .sort-arr{{margin-left:3px;opacity:.4;font-size:9px}} .cyl-app .sort-arr.on{{opacity:1;color:var(--accent)}}
+.cyl-app .hp-card:hover{{text-decoration:none}}
+.cyl-az{{max-width:1280px;margin:0 auto 40px;padding:0 2.5rem}} .cyl-az summary{{cursor:pointer;font-weight:600;color:var(--text2)}}
+.cyl-az ul{{columns:3 260px;font-size:13px;margin-top:12px;padding-left:18px}} .cyl-az li{{margin:0 0 4px;break-inside:avoid}}
+@media(max-width:768px){{.cyl-az{{padding:0 1.25rem}}}}
+</style>
+<div class="cyl-app">
+  <div class="hero">
+    <img class="hero-img" src="/images/hero-home.jpg" alt="" width="900" height="600">
+    <div class="hero-inner">
+      <div>
+        <h1><em>Cylinders &amp; Tanks</em></h1>
+        <p id="hero-subtitle">Hot water cylinders, buffer tanks and indoor units for heat pumps: volumes, standing heat loss, dimensions and the heat pumps each one works with.</p>
+        <ul class="hero-free" aria-label="Free to use"><li>Free forever</li><li>No subscription</li></ul>
+        <div class="hero-find" id="hero-find">
+          <div class="search-wrap"><span class="search-icon">&#8981;</span><input type="text" placeholder="Search cylinder, manufacturer, product code&hellip;" id="search-input" aria-label="Search cylinders"></div>
+          <div class="hero-row"><div class="hp-seg" role="group" aria-label="Cylinder type">{seg}</div><button type="button" class="maptog filt-mob">Filters</button></div>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-n">{len(cyls):,}</div><div class="stat-l">cylinders &amp; tanks</div></div>
+          <div><div class="stat-n">{len(mfrs)}</div><div class="stat-l">manufacturers</div></div>
+          <div><div class="stat-n">{cnt.get("Unvented", 0)}</div><div class="stat-l">unvented</div></div>
+          <div><div class="stat-n">{cnt.get("Buffer", 0) + cnt.get("Combi (buffer + DHW)", 0)}</div><div class="stat-l">buffer &amp; combi</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="faq-callout"><div class="faq-callout-inner"><span class="faq-callout-icon">&#128161;</span><span class="faq-callout-text">Choosing a cylinder? Lower standing heat loss means less wasted energy, and the coil rating should suit your heat pump&rsquo;s output. Each listing shows the heat pumps it&rsquo;s compatible with.</span></div></div>
+  <div class="browse-layout">
+    <div class="filter-panel" id="filter-panel">
+      <div class="filter-panel-inner">
+        <div class="filter-panel-header"><span class="filter-panel-title">Filter cylinders</span><button class="clear-btn" id="clear-filters-btn" style="display:none">&#10005; Clear all filters</button></div>
+        <div class="filter-grid">
+          {slider("vol", "Volume")}
+          {slider("hl", "Max standing heat loss")}
+          {slider("h", "Max height")}
+          {slider("w", "Max width / diameter")}
+          {slider("wt", "Max weight (empty)")}
+          {fcol("Type", sel("filt-ctype", "All types"))}
+          {fcol("Manufacturer", sel("filt-mfr", "All manufacturers"))}
+          {fcol("Works with heat pump brand", sel("filt-hpb", "Any heat pump brand"))}
+          {fcol("Pre-plumbed", sel("filt-pp", "Any", '<option value="Yes">Yes</option><option value="No">No</option>'))}
+          {fcol("Coil type", sel("filt-coil", "Any coil type"))}
+          {fcol("ErP class", sel("filt-erp", "Any ErP class"))}
+          {fcol("Price", sel("filt-price", "Any", '<option value="priced">Has a price</option><option value="unpriced">No price data</option>'))}
+        </div>
+      </div>
+      <button type="button" class="filter-close">Show results</button>
+    </div>
+    <div class="browse-main">
+      <div class="toolbar"><div class="toolbar-inner"><div class="toolbar-row">
+        <button class="filter-toggle" id="filter-toggle-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 3h14M3 8h10M5.5 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Filters <span class="filter-badge" id="filter-badge" style="display:none">0</span></button>
+        <span class="res-count" id="res-count">Loading&hellip;</span>
+        <select class="filt" id="sort-select" style="min-width:140px" aria-label="Sort">
+          <option value="mfr-az">Manufacturer A&ndash;Z</option><option value="vol-asc">Volume: Small &rarr; Large</option><option value="vol-desc">Volume: Large &rarr; Small</option>
+          <option value="hl-asc">Heat loss: Low &rarr; High</option><option value="price-asc">Price: Low &rarr; High</option><option value="hp-desc">Most compatible heat pumps</option>
+        </select>
+        <div class="view-toggle"><button class="view-btn active" id="vbtn-grid" title="Grid">&#9638;</button><button class="view-btn" id="vbtn-table" title="Table">&#9776;</button></div>
+      </div></div></div>
+      <div class="container">
+        <div id="hp-grid" class="hp-grid"></div>
+        <div id="hp-table" class="table-wrap" style="display:none"><table><thead><tr>
+          <th data-k="m">Manufacturer <span class="sort-arr">&#8597;</span></th><th data-k="n">Model <span class="sort-arr">&#8597;</span></th><th data-k="t">Type <span class="sort-arr">&#8597;</span></th>
+          <th data-k="v">Volume <span class="sort-arr">&#8597;</span></th><th data-k="hl">Heat loss (kWh/24h) <span class="sort-arr">&#8597;</span></th><th>H &times; W &times; D (mm)</th>
+          <th data-k="wt">Weight <span class="sort-arr">&#8597;</span></th><th data-k="cr">Coil <span class="sort-arr">&#8597;</span></th><th data-k="pn">Price <span class="sort-arr">&#8597;</span></th><th data-k="k">Heat pumps <span class="sort-arr">&#8597;</span></th>
+        </tr></thead><tbody id="hp-tbody"></tbody></table></div>
+        <div id="empty-browse" class="empty-state" style="display:none"><h2 class="empty-title">No results</h2><p>Try adjusting your search or filters.</p></div>
+      </div>
+    </div>
+  </div>
+  <details class="cyl-az"><summary>All {len(cyls):,} cylinders &amp; tanks A&ndash;Z</summary><ul>{az}</ul></details>
+</div>
+<script src="/cylinders-browse.js?v=1" defer></script>
+"""
     return page(f"Heat Pump Hot Water Cylinders & Tanks | {SITE_NAME}",
                 f"Compare {len(cyls)} heat pump hot water cylinders, buffer tanks and indoor units: volume, heat loss, dimensions, price and compatible heat pumps.",
-                url, body, [breadcrumb_jsonld(crumb_items, url)], og_image=get_og_image(), wide=True)
-
+                url, body, [breadcrumb_jsonld(crumb_items, url)], og_image=get_og_image(), active="cylinders")
 
 def main():
     with open(DATA, encoding="utf-8") as f:
@@ -5683,6 +5791,8 @@ def main():
         urls.append(url)
         _lastmod_for(url, _lastmod_hash(c))
     if cylinders:
+        write(os.path.join(ROOT, "cylinders-data.json"),
+              json.dumps(cylinders_browse_data(cylinders, products), ensure_ascii=False, separators=(",", ":")))
         write(os.path.join(ROOT, "cylinders", "index.html"), render_cylinders_index(cylinders))
         url = f"{BASE_URL}/cylinders/"
         urls.append(url)
