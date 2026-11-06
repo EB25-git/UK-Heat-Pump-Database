@@ -5600,7 +5600,7 @@ html body main{{padding:0}}
   </div>
   <details class="cyl-az"><summary>All {len(cyls):,} cylinders &amp; tanks A&ndash;Z</summary><ul>{az}</ul></details>
 </div>
-<script src="/cylinders-browse.js?v=1" defer></script>
+<script src="/cylinders-browse.js?v=2" defer></script>
 """
     return page(f"Heat Pump Hot Water Cylinders & Tanks | {SITE_NAME}",
                 f"Compare {len(cyls)} heat pump hot water cylinders, buffer tanks and indoor units: volume, heat loss, dimensions, price and compatible heat pumps.",
@@ -5791,6 +5791,14 @@ def main():
         urls.append(url)
         _lastmod_for(url, _lastmod_hash(c))
     if cylinders:
+        # compact hp-id -> cylinders map for the homepage product modal (and ?hpid= on /cylinders/)
+        _cl = sorted(cylinders, key=lambda c: (c.get("cylinder_type") or "", c.get("volume_nominal_l") if isinstance(c.get("volume_nominal_l"), (int, float)) else 9e9, c.get("model") or ""))
+        _ix = {c["_slug"]: k for k, c in enumerate(_cl)}
+        write(os.path.join(ROOT, "cylinders-by-hp.json"), json.dumps({
+            "c": [[c["_slug"], c.get("manufacturer"), c.get("model"), c.get("cylinder_type"),
+                   c.get("volume_nominal_l") if isinstance(c.get("volume_nominal_l"), (int, float)) else None] for c in _cl],
+            "h": {str(hid): [_ix[c["_slug"]] for c in sorted(cs, key=lambda c: _ix[c["_slug"]])] for hid, cs in CYL_BY_HP.items()},
+        }, ensure_ascii=False, separators=(",", ":")))
         write(os.path.join(ROOT, "cylinders-data.json"),
               json.dumps(cylinders_browse_data(cylinders, products), ensure_ascii=False, separators=(",", ":")))
         write(os.path.join(ROOT, "cylinders", "index.html"), render_cylinders_index(cylinders))

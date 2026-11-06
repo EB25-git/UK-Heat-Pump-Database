@@ -4,6 +4,7 @@
   'use strict';
   var $ = function (i) { return document.getElementById(i); };
   var esc = function (v) { return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
+  var HPSET = null, HPNAME = '';
   var D = [], F = [], view = 'grid', page = 48, STEP = 48, obs = null, sortKey = null, sortDir = 1;
   var SF = { vLo: 0, vHi: 0, hl: 0, h: 0, w: 0, wt: 0 };
   var VSTOPS = [0, 50, 100, 120, 150, 170, 180, 200, 210, 250, 300, 400, 500, 750, 1000, 1500, 2000, 3000, 5000, 100000];
@@ -59,6 +60,7 @@
       if (pr === 'priced' && d.pn == null) return false;
       if (pr === 'unpriced' && d.pn != null) return false;
       if (hb && (d.hb || []).indexOf(hb) < 0) return false;
+      if (HPSET && !HPSET[d.i]) return false;
       if (SF.vLo && (d.v == null || d.v < SF.vLo)) return false;
       if (SF.vHi && (d.v == null || d.v > SF.vHi)) return false;
       if (SF.hl && (d.hl == null || d.hl > SF.hl)) return false;
@@ -74,7 +76,7 @@
     else if (s === 'hl-asc') F.sort(num('hl', 1)); else if (s === 'price-asc') F.sort(num('pn', 1));
     else if (s === 'hp-desc') F.sort(num('k', -1));
     else F.sort(function (a, b) { return (a.m + ' ' + a.n).localeCompare(b.m + ' ' + b.n); });
-    var nAct = [t, m, pp, ct, erp, pr, hb].filter(Boolean).length + (SF.vLo || SF.vHi ? 1 : 0) + ['hl', 'h', 'w', 'wt'].filter(function (k) { return SF[k]; }).length;
+    var nAct = [t, m, pp, ct, erp, pr, hb].filter(Boolean).length + (HPSET ? 1 : 0) + (SF.vLo || SF.vHi ? 1 : 0) + ['hl', 'h', 'w', 'wt'].filter(function (k) { return SF[k]; }).length;
     var badge = $('filter-badge'); badge.style.display = nAct ? '' : 'none'; badge.textContent = nAct;
     $('clear-filters-btn').style.display = nAct ? '' : 'none';
     [].forEach.call(document.querySelectorAll('.hp-seg button'), function (b) { b.setAttribute('aria-pressed', String(b.dataset.ct === t)); });
@@ -129,6 +131,7 @@
   function clearAll() {
     ['search-input', 'filt-ctype', 'filt-mfr', 'filt-pp', 'filt-coil', 'filt-erp', 'filt-price', 'filt-hpb'].forEach(function (id) { if ($(id)) $(id).value = ''; });
     ['sl-vol', 'sl-hl', 'sl-h', 'sl-w', 'sl-wt'].forEach(function (id) { if ($(id) && $(id)._reset) $(id)._reset(); });
+    if (HPSET) { location.href = '/cylinders/'; return; }
     filter();
   }
   function opts(id, vals) { var e = $(id); vals.forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v; e.appendChild(o); }); }
@@ -160,7 +163,17 @@
     if (q.get('type')) $('filt-ctype').value = q.get('type');
     if (q.get('mfr')) $('filt-mfr').value = q.get('mfr');
     if (q.get('hp')) $('filt-hpb').value = q.get('hp');
-    filter();
+    var hpid = q.get('hpid');
+    if (hpid) {
+      fetch('/cylinders-by-hp.json?v=1').then(function (r) { return r.json(); }).then(function (m) {
+        HPSET = {}; (m.h[hpid] || []).forEach(function (k) { HPSET[m.c[k][0]] = 1; });
+        var note = document.createElement('div');
+        note.className = 'faq-callout'; note.style.borderRadius = '10px'; note.style.margin = '0 0 12px';
+        note.innerHTML = '<div class="faq-callout-inner"><span class="faq-callout-text">Showing cylinders &amp; tanks listed as compatible with ' + esc(q.get('hpname') || 'the selected heat pump') + '. <a href="/cylinders/">Show all</a></span></div>';
+        var c = document.querySelector('.browse-main .container'); c.insertBefore(note, c.firstChild);
+        filter();
+      }).catch(filter);
+    } else filter();
   }
   fetch('/cylinders-data.json?v=' + (window.CYL_V || 1)).then(function (r) { return r.json(); }).then(init)
     .catch(function () { $('res-count').textContent = 'Could not load cylinder data.'; });
