@@ -1,7 +1,7 @@
 {
   "https://www.heatpumpdatabase.com/": {
     "date": "2026-11-06",
-    "hash": "9b4b16563b9305fe"
+    "hash": "9ba4f54ff4c309af"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-10-21",
@@ -45,7 +45,7 @@
   },
   "https://www.heatpumpdatabase.com/cylinders/": {
     "date": "2026-11-06",
-    "hash": "18e06cbbea41035a"
+    "hash": "ffe8e05033365dd4"
   },
   "https://www.heatpumpdatabase.com/cylinders/adlar-fjord-120l-hot-water-heat-pump-cylinder/": {
     "date": "2026-11-06",
@@ -58,6 +58,30 @@
   "https://www.heatpumpdatabase.com/cylinders/adlar-fjord-300l-hot-water-heat-pump-cylinder/": {
     "date": "2026-11-06",
     "hash": "c827bf6bdb694849"
+  },
+  "https://www.heatpumpdatabase.com/cylinders/advantix-maxa-barrel-1000/": {
+    "date": "2026-11-06",
+    "hash": "98e5947b7c2bd711"
+  },
+  "https://www.heatpumpdatabase.com/cylinders/advantix-maxa-barrel-200/": {
+    "date": "2026-11-06",
+    "hash": "93f8b046cbf3c49d"
+  },
+  "https://www.heatpumpdatabase.com/cylinders/advantix-maxa-barrel-300/": {
+    "date": "2026-11-06",
+    "hash": "b2cf612a2ea9c917"
+  },
+  "https://www.heatpumpdatabase.com/cylinders/advantix-maxa-barrel-500/": {
+    "date": "2026-11-06",
+    "hash": "0bc312b915a9d7ce"
+  },
+  "https://www.heatpumpdatabase.com/cylinders/advantix-maxa-barrel-800/": {
+    "date": "2026-11-06",
+    "hash": "76e1f84c02529ce7"
+  },
+  "https://www.heatpumpdatabase.com/cylinders/advantix-maxa-i-hpv5h-0140-0270-hydronic-kit-buffer-tank-400l/": {
+    "date": "2026-11-06",
+    "hash": "1e233c82b6287b18"
   },
   "https://www.heatpumpdatabase.com/cylinders/aira-buffer-tank-100l/": {
     "date": "2026-11-06",
@@ -2195,30 +2219,6 @@
     "date": "2026-11-06",
     "hash": "9410ad6dd9d79526"
   },
-  "https://www.heatpumpdatabase.com/cylinders/maxa-barrel-1000/": {
-    "date": "2026-11-06",
-    "hash": "976ab142446ced18"
-  },
-  "https://www.heatpumpdatabase.com/cylinders/maxa-barrel-200/": {
-    "date": "2026-11-06",
-    "hash": "0d5c772779e6bb73"
-  },
-  "https://www.heatpumpdatabase.com/cylinders/maxa-barrel-300/": {
-    "date": "2026-11-06",
-    "hash": "7d4d3223c68425de"
-  },
-  "https://www.heatpumpdatabase.com/cylinders/maxa-barrel-500/": {
-    "date": "2026-11-06",
-    "hash": "098e40787b5283f8"
-  },
-  "https://www.heatpumpdatabase.com/cylinders/maxa-barrel-800/": {
-    "date": "2026-11-06",
-    "hash": "1daacb56e24f8bd3"
-  },
-  "https://www.heatpumpdatabase.com/cylinders/maxa-i-hpv5h-0140-0270-hydronic-kit-buffer-tank-400l/": {
-    "date": "2026-11-06",
-    "hash": "5d3f8e7c8455de8f"
-  },
   "https://www.heatpumpdatabase.com/cylinders/mitsubishi-electric-ecodan-cylinder-erst17d-vm2d/": {
     "date": "2026-11-06",
     "hash": "6ddbe4cbec84ee4d"
@@ -3357,51 +3357,51 @@
   },
   "https://www.heatpumpdatabase.com/heat-pump-finder/": {
     "date": "2026-11-06",
-    "hash": "6216004e62467770"
+    "hash": "97301362c0136126"
   },
   "https://www.heatpumpdatabase.com/heat-pump-noise-calculator/": {
     "date": "2026-11-06",
-    "hash": "c8d713ee632f844b"
+    "hash": "6e0815856be37b5c"
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
     "date": "2026-11-06",
-    "hash": "2ad5d8723d041663"
+    "hash": "e2bab82863c8e95f"
   },
   "https://www.heatpumpdatabase.com/knowledge/cop-scop/": {
     "date": "2026-11-06",
-    "hash": "da7eeef8ada02300"
+    "hash": "8c862584f4996dc2"
   },
   "https://www.heatpumpdatabase.com/knowledge/flow-temperature/": {
     "date": "2026-11-06",
-    "hash": "7fda504749b7a368"
+    "hash": "1e2f8e79deec3547"
   },
   "https://www.heatpumpdatabase.com/knowledge/funding/": {
     "date": "2026-11-06",
-    "hash": "c14c9aafb431740b"
+    "hash": "254a278da2720744"
   },
   "https://www.heatpumpdatabase.com/knowledge/installation-costs/": {
     "date": "2026-11-06",
-    "hash": "a0b2d6114a44373e"
+    "hash": "3a8387881ca26f09"
   },
   "https://www.heatpumpdatabase.com/knowledge/planning-permission/": {
     "date": "2026-11-06",
-    "hash": "bfee5d487b49fc79"
+    "hash": "6e241db3ed4f7293"
   },
   "https://www.heatpumpdatabase.com/knowledge/refrigerants/": {
     "date": "2026-11-06",
-    "hash": "004e5f71c1d7bb16"
+    "hash": "3fd9bc343d22a713"
   },
   "https://www.heatpumpdatabase.com/knowledge/smart-tariffs/": {
     "date": "2026-11-06",
-    "hash": "18f961f42d1a754b"
+    "hash": "568ee907074d08e3"
   },
   "https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/": {
     "date": "2026-11-06",
-    "hash": "d6ad9f0ac7ff46bf"
+    "hash": "56b7d1fc9cd84a1a"
   },
   "https://www.heatpumpdatabase.com/manufacturers/": {
-    "date": "2026-10-26",
-    "hash": "3089b69597d5e163"
+    "date": "2026-11-06",
+    "hash": "de258a5dd7757661"
   },
   "https://www.heatpumpdatabase.com/manufacturers/acond/": {
     "date": "2026-10-23",
@@ -3412,8 +3412,8 @@
     "hash": "51381fa3a97b3f80"
   },
   "https://www.heatpumpdatabase.com/manufacturers/advantix-maxa/": {
-    "date": "2026-10-20",
-    "hash": "e2d30fdf12c57786"
+    "date": "2026-11-06",
+    "hash": "a0f5ac32f07e7a0d"
   },
   "https://www.heatpumpdatabase.com/manufacturers/aira/": {
     "date": "2026-11-06",
@@ -3463,13 +3463,9 @@
     "date": "2026-11-06",
     "hash": "aca5bf9389d18c3d"
   },
-  "https://www.heatpumpdatabase.com/manufacturers/beretta-riello/": {
-    "date": "2026-10-20",
-    "hash": "32fecd41452e7262"
-  },
   "https://www.heatpumpdatabase.com/manufacturers/beretta/": {
-    "date": "2026-09-28",
-    "hash": "d77cf3fa4e2be4d5"
+    "date": "2026-11-06",
+    "hash": "888d5325a6b016ba"
   },
   "https://www.heatpumpdatabase.com/manufacturers/bexie/": {
     "date": "2026-10-11",
@@ -3671,10 +3667,6 @@
     "date": "2026-11-06",
     "hash": "9b4b68c6657d97d6"
   },
-  "https://www.heatpumpdatabase.com/manufacturers/maxa/": {
-    "date": "2026-11-06",
-    "hash": "07afca22b22706fb"
-  },
   "https://www.heatpumpdatabase.com/manufacturers/megawave/": {
     "date": "2026-10-11",
     "hash": "f44b0264c6ed3632"
@@ -3687,13 +3679,9 @@
     "date": "2026-11-06",
     "hash": "56d30ccf5c1ef4df"
   },
-  "https://www.heatpumpdatabase.com/manufacturers/mitsubishi-heavy-industries-air-conditioning/": {
-    "date": "2026-10-20",
-    "hash": "6dbff0f53826a83d"
-  },
   "https://www.heatpumpdatabase.com/manufacturers/mitsubishi-heavy-industries/": {
     "date": "2026-11-06",
-    "hash": "deddfab8e77cda1b"
+    "hash": "bd55b16d0758f72f"
   },
   "https://www.heatpumpdatabase.com/manufacturers/modutherm/": {
     "date": "2026-11-06",
@@ -3707,13 +3695,9 @@
     "date": "2026-11-06",
     "hash": "63c95c229c8184b7"
   },
-  "https://www.heatpumpdatabase.com/manufacturers/ochsner-energietechnik/": {
-    "date": "2026-10-23",
-    "hash": "a31b3b983a2b5384"
-  },
   "https://www.heatpumpdatabase.com/manufacturers/ochsner/": {
     "date": "2026-11-06",
-    "hash": "b60e818437cf3c70"
+    "hash": "25e9d17ec791a9bb"
   },
   "https://www.heatpumpdatabase.com/manufacturers/octopus-energy/": {
     "date": "2026-11-02",
@@ -3753,7 +3737,7 @@
   },
   "https://www.heatpumpdatabase.com/manufacturers/rinnai/": {
     "date": "2026-11-06",
-    "hash": "8578b0fc74176c07"
+    "hash": "1f24f90e8f03f989"
   },
   "https://www.heatpumpdatabase.com/manufacturers/sabroe/": {
     "date": "2026-08-27",
@@ -3853,51 +3837,51 @@
   },
   "https://www.heatpumpdatabase.com/news/": {
     "date": "2026-11-06",
-    "hash": "20c1e0811bf21dfb"
+    "hash": "583df8580edc9681"
   },
   "https://www.heatpumpdatabase.com/news/baxi-launches-high-output-auriga-hp-plus-air-source-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "2d8c87c132b3ab17"
+    "hash": "8dac85e6c1816ab6"
   },
   "https://www.heatpumpdatabase.com/news/carrier-aquaforce-61xwhvze-high-temperature-heat-pump/": {
     "date": "2026-11-06",
-    "hash": "e11aecf351ea2b4b"
+    "hash": "f05689f02b60e9e0"
   },
   "https://www.heatpumpdatabase.com/news/ferroli-omnia-life-m-r290-26t-35t/": {
     "date": "2026-11-06",
-    "hash": "6d01754e304fd2a7"
+    "hash": "65ec3450aeb116b2"
   },
   "https://www.heatpumpdatabase.com/news/mhi-hydrolution-ezy-r290-10kw-14kw-models/": {
     "date": "2026-11-06",
-    "hash": "bf767e64c1a299ab"
+    "hash": "df744b91054fab63"
   },
   "https://www.heatpumpdatabase.com/news/nibe-launches-next-generation-s2060-heat-pump/": {
     "date": "2026-11-06",
-    "hash": "d594727601e1af49"
+    "hash": "6ec35f3fea84217b"
   },
   "https://www.heatpumpdatabase.com/news/r290-vs-r32-heat-pumps-what-the-data-shows/": {
     "date": "2026-11-06",
-    "hash": "b4d86c4d4e8f9e6f"
+    "hash": "348044bf318e5508"
   },
   "https://www.heatpumpdatabase.com/news/stiebel-eltron-50-years-hpnext-2026-range/": {
     "date": "2026-11-06",
-    "hash": "29be3e1b78f83c66"
+    "hash": "6b6681d351dce16a"
   },
   "https://www.heatpumpdatabase.com/news/vaillant-remastered-arotherm-plus-quiet-mark-7kw/": {
     "date": "2026-11-06",
-    "hash": "519288582d42000a"
+    "hash": "5bc913808faa8dbe"
   },
   "https://www.heatpumpdatabase.com/news/viessmann-launches-vitocal-200-a-ie-heat-pump/": {
     "date": "2026-11-06",
-    "hash": "f79d731c92c75015"
+    "hash": "bbffbac140430dd8"
   },
   "https://www.heatpumpdatabase.com/news/who-owns-your-heat-pump-brand-parent-companies/": {
     "date": "2026-11-06",
-    "hash": "7f6bc8d329d6c073"
+    "hash": "b5ae1e077761cd74"
   },
   "https://www.heatpumpdatabase.com/news/why-small-heat-pumps-beat-large-ones-on-scop/": {
     "date": "2026-11-06",
-    "hash": "eee566ead006e653"
+    "hash": "42c676b6fe0169ff"
   },
   "https://www.heatpumpdatabase.com/products/acond-aconomis-2294/": {
     "date": "2026-10-23",
@@ -3962,6 +3946,38 @@
   "https://www.heatpumpdatabase.com/products/adlar-aurora-ii-pro-6kw/": {
     "date": "2026-11-06",
     "hash": "ef5db05f926e58f4"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-0270/": {
+    "date": "2026-11-06",
+    "hash": "b3c69a501f349337"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-0280/": {
+    "date": "2026-11-06",
+    "hash": "786781effbbb1e71"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-0290/": {
+    "date": "2026-11-06",
+    "hash": "48523d32ee21a734"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-04110/": {
+    "date": "2026-11-06",
+    "hash": "f1b3bbfca6324269"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-04120/": {
+    "date": "2026-11-06",
+    "hash": "f7417dee2ac2a189"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-04140/": {
+    "date": "2026-11-06",
+    "hash": "f03c4ecb2c61cc61"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-04155/": {
+    "date": "2026-11-06",
+    "hash": "05577b132ce361e0"
+  },
+  "https://www.heatpumpdatabase.com/products/advantix-maxa-hwa2-ah-04170/": {
+    "date": "2026-11-06",
+    "hash": "45b786811088a842"
   },
   "https://www.heatpumpdatabase.com/products/advantix-maxa-i-290-5801/": {
     "date": "2026-10-20",
@@ -5891,41 +5907,41 @@
     "date": "2026-09-28",
     "hash": "31d2b8873d329b80"
   },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5497/": {
+    "date": "2026-11-06",
+    "hash": "1b51db6448afea7a"
+  },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5498/": {
+    "date": "2026-11-06",
+    "hash": "fe06373abeaaa2f8"
+  },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5499/": {
+    "date": "2026-11-06",
+    "hash": "e736e3c27712f96b"
+  },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5500/": {
+    "date": "2026-11-06",
+    "hash": "8278956c9ee1e11d"
+  },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5501/": {
+    "date": "2026-11-06",
+    "hash": "79b5fe90a46b8356"
+  },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5502/": {
+    "date": "2026-11-06",
+    "hash": "53254f0f5261c20c"
+  },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5503/": {
+    "date": "2026-11-06",
+    "hash": "011ec480e14dba33"
+  },
+  "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p-5504/": {
+    "date": "2026-11-06",
+    "hash": "f179e754899a7e87"
+  },
   "https://www.heatpumpdatabase.com/products/beretta-hydro-unit-p/": {
     "date": "2026-09-28",
     "hash": "eb29b767c032b4f3"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p-5498/": {
-    "date": "2026-10-20",
-    "hash": "d36ea62a707b0d80"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p-5499/": {
-    "date": "2026-10-20",
-    "hash": "021cd3b2e4a61d18"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p-5500/": {
-    "date": "2026-10-20",
-    "hash": "e85becdbd60401aa"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p-5501/": {
-    "date": "2026-10-20",
-    "hash": "1608865451a23362"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p-5502/": {
-    "date": "2026-10-20",
-    "hash": "e2d14bdcb2fa6d59"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p-5503/": {
-    "date": "2026-10-20",
-    "hash": "746f378eece75883"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p-5504/": {
-    "date": "2026-10-20",
-    "hash": "fbf495575f98e784"
-  },
-  "https://www.heatpumpdatabase.com/products/beretta-riello-hydro-unit-p/": {
-    "date": "2026-10-20",
-    "hash": "6f06f34aa5facf57"
   },
   "https://www.heatpumpdatabase.com/products/bexie-monobloc-heat-pump-4299/": {
     "date": "2026-10-11",
@@ -13543,38 +13559,6 @@
     "date": "2026-10-21",
     "hash": "5213f22ed2babfae"
   },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-0270/": {
-    "date": "2026-11-06",
-    "hash": "d1b4ad25c25d9942"
-  },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-0280/": {
-    "date": "2026-11-06",
-    "hash": "71c5f72db395f877"
-  },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-0290/": {
-    "date": "2026-11-06",
-    "hash": "464f6e4ec7c3027b"
-  },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-04110/": {
-    "date": "2026-11-06",
-    "hash": "7ac66e2661c67b41"
-  },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-04120/": {
-    "date": "2026-11-06",
-    "hash": "e97ca9956dd99a52"
-  },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-04140/": {
-    "date": "2026-11-06",
-    "hash": "bc0ad3d4fbb74f60"
-  },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-04155/": {
-    "date": "2026-11-06",
-    "hash": "633a55df51d09820"
-  },
-  "https://www.heatpumpdatabase.com/products/maxa-hwa2-ah-04170/": {
-    "date": "2026-11-06",
-    "hash": "47cf7fb804db5446"
-  },
   "https://www.heatpumpdatabase.com/products/megawave-r290-4292/": {
     "date": "2026-10-11",
     "hash": "31f5161aefac18ec"
@@ -14327,10 +14311,6 @@
     "date": "2026-08-27",
     "hash": "192d4bf266ac600c"
   },
-  "https://www.heatpumpdatabase.com/products/mitsubishi-heavy-industries-air-conditioning-q-ton/": {
-    "date": "2026-10-20",
-    "hash": "c7323c8fc2d4837e"
-  },
   "https://www.heatpumpdatabase.com/products/mitsubishi-heavy-industries-hydrolution-ezy-4719/": {
     "date": "2026-11-06",
     "hash": "81d4240a522d48ab"
@@ -14354,6 +14334,10 @@
   "https://www.heatpumpdatabase.com/products/mitsubishi-heavy-industries-hydrolution-ezy/": {
     "date": "2026-11-06",
     "hash": "cdb68f2e0fa6cd38"
+  },
+  "https://www.heatpumpdatabase.com/products/mitsubishi-heavy-industries-q-ton/": {
+    "date": "2026-11-06",
+    "hash": "368e38b2a31b4c08"
   },
   "https://www.heatpumpdatabase.com/products/modutherm-aw-monobloc-2564/": {
     "date": "2026-08-27",
@@ -14851,6 +14835,10 @@
     "date": "2026-09-28",
     "hash": "086c0201264198d9"
   },
+  "https://www.heatpumpdatabase.com/products/ochsner-albatros-high-temperature-ashp/": {
+    "date": "2026-11-06",
+    "hash": "d6d77250eb2de3d9"
+  },
   "https://www.heatpumpdatabase.com/products/ochsner-aqua-11-hsta/": {
     "date": "2026-08-27",
     "hash": "6c7f980775dde91f"
@@ -14926,34 +14914,6 @@
   "https://www.heatpumpdatabase.com/products/ochsner-aqua/": {
     "date": "2026-09-28",
     "hash": "41516c38ede11988"
-  },
-  "https://www.heatpumpdatabase.com/products/ochsner-energietechnik-albatros-high-temperature-ashp/": {
-    "date": "2026-10-23",
-    "hash": "9a983d6a735dc92b"
-  },
-  "https://www.heatpumpdatabase.com/products/ochsner-energietechnik-isws-medium-temperature-brine/": {
-    "date": "2026-10-23",
-    "hash": "9cff17d53452eb9b"
-  },
-  "https://www.heatpumpdatabase.com/products/ochsner-energietechnik-iwwds-ultra-high-temperature-130-c/": {
-    "date": "2026-10-23",
-    "hash": "bbff69696d001ed9"
-  },
-  "https://www.heatpumpdatabase.com/products/ochsner-energietechnik-iwwhc-p2d-high-temperature-compact/": {
-    "date": "2026-10-23",
-    "hash": "a16fc3fb77271593"
-  },
-  "https://www.heatpumpdatabase.com/products/ochsner-energietechnik-iwwhs-high-temperature-92-c/": {
-    "date": "2026-10-23",
-    "hash": "f94ea94c860251f9"
-  },
-  "https://www.heatpumpdatabase.com/products/ochsner-energietechnik-iwwhs-high-temperature-95-c/": {
-    "date": "2026-10-23",
-    "hash": "c533c4c6c5b096a0"
-  },
-  "https://www.heatpumpdatabase.com/products/ochsner-energietechnik-iwws-medium-temperature-w2w/": {
-    "date": "2026-10-23",
-    "hash": "963d3de4b36411b6"
   },
   "https://www.heatpumpdatabase.com/products/ochsner-gmlw-14-plus/": {
     "date": "2026-10-11",
@@ -15130,6 +15090,30 @@
   "https://www.heatpumpdatabase.com/products/ochsner-gmww/": {
     "date": "2026-09-28",
     "hash": "fcbc5edfa0317416"
+  },
+  "https://www.heatpumpdatabase.com/products/ochsner-isws-medium-temperature-brine/": {
+    "date": "2026-11-06",
+    "hash": "df7e77570aab50f2"
+  },
+  "https://www.heatpumpdatabase.com/products/ochsner-iwwds-ultra-high-temperature-130-c/": {
+    "date": "2026-11-06",
+    "hash": "f29630b63d009205"
+  },
+  "https://www.heatpumpdatabase.com/products/ochsner-iwwhc-p2d-high-temperature-compact/": {
+    "date": "2026-11-06",
+    "hash": "b5f0130fe4261aa0"
+  },
+  "https://www.heatpumpdatabase.com/products/ochsner-iwwhs-high-temperature-92-c/": {
+    "date": "2026-11-06",
+    "hash": "d8e47bc78d1332fd"
+  },
+  "https://www.heatpumpdatabase.com/products/ochsner-iwwhs-high-temperature-95-c/": {
+    "date": "2026-11-06",
+    "hash": "b9145cdc23da6c82"
+  },
+  "https://www.heatpumpdatabase.com/products/ochsner-iwws-medium-temperature-w2w/": {
+    "date": "2026-11-06",
+    "hash": "d975497cb328b490"
   },
   "https://www.heatpumpdatabase.com/products/ochsner-olwi-3564/": {
     "date": "2026-09-28",
@@ -18381,15 +18365,15 @@
   },
   "https://www.heatpumpdatabase.com/products/rinnai-hphp-i-hpv5h-6538/": {
     "date": "2026-11-06",
-    "hash": "fd7eb1c8ccded6b3"
+    "hash": "039fbd8642a1185d"
   },
   "https://www.heatpumpdatabase.com/products/rinnai-hphp-i-hpv5h-6539/": {
     "date": "2026-11-06",
-    "hash": "211ddb26defb9ec7"
+    "hash": "6951be65caf9df84"
   },
   "https://www.heatpumpdatabase.com/products/rinnai-hphp-i-hpv5h/": {
     "date": "2026-11-06",
-    "hash": "ec7a494cb980b074"
+    "hash": "cb1fd2c7e58a0f85"
   },
   "https://www.heatpumpdatabase.com/products/rinnai-hpi-i-32v5-6517/": {
     "date": "2026-10-26",
@@ -23737,11 +23721,11 @@
   },
   "https://www.heatpumpdatabase.com/types/air-source-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "3a3200922af2ea75"
+    "hash": "a0f46a1db91d357f"
   },
   "https://www.heatpumpdatabase.com/types/commercial-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "f925f81d143ab607"
+    "hash": "fc5434bda13ceff6"
   },
   "https://www.heatpumpdatabase.com/types/domestic-heat-pumps/": {
     "date": "2026-11-06",
@@ -23749,15 +23733,15 @@
   },
   "https://www.heatpumpdatabase.com/types/ground-source-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "afff6994d281e95c"
+    "hash": "88da216048bd826d"
   },
   "https://www.heatpumpdatabase.com/types/hydrocarbon-heat-pumps/": {
     "date": "2026-08-27",
     "hash": "e8467c191d1cf646"
   },
   "https://www.heatpumpdatabase.com/types/r1233zd-heat-pumps/": {
-    "date": "2026-10-23",
-    "hash": "05cca38e32a68b7e"
+    "date": "2026-11-06",
+    "hash": "72d834d4a6c95b99"
   },
   "https://www.heatpumpdatabase.com/types/r1234ze-heat-pumps/": {
     "date": "2026-08-27",
@@ -23769,11 +23753,11 @@
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "3615c3fb5c6c6c3c"
+    "hash": "72545fbf9151343a"
   },
   "https://www.heatpumpdatabase.com/types/r32-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "7f4dad0cc9f13d70"
+    "hash": "50fd4205186ad5fd"
   },
   "https://www.heatpumpdatabase.com/types/r407c-heat-pumps/": {
     "date": "2026-11-06",
@@ -23813,14 +23797,14 @@
   },
   "https://www.heatpumpdatabase.com/types/r744-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "f59feeea96f59993"
+    "hash": "d139c3a76c0c6535"
   },
   "https://www.heatpumpdatabase.com/types/residential-heat-pumps/": {
     "date": "2026-11-06",
-    "hash": "ad5219d3c930eced"
+    "hash": "d89c104aa0b5f1a8"
   },
   "https://www.heatpumpdatabase.com/types/water-source-heat-pumps/": {
-    "date": "2026-10-23",
-    "hash": "7e17d83a1906dfe8"
+    "date": "2026-11-06",
+    "hash": "cdd581c5558ba261"
   }
 }

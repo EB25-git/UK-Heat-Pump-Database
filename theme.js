@@ -243,7 +243,21 @@
     onRender();
   }
 
-  function init() { navApp(); navStatic(); browse(); }
+
+  /* ── Header fit: show the full "Buy me a coffee" button whenever it fits; collapse to the
+     cup icon only when the nav links and header controls would otherwise collide. ── */
+  function fitHeader() {
+    var root = document.documentElement, hr = $('.hdr-right');
+    if (!hr || !hr.parentElement) return;
+    root.classList.remove('hdr-tight');
+    var box = hr.parentElement.getBoundingClientRect(), r = hr.getBoundingClientRect(), maxRight = 0;
+    for (var el = hr.previousElementSibling; el; el = el.previousElementSibling) {
+      var b = el.getBoundingClientRect();
+      if (b.width && getComputedStyle(el).display !== 'none') maxRight = Math.max(maxRight, b.right);
+    }
+    if (r.right > box.right + 1 || (maxRight && r.left < maxRight + 8)) root.classList.add('hdr-tight');
+  }
+  function init() { navApp(); navStatic(); browse(); fitHeader(); window.addEventListener('resize', fitHeader); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeader); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 0); });
   else setTimeout(init, 0);
 })();

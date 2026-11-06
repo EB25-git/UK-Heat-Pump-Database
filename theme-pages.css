@@ -164,7 +164,7 @@ html body .nav-links a:hover,html body .nav-links button:hover{color:var(--ink);
 html body .nav-links .on{color:var(--ink);font-weight:600;border-bottom-color:var(--hanada)}
 html body .nav .nav-brand{margin-right:0}
 html body header.site .brand{margin-right:0}
-html body header.site .wrap{height:100%;max-width:1280px;padding:0 2.5rem}
+html body header.site .wrap{height:100%;max-width:none;padding:0 2.5rem}
 html body .nav-brand,html body header.site .brand{white-space:nowrap}
 html body .range-fill{background:var(--hanada)}
 html body .range-thumb{border-color:var(--hanada)}

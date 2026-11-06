@@ -28411,7 +28411,7 @@
   },
   {
     "id": 736,
-    "manufacturer": "Ochsner Energietechnik",
+    "manufacturer": "Ochsner",
     "model": "IWWHC P2d High Temperature Compact",
     "product_code": "IWWHC 30-130 P2d",
     "hp_type": "WSHP",
@@ -28461,7 +28461,7 @@
   },
   {
     "id": 737,
-    "manufacturer": "Ochsner Energietechnik",
+    "manufacturer": "Ochsner",
     "model": "ALBATROS High Temperature ASHP",
     "product_code": "ILWHS 385 ER5c2",
     "hp_type": "ASHP",
@@ -28511,7 +28511,7 @@
   },
   {
     "id": 738,
-    "manufacturer": "Ochsner Energietechnik",
+    "manufacturer": "Ochsner",
     "model": "IWWS Medium Temperature W2W",
     "product_code": "IWWS R6a/R7a/ER6a/ER7a",
     "hp_type": "WSHP",
@@ -28561,7 +28561,7 @@
   },
   {
     "id": 739,
-    "manufacturer": "Ochsner Energietechnik",
+    "manufacturer": "Ochsner",
     "model": "ISWS Medium Temperature Brine",
     "product_code": "ISWS R7a/ER7a",
     "hp_type": "GSHP",
@@ -28611,7 +28611,7 @@
   },
   {
     "id": 740,
-    "manufacturer": "Ochsner Energietechnik",
+    "manufacturer": "Ochsner",
     "model": "IWWHS High Temperature 92°C",
     "product_code": "IWWHS ER6c2/ER7c2",
     "hp_type": "WSHP",
@@ -28661,7 +28661,7 @@
   },
   {
     "id": 741,
-    "manufacturer": "Ochsner Energietechnik",
+    "manufacturer": "Ochsner",
     "model": "IWWHS High Temperature 95°C",
     "product_code": "IWWHS ER4b",
     "hp_type": "WSHP",
@@ -28711,7 +28711,7 @@
   },
   {
     "id": 742,
-    "manufacturer": "Ochsner Energietechnik",
+    "manufacturer": "Ochsner",
     "model": "IWWDS Ultra-High Temperature 130°C",
     "product_code": "IWWDS ER4b/R4b",
     "hp_type": "WSHP",
@@ -176888,7 +176888,7 @@
   },
   {
     "id": 3682,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 0270",
     "product_code": "HWA2-AH 0270",
     "hp_type": "ASHP",
@@ -176942,7 +176942,7 @@
   },
   {
     "id": 3683,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 0280",
     "product_code": "HWA2-AH 0280",
     "hp_type": "ASHP",
@@ -176996,7 +176996,7 @@
   },
   {
     "id": 3684,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 0290",
     "product_code": "HWA2-AH 0290",
     "hp_type": "ASHP",
@@ -177050,7 +177050,7 @@
   },
   {
     "id": 3685,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 04110",
     "product_code": "HWA2-AH 04110",
     "hp_type": "ASHP",
@@ -177104,7 +177104,7 @@
   },
   {
     "id": 3686,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 04120",
     "product_code": "HWA2-AH 04120",
     "hp_type": "ASHP",
@@ -177158,7 +177158,7 @@
   },
   {
     "id": 3687,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 04140",
     "product_code": "HWA2-AH 04140",
     "hp_type": "ASHP",
@@ -177212,7 +177212,7 @@
   },
   {
     "id": 3688,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 04155",
     "product_code": "HWA2-AH 04155",
     "hp_type": "ASHP",
@@ -177266,7 +177266,7 @@
   },
   {
     "id": 3689,
-    "manufacturer": "MAXA",
+    "manufacturer": "Advantix (MAXA)",
     "model": "HWA2-AH 04170",
     "product_code": "HWA2-AH 04170",
     "hp_type": "ASHP",
@@ -232552,7 +232552,7 @@
   },
   {
     "id": 5497,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 004",
     "hp_type": "ASHP",
@@ -232603,7 +232603,7 @@
   },
   {
     "id": 5498,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 006",
     "hp_type": "ASHP",
@@ -232654,7 +232654,7 @@
   },
   {
     "id": 5499,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 008",
     "hp_type": "ASHP",
@@ -232705,7 +232705,7 @@
   },
   {
     "id": 5500,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 010",
     "hp_type": "ASHP",
@@ -232756,7 +232756,7 @@
   },
   {
     "id": 5501,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 012",
     "hp_type": "ASHP",
@@ -232807,7 +232807,7 @@
   },
   {
     "id": 5502,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 014",
     "hp_type": "ASHP",
@@ -232858,7 +232858,7 @@
   },
   {
     "id": 5503,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 012T",
     "hp_type": "ASHP",
@@ -232909,7 +232909,7 @@
   },
   {
     "id": 5504,
-    "manufacturer": "Beretta (Riello)",
+    "manufacturer": "Beretta",
     "model": "HYDRO UNIT P",
     "product_code": "HYDRO UNIT P 014T",
     "hp_type": "ASHP",
@@ -238711,7 +238711,7 @@
   },
   {
     "id": 6220,
-    "manufacturer": "Mitsubishi Heavy Industries Air-Conditioning",
+    "manufacturer": "Mitsubishi Heavy Industries",
     "model": "Q-ton",
     "product_code": "ESA30EH2-25",
     "hp_type": "ASHP",

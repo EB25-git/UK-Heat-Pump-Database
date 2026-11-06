@@ -1691,25 +1691,32 @@
     "midea-m-thermal-r290-721"
   ],
   "736": [
-    "ochsner-energietechnik-iwwhc-p2d-high-temperature-compact"
+    "ochsner-energietechnik-iwwhc-p2d-high-temperature-compact",
+    "ochsner-iwwhc-p2d-high-temperature-compact"
   ],
   "737": [
-    "ochsner-energietechnik-albatros-high-temperature-ashp"
+    "ochsner-energietechnik-albatros-high-temperature-ashp",
+    "ochsner-albatros-high-temperature-ashp"
   ],
   "738": [
-    "ochsner-energietechnik-iwws-medium-temperature-w2w"
+    "ochsner-energietechnik-iwws-medium-temperature-w2w",
+    "ochsner-iwws-medium-temperature-w2w"
   ],
   "739": [
-    "ochsner-energietechnik-isws-medium-temperature-brine"
+    "ochsner-energietechnik-isws-medium-temperature-brine",
+    "ochsner-isws-medium-temperature-brine"
   ],
   "740": [
-    "ochsner-energietechnik-iwwhs-high-temperature-92-c"
+    "ochsner-energietechnik-iwwhs-high-temperature-92-c",
+    "ochsner-iwwhs-high-temperature-92-c"
   ],
   "741": [
-    "ochsner-energietechnik-iwwhs-high-temperature-95-c"
+    "ochsner-energietechnik-iwwhs-high-temperature-95-c",
+    "ochsner-iwwhs-high-temperature-95-c"
   ],
   "742": [
-    "ochsner-energietechnik-iwwds-ultra-high-temperature-130-c"
+    "ochsner-energietechnik-iwwds-ultra-high-temperature-130-c",
+    "ochsner-iwwds-ultra-high-temperature-130-c"
   ],
   "743": [
     "solid-energy-awb-air-water-brine"
@@ -10242,28 +10249,36 @@
     "solax-r290-series-3681"
   ],
   "3682": [
-    "maxa-hwa2-ah-0270"
+    "maxa-hwa2-ah-0270",
+    "advantix-maxa-hwa2-ah-0270"
   ],
   "3683": [
-    "maxa-hwa2-ah-0280"
+    "maxa-hwa2-ah-0280",
+    "advantix-maxa-hwa2-ah-0280"
   ],
   "3684": [
-    "maxa-hwa2-ah-0290"
+    "maxa-hwa2-ah-0290",
+    "advantix-maxa-hwa2-ah-0290"
   ],
   "3685": [
-    "maxa-hwa2-ah-04110"
+    "maxa-hwa2-ah-04110",
+    "advantix-maxa-hwa2-ah-04110"
   ],
   "3686": [
-    "maxa-hwa2-ah-04120"
+    "maxa-hwa2-ah-04120",
+    "advantix-maxa-hwa2-ah-04120"
   ],
   "3687": [
-    "maxa-hwa2-ah-04140"
+    "maxa-hwa2-ah-04140",
+    "advantix-maxa-hwa2-ah-04140"
   ],
   "3688": [
-    "maxa-hwa2-ah-04155"
+    "maxa-hwa2-ah-04155",
+    "advantix-maxa-hwa2-ah-04155"
   ],
   "3689": [
-    "maxa-hwa2-ah-04170"
+    "maxa-hwa2-ah-04170",
+    "advantix-maxa-hwa2-ah-04170"
   ],
   "3690": [
     "ferroli-omnia-life-m-4"
@@ -13374,28 +13389,36 @@
     "carrier-aquasnap-30awh-p-r290-5496"
   ],
   "5497": [
-    "beretta-riello-hydro-unit-p"
+    "beretta-riello-hydro-unit-p",
+    "beretta-hydro-unit-p-5497"
   ],
   "5498": [
-    "beretta-riello-hydro-unit-p-5498"
+    "beretta-riello-hydro-unit-p-5498",
+    "beretta-hydro-unit-p-5498"
   ],
   "5499": [
-    "beretta-riello-hydro-unit-p-5499"
+    "beretta-riello-hydro-unit-p-5499",
+    "beretta-hydro-unit-p-5499"
   ],
   "5500": [
-    "beretta-riello-hydro-unit-p-5500"
+    "beretta-riello-hydro-unit-p-5500",
+    "beretta-hydro-unit-p-5500"
   ],
   "5501": [
-    "beretta-riello-hydro-unit-p-5501"
+    "beretta-riello-hydro-unit-p-5501",
+    "beretta-hydro-unit-p-5501"
   ],
   "5502": [
-    "beretta-riello-hydro-unit-p-5502"
+    "beretta-riello-hydro-unit-p-5502",
+    "beretta-hydro-unit-p-5502"
   ],
   "5503": [
-    "beretta-riello-hydro-unit-p-5503"
+    "beretta-riello-hydro-unit-p-5503",
+    "beretta-hydro-unit-p-5503"
   ],
   "5504": [
-    "beretta-riello-hydro-unit-p-5504"
+    "beretta-riello-hydro-unit-p-5504",
+    "beretta-hydro-unit-p-5504"
   ],
   "5514": [
     "heliotherm-comfort-compact-air"
@@ -13731,7 +13754,8 @@
     "elco-aerotop-m-6107"
   ],
   "6220": [
-    "mitsubishi-heavy-industries-air-conditioning-q-ton"
+    "mitsubishi-heavy-industries-air-conditioning-q-ton",
+    "mitsubishi-heavy-industries-q-ton"
   ],
   "4814": [
     "viessmann-vitocal-242-g"

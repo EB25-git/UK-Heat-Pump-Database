@@ -14,7 +14,7 @@ Run:  python3 build.py
 Requires only the Python standard library.
 """
 
-import json, os, re, html, shutil, datetime, hashlib
+import json, os, re, html, shutil, datetime, hashlib, urllib.parse
 from collections import Counter
 
 # ───────────────────────── Config ─────────────────────────
@@ -178,6 +178,12 @@ LEGACY_PRODUCT_REDIRECTS = {
     "viessmann-vitocal-200-a-1380": ("id", 1380),
 }
 
+LEGACY_MFR_REDIRECTS = {
+    "MAXA": "Advantix (MAXA)",
+    "Beretta (Riello)": "Beretta",
+    "Mitsubishi Heavy Industries Air-Conditioning": "Mitsubishi Heavy Industries",
+    "Ochsner Energietechnik": "Ochsner"
+}  # merged duplicate manufacturer names (SEO audit, Nov 2026)
 LEGACY_TYPE_REDIRECTS = {
     "r1234ze-e-r515b-option-heat-pumps": "r1234ze-heat-pumps",
     "r1234ze-r515b-option-heat-pumps": "r1234ze-heat-pumps",
@@ -671,7 +677,7 @@ header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none
 header.site .brand:hover{text-decoration:none}
 .wm-bold{color:#22C79A;font-weight:700}
 .wm-light{color:rgba(255,255,255,.55);font-weight:300;margin-left:2px}
-.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}.hdr-right{display:flex;align-items:center;margin-left:auto;gap:12px}.hdr-right .burger{margin-left:0}.bmc-btn{display:inline-flex;align-items:center;gap:6px;background:#0B6656;color:#fff;font-weight:600;font-size:14px;line-height:1;padding:8px 14px;border-radius:999px;text-decoration:none;white-space:nowrap;border:2px solid #0B6656;transition:transform .15s,box-shadow .15s,background .15s}.bmc-btn:hover{text-decoration:none;color:#fff;background:#08503F;border-color:#22C79A;transform:translateY(-1px);box-shadow:0 3px 10px rgba(11,102,86,.35)}.bmc-btn:visited{color:#fff}.bmc-btn:focus-visible{outline:2px solid #22C79A;outline-offset:2px}.bmc-btn .bmc-ico{font-size:16px}.hdr-right{flex-shrink:0}.units-toggle{display:inline-flex;border:1.5px solid #0B6656;border-radius:999px;overflow:hidden;flex-shrink:0}.units-toggle[hidden]{display:none}.units-toggle button{background:transparent;color:#0B6656;border:0;font:inherit;font-size:13px;font-weight:600;line-height:1;padding:8px 11px;cursor:pointer}.units-toggle button[aria-pressed="true"]{background:#0B6656;color:#fff}.units-toggle button:focus-visible{outline:2px solid #22C79A;outline-offset:-2px}.units-toggle .ut-s{display:none}@media(max-width:560px),(min-width:1181px){.units-toggle button{padding:8px 9px}.units-toggle .ut-l{display:none}.units-toggle .ut-s{display:inline}}@media(max-width:380px){.hdr-right{gap:8px}}@media(max-width:420px){.hdr-right{gap:6px}.units-toggle button{padding:7px 7px}.hdr-right .burger{padding:6px 4px}}@media(min-width:1181px) and (max-width:1365px){html body .nav-links{display:none!important}}@media(min-width:1366px) and (max-width:1520px){html body .nav-links{margin-left:16px!important}html body .nav-links a,html body .nav-links button{padding:0 9px!important;font-size:14px!important}}@media(max-width:560px),(min-width:1181px){.bmc-btn{padding:0;width:36px;height:36px;justify-content:center}.bmc-btn .bmc-txt{display:none}}
+.burger{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;margin-left:16px;position:relative;z-index:52}.hdr-right{display:flex;align-items:center;margin-left:auto;gap:12px}.hdr-right .burger{margin-left:0}.bmc-btn{display:inline-flex;align-items:center;gap:6px;background:#0B6656;color:#fff;font-weight:600;font-size:14px;line-height:1;padding:8px 14px;border-radius:999px;text-decoration:none;white-space:nowrap;border:2px solid #0B6656;transition:transform .15s,box-shadow .15s,background .15s}.bmc-btn:hover{text-decoration:none;color:#fff;background:#08503F;border-color:#22C79A;transform:translateY(-1px);box-shadow:0 3px 10px rgba(11,102,86,.35)}.bmc-btn:visited{color:#fff}.bmc-btn:focus-visible{outline:2px solid #22C79A;outline-offset:2px}.bmc-btn .bmc-ico{font-size:16px}.hdr-right{flex-shrink:0}.units-toggle{display:inline-flex;border:1.5px solid #0B6656;border-radius:999px;overflow:hidden;flex-shrink:0}.units-toggle[hidden]{display:none}.units-toggle button{background:transparent;color:#0B6656;border:0;font:inherit;font-size:13px;font-weight:600;line-height:1;padding:8px 11px;cursor:pointer}.units-toggle button[aria-pressed="true"]{background:#0B6656;color:#fff}.units-toggle button:focus-visible{outline:2px solid #22C79A;outline-offset:-2px}.units-toggle .ut-s{display:none}@media(max-width:560px),(min-width:1181px){.units-toggle button{padding:8px 9px}.units-toggle .ut-l{display:none}.units-toggle .ut-s{display:inline}}@media(max-width:380px){.hdr-right{gap:8px}}@media(max-width:420px){.hdr-right{gap:6px}.units-toggle button{padding:7px 7px}.hdr-right .burger{padding:6px 4px}}@media(min-width:1181px) and (max-width:1365px){html body .nav-links{display:none!important}}@media(min-width:1366px) and (max-width:1520px){html body .nav-links{margin-left:16px!important}html body .nav-links a,html body .nav-links button{padding:0 9px!important;font-size:14px!important}}@media(max-width:560px){.bmc-btn{padding:0;width:36px;height:36px;justify-content:center}.bmc-btn .bmc-txt{display:none}}html.hdr-tight .bmc-btn{padding:0;width:36px;height:36px;justify-content:center}html.hdr-tight .bmc-btn .bmc-txt{display:none}
 .burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
 .burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .burger.open span:nth-child(2){opacity:0}
@@ -917,7 +923,7 @@ def page(title, description, canonical, body, jsonld_list, og_type="website", ac
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap"></noscript>
 <style>{CSS}</style>
-<link rel="stylesheet" href="/theme-pages.css?v=4">
+<link rel="stylesheet" href="/theme-pages.css?v=5">
 {blocks}
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -965,7 +971,7 @@ function trackOut(){{
 </div>
 </div>
 <script>function tB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.toggle('open')}})}}function cB(){{['bbtn','bmenu','bov'].forEach(function(i){{document.getElementById(i).classList.remove('open')}})}}function toggleKnowledge(){{var t=document.getElementById('k-toggle'),g=document.getElementById('k-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCalc(){{var t=document.getElementById('s-toggle'),g=document.getElementById('s-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}function toggleCompare(){{var t=document.getElementById('c-toggle'),g=document.getElementById('c-group');var open=!g.classList.contains('open');t.classList.toggle('open',open);g.classList.toggle('open',open);t.setAttribute('aria-expanded',open);}}if(!localStorage.getItem('cookie_consent')){{var cb=document.getElementById('cookie-banner');if(cb)cb.style.display='block';}}function openPhotoLightbox(src,alt){{var lb=document.getElementById('photo-lightbox');var img=document.getElementById('photo-lightbox-img');img.src=src;img.alt=alt||'';lb.classList.add('open');document.body.style.overflow='hidden';}}function closePhotoLightbox(){{var lb=document.getElementById('photo-lightbox');lb.classList.remove('open');document.getElementById('photo-lightbox-img').removeAttribute('src');document.body.style.overflow='';}}document.addEventListener('keydown',function(e){{if(e.key==='Escape')closePhotoLightbox();}});</script>
-<script src="/theme.js?v=4"></script>
+<script src="/theme.js?v=5"></script>
 </body>
 </html>
 """
@@ -2713,7 +2719,7 @@ def render_product(p, by_mfr, by_type):
     _priced = isinstance(_pmin, (int, float)) and _pmin > 0
     product_ld = {
         "@context": "https://schema.org",
-        "@type": "Product" if _priced else "ProductModel",
+        "@type": "Product" if (_priced or ALWAYS_PRODUCT_SCHEMA) else "ProductModel",
         "name": display_name,
         "manufacturer": {"@type": "Organization", "name": mfr},
     }
@@ -2810,7 +2816,7 @@ def render_product(p, by_mfr, by_type):
             f'<div class="disclaimer">Data is compiled from manufacturer sources and may contain errors or '
             f'gaps. Always confirm specifications with the manufacturer before making decisions.</div>'
             f'{render_reviews(p)}'
-            f'{render_compatible_cylinders(p)}'
+            f'{render_compatible_cylinders(p)}{render_product_news(p)}'
             f'{render_alternatives(p, by_type)}'
             f'{rel}'
             f'<h2 class="sec">Compare with other products</h2>'
@@ -3038,7 +3044,6 @@ MANUFACTURER_COUNTRY = {
     "Alpha": "United Kingdom",
     "Amitime": "China",
     "Ares Renewables": "United Kingdom",
-    "Beretta (Riello)": "Italy",
     "Bexie": "Spain",
     "Climer": "Spain",
     "ELCO": "Germany",
@@ -3050,9 +3055,7 @@ MANUFACTURER_COUNTRY = {
     "Immergas": "Italy",
     "Lamborghini Caloreclima": "Italy",
     "Luckingstar": "China",
-    "MAXA": "Italy",
     "Megawave": "China",
-    "Mitsubishi Heavy Industries Air-Conditioning": "Japan",
     "PHNIX": "China",
     "SOLARFOCUS": "Austria",
     "SPRSUN": "China",
@@ -3115,7 +3118,6 @@ MANUFACTURER_COUNTRY = {
     "Navien": "South Korea",
     "Nibe": "Sweden",
     "Ochsner": "Austria",
-    "Ochsner Energietechnik": "Austria",
     "Octopus Energy": "United Kingdom",
     "Oilon": "Finland",
     "Panasonic": "Japan",
@@ -3296,13 +3298,8 @@ def render_manufacturers_index(by_mfr):
     _cname = lambda c, k: ("the " if c in ("United Kingdom", "United States", "Netherlands") else "") + f"{esc(c)} ({k})"
     own_url = f"{BASE_URL}/news/who-owns-your-heat-pump-brand-parent-companies/"
 
-    summary = (
-        '<div class="article-tldr"><span class="article-tldr-label">At a glance</span><p>'
-        f'The {SITE_NAME} lists {len(all_products):,} heat pumps from {len(by_mfr)} manufacturers in {n_countries} countries. '
-        f'The manufacturers with the most models listed are {_names(by_size)}. '
-        + (f'{len(uk)} are UK-based, including {_names(uk, 4)}. ' if uk else '') +
-        f'The most common home countries are ' + ", ".join(_cname(c, k) for c, k in top_c[:-1]) + " and " + _cname(*top_c[-1]) + '. '
-        f'Many brands share a parent company &mdash; see <a href="{own_url}">who owns your heat pump brand</a>.</p></div>')
+    # 'At a glance' block removed (Nov 2026); keep the parent-company link only
+    summary = f'<p class="sub" style="margin:4px 0 0">Many brands share a parent company &mdash; see <a href="{own_url}">who owns your heat pump brand</a>.</p>'
 
     def _cat(h, text, rows, type_slug=None, type_label=None):
         more = (f' <a href="{BASE_URL}/types/{type_slug}/">Browse all {type_label} &rarr;</a>' if type_slug else "")
@@ -4440,6 +4437,28 @@ def _news_pasted_body(article):
         out.append(f'<p>Source: <a href="{esc(src)}" rel="nofollow" target="_blank">{esc(article.get("source_name") or src)}</a>.</p>')
     return "".join(out)
 
+# ─── Related news: score other articles by shared manufacturers, shared products,
+# shared category and recency, so each article links to its closest neighbours. ───
+NEWS_PID_MFR = {}   # product id -> manufacturer, filled in main()
+def _news_mfrs(a):
+    ms = {NEWS_PID_MFR.get(i) for i in (a.get("product_ids") or []) if NEWS_PID_MFR.get(i)}
+    t = (a.get("title") or "").lower()
+    for m in set(NEWS_PID_MFR.values()):
+        if m and len(m) > 2 and re.search(r"\b" + re.escape(m.lower()) + r"\b", t):
+            ms.add(m)
+    return ms
+def _related_news(article, all_articles, n=3):
+    me, mp = _news_mfrs(article), set(article.get("product_ids") or [])
+    def score(a):
+        sc = 0.0
+        sc += 6 * len(me & _news_mfrs(a))
+        sc += 4 * len(mp & set(a.get("product_ids") or []))
+        sc += 2 if a.get("category") == article.get("category") else 0
+        sc += (str(a.get("date") or "") > "2000") * (int(str(a.get("date") or "0000")[:4] + str(a.get("date") or "0000-00")[5:7]) / 1e6)
+        return sc
+    pool = [a for a in all_articles if a["slug"] != article["slug"]]
+    return sorted(pool, key=lambda a: (score(a), str(a.get("date") or "")), reverse=True)[:n]
+
 def render_news_article(article, all_articles):
     url = f'{BASE_URL}/news/{article["slug"]}/'
     title = article.get("seo_title") or f'{article["title"]} | {SITE_NAME} News'
@@ -4470,11 +4489,12 @@ def render_news_article(article, all_articles):
     if tldr_text:
         tldr_block = (f'<div class="article-tldr"><span class="article-tldr-label">TL;DR</span>'
                        f'<p>{esc(tldr_text)}</p></div>')
-    others = [a for a in all_articles if a["slug"] != article["slug"]][:3]
+    others = _related_news(article, all_articles, 3)
     related = ""
     if others:
-        related = ('<h2 style="font-size:18px;margin:34px 0 12px">More from News &amp; Insight</h2>'
-                    f'<div class="news-grid">{"".join(_news_card(a) for a in others)}</div>')
+        related = ('<h2 style="font-size:18px;margin:34px 0 12px">Related news</h2>'
+                    f'<div class="news-grid">{"".join(_news_card(a) for a in others)}</div>'
+                    f'<p style="margin-top:12px"><a href="{BASE_URL}/news/">All News &amp; Insight &rarr;</a></p>')
     body = (crumbs(crumb_items) +
             f'<h1 style="font-size:28px;letter-spacing:-.02em;margin:0 0 10px;max-width:760px">{esc(article["title"])}</h1>'
             + header + hero + tldr_block +
@@ -5313,7 +5333,14 @@ def bus_line(p):
 # lists hp_ids = compatible heat pump product IDs; heat pump pages show the matching
 # cylinders, and each cylinder gets its own page under /cylinders/<slug>/.
 CYL_DATA = os.path.join(ROOT, "cylinders.json")
+# SEO audit (Nov 2026): type every product/cylinder as schema.org Product. Note: Product items
+# without offers/review/aggregateRating are flagged by Google's Product-snippet report (seen
+# 2026-08-21). Set to False to go back to ProductModel for unpriced items.
+ALWAYS_PRODUCT_SCHEMA = False
 CYL_BY_HP = {}
+CYL_BY_MFR = {}
+CYL_COUNT = [0]
+NEWS_BY_PID = {}
 CYL_DUP_NAMES = set()
 CYL_LABELS = [
     ("cylinder_type", "Type", ""), ("pre_plumbed", "Pre-plumbed", ""), ("product_code", "Product code", ""),
@@ -5377,6 +5404,11 @@ def load_cylinders(products):
     global CYL_DUP_NAMES
     _nc = Counter(f"{c.get('manufacturer','')} {c.get('model','')}" for c in cyls)
     CYL_DUP_NAMES = {n for n, k in _nc.items() if k > 1}
+    global CYL_BY_MFR
+    CYL_BY_MFR = {}
+    for c in cyls:
+        CYL_BY_MFR.setdefault(c.get("manufacturer"), []).append(c)
+    CYL_COUNT[0] = len(cyls)
     CYL_BY_HP = {}
     for c in cyls:
         for i in c["hp_ids"]:
@@ -5399,13 +5431,39 @@ def _cyl_table(cyls, show_mfr=False):
     return f'<table class="list">{"<tr>" + head + "</tr>"}{rows}</table>'
 
 def render_compatible_cylinders(p):
+    """'Compatible cylinders' block on every residential heat pump page (SEO audit Nov 2026):
+    1) cylinders listed as compatible with this model, else 2) cylinders from the same
+    manufacturer (clearly labelled as not confirmed), else 3) a link into the cylinder browser."""
     cyls = CYL_BY_HP.get(p.get("id")) or []
-    if not cyls:
+    hpname = f'{p.get("manufacturer","")} {p.get("model","")}' + (f' ({p["product_code"]})' if p.get("product_code") else "")
+    if cyls:
+        cyls = sorted(cyls, key=lambda c: (c.get("cylinder_type") or "", c.get("volume_nominal_l") if isinstance(c.get("volume_nominal_l"), (int, float)) else 9e9))
+        q = urllib.parse.urlencode({"hpid": p.get("id"), "hpname": hpname})
+        return ('<h2 class="sec">Compatible cylinders &amp; tanks</h2>'
+                f'<p class="sub">{len(cyls)} cylinder{"s" if len(cyls) != 1 else ""}, buffer{"s" if len(cyls) != 1 else ""} and indoor units listed for this heat pump.</p>'
+                + _cyl_table(cyls) +
+                f'<p style="margin-top:10px"><a class="cta" href="{BASE_URL}/cylinders/?{q}">Compare these in Cylinders &amp; Tanks &rarr;</a></p>')
+    if p.get("type") != "Residential":
         return ""
-    cyls = sorted(cyls, key=lambda c: (c.get("cylinder_type") or "", c.get("volume_nominal_l") if isinstance(c.get("volume_nominal_l"), (int, float)) else 9e9))
-    return ('<h2 class="sec">Compatible hot water cylinders &amp; tanks</h2>'
-            f'<p class="sub">{len(cyls)} cylinder{"s" if len(cyls) != 1 else ""}, buffer{"s" if len(cyls) != 1 else ""} and indoor units listed for this heat pump.</p>'
-            + _cyl_table(cyls))
+    mfr = p.get("manufacturer") or ""
+    same = sorted(CYL_BY_MFR.get(mfr) or [], key=lambda c: (c.get("cylinder_type") or "", c.get("volume_nominal_l") if isinstance(c.get("volume_nominal_l"), (int, float)) else 9e9))
+    if same:
+        q = urllib.parse.urlencode({"mfr": mfr})
+        return ('<h2 class="sec">Compatible cylinders &amp; tanks</h2>'
+                f'<p class="sub">No cylinders are confirmed for this exact model yet. These {min(len(same), 8)} of {len(same)} are from {esc(mfr)}; check compatibility with {esc(mfr)} or your installer.</p>'
+                + _cyl_table(same[:8]) +
+                f'<p style="margin-top:10px"><a class="cta" href="{BASE_URL}/cylinders/?{q}">All {len(same)} {esc(mfr)} cylinders &amp; tanks &rarr;</a></p>')
+    return ('<h2 class="sec">Compatible cylinders &amp; tanks</h2>'
+            '<p class="sub">No cylinders are listed for this heat pump yet. Most heat pumps work with a heat pump cylinder whose coil is rated for the unit&rsquo;s output; '
+            'check the manufacturer&rsquo;s recommended pairing with your installer.</p>'
+            f'<p style="margin-top:10px"><a class="cta" href="{BASE_URL}/cylinders/">Browse {CYL_COUNT[0]:,} cylinders &amp; tanks &rarr;</a></p>')
+
+def render_product_news(p):
+    arts = [a for a in NEWS_BY_PID.get(p.get("id"), [])][:3]
+    if not arts:
+        return ""
+    items = "".join(f'<li><a href="{BASE_URL}/news/{a["slug"]}/">{esc(a["title"])}</a> <span class="sub">{esc(str(a.get("date") or ""))}</span></li>' for a in arts)
+    return f'<h2 class="sec">In the news</h2><ul>{items}</ul>'
 
 def render_cylinder(c, pid):
     url = _cyl_url(c)
@@ -5439,9 +5497,20 @@ def render_cylinder(c, pid):
         hp_html = (f'<h2 class="sec">Compatible heat pumps ({len(hps)})</h2><ul class="cyl-hps">{items}</ul>')
     crumb_items = [("Home", f"{BASE_URL}/"), ("Cylinders", f"{BASE_URL}/cylinders/"), (name, None)]
     vol = _cyl_vol(c)
-    desc = (f"{name}{' ' + re.sub('<[^>]+>', '', vol) if vol and vol not in model else ''} "
-            f"{(c.get('cylinder_type') or 'cylinder').lower()} specifications: volume, heat loss, dimensions, weight"
-            f"{', price' if c.get('price') else ''} and compatible heat pumps.")[:300]
+    _vt = re.sub('<[^>]+>', '', vol) if vol else ''
+    _code = str(c.get("product_code") or "").strip()
+    _bits = [(c.get("cylinder_type") or "cylinder").lower()]
+    if _vt and _vt.replace(" ", "").lower() not in name.replace(" ", "").lower():
+        _bits.append(_vt)
+    if isinstance(c.get("heat_loss_kwh_24h"), (int, float)):
+        _bits.append(f"{num(c['heat_loss_kwh_24h'])} kWh/24h heat loss")
+    _dm = re.sub('<[^>]+>|&times;', lambda m: '\u00d7' if m.group(0) == '&times;' else '', _cyl_dims(c))
+    if _dm:
+        _bits.append(_dm)
+    _nhp = len(c.get("hp_ids") or [])
+    desc = (f"{name}{' (' + _code + ')' if _code and _code.lower() not in name.lower() else ''}: "
+            + ", ".join(_bits) + (f", {c['price']}" if c.get("price") else "")
+            + (f". Full specs and {_nhp} compatible heat pump{'s' if _nhp != 1 else ''}." if _nhp else ". Full specifications."))
     body = (crumbs(crumb_items) + f"<h1>{esc(name)}</h1>"
             f'<p class="sub">{esc(c.get("cylinder_type") or "")}{(" &middot; " + vol) if vol else ""}</p>'
             f'<table class="spec">{rows}</table>{hp_html}'
@@ -5452,7 +5521,7 @@ def render_cylinder(c, pid):
     # Priced cylinders -> Product + AggregateOffer; unpriced -> ProductModel (avoids the
     # Search Console "Either offers, review, or aggregateRating" error on Product items).
     _nums = [float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*(?:\.\d+)?", str(c.get("price") or ""))]
-    ld = {"@context": "https://schema.org", "@type": "Product" if _nums else "ProductModel", "name": name,
+    ld = {"@context": "https://schema.org", "@type": "Product" if (_nums or ALWAYS_PRODUCT_SCHEMA) else "ProductModel", "name": name,
           "brand": {"@type": "Brand", "name": mfr}, "category": "Hot water cylinder", "url": url}
     if c.get("product_code"):
         ld["mpn"] = str(c["product_code"])
@@ -5460,12 +5529,21 @@ def render_cylinder(c, pid):
         ld["offers"] = {"@type": "AggregateOffer", "priceCurrency": "GBP", "lowPrice": min(_nums), "highPrice": max(_nums), "url": url}
     # title: unique, within ~60 chars where possible
     tname = name if name not in CYL_DUP_NAMES else f"{name} ({c.get('product_code') or c['id']})"
+    if len(tname) > 65:   # SEO audit Nov 2026: keep cylinder titles within 65 chars
+        cands = [re.sub(r"\s*\([^)]*\)", "", tname).strip(), tname.split(",")[0].strip()]
+        if _code:
+            cands.append(f"{mfr} {_code}" + (f" {_vt.replace(' ', '')}" if _vt and _vt.replace(' ', '') not in _code else "")
+                         + f" {(c.get('cylinder_type') or 'cylinder').split(' (')[0].lower()}")
+        cands.append(tname[:66].rsplit(" ", 1)[0].rstrip(",/ -"))
+        tname = next((x for x in cands if x and len(x) <= 65), cands[-1])
     title = f"{tname} Specifications" if len(f"{tname} Specifications") <= 60 else tname
     # meta description: 110-160 chars
     if len(desc) > 160:
         desc = desc[:157].rsplit(" ", 1)[0].rstrip(",:;") + "\u2026"
     elif len(desc) < 110:
         desc = desc + " Free, independent heat pump database."
+        if len(desc) < 110:
+            desc = desc.replace(" Free, independent heat pump database.", " Compare volumes and heat loss in the free, independent heat pump database.")
         desc = desc if len(desc) <= 160 else desc[:157].rsplit(" ", 1)[0] + "\u2026"
     return page(f"{title} | {SITE_NAME}", desc, url, body,
                 [breadcrumb_jsonld(crumb_items, url), ld], og_type="product", og_image=get_og_image(mfr))
@@ -5555,7 +5633,6 @@ html body main{{padding:0}}
       </div>
     </div>
   </div>
-  <div class="faq-callout"><div class="faq-callout-inner"><span class="faq-callout-icon">&#128161;</span><span class="faq-callout-text">Choosing a cylinder? Lower standing heat loss means less wasted energy, and the coil rating should suit your heat pump&rsquo;s output. Each listing shows the heat pumps it&rsquo;s compatible with.</span></div></div>
   <div class="browse-layout">
     <div class="filter-panel" id="filter-panel">
       <div class="filter-panel-inner">
@@ -5653,6 +5730,12 @@ def main():
         by_type.setdefault(p.get("hp_type"), []).append(p)
     compute_type_links(products)
     cylinders = load_cylinders(products)
+    # news <-> product index (product pages "In the news", related-news scoring)
+    for p in products:
+        NEWS_PID_MFR[p.get("id")] = p.get("manufacturer")
+    for a in sorted(load_news(), key=lambda a: str(a.get("date") or ""), reverse=True):
+        for i in a.get("product_ids") or []:
+            NEWS_BY_PID.setdefault(i, []).append(a)
 
     # --- Per-page content fingerprints, for sitemap.xml <lastmod> ---
     # See _lastmod_hash() above. product_hash_by_id lets every page that lists
@@ -5813,6 +5896,17 @@ def main():
         url = f"{BASE_URL}/manufacturers/{slugify(m)}/"
         urls.append(url)
         _lastmod_for(url, _lastmod_hash(sorted(product_hash_by_id[p.get("id")] for p in ps)))
+    # redirect stubs for merged manufacturer names (LEGACY_MFR_REDIRECTS)
+    for old_m, new_m in LEGACY_MFR_REDIRECTS.items():
+        if new_m not in by_mfr or old_m in by_mfr or slugify(old_m) == slugify(new_m):
+            continue
+        target_url = f"{BASE_URL}/manufacturers/{slugify(new_m)}/"
+        write(os.path.join(ROOT, "manufacturers", slugify(old_m), "index.html"),
+              f"<!DOCTYPE html><html lang=\"en-GB\"><head><meta charset=\"utf-8\">"
+              f"<title>Redirecting\u2026 | {SITE_NAME}</title><link rel=\"canonical\" href=\"{target_url}\">"
+              f"<meta http-equiv=\"refresh\" content=\"0; url={target_url}\">"
+              f"<meta name=\"robots\" content=\"noindex\"><script>location.replace(\"{target_url}\")</script>"
+              f"</head><body><p>This page has moved. <a href=\"{target_url}\">Continue to the updated page</a>.</p></body></html>")
     write(os.path.join(ROOT, "manufacturers", "index.html"),
           render_manufacturers_index(by_mfr))
     url = f"{BASE_URL}/manufacturers/"
