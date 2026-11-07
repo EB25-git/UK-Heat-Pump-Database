@@ -3147,6 +3147,27 @@ MANUFACTURER_COUNTRY = {
     "York": "United States",
 }
 
+MFR_DS_CSS = """<style>
+/* Manufacturers page: design-system colours, type and shapes (Nov 2026) */
+html body #mfr-grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+html body #mfr-grid .card{background:#fff;border:1px solid #CFDDD7;border-radius:6px;padding:16px 18px;box-shadow:none;transition:border-color .15s,box-shadow .15s}
+html body #mfr-grid .card:hover{border-color:#109680;box-shadow:0 4px 16px rgba(16,150,128,.08)}
+html body #mfr-grid .card .m{color:#15221E;font-weight:650;font-size:16px;line-height:1.25;letter-spacing:-.01em;margin-bottom:6px}
+html body #mfr-grid .card .s{color:#5A6A65;font-size:13px;line-height:1.45;margin-top:3px}
+html body #mfr-grid .card .m + .s{color:#0B6656;font-weight:600}
+html body #mfr-grid .card .logo-thumb{width:40px;height:40px;border-radius:8px;background:#EEF4F1;border:1px solid #CFDDD7}
+html body .mfr-filter-bar{border:1px solid #CFDDD7;border-radius:6px;padding:16px 18px}
+html body .mfr-filter-col label.filter-label{font-size:13.5px;text-transform:none;letter-spacing:0;color:#15221E;font-weight:650;margin-bottom:6px}
+html body .mfr-filter-col select.filt{border:1px solid #CFDDD7;border-radius:6px;font-family:inherit;font-size:13.5px;color:#15221E}
+html body .mfr-filter-col select.filt:focus{border-color:#109680}
+html body .f-slider-val{font-size:13px;color:#5A6A65;font-weight:500}
+html body .range-track{background:#E3EDE8}html body .range-fill{background:#109680}html body .range-thumb{border-color:#109680;box-shadow:none}
+html body .mfr-filter-footer{border-top-color:#E3EDE8}
+html body #mf-count{font-size:13px;color:#5A6A65}
+html body .mf-clear-btn{font-family:inherit;font-size:13px;font-weight:600;color:#15221E;border:1px solid #CFDDD7;border-radius:4px;padding:7px 14px;background:#fff}
+html body .mf-clear-btn:hover{border-color:#109680;color:#0B6656}
+</style>"""
+
 def render_manufacturers_index(by_mfr):
     url = f"{BASE_URL}/manufacturers/"
 
@@ -3220,7 +3241,7 @@ def render_manufacturers_index(by_mfr):
                 f'<img class="logo-thumb" src="{get_logo_url(m)}" alt="{esc(m)} logo" loading="lazy" width="40" height="40">'
                 f'<span><div class="m">{esc(m)}</div>{lines}</span></a>')
 
-    cards = "".join(_mfr_card(m) for m in sorted(by_mfr))
+    cards = "".join(_mfr_card(m) for m in sorted(by_mfr, key=str.lower))
 
     country_options = "".join(
         f'<option value="{esc(c)}">{esc(c)}</option>'
@@ -3363,7 +3384,7 @@ def render_manufacturers_index(by_mfr):
                "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": m, "url": murl(m)}
                                    for i, m in enumerate(sorted(by_mfr))]}
 
-    body = (HUB_CSS + crumbs(crumb_items) +
+    body = (HUB_CSS + MFR_DS_CSS + crumbs(crumb_items) +
             f"<h1>Heat Pump Manufacturers ({yr})</h1>"
             f'<p class="sub">{len(by_mfr)} brands · {len(all_products):,} models · updated {_nice_date(TODAY)}</p>'
             + summary +
@@ -3869,10 +3890,11 @@ def render_best_single_page(composite, sections):
     faq_html, faq_ld = _faq_block(faqs)
 
     body = (HUB_CSS + crumbs(crumb_items) +
-            f"<h1>Best Heat Pumps {yr}: Top-Rated Models Ranked by Real Data</h1>"
+            f"<h1>Best Heat Pumps UK {yr}: Top-Rated Models Ranked by Real Data</h1>"
             f'<p class="sub">{total_rankings} data-driven rankings · updated {_nice_date(TODAY)}</p>'
             + quick_html +
             f'<div class="callout" style="margin:16px 0"><strong>Rank them your way.</strong> Pick up to four priorities &ndash; SCOP, noise, weight, price and more &ndash; weight them and set a capacity range in the <a href="{BASE_URL}/heat-pump-finder/">Heat Pump Finder</a>.</div>'
+            f'<p>The best heat pumps you can buy in the UK, ranked on published data rather than marketing. Prices are UK retailer prices, and each product page shows whether a model is MCS-listed and eligible for the &pound;7,500 <a href="{BASE_URL}/knowledge/funding/">Boiler Upgrade Scheme</a> grant in England and Wales.</p>'
             f'<p>Every ranking below is generated automatically from the specifications in the {SITE_NAME}, '
             f'compared at matching test conditions wherever possible. Each section shows the top {BEST_HUB_N} — '
             f'follow the link for the full top 10.</p>'
@@ -3880,9 +3902,9 @@ def render_best_single_page(composite, sections):
             + section_html + howto_html + faq_html +
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/#compare">Compare selected products side-by-side &rarr;</a></p>')
 
-    desc = (f"The best heat pumps of {yr} ranked on real data: SCOP, noise, price and capacity. "
-            f"Top-rated air, ground and water source models across {total_rankings} independent rankings.")
-    return page(f"Best Heat Pumps {yr}: Top Rated by SCOP & Noise",
+    desc = (f"The best heat pumps in the UK for {yr}, ranked on real data: SCOP, noise, UK price and capacity. "
+            f"See which top models are MCS-listed and BUS grant eligible.")
+    return page(f"Best Heat Pumps UK {yr}: Top Rated by SCOP & Noise",
                 desc, url, body, item_lds + [faq_ld, breadcrumb_jsonld(crumb_items, url)],
                 active="best", og_image=get_og_image(), wide=True)
 
@@ -3918,7 +3940,7 @@ def render_best_category_page(cfg, ranked, pool_size, sections):
     _cat_faq_html, _cat_faq_ld = _faq_block(_cat_faq)
     _cat_faq_html = HUB_CSS + _cat_faq_html
     body = (crumbs(crumb_items) +
-            f'<h1>{cfg["h1"]} ({TODAY[:4]})</h1>'
+            f'<h1>{cfg["h1"]} in the UK ({TODAY[:4]})</h1>'
             f'<p class="sub">Top {n} of {pool_size} qualifying products \u00b7 updated {TODAY}</p>'
             f'<p>{cfg["intro"]}</p>'
             f'<p>Every figure comes from the manufacturer\u2019s published specification as recorded in the {SITE_NAME}; '
@@ -3936,7 +3958,7 @@ def render_best_category_page(cfg, ranked, pool_size, sections):
     desc = cfg["desc"].format(n=n, pool=pool_size)
     if len(desc) <= 140:
         desc += " Free to compare."
-    return page(f"{cfg['title']} {TODAY[:4]} \u2014 Top {n} Ranked | {SITE_NAME}", desc, url, body,
+    return page(f"{cfg['title']} UK {TODAY[:4]} \u2014 Top {n} Ranked | {SITE_NAME}", desc, url, body,
                 [item_ld, _cat_faq_ld, breadcrumb_jsonld(crumb_items, url)], active="best", og_image=get_og_image(), wide=True)
 
 
@@ -4163,15 +4185,13 @@ KNOWLEDGE_PAGES = [
     {"page_id": "page-what-is-a-heat-pump", "end_marker": "<!-- ═══ REFRIGERANT GUIDE ═══ -->",
      "dir": "what-is-a-heat-pump", "active": "what-is-a-heat-pump", "crumb": "What Is a Heat Pump?",
      "headline": "What Is a Heat Pump?",
-     "title": f"What Is a Heat Pump? A Plain-English Guide | {SITE_NAME}",
-     "desc": ("What a heat pump is and how it works, explained simply with diagrams, plus an honest "
-              "comparison with gas boilers and what to check before you switch.")},
+     "title": "What Is a Heat Pump? How It Works vs a Gas Boiler (UK)",
+     "desc": "A heat pump turns 1 unit of electricity into 3–4 units of heat. How air, ground and water source heat pumps work, and how they compare with a gas boiler."},
     {"page_id": "page-refrigerants", "end_marker": "<!-- ═══ COP & SCOP GUIDE ═══ -->",
      "dir": "refrigerants", "active": "refrigerants", "crumb": "Refrigerant Guide",
-     "headline": "Heat Pump Refrigerants Compared",
-     "title": f"Heat Pump Refrigerants Compared: GWP, Safety & F-Gas Rules | {SITE_NAME}",
-     "desc": ("Heat pump refrigerants compared: GWP, safety class, pros and cons and UK/EU F-Gas rules "
-              "for R290, R32, R410A, CO2, ammonia and low-GWP blends.")},
+     "headline": "Heat Pump Refrigerants Compared: R290, R32, R410A and More",
+     "title": "R290 vs R32 vs R410A: Heat Pump Refrigerants Compared",
+     "desc": "R290 has a GWP of about 3, R32 675 and R410A 2,088. Compare heat pump refrigerants on GWP, safety, flow temperature and the latest UK and EU F-Gas rules."},
     {"page_id": "page-cop-scop", "end_marker": "<!-- ═══ FLOW TEMPERATURE GUIDE ═══ -->",
      "dir": "cop-scop", "active": "cop-scop", "crumb": "What Is a Good SCOP?",
      "headline": "What Is a Good SCOP? COP vs SCOP Explained",
@@ -4189,28 +4209,24 @@ KNOWLEDGE_PAGES = [
     },
     {"page_id": "page-flow-temp", "end_marker": "<!-- ═══ INSTALLATION COSTS GUIDE ═══ -->",
      "dir": "flow-temperature", "active": "flow-temp", "crumb": "Flow Temperature & Efficiency",
-     "headline": "Flow Temperature & Efficiency",
-     "title": f"Heat Pump Flow Temperature & Efficiency Explained | {SITE_NAME}",
-     "desc": ("Why a lower flow temperature makes a heat pump more efficient, how it affects radiator "
-              "sizing and weather compensation, and its link to COP and SCOP.")},
+     "headline": "Heat Pump Flow Temperature: 35°C vs 45°C vs 55°C",
+     "title": "Heat Pump Flow Temperature: 35°C vs 45°C vs 55°C Explained",
+     "desc": "Each 1°C lower flow temperature saves about 2–2.5% energy. Which flow temperature to run a heat pump at, radiator sizing and weather compensation explained."},
     {"page_id": "page-install-costs", "end_marker": "<!-- ═══ FUNDING GUIDE ═══ -->",
      "dir": "installation-costs", "active": "install-costs", "crumb": "Installation Costs",
-     "headline": "ASHP Installation Costs Explained",
-     "title": f"Air Source Heat Pump Installation Costs UK 2026 | {SITE_NAME}",
-     "desc": ("What a UK air source heat pump installation costs: the unit, cylinder, controls and "
-              "radiator upgrades, with typical totals before and after the BUS grant.")},
+     "headline": "Air Source Heat Pump Installation Costs (UK 2026)",
+     "title": "Air Source Heat Pump Cost UK 2026: Prices After £7,500 Grant",
+     "desc": "A typical UK air source heat pump costs £8,000–£14,000 installed, or about £500–£6,500 after the £7,500 BUS grant. Unit, cylinder and radiator costs."},
     {"page_id": "page-funding", "end_marker": "<!-- ═══ PLANNING PERMISSION GUIDE ═══ -->",
      "dir": "funding", "active": "funding", "crumb": "Funding & Grants",
-     "headline": "Heat Pump Funding & Grants in the UK",
-     "title": "Heat Pump Funding & Grants UK 2026: BUS, VAT & More",
-     "desc": ("Every UK heat pump grant in one place: Boiler Upgrade Scheme, 0% VAT, Home Energy "
-              "Scotland, Warm Homes, ECO4 and NI support, with amounts and how to apply.")},
+     "headline": "Heat Pump Grants and Funding in the UK (2026)",
+     "title": "Heat Pump Grants UK 2026: £7,500 BUS, 0% VAT & More",
+     "desc": "Get £7,500 off a heat pump with the Boiler Upgrade Scheme, plus 0% VAT. Every UK heat pump grant for England, Wales, Scotland and NI and how to apply."},
     {"page_id": "page-planning", "end_marker": "<!-- ═══ FAQ ═══ -->",
      "dir": "planning-permission", "active": "planning", "crumb": "Planning Permission",
-     "headline": "UK Planning Permission for Heat Pumps",
-     "title": "Heat Pump Planning Permission UK 2026: Rules by Nation",
-     "desc": ("Do you need planning permission for a heat pump? Permitted development rules, how to "
-              "apply and typical costs in England, Wales, Scotland and NI.")},
+     "headline": "Do You Need Planning Permission for a Heat Pump?",
+     "title": "Do You Need Planning Permission for a Heat Pump? (UK 2026)",
+     "desc": "Most UK heat pumps don’t need planning permission. Permitted development rules, siting limits, listed buildings and fees in England, Wales, Scotland and NI."},
 ]
 
 def render_knowledge_page(cfg):
@@ -5025,8 +5041,8 @@ SMART_TARIFF_FAQ = [
 def render_smart_tariffs_page():
     url = f"{BASE_URL}/knowledge/smart-tariffs/"
     title = "Smart Tariffs for Heat Pumps: Running Cost Calculator"
-    desc = ("How UK smart and time-of-use tariffs work with an air source heat pump, which types suit you, "
-            "and a free calculator to compare annual running costs on each tariff.")
+    desc = ("How UK smart and time-of-use tariffs work with an air source heat pump, which suit you, "
+            "and a free calculator to compare annual running costs.")
     crumb_items = [("Home", f"{BASE_URL}/"), ("Smart Tariffs for Heat Pumps", None)]
     faq_html = "".join(f'<div class="hub-faq-item"><h3>{q}</h3><p>{a}</p></div>' for q, a in SMART_TARIFF_FAQ)
     def _plain(s):
