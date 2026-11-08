@@ -5498,8 +5498,15 @@ def render_cylinder(c, pid):
         rows += f'<tr><th>Price (unit only, inc VAT)</th><td>{esc(str(c["price"]))}{src}</td></tr>'
         if c.get("price_check_date"):
             rows += f'<tr><th>Price checked</th><td>{esc(str(c["price_check_date"]))}</td></tr>'
-    if c.get("product_url"):
-        rows += f'<tr><th>Manufacturer / retailer page</th><td><a href="{esc(c["product_url"])}" rel="nofollow noopener" target="_blank">View product page</a></td></tr>'
+    if c.get("manufacturer_url"):
+        rows += (f'<tr><th>Manufacturer page</th><td><a href="{esc(c["manufacturer_url"])}" rel="nofollow noopener" '
+                 f'target="_blank">View on {esc(mfr)} website</a></td></tr>')
+    rets = c.get("retailer_urls") or []
+    if rets:
+        links = " &middot; ".join(f'<a href="{esc(x["url"])}" rel="nofollow noopener sponsored" target="_blank">{esc(x["name"])}</a>' for x in rets)
+        rows += f'<tr><th>Retailers</th><td>{links}</td></tr>'
+    elif c.get("product_url") and not c.get("manufacturer_url"):
+        rows += f'<tr><th>Product page</th><td><a href="{esc(c["product_url"])}" rel="nofollow noopener" target="_blank">View product page</a></td></tr>'
     hps = [pid[i] for i in c.get("hp_ids") or [] if i in pid]
     hp_html = ""
     if hps:
