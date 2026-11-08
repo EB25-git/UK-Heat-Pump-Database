@@ -2277,6 +2277,197 @@ PRODUCT_IMAGE_BY_ID = {
     4716: "baxi-auriga-hp-plus-20-30.webp",  # Baxi Auriga HP+
     4717: "baxi-auriga-hp-plus-20-30.webp",  # Baxi Auriga HP+
 }
+# Cylinder / tank photos (Nov 2026), keyed by cylinders.json id. Sizes in one range
+# share a photo; a few sizes without their own photo reuse a sibling's (noted).
+CYL_IMAGE_BY_ID = {
+    1: "cyl-adlar-fjord.webp",  # Adlar Fjord 120L hot water heat pump cylinder
+    2: "cyl-adlar-fjord.webp",  # Adlar Fjord 200L hot water heat pump cylinder
+    3: "cyl-adlar-fjord.webp",  # Adlar Fjord 300L hot water heat pump cylinder
+    4: "cyl-aira-iu-250.webp",  # Aira Indoor Unit 250L
+    5: "cyl-aira-iu-100.webp",  # Aira Indoor Unit 100L
+    6: "cyl-aira-buffer-100.webp",  # Aira Buffer Tank 100L
+    8: "cyl-aira-slim-150.webp",  # Aira Slimline hot water cylinder 150L
+    12: "cyl-aira-iu-compact.webp",  # Aira Indoor Unit Compact (hydrobox)
+    52: "cyl-amitime-ecostar-pro-m-aio.webp",  # Amitime EcoSTAR Pro M-AIO indoor tower (integrated DHW)
+    53: ["cyl-amitime-ecostar-heatstar-m-aio.webp", "cyl-amitime-heatstar-m-aio.webp"],  # Amitime EcoSTAR / HeatSTAR+ M-AIO indoor tower (integrated DHW)
+    54: "cyl-amitime-heatstar-s-aio.webp",  # Amitime HeatSTAR+ S-AIO split indoor tower (integrated DHW)
+    69: "cyl-ariston-nimbus-compact-m-net.webp",  # Ariston Nimbus Compact M Net R32 integrated cylinder 180L
+    70: "cyl-ariston-nimbus5-iu.webp",  # Ariston Nimbus 5 150L indoor unit
+    71: "cyl-ariston-nimbus5-iu.webp",  # Ariston Nimbus 5 180L indoor unit
+    72: "cyl-ariston-nimbus5-iu.webp",  # Ariston Nimbus 5 210L indoor unit
+    78: "cyl-atlantic-extensa-duo.webp",  # Atlantic Alfea Extensa Duo integrated DHW tank 190L
+    80: "cyl-atlantic-ixtra-m.webp",  # Atlantic Ixtra M Heating and SHW
+    81: "cyl-atlantic-ixtra-m.webp",  # Atlantic Ixtra M Heating Only
+    82: "cyl-atlantic-ixtra-m.webp",  # Atlantic Ixtra M Heating Only + Buffer
+    83: "cyl-atlantic-hydraulic-module.webp",  # Atlantic Extensa / Excellia hydraulic module
+    86: "cyl-baxi-assure-ashp.webp",  # Baxi Assure ASHP cylinder 210L (7837415)
+    87: "cyl-baxi-assure-ashp.webp",  # Baxi Assure ASHP cylinder 250L (7837492)
+    88: "cyl-baxi-assure-ashp.webp",  # Baxi Assure ASHP cylinder 300L (7837563)
+    89: "cyl-baxi-ashp-pp.webp",  # Baxi ASHP pre-plumbed cylinder 210L
+    90: "cyl-baxi-ashp-pp.webp",  # Baxi ASHP pre-plumbed cylinder 250L
+    91: "cyl-baxi-ashp-pp.webp",  # Baxi ASHP pre-plumbed cylinder 300L
+    92: "cyl-baxi-ashp-pp.webp",  # Baxi ASHP pre-plumbed cylinder 170L
+    93: "cyl-baxi-assure-hp.webp",  # Baxi Assure heat pump cylinder 210L
+    94: "cyl-baxi-assure-hp.webp",  # Baxi Assure heat pump cylinder 250L
+    95: "cyl-baxi-assure-hp.webp",  # Baxi Assure heat pump cylinder 300L
+    97: "cyl-bosch-greenstorage-wb.webp",  # Bosch Greenstorage WB Range Heat Pump 150 - 300L photo used for range
+    98: "cyl-bosch-greenstorage-wb.webp",  # Bosch Greenstorage WB Range Heat Pump 180 - 300L photo used for range
+    99: "cyl-bosch-greenstorage-wb.webp",  # Bosch Greenstorage WB Range Heat Pump 210 - 300L photo used for range
+    100: "cyl-bosch-greenstorage-wb.webp",  # Bosch Greenstorage WB Range Heat Pump 250 - 300L photo used for range
+    101: "cyl-bosch-greenstorage-wb.webp",  # Bosch Greenstorage WB Range Heat Pump 300 - 300L photo used for range
+    102: "cyl-bosch-5800i-pp.webp",  # Bosch Compress 5800i AW pre-plumbed cylinder 180L slimline
+    103: "cyl-bosch-5800i-pp.webp",  # Bosch Compress 5800i AW pre-plumbed cylinder 210L
+    104: "cyl-bosch-5800i-pp.webp",  # Bosch Compress 5800i AW pre-plumbed cylinder 250L
+    111: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 120L
+    112: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 150L
+    113: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 180L
+    114: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 200L
+    115: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 250L
+    116: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 300L
+    117: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 400L
+    118: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 500L
+    119: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder 600L
+    120: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder slimline 150L
+    121: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder slimline 170L
+    122: "cyl-carrier-hp-cyl.webp",  # Carrier Heat pump cylinder slimline 200L
+    128: "cyl-carrier-slim-pp.webp",  # Carrier Heat pump cylinder slimline 150L – pre-plumbed
+    129: "cyl-carrier-slim-pp.webp",  # Carrier Heat pump cylinder slimline 170L – pre-plumbed
+    130: "cyl-carrier-slim-pp.webp",  # Carrier Heat pump cylinder slimline 200L – pre-plumbed
+    131: "cyl-clivet-acs-x.webp",  # Clivet ACS200X 200L DHW tank
+    132: "cyl-clivet-acs-x.webp",  # Clivet ACS300X 300L DHW tank
+    133: "cyl-clivet-acs-x.webp",  # Clivet ACS500X 500L DHW tank
+    138: "cyl-coolenergy-ce-inox-dc.webp",  # Cool Energy CE-INOX200DC 200L
+    139: "cyl-coolenergy-ce-inox-dc.webp",  # Cool Energy CE-INOX250DC 250L
+    140: "cyl-coolenergy-ce-inox-dc.webp",  # Cool Energy CE-INOX300DC 300L
+    141: "cyl-coolenergy-ce-b.webp",  # Cool Energy CE-B60 60L buffer tank
+    142: "cyl-coolenergy-ce-b.webp",  # Cool Energy CE-B120 120L buffer tank
+    152: "cyl-daikin-ekhwsu.webp",  # Daikin EKHWSU150D3V3 150L
+    153: "cyl-daikin-ekhwsu.webp",  # Daikin EKHWSU180D3V3 180L
+    154: "cyl-daikin-ekhwsu.webp",  # Daikin EKHWSU200D3V3 200L
+    155: "cyl-daikin-ekhwsu.webp",  # Daikin EKHWSU250D3V3 250L
+    156: "cyl-daikin-ekhwsu.webp",  # Daikin EKHWSU300D3V3 300L
+    157: "cyl-daikin-ppc.webp",  # Daikin 150L pre-plumbed cylinder
+    158: "cyl-daikin-ppc.webp",  # Daikin 180L pre-plumbed cylinder
+    159: "cyl-daikin-ppc.webp",  # Daikin 210L pre-plumbed cylinder
+    160: "cyl-daikin-ppc.webp",  # Daikin 250L pre-plumbed cylinder
+    161: "cyl-daikin-ppc.webp",  # Daikin 300L pre-plumbed cylinder
+    162: "cyl-daikin-ppc-slim.webp",  # Daikin 150L slimline pre-plumbed cylinder
+    163: "cyl-daikin-ppc-slim.webp",  # Daikin 180L slimline pre-plumbed cylinder
+    164: "cyl-daikin-ekhwp-pb.webp",  # Daikin EKHWP300PB 300L thermal store
+    165: "cyl-daikin-ekhwp-pb.webp",  # Daikin EKHWP500PB 500L thermal store
+    168: ["cyl-daikin-integrated-1.webp", "cyl-daikin-integrated-2.webp", "cyl-daikin-integrated-3.webp"],  # Daikin Altherma 3 integrated tank 180L
+    169: ["cyl-daikin-integrated-1.webp", "cyl-daikin-integrated-2.webp", "cyl-daikin-integrated-3.webp"],  # Daikin Altherma 3 integrated tank 230L
+    170: "cyl-daikin-ekhwp-b.webp",  # Daikin EKHWP300B 300L thermal store
+    314: "cyl-grant-qr2sc150.webp",  # Grant QR2SC150
+    315: "cyl-grant-qr2sc250.webp",  # Grant QR2SC180 - sibling size photo (QR2SC250)
+    316: "cyl-grant-qr2sc250.webp",  # Grant QR2SC210 - sibling size photo (QR2SC250)
+    317: "cyl-grant-qr2sc250.webp",  # Grant QR2SC250
+    318: "cyl-grant-qr2sc300.webp",  # Grant QR2SC300
+    319: "cyl-grant-qr2sc150sl.webp",  # Grant QR2SC150SL
+    320: "cyl-grant-qr2sc150sl.webp",  # Grant QR2SC180SL - sibling size photo (QR2SC150SL)
+    321: "cyl-grant-qr2sc210sl.webp",  # Grant QR2SC210SL
+    322: "cyl-grant-qr2sc250pp.webp",  # Grant QR2SC210PP - sibling size photo (QR2SC250PP)
+    323: "cyl-grant-qr2sc250pp.webp",  # Grant QR2SC250PP
+    324: "cyl-grant-qr2sc300pp.webp",  # Grant QR2SC300PP
+    325: "cyl-grant-qr2smart-pp.webp",  # Grant QR2SMART180PP
+    326: "cyl-grant-qr2smart-pp.webp",  # Grant QR2SMART210PP
+    327: "cyl-grant-qr2smart-pp.webp",  # Grant QR2SMART250PP
+    328: "cyl-grant-qr2smart-pp.webp",  # Grant QR2SMART300PP
+    329: "cyl-grant-qr2intsc210.webp",  # Grant QR2INTSC210
+    330: "cyl-grant-qrtc210.webp",  # Grant QRTC210
+    331: "cyl-grant-qrtc250.webp",  # Grant QRTC250
+    332: "cyl-grant-qrtc300.webp",  # Grant QRTC300
+    402: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 150L 1 zone
+    403: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 150L 1 zone slimline
+    404: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 180L 1 zone
+    405: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 180L 1 zone slimline
+    406: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 210L low loss header, 2 zone
+    407: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 210L low loss header, 2 zone slimline
+    408: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 180L buffer, 1 zone
+    409: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 180L buffer, 2 zone
+    410: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 210L buffer, 1 zone
+    411: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 210L buffer, 2 zone
+    412: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 250L buffer, 1 zone
+    413: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 250L buffer, 2 zone
+    414: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 300L buffer, 1 zone
+    415: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 300L buffer, 2 zone
+    416: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 150L 1 zone
+    417: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 150L 1 zone slimline
+    418: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 180L 1 zone
+    419: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 180L 1 zone slimline
+    420: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 210L low loss header, 2 zone
+    421: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 210L low loss header, 2 zone slimline
+    422: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 250L low loss header, 2 zone
+    423: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 300L low loss header, 2 zone
+    424: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 180L buffer, 1 zone
+    425: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 180L buffer, 2 zone
+    426: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 210L buffer, 1 zone
+    427: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 210L buffer, 2 zone
+    428: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 250L buffer, 1 zone
+    429: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 250L buffer, 2 zone
+    430: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 300L buffer, 1 zone
+    431: "cyl-ideal-hp290-pp.webp",  # Ideal Heating HP290 pre-plumbed 300L buffer, 2 zone
+    432: "cyl-ideal-pp-lite.webp",  # Ideal Heating Pre-plumbed hot water cylinder 180L slimline
+    433: "cyl-ideal-pp-lite.webp",  # Ideal Heating Pre-plumbed hot water cylinder 250L
+    434: "cyl-ideal-pp-lite.webp",  # Ideal Heating Pre-plumbed hot water cylinder 300L
+    435: "cyl-ideal-pp-lite.webp",  # Ideal Heating Pre-plumbed hot water cylinder 150L slimline
+    436: "cyl-ideal-pp-lite.webp",  # Ideal Heating Pre-plumbed hot water cylinder 180L
+    437: "cyl-ideal-pp-lite.webp",  # Ideal Heating Pre-plumbed hot water cylinder 210L
+    438: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 250L low loss header, 2 zone
+    439: "cyl-ideal-logic-air-pp.webp",  # Ideal Heating Logic Air pre-plumbed 300L low loss header, 2 zone
+    660: "cyl-samsung-climatehub.webp",  # Samsung ClimateHub split indoor unit DHW tank 200L
+    661: "cyl-samsung-standalone-slim.webp",  # Samsung Standalone 150L slimline heat pump cylinder
+    662: "cyl-samsung-standalone.webp",  # Samsung Standalone 150L heat pump cylinder
+    663: "cyl-samsung-standalone.webp",  # Samsung Standalone 180L heat pump cylinder
+    664: "cyl-samsung-standalone.webp",  # Samsung Standalone 210L heat pump cylinder
+    665: "cyl-samsung-standalone.webp",  # Samsung Standalone 250L heat pump cylinder
+    666: "cyl-samsung-standalone.webp",  # Samsung Standalone 300L heat pump cylinder
+    667: "cyl-samsung-standalone-slim.webp",  # Samsung Standalone 180L slimline heat pump cylinder
+    668: "cyl-samsung-standalone-slim.webp",  # Samsung Standalone 210L slimline heat pump cylinder
+    669: "cyl-samsung-pp-slim.webp",  # Samsung Pre-plumbed 150L slimline heat pump cylinder
+    670: "cyl-samsung-pp-slim.webp",  # Samsung Pre-plumbed 180L slimline heat pump cylinder
+    780: "cyl-viessmann-vitocal-222a.webp",  # Viessmann Vitocal 222-A integrated DHW cylinder 220L
+    781: ["cyl-viessmann-vitocal-151a-1.webp", "cyl-viessmann-vitocal-151a-2.webp"],  # Viessmann Vitocal 151-A integrated hot water tank 190L
+    782: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 120L
+    783: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 150L
+    784: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 170L
+    785: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 200L
+    786: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 250L
+    787: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 300L
+    788: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 400L
+    789: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 500L
+    790: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder 600L
+    791: "cyl-viessmann-hp-cyl-pp.webp",  # Viessmann Vitocal heat pump cylinder 150L pre-plumbed
+    792: "cyl-viessmann-hp-cyl-pp.webp",  # Viessmann Vitocal heat pump cylinder 180L pre-plumbed
+    793: "cyl-viessmann-hp-cyl-pp.webp",  # Viessmann Vitocal heat pump cylinder 200L pre-plumbed
+    794: "cyl-viessmann-hp-cyl-pp.webp",  # Viessmann Vitocal heat pump cylinder 250L pre-plumbed
+    795: "cyl-viessmann-hp-cyl-pp.webp",  # Viessmann Vitocal heat pump cylinder 300L pre-plumbed
+    796: "cyl-viessmann-hp-combi.webp",  # Viessmann Vitocal heat pump combi cylinder 150/50L
+    797: "cyl-viessmann-hp-combi.webp",  # Viessmann Vitocal heat pump combi cylinder 170/50L
+    798: "cyl-viessmann-hp-combi.webp",  # Viessmann Vitocal heat pump combi cylinder 200/50L
+    799: "cyl-viessmann-hp-combi.webp",  # Viessmann Vitocal heat pump combi cylinder 225/50L
+    800: "cyl-viessmann-hp-combi.webp",  # Viessmann Vitocal heat pump combi cylinder 250/60L
+    801: "cyl-viessmann-hp-combi.webp",  # Viessmann Vitocal heat pump combi cylinder 300/60L
+    802: ["cyl-viessmann-vitocell-300v-1.webp", "cyl-viessmann-vitocell-300v-2.webp"],  # Viessmann Vitocell 300-V EVIB-160-S4
+    803: ["cyl-viessmann-vitocell-300v-1.webp", "cyl-viessmann-vitocell-300v-2.webp"],  # Viessmann Vitocell 300-V EVIB-200-S4
+    804: ["cyl-viessmann-vitocell-300v-1.webp", "cyl-viessmann-vitocell-300v-2.webp"],  # Viessmann Vitocell 300-V EVIB-160-S3
+    805: ["cyl-viessmann-vitocell-300v-1.webp", "cyl-viessmann-vitocell-300v-2.webp"],  # Viessmann Vitocell 300-V EVIB-200-S3
+    806: ["cyl-viessmann-vitocell-300v-1.webp", "cyl-viessmann-vitocell-300v-2.webp"],  # Viessmann Vitocell 300-V EVIC-300-S3
+    807: ["cyl-viessmann-vitocell-300v-1.webp", "cyl-viessmann-vitocell-300v-2.webp"],  # Viessmann Vitocell 300-V EVIA-500-S2
+    808: ["cyl-viessmann-vitocell-300b-1.webp", "cyl-viessmann-vitocell-300b-2.webp"],  # Viessmann Vitocell 300-B EVBC-300-S3
+    809: ["cyl-viessmann-vitocell-300b-1.webp", "cyl-viessmann-vitocell-300b-2.webp"],  # Viessmann Vitocell 300-B EVBA-500-S2
+    810: ["cyl-viessmann-vitocell-100e-1.webp", "cyl-viessmann-vitocell-100e-2.webp"],  # Viessmann Vitocell 100-E SVW 200
+    811: ["cyl-viessmann-vitocell-100e-1.webp", "cyl-viessmann-vitocell-100e-2.webp"],  # Viessmann Vitocell 100-E 400
+    812: ["cyl-viessmann-vitocell-100e-1.webp", "cyl-viessmann-vitocell-100e-2.webp"],  # Viessmann Vitocell 100-E 750
+    813: ["cyl-viessmann-vitocell-100e-1.webp", "cyl-viessmann-vitocell-100e-2.webp"],  # Viessmann Vitocell 100-E 950
+    814: ["cyl-viessmann-vitocell-140e-1.webp", "cyl-viessmann-vitocell-140e-2.webp"],  # Viessmann Vitocell 140-E 750
+    815: ["cyl-viessmann-vitocell-140e-1.webp", "cyl-viessmann-vitocell-140e-2.webp"],  # Viessmann Vitocell 140-E 950
+    816: ["cyl-viessmann-vitocell-160e-1.webp", "cyl-viessmann-vitocell-160e-2.webp"],  # Viessmann Vitocell 160-E 750
+    817: ["cyl-viessmann-vitocell-160e-1.webp", "cyl-viessmann-vitocell-160e-2.webp"],  # Viessmann Vitocell 160-E 950
+    818: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder slimline 150L
+    819: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder slimline 170L
+    820: "cyl-viessmann-hp-cyl.webp",  # Viessmann Vitocal heat pump cylinder slimline 200L
+}
 _PRODUCT_IMAGE_CACHE = {}
 
 def _copy_product_image(fname):
@@ -5481,10 +5672,29 @@ def render_product_news(p):
     items = "".join(f'<li><a href="{BASE_URL}/news/{a["slug"]}/">{esc(a["title"])}</a> <span class="sub">{esc(str(a.get("date") or ""))}</span></li>' for a in arts)
     return f'<h2 class="sec">In the news</h2><ul>{items}</ul>'
 
+def get_cylinder_images(c):
+    e = CYL_IMAGE_BY_ID.get(c.get("id"))
+    if not e:
+        return []
+    return [u for u in (_copy_product_image(f) for f in (e if isinstance(e, list) else [e])) if u]
+
 def render_cylinder(c, pid):
     url = _cyl_url(c)
     mfr, model = c.get("manufacturer", ""), c.get("model", "")
     name = f"{mfr} {model}"
+    photos = get_cylinder_images(c)
+    photo_html = ""
+    if photos:
+        thumbs = ""
+        if len(photos) > 1:
+            thumbs = '<div class="product-photo-thumbs">' + "".join(
+                f'<img class="product-photo-thumb{" active" if i == 0 else ""}" src="{u}" alt="{esc(name)} photo {i+1}" '
+                f'loading="lazy" width="52" height="52" onclick="event.stopPropagation();'
+                f'document.querySelector(\'.product-photo\').src=this.src;document.querySelectorAll(\'.product-photo-thumb\')'
+                f'.forEach(t=>t.classList.remove(\'active\'));this.classList.add(\'active\')">' for i, u in enumerate(photos)) + '</div>'
+        photo_html = (f'<div class="product-photo-block"><img class="product-photo" src="{photos[0]}" alt="{esc(name)}" '
+                      f'width="320" height="320" loading="eager" onclick="openPhotoLightbox(this.src,this.alt)">{thumbs}'
+                      f'<div class="photo-credit">Image courtesy of {esc(mfr)} &middot; click photo to enlarge</div></div>')
     rows = ""
     for k, label, unit in CYL_LABELS:
         v = _cv(c, k, unit)
@@ -5534,7 +5744,7 @@ def render_cylinder(c, pid):
     desc = (f"{name}{' (' + _code + ')' if _code and _code.lower() not in name.lower() else ''}: "
             + ", ".join(_bits) + (f", {c['price']}" if c.get("price") else "")
             + (f". Full specs and {_nhp} compatible heat pump{'s' if _nhp != 1 else ''}." if _nhp else ". Full specifications."))
-    body = (crumbs(crumb_items) + f"<h1>{esc(name)}</h1>"
+    body = (crumbs(crumb_items) + photo_html + f"<h1>{esc(name)}</h1>"
             f'<p class="sub">{esc(c.get("cylinder_type") or "")}{(" &middot; " + vol) if vol else ""}</p>'
             f'<table class="spec">{rows}</table>{hp_html}'
             '<div class="disclaimer">Data is compiled from manufacturer and retailer sources and may contain errors or '
@@ -5546,6 +5756,8 @@ def render_cylinder(c, pid):
     _nums = [float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*(?:\.\d+)?", str(c.get("price") or ""))]
     ld = {"@context": "https://schema.org", "@type": "Product" if (_nums or ALWAYS_PRODUCT_SCHEMA) else "ProductModel", "name": name,
           "brand": {"@type": "Brand", "name": mfr}, "category": "Hot water cylinder", "url": url}
+    if photos:
+        ld["image"] = photos
     if c.get("product_code"):
         ld["mpn"] = str(c["product_code"])
     if _nums:
@@ -5569,7 +5781,7 @@ def render_cylinder(c, pid):
             desc = desc.replace(" Free, independent heat pump database.", " Compare volumes and heat loss in the free, independent heat pump database.")
         desc = desc if len(desc) <= 160 else desc[:157].rsplit(" ", 1)[0] + "\u2026"
     return page(f"{title} | {SITE_NAME}", desc, url, body,
-                [breadcrumb_jsonld(crumb_items, url), ld], og_type="product", og_image=get_og_image(mfr))
+                [breadcrumb_jsonld(crumb_items, url), ld], og_type="product", og_image=(photos[0] if photos else get_og_image(mfr)))
 
 def cylinders_browse_data(cyls, products):
     """Compact records for /cylinders-data.json (drives the Browse-style cylinder page)."""
