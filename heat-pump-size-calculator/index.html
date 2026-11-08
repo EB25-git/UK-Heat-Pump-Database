@@ -64,6 +64,10 @@ td.rank{width:44px;text-align:center}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#083F35;background:#F6FAF8;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:#0B6656;text-decoration:none}a:hover{text-decoration:underline}
+/* Bulleted/numbered content lists: one consistent indent so bullets sit just inside the text margin (never in it) */
+.wrap ul:not([class]),.wrap ol:not([class]),.article-body ul,.article-body ol,ul.cyl-hps,ul.st-list,.cyl-az ul,.nc-more ul,.hub-howto ul{padding-left:20px;margin-left:0}
+.article-body ul,.article-body ol{margin:0 0 16px;color:#5A6A65;font-size:14.5px;line-height:1.7}.article-body li{margin:0 0 4px}
+.nc-more ul{margin:0 0 12px}ul.cyl-hps{margin:0 0 16px}
 header.site{background:#083F35;height:60px;display:flex;align-items:center}
 header.site .wrap{display:flex;align-items:center;width:100%}
 header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}

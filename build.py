@@ -671,6 +671,10 @@ td.rank{width:44px;text-align:center}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#083F35;background:#F6FAF8;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:#0B6656;text-decoration:none}a:hover{text-decoration:underline}
+/* Bulleted/numbered content lists: one consistent indent so bullets sit just inside the text margin (never in it) */
+.wrap ul:not([class]),.wrap ol:not([class]),.article-body ul,.article-body ol,ul.cyl-hps,ul.st-list,.cyl-az ul,.nc-more ul,.hub-howto ul{padding-left:20px;margin-left:0}
+.article-body ul,.article-body ol{margin:0 0 16px;color:#5A6A65;font-size:14.5px;line-height:1.7}.article-body li{margin:0 0 4px}
+.nc-more ul{margin:0 0 12px}ul.cyl-hps{margin:0 0 16px}
 header.site{background:#083F35;height:60px;display:flex;align-items:center}
 header.site .wrap{display:flex;align-items:center;width:100%}
 header.site .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Inter',system-ui,sans-serif;font-size:19px;letter-spacing:-.03em;margin-right:auto}
@@ -3730,7 +3734,7 @@ def _faq_block(qas, heading="Frequently asked questions"):
 
 HUB_CSS = ("<style>.hub-faq-item{margin:0 0 18px}.hub-faq-item h3{font-size:16px;margin:0 0 6px}"
            ".hub-faq-item p{margin:0;line-height:1.65;max-width:760px}"
-           ".hub-howto ul{margin:8px 0 0 18px;line-height:1.7;max-width:760px}"
+           ".hub-howto ul{margin:8px 0 0;padding-left:20px;line-height:1.7;max-width:760px}"
            ".mfr-cat{margin:26px 0}.mfr-cat p{max-width:760px;line-height:1.65}"
            ".mfr-cat .best-toc a .n{opacity:.65;font-weight:400;margin-left:4px}"
            ".hub-more{margin:6px 0 4px}.hub-more>summary{cursor:pointer;display:inline-flex;align-items:center;gap:6px;"
@@ -5845,7 +5849,7 @@ html body main{{padding:0}}
 .cyl-app .sort-arr{{margin-left:3px;opacity:.4;font-size:9px}} .cyl-app .sort-arr.on{{opacity:1;color:var(--accent)}}
 .cyl-app .hp-card:hover{{text-decoration:none}}
 .cyl-az{{max-width:1280px;margin:0 auto 40px;padding:0 2.5rem}} .cyl-az summary{{cursor:pointer;font-weight:600;color:var(--text2)}}
-.cyl-az ul{{columns:3 260px;font-size:13px;margin-top:12px;padding-left:18px}} .cyl-az li{{margin:0 0 4px;break-inside:avoid}}
+.cyl-az ul{{columns:3 260px;font-size:13px;margin-top:12px;padding-left:20px}} .cyl-az li{{margin:0 0 4px;break-inside:avoid}}
 @media(max-width:768px){{.cyl-az{{padding:0 1.25rem}}}}
 </style>
 <div class="cyl-app">
