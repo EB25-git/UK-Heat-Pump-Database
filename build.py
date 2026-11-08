@@ -4676,7 +4676,8 @@ def render_news_article(article, all_articles):
     date_str = _news_date_str(article.get("date"))
     author = article.get("author")
     author_bit = f'<span> &middot; by {esc(author)}</span>' if author else ""
-    header = f'<div class="article-meta">{_news_cat_badge(article)}<span>{esc(date_str)}</span>{author_bit}</div>'
+    _upd = (f'<span>Updated {esc(_news_date_str(article["updated"]))}</span>' if article.get("updated") and article.get("updated") != article.get("date") else "")
+    header = f'<div class="article-meta">{_news_cat_badge(article)}<span>{esc(date_str)}</span>{_upd}{author_bit}</div>'
     img_url = get_news_image(article)
     hero = ""
     if img_url:
@@ -4709,7 +4710,7 @@ def render_news_article(article, all_articles):
             + _news_product_block(article)
             + related)
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": article["title"],
-          "description": desc, "url": url, "datePublished": article.get("date"),
+          "description": desc, "url": url, "datePublished": article.get("date"), "dateModified": article.get("updated") or article.get("date"),
           "publisher": {"@type": "Organization", "name": SITE_NAME, "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/images/brand/logo-512.png"}},
           "mainEntityOfPage": url}
     if author:

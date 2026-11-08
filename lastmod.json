@@ -1,7 +1,7 @@
 {
   "https://www.heatpumpdatabase.com/": {
     "date": "2026-11-08",
-    "hash": "cce5b296891a2e6e"
+    "hash": "33b2fd5cd57230f5"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-11-08",
@@ -3352,16 +3352,16 @@
     "hash": "86f9e10a693ab38e"
   },
   "https://www.heatpumpdatabase.com/heat-pump-comparison/": {
-    "date": "2026-10-31",
-    "hash": "a6cb3ad634bed3a4"
+    "date": "2026-11-08",
+    "hash": "2b8b619890814668"
   },
   "https://www.heatpumpdatabase.com/heat-pump-finder/": {
-    "date": "2026-11-06",
-    "hash": "97301362c0136126"
+    "date": "2026-11-08",
+    "hash": "fe23f33ef8329b32"
   },
   "https://www.heatpumpdatabase.com/heat-pump-noise-calculator/": {
-    "date": "2026-11-06",
-    "hash": "6e0815856be37b5c"
+    "date": "2026-11-08",
+    "hash": "8082d646fb0a9b85"
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
     "date": "2026-11-06",
@@ -3400,8 +3400,8 @@
     "hash": "b815fb50a40f5172"
   },
   "https://www.heatpumpdatabase.com/manufacturers/": {
-    "date": "2026-11-06",
-    "hash": "de258a5dd7757661"
+    "date": "2026-11-08",
+    "hash": "b10dce951ed5e1fc"
   },
   "https://www.heatpumpdatabase.com/manufacturers/acond/": {
     "date": "2026-11-08",
@@ -3414,6 +3414,10 @@
   "https://www.heatpumpdatabase.com/manufacturers/advantix-maxa/": {
     "date": "2026-11-08",
     "hash": "b006011b2437bf40"
+  },
+  "https://www.heatpumpdatabase.com/manufacturers/aermec/": {
+    "date": "2026-11-08",
+    "hash": "bbd72f260cb9dc97"
   },
   "https://www.heatpumpdatabase.com/manufacturers/aira/": {
     "date": "2026-11-08",
@@ -3717,7 +3721,7 @@
   },
   "https://www.heatpumpdatabase.com/manufacturers/phnix/": {
     "date": "2026-11-08",
-    "hash": "97dc449156b29ec9"
+    "hash": "507c5f73544fa1c4"
   },
   "https://www.heatpumpdatabase.com/manufacturers/qvantum/": {
     "date": "2026-11-08",
@@ -3813,7 +3817,7 @@
   },
   "https://www.heatpumpdatabase.com/manufacturers/vaillant/": {
     "date": "2026-11-08",
-    "hash": "3f8419fb3c364326"
+    "hash": "f1bf89b802664760"
   },
   "https://www.heatpumpdatabase.com/manufacturers/viessmann/": {
     "date": "2026-11-08",
@@ -3836,52 +3840,56 @@
     "hash": "312506dd894b91c9"
   },
   "https://www.heatpumpdatabase.com/news/": {
-    "date": "2026-11-06",
-    "hash": "583df8580edc9681"
+    "date": "2026-11-08",
+    "hash": "58b7ca6ed3a594fe"
   },
   "https://www.heatpumpdatabase.com/news/baxi-launches-high-output-auriga-hp-plus-air-source-heat-pumps/": {
-    "date": "2026-11-06",
-    "hash": "8dac85e6c1816ab6"
+    "date": "2026-11-08",
+    "hash": "24c4496f6a25ddda"
   },
   "https://www.heatpumpdatabase.com/news/carrier-aquaforce-61xwhvze-high-temperature-heat-pump/": {
-    "date": "2026-11-06",
-    "hash": "f05689f02b60e9e0"
+    "date": "2026-11-08",
+    "hash": "2a0ac05a16e6e902"
   },
   "https://www.heatpumpdatabase.com/news/ferroli-omnia-life-m-r290-26t-35t/": {
-    "date": "2026-11-06",
-    "hash": "65ec3450aeb116b2"
+    "date": "2026-11-08",
+    "hash": "3a886d6e3d45ae08"
   },
   "https://www.heatpumpdatabase.com/news/mhi-hydrolution-ezy-r290-10kw-14kw-models/": {
-    "date": "2026-11-06",
-    "hash": "df744b91054fab63"
+    "date": "2026-11-08",
+    "hash": "55b8670a72c59335"
   },
   "https://www.heatpumpdatabase.com/news/nibe-launches-next-generation-s2060-heat-pump/": {
-    "date": "2026-11-06",
-    "hash": "6ec35f3fea84217b"
+    "date": "2026-11-08",
+    "hash": "89c05c76affa74d2"
+  },
+  "https://www.heatpumpdatabase.com/news/phnix-greentherm-one-all-in-one-r290-heat-pump/": {
+    "date": "2026-11-08",
+    "hash": "e0db45f08ce910eb"
   },
   "https://www.heatpumpdatabase.com/news/r290-vs-r32-heat-pumps-what-the-data-shows/": {
-    "date": "2026-11-06",
-    "hash": "348044bf318e5508"
+    "date": "2026-11-08",
+    "hash": "0bf041036c5641e5"
   },
   "https://www.heatpumpdatabase.com/news/stiebel-eltron-50-years-hpnext-2026-range/": {
-    "date": "2026-11-06",
-    "hash": "6b6681d351dce16a"
+    "date": "2026-11-08",
+    "hash": "c0f5006b1cc1cc44"
   },
   "https://www.heatpumpdatabase.com/news/vaillant-remastered-arotherm-plus-quiet-mark-7kw/": {
-    "date": "2026-11-06",
-    "hash": "5bc913808faa8dbe"
+    "date": "2026-11-08",
+    "hash": "0aae75aeb93d7435"
   },
   "https://www.heatpumpdatabase.com/news/viessmann-launches-vitocal-200-a-ie-heat-pump/": {
-    "date": "2026-11-06",
-    "hash": "bbffbac140430dd8"
+    "date": "2026-11-08",
+    "hash": "69f0b8c02c47f31e"
   },
   "https://www.heatpumpdatabase.com/news/who-owns-your-heat-pump-brand-parent-companies/": {
-    "date": "2026-11-06",
-    "hash": "b5ae1e077761cd74"
+    "date": "2026-11-08",
+    "hash": "c4367b1ca58c28a2"
   },
   "https://www.heatpumpdatabase.com/news/why-small-heat-pumps-beat-large-ones-on-scop/": {
-    "date": "2026-11-06",
-    "hash": "42c676b6fe0169ff"
+    "date": "2026-11-08",
+    "hash": "f00795636aa78679"
   },
   "https://www.heatpumpdatabase.com/products/acond-aconomis-2294/": {
     "date": "2026-11-08",
@@ -4106,6 +4114,14 @@
   "https://www.heatpumpdatabase.com/products/advantix-maxa-i-32v5/": {
     "date": "2026-10-20",
     "hash": "d12866befe34c4f3"
+  },
+  "https://www.heatpumpdatabase.com/products/aermec-prm-6626/": {
+    "date": "2026-11-08",
+    "hash": "3883d965d6b63a9f"
+  },
+  "https://www.heatpumpdatabase.com/products/aermec-prm/": {
+    "date": "2026-11-08",
+    "hash": "29f66b89912e2f0f"
   },
   "https://www.heatpumpdatabase.com/products/aira-12kw-400v/": {
     "date": "2026-11-06",
@@ -16063,6 +16079,10 @@
     "date": "2026-10-11",
     "hash": "6d33cb4dbc6f0664"
   },
+  "https://www.heatpumpdatabase.com/products/phnix-greentherm-one/": {
+    "date": "2026-11-08",
+    "hash": "501652fea2957cfc"
+  },
   "https://www.heatpumpdatabase.com/products/phnix-heatgreen-4222/": {
     "date": "2026-10-11",
     "hash": "4a352a0c6bcf8052"
@@ -22735,6 +22755,14 @@
     "date": "2026-11-06",
     "hash": "2cd9cb9eb9b59f23"
   },
+  "https://www.heatpumpdatabase.com/products/vaillant-arotherm-perform-6624/": {
+    "date": "2026-11-08",
+    "hash": "ca14e53fde1fc00e"
+  },
+  "https://www.heatpumpdatabase.com/products/vaillant-arotherm-perform/": {
+    "date": "2026-11-08",
+    "hash": "26c384586af42c99"
+  },
   "https://www.heatpumpdatabase.com/products/vaillant-arotherm-plus-1354/": {
     "date": "2026-11-06",
     "hash": "3bd487de4d20181b"
@@ -23721,11 +23749,11 @@
   },
   "https://www.heatpumpdatabase.com/types/air-source-heat-pumps/": {
     "date": "2026-11-08",
-    "hash": "70a67afd519df38b"
+    "hash": "5c9866f7c88e352f"
   },
   "https://www.heatpumpdatabase.com/types/commercial-heat-pumps/": {
     "date": "2026-11-08",
-    "hash": "5aa394f44e6a4a34"
+    "hash": "5e581d341c885a1b"
   },
   "https://www.heatpumpdatabase.com/types/domestic-heat-pumps/": {
     "date": "2026-11-08",
@@ -23753,7 +23781,7 @@
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
     "date": "2026-11-08",
-    "hash": "31fb90ea70e28401"
+    "hash": "9d8a253b1d8c64b9"
   },
   "https://www.heatpumpdatabase.com/types/r32-heat-pumps/": {
     "date": "2026-11-08",
@@ -23801,7 +23829,7 @@
   },
   "https://www.heatpumpdatabase.com/types/residential-heat-pumps/": {
     "date": "2026-11-08",
-    "hash": "1c42b3dd08da1aaf"
+    "hash": "30e20ab2a6af4a5b"
   },
   "https://www.heatpumpdatabase.com/types/water-source-heat-pumps/": {
     "date": "2026-11-08",
