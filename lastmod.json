@@ -1,7 +1,7 @@
 {
   "https://www.heatpumpdatabase.com/": {
-    "date": "2026-11-08",
-    "hash": "067ed886fb87ccd1"
+    "date": "2026-11-10",
+    "hash": "5ba764559ead7d94"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-11-08",
@@ -3352,12 +3352,12 @@
     "hash": "86f9e10a693ab38e"
   },
   "https://www.heatpumpdatabase.com/heat-pump-comparison/": {
-    "date": "2026-11-08",
-    "hash": "2b8b619890814668"
+    "date": "2026-11-10",
+    "hash": "65af2130b1a53e0e"
   },
   "https://www.heatpumpdatabase.com/heat-pump-finder/": {
-    "date": "2026-11-08",
-    "hash": "b945c92412b2f3cd"
+    "date": "2026-11-10",
+    "hash": "77d107eac74fab46"
   },
   "https://www.heatpumpdatabase.com/heat-pump-noise-calculator/": {
     "date": "2026-11-08",
@@ -3400,8 +3400,8 @@
     "hash": "26be4d7bceba4285"
   },
   "https://www.heatpumpdatabase.com/manufacturers/": {
-    "date": "2026-11-08",
-    "hash": "b10dce951ed5e1fc"
+    "date": "2026-11-10",
+    "hash": "dbe1f7b121f15396"
   },
   "https://www.heatpumpdatabase.com/manufacturers/acond/": {
     "date": "2026-11-08",
@@ -3534,6 +3534,10 @@
   "https://www.heatpumpdatabase.com/manufacturers/elco/": {
     "date": "2026-11-08",
     "hash": "58ef4fef393dc920"
+  },
+  "https://www.heatpumpdatabase.com/manufacturers/energy-machines/": {
+    "date": "2026-11-10",
+    "hash": "72f0e8273ecee7ca"
   },
   "https://www.heatpumpdatabase.com/manufacturers/es-heat-pumps/": {
     "date": "2026-11-08",
@@ -10006,6 +10010,318 @@
   "https://www.heatpumpdatabase.com/products/elco-aerotop-m/": {
     "date": "2026-11-08",
     "hash": "560736a5406d7c36"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-ema-6628/": {
+    "date": "2026-11-10",
+    "hash": "5c39c569f01a48c5"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-ema-6629/": {
+    "date": "2026-11-10",
+    "hash": "53f0c3a82ef49882"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-ema-6630/": {
+    "date": "2026-11-10",
+    "hash": "59e5cc6e3660aa1e"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-ema-6631/": {
+    "date": "2026-11-10",
+    "hash": "827675c0e00fdb3c"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-ema-6632/": {
+    "date": "2026-11-10",
+    "hash": "ed294d96fa48da65"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-ema/": {
+    "date": "2026-11-10",
+    "hash": "ef032b0d4c878514"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6634/": {
+    "date": "2026-11-10",
+    "hash": "dc41103c761f50e3"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6635/": {
+    "date": "2026-11-10",
+    "hash": "d49833c6e33266a7"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6636/": {
+    "date": "2026-11-10",
+    "hash": "95133e54ccc56a27"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6637/": {
+    "date": "2026-11-10",
+    "hash": "48643a51ca02a519"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6638/": {
+    "date": "2026-11-10",
+    "hash": "fb2be1a2f6da334a"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6639/": {
+    "date": "2026-11-10",
+    "hash": "54388bb2ae9f463b"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6640/": {
+    "date": "2026-11-10",
+    "hash": "b9d397fa43983fbc"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6641/": {
+    "date": "2026-11-10",
+    "hash": "a8ee7830649bffd3"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6642/": {
+    "date": "2026-11-10",
+    "hash": "821ec2bcce3a0939"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6643/": {
+    "date": "2026-11-10",
+    "hash": "ca014b87e43f9797"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb-6644/": {
+    "date": "2026-11-10",
+    "hash": "f5f209bc7b490414"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emb/": {
+    "date": "2026-11-10",
+    "hash": "20084cd801c1b4dc"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emf-6646/": {
+    "date": "2026-11-10",
+    "hash": "c798154cc6bc1f03"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emf/": {
+    "date": "2026-11-10",
+    "hash": "528c73867207291a"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6648/": {
+    "date": "2026-11-10",
+    "hash": "0b521a679a00ad5a"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6649/": {
+    "date": "2026-11-10",
+    "hash": "f1829d41a841d9f9"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6650/": {
+    "date": "2026-11-10",
+    "hash": "d1fbd6dffc965fc7"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6651/": {
+    "date": "2026-11-10",
+    "hash": "d785ba54c3deabc7"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6652/": {
+    "date": "2026-11-10",
+    "hash": "67477caa5a9e7301"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6653/": {
+    "date": "2026-11-10",
+    "hash": "fa4de8753324ddfc"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6654/": {
+    "date": "2026-11-10",
+    "hash": "4856a8b788db3807"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6655/": {
+    "date": "2026-11-10",
+    "hash": "58c130201cabb9a3"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6656/": {
+    "date": "2026-11-10",
+    "hash": "2bb95cf83f84ff81"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6657/": {
+    "date": "2026-11-10",
+    "hash": "2d1abdcf95cc187b"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6658/": {
+    "date": "2026-11-10",
+    "hash": "ea629f37ba868b43"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6659/": {
+    "date": "2026-11-10",
+    "hash": "7b88d5589618e74d"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6660/": {
+    "date": "2026-11-10",
+    "hash": "0ae644495268e116"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6661/": {
+    "date": "2026-11-10",
+    "hash": "7eb3bcb4a5e9be28"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp-6662/": {
+    "date": "2026-11-10",
+    "hash": "e91cc089c247e3c4"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emhp/": {
+    "date": "2026-11-10",
+    "hash": "e23e65f75fedaf12"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6664/": {
+    "date": "2026-11-10",
+    "hash": "c3f8f0f9f6e67271"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6665/": {
+    "date": "2026-11-10",
+    "hash": "c6f23a4a8061efb7"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6666/": {
+    "date": "2026-11-10",
+    "hash": "970e1debf35f87f5"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6667/": {
+    "date": "2026-11-10",
+    "hash": "271ba5e5d4eb8b0f"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6668/": {
+    "date": "2026-11-10",
+    "hash": "45c7efd1cf058ed3"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6669/": {
+    "date": "2026-11-10",
+    "hash": "3c168a3f508bbbf0"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6670/": {
+    "date": "2026-11-10",
+    "hash": "d50643192e952417"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6671/": {
+    "date": "2026-11-10",
+    "hash": "a5e4d1e071d34df8"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6672/": {
+    "date": "2026-11-10",
+    "hash": "9135f00b90d6eebb"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6673/": {
+    "date": "2026-11-10",
+    "hash": "5abe63b7c6207041"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6674/": {
+    "date": "2026-11-10",
+    "hash": "791aab99687e9af7"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6675/": {
+    "date": "2026-11-10",
+    "hash": "2ecc62881c95a97f"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6676/": {
+    "date": "2026-11-10",
+    "hash": "a7b31a3d69146a12"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6677/": {
+    "date": "2026-11-10",
+    "hash": "e44cc4b5a303616a"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6678/": {
+    "date": "2026-11-10",
+    "hash": "83e05985c27d708a"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6679/": {
+    "date": "2026-11-10",
+    "hash": "177148dacf8e0f3a"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6680/": {
+    "date": "2026-11-10",
+    "hash": "3c598e9e3b1fe6b6"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6681/": {
+    "date": "2026-11-10",
+    "hash": "2fa5dc218ae6ae9f"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6682/": {
+    "date": "2026-11-10",
+    "hash": "45f0c3c8b1e6ec43"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6683/": {
+    "date": "2026-11-10",
+    "hash": "5c0ef6ff11897ec1"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6684/": {
+    "date": "2026-11-10",
+    "hash": "1559319648310aec"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6685/": {
+    "date": "2026-11-10",
+    "hash": "879a0cfc20997065"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6686/": {
+    "date": "2026-11-10",
+    "hash": "3ec656e5cad82048"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6687/": {
+    "date": "2026-11-10",
+    "hash": "aff96c6affa2a325"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6688/": {
+    "date": "2026-11-10",
+    "hash": "fe04cc0473270243"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6689/": {
+    "date": "2026-11-10",
+    "hash": "3c0ee94ddeded36d"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6690/": {
+    "date": "2026-11-10",
+    "hash": "c50ba58f080fb38b"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6691/": {
+    "date": "2026-11-10",
+    "hash": "0aa7e43f6da8e525"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6692/": {
+    "date": "2026-11-10",
+    "hash": "75a98370d0c498eb"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6693/": {
+    "date": "2026-11-10",
+    "hash": "53092aeb75b5d55f"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6694/": {
+    "date": "2026-11-10",
+    "hash": "2f9845e0dbd13cb6"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6695/": {
+    "date": "2026-11-10",
+    "hash": "da6e016eabce0c41"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6696/": {
+    "date": "2026-11-10",
+    "hash": "93e385de8f95d992"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6697/": {
+    "date": "2026-11-10",
+    "hash": "3ff198beb06c51e3"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6698/": {
+    "date": "2026-11-10",
+    "hash": "a70204d0d024dd2d"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6699/": {
+    "date": "2026-11-10",
+    "hash": "a77895a252a16916"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6700/": {
+    "date": "2026-11-10",
+    "hash": "4ce9690afa474a9a"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6701/": {
+    "date": "2026-11-10",
+    "hash": "98a188c1bca3a2a4"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6702/": {
+    "date": "2026-11-10",
+    "hash": "7e01f1ed057f242e"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6703/": {
+    "date": "2026-11-10",
+    "hash": "5ff17e0f1e8d5424"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt-6704/": {
+    "date": "2026-11-10",
+    "hash": "0afe21bfe6f697fc"
+  },
+  "https://www.heatpumpdatabase.com/products/energy-machines-emt/": {
+    "date": "2026-11-10",
+    "hash": "8274224c6f360eb3"
   },
   "https://www.heatpumpdatabase.com/products/es-heat-pumps-aw-evi-m-4243/": {
     "date": "2026-10-23",
@@ -23752,16 +24068,16 @@
     "hash": "5c9866f7c88e352f"
   },
   "https://www.heatpumpdatabase.com/types/commercial-heat-pumps/": {
-    "date": "2026-11-08",
-    "hash": "5e581d341c885a1b"
+    "date": "2026-11-10",
+    "hash": "d7b0d29d5ed73f01"
   },
   "https://www.heatpumpdatabase.com/types/domestic-heat-pumps/": {
     "date": "2026-11-08",
     "hash": "b9c3b90ddf74a643"
   },
   "https://www.heatpumpdatabase.com/types/ground-source-heat-pumps/": {
-    "date": "2026-11-08",
-    "hash": "e7646d367e129a18"
+    "date": "2026-11-10",
+    "hash": "1afd388633894abc"
   },
   "https://www.heatpumpdatabase.com/types/hydrocarbon-heat-pumps/": {
     "date": "2026-11-08",
@@ -23772,16 +24088,16 @@
     "hash": "72d834d4a6c95b99"
   },
   "https://www.heatpumpdatabase.com/types/r1234ze-heat-pumps/": {
-    "date": "2026-08-27",
-    "hash": "4c78ed7b4e340900"
+    "date": "2026-11-10",
+    "hash": "e212f44ae5dc3448"
   },
   "https://www.heatpumpdatabase.com/types/r134a-heat-pumps/": {
     "date": "2026-11-08",
     "hash": "a8aeae00438009e8"
   },
   "https://www.heatpumpdatabase.com/types/r290-heat-pumps/": {
-    "date": "2026-11-08",
-    "hash": "9d8a253b1d8c64b9"
+    "date": "2026-11-10",
+    "hash": "19c764217923ee4d"
   },
   "https://www.heatpumpdatabase.com/types/r32-heat-pumps/": {
     "date": "2026-11-08",
@@ -23812,8 +24128,8 @@
     "hash": "4f3e417fde64c8e8"
   },
   "https://www.heatpumpdatabase.com/types/r515b-heat-pumps/": {
-    "date": "2026-10-03",
-    "hash": "81dcbfff6e3fcb8a"
+    "date": "2026-11-10",
+    "hash": "4d685874a089c2ce"
   },
   "https://www.heatpumpdatabase.com/types/r600a-heat-pumps/": {
     "date": "2026-08-27",
@@ -23832,7 +24148,7 @@
     "hash": "30e20ab2a6af4a5b"
   },
   "https://www.heatpumpdatabase.com/types/water-source-heat-pumps/": {
-    "date": "2026-11-08",
-    "hash": "286b2f7a73ccf2eb"
+    "date": "2026-11-10",
+    "hash": "314be86538144e3a"
   }
 }
