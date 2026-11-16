@@ -576,7 +576,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     </div>
     <a class="burger-item" href="/best/" onclick="closeBurger()">Best Heat Pumps</a>
     <a class="burger-item" href="/heat-pump-finder/" onclick="closeBurger()">Heat Pump Finder</a>
-    <a class="burger-item" data-page="gallery" href="/#gallery" onclick="if(event.metaKey||event.ctrlKey||event.shiftKey||event.button===1)return true;showPage('gallery');closeBurger();return false">Gallery</a>
+    <a class="burger-item" href="/heat-pump-gallery/" onclick="closeBurger()">Gallery</a>
     <button class="burger-item burger-toggle" id="s-toggle" aria-expanded="false" aria-controls="s-group" onclick="toggleCalc()">Calculators<span class="burger-chevron" aria-hidden="true"></span></button>
     <div class="burger-subgroup" id="s-group">
     <a class="burger-item burger-subitem" href="/heat-pump-size-calculator/" onclick="closeBurger()">Heat Pump Size Calculator</a>
@@ -1146,7 +1146,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
    the first frame has painted, and the app boots once they have run. Clicks on
    app controls made before boot are queued and replayed. */
 (function(){
-  var core=['faq-data.js?v=5','data.js?v=144','bus-pel.js?v=1','logos.js?v=135','product-images.js?v=10','best-winners.js?v=1','slugs.js?v=4'];
+  var core=['faq-data.js?v=5','data.js?v=144','bus-pel.js?v=1','logos.js?v=136','product-images.js?v=10','best-winners.js?v=1','slugs.js?v=4'];
   var queued=null;
   // theme.js reads this at load; it proxies to the real state once the app has booted
   window.__hpState={get db(){var r=window.__hpStateReal;return r?r.db:[];},get filtered(){var r=window.__hpStateReal;return r?r.filtered:[];},get compareIds(){var r=window.__hpStateReal;return r?r.compareIds:[];}};
@@ -3408,6 +3408,7 @@ renderFooter();
     var h=(location.hash||'').replace(/^#/,'');
     var eq=h.indexOf('='), page=eq>-1?h.slice(0,eq):h, payload=eq>-1?h.slice(eq+1):'';
     if(valid.indexOf(page)===-1)return;
+    if(page==='gallery'){location.replace('/heat-pump-gallery/'+(location.search||''));return;}
     if(page==='product'){
       // A shared #product= link, or Back/Forward across an open modal.
       var pid=parseInt(decodeURIComponent(payload),10);

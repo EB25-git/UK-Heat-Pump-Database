@@ -35,7 +35,7 @@ DATA      = os.path.join(ROOT, "products.json")
 NEWS_DATA = os.path.join(ROOT, "news.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["cylinders", "products", "manufacturers", "types", "knowledge", "best", "heat-pump-comparison", "heat-pump-size-calculator", "heat-pump-noise-calculator", "news"]
+GENERATED_DIRS = ["heat-pump-gallery", "cylinders", "products", "manufacturers", "types", "knowledge", "best", "heat-pump-comparison", "heat-pump-size-calculator", "heat-pump-noise-calculator", "news"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -872,7 +872,7 @@ def burger_menu(active=None):
         + compare_block
         + it("Best Heat Pumps", f"{BASE_URL}/best/", "best")
         + it("Heat Pump Finder", f"{BASE_URL}/heat-pump-finder/", "finder")
-        + it("Gallery", f"{BASE_URL}/#gallery", "gallery")
+        + it("Gallery", f"{BASE_URL}/heat-pump-gallery/", "gallery")
         + calc_block
         + knowledge_block
         + it("News &amp; Insight", f"{BASE_URL}/news/", "news")
@@ -5923,6 +5923,87 @@ html body main{{padding:0}}
                 f"Compare {len(cyls)} heat pump hot water cylinders, buffer tanks and indoor units: volume, heat loss, dimensions, price and compatible heat pumps.",
                 url, body, [breadcrumb_jsonld(crumb_items, url)], og_image=get_og_image(), active="cylinders")
 
+
+# ─── /heat-pump-gallery/ - photo-led browse page with its own URL (Nov 2026) ───
+# Replaces the hash-only /#gallery view for linking and search. Data loads from
+# /gallery-data.json; the first tiles are rendered server-side so the page is
+# crawlable without JavaScript. Tiles link to each product's own page.
+GAL_CAP_BANDS = [("", "Any capacity"), ("0-6", "Up to 6 kW"), ("6-10", "6 - 10 kW"), ("10-16", "10 - 16 kW"),
+                 ("16-25", "16 - 25 kW"), ("25-50", "25 - 50 kW"), ("50-100000", "Over 50 kW")]
+
+def _gal_refs(r):
+    return sorted({x.upper().replace(" ", "").replace("-", "") if x.upper().startswith("R") else x
+                   for x in re.findall(r"R\s?-?\d+[A-Za-z]*|CO2", str(r or ""))})
+
+def _gal_rel(u):
+    return u.replace(BASE_URL, "") if u else u
+
+def gallery_data(products):
+    out = []
+    for p in products:
+        t = str(p.get("hp_type") or "")
+        t = "ASHP" if t.startswith("ASHP") else ("GSHP" if t.startswith("GSHP") else ("WSHP" if t.startswith("WSHP") else t))
+        mode = str(p.get("mode") or "").lower()
+        r = {"s": p["_slug"], "m": p.get("manufacturer"), "n": p.get("model"), "c": p.get("product_code"), "t": t,
+             "a": "Commercial" if p.get("type") == "Commercial" else "Residential",
+             "r": _gal_refs(p.get("refrigerant")), "md": "both" if "cool" in mode else "heating",
+             "k": p.get("cap_max") if isinstance(p.get("cap_max"), (int, float)) else None,
+             "cop": p.get("cop") if isinstance(p.get("cop"), (int, float)) else None,
+             "nz": p.get("noise") if isinstance(p.get("noise"), (int, float)) else None,
+             "d": p.get("date_added"), "im": [_gal_rel(u) for u in get_product_images(p)]}
+        out.append({k: v for k, v in r.items() if v not in (None, "", [])})
+    return out
+
+def render_gallery_page(products, data):
+    url = f"{BASE_URL}/heat-pump-gallery/"
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Heat pump gallery", None)]
+    n_photo = sum(1 for d in data if d.get("im"))
+    n_mfr_photo = len({d["m"] for d in data if d.get("im")})
+    shown = sorted([d for d in data if d.get("im")], key=lambda d: (str(d.get("m")).lower(), str(d.get("n")).lower(), d.get("k") or 0))
+    seen, first = set(), []
+    for d in shown:  # one static tile per manufacturer + model + photo
+        key = (d["m"], d["n"], d["im"][0])
+        if key in seen:
+            continue
+        seen.add(key); first.append(d)
+    def tile(d):
+        alt = esc(f'{d["m"]} {d["n"]}' + (f' {d["c"]}' if d.get("c") else ""))
+        spec = " &middot; ".join(x for x in [f'{num(d["k"])} kW' if d.get("k") is not None else "", esc(" / ".join(d.get("r") or []))] if x)
+        return (f'<a class="gal-tile" href="/products/{d["s"]}/"><span class="gal-ph"><img class="gal-img" src="{d["im"][0]}" alt="{alt}" loading="lazy" width="300" height="300"></span>'
+                f'<span class="gal-meta"><span class="gal-mfr">{esc(d["m"])}</span><span class="gal-model">{esc(d["n"])}</span><span class="gal-spec">{spec}</span></span></a>')
+    def sel(i, label, opts):
+        return (f'<div class="gal-fg"><label for="{i}">{label}</label><select id="{i}">' +
+                "".join(f'<option value="{esc(v)}">{esc(t)}</option>' for v, t in opts) + '</select></div>')
+    mfrs = sorted({d["m"] for d in data if d.get("m")}, key=str.lower)
+    refs = sorted({r for d in data for r in d.get("r", [])})
+    filters = (sel("gal-cap", "Heating capacity", GAL_CAP_BANDS)
+               + sel("gal-app", "Application", [("", "All applications"), ("Residential", "Residential"), ("Commercial", "Commercial")])
+               + sel("gal-type", "Heat pump type", [("", "All types"), ("ASHP", "Air source"), ("GSHP", "Ground source"), ("WSHP", "Water source")])
+               + sel("gal-ref", "Refrigerant", [("", "All refrigerants")] + [(r, r) for r in refs])
+               + sel("gal-mfr", "Manufacturer", [("", "All manufacturers")] + [(m, m) for m in mfrs])
+               + sel("gal-mode", "Mode", [("", "Heating and cooling capability"), ("heating", "Heating only"), ("both", "Heating & cooling")])
+               + sel("gal-sort", "Sort by", [("photo-first", "Photographed first"), ("mfr-az", "Manufacturer A-Z"), ("cap-desc", "Capacity: large to small"),
+                                             ("cap-asc", "Capacity: small to large"), ("cop-desc", "COP: high to low"), ("noise-asc", "Noise: quiet to loud"), ("date-desc", "Newest first")])
+               + sel("gal-photo", "Photos", [("yes", "Photographed only"), ("", "Show all products")]))
+    tiles = "".join(tile(d) for d in first[:120])
+    body = (crumbs(crumb_items)
+            + '<link rel="stylesheet" href="/gallery.css?v=1">'
+            + '<h1>Heat pump gallery</h1>'
+            + f'<p class="sub gal-intro">Browse heat pumps by what they look like. Many units read the same in a spec table but look very different on a wall or in a garden, so this view leads with the photo. {n_photo:,} products from {n_mfr_photo} manufacturers have a photo. Filter by the basics, then open any unit for its full specification.</p>'
+            + f'<div class="gal-filters" id="gal-filters">{filters}</div>'
+            + f'<p class="gal-count" id="gal-count">{len(first)} photographed models</p>'
+            + f'<div class="gal-grid" id="gal-grid">{tiles}</div>'
+            + '<p class="gal-more" id="gal-more"></p>'
+            + '<p class="trademark-note">Product photos are courtesy of each manufacturer and remain their property. Brand names are trademarks of their respective owners.</p>'
+            + '<script src="/gallery.js?v=1" defer></script>')
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Heat pump gallery", "url": url,
+          "description": f"Photo gallery of {n_photo:,} heat pumps from {n_mfr_photo} manufacturers.",
+          "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": f"{BASE_URL}/"}}
+    return page(f"Heat Pump Gallery: Photos of {n_photo:,} Models | {SITE_NAME}",
+                f"Browse photos of {n_photo:,} heat pumps from {n_mfr_photo} manufacturers. Filter by capacity, type, refrigerant and brand, then open any model for full specs.",
+                url, body, [breadcrumb_jsonld(crumb_items, url), ld], og_image=get_og_image(), active="gallery", wide=True)
+
+
 def main():
     with open(DATA, encoding="utf-8") as f:
         products = json.load(f)
@@ -6128,6 +6209,17 @@ def main():
         url = f"{BASE_URL}/cylinders/"
         urls.append(url)
         _lastmod_for(url, _lastmod_hash(sorted(c["_slug"] for c in cylinders)))
+
+    # /heat-pump-gallery/ (own URL for the photo gallery)
+    _gal = gallery_data(products)
+    _pre = "/" + PRODUCT_IMAGE_OUT_DIR + "/"
+    _gjs = {"pre": _pre, "lg": {m: _gal_rel(get_logo_url(m)) for m in sorted({d["m"] for d in _gal if d.get("m")})},
+            "p": [dict(d, im=[u[len(_pre):] if u.startswith(_pre) else u for u in d["im"]]) if d.get("im") else d for d in _gal]}
+    write(os.path.join(ROOT, "gallery-data.json"), json.dumps(_gjs, ensure_ascii=False, separators=(",", ":")))
+    write(os.path.join(ROOT, "heat-pump-gallery", "index.html"), render_gallery_page(products, _gal))
+    _gurl = f"{BASE_URL}/heat-pump-gallery/"
+    urls.append(_gurl)
+    _lastmod_for(_gurl, _lastmod_hash([(d["s"], d.get("im")) for d in _gal]))
 
     # manufacturer pages + index
     for m, ps in by_mfr.items():

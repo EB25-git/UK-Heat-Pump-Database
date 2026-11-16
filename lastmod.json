@@ -1,7 +1,7 @@
 {
   "https://www.heatpumpdatabase.com/": {
     "date": "2026-11-10",
-    "hash": "5ba764559ead7d94"
+    "hash": "3022bb61487c5f54"
   },
   "https://www.heatpumpdatabase.com/best/": {
     "date": "2026-11-08",
@@ -3356,48 +3356,52 @@
     "hash": "65af2130b1a53e0e"
   },
   "https://www.heatpumpdatabase.com/heat-pump-finder/": {
-    "date": "2026-11-10",
-    "hash": "77d107eac74fab46"
+    "date": "2026-11-16",
+    "hash": "ef4a56885d6d413f"
+  },
+  "https://www.heatpumpdatabase.com/heat-pump-gallery/": {
+    "date": "2026-11-16",
+    "hash": "ad505208d4676762"
   },
   "https://www.heatpumpdatabase.com/heat-pump-noise-calculator/": {
-    "date": "2026-11-08",
-    "hash": "a38d682743cfef53"
+    "date": "2026-11-16",
+    "hash": "f877a2646c468fc0"
   },
   "https://www.heatpumpdatabase.com/heat-pump-size-calculator/": {
-    "date": "2026-11-08",
-    "hash": "0833a6963833000a"
+    "date": "2026-11-16",
+    "hash": "34a065259f7d35ac"
   },
   "https://www.heatpumpdatabase.com/knowledge/cop-scop/": {
-    "date": "2026-11-08",
-    "hash": "38436bd1547edfe4"
+    "date": "2026-11-16",
+    "hash": "88f23a1fed8087f2"
   },
   "https://www.heatpumpdatabase.com/knowledge/flow-temperature/": {
-    "date": "2026-11-08",
-    "hash": "1b10f7b36372195b"
+    "date": "2026-11-16",
+    "hash": "cd009623f1bbd9e9"
   },
   "https://www.heatpumpdatabase.com/knowledge/funding/": {
-    "date": "2026-11-08",
-    "hash": "d97e1bec8ea0cac6"
+    "date": "2026-11-16",
+    "hash": "24ff2a52b654ef72"
   },
   "https://www.heatpumpdatabase.com/knowledge/installation-costs/": {
-    "date": "2026-11-08",
-    "hash": "e23bee5fde753c63"
+    "date": "2026-11-16",
+    "hash": "0260445c4b5591f8"
   },
   "https://www.heatpumpdatabase.com/knowledge/planning-permission/": {
-    "date": "2026-11-08",
-    "hash": "be36899fec53e971"
+    "date": "2026-11-16",
+    "hash": "b82e4f93f097fd2b"
   },
   "https://www.heatpumpdatabase.com/knowledge/refrigerants/": {
-    "date": "2026-11-08",
-    "hash": "eb559faf29b5b7b6"
+    "date": "2026-11-16",
+    "hash": "2a54e85b9fcf9640"
   },
   "https://www.heatpumpdatabase.com/knowledge/smart-tariffs/": {
-    "date": "2026-11-08",
-    "hash": "ccdea618308cc5b2"
+    "date": "2026-11-16",
+    "hash": "bb3de60b5e65a103"
   },
   "https://www.heatpumpdatabase.com/knowledge/what-is-a-heat-pump/": {
-    "date": "2026-11-08",
-    "hash": "26be4d7bceba4285"
+    "date": "2026-11-16",
+    "hash": "58d7b6de337d1395"
   },
   "https://www.heatpumpdatabase.com/manufacturers/": {
     "date": "2026-11-10",
@@ -3844,56 +3848,56 @@
     "hash": "312506dd894b91c9"
   },
   "https://www.heatpumpdatabase.com/news/": {
-    "date": "2026-11-08",
-    "hash": "75436ff05bb2521c"
+    "date": "2026-11-16",
+    "hash": "660e16f756ae2fe2"
   },
   "https://www.heatpumpdatabase.com/news/baxi-launches-high-output-auriga-hp-plus-air-source-heat-pumps/": {
-    "date": "2026-11-08",
-    "hash": "964723ec37845371"
+    "date": "2026-11-16",
+    "hash": "84d3b678bb91e67e"
   },
   "https://www.heatpumpdatabase.com/news/carrier-aquaforce-61xwhvze-high-temperature-heat-pump/": {
-    "date": "2026-11-08",
-    "hash": "809068dda6c0b8b7"
+    "date": "2026-11-16",
+    "hash": "238e71d71cf2a84c"
   },
   "https://www.heatpumpdatabase.com/news/ferroli-omnia-life-m-r290-26t-35t/": {
-    "date": "2026-11-08",
-    "hash": "7f37fb27ce4eb985"
+    "date": "2026-11-16",
+    "hash": "80978ee9ae6379d2"
   },
   "https://www.heatpumpdatabase.com/news/mhi-hydrolution-ezy-r290-10kw-14kw-models/": {
-    "date": "2026-11-08",
-    "hash": "4b6518b876e01656"
+    "date": "2026-11-16",
+    "hash": "7756801304acf91d"
   },
   "https://www.heatpumpdatabase.com/news/nibe-launches-next-generation-s2060-heat-pump/": {
-    "date": "2026-11-08",
-    "hash": "fde5cbb299de516a"
+    "date": "2026-11-16",
+    "hash": "220737c304380272"
   },
   "https://www.heatpumpdatabase.com/news/phnix-greentherm-one-all-in-one-r290-heat-pump/": {
-    "date": "2026-11-08",
-    "hash": "7d96b9f9021153e3"
+    "date": "2026-11-16",
+    "hash": "cc45b27575136686"
   },
   "https://www.heatpumpdatabase.com/news/r290-vs-r32-heat-pumps-what-the-data-shows/": {
-    "date": "2026-11-08",
-    "hash": "534c0154139de200"
+    "date": "2026-11-16",
+    "hash": "4b9680beac07003b"
   },
   "https://www.heatpumpdatabase.com/news/stiebel-eltron-50-years-hpnext-2026-range/": {
-    "date": "2026-11-08",
-    "hash": "0ac79e71558f42f3"
+    "date": "2026-11-16",
+    "hash": "30c29b41d5c1d548"
   },
   "https://www.heatpumpdatabase.com/news/vaillant-remastered-arotherm-plus-quiet-mark-7kw/": {
-    "date": "2026-11-08",
-    "hash": "9f04c83699dc89c3"
+    "date": "2026-11-16",
+    "hash": "9345f43b887e300a"
   },
   "https://www.heatpumpdatabase.com/news/viessmann-launches-vitocal-200-a-ie-heat-pump/": {
-    "date": "2026-11-08",
-    "hash": "8e0f366cd6dcfc1e"
+    "date": "2026-11-16",
+    "hash": "96871e8da41eff7d"
   },
   "https://www.heatpumpdatabase.com/news/who-owns-your-heat-pump-brand-parent-companies/": {
-    "date": "2026-11-08",
-    "hash": "2443db9f97e3c083"
+    "date": "2026-11-16",
+    "hash": "348c919604ed3888"
   },
   "https://www.heatpumpdatabase.com/news/why-small-heat-pumps-beat-large-ones-on-scop/": {
-    "date": "2026-11-08",
-    "hash": "b61b6f7517380319"
+    "date": "2026-11-16",
+    "hash": "3d9c37c5af2dff68"
   },
   "https://www.heatpumpdatabase.com/products/acond-aconomis-2294/": {
     "date": "2026-11-08",
