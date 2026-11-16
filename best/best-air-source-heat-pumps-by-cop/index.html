@@ -221,6 +221,10 @@ window.dataLayer=window.dataLayer||[];
 window.gtag=function(){dataLayer.push(arguments);};
 function loadGA(){
   if(document.getElementById('ga-script'))return;
+  /* Google Consent Mode v2 (basic): everything denied by default; analytics
+     granted only because the visitor accepted. Ad signals stay denied. */
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+  gtag('consent','update',{analytics_storage:'granted'});
   var s=document.createElement('script');s.id='ga-script';s.async=true;
   s.src='https://www.googletagmanager.com/gtag/js?id=G-3XMG9G84HQ';
   document.head.appendChild(s);
@@ -233,7 +237,7 @@ function declineCookies(){localStorage.setItem('cookie_consent','declined');var 
 function trackOut(){
   if(typeof window.gtag!=='function'||localStorage.getItem('cookie_consent')!=='accepted')return;
   var a=Array.prototype.slice.call(arguments);
-  window.gtag('event','outbound_click',{link_type:a[0]||'unknown',product_id:a[1],manufacturer:a[2],model:a[3],retailer_name:a[4]||null,source:'static_page'});
+  window.gtag('event','outbound_click',{link_type:a[0]||'unknown',product_id:a[1],manufacturer:a[2],model:a[3],retailer_name:a[4]||null,click_origin:'static_page'});
 }
 </script>
 </head>
