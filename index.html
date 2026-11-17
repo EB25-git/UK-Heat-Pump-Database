@@ -545,10 +545,6 @@ function loadGA(){
   document.head.appendChild(s);
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments);};
-  /* Google Consent Mode v2 (basic): everything denied by default; analytics
-     granted only because the visitor accepted. Ad signals stay denied. */
-  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
-  gtag('consent','update',{analytics_storage:'granted'});
   gtag('js',new Date());
   gtag('config','G-3XMG9G84HQ');
 }
@@ -612,7 +608,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
     <div class="hero-inner">
       <div>
         <h1><em>Heat Pump Database</em></h1>
-        <p id="hero-subtitle">Free, independent specifications, performance data and COP test conditions for residential and commercial heat pumps from <a href="https://www.heatpumpdatabase.com/manufacturers/" style="color:inherit;text-decoration:underline">110 heat pump manufacturers</a>.</p>
+        <p id="hero-subtitle">Free, independent specifications, performance data and COP test conditions for residential and commercial heat pumps from UK manufacturers.</p>
         <ul class="hero-free" aria-label="Free to use"><li>Free forever</li><li>No subscription</li><li class="hero-verified"><button type="button" id="hero-verified-btn" aria-expanded="false" aria-controls="hero-verified-pop">Verified by a real person</button></li></ul>
         <div id="hero-verified-pop" class="hv-pop" role="tooltip" hidden><p>Specifications are extracted from manufacturer datasheets and published technical documentation, and every data point is then checked by a human before it goes live. Each listing records the source it came from, and where a manufacturer quotes performance at non-standard test conditions, those conditions are stored alongside the figure so you can compare like with like.</p><p>Datasheets get revised and we do make mistakes, so every product page carries a &ldquo;Suggest a correction&rdquo; link. Corrections are genuinely welcome.</p></div>
       </div>
@@ -1150,7 +1146,7 @@ if(localStorage.getItem('cookie_consent')==='accepted')loadGA();
    the first frame has painted, and the app boots once they have run. Clicks on
    app controls made before boot are queued and replayed. */
 (function(){
-  var core=['faq-data.js?v=5','data.js?v=144','bus-pel.js?v=1','logos.js?v=136','product-images.js?v=10','best-winners.js?v=1','slugs.js?v=4'];
+  var core=['faq-data.js?v=5','data.js?v=144','bus-pel.js?v=1','logos.js?v=136','product-images.js?v=11','best-winners.js?v=1','slugs.js?v=4'];
   var queued=null;
   // theme.js reads this at load; it proxies to the real state once the app has booted
   window.__hpState={get db(){var r=window.__hpStateReal;return r?r.db:[];},get filtered(){var r=window.__hpStateReal;return r?r.filtered:[];},get compareIds(){var r=window.__hpStateReal;return r?r.compareIds:[];}};
@@ -2016,7 +2012,7 @@ function trackClick(id,url,linkType,label){
       manufacturer:d?d.manufacturer:null,
       model:d?d.model:null,
       retailer_name:label||null,
-      click_origin:'app'
+      source:'app'
     });
   }
 }
