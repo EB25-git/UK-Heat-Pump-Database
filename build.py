@@ -35,7 +35,7 @@ DATA      = os.path.join(ROOT, "products.json")
 NEWS_DATA = os.path.join(ROOT, "news.json")
 TODAY     = datetime.date.today().isoformat()
 
-GENERATED_DIRS = ["heat-pump-gallery", "cylinders", "products", "manufacturers", "types", "knowledge", "best", "heat-pump-comparison", "heat-pump-size-calculator", "heat-pump-noise-calculator", "news"]
+GENERATED_DIRS = ["ranges", "heat-pump-gallery", "cylinders", "products", "manufacturers", "types", "knowledge", "best", "heat-pump-comparison", "heat-pump-size-calculator", "heat-pump-noise-calculator", "news"]
 
 TYPE_LABEL = {"ASHP": "Air Source (ASHP)", "GSHP": "Ground Source (GSHP)",
               "WSHP": "Water Source (WSHP)"}
@@ -281,6 +281,256 @@ def derive_range(model):
     s = re.sub(r'\s*\(\d{2,3}V\)\s*$', '', s)
     s = s.strip().rstrip(',').strip()
     return s if s else (model or "")
+
+# ───────────────────────── Model ranges (Nov 2026) ─────────────────────────
+# Search Console (Nov 2026) showed many searches are for a whole range/series
+# ("cosy 12", "aquasnap 61aq", "nimbus compact m net r32 datasheet", "cxax"),
+# while product pages are split one per size. Each range of 2+ products gets its
+# own page at /ranges/<slug>/ comparing every size side by side.
+RANGES = []          # list of dicts: mfr, name, slug, products
+RANGE_BY_PID = {}    # product id -> range dict
+
+def range_key(model):
+    """Best-effort series name: strip trailing size / voltage / phase tokens from a
+    model string ('Cosy 12' -> 'Cosy', 'Nimbus Compact M Net R32, 120 (400V)' ->
+    'Nimbus Compact M Net R32', 'HPM 10kW (400V)' -> 'HPM'). Only strips tokens
+    separated by a space or comma, so codes like 'i-290' or 'RS/2' are kept."""
+    s = (model or "").strip()
+    for _ in range(5):
+        before = s
+        s = re.sub(r"\s*\((?:\d{2,3}\s?V|[13]\s?ph(?:ase)?|single[- ]phase|three[- ]phase|[^()]*\d[^()]*)\)\s*$", "", s, flags=re.I)
+        s = re.sub(r"[,\s]+\d+(?:[.,]\d+)?\s*kW\s*$", "", s, flags=re.I)
+        if re.search(r"\d", s):
+            s = re.sub(r"[,\s]+(?:\d{2,3}V|[13]\s?PH|[13]F|T)\s*$", "", s, flags=re.I)
+        s = re.sub(r"[,\s]+\d+(?:[.,]\d+)?\s*$", "", s)
+        s = s.strip(" ,")
+        if s == before:
+            break
+    if re.fullmatch(r"\d+(?:[.,]\d+)?\s*kW", s, flags=re.I):
+        return ""   # e.g. Aira '12kW' - the range is just the brand; manufacturer page covers it
+    return s
+
+def compute_ranges(products):
+    RANGES.clear(); RANGE_BY_PID.clear()
+    groups = {}
+    for p in products:
+        k = range_key(p.get("model"))
+        if not k:
+            continue
+        groups.setdefault((p.get("manufacturer", ""), k), []).append(p)
+    used = set()
+    for (mfr, name), ps in sorted(groups.items(), key=lambda kv: (kv[0][0].lower(), kv[0][1].lower())):
+        if len(ps) < 2:
+            continue
+        slug = slugify(f"{mfr} {name}")
+        if slug in used:
+            continue
+        used.add(slug)
+        ps = sorted(ps, key=lambda x: (x.get("cap_max") if isinstance(x.get("cap_max"), (int, float)) else 9e9,
+                                       x.get("model") or "", x.get("id") or 0))
+        r = {"mfr": mfr, "name": name, "slug": slug, "products": ps}
+        RANGES.append(r)
+        for p in ps:
+            RANGE_BY_PID[p.get("id")] = r
+
+def range_label(r):
+    return f"{r['mfr']} {r['name']}"
+
+def range_url(r):
+    return f"{BASE_URL}/ranges/{r['slug']}/"
+
+def _rng(vals, unit="", dp=None):
+    vals = [v for v in vals if isinstance(v, (int, float))]
+    if not vals:
+        return None
+    lo, hi = min(vals), max(vals)
+    f = (lambda v: num(round(v, dp)) if dp is not None else num(v))
+    return f"{f(lo)}{unit}" if lo == hi else f"{f(lo)}–{f(hi)}{unit}"
+
+def _common_cond(ps, val_key, cond_key):
+    """Most common test condition among products that have the value."""
+    conds = [str(p.get(cond_key) or "").strip() for p in ps if p.get(val_key) is not None]
+    conds = [c for c in conds if c]
+    if not conds:
+        return ""
+    return max(set(conds), key=conds.count)
+
+def render_range(r):
+    ps, mfr, name = r["products"], r["mfr"], r["name"]
+    lab = range_label(r)
+    url = range_url(r)
+    mslug = slugify(mfr)
+    n = len(ps)
+    caps = [p.get("cap_max") for p in ps] + [p.get("cap_min") for p in ps]
+    cap_rng = _rng([p.get("cap_max") for p in ps], " kW")
+    types = sorted({TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type") or "").split(" (")[0].lower()
+                    for p in ps if p.get("hp_type")})
+    type_words = " / ".join(types) if types else ""
+    refs = sorted({str(p.get("refrigerant")) for p in ps if p.get("refrigerant")})
+    scop_cond = _common_cond(ps, "scop", "scop_cond")
+    scop_ps = [p for p in ps if p.get("scop") is not None and str(p.get("scop_cond") or "").strip() == scop_cond]
+    cop_cond = _common_cond(ps, "cop", "cop_cond")
+    cop_ps = [p for p in ps if p.get("cop") is not None and str(p.get("cop_cond") or "").strip() == cop_cond]
+    noise_ps = [p for p in ps if isinstance(p.get("noise"), (int, float))]
+    flow = _rng([p.get("flow_temp_max") for p in ps], "°C")
+    prices = [p.get("price_min") for p in ps if isinstance(p.get("price_min"), (int, float))]
+    bus_n = sum(1 for p in ps if p.get("bus_eligible"))
+    resid = any(p.get("type") == "Residential" for p in ps)
+
+    # --- intro answer paragraph (feeds the snippet) ---
+    sent = [f"The {esc(lab)} range has {n} models"
+            + (f" from {esc(cap_rng.replace(chr(0x2013), ' to '))}" if cap_rng and "–" in cap_rng else (f" rated at {esc(cap_rng)}" if cap_rng else ""))
+            + (f": {esc(type_words)} heat pumps" if type_words else "")
+            + (f" using {esc(' / '.join(refs))}" if refs else "") + "."]
+    if scop_ps:
+        sent.append(f"Published SCOP is {esc(_rng([p['scop'] for p in scop_ps]))}"
+                    + (f" ({esc(scop_cond)})" if scop_cond else "") + ".")
+    elif cop_ps:
+        sent.append(f"Published COP is {esc(_rng([p['cop'] for p in cop_ps]))}"
+                    + (f" ({esc(cop_cond)})" if cop_cond else "") + ".")
+    if flow:
+        if "\u2013" in flow:
+            sent.append("Maximum flow temperature ranges from " + esc(flow.replace("\u2013", " to ")) + ".")
+        else:
+            sent.append("Maximum flow temperature is " + esc(flow) + ".")
+    if noise_ps:
+        sent.append(f"Sound power is {esc(_rng([p['noise'] for p in noise_ps], ' dB(A)'))}.")
+    if prices:
+        sent.append(f"UK retail prices start from &pound;{money(min(prices))} (unit only, ex-install).")
+    if resid and bus_n:
+        sent.append(f"{bus_n} of {n} models {'is' if bus_n == 1 else 'are'} on Ofgem&rsquo;s Boiler Upgrade Scheme eligibility list.")
+    intro = f'<p class="range-intro">{" ".join(sent)}</p>'
+
+    # --- comparison table: only columns with data ---
+    _dup_models = len({p.get("model") for p in ps}) < len(ps)
+    def _mlink(p):
+        t = p.get("model") or ""
+        if _dup_models and cap_str(p) and cap_str(p) not in t:
+            t = f"{t} ({cap_str(p)})"
+        return f'<a href="{BASE_URL}/products/{p["_slug"]}/">{esc(t)}</a>'
+    cols = [("Model", _mlink, True),
+            ("Product code", lambda p: esc(p.get("product_code") or ""), any(p.get("product_code") for p in ps)),
+            ("Capacity", lambda p: esc(cap_str(p) or ""), True),
+            (f"SCOP{(' (' + esc(scop_cond) + ')') if scop_cond else ''}",
+             lambda p: esc(num(p["scop"])) if p.get("scop") is not None and str(p.get("scop_cond") or "").strip() == scop_cond else "",
+             bool(scop_ps)),
+            (f"COP{(' (' + esc(cop_cond) + ')') if cop_cond else ''}",
+             lambda p: esc(num(p["cop"])) if p.get("cop") is not None and str(p.get("cop_cond") or "").strip() == cop_cond else "",
+             bool(cop_ps)),
+            ("Max flow", lambda p: f"{num(p['flow_temp_max'])}&deg;C" if p.get("flow_temp_max") is not None else "",
+             any(p.get("flow_temp_max") is not None for p in ps)),
+            ("Sound power", lambda p: f"{num(p['noise'])} dB(A)" if isinstance(p.get("noise"), (int, float)) else "", bool(noise_ps)),
+            ("Refrigerant", lambda p: esc(p.get("refrigerant") or ""), len(refs) > 1),
+            ("Price (unit)", lambda p: (f"~&pound;{money(p['price_min'])}" if p.get("price_max") in (None, p.get("price_min"))
+                                        else f"&pound;{money(p['price_min'])}&ndash;&pound;{money(p['price_max'])}")
+                                       if isinstance(p.get("price_min"), (int, float)) else "", bool(prices)),
+            ("BUS", lambda p: "&#10003;" if p.get("bus_eligible") else "", resid and bus_n > 0)]
+    cols = [c for c in cols if c[2]]
+    head = "<tr>" + "".join(f"<th>{c[0]}</th>" for c in cols) + "</tr>"
+    rows = "".join("<tr>" + "".join(f"<td>{c[1](p)}</td>" for c in cols) + "</tr>" for p in ps)
+    table = f'<div class="tbl-wrap"><table class="list">{head}{rows}</table></div>'
+
+    # --- FAQ (factual, generated from the table) ---
+    qas = []
+    sizes = [cap_str(p) for p in ps if cap_str(p)]
+    uniq_sizes = list(dict.fromkeys(sizes))
+    if uniq_sizes:
+        qas.append((f"What sizes does the {lab} come in?",
+                    f"The database lists {n} {esc(lab)} models: {esc(', '.join(uniq_sizes))}."))
+    if len(scop_ps) >= 2:
+        best = max(scop_ps, key=lambda p: p["scop"])
+        qas.append((f"Which {lab} model is the most efficient?",
+                    f"On published data, the {_plink(best)} has the highest SCOP in the range at "
+                    f"{esc(num(best['scop']))}{(' (' + esc(scop_cond) + ')') if scop_cond else ''}. "
+                    f"Smaller sizes often score higher on SCOP than larger ones in the same range."))
+    if len(noise_ps) >= 2 and len({p['noise'] for p in noise_ps}) > 1:
+        q = min(noise_ps, key=lambda p: p["noise"])
+        qas.append((f"Which {lab} model is the quietest?",
+                    f"The {_plink(q)} has the lowest published sound power in the range at {esc(num(q['noise']))} dB(A). "
+                    f'Use the <a href="{BASE_URL}/heat-pump-noise-calculator/">noise calculator</a> to check it against the MCS 020 a) 37 dB limit.'))
+    if resid:
+        if bus_n:
+            qas.append((f"Is the {lab} eligible for the Boiler Upgrade Scheme?",
+                        f"{bus_n} of {n} {esc(lab)} models {'is' if bus_n == 1 else 'are'} on Ofgem&rsquo;s BUS Product Eligibility List. "
+                        f"The &pound;7,500 grant also needs an MCS-certified installer. "
+                        f'See the <a href="{BASE_URL}/knowledge/funding/">funding guide</a>.'))
+        qas.append((f"Which size {lab} do I need?",
+                    f"Size depends on your home&rsquo;s heat loss, not floor area alone. A typical 3-bed UK home needs around 6&ndash;9 kW. "
+                    f'Use the <a href="{BASE_URL}/heat-pump-size-calculator/">heat pump size calculator</a> for an estimate, '
+                    f"and always have an MCS installer do a room-by-room heat loss survey."))
+    faq_html, faq_ld = _faq_block(qas) if qas else ("", None)
+
+    others = [o for o in RANGES if o["mfr"] == mfr and o is not r]
+    others_html = ""
+    if others:
+        others_html = (f'<h2 class="sec">Other {esc(mfr)} ranges</h2><div class="best-toc">'
+                       + "".join(f'<a href="{range_url(o)}">{esc(o["name"])} <span class="n">({len(o["products"])})</span></a>'
+                                 for o in others) + "</div>")
+
+    crumb_items = [("Home", f"{BASE_URL}/"),
+                   ("Manufacturers", f"{BASE_URL}/manufacturers/"),
+                   (mfr, f"{BASE_URL}/manufacturers/{mslug}/"),
+                   (name, None)]
+    logo = get_logo_url(mfr)
+    body = (HUB_CSS + "<style>.range-intro{max-width:760px;line-height:1.65;font-size:15.5px}"
+            ".tbl-wrap{overflow-x:auto;margin:14px 0}</style>" + crumbs(crumb_items) +
+            f'<div class="mfr-header"><img class="mfr-logo-sm" src="{logo}" alt="{esc(mfr)} logo" width="32" height="32">'
+            f"<h1>{esc(lab)} heat pump range</h1></div>"
+            f'<p class="sub">{n} models compared side by side</p>'
+            + intro + f'<h2 class="sec">All {esc(lab)} models</h2>' + table +
+            f'<p style="margin-top:14px"><a class="cta" href="{BASE_URL}/?q={esc(urllib.parse.quote(lab))}">Compare these in the interactive database &rarr;</a></p>'
+            + faq_html + others_html +
+            f'<p style="margin-top:20px"><a href="{BASE_URL}/manufacturers/{mslug}/">All {esc(mfr)} heat pumps &rarr;</a> &middot; '
+            f'<a href="{BASE_URL}/manufacturers/">All heat pump manufacturers &rarr;</a></p>'
+            f'<p class="trademark-note">The {esc(mfr)} name and logo are trademarks of their respective owner '
+            f'and are used here for identification purposes only.</p>')
+
+    title = None
+    for t in (f"{lab} Heat Pumps: {n} Sizes Compared", f"{lab}: {n} Sizes, Specs & SCOP",
+              f"{lab}: All Sizes & Specs", f"{lab} Range"):
+        if len(t) <= 60:
+            title = t; break
+    if title is None:
+        title = f"{lab} Range"   # never shorten model names (Euan's rule)
+    bits = []
+    if cap_rng: bits.append(cap_rng)
+    if scop_ps: bits.append(f"SCOP {_rng([p['scop'] for p in scop_ps])}")
+    if noise_ps: bits.append(_rng([p['noise'] for p in noise_ps], " dB(A)"))
+    if prices: bits.append(f"from £{money(min(prices))}")
+    hook = ". Full specs, test conditions and UK prices for every model." if prices else \
+           ". Full specs and test conditions for every model."
+    desc = f"{lab}: all {n} sizes compared" + (" \u2014 " + ", ".join(bits) if bits else "") + hook
+    while len(desc) > 160 and bits:
+        bits.pop()
+        desc = f"{lab}: all {n} sizes compared" + (" \u2014 " + ", ".join(bits) if bits else "") + hook
+    if len(desc) > 160:
+        desc = desc[:157].rstrip() + "…"
+    item_ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"{lab} heat pumps",
+               "itemListElement": [{"@type": "ListItem", "position": i + 1,
+                                    "url": f"{BASE_URL}/products/{p['_slug']}/",
+                                    "name": f"{mfr} {p.get('model')}"} for i, p in enumerate(ps)]}
+    ld = [item_ld, breadcrumb_jsonld(crumb_items, url)] + ([faq_ld] if faq_ld else [])
+    return page(title, desc, url, body, ld, active="manufacturers", og_image=get_og_image(mfr))
+
+def render_ranges_index():
+    url = f"{BASE_URL}/ranges/"
+    by_m = {}
+    for r in RANGES:
+        by_m.setdefault(r["mfr"], []).append(r)
+    secs = ""
+    for m in sorted(by_m, key=str.lower):
+        secs += (f'<h2 class="sec"><a href="{BASE_URL}/manufacturers/{slugify(m)}/">{esc(m)}</a></h2><div class="best-toc">'
+                 + "".join(f'<a href="{range_url(r)}">{esc(r["name"])} <span class="n">({len(r["products"])})</span></a>'
+                           for r in by_m[m]) + "</div>")
+    crumb_items = [("Home", f"{BASE_URL}/"), ("Manufacturers", f"{BASE_URL}/manufacturers/"), ("Model ranges", None)]
+    body = (HUB_CSS + crumbs(crumb_items) + "<h1>Heat pump model ranges</h1>"
+            f'<p class="sub">{len(RANGES)} ranges from {len(by_m)} manufacturers. Each range page compares every size side by side.</p>'
+            + secs)
+    return page(f"Heat Pump Model Ranges: {len(RANGES)} Series Compared",
+                f"Browse {len(RANGES)} heat pump model ranges from {len(by_m)} manufacturers. Each page compares every size: "
+                f"capacity, SCOP, noise, flow temperature and UK prices.",
+                url, body, [breadcrumb_jsonld(crumb_items, url)], active="manufacturers", og_image=get_og_image())
+
 
 def load_reviews():
     """Load the manually-curated reviews.json (list of {manufacturer, range,
@@ -934,6 +1184,10 @@ window.dataLayer=window.dataLayer||[];
 window.gtag=function(){{dataLayer.push(arguments);}};
 function loadGA(){{
   if(document.getElementById('ga-script'))return;
+  /* Google Consent Mode v2 (basic): everything denied by default; analytics
+     granted only because the visitor accepted. Ad signals stay denied. */
+  gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'}});
+  gtag('consent','update',{{analytics_storage:'granted'}});
   var s=document.createElement('script');s.id='ga-script';s.async=true;
   s.src='https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}';
   document.head.appendChild(s);
@@ -946,7 +1200,7 @@ function declineCookies(){{localStorage.setItem('cookie_consent','declined');var
 function trackOut(){{
   if(typeof window.gtag!=='function'||localStorage.getItem('cookie_consent')!=='accepted')return;
   var a=Array.prototype.slice.call(arguments);
-  window.gtag('event','outbound_click',{{link_type:a[0]||'unknown',product_id:a[1],manufacturer:a[2],model:a[3],retailer_name:a[4]||null,source:'static_page'}});
+  window.gtag('event','outbound_click',{{link_type:a[0]||'unknown',product_id:a[1],manufacturer:a[2],model:a[3],retailer_name:a[4]||null,click_origin:'static_page'}});
 }}
 </script>
 </head>
@@ -2929,10 +3183,17 @@ def render_product(p, by_mfr, by_type):
         rel += f'<h2 class="sec">Other {esc(lbl)} heat pumps</h2><div class="grid">' + \
                "".join(product_card(q) for q in same_typ) + "</div>"
 
+    _rg = RANGE_BY_PID.get(p.get("id"))
     crumb_items = [("Home", f"{BASE_URL}/"),
                    ("Manufacturers", f"{BASE_URL}/manufacturers/"),
-                   (mfr, f"{BASE_URL}/manufacturers/{mslug}/"),
-                   (model, None)]
+                   (mfr, f"{BASE_URL}/manufacturers/{mslug}/")]
+    if _rg and _rg["name"] != model:
+        crumb_items.append((_rg["name"], range_url(_rg)))
+    crumb_items.append((model, None))
+    range_html = ""
+    if _rg:
+        range_html = (f'<p class="sub" style="margin-top:6px">Part of the <a href="{range_url(_rg)}">{esc(range_label(_rg))} range</a> '
+                      f'&mdash; compare all {len(_rg["products"])} sizes side by side &rarr;</p>')
 
     # "Also known as" line: retailers/datasheets/articles often list the same SKU
     # under slightly different names or codes. Surfacing known aliases helps a
@@ -3053,6 +3314,7 @@ def render_product(p, by_mfr, by_type):
             f'<p class="sub">Specifications and technical data</p>'
             f'{aliases_html}'
             f'<div class="badges">{badges}</div>'
+            f'{range_html}'
             f'<table class="spec">{rows}</table>'
             f'<p style="margin-top:14px"><a class="cta" href="{BASE_URL}/products/{slug}/data-sheet/" rel="nofollow">Free data sheet (PDF) &rarr;</a></p>'
             + (f'<p style="margin-top:10px"><a class="cta" href="{BASE_URL}/heat-pump-noise-calculator/?id={p.get("id")}" rel="nofollow">Check noise at a neighbour&rsquo;s window (MCS 020 a) &rarr;</a></p>'
@@ -3234,10 +3496,42 @@ def render_manufacturer(mfr, products):
     types = sorted({TYPE_LABEL.get(p.get("hp_type"), p.get("hp_type")) for p in products if p.get("hp_type")})
     _tl = ", ".join(t.split(" (")[0].lower() for t in types)
     _nm = f"{n} model{'s' if n != 1 else ''}"
-    desc = (f"{mfr_label(mfr)}: {_nm} in the {SITE_NAME}. "
-            f"Compare {_tl} specifications, COP, SCOP and noise data for free.")
+    _caps = [p.get("cap_max") for p in products if isinstance(p.get("cap_max"), (int, float))]
+    _caps_lo = [p.get("cap_min") if isinstance(p.get("cap_min"), (int, float)) else p.get("cap_max")
+                for p in products if isinstance(p.get("cap_min"), (int, float)) or isinstance(p.get("cap_max"), (int, float))]
+    _span = (f"{num(min(_caps_lo))} to {num(max(_caps)) if max(_caps) < 1000 else f'{max(_caps):,.0f}'} kW" if _caps and _caps_lo and min(_caps_lo) != max(_caps)
+             else (f"{num(max(_caps))} kW" if _caps else ""))
+    _mranges = [r for r in RANGES if r["mfr"] == mfr]
+    _tl_and = (", ".join(_tl.split(", ")[:-1]) + " and " + _tl.split(", ")[-1]) if ", " in _tl else _tl
+    # SEO (Nov 2026): answer "does <brand> make heat pumps?" directly in the snippet
+    desc = (f"Yes \u2014 {mfr} makes {_nm.replace('model', 'heat pump model')}"
+            + (f" from {_span}" if _span else "") + f": {_tl_and}. Compare specs, COP, SCOP and noise for free.")
+    if len(desc) > 160:
+        desc = (f"{mfr} makes {_nm.replace('model', 'heat pump model')}" + (f" ({_span})" if _span else "")
+                + f". Compare {_tl} specs, COP and SCOP for free.")
     if len(desc) > 160:
         desc = (f"{mfr_label(mfr)}: {_nm}. Compare {_tl} specs, COP and SCOP for free.")
+    _country = MANUFACTURER_COUNTRY.get(mfr)
+    _ans = (f"Yes. {esc(mfr)} makes {n} heat pump model{'s' if n != 1 else ''} listed in the {SITE_NAME}"
+            + (f", from {esc(_span)}" if _span else "") + (f": {esc(_tl_and)}" if _tl_and else "") + ".")
+    if len(_mranges) == 1:
+        _r0 = _mranges[0]
+        _ans += (f' {"They" if len(_r0["products"]) == n else str(len(_r0["products"])) + " of them"} '
+                 f'{"form" if len(_r0["products"]) == n else "belong to"} the <a href="{range_url(_r0)}">{esc(_r0["name"])}</a> range.')
+    elif _mranges:
+        _ans += (f" They span {len(_mranges)} model range{'s' if len(_mranges) != 1 else ''}, including "
+                 + ", ".join(f'<a href="{range_url(r)}">{esc(r["name"])}</a>' for r in
+                             sorted(_mranges, key=lambda r: -len(r["products"]))[:3]) + ".")
+    if _country:
+        _the = "the " if _country in ("United Kingdom", "United States", "Netherlands", "Czech Republic") else ""
+        _ans += f" {esc(mfr)} is based in {_the}{esc(_country)}."
+    answer_html = f'<p class="mfr-answer" style="max-width:760px;line-height:1.65;font-size:15px;margin:6px 0 14px">{_ans}</p>'
+    ranges_html = ""
+    if _mranges:
+        ranges_html = (f'<h2 class="sec">{esc(mfr)} model ranges</h2><div class="best-toc">'
+                       + "".join(f'<a href="{range_url(r)}">{esc(r["name"])} <span class="n">({len(r["products"])})</span></a>'
+                                 for r in _mranges) + "</div>"
+                       + f'<h2 class="sec">All {esc(mfr)} models</h2>')
     crumb_items = [("Home", f"{BASE_URL}/"),
                    ("Manufacturers", f"{BASE_URL}/manufacturers/"),
                    (mfr, None)]
@@ -3246,8 +3540,10 @@ def render_manufacturer(mfr, products):
             f'<div class="mfr-header"><img class="mfr-logo" src="{logo}" alt="{esc(mfr)} logo" width="64" height="64">'
             f"<h1>{esc(mfr_label(mfr))}</h1></div>"
             f'<p class="sub">{n} model{"s" if n != 1 else ""} in the database</p>' +
+            answer_html + ranges_html +
             list_table(sorted(products, key=lambda x: (x.get("model") or "", x.get("cap_max") or 0))) +
             f'<p style="margin-top:20px"><a class="cta" href="{BASE_URL}/">Search the full database &rarr;</a></p>'
+            f'<p style="margin-top:12px"><a href="{BASE_URL}/manufacturers/">Compare all heat pump manufacturers &rarr;</a></p>'
             f'<p class="trademark-note">The {esc(mfr)} name and logo are trademarks of their respective owner '
             f'and are used here for identification purposes only.</p>')
     item_ld = {"@context": "https://schema.org", "@type": "ItemList",
@@ -3427,7 +3723,8 @@ def render_manufacturers_index(by_mfr):
     intro = (
         '<p style="color:#3B4D47;font-size:14.5px;line-height:1.7;margin:0 0 24px;max-width:720px">'
         f'{len(by_mfr)} manufacturers, {len(all_products):,} products across {n_countries} countries. '
-        'Each card shows country, product mix and MCS-listed models &mdash; use the filters below to narrow the list.</p>'
+        'Each card shows country, product mix and MCS-listed models &mdash; use the filters below to narrow the list. '
+        f'To compare every size of one series, browse the <a href="{BASE_URL}/ranges/">{len(RANGES)} model ranges</a>.</p>'
     )
     _hp, _app, _ref, _pills = type_links_html()
     _n_types = len(re.findall(r"<a\b", _pills(_hp + _app) + _pills(_ref)))
@@ -4332,7 +4629,7 @@ def render_comparison_page(products):
 
     body = (
         crumbs(crumb_items) +
-        "<h1>Market Comparison</h1>"
+        "<h1>Compare Heat Pumps by Type, Size &amp; Refrigerant</h1>"
         f'<p class="sub">{total:,} heat pumps from {mfr_count} manufacturers · updated {TODAY}</p>'
         '<p>How the heat pump market compares by type, size and refrigerant, from published manufacturer data.</p>'
         f'<p style="margin:14px 0"><a class="cta" href="{BASE_URL}/#compare">Compare products side by side &rarr;</a></p>'
@@ -4355,9 +4652,9 @@ def render_comparison_page(products):
     )
 
     return page(
-        f"Heat Pump Market Comparison | {SITE_NAME}",
-        f"Heat pump market comparison: {total:,} models from {mfr_count} manufacturers compared by type, "
-        f"capacity and refrigerant - SCOP, noise, flow temperature and MCS status.",
+        "Compare Heat Pumps Side by Side: SCOP, Noise & Price",
+        f"Compare {total:,} heat pumps from {mfr_count} manufacturers side by side: SCOP, noise, price, "
+        f"flow temperature and MCS status by type, capacity and refrigerant.",
         url, body, [breadcrumb_jsonld(crumb_items, url)],
         active="comparison", og_image=get_og_image())
 
@@ -4777,12 +5074,61 @@ def render_news_article(article, all_articles):
     return page(title, desc, url, body, [ld, breadcrumb_jsonld(crumb_items, url)], og_type="article",
                 active="news", og_image=img_url or get_og_image())
 
+def size_guide_html():
+    """Explanatory text under the size calculator (SEO, Nov 2026: the page ranked
+    ~#32 with little text beyond the tool). Returns (html, FAQPage JSON-LD)."""
+    B = BASE_URL
+    sizes = (
+        '<div class="tbl-wrap" style="overflow-x:auto"><table class="list">'
+        '<tr><th>Home (typical)</th><th>Floor area</th><th>Typical heat pump size</th><th>Compare</th></tr>'
+        f'<tr><td>1&ndash;2 bed flat or small terrace</td><td>50&ndash;70 m&sup2;</td><td>3&ndash;5 kW</td><td><a href="{B}/best/best-small-heat-pumps-3-6kw/">Best 3&ndash;6 kW</a></td></tr>'
+        f'<tr><td>2&ndash;3 bed terrace or semi</td><td>70&ndash;100 m&sup2;</td><td>5&ndash;8 kW</td><td><a href="{B}/best/best-medium-heat-pumps-7-12kw/">Best 7&ndash;12 kW</a></td></tr>'
+        f'<tr><td>3&ndash;4 bed semi or detached</td><td>100&ndash;150 m&sup2;</td><td>7&ndash;12 kW</td><td><a href="{B}/best/best-medium-heat-pumps-7-12kw/">Best 7&ndash;12 kW</a></td></tr>'
+        f'<tr><td>Large 4&ndash;5 bed detached</td><td>150&ndash;250 m&sup2;</td><td>11&ndash;16 kW</td><td><a href="{B}/best/best-large-heat-pumps-13-25kw/">Best 13&ndash;25 kW</a></td></tr>'
+        '</table></div>'
+        '<p class="sub">Indicative only. A well-insulated modern home can need half these figures; an uninsulated solid-wall house can need more.</p>')
+    example = (
+        '<h2 class="sec">Worked example</h2>'
+        '<p style="max-width:760px;line-height:1.7">A 1960s three-bed semi of about 90&nbsp;m&sup2;, with cavity wall insulation, '
+        '270&nbsp;mm of loft insulation and double glazing, loses roughly 55&ndash;65&nbsp;W per m&sup2; on a cold design day '
+        '(&minus;2&nbsp;&deg;C outside, 21&nbsp;&deg;C inside). That is about <strong>5&ndash;6&nbsp;kW</strong> of design heat loss, '
+        'so a heat pump rated around <strong>6&nbsp;kW</strong> at the design temperature would cover it. Over a year the same home '
+        'might use around 9,000&ndash;11,000&nbsp;kWh of heat; at a SCOP of 3.5 that is roughly 2,600&ndash;3,100&nbsp;kWh of electricity. '
+        'Multiply by your electricity unit rate to estimate running costs.</p>'
+        '<p style="max-width:760px;line-height:1.7">Check the capacity a heat pump delivers <em>at your design temperature</em>, '
+        'not just its headline rating: output falls as outdoor temperature drops. Product pages in this database show the '
+        'maximum output at low outdoor temperature where the manufacturer publishes it.</p>')
+    qas = [
+        ("What size heat pump do I need for a 3-bed house?",
+         "Most three-bed UK homes need between 5 and 9 kW. A well-insulated semi often needs 5&ndash;6 kW; a draughty or "
+         "solid-wall detached house can need 9 kW or more. The calculator above gives an estimate for your home."),
+        ("How is heat pump size calculated?",
+         "An MCS installer calculates the heat loss of every room (to BS EN 12831, as required by MCS MIS 3005-D) at your local "
+         "design outdoor temperature, then adds the rooms up. The heat pump must cover that total at the design temperature."),
+        ("Does a heat pump need to be as big as my boiler?",
+         "No. Gas combi boilers are usually 24&ndash;35 kW because they heat hot water instantly. Most homes need a heat pump of "
+         "only 5&ndash;12 kW, because it heats the house steadily and reheats a hot water cylinder in the background."),
+        ("Is it bad to oversize a heat pump?",
+         "Yes. An oversized heat pump switches on and off more often (short cycling), which lowers efficiency, increases wear "
+         "and costs more to buy. Size to the calculated heat loss rather than adding a large margin."),
+        ("Does hot water change the size I need?",
+         "Usually only slightly. Hot water is stored in a cylinder and reheated on a timer, so it rarely sets the heat pump "
+         "size. It does affect the cylinder size: see the <a href=\"" + B + "/cylinders/\">hot water cylinders</a> section."),
+    ]
+    faq_html, faq_ld = _faq_block(qas, heading="Heat pump sizing: common questions")
+    html_out = (HUB_CSS + '<h2 class="sec">What size heat pump do I need?</h2>'
+                '<p style="max-width:760px;line-height:1.7">Heat pump size is set by your home&rsquo;s <strong>design heat loss</strong>: '
+                'the heat it loses on a cold day. It depends on floor area, insulation, glazing, draughts and where you live in the UK. '
+                'As a rough guide:</p>' + sizes + example + faq_html)
+    return html_out, faq_ld
+
 def render_size_calculator_page():
     title = "Heat Pump Size Calculator: What kW Do You Need?"
     desc = ("Free UK heat pump size calculator: estimate the kW your home needs and your yearly "
             "running cost, then see matching heat pumps from the database.")
     canonical = f"{BASE_URL}/heat-pump-size-calculator/"
-    jsonld = [{
+    SIZE_GUIDE_HTML, _size_faq_ld = size_guide_html()
+    jsonld = [_size_faq_ld, {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Heat Pump Size Calculator",
@@ -4929,6 +5275,7 @@ def render_size_calculator_page():
 
 <p class="dm-note">Method: whole-dwelling fabric and ventilation heat loss following the CIBSE Domestic Heating Design Guide approach, using indicative UK regional design temperatures and degree-day data. U-values are typical defaults for the age band selected, not measured values for your actual property, and envelope areas are estimated from floor area, storeys and property shape rather than measured room-by-room. Figures exclude solar and internal gains, which in practice reduce real-world running costs somewhat. Always confirm sizing with a full MCS heat-loss survey before purchase &mdash; see our <a href="{BASE_URL}/knowledge/installation-costs/">installation costs guide</a> for what that typically involves.</p>
 
+{SIZE_GUIDE_HTML}
 <h2 class="sec">Related reading</h2>
 <div class="grid">
   <a class="card" href="{BASE_URL}/knowledge/installation-costs/"><div class="m">Installation costs</div><div class="s">What a UK ASHP install actually costs, broken down</div></a>
@@ -5521,8 +5868,11 @@ def refresh_home_page(products, by_mfr):
              "hero-wshp": sum(1 for p in products if p.get("hp_type") in ("WSHP", "GSHP"))}
     for _id, _v in _hero.items():
         app = re.sub(r'(id="%s">)[^<]*(<)' % _id, lambda m, v=_v: f"{m.group(1)}{v}{m.group(2)}", app, count=1)
-    app = re.sub(r'(<p[^>]*id="hero-subtitle">)[^<]*(</p>)',
-                 lambda m: m.group(1) + HERO_SUBTITLE + m.group(2), app, count=1)
+    _sub = HERO_SUBTITLE.replace(
+        "from UK manufacturers.",
+        f'from <a href="{BASE_URL}/manufacturers/" style="color:inherit;text-decoration:underline">{n_m} heat pump manufacturers</a>.')
+    app = re.sub(r'(<p[^>]*id="hero-subtitle">).*?(</p>)',
+                 lambda m: m.group(1) + _sub + m.group(2), app, count=1, flags=re.S)
     app = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(desc)}">', app, count=1)
     app = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{esc(title)}">', app, count=1)
     app = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{esc(og_desc)}">', app, count=1)
@@ -6081,6 +6431,7 @@ def main():
                 slug = f"{base}-{p.get('id','')}-{k}"; k += 1
         seen[slug] = True
         p["_slug"] = slug
+    compute_ranges(products)
 
     # Derived £/kW (peak heating capacity) figure, used by the residential
     # best-of "value" rankings below. Uses the midpoint of price_min/price_max
@@ -6297,6 +6648,18 @@ def main():
     url = f"{BASE_URL}/manufacturers/"
     urls.append(url)
     _lastmod_for(url, _lastmod_hash(sorted(by_mfr.keys())))
+
+    # model range pages (/ranges/<slug>/) + index
+    for r in RANGES:
+        write(os.path.join(ROOT, "ranges", r["slug"], "index.html"), render_range(r))
+        url = range_url(r)
+        urls.append(url)
+        _lastmod_for(url, _lastmod_hash(["range-v1"] + [product_hash_by_id[p.get("id")] for p in r["products"]]))
+    write(os.path.join(ROOT, "ranges", "index.html"), render_ranges_index())
+    url = f"{BASE_URL}/ranges/"
+    urls.append(url)
+    _lastmod_for(url, _lastmod_hash([r["slug"] for r in RANGES]))
+    print(f"Built {len(RANGES)} model range pages.")
 
     # category pages: source type
     type_pages = []
